@@ -39,7 +39,6 @@ export const BeforeAfterSection = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center min-h-[500px]">
-          {/* --- LEFT: COMPARISON SLIDER --- */}
           <div
             ref={containerRef}
             className="relative w-full lg:w-3/5 h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl cursor-col-resize group"
@@ -79,7 +78,6 @@ export const BeforeAfterSection = () => {
             </div>
           </div>
 
-          {/* --- RIGHT: CONTENT --- */}
           <div className="w-full lg:w-2/5 flex flex-col justify-center text-foreground relative">
             <div className="w-16 h-16 rounded-full border-2 border-primary/30 flex items-center justify-center mb-8 bg-primary/5">
               <Sparkles className="w-8 h-8 text-primary" />

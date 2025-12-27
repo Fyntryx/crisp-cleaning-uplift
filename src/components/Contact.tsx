@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import useScrollScale from "@/hooks/useScrollScale";
-import Link from "next/link";
+import { CTASection } from "@/components/CTASection";
 
 const Contact = () => {
   const { ref: sectionRef, style: scaleStyle } = useScrollScale({
@@ -19,35 +19,19 @@ const Contact = () => {
       ref={sectionRef as React.RefObject<HTMLElement>}
       className="py-16 relative overflow-hidden"
       style={scaleStyle}>
+      <div className="mb-12">
+        <CTASection
+          heading="Experience the Difference"
+          description="Feel free to contact us to establish project details."
+          primaryAction={{
+            text: "Contact Us",
+            href: "/contact",
+          }}
+        />
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
-        {/* CTA Banner */}
-        <div className="relative rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-accent p-8 md:p-16 mb-24 overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl" />
-
-          <div className="relative z-10 text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-primary-foreground mb-4">
-              Experience the Difference
-            </h2>
-            <p className="text-primary-foreground/80 text-lg mb-8">
-              Feel free to contact us to establish project details.
-            </p>
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button
-                as="div"
-                variant="secondary"
-                size="xl"
-                className="bg-card text-foreground hover:bg-card/90 shadow-xl w-full cursor-pointer">
-                Contact Us
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        {/* Contact Form & Info */}
         <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Info */}
           <div>
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full mb-6">
               Get In Touch

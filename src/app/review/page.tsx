@@ -3,7 +3,8 @@ import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import type { Metadata } from "next";
 
-import ReviewsClient, { ReviewItem } from "@/components/ReviewsClient";
+import { ReviewItem } from "@/components/ReviewsCards";
+import ReviewClient from "@/components/ReviewsClient";
 
 export const metadata: Metadata = {
   title: "Client Reviews | Crisp Cleaning",
@@ -33,7 +34,7 @@ export default async function ReviewsPage() {
 
   return (
     <main className="min-h-screen">
-      <ReviewsClient data={data} />
+      <ReviewClient data={data} />
     </main>
   );
 }

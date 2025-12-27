@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
+import React from "react";
 import Footer from "@/components/Footer";
 import ParallaxBubbles from "@/components/ParallaxBubbles";
 import { Button } from "@/components/ui/button";
@@ -16,61 +16,33 @@ import {
   Linkedin,
 } from "lucide-react";
 import useScrollScale from "@/hooks/useScrollScale";
-import Link from "next/link";
 
+import { PageHero } from "@/components/PageHero";
+import { CTASection } from "@/components/CTASection";
 
 const ContactPage = () => {
   const { ref: contactContentRef, style: contactContentStyle } = useScrollScale(
     { threshold: 0.1 }
   );
-  const { ref: ctaRef, style: ctaStyle } = useScrollScale({ threshold: 0.1 });
 
   return (
     <>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background flex flex-col">
         <ParallaxBubbles />
 
-        {/* Hero Section */}
-        <section className="relative min-h-[60vh] overflow-hidden">
-          {/* Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-accent z-0" />
+        <PageHero
+          badge="Get In Touch"
+          title="Communication is everything"
+          description="We have a record of answering everything in 24 hours or less."
+        />
 
-          {/* Decorative elements */}
-          <div className="absolute top-20 right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-10 w-72 h-72 bg-white/5 rounded-full blur-2xl" />
-          <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-accent/20 rounded-full blur-2xl" />
-
-          {/* Navbar */}
-          <Navbar />
-
-          {/* Hero Content */}
-          <div className="relative z-10 container mx-auto px-6 pt-40 pb-20 text-center">
-            <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full mb-6 border border-white/20 animate-fade-up">
-              Get In Touch
-            </span>
-            <h1
-              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-6 text-white drop-shadow-md animate-fade-up"
-              style={{ animationDelay: "100ms" }}>
-              Communication is everything
-            </h1>
-            <p
-              className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto animate-fade-up font-medium"
-              style={{ animationDelay: "200ms" }}>
-              We have a record of answering everything in 24 hours or less.
-            </p>
-          </div>
-        </section>
-
-        {/* Contact Form & Info Section */}
-        <section className="relative py-20 -mt-10">
+        <section className="relative py-20 -mt-10 z-20">
           <div
             ref={contactContentRef as React.RefObject<HTMLDivElement>}
             style={contactContentStyle}
             className="container mx-auto px-6">
             <div className="grid lg:grid-cols-5 gap-12">
-              {/* Contact Info Cards */}
               <div className="lg:col-span-2 space-y-6">
-                {/* 1. Hours Card */}
                 <div className="glass-card rounded-2xl p-6 hover-lift">
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 shrink-0 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
@@ -88,7 +60,6 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                {/* 2. Email Card */}
                 <div className="glass-card rounded-2xl p-6 hover-lift">
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 shrink-0 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
@@ -108,7 +79,6 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                {/* 3. Phone Card */}
                 <div className="glass-card rounded-2xl p-6 hover-lift">
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 shrink-0 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
@@ -128,7 +98,6 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                {/* 4. Socials Card */}
                 <div className="glass-card rounded-2xl p-6 hover-lift">
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 shrink-0 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
@@ -165,7 +134,6 @@ const ContactPage = () => {
                 </div>
               </div>
 
-              {/* Contact Form */}
               <div className="lg:col-span-3">
                 <div className="glass-card rounded-3xl p-8 md:p-12 shadow-xl border border-border/50">
                   <div className="mb-8">
@@ -245,38 +213,14 @@ const ContactPage = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20">
-          <div
-            ref={ctaRef as React.RefObject<HTMLDivElement>}
-            style={ctaStyle}
-            className="container mx-auto px-6">
-            <div className="relative rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-accent p-12 md:p-20 overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
-
-              <div className="relative z-10 text-center max-w-2xl mx-auto">
-                <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
-                  Experience the Difference
-                </h2>
-                <p className="text-white/90 text-lg mb-8">
-                  Ready to transform your space? Get a free, no-obligation quote
-                  today and see why Melbourne trusts Crisp Cleaning.
-                </p>
-                 <Link href="/#services" className="w-full sm:w-auto">
-                  <Button
-                    as="div"
-                    variant="secondary"
-                    size="xl"
-                    className="bg-card text-foreground hover:bg-card/90 shadow-xl">
-                    Get a Free Quote
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                 </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CTASection
+          heading="Experience the Difference"
+          description="Ready to transform your space? Get a free, no-obligation quote today and see why Melbourne trusts Crisp Cleaning."
+          primaryAction={{
+            text: "Get a Free Quote",
+            href: "/#services",
+          }}
+        />
       </div>
 
       <Footer />
