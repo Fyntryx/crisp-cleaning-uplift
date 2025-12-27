@@ -533,37 +533,22 @@ const Services = () => {
     bookingDate.setHours(9, 0, 0, 0); // Default to 9 AM
 
     return {
-      name: formData.contact.firstName, // Use firstName as name for commercial
       firstName: formData.contact.firstName,
-      lastName: "",
+      lastName: formData.contact.lastName || "",
       email: formData.contact.email,
-      // No password field for commercial bookings
       phone: formData.contact.phone,
       address: formData.contact.address,
       accountType: "commercial" as const,
       bookingDate: bookingDate.toISOString(),
-      cleaningType: "Regular" as const, // Default for commercial
       frequency: apiFrequency,
-      actionTakerDiscount: false,
-      roomsBedrooms: 0,
-      roomsBathrooms: 0,
-      roomsKitchens: 0,
-      roomsOther: 0,
-      extraWalls: 0,
-      extraWindows: 0,
-      extraCabinets: 0,
-      extraOrganisation: 0,
-      extraBlinds: 0,
-      extraOvenStovetop: 0,
-      extraFridge: 0,
-      extraDishwasher: 0,
-      extraMicrowave: 0,
-      extraLaundry: 0,
-      extraTilesFlooring: 0,
-      entryInstructions: "",
-      parkingInstructions: "",
-      petsInstructions: "",
-      notes: "",
+      // Commercial-specific fields
+      businessName: formData.commercial.businessName,
+      businessSize: formData.commercial.businessSize,
+      environment: formData.commercial.environment,
+      cleanType: formData.commercial.cleanType,
+      days: formData.commercial.days || [],
+      insuranceRequired: formData.commercial.insuranceRequired || false,
+      budget: formData.commercial.budget,
     };
   };
 
@@ -621,7 +606,18 @@ const Services = () => {
         return;
       }
 
-      // Redirect to Stripe checkout
+      // Handle commercial bookings (no payment, just store data)
+      if (isCommercial) {
+        // Show success message or redirect to thank you page
+        alert(
+          "Thank you for your commercial booking request! We'll contact you soon to discuss your cleaning needs."
+        );
+        // Optionally redirect to a success page or reset the form
+        // window.location.href = "/commercial/success";
+        return;
+      }
+
+      // Handle residential bookings - redirect to Stripe checkout
       if (result.checkoutUrl) {
         window.location.href = result.checkoutUrl;
       } else {
