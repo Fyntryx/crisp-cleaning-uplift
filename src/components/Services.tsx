@@ -298,6 +298,7 @@ const Services = () => {
   const [isLoadingLoc, setIsLoadingLoc] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
 
   // API Configuration
   const API_BASE_URL =
@@ -538,7 +539,6 @@ const Services = () => {
       email: formData.contact.email,
       phone: formData.contact.phone,
       address: formData.contact.address,
-      accountType: "commercial" as const,
       bookingDate: bookingDate.toISOString(),
       frequency: apiFrequency,
       // Commercial-specific fields
@@ -556,6 +556,7 @@ const Services = () => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setSubmitError(null);
+    setSubmitSuccess(null);
 
     try {
       // Validate required fields
@@ -585,8 +586,12 @@ const Services = () => {
         ? transformCommercialFormDataToAPI()
         : transformResidentialFormDataToAPI();
 
-      // Make API request
-      const response = await fetch(`${API_BASE_URL}/api/signup`, {
+      // Make API request to appropriate endpoint
+      const endpoint = isCommercial
+        ? `${API_BASE_URL}/api/commercial`
+        : `${API_BASE_URL}/api/signup`;
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -608,12 +613,10 @@ const Services = () => {
 
       // Handle commercial bookings (no payment, just store data)
       if (isCommercial) {
-        // Show success message or redirect to thank you page
-        alert(
+        setSubmitSuccess(
           "Thank you for your commercial booking request! We'll contact you soon to discuss your cleaning needs."
         );
-        // Optionally redirect to a success page or reset the form
-        // window.location.href = "/commercial/success";
+        setIsSubmitting(false);
         return;
       }
 
@@ -638,6 +641,7 @@ const Services = () => {
   const handleNext = () => {
     if (isStepValid() && currentStep < totalSteps) {
       setSubmitError(null); // Clear errors when navigating
+      setSubmitSuccess(null); // Clear success message when navigating
       setCurrentStep((prev) => prev + 1);
     }
   };
@@ -645,6 +649,7 @@ const Services = () => {
   const handlePrev = () => {
     if (currentStep > 1) {
       setSubmitError(null); // Clear errors when navigating
+      setSubmitSuccess(null); // Clear success message when navigating
       setCurrentStep((prev) => prev - 1);
     }
   };
@@ -1434,6 +1439,11 @@ const Services = () => {
         {submitError && (
           <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
             {submitError}
+          </div>
+        )}
+        {submitSuccess && (
+          <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm">
+            {submitSuccess}
           </div>
         )}
         <button
