@@ -9,12 +9,22 @@ import { ReviewsHero } from "@/components/ReviewsHero";
 import { ReviewsGrid } from "@/components/ReviewsGrid";
 import { CTASection } from "@/components/CTASection";
 import { ReviewItem } from "@/components/ReviewsCards";
+import ImageEffect from "./ImageEffect";
 
 interface ReviewsClientProps {
-  data: ReviewItem[];
+  reviews: ReviewItem[];
+  cta: CtaData | null;
 }
 
-const ReviewsClient = ({ data }: ReviewsClientProps) => {
+interface CtaData {
+  heading: string;
+  subheading: string;
+  buttonText: string;
+  buttonLink: string;
+  floatingImages: any[];
+}
+
+const ReviewsClient = ({ reviews, cta }: ReviewsClientProps) => {
   return (
     <>
       <style jsx global>{`
@@ -84,9 +94,11 @@ const ReviewsClient = ({ data }: ReviewsClientProps) => {
         <ParallaxBubbles />
         <Navbar />
 
-        <ReviewsHero data={data} />
+        <ReviewsHero data={reviews} />
 
-        <ReviewsGrid data={data} />
+        <ReviewsGrid data={reviews} />
+
+        {cta && <ImageEffect data={cta} />}
 
         <CTASection
           heading="Streamline your cleaning experience"
