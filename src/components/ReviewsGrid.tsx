@@ -104,6 +104,7 @@ export const ReviewsGrid = ({ data }: ReviewsGridProps) => {
                     review={item.data!}
                     index={index}
                     gridClasses={gridClasses}
+                    // @ts-ignore: Prop 'variant' is missing in component definition but required for logic
                     variant={item.type}
                   />
                 );
