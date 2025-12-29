@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUp } from "lucide-react";
 import useScrollScale from "@/hooks/useScrollScale";
 import { ReviewItem, ReviewGridCard } from "@/components/ReviewsCards";
 
@@ -24,16 +24,19 @@ const getGridSpans = (index: number) => {
 };
 
 export const ReviewsGrid = ({ data }: ReviewsGridProps) => {
-  const { ref: reviewsContentRef, style: reviewsContentStyle } = useScrollScale({
-    threshold: 0.05,
-    scaleAmount: 1.02,
-  });
+  const { ref: reviewsContentRef, style: reviewsContentStyle } = useScrollScale(
+    {
+      threshold: 0.05,
+      scaleAmount: 1.02,
+    }
+  );
 
   const [visibleReviewCount, setVisibleReviewCount] = useState(10);
   const REVIEWS_PER_PAGE = 10;
 
   const currentReviews = data.slice(0, visibleReviewCount);
   const hasMore = visibleReviewCount < data.length;
+  const isExpanded = visibleReviewCount > 10;
 
   const gridItems: Array<{
     type: "review" | "image";
@@ -64,8 +67,17 @@ export const ReviewsGrid = ({ data }: ReviewsGridProps) => {
     gridIndex++;
   }
 
-  const handleLoadMore = () => {
-    setVisibleReviewCount((prev) => prev + REVIEWS_PER_PAGE);
+  const handleToggleView = () => {
+    if (hasMore) {
+      setVisibleReviewCount((prev) => prev + REVIEWS_PER_PAGE);
+    } else {
+      // Reset to initial state
+      setVisibleReviewCount(10);
+      // Optional: Scroll back to top of grid if desired
+      if (reviewsContentRef.current) {
+        reviewsContentRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -75,8 +87,7 @@ export const ReviewsGrid = ({ data }: ReviewsGridProps) => {
       <div
         ref={reviewsContentRef as React.RefObject<HTMLDivElement>}
         style={reviewsContentStyle}
-        className="container mx-auto px-0 md:px-6"
-      >
+        className="container mx-auto px-0 md:px-6">
         <div className="px-6 md:px-0 flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
             <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
@@ -94,8 +105,7 @@ export const ReviewsGrid = ({ data }: ReviewsGridProps) => {
               className="
               flex flex-row gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 px-6
               md:grid md:grid-cols-12 md:gap-6 md:overflow-visible md:pb-0 md:px-0 md:grid-flow-dense
-            "
-            >
+            ">
               {gridItems.map((item, index) => {
                 const gridClasses = getGridSpans(index);
                 return (
@@ -111,15 +121,19 @@ export const ReviewsGrid = ({ data }: ReviewsGridProps) => {
               })}
             </div>
 
-            {hasMore && (
+            {/* Show button if there is more content OR if the grid is expanded (to show "See Less") */}
+            {(hasMore || isExpanded) && (
               <div className="mt-8 md:mt-16 text-center px-6 md:px-0 hidden md:block">
                 <Button
-                  onClick={handleLoadMore}
+                  onClick={handleToggleView}
                   size="lg"
-                  className="rounded-full px-8"
-                >
-                  Load More Stories
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  className="rounded-full px-8">
+                  {hasMore ? "Load More Stories" : "See Less"}
+                  {hasMore ? (
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  ) : (
+                    <ArrowUp className="ml-2 w-4 h-4" />
+                  )}
                 </Button>
               </div>
             )}
