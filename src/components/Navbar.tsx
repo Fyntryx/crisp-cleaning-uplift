@@ -61,16 +61,16 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-linear ${showScrolledStyle
-        ? "bg-card/90 backdrop-blur-lg shadow-sm py-3"
-        : "bg-transparent py-6"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-linear ${
+        showScrolledStyle
+          ? "bg-card/90 backdrop-blur-lg shadow-sm py-3"
+          : "bg-transparent py-6"
+      }`}
       style={{
         borderBottomLeftRadius: !isHomePage ? "0px" : `${radius}px`,
         borderBottomRightRadius: !isHomePage ? "0px" : `${radius}px`,
       }}>
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        {/* LOGO */}
         <Link
           href="/"
           className="flex items-center gap-2 outline-none border-none ring-0 focus:outline-none focus:ring-0">
@@ -81,8 +81,9 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop Navigation - CENTERED */}
-        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <nav
+          className="hidden md:flex items-center gap-6 max-[990px]:flex-1 max-[990px]:justify-center min-[991px]:absolute min-[991px]:left-1/2 min-[991px]:top-1/2 
+  min-[991px]:-translate-x-1/2 min-[991px]:-translate-y-1/2 min-[991px]:gap-8">
           {navLinks.map((link) => {
             const isActive =
               link.href === "/" ? pathname === "/" : pathname === link.href;
@@ -92,8 +93,9 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`text-sm font-medium transition-colors duration-300 ${hoverColorClass} ${isActive ? "text-primary" : textColorClass
-                  }`}>
+                className={`text-sm font-medium transition-colors duration-300 ${hoverColorClass} ${
+                  isActive ? "text-primary" : textColorClass
+                }`}>
                 {link.name}
               </Link>
             );
@@ -110,23 +112,28 @@ const Navbar = () => {
                 ? ""
                 : "text-white hover:bg-white/20 hover:text-white"
             }>
-            <Link href={(process.env.NEXT_PUBLIC_API_BASE_URL || 'https://crispcleaning.devlopd.com')}>Login</Link>
+            <Link
+              href={
+                process.env.NEXT_PUBLIC_API_BASE_URL ||
+                "https://crispcleaning.devlopd.com"
+              }>
+              Login
+            </Link>
           </Button>
-          <Button variant="hero" size="default" className="mr-20">
+          <Button variant="hero" size="default" className="mr-10">
             Get Started Now
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          className={`md:hidden p-2 transition-colors ${showScrolledStyle ? "text-foreground" : "text-white"
-            }`}
+          className={`md:hidden p-2 transition-colors ${
+            showScrolledStyle ? "text-foreground" : "text-white"
+          }`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
           <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
@@ -141,7 +148,13 @@ const Navbar = () => {
             ))}
             <div className="flex flex-col gap-3 pt-4 border-t border-border">
               <Button variant="ghost" asChild>
-                <Link href={(process.env.NEXT_PUBLIC_API_BASE_URL || 'https://crispcleaning.devlopd.com')}>Login</Link>
+                <Link
+                  href={
+                    process.env.NEXT_PUBLIC_API_BASE_URL ||
+                    "https://crispcleaning.devlopd.com"
+                  }>
+                  Login
+                </Link>
               </Button>
               <Button variant="hero">Get Started Now</Button>
             </div>
