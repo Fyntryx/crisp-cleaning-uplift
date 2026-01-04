@@ -23,7 +23,7 @@ import {
   EyeOff,
   Tag,
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useScrollScale from "@/hooks/useScrollScale";
 
 import {
@@ -39,7 +39,7 @@ import {
   type Frequency,
 } from "@/utils/pricing";
 
-import { getCurrentAddress } from "@/utils/geolocation";
+import { getCurrentAddress, searchAddresses, type AddressSuggestion } from "@/utils/geolocation";
 
 const servicesList = [
   {
@@ -1410,12 +1410,11 @@ const Services = () => {
           <label className="text-xs font-bold uppercase text-gray-500">
             Business Address <span className="text-red-500">*</span>
           </label>
-          <input
-            type="text"
-            placeholder="Full business address"
-            className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-primary transition-all"
+          <AddressAutocomplete
             value={formData.contact.address}
-            onChange={(e) => updateContact("address", e.target.value)}
+            onChange={(value) => updateContact("address", value)}
+            placeholder="Full business address"
+            inputClassName="p-3 border border-gray-200 rounded-lg"
           />
         </div>
 
@@ -1529,27 +1528,14 @@ const Services = () => {
             <label className="text-xs font-semibold text-gray-500 uppercase">
               Service Address
             </label>
-            <div className="relative group">
-              <MapPin className="absolute left-3 top-3 w-4 h-4 text-gray-400 group-focus-within:text-primary transition-colors" />
-              <input
-                type="text"
-                className="w-full pl-10 pr-12 py-2.5 bg-gray-50 rounded-xl outline-none border-2 border-transparent focus:border-primary focus:bg-white transition-all hover:border-gray-200"
-                placeholder="123 Clean St..."
-                value={formData.contact.address}
-                onChange={(e) => updateContact("address", e.target.value)}
-              />
-              <button
-                onClick={handleUseCurrentLocation}
-                disabled={isLoadingLoc}
-                className="absolute right-2 top-2 p-1.5 hover:bg-gray-200 rounded-lg transition-colors text-gray-500"
-                title="Use Current Location">
-                {isLoadingLoc ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <MapPin className="w-4 h-4" />
-                )}
-              </button>
-            </div>
+            <AddressAutocomplete
+              value={formData.contact.address}
+              onChange={(value) => updateContact("address", value)}
+              placeholder="123 Clean St..."
+              showLocationButton={true}
+              onLocationClick={handleUseCurrentLocation}
+              isLoadingLocation={isLoadingLoc}
+            />
           </div>
           <div className="flex items-center gap-2 pt-2">
             <input
@@ -1846,6 +1832,212 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => (
     </div>
   </div>
 );
+
+interface AddressAutocompleteProps {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  className?: string;
+  inputClassName?: string;
+  showLocationButton?: boolean;
+  onLocationClick?: () => void;
+  isLoadingLocation?: boolean;
+}
+
+const AddressAutocomplete = ({
+  value,
+  onChange,
+  placeholder = "123 Clean St...",
+  className = "",
+  inputClassName = "",
+  showLocationButton = false,
+  onLocationClick,
+  isLoadingLocation = false,
+}: AddressAutocompleteProps) => {
+  const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [inputFocused, setInputFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Debounced search function
+  useEffect(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    if (value.trim().length < 3) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(true);
+    debounceTimerRef.current = setTimeout(async () => {
+      try {
+        const results = await searchAddresses(value, 5);
+        setSuggestions(results);
+        setShowSuggestions(results.length > 0 && inputFocused);
+        setSelectedIndex(-1);
+      } catch (error) {
+        console.error("Error fetching address suggestions:", error);
+        setSuggestions([]);
+        setShowSuggestions(false);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 300);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [value, inputFocused]);
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+        setInputFocused(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!showSuggestions || suggestions.length === 0) {
+      if (e.key === "Escape") {
+        setShowSuggestions(false);
+        setInputFocused(false);
+      }
+      return;
+    }
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
+          handleSelectSuggestion(suggestions[selectedIndex]);
+        }
+        break;
+      case "Escape":
+        e.preventDefault();
+        setShowSuggestions(false);
+        setInputFocused(false);
+        inputRef.current?.blur();
+        break;
+    }
+  };
+
+  const handleSelectSuggestion = (suggestion: AddressSuggestion) => {
+    onChange(suggestion.name);
+    setShowSuggestions(false);
+    setSuggestions([]);
+    setSelectedIndex(-1);
+    inputRef.current?.blur();
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+    setInputFocused(true);
+  };
+
+  const handleInputFocus = () => {
+    setInputFocused(true);
+    if (suggestions.length > 0) {
+      setShowSuggestions(true);
+    }
+  };
+
+  return (
+    <div className={`relative ${className}`} ref={containerRef}>
+      <div className="relative group">
+        <MapPin className="absolute left-3 top-3 w-4 h-4 text-gray-400 group-focus-within:text-primary transition-colors z-10" />
+        <input
+          ref={inputRef}
+          type="text"
+          className={`w-full pl-10 ${showLocationButton ? 'pr-12' : 'pr-4'} py-2.5 bg-gray-50 rounded-xl outline-none border-2 border-transparent focus:border-primary focus:bg-white transition-all hover:border-gray-200 text-sm ${inputClassName}`}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          onKeyDown={handleKeyDown}
+        />
+        {showLocationButton && (
+          <button
+            onClick={onLocationClick}
+            disabled={isLoadingLocation}
+            className="absolute right-2 top-2 p-1.5 hover:bg-gray-200 rounded-lg transition-colors text-gray-500 disabled:opacity-50"
+            title="Use Current Location"
+            type="button">
+            {isLoadingLocation ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <MapPin className="w-4 h-4" />
+            )}
+          </button>
+        )}
+      </div>
+
+      {/* Suggestions Dropdown */}
+      {showSuggestions && suggestions.length > 0 && (
+        <div className="absolute z-50 w-full mt-1 bg-white border-2 border-gray-100 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+          {isLoading && (
+            <div className="p-3 text-center text-sm text-gray-500">
+              <Loader2 className="w-4 h-4 animate-spin mx-auto" />
+            </div>
+          )}
+          {!isLoading &&
+            suggestions.map((suggestion, index) => (
+              <button
+                key={`${suggestion.name}-${index}`}
+                type="button"
+                onClick={() => handleSelectSuggestion(suggestion)}
+                className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors text-sm ${index === selectedIndex ? "bg-primary/10 text-primary" : "text-gray-700"
+                  } ${index === 0 ? "rounded-t-xl" : ""} ${index === suggestions.length - 1 ? "rounded-b-xl" : ""
+                  }`}>
+                {suggestion.name}
+              </button>
+            ))}
+        </div>
+      )}
+
+      {/* No results message */}
+      {showSuggestions &&
+        !isLoading &&
+        suggestions.length === 0 &&
+        value.trim().length >= 3 && (
+          <div className="absolute z-50 w-full mt-1 bg-white border-2 border-gray-100 rounded-xl shadow-lg p-3 text-sm text-gray-500 text-center">
+            No addresses found
+          </div>
+        )}
+    </div>
+  );
+};
 
 const InputField = ({ label, icon: Icon, value, onChange, ...props }: any) => (
   <div className="space-y-1 group">

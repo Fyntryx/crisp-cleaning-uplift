@@ -120,3 +120,79 @@ export async function getCurrentAddress(): Promise<Address> {
     throw error;
   }
 }
+
+export interface AddressSuggestion {
+  name: string;
+  coordinates?: {
+    lat: number;
+    lon: number;
+  };
+}
+
+/**
+ * Search addresses using Photon Komoot API
+ * @param query Search query string
+ * @param limit Maximum number of results to return (default: 5)
+ * @returns Promise with array of address suggestions
+ */
+export async function searchAddresses(
+  query: string,
+  limit: number = 5
+): Promise<AddressSuggestion[]> {
+  if (!query || query.trim().length < 3) {
+    return [];
+  }
+
+  try {
+    const encodedQuery = encodeURIComponent(query.trim());
+    const url = `https://photon.komoot.io/api/?q=${encodedQuery}&limit=${limit}`;
+
+    const response = await fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Photon API request failed: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    if (!data || !data.features || !Array.isArray(data.features)) {
+      return [];
+    }
+
+    return data.features.map((feature: any) => {
+      const props = feature.properties || {};
+      const coords = feature.geometry?.coordinates || [];
+
+      // Construct display name from available properties
+      let name = props.name || '';
+      if (!name) {
+        const parts: string[] = [];
+        if (props.street) parts.push(props.street);
+        if (props.housenumber) parts.push(props.housenumber);
+        if (props.city) parts.push(props.city);
+        if (props.state) parts.push(props.state);
+        if (props.country) parts.push(props.country);
+        name = parts.length > 0 ? parts.join(', ') : 'Unknown address';
+      }
+
+      return {
+        name,
+        coordinates:
+          coords.length >= 2
+            ? {
+                lat: coords[1], // Photon returns [lon, lat]
+                lon: coords[0],
+              }
+            : undefined,
+      };
+    });
+  } catch (error) {
+    console.error('Error searching addresses:', error);
+    // Return empty array on error to allow manual entry
+    return [];
+  }
+}
