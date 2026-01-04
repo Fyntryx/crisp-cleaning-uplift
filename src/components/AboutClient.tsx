@@ -23,13 +23,11 @@ const AboutClient = () => {
         <StatsSection />
 
         <MissionStorySection />
-
-        <ImageStripGallery />
-
+        
         <BeforeAfterSection />
 
-        <TeamSection />
-
+        <ImageStripGallery />
+        
         <CTASection
           heading="Ready to experience the difference?"
           description="Join hundreds of satisfied customers who have reclaimed their time and space."
