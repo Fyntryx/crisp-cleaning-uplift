@@ -2025,16 +2025,6 @@ const AddressAutocomplete = ({
             ))}
         </div>
       )}
-
-      {/* No results message */}
-      {showSuggestions &&
-        !isLoading &&
-        suggestions.length === 0 &&
-        value.trim().length >= 3 && (
-          <div className="absolute z-50 w-full mt-1 bg-white border-2 border-gray-100 rounded-xl shadow-lg p-3 text-sm text-gray-500 text-center">
-            No addresses found
-          </div>
-        )}
     </div>
   );
 };

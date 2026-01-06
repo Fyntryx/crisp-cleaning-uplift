@@ -163,7 +163,27 @@ export async function searchAddresses(
       return [];
     }
 
-    return data.features.map((feature: any) => {
+    // Filter results to only include addresses in Australia and Victoria state
+    const filteredFeatures = data.features.filter((feature: any) => {
+      const props = feature.properties || {};
+      const country = (props.country || '').toLowerCase();
+      const state = (props.state || '').toLowerCase();
+
+      // Check if country is Australia (handle variations)
+      const isAustralia = country === 'australia' || country === 'au';
+      
+      // Check if state is Victoria (handle variations)
+      const isVictoria = state === 'victoria' || state === 'vic';
+
+      return isAustralia && isVictoria;
+    });
+
+    // If no results match the filter, return empty array to allow manual entry
+    if (filteredFeatures.length === 0) {
+      return [];
+    }
+
+    return filteredFeatures.map((feature: any) => {
       const props = feature.properties || {};
       const coords = feature.geometry?.coordinates || [];
 
