@@ -242,6 +242,20 @@ const BookingSummaryCard = ({
             ${(pricingResult?.total || 0).toFixed(2)}
           </span>
         </div>
+        {formData.frequency &&
+          formData.frequency !== "One time" && (
+            <p className="text-xs text-gray-400 mt-2">
+              You&apos;ll be charged this amount every{" "}
+              {formData.frequency === "Weekly"
+                ? "week"
+                : formData.frequency === "Fortnightly"
+                  ? "fortnight"
+                  : formData.frequency === "Monthly"
+                    ? "month"
+                    : "period"}
+              .
+            </p>
+          )}
       </div>
     </div>
   </div>
