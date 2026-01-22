@@ -12,7 +12,7 @@ const About = () => {
     threshold: 0.15,
   });
 
-  const startYear = 2015;
+  const startYear = 2023;
 
   const currentYear = new Date().getFullYear();
   const totalYears = currentYear - startYear;
