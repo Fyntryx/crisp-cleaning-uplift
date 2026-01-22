@@ -72,7 +72,7 @@ const About = () => {
               appealing—it's about creating environments where people can
               thrive, work better, and live happier lives.
             </p>
-            <Button variant="hero">
+            <Button href="/about" variant="hero">
               About Us
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
