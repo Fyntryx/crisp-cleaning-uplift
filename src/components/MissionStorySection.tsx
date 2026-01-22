@@ -35,7 +35,7 @@ const CONTENT = {
       <>
         <p className="mb-6">
           Established with a passion for making life easier and spaces more
-          beautiful, <strong>The Cleaning Corporation</strong> was founded in
+          beautiful, <strong>Crisp Cleaning</strong> was founded in
           2023. What began as a vision to redefine the cleaning industry has
           evolved into a pioneering force.
         </p>
