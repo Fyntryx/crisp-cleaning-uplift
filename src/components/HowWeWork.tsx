@@ -116,7 +116,7 @@ const HowWeWork = () => {
       ref={sectionRef}
       className="relative px-4 md:px-6 py-12 md:py-12 flex items-center justify-center md:min-h-[75vh]">
       <div
-        className="absolute inset-x-4 inset-y-0 md:inset-x-6 bg-primary overflow-hidden shadow-xl z-0"
+        className="absolute inset-x-4 inset-y-0 md:inset-x-6 bg-primary/50 overflow-hidden shadow-xl z-0"
         style={{ borderRadius: "3rem" }}
       />
 
