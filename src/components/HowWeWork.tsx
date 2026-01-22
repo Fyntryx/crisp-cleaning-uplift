@@ -115,8 +115,9 @@ const HowWeWork = () => {
     <section
       ref={sectionRef}
       className="relative px-4 md:px-6 py-12 md:py-12 flex items-center justify-center md:min-h-[75vh]">
+      {/* Main background removed to be transparent */}
       <div
-        className="absolute inset-x-4 inset-y-0 md:inset-x-6 bg-primary/50 overflow-hidden shadow-xl z-0"
+        className="absolute inset-x-4 inset-y-0 md:inset-x-6 overflow-hidden z-0"
         style={{ borderRadius: "3rem" }}
       />
 
@@ -233,7 +234,8 @@ const HowWeWork = () => {
                     style={desktopStyle}>
                     <div className="md:hidden absolute left-4 top-16 bottom-[-3rem] w-0.5 bg-white/20 last:hidden" />
 
-                    <div className="bg-white/10 backdrop-blur-md p-4 lg:p-6 rounded-3xl border border-white/20 relative z-30 shadow-lg text-center flex flex-col items-center h-full justify-center">
+                    {/* Card background changed to primary */}
+                    <div className="bg-primary p-4 lg:p-6 rounded-3xl border border-white/20 relative z-30 shadow-lg text-center flex flex-col items-center h-full justify-center">
                       <div className="flex items-center justify-center gap-3 mb-3 lg:mb-4">
                         <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white text-primary font-bold text-base lg:text-lg flex items-center justify-center shadow-sm border-4 border-white/20">
                           {step.number}
