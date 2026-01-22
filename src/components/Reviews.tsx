@@ -143,7 +143,7 @@ const Reviews = ({ data = [] }: ReviewsProps) => {
 
         {/* Button Section */}
         <div className="text-center mt-12 mb-10">
-          <Button variant="hero">View All Reviews</Button>
+          <Button href="/review" variant="hero">View All Reviews</Button>
         </div>
       </div>
     </section>
