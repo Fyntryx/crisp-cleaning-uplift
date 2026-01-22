@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import useScrollScale from "@/hooks/useScrollScale";
 import { Star } from "lucide-react";
+import Link from "next/link";
 
 interface ReviewItem {
   _id: string;
@@ -143,7 +144,9 @@ const Reviews = ({ data = [] }: ReviewsProps) => {
 
         {/* Button Section */}
         <div className="text-center mt-12 mb-10">
-          <Button href="/review" variant="hero">View All Reviews</Button>
+          <Link href="/review">
+            <Button as="div" variant="hero">View All Reviews</Button>
+          </Link>
         </div>
       </div>
     </section>
