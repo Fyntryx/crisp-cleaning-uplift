@@ -12,10 +12,10 @@ const CONTENT = {
         <p className="mb-6">
           At the core of our commitment lies a simple yet profound mission: to
           empower individuals worldwide in achieving and maintaining a clean and
-          organized living or working environment.
+          organised living or working environment.
         </p>
         <p className="mb-6">
-          Recognizing the transformative impact of cleanliness on overall
+          Recognising the transformative impact of cleanliness on overall
           well-being, productivity, and peace of mind, we have dedicated
           ourselves to providing accessible solutions for people everywhere.
         </p>
