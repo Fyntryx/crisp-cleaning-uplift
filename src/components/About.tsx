@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import useScrollScale from "@/hooks/useScrollScale";
+import Link from "next/link";
 
 const About = () => {
   const [yearsCount, setYearsCount] = useState(0);
@@ -12,7 +13,7 @@ const About = () => {
     threshold: 0.15,
   });
 
-  const startYear = 2015;
+  const startYear = 2023;
 
   const currentYear = new Date().getFullYear();
   const totalYears = currentYear - startYear;
@@ -72,10 +73,12 @@ const About = () => {
               appealing—it's about creating environments where people can
               thrive, work better, and live happier lives.
             </p>
-            <Button variant="hero">
-              About Us
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href="/about">
+              <Button as="div" variant="hero">
+                About Us
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
 
           {/* Visual Element */}

@@ -1666,7 +1666,7 @@ const Services = () => {
       case 4:
         return "Special Instructions";
       case 5:
-        return "Finalize Booking";
+        return "Finalise Booking";
       default:
         return "";
     }
