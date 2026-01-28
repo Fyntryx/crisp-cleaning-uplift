@@ -116,11 +116,11 @@ const commFrequencies = [
   "Custom",
 ];
 const commBudgets = [
-  "$500-$1,000",
-  "$1,000-$2,500",
-  "$2,500-$5,000",
-  "$5,000-$10,000",
-  "$10,000+",
+  "A$500-A$1,000",
+  "A$1,000-A$2,500",
+  "A$2,500-A$5,000",
+  "A$5,000-A$10,000",
+  "A$10,000+",
   "Custom Quote",
 ];
 
@@ -163,14 +163,14 @@ const BookingSummaryCard = ({
         {pricingResult?.breakdown.cleaningType && (
           <div className="flex justify-between mb-1">
             <span>{pricingResult.breakdown.cleaningType.name} Clean</span>
-            <span>${pricingResult.breakdown.cleaningType.price}</span>
+            <span>A${pricingResult.breakdown.cleaningType.price}</span>
           </div>
         )}
         {(formData.homeDetails.bedrooms || 0) > 0 && (
           <div className="flex justify-between mb-1">
             <span>{formData.homeDetails.bedrooms}x Bedroom</span>
             <span>
-              $
+              A$
               {HOME_DETAIL_PRICES.Bedroom *
                 (formData.homeDetails.bedrooms || 0)}
             </span>
@@ -180,7 +180,7 @@ const BookingSummaryCard = ({
           <div className="flex justify-between mb-1">
             <span>{formData.homeDetails.bathrooms}x Bathroom</span>
             <span>
-              $
+              A$
               {HOME_DETAIL_PRICES.Bathroom *
                 (formData.homeDetails.bathrooms || 0)}
             </span>
@@ -190,7 +190,7 @@ const BookingSummaryCard = ({
           <div className="flex justify-between mb-1">
             <span>{formData.homeDetails.kitchens}x Kitchen</span>
             <span>
-              $
+              A$
               {HOME_DETAIL_PRICES.Kitchen *
                 (formData.homeDetails.kitchens || 0)}
             </span>
@@ -200,14 +200,14 @@ const BookingSummaryCard = ({
           <div className="flex justify-between mb-1">
             <span>{formData.homeDetails.other}x Other Area</span>
             <span>
-              ${HOME_DETAIL_PRICES.Other * (formData.homeDetails.other || 0)}
+              A${HOME_DETAIL_PRICES.Other * (formData.homeDetails.other || 0)}
             </span>
           </div>
         )}
         {pricingResult?.breakdown.extras.items.map((e: any) => (
           <div key={e.name} className="flex justify-between mb-1">
             <span>+ {e.name}</span>
-            <span>${e.price}</span>
+            <span>A${e.price}</span>
           </div>
         ))}
       </div>
@@ -233,13 +233,13 @@ const BookingSummaryCard = ({
         {pricingResult?.discounts.frequency && (
           <div className="flex justify-between text-green-400 mb-2">
             <span>Discount ({pricingResult.discounts.frequency.name})</span>
-            <span>-${pricingResult.discounts.frequency.amount.toFixed(2)}</span>
+            <span>-A${pricingResult.discounts.frequency.amount.toFixed(2)}</span>
           </div>
         )}
         <div className="flex justify-between items-end">
           <span className="text-lg">Total</span>
           <span className="text-2xl font-display font-bold text-primary">
-            ${(pricingResult?.total || 0).toFixed(2)}
+            A${(pricingResult?.total || 0).toFixed(2)}
           </span>
         </div>
         {formData.frequency &&
@@ -1731,7 +1731,7 @@ const Services = () => {
                   Total
                 </span>
                 <span className="text-xl font-display font-bold text-primary">
-                  ${(pricingResult?.total || 0).toFixed(2)}
+                  A${(pricingResult?.total || 0).toFixed(2)}
                 </span>
               </div>
               <button
