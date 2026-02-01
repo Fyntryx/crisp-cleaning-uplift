@@ -1,4 +1,8 @@
-// utils/geolocation.ts
+// src/utils/geolocation.ts
+
+const MELBOURNE_CBD = { lat: -37.8136, lon: 144.9631 };
+const MAX_RADIUS_KM = 35; // Service radius in Kilometers
+const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEOAPIFY_KEY;
 
 export interface Address {
   street?: string;
@@ -11,6 +15,47 @@ export interface Address {
   coordinates: {
     lat: number;
     lon: number;
+  };
+}
+
+export interface ServiceabilityResult {
+  serviceable: boolean;
+  distanceKm: number;
+  error?: string;
+}
+
+/**
+ * Calculate distance between two points using Haversine formula
+ */
+function calculateHaversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371; // Radius of the earth in km
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c; // Distance in km
+  return Number(d.toFixed(2));
+}
+
+function deg2rad(deg: number): number {
+  return deg * (Math.PI / 180);
+}
+
+/**
+ * Check if a location is within the serviceable radius of Melbourne CBD
+ */
+export function checkAddressServiceability(lat: number, lon: number): ServiceabilityResult {
+  const distance = calculateHaversineDistance(MELBOURNE_CBD.lat, MELBOURNE_CBD.lon, lat, lon);
+  
+  return {
+    serviceable: distance <= MAX_RADIUS_KM,
+    distanceKm: distance,
+    error: distance > MAX_RADIUS_KM 
+      ? `Sorry, we are currently only serving locations within ${MAX_RADIUS_KM}km of Melbourne CBD. You are ${distance}km away.` 
+      : undefined
   };
 }
 
@@ -52,15 +97,17 @@ export async function getCurrentLocation(): Promise<{ lat: number; lon: number }
   });
 }
 
+/**
+ * Reverse Geocode using Geoapify
+ */
 export async function reverseGeocode(lat: number, lon: number): Promise<Address> {
+  if (!GEOAPIFY_API_KEY) {
+    throw new Error('Geoapify API Key is missing in .env');
+  }
+
   try {
     const response = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`,
-      {
-        headers: {
-          'User-Agent': 'CrispCleaningApp/1.0',
-        },
-      }
+      `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${GEOAPIFY_API_KEY}`
     );
 
     if (!response.ok) {
@@ -69,45 +116,28 @@ export async function reverseGeocode(lat: number, lon: number): Promise<Address>
 
     const data = await response.json();
 
-    if (!data || !data.address) {
+    if (!data.features || data.features.length === 0) {
       throw new Error('No address data found');
     }
 
-    const addr = data.address;
-    const street = addr.road || addr.street || '';
-    const houseNumber = addr.house_number || '';
-    const city = addr.city || addr.town || addr.village || addr.municipality || addr.county || '';
-    const state = addr.state || addr.region || '';
-    const postcode = addr.postcode || '';
-    const country = addr.country || '';
-
-    const addressParts: string[] = [];
-    if (houseNumber && street) addressParts.push(`${houseNumber} ${street}`);
-    else if (street) addressParts.push(street);
-    if (city) addressParts.push(city);
-    if (state) addressParts.push(state);
-    if (postcode) addressParts.push(postcode);
-    if (country) addressParts.push(country);
-
-    const fullAddress = addressParts.join(', ') || data.display_name;
+    const props = data.features[0].properties;
 
     return {
-      street: street || undefined,
-      houseNumber: houseNumber || undefined,
-      city: city || undefined,
-      state: state || undefined,
-      postcode: postcode || undefined,
-      country: country || undefined,
-      fullAddress,
+      street: props.street,
+      houseNumber: props.housenumber,
+      city: props.city || props.suburb,
+      state: props.state,
+      postcode: props.postcode,
+      country: props.country,
+      fullAddress: props.formatted,
       coordinates: {
-        lat: parseFloat(data.lat),
-        lon: parseFloat(data.lon),
+        lat: props.lat,
+        lon: props.lon,
       },
     };
   } catch (error) {
-    throw new Error(
-      `Failed to reverse geocode: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
+    console.error("Reverse geocode error:", error);
+    throw new Error('Failed to find address details.');
   }
 }
 
@@ -127,13 +157,12 @@ export interface AddressSuggestion {
     lat: number;
     lon: number;
   };
+  fullDetails?: any; // To store raw Geoapify data if needed
 }
 
 /**
- * Search addresses using Photon Komoot API
- * @param query Search query string
- * @param limit Maximum number of results to return (default: 5)
- * @returns Promise with array of address suggestions
+ * Search addresses using Geoapify Autocomplete
+ * Restricted to Australia (au)
  */
 export async function searchAddresses(
   query: string,
@@ -143,18 +172,20 @@ export async function searchAddresses(
     return [];
   }
 
+  if (!GEOAPIFY_API_KEY) {
+    console.error("Geoapify API key missing");
+    return [];
+  }
+
   try {
     const encodedQuery = encodeURIComponent(query.trim());
-    const url = `https://photon.komoot.io/api/?q=${encodedQuery}&limit=${limit}`;
+    // filter=countrycode:au restricts results to Australia
+    const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodedQuery}&limit=${limit}&filter=countrycode:au&apiKey=${GEOAPIFY_API_KEY}`;
 
-    const response = await fetch(url, {
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Photon API request failed: ${response.statusText}`);
+      throw new Error(`Geoapify API request failed: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -163,56 +194,19 @@ export async function searchAddresses(
       return [];
     }
 
-    // Filter results to only include addresses in Australia and Victoria state
-    const filteredFeatures = data.features.filter((feature: any) => {
-      const props = feature.properties || {};
-      const country = (props.country || '').toLowerCase();
-      const state = (props.state || '').toLowerCase();
-
-      // Check if country is Australia (handle variations)
-      const isAustralia = country === 'australia' || country === 'au';
-      
-      // Check if state is Victoria (handle variations)
-      const isVictoria = state === 'victoria' || state === 'vic';
-
-      return isAustralia && isVictoria;
-    });
-
-    // If no results match the filter, return empty array to allow manual entry
-    if (filteredFeatures.length === 0) {
-      return [];
-    }
-
-    return filteredFeatures.map((feature: any) => {
-      const props = feature.properties || {};
-      const coords = feature.geometry?.coordinates || [];
-
-      // Construct display name from available properties
-      let name = props.name || '';
-      if (!name) {
-        const parts: string[] = [];
-        if (props.street) parts.push(props.street);
-        if (props.housenumber) parts.push(props.housenumber);
-        if (props.city) parts.push(props.city);
-        if (props.state) parts.push(props.state);
-        if (props.country) parts.push(props.country);
-        name = parts.length > 0 ? parts.join(', ') : 'Unknown address';
-      }
-
+    return data.features.map((feature: any) => {
+      const props = feature.properties;
       return {
-        name,
-        coordinates:
-          coords.length >= 2
-            ? {
-                lat: coords[1], // Photon returns [lon, lat]
-                lon: coords[0],
-              }
-            : undefined,
+        name: props.formatted, // "123 Main St, Melbourne VIC 3000, Australia"
+        coordinates: {
+          lat: props.lat,
+          lon: props.lon,
+        },
+        fullDetails: props
       };
     });
   } catch (error) {
     console.error('Error searching addresses:', error);
-    // Return empty array on error to allow manual entry
     return [];
   }
 }
