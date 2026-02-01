@@ -115,7 +115,7 @@ const Navbar = () => {
             <Link
               href={
                 process.env.NEXT_PUBLIC_API_BASE_URL ||
-                "https://crispcleaning.devlopd.com"
+                "https://crisp-cleaning-app-seven.vercel.app/"
               }>
               Login
             </Link>
@@ -151,7 +151,7 @@ const Navbar = () => {
                 <Link
                   href={
                     process.env.NEXT_PUBLIC_API_BASE_URL ||
-                    "https://crispcleaning.devlopd.com"
+                    "https://crisp-cleaning-app-seven.vercel.app/"
                   }>
                   Login
                 </Link>
