@@ -39,7 +39,12 @@ import {
   type Frequency,
 } from "@/utils/pricing";
 
-import { getCurrentAddress, searchAddresses, type AddressSuggestion } from "@/utils/geolocation";
+import { 
+  getCurrentAddress, 
+  searchAddresses, 
+  checkAddressServiceability, 
+  type AddressSuggestion 
+} from "@/utils/geolocation";
 
 const servicesList = [
   {
@@ -303,6 +308,9 @@ const Services = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [promoCode, setPromoCode] = useState("");
+  
+  // NEW: State for address validity
+  const [isAddressValid, setIsAddressValid] = useState(true);
 
   const [viewDate, setViewDate] = useState(new Date());
 
@@ -377,7 +385,8 @@ const Services = () => {
             !!formData.contact.email &&
             !!formData.contact.phone &&
             !!formData.contact.address &&
-            formData.contact.terms
+            formData.contact.terms &&
+            isAddressValid // Check validity here too
           );
         default:
           return true;
@@ -412,7 +421,8 @@ const Services = () => {
             formData.contact.password.length >= 8 &&
             !!formData.contact.phone &&
             !!formData.contact.address &&
-            formData.contact.terms
+            formData.contact.terms &&
+            isAddressValid // Check validity here too
           );
         default:
           return true;
@@ -428,6 +438,19 @@ const Services = () => {
         ...prev,
         contact: { ...prev.contact, address: addressData.fullAddress },
       }));
+      
+      // Also validate this location since it was auto-detected
+      if (addressData.coordinates) {
+        const check = checkAddressServiceability(addressData.coordinates.lat, addressData.coordinates.lon);
+        setIsAddressValid(check.serviceable);
+        if (!check.serviceable) {
+          // You might want to set a transient error state to pass down if needed, 
+          // or rely on the user seeing the red outline in the input if they interact
+          setSubmitError(check.error || "Location outside service area");
+        } else {
+          setSubmitError(null);
+        }
+      }
     } catch (error) {
       alert("Could not fetch location. Please enter manually.");
     } finally {
@@ -582,6 +605,13 @@ const Services = () => {
 
       if (!formData.contact.terms) {
         setSubmitError("Please accept the terms and conditions.");
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Check address validity before submitting
+      if (!isAddressValid) {
+        setSubmitError("We do not service this location. Please check your address.");
         setIsSubmitting(false);
         return;
       }
@@ -1429,6 +1459,7 @@ const Services = () => {
             onChange={(value) => updateContact("address", value)}
             placeholder="Full business address"
             inputClassName="p-3 border border-gray-200 rounded-lg"
+            onValidityChange={setIsAddressValid} // Pass validity handler
           />
         </div>
 
@@ -1461,7 +1492,7 @@ const Services = () => {
         )}
         <button
           onClick={handleSubmit}
-          disabled={isSubmitting}
+          disabled={isSubmitting || !isAddressValid} // Block if invalid
           className="w-full mt-4 bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/25 hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
           {isSubmitting ? (
             <>
@@ -1549,6 +1580,7 @@ const Services = () => {
               showLocationButton={true}
               onLocationClick={handleUseCurrentLocation}
               isLoadingLocation={isLoadingLoc}
+              onValidityChange={setIsAddressValid} // Pass validity handler
             />
           </div>
           <div className="flex items-center gap-2 pt-2">
@@ -1577,7 +1609,7 @@ const Services = () => {
           )}
           <button
             onClick={handleSubmit}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isAddressValid} // Block if invalid
             className="w-full mt-4 bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/25 hover:shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
             {isSubmitting ? (
               <>
@@ -1856,6 +1888,8 @@ interface AddressAutocompleteProps {
   showLocationButton?: boolean;
   onLocationClick?: () => void;
   isLoadingLocation?: boolean;
+  onValidityChange?: (isValid: boolean) => void;
+  setExternalError?: (error: string | null) => void;
 }
 
 const AddressAutocomplete = ({
@@ -1867,12 +1901,16 @@ const AddressAutocomplete = ({
   showLocationButton = false,
   onLocationClick,
   isLoadingLocation = false,
+  onValidityChange,
+  setExternalError,
 }: AddressAutocompleteProps) => {
   const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [inputFocused, setInputFocused] = useState(false);
+  const [localError, setLocalError] = useState<string | null>(null);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -1973,11 +2011,35 @@ const AddressAutocomplete = ({
     setSuggestions([]);
     setSelectedIndex(-1);
     inputRef.current?.blur();
+
+    // Check serviceability immediately upon selection
+    if (suggestion.coordinates) {
+      const { lat, lon } = suggestion.coordinates;
+      const check = checkAddressServiceability(lat, lon);
+
+      if (!check.serviceable) {
+        const msg = check.error || "Sorry, we do not service this area.";
+        setLocalError(msg);
+        if (setExternalError) setExternalError(msg);
+        if (onValidityChange) onValidityChange(false);
+      } else {
+        setLocalError(null);
+        if (setExternalError) setExternalError(null);
+        if (onValidityChange) onValidityChange(true);
+      }
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
     setInputFocused(true);
+    // Clear error when user starts typing again
+    if (localError) {
+      setLocalError(null);
+      if (setExternalError) setExternalError(null);
+      // We don't necessarily set validity to true here, as the new input is unverified,
+      // but blocking them from typing is bad UX. 
+    }
   };
 
   const handleInputFocus = () => {
@@ -1990,11 +2052,14 @@ const AddressAutocomplete = ({
   return (
     <div className={`relative ${className}`} ref={containerRef}>
       <div className="relative group">
-        <MapPin className="absolute left-3 top-3 w-4 h-4 text-gray-400 group-focus-within:text-primary transition-colors z-10" />
+        <MapPin className={`absolute left-3 top-3 w-4 h-4 transition-colors z-10 ${localError ? "text-red-500" : "text-gray-400 group-focus-within:text-primary"}`} />
         <input
           ref={inputRef}
           type="text"
-          className={`w-full pl-10 ${showLocationButton ? 'pr-12' : 'pr-4'} py-2.5 bg-gray-50 rounded-xl outline-none border-2 border-transparent focus:border-primary focus:bg-white transition-all hover:border-gray-200 text-sm ${inputClassName}`}
+          className={`w-full pl-10 ${showLocationButton ? 'pr-12' : 'pr-4'} py-2.5 bg-gray-50 rounded-xl outline-none border-2 transition-all text-sm ${inputClassName} ${localError
+            ? "border-red-300 focus:border-red-500 text-red-900 placeholder:text-red-300"
+            : "border-transparent focus:border-primary focus:bg-white hover:border-gray-200"
+            }`}
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
@@ -2016,6 +2081,13 @@ const AddressAutocomplete = ({
           </button>
         )}
       </div>
+
+      {/* ERROR MESSAGE DISPLAY */}
+      {localError && (
+        <div className="absolute top-full left-0 mt-1 w-full bg-red-50 border border-red-100 text-red-600 text-xs p-2 rounded-lg z-40 animate-in slide-in-from-top-1">
+          {localError}
+        </div>
+      )}
 
       {/* Suggestions Dropdown */}
       {showSuggestions && suggestions.length > 0 && (
