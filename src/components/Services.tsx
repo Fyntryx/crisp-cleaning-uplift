@@ -324,7 +324,7 @@ const Services = () => {
 
   // API Configuration
   const API_BASE_URL =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "https://crispcleaning.devlopd.com";
+    process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app/";
 
   useEffect(() => {
     setMounted(true);
