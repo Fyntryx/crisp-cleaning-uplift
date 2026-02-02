@@ -1,7 +1,7 @@
 // src/utils/geolocation.ts
 
 const MELBOURNE_CBD = { lat: -37.8136, lon: 144.9631 };
-const MAX_RADIUS_KM = 35; // Service radius in Kilometers
+const MAX_RADIUS_KM = 50; // Service radius in Kilometers
 const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEOAPIFY_KEY;
 
 export interface Address {
