@@ -501,9 +501,6 @@ const Services = () => {
       Fridge: "extraFridge",
       Dishwasher: "extraDishwasher",
       Microwave: "extraMicrowave",
-      Laundry: "extraLaundry",
-      "Tiles/Flooring": "extraTilesFlooring",
-      Garage: "extraGarage", // Not used but handle gracefully
     };
 
     const extrasPayload: Record<string, number> = {
@@ -516,8 +513,6 @@ const Services = () => {
       extraFridge: 0,
       extraDishwasher: 0,
       extraMicrowave: 0,
-      extraLaundry: 0,
-      extraTilesFlooring: 0,
     };
 
     formData.extras.forEach((extra) => {
@@ -863,7 +858,7 @@ const Services = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {(Object.keys(EXTRA_PRICES) as Extra[])
               .filter(
-                (extra) => !["Garage", "Laundry", "Cabinets"].includes(extra)
+                (extra) => !["Garage", "Laundry"].includes(extra)
               )
               .map((extra) => (
                 <button
