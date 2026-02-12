@@ -15,17 +15,15 @@ export const HOME_DETAIL_PRICES = {
 
 export const EXTRA_PRICES = {
   Windows: 30,
-  Walls: 40,
+  Walls: 45,
   Cabinets: 30,
-  Organisation: 40,
-  Blinds: 35,
-  'Oven/Stovetops': 35,
+  Organisation: 50,
+  Blinds: 40,
+  'Oven/Stovetops': 45,
   Fridge: 30,
   Dishwasher: 25,
   Garage: 40,
   Microwave: 10,
-  Laundry: 35,
-  'Tiles/Flooring': 35,
 } as const;
 
 export const FREQUENCY_DISCOUNTS = {
