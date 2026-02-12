@@ -491,17 +491,17 @@ const Services = () => {
     const apiFrequency = frequencyMap[formData.frequency] || "OneTime";
 
     // Map extras array to individual count fields
-    const extrasMap: Record<Extra, string> = {
-      Windows: "extraWindows",
-      Walls: "extraWalls",
-      Cabinets: "extraCabinets",
-      Organisation: "extraOrganisation",
-      Blinds: "extraBlinds",
-      "Oven/Stovetops": "extraOvenStovetop",
-      Fridge: "extraFridge",
-      Dishwasher: "extraDishwasher",
-      Microwave: "extraMicrowave",
-    };
+    const extrasMap: Record<Exclude<Extra, "Garage" | "Laundry">, string> = {
+  Windows: "extraWindows",
+  Walls: "extraWalls",
+  Cabinets: "extraCabinets",
+  Organisation: "extraOrganisation",
+  Blinds: "extraBlinds",
+  "Oven/Stovetops": "extraOvenStovetop",
+  Fridge: "extraFridge",
+  Dishwasher: "extraDishwasher",
+  Microwave: "extraMicrowave",
+};
 
     const extrasPayload: Record<string, number> = {
       extraWalls: 0,
@@ -515,12 +515,13 @@ const Services = () => {
       extraMicrowave: 0,
     };
 
-    formData.extras.forEach((extra) => {
-      const fieldName = extrasMap[extra];
-      if (fieldName && fieldName !== "extraGarage") {
-        extrasPayload[fieldName] = 1;
-      }
-    });
+   formData.extras.forEach((extra) => {
+  // Use a type guard or check if the extra exists in our map
+  if (extra in extrasMap) {
+    const fieldName = extrasMap[extra as keyof typeof extrasMap];
+    extrasPayload[fieldName] = 1;
+  }
+});
 
     return {
       firstName: formData.contact.firstName,
