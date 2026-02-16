@@ -660,7 +660,13 @@ const Services = () => {
         return;
       }
 
-      // Handle residential bookings - redirect to Stripe checkout
+            // Handle residential bookings
+      if (result.requiresVerification) {
+        setSubmitSuccess(result.message || "Account created! Please check your email to verify your account.");
+        setIsSubmitting(false);
+        return;
+      }
+
       if (result.checkoutUrl) {
         window.location.href = result.checkoutUrl;
       } else {
