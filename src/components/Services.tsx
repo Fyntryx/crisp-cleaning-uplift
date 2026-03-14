@@ -46,7 +46,6 @@ import {
   type AddressSuggestion 
 } from "@/utils/geolocation";
 
-const formContentRef = useRef<HTMLDivElement>(null);
 const servicesList = [
   {
     id: "residential",
