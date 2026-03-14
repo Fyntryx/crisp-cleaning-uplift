@@ -268,6 +268,7 @@ const BookingSummaryCard = ({
 );
 
 const Services = () => {
+  const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     serviceCategory: "",
     cleaningType: "Regular" as CleaningType,
