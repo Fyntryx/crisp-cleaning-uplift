@@ -139,8 +139,8 @@ export const StatsSection = () => {
 
           <div 
             ref={sectionRef} 
-            className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 relative z-20"
-          >
+            className="w-full grid grid-cols-2 gap-4 lg:gap-6 relative z-20"
+>
             {stats.map((stat, i) => (
               <StatCard
                 key={i}
