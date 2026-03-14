@@ -38,7 +38,7 @@ export const BeforeAfterSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center min-h-[500px]">
+          className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 items-center min-h-[500px]">
           <div
             ref={containerRef}
             className="relative w-full lg:w-3/5 h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl cursor-col-resize group"
