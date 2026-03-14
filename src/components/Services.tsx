@@ -46,6 +46,7 @@ import {
   type AddressSuggestion 
 } from "@/utils/geolocation";
 
+const formContentRef = useRef<HTMLDivElement>(null);
 const servicesList = [
   {
     id: "residential",
@@ -1758,34 +1759,49 @@ const Services = () => {
       )}
 
       {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
-      {mounted &&
-        currentStep >= 2 &&
-        currentStep < totalSteps &&
-        !isCommercial &&
-        createPortal(
-          <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
-            <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl">
-              <div className="flex flex-col">
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider">
-                  Total
-                </span>
-                <span className="text-xl font-display font-bold text-primary">
-                  A${(pricingResult?.total || 0).toFixed(2)}
-                </span>
-              </div>
-              <button
-                onClick={() => setCurrentStep(totalSteps)}
-                disabled={!validStep}
-                className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-colors flex items-center gap-2 ${validStep
-                  ? "bg-white text-gray-900 hover:bg-gray-100"
-                  : "bg-gray-700 text-gray-400 cursor-not-allowed"
-                  }`}>
-                Book Now <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>,
-          document.body
-        )}
+      {/* REPLACE the current createPortal block with this: */}
+{mounted &&
+  currentStep >= 2 &&
+  currentStep < totalSteps &&
+  !isCommercial &&
+  createPortal(
+    <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
+      <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl">
+        <div className="flex flex-col">
+          <span className="text-[10px] text-gray-400 uppercase tracking-wider">
+            Total
+          </span>
+          <span className="text-xl font-display font-bold text-primary">
+            A${(pricingResult?.total || 0).toFixed(2)}
+          </span>
+        </div>
+
+        <button
+          onClick={() => {
+            if (validStep) {
+              // Only jumps to the end if the current step is valid
+              setCurrentStep(totalSteps);
+            } else {
+              // Scrolls the user back to the inputs if fields are missing
+              formContentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
+            validStep
+              ? "bg-white text-gray-900 hover:bg-gray-100"
+              : "bg-primary/20 text-primary border border-primary/40"
+          }`}
+        >
+          {validStep ? (
+            <>Book Now <ChevronRight className="w-4 h-4" /></>
+          ) : (
+            <>Complete Form <ChevronRight className="w-4 h-4" /></>
+          )}
+        </button>
+      </div>
+    </div>,
+    document.body
+  )}
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 h-full py-4 md:py-8 flex items-center justify-center gap-8">
         <div
@@ -1825,7 +1841,9 @@ const Services = () => {
           </div>
 
           {/* FIXED: Added md:pb-12 to the main content container to mirror top padding */}
-          <div className="flex-grow overflow-y-auto px-6 md:px-16 py-4 md:pb-12 custom-scrollbar">
+          <div 
+            ref={formContentRef}
+            className="flex-grow overflow-y-auto px-6 md:px-16 py-4 md:pb-12 custom-scrollbar">
             {renderContent()}
           </div>
 
