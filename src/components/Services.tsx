@@ -267,7 +267,9 @@ const BookingSummaryCard = ({
 );
 
 const Services = () => {
-  const formContentRef = useRef<HTMLDivElement>(null);
+  const [isFormVisible, setIsFormVisible] = useState(true);
+const formObserverRef = useRef<HTMLDivElement>(null);
+const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     serviceCategory: "",
     cleaningType: "Regular" as CleaningType,
@@ -329,6 +331,26 @@ const Services = () => {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Add this to track if the form is in the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFormVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Triggers when at least 10% of the form is visible
+    );
+
+    if (formObserverRef.current) {
+      observer.observe(formObserverRef.current);
+    }
+
+    return () => {
+      if (formObserverRef.current) {
+        observer.unobserve(formObserverRef.current);
+      }
+    };
   }, []);
 
   const timeSlots = Array.from({ length: 12 }, (_, i) => {
@@ -1759,52 +1781,42 @@ const Services = () => {
       )}
 
       {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
-      {/* REPLACE the current createPortal block with this: */}
-{mounted &&
-  currentStep >= 2 &&
-  currentStep < totalSteps &&
-  !isCommercial &&
-  createPortal(
-    <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
-      <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl">
-        <div className="flex flex-col">
-          <span className="text-[10px] text-gray-400 uppercase tracking-wider">
-            Total
-          </span>
-          <span className="text-xl font-display font-bold text-primary">
-            A${(pricingResult?.total || 0).toFixed(2)}
-          </span>
-        </div>
-
-        <button
-          onClick={() => {
-            if (validStep) {
-              // Only jumps to the end if the current step is valid
-              setCurrentStep(totalSteps);
-            } else {
-              // Scrolls the user back to the inputs if fields are missing
-              formContentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
-          className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
-            validStep
-              ? "bg-white text-gray-900 hover:bg-gray-100"
-              : "bg-primary/20 text-primary border border-primary/40"
-          }`}
-        >
-          {validStep ? (
-            <>Book Now <ChevronRight className="w-4 h-4" /></>
-          ) : (
-            <>Complete Form <ChevronRight className="w-4 h-4" /></>
-          )}
-        </button>
-      </div>
-    </div>,
-    document.body
-  )}
+      {mounted &&
+        !isFormVisible && // <--- Only show when form is OUT of view
+        currentStep >= 2 &&
+        currentStep < totalSteps &&
+        !isCommercial &&
+        createPortal(
+          <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
+            <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl">
+              <div className="flex flex-col">
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider">
+                  Total
+                </span>
+                <span className="text-xl font-display font-bold text-primary">
+                  A${(pricingResult?.total || 0).toFixed(2)}
+                </span>
+              </div>
+              <button
+                onClick={() => {
+                  // Simply scroll back to the form
+                  formObserverRef.current?.scrollIntoView({ 
+                    behavior: "smooth", 
+                    block: "center" 
+                  });
+                }}
+                className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100"
+              >
+                Book Now <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>,
+          document.body
+        )}
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 h-full py-4 md:py-8 flex items-center justify-center gap-8">
         <div
+          ref={formObserverRef}
           className={`bg-white rounded-[2.5rem] border border-gray-100 relative overflow-hidden w-full h-auto max-h-[90vh] flex flex-col transition-all duration-500 shadow-2xl ${!isCommercial && currentStep >= 2 && currentStep < totalSteps
             ? "max-w-4xl"
             : "max-w-6xl"
