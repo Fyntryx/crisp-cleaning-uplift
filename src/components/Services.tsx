@@ -1781,14 +1781,14 @@ const formContentRef = useRef<HTMLDivElement>(null);
       )}
 
       {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
+     {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
       {mounted &&
-        !isFormVisible && // <--- Only show when form is OUT of view
         currentStep >= 2 &&
         currentStep < totalSteps &&
         !isCommercial &&
         createPortal(
           <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
-            <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl">
+            <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl transition-all duration-300">
               <div className="flex flex-col">
                 <span className="text-[10px] text-gray-400 uppercase tracking-wider">
                   Total
@@ -1797,23 +1797,26 @@ const formContentRef = useRef<HTMLDivElement>(null);
                   A${(pricingResult?.total || 0).toFixed(2)}
                 </span>
               </div>
-              <button
-                onClick={() => {
-                  // Simply scroll back to the form
-                  formObserverRef.current?.scrollIntoView({ 
-                    behavior: "smooth", 
-                    block: "center" 
-                  });
-                }}
-                className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100"
-              >
-                Book Now <ChevronRight className="w-4 h-4" />
-              </button>
+              
+              {/* Only show the button when the form is scrolled out of view */}
+              {!isFormVisible && (
+                <button
+                  onClick={() => {
+                    // Simply scroll back to the form
+                    formObserverRef.current?.scrollIntoView({ 
+                      behavior: "smooth", 
+                      block: "center" 
+                    });
+                  }}
+                  className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 animate-in fade-in slide-in-from-right-4 duration-300"
+                >
+                  Book Now <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
             </div>
           </div>,
           document.body
         )}
-
       <div className="container mx-auto px-4 md:px-6 relative z-10 h-full py-4 md:py-8 flex items-center justify-center gap-8">
         <div
           ref={formObserverRef}
