@@ -58,6 +58,11 @@ const Footer = () => {
               </h4>
               <div className="space-y-4 flex flex-col items-center md:items-start">
                 <a
+                  href="tel:1300123456"
+                  className="text-foreground/70 hover:text-foreground transition-colors block text-lg font-bold mb-2">
+                  1300 123 456
+                </a>
+                <a
                   href="mailto:crispcleaningmelbourne@outlook.com"
                   className="text-foreground/70 hover:text-foreground transition-colors block text-sm break-all font-medium">
                   crispcleaningmelbourne@outlook.com

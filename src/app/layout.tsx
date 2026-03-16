@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import Providers from "./providers";
+import StickyPhoneWidget from "@/components/StickyPhoneWidget";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Sonner />
+          <StickyPhoneWidget />
         </Providers>
       </body>
     </html>
