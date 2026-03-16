@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { createPortal } from "react-dom";
 import {
   Home,
@@ -148,6 +149,18 @@ const BookingSummaryCard = ({
     <h3 className="text-lg font-display font-bold mb-4 relative z-10">
       Summary
     </h3>
+    
+    {/* Satisfaction Guaranteed Badge */}
+    <div className="relative z-10 group/guarantee mb-4">
+      <div className="flex items-center gap-2 bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-2 rounded-lg cursor-help transition-colors hover:bg-green-500/20">
+        <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+        <span className="text-sm font-bold">Satisfaction Guaranteed</span>
+      </div>
+      <div className="absolute top-full left-0 mt-2 w-full bg-gray-800 text-white text-xs p-3 rounded-xl shadow-xl opacity-0 invisible group-hover/guarantee:opacity-100 group-hover/guarantee:visible transition-all duration-300 z-50 border border-gray-700 pointer-events-none">
+        Not happy? Receive a 100% refund if you're concerns are not addressed!
+      </div>
+    </div>
+
     <div className="space-y-3 relative z-10 text-gray-300 text-sm">
       <div className="flex justify-between border-b border-white/10 pb-3">
         <span>Service Type</span>
@@ -307,6 +320,7 @@ const Services = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   
   // NEW: State for address validity
@@ -689,6 +703,15 @@ const Services = () => {
       setSubmitError(null); // Clear errors when navigating
       setSubmitSuccess(null); // Clear success message when navigating
       setCurrentStep((prev) => prev + 1);
+    }
+  };
+
+  const handlePrevModal = () => {
+    if (currentStep === 2) {
+      setCurrentStep(1);
+      setIsModalOpen(false);
+    } else {
+      handlePrev();
     }
   };
 
@@ -1510,9 +1533,13 @@ const Services = () => {
   );
 
   const renderResStep5 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start md:justify-center py-2">
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-        <div className="space-y-4 order-2 md:order-1">
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start md:justify-center py-2">
+      <div className="items-start">
+        <div className="space-y-4">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">Finalise Booking</h3>
+            <p className="text-gray-500">Just a few more details to secure your booking.</p>
+          </div>
           <h3 className="text-xl font-display font-bold mb-4">
             Contact Details
           </h3>
@@ -1636,16 +1663,6 @@ const Services = () => {
             </button>
           </p>
         </div>
-
-        {/* Pass props to the extracted component */}
-        <div className="order-1 md:order-2">
-          <BookingSummaryCard
-            formData={formData}
-            pricingResult={pricingResult}
-            promoCode={promoCode}
-            setPromoCode={setPromoCode}
-          />
-        </div>
       </div>
     </div>
   );
@@ -1691,9 +1708,7 @@ const Services = () => {
   const getStepTitle = () => {
     if (currentStep === 1)
       return (
-        <>
-          <span className="text-primary">Free</span> Quote
-        </>
+        <span className="text-gray-900">Choose Service</span>
       );
     if (isCommercial) return "";
 
@@ -1712,14 +1727,134 @@ const Services = () => {
   };
 
   return (
-    <section
-      id="services"
-      ref={sectionRef as React.RefObject<HTMLElement>}
-      className="relative h-screen max-h-screen overflow-hidden flex items-center justify-center"
-      style={scaleStyle}>
-      {/* Cleaners Pass Modal (Res Only) */}
+    <>
+      <section
+        id="services"
+        className="w-full relative flex flex-col justify-center">
+        
+        {/* INLINE STEP 1 CONTAINER */}
+        <div className="w-full bg-white rounded-[2.5rem] border border-gray-100 shadow-xl overflow-hidden pt-10 pb-10 px-6 sm:px-8 flex flex-col items-center">
+            
+          <div className="text-center mb-6">
+            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full mb-3">
+               Step 1 of {totalSteps}
+            </span>
+            <h2 className="text-2xl md:text-3xl font-display font-bold">Choose Service</h2>
+            <p className="text-gray-500 mt-2 text-sm">Select the type of cleaning service you require.</p>
+          </div>
+
+          <div className="w-full mb-6">
+             {renderStep1()}
+          </div>
+
+          <button
+             onClick={() => {
+               if (currentStep === 1 && isStepValid()) {
+                 setCurrentStep(2);
+                 setIsModalOpen(true);
+               } else if (currentStep > 1) {
+                 setIsModalOpen(true);
+               }
+             }}
+             disabled={currentStep === 1 && !isStepValid()}
+             className={`px-10 py-3.5 text-base rounded-full font-bold transition-all shadow-lg hover:shadow-xl flex items-center gap-2 ${
+               (currentStep === 1 && !isStepValid())
+                 ? "bg-gray-100 text-gray-400 cursor-not-allowed shadow-none hover:shadow-none"
+                 : "bg-black text-white hover:bg-gray-800 hover:scale-[1.02]"
+             }`}>
+             {currentStep > 1 ? "Resume Booking" : "Continue"}
+             <ChevronRight className="w-5 h-5 ml-1" />
+          </button>
+        </div>
+      </section>
+
+      {/* OVERLAY BOOKING MODAL FOR STEPS >= 2 */}
+      {mounted && isModalOpen && createPortal(
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+           <div className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] rounded-[2rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300">
+              
+              {/* Modal Header */}
+              <div className="flex-none bg-white px-6 py-4 border-b border-gray-100 flex items-center justify-between relative shadow-sm z-20">
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={handlePrevModal}
+                    className="w-10 h-10 bg-gray-50 hover:bg-gray-100 rounded-full flex items-center justify-center shadow-sm transition-all text-gray-600">
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <div>
+                    <span className="block text-[10px] sm:text-xs font-bold uppercase text-primary tracking-wider">
+                      Step {currentStep} of {totalSteps}
+                    </span>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-display font-bold">
+                      {getStepTitle()}
+                    </h2>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-10 h-10 bg-gray-50 hover:bg-red-50 rounded-full flex items-center justify-center transition-colors text-gray-500 hover:text-red-500">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Body (Two Column Layout) */}
+              <div className="flex-grow overflow-hidden flex flex-col xl:flex-row relative">
+                 {/* Left Column (Active Step Content) */}
+                 <div className={`w-full ${isCommercial ? "" : "xl:w-[65%]"} h-full overflow-y-auto px-6 md:px-12 py-8 bg-white custom-scrollbar flex flex-col`}>
+                    <div className="flex-grow">
+                       {currentStep >= 2 && renderContent()}
+                    </div>
+                    
+                    {/* Inner Step Controls */}
+                    {currentStep < totalSteps && (
+                       <div className="mt-8 pt-6 border-t border-gray-100 flex justify-end">
+                         <button
+                           onClick={handleNext}
+                           disabled={!isStepValid()}
+                           className={`px-8 py-3 rounded-full font-bold text-sm transition-all flex items-center gap-2 ${
+                             !isStepValid()
+                               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                               : "bg-black text-white hover:bg-gray-800 shadow-md hover:shadow-lg"
+                           }`}>
+                           Continue
+                           <ChevronRight className="w-4 h-4 ml-1" />
+                         </button>
+                       </div>
+                    )}
+                 </div>
+
+                 {/* Right Column (Sticky Summary - Only for Residential) */}
+                 {!isCommercial && (
+                   <div className="w-full xl:w-[35%] bg-gray-50 border-t xl:border-t-0 xl:border-l border-gray-200 overflow-y-auto custom-scrollbar flex-col justify-between hidden xl:flex">
+                      <div className="p-6 md:p-8 sticky top-0">
+                         <BookingSummaryCard
+                           formData={formData}
+                           pricingResult={pricingResult}
+                           promoCode={promoCode}
+                           setPromoCode={setPromoCode}
+                         />
+                      </div>
+                   </div>
+                 )}
+              </div>
+
+              {/* Mobile Sticky Footer Summary */}
+              {mounted && !isCommercial && currentStep >= 2 && currentStep < totalSteps && (
+                 <div className="xl:hidden flex-none bg-gray-900 p-4 flex items-center justify-between z-30">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-gray-400 uppercase tracking-wider">Total</span>
+                      <span className="text-xl font-display font-bold text-primary">A${(pricingResult?.total || 0).toFixed(2)}</span>
+                    </div>
+                 </div>
+              )}
+           </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Info Modal / Cleaners Pass */}
       {showInfoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full relative shadow-2xl animate-in zoom-in-95 duration-200">
             <button
               onClick={() => setShowInfoModal(false)}
@@ -1756,105 +1891,7 @@ const Services = () => {
           </div>
         </div>
       )}
-
-      {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
-      {mounted &&
-        currentStep >= 2 &&
-        currentStep < totalSteps &&
-        !isCommercial &&
-        createPortal(
-          <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
-            <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl">
-              <div className="flex flex-col">
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider">
-                  Total
-                </span>
-                <span className="text-xl font-display font-bold text-primary">
-                  A${(pricingResult?.total || 0).toFixed(2)}
-                </span>
-              </div>
-              <button
-                onClick={() => setCurrentStep(totalSteps)}
-                disabled={!validStep}
-                className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-colors flex items-center gap-2 ${validStep
-                  ? "bg-white text-gray-900 hover:bg-gray-100"
-                  : "bg-gray-700 text-gray-400 cursor-not-allowed"
-                  }`}>
-                Book Now <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>,
-          document.body
-        )}
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10 h-full py-4 md:py-8 flex items-center justify-center gap-8">
-        <div
-          className={`bg-white rounded-[2.5rem] border border-gray-100 relative overflow-hidden w-full h-auto max-h-[90vh] flex flex-col transition-all duration-500 shadow-2xl ${!isCommercial && currentStep >= 2 && currentStep < totalSteps
-            ? "max-w-4xl"
-            : "max-w-6xl"
-            }`}>
-          {/* Header */}
-          <div className="flex-none px-8 pt-8 pb-2 text-center relative">
-            {currentStep > 1 && (
-              <button
-                onClick={handlePrev}
-                className="absolute left-8 top-8 w-10 h-10 bg-white hover:bg-gray-50 border border-gray-100 rounded-full flex items-center justify-center shadow-md transition-all z-20 group hover:scale-110">
-                <ChevronLeft className="w-5 h-5 text-gray-400 group-hover:text-gray-900" />
-              </button>
-            )}
-            {currentStep < totalSteps && (
-              <button
-                onClick={handleNext}
-                disabled={!validStep}
-                className={`absolute right-8 top-8 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all z-20 group ${!validStep
-                  ? "bg-gray-100 cursor-not-allowed opacity-50"
-                  : "bg-black hover:bg-gray-800 hover:scale-110 cursor-pointer"
-                  }`}>
-                <ChevronRight
-                  className={`w-5 h-5 ${!validStep ? "text-gray-400" : "text-white"
-                    }`}
-                />
-              </button>
-            )}
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full mb-2">
-              Step {currentStep} of {totalSteps}
-            </span>
-            <h2 className="text-2xl md:text-3xl font-display font-bold">
-              {getStepTitle()}
-            </h2>
-          </div>
-
-          {/* FIXED: Added md:pb-12 to the main content container to mirror top padding */}
-          <div className="flex-grow overflow-y-auto px-6 md:px-16 py-4 md:pb-12 custom-scrollbar">
-            {renderContent()}
-          </div>
-
-          <div className="flex-none pb-6 pt-2 flex justify-center gap-2 relative z-20">
-            {Array.from({ length: totalSteps }).map((_, index) => (
-              <div
-                key={index}
-                className={`h-1.5 rounded-full transition-all duration-500 ease-out ${index + 1 === currentStep
-                  ? "w-8 bg-black"
-                  : "w-1.5 bg-gray-200"
-                  }`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop Sidebar Summary (RESIDENTIAL ONLY) */}
-        {!isCommercial && currentStep >= 2 && currentStep < totalSteps && (
-          <div className="hidden xl:block w-80 flex-shrink-0 animate-in fade-in slide-in-from-right duration-500">
-            <BookingSummaryCard
-              formData={formData}
-              pricingResult={pricingResult}
-              promoCode={promoCode}
-              setPromoCode={setPromoCode}
-            />
-          </div>
-        )}
-      </div>
-    </section>
+    </>
   );
 };
 

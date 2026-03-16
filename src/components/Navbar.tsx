@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -104,6 +104,14 @@ const Navbar = () => {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4">
+          <a
+            href="tel:1300123456"
+            className={`flex items-center gap-2 font-medium transition-colors hover:text-primary ${
+              showScrolledStyle ? "text-foreground" : "text-white"
+            }`}>
+            <Phone size={18} />
+            <span>1300 123 456</span>
+          </a>
           <Button
             variant="ghost"
             size="sm"
@@ -120,8 +128,8 @@ const Navbar = () => {
               Login
             </Link>
           </Button>
-          <Button variant="hero" size="default" className="mr-10">
-            Get Started Now
+          <Button variant="hero" size="default" className="mr-10" asChild>
+            <Link href="/#booking">Free Quote</Link>
           </Button>
         </div>
 
