@@ -1753,6 +1753,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
     <>
       <section
         id="services"
+        ref={formObserverRef}
         className="w-full relative flex flex-col justify-center">
         
         {/* INLINE STEP 1 CONTAINER */}
@@ -1952,76 +1953,6 @@ const formContentRef = useRef<HTMLDivElement>(null);
           </div>,
           document.body
         )}
-      <div className="container mx-auto px-4 md:px-6 relative z-10 h-full py-4 md:py-8 flex items-center justify-center gap-8">
-        <div
-          ref={formObserverRef}
-          className={`bg-white rounded-[2.5rem] border border-gray-100 relative overflow-hidden w-full h-auto max-h-[90vh] flex flex-col transition-all duration-500 shadow-2xl ${!isCommercial && currentStep >= 2 && currentStep < totalSteps
-            ? "max-w-4xl"
-            : "max-w-6xl"
-            }`}>
-          {/* Header */}
-          <div className="flex-none px-8 pt-8 pb-2 text-center relative">
-            {currentStep > 1 && (
-              <button
-                onClick={handlePrev}
-                className="absolute left-8 top-8 w-10 h-10 bg-white hover:bg-gray-50 border border-gray-100 rounded-full flex items-center justify-center shadow-md transition-all z-20 group hover:scale-110">
-                <ChevronLeft className="w-5 h-5 text-gray-400 group-hover:text-gray-900" />
-              </button>
-            )}
-            {currentStep < totalSteps && (
-              <button
-                onClick={handleNext}
-                disabled={!validStep}
-                className={`absolute right-8 top-8 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all z-20 group ${!validStep
-                  ? "bg-gray-100 cursor-not-allowed opacity-50"
-                  : "bg-black hover:bg-gray-800 hover:scale-110 cursor-pointer"
-                  }`}>
-                <ChevronRight
-                  className={`w-5 h-5 ${!validStep ? "text-gray-400" : "text-white"
-                    }`}
-                />
-              </button>
-            )}
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full mb-2">
-              Step {currentStep} of {totalSteps}
-            </span>
-            <h2 className="text-2xl md:text-3xl font-display font-bold">
-              {getStepTitle()}
-            </h2>
-          </div>
-
-          {/* FIXED: Added md:pb-12 to the main content container to mirror top padding */}
-          <div 
-            ref={formContentRef}
-            className="flex-grow overflow-y-auto px-6 md:px-16 py-4 md:pb-12 custom-scrollbar">
-            {renderContent()}
-          </div>
-
-          <div className="flex-none pb-6 pt-2 flex justify-center gap-2 relative z-20">
-            {Array.from({ length: totalSteps }).map((_, index) => (
-              <div
-                key={index}
-                className={`h-1.5 rounded-full transition-all duration-500 ease-out ${index + 1 === currentStep
-                  ? "w-8 bg-black"
-                  : "w-1.5 bg-gray-200"
-                  }`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop Sidebar Summary (RESIDENTIAL ONLY) */}
-        {!isCommercial && currentStep >= 2 && currentStep < totalSteps && (
-          <div className="hidden xl:block w-80 flex-shrink-0 animate-in fade-in slide-in-from-right duration-500">
-            <BookingSummaryCard
-              formData={formData}
-              pricingResult={pricingResult}
-              promoCode={promoCode}
-              setPromoCode={setPromoCode}
-            />
-          </div>
-        )}
-      </div>
     </>
   );
 };
