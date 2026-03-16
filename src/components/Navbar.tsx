@@ -2,12 +2,29 @@
 
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Home", href: "/" },
+  {
+    name: "Services",
+    href: "#",
+    subLinks: [
+      { name: "Apartment Cleaning", href: "/apartment-cleaning" },
+      { name: "Commercial Cleaning", href: "/commercial-cleaning" },
+      { name: "Deep Cleaning", href: "/deep-cleaning" },
+      { name: "House Cleaning", href: "/house-cleaning" },
+      { name: "Vacate Cleaning", href: "/vacate-cleaning" },
+    ],
+  },
   { name: "About", href: "/about" },
   { name: "Reviews", href: "/review" },
   { name: "FAQs", href: "/faq" },
@@ -85,6 +102,37 @@ const Navbar = () => {
           className="hidden md:flex items-center gap-6 max-[990px]:flex-1 max-[990px]:justify-center min-[991px]:absolute min-[991px]:left-1/2 min-[991px]:top-1/2 
   min-[991px]:-translate-x-1/2 min-[991px]:-translate-y-1/2 min-[991px]:gap-8">
           {navLinks.map((link) => {
+            if (link.subLinks) {
+              const isSubActive = link.subLinks.some(
+                (sub) => sub.href === pathname,
+              );
+              return (
+                <DropdownMenu key={link.name}>
+                  <DropdownMenuTrigger
+                    className={`flex items-center gap-1 text-sm font-medium transition-colors duration-300 outline-none ${hoverColorClass} ${
+                      isSubActive ? "text-primary" : textColorClass
+                    }`}
+                  >
+                    {link.name}
+                    <ChevronDown size={14} />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="center" className="min-w-[200px]">
+                    {link.subLinks.map((subLink) => (
+                      <DropdownMenuItem key={subLink.href} asChild>
+                        <Link
+                          href={subLink.href}
+                          className="w-full cursor-pointer"
+                          onClick={() => handleNavClick(subLink.href)}
+                        >
+                          {subLink.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              );
+            }
+
             const isActive =
               link.href === "/" ? pathname === "/" : pathname === link.href;
 
@@ -95,7 +143,8 @@ const Navbar = () => {
                 onClick={() => handleNavClick(link.href)}
                 className={`text-sm font-medium transition-colors duration-300 ${hoverColorClass} ${
                   isActive ? "text-primary" : textColorClass
-                }`}>
+                }`}
+              >
                 {link.name}
               </Link>
             );
@@ -145,15 +194,39 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
           <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-base font-medium text-foreground/70 hover:text-primary transition-colors"
-                onClick={() => handleNavClick(link.href)}>
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              if (link.subLinks) {
+                return (
+                  <div key={link.name} className="flex flex-col gap-2">
+                    <span className="text-base font-medium text-foreground/50 px-0 py-1">
+                      {link.name}
+                    </span>
+                    <div className="flex flex-col gap-2 pl-4 border-l border-border">
+                      {link.subLinks.map((subLink) => (
+                        <Link
+                          key={subLink.href}
+                          href={subLink.href}
+                          className="text-base font-medium text-foreground/70 hover:text-primary transition-colors"
+                          onClick={() => handleNavClick(subLink.href)}
+                        >
+                          {subLink.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-base font-medium text-foreground/70 hover:text-primary transition-colors"
+                  onClick={() => handleNavClick(link.href)}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             <div className="flex flex-col gap-3 pt-4 border-t border-border">
               <Button variant="ghost" asChild>
                 <Link
@@ -174,3 +247,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
