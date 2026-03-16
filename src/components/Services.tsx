@@ -1750,6 +1750,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
   };
 
   return (
+    <>
       <section
         id="services"
         className="w-full relative flex flex-col justify-center">
@@ -2021,7 +2022,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
           </div>
         )}
       </div>
-    </section>
+    </>
   );
 };
 
