@@ -280,6 +280,9 @@ const BookingSummaryCard = ({
 );
 
 const Services = () => {
+  const [isFormVisible, setIsFormVisible] = useState(true);
+const formObserverRef = useRef<HTMLDivElement>(null);
+const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     serviceCategory: "",
     cleaningType: "Regular" as CleaningType,
@@ -342,6 +345,26 @@ const Services = () => {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Add this to track if the form is in the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFormVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Triggers when at least 10% of the form is visible
+    );
+
+    if (formObserverRef.current) {
+      observer.observe(formObserverRef.current);
+    }
+
+    return () => {
+      if (formObserverRef.current) {
+        observer.unobserve(formObserverRef.current);
+      }
+    };
   }, []);
 
   const timeSlots = Array.from({ length: 12 }, (_, i) => {
@@ -1891,7 +1914,115 @@ const Services = () => {
           </div>
         </div>
       )}
-    </>
+
+      {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
+     {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
+      {mounted &&
+        currentStep >= 2 &&
+        currentStep < totalSteps &&
+        !isCommercial &&
+        createPortal(
+          <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
+            <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl transition-all duration-300">
+              <div className="flex flex-col">
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider">
+                  Total
+                </span>
+                <span className="text-xl font-display font-bold text-primary">
+                  A${(pricingResult?.total || 0).toFixed(2)}
+                </span>
+              </div>
+              
+              {/* Only show the button when the form is scrolled out of view */}
+              {!isFormVisible && (
+                <button
+                  onClick={() => {
+                    // Simply scroll back to the form
+                    formObserverRef.current?.scrollIntoView({ 
+                      behavior: "smooth", 
+                      block: "center" 
+                    });
+                  }}
+                  className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 animate-in fade-in slide-in-from-right-4 duration-300"
+                >
+                  Book Now <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
+      <div className="container mx-auto px-4 md:px-6 relative z-10 h-full py-4 md:py-8 flex items-center justify-center gap-8">
+        <div
+          ref={formObserverRef}
+          className={`bg-white rounded-[2.5rem] border border-gray-100 relative overflow-hidden w-full h-auto max-h-[90vh] flex flex-col transition-all duration-500 shadow-2xl ${!isCommercial && currentStep >= 2 && currentStep < totalSteps
+            ? "max-w-4xl"
+            : "max-w-6xl"
+            }`}>
+          {/* Header */}
+          <div className="flex-none px-8 pt-8 pb-2 text-center relative">
+            {currentStep > 1 && (
+              <button
+                onClick={handlePrev}
+                className="absolute left-8 top-8 w-10 h-10 bg-white hover:bg-gray-50 border border-gray-100 rounded-full flex items-center justify-center shadow-md transition-all z-20 group hover:scale-110">
+                <ChevronLeft className="w-5 h-5 text-gray-400 group-hover:text-gray-900" />
+              </button>
+            )}
+            {currentStep < totalSteps && (
+              <button
+                onClick={handleNext}
+                disabled={!validStep}
+                className={`absolute right-8 top-8 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all z-20 group ${!validStep
+                  ? "bg-gray-100 cursor-not-allowed opacity-50"
+                  : "bg-black hover:bg-gray-800 hover:scale-110 cursor-pointer"
+                  }`}>
+                <ChevronRight
+                  className={`w-5 h-5 ${!validStep ? "text-gray-400" : "text-white"
+                    }`}
+                />
+              </button>
+            )}
+            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full mb-2">
+              Step {currentStep} of {totalSteps}
+            </span>
+            <h2 className="text-2xl md:text-3xl font-display font-bold">
+              {getStepTitle()}
+            </h2>
+          </div>
+
+          {/* FIXED: Added md:pb-12 to the main content container to mirror top padding */}
+          <div 
+            ref={formContentRef}
+            className="flex-grow overflow-y-auto px-6 md:px-16 py-4 md:pb-12 custom-scrollbar">
+            {renderContent()}
+          </div>
+
+          <div className="flex-none pb-6 pt-2 flex justify-center gap-2 relative z-20">
+            {Array.from({ length: totalSteps }).map((_, index) => (
+              <div
+                key={index}
+                className={`h-1.5 rounded-full transition-all duration-500 ease-out ${index + 1 === currentStep
+                  ? "w-8 bg-black"
+                  : "w-1.5 bg-gray-200"
+                  }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Sidebar Summary (RESIDENTIAL ONLY) */}
+        {!isCommercial && currentStep >= 2 && currentStep < totalSteps && (
+          <div className="hidden xl:block w-80 flex-shrink-0 animate-in fade-in slide-in-from-right duration-500">
+            <BookingSummaryCard
+              formData={formData}
+              pricingResult={pricingResult}
+              promoCode={promoCode}
+              setPromoCode={setPromoCode}
+            />
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 
