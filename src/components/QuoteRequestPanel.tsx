@@ -65,9 +65,9 @@ export default function QuoteRequestPanel({
 
               <div className="space-y-4 text-left inline-block lg:block mx-auto">
                 {renderContextPoints.map((point, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                  <div key={index} className="flex items-start gap-3 text-base text-muted-foreground font-medium">
                     <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                    <span className="text-gray-700">{point}</span>
+                    <span>{point}</span>
                   </div>
                 ))}
               </div>

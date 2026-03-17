@@ -14,6 +14,8 @@ import {
   Phone,
 } from "lucide-react";
 import QuoteRequestPanel from "@/components/QuoteRequestPanel";
+import ParallaxBubbles from "@/components/ParallaxBubbles";
+import { CTASection } from "@/components/CTASection";
 
 // --- DATA OBJECT ---
 const deepCleaningData = {
@@ -38,11 +40,12 @@ const deepCleaningData = {
       </>
     ),
     items: [
-      "Kitchen cleaning",
-      "Bathroom sanitisation",
-      "Dusting and vacuuming",
-      "Floor mopping",
-      "Bedroom cleaning",
+      "Detailed kitchen degreasing",
+      "Bathroom grout and tile scrubbing",
+      "Interior cabinet and drawer cleaning",
+      "Skirting boards and wall spot cleaning",
+      "Deep carpet vacuuming",
+      "Appliance exterior cleaning"
     ],
     cta: "Get Instant Price",
   },
@@ -270,7 +273,8 @@ export default function DeepCleaningPage() {
       </section>
 
       {/* 3. What's Included */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <ParallaxBubbles className="absolute inset-0 z-[-1]" />
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-foreground tracking-tight">
@@ -298,12 +302,14 @@ export default function DeepCleaningPage() {
           </div>
 
           <div className="text-center">
-            <Button
-              size="lg"
-              className="rounded-full px-10 h-14 text-lg font-semibold shadow-lg shadow-primary/20"
-            >
-              {whatsIncluded.cta}
-            </Button>
+            <Link href="/booking">
+              <Button
+                size="lg"
+                className="rounded-full px-10 h-14 text-lg font-semibold shadow-lg shadow-primary/20"
+              >
+                {whatsIncluded.cta}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -353,13 +359,15 @@ export default function DeepCleaningPage() {
               <p className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
                 {pricingExplanation.description}
               </p>
-              <Button
-                size="xl"
-                variant="secondary"
-                className="rounded-full text-lg px-10 h-14 text-primary font-bold shadow-xl hover:shadow-2xl transition-all"
-              >
-                {pricingExplanation.cta}
-              </Button>
+              <Link href="/booking">
+                <Button
+                  size="xl"
+                  variant="secondary"
+                  className="rounded-full text-lg px-10 h-14 text-primary font-bold shadow-xl hover:shadow-2xl transition-all"
+                >
+                  {pricingExplanation.cta}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -383,7 +391,8 @@ export default function DeepCleaningPage() {
       </section>
 
       {/* 7. Service Areas & FAQs */}
-      <section className="py-24 bg-background relative z-10">
+      <section className="py-24 bg-background relative z-10 overflow-hidden">
+        <ParallaxBubbles className="absolute inset-0 z-[-1]" />
         <div className="container mx-auto px-6 space-y-24">
           {/* --- UPDATED SERVICE AREAS DESIGN --- */}
           <div>
@@ -422,23 +431,18 @@ export default function DeepCleaningPage() {
       </section>
 
       {/* 8. Final CTA Section */}
-      <section className="py-24 md:py-32 relative overflow-hidden bg-foreground text-background">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black z-0"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] aspect-square bg-primary/20 rounded-full blur-[120px] z-0 pointer-events-none"></div>
-
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-10 tracking-tight text-white">
-            {finalCta.headline}
-          </h2>
-          <Button
-            size="xl"
-            className="rounded-full text-lg px-12 h-16 shadow-2xl shadow-primary/20 bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
-          >
-            {finalCta.buttonText}
-            <ArrowRight className="ml-2 h-6 w-6" />
-          </Button>
-        </div>
-      </section>
+      <CTASection
+        heading="Experience the Difference"
+        description="Ready for a deeper clean? Book our meticulous deep cleaning service today and transform your living space."
+        primaryAction={{
+          text: "Book Now",
+          href: "/booking",
+        }}
+        secondaryAction={{
+          text: "Contact Us",
+          href: "/contact",
+        }}
+      />
 
       <Footer />
     </main>

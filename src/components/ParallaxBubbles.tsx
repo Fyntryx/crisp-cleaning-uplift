@@ -343,7 +343,7 @@ const BUBBLES_MAP: BubbleConfig[] = [
   },
 ];
 
-const ParallaxBubbles = () => {
+const ParallaxBubbles = ({ className = "fixed inset-0" }: { className?: string }) => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -357,7 +357,7 @@ const ParallaxBubbles = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className={`${className} pointer-events-none overflow-hidden z-0`}>
       {BUBBLES_MAP.map((bubble) => (
         <div
           key={bubble.id}
