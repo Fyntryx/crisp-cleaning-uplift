@@ -1,8 +1,27 @@
-// src/utils/geolocation.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+// IMPORTANT: Set this to your main application's URL
+const MAIN_APP_URL = process.env.NEXT_PUBLIC_MAIN_APP_URL || 'https://your-main-app.com';
 
 const MELBOURNE_CBD = { lat: -37.8136, lon: 144.9631 };
-const MAX_RADIUS_KM = 50; // Service radius in Kilometers
+let MAX_RADIUS_KM = 50; // Dynamic default
 const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEOAPIFY_KEY;
+
+/**
+ * NEW: Call this function on app load (or start of booking) to sync with Admin settings
+ */
+export async function syncServiceRadius() {
+  try {
+    const response = await fetch(`${MAIN_APP_URL}/api/settings`);
+    const data = await response.json();
+    if (data.success && data.pricing?.serviceRadiusKm) {
+        MAX_RADIUS_KM = Number(data.pricing.serviceRadiusKm);
+        console.log(`[GEO] Service radius synced: ${MAX_RADIUS_KM}km`);
+    }
+  } catch (error) {
+    console.warn("[GEO] Could not sync radius, using fallback 50km:", error);
+  }
+}
 
 export interface Address {
   street?: string;
@@ -12,10 +31,7 @@ export interface Address {
   postcode?: string;
   country?: string;
   fullAddress: string;
-  coordinates: {
-    lat: number;
-    lon: number;
-  };
+  coordinates: { lat: number; lon: number; };
 }
 
 export interface ServiceabilityResult {
@@ -24,28 +40,19 @@ export interface ServiceabilityResult {
   error?: string;
 }
 
-/**
- * Calculate distance between two points using Haversine formula
- */
+function deg2rad(deg: number): number { return deg * (Math.PI / 180); }
+
 function calculateHaversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371; // Radius of the earth in km
+  const R = 6371;
   const dLat = deg2rad(lat2 - lat1);
   const dLon = deg2rad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = R * c; // Distance in km
-  return Number(d.toFixed(2));
-}
-
-function deg2rad(deg: number): number {
-  return deg * (Math.PI / 180);
+  return Number((R * c).toFixed(2));
 }
 
 /**
- * Check if a location is within the serviceable radius of Melbourne CBD
+ * Checks serviceability. If syncServiceRadius() was called, it uses the Admin's value.
  */
 export function checkAddressServiceability(lat: number, lon: number): ServiceabilityResult {
   const distance = calculateHaversineDistance(MELBOURNE_CBD.lat, MELBOURNE_CBD.lon, lat, lon);
@@ -58,6 +65,9 @@ export function checkAddressServiceability(lat: number, lon: number): Serviceabi
       : undefined
   };
 }
+
+// ... rest of your existing getCurrentLocation, reverseGeocode, and searchAddresses functions ...
+
 
 export async function getCurrentLocation(): Promise<{ lat: number; lon: number }> {
   return new Promise((resolve, reject) => {
