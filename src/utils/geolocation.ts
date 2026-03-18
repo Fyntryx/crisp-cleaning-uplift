@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 // IMPORTANT: Set this to your main application's URL
-const MAIN_APP_URL = process.env.NEXT_PUBLIC_MAIN_APP_URL || 'https://your-main-app.com';
+const MAIN_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const MELBOURNE_CBD = { lat: -37.8136, lon: 144.9631 };
 let MAX_RADIUS_KM = 50; // Dynamic default
