@@ -11,6 +11,27 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  Menu,
+  X,
+  Phone,
+  Home,
+  Sparkles,
+  Key,
+  Building2,
+  Briefcase
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -57,9 +78,8 @@ const Navbar = () => {
 
   const showScrolledStyle = !isHomePage || isScrolled;
 
-  const textColorClass = showScrolledStyle
-    ? "text-foreground/70"
-    : "text-white/90";
+  // Dynamic colors based on scroll state
+  const textColorClass = showScrolledStyle ? "text-foreground/70" : "text-white/90";
   const hoverColorClass = "hover:text-primary";
 
   const handleNavClick = (href: string) => {
@@ -76,13 +96,24 @@ const Navbar = () => {
     }
   };
 
+  // Helper to check active state
+  const isLinkActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  // Helper for applying Shadcn classes WITH your dynamic scroll colors
+  const navItemClass = (href: string) => cn(
+    navigationMenuTriggerStyle(),
+    "bg-transparent hover:bg-transparent focus:bg-transparent text-sm transition-colors duration-300",
+    hoverColorClass,
+    isLinkActive(href) ? "text-primary font-bold" : textColorClass
+  );
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-linear ${
-        showScrolledStyle
-          ? "bg-card/90 backdrop-blur-lg shadow-sm py-3"
-          : "bg-transparent py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-linear ${showScrolledStyle
+        ? "bg-card/90 backdrop-blur-lg shadow-sm py-3"
+        : "bg-transparent py-6"
+        }`}
       style={{
         borderBottomLeftRadius: !isHomePage ? "0px" : `${radius}px`,
         borderBottomRightRadius: !isHomePage ? "0px" : `${radius}px`,
@@ -90,7 +121,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex items-center justify-between relative">
         <Link
           href="/"
-          className="flex items-center gap-2 outline-none border-none ring-0 focus:outline-none focus:ring-0">
+          className="flex items-center gap-2 outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0">
           <img
             src="/logo.png"
             alt="Crisp Logo"
@@ -154,12 +185,11 @@ const Navbar = () => {
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="tel:1300123456"
-            className={`flex items-center gap-2 font-medium transition-colors hover:text-primary ${
-              showScrolledStyle ? "text-foreground" : "text-white"
-            }`}>
+            href="tel:0451433786"
+            className={`flex items-center gap-2 font-medium transition-colors hover:text-primary ${showScrolledStyle ? "text-foreground" : "text-white"
+              }`}>
             <Phone size={18} />
-            <span>1300 123 456</span>
+            <span>0451 433 786</span>
           </a>
           <Button
             variant="ghost"
@@ -182,17 +212,18 @@ const Navbar = () => {
           </Button>
         </div>
 
+        {/* --- MOBILE MENU TOGGLE --- */}
         <button
-          className={`md:hidden p-2 transition-colors ${
-            showScrolledStyle ? "text-foreground" : "text-white"
-          }`}
+          className={`md:hidden p-2 transition-colors ${showScrolledStyle ? "text-foreground" : "text-white"
+            }`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
+      {/* --- MOBILE MENU CONTENT --- */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in max-h-[85vh] overflow-y-auto">
           <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {navLinks.map((link) => {
               if (link.subLinks) {
@@ -228,6 +259,9 @@ const Navbar = () => {
               );
             })}
             <div className="flex flex-col gap-3 pt-4 border-t border-border">
+              <a href="tel:0451433786" className="flex items-center justify-center gap-2 font-bold py-2 text-foreground">
+                <Phone size={18} className="text-primary" /> 0451 433 786
+              </a>
               <Button variant="ghost" asChild>
                 <Link
                   href={
@@ -237,7 +271,9 @@ const Navbar = () => {
                   Login
                 </Link>
               </Button>
-              <Button variant="hero">Get Started Now</Button>
+              <Button variant="hero" asChild>
+                <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>Get Started Now</Link>
+              </Button>
             </div>
           </nav>
         </div>
