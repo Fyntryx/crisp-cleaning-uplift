@@ -281,8 +281,8 @@ const BookingSummaryCard = ({
 
 const Services = () => {
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const formObserverRef = useRef<HTMLDivElement>(null);
-  const formContentRef = useRef<HTMLDivElement>(null);
+const formObserverRef = useRef<HTMLDivElement>(null);
+const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     serviceCategory: "",
     cleaningType: "Regular" as CleaningType,
@@ -1753,6 +1753,7 @@ const Services = () => {
     <>
       <section
         id="services"
+        ref={formObserverRef}
         className="w-full relative flex flex-col justify-center">
 
         {/* INLINE STEP 1 CONTAINER */}
@@ -2019,7 +2020,45 @@ const Services = () => {
             </div>
           )}
         </div>
-      </section>
+      )}
+
+      {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
+     {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
+      {mounted &&
+        currentStep >= 2 &&
+        currentStep < totalSteps &&
+        !isCommercial &&
+        createPortal(
+          <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
+            <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl transition-all duration-300">
+              <div className="flex flex-col">
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider">
+                  Total
+                </span>
+                <span className="text-xl font-display font-bold text-primary">
+                  A${(pricingResult?.total || 0).toFixed(2)}
+                </span>
+              </div>
+              
+              {/* Only show the button when the form is scrolled out of view */}
+              {!isFormVisible && (
+                <button
+                  onClick={() => {
+                    // Simply scroll back to the form
+                    formObserverRef.current?.scrollIntoView({ 
+                      behavior: "smooth", 
+                      block: "center" 
+                    });
+                  }}
+                  className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 animate-in fade-in slide-in-from-right-4 duration-300"
+                >
+                  Book Now <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 };
