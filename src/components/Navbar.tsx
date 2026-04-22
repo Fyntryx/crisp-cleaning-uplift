@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,13 +14,13 @@ import {
   Menu,
   X,
   Phone,
+  ChevronDown,
   Home,
   Sparkles,
   Key,
   Building2,
   Briefcase
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
