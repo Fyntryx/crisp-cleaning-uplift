@@ -207,7 +207,7 @@ const Navbar = () => {
             </Link>
           </Button>
           <Button variant="hero" size="default" className="mr-10" asChild>
-            <Link href="/#booking">Free Quote</Link>
+            <Link href="/#booking">Book Clean</Link>
           </Button>
         </div>
 
@@ -271,7 +271,7 @@ const Navbar = () => {
                 </Link>
               </Button>
               <Button variant="hero" asChild>
-                <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>Get Started Now</Link>
+                <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>Book Clean</Link>
               </Button>
             </div>
           </nav>
