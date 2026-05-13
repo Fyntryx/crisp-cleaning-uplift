@@ -50,9 +50,9 @@ export default function Testimonials() {
     <section className="py-24 bg-[#FAF9F6]">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="mb-12">
-          <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">Social Proof</h4>
+          <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">Testimonials</h4>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
-            Melbourne homeowners<br />stopped settling for average.
+            Stop settling for average.
           </h2>
           <p className="text-lg text-muted-foreground">Here's what happened when they switched to Crisp.</p>
         </div>

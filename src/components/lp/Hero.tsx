@@ -60,13 +60,13 @@ export default function Hero() {
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-orange-100 rounded-full shadow-sm text-sm font-semibold text-foreground">
-            <span className="text-primary">90%</span>
+            <span className="text-primary">97%</span>
             same cleaner
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-orange-100 rounded-full shadow-sm text-sm font-semibold text-foreground">
-            <span className="text-primary">48hr</span>
-            re-clean
+            <span className="text-primary">100%</span>
+            insured
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-orange-100 rounded-full shadow-sm text-sm font-semibold text-foreground">

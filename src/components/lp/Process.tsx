@@ -2,36 +2,24 @@ import React from "react";
 
 const steps = [
   {
-    title: "1. Arrival",
-    description: "We arrive 5 minutes early, send an \"Arrived!\" text, wear our Crisp uniform, and introduce ourselves politely. We always ask: \"Is there anything you want me to focus on today?\""
+    title: "Book in 30 seconds",
+    description: "Fill in a few quick details and lock in your preferred time. No phone calls, no back-and-forth — your booking is confirmed instantly."
   },
   {
-    title: "2. Walk-Through",
-    description: "A quick tour of the home to identify priority areas, confirm extras, note any fragile items, and identify our \"before\" photo areas."
+    title: "A cleaner is assigned",
+    description: "We match you with a vetted, experienced Crisp cleaner. You'll get their name and profile before the day so you know exactly who to expect."
   },
   {
-    title: "3. Set Up",
-    description: "We place our cleaning kit safely out of the way, put on gloves, open windows if appropriate to air out the space, and start our timers."
+    title: "Day of the clean",
+    description: "Your cleaner arrives on time, works through the full Crisp checklist room by room, and leaves nothing unchecked."
   },
   {
-    title: "4. Strict Cleaning Order",
-    description: "Chemical Applications → Kitchen → Bedrooms → Living areas → Bathroom(s) → Floors last. This exact order ensures no cross-contamination, maximum efficiency, and predictable timing."
+    title: "The Crisp Standard",
+    description: "Every clean includes our signature finish — aromatic refresh, linen folds, chrome polish, and a reset that genuinely looks and feels different."
   },
   {
-    title: "5. Quality Control",
-    description: "Before leaving each room, we check: all surfaces are streak-free, no visible dust, no product residue, no missed corners, floors are perfectly vacuumed, and zero fingerprints on glass or stainless steel."
-  },
-  {
-    title: "6. Signature Crisp Touch",
-    description: "In every room: Crisp aromatic finish, toilet paper & towel triangle folds, Crisp card placement, perfect couch & bed reset, sink chrome polish, and an entryway refresh."
-  },
-  {
-    title: "7. Final Walkthrough & Photos",
-    description: "We take \"after\" photos for our system and politely ask you to view the results to address any reasonable concerns right then and there."
-  },
-  {
-    title: "8. Customer Close-Off",
-    description: "Your clean is complete! We send a digital report and review request, making sure you're entirely thrilled before we leave."
+    title: "Final check and follow up",
+    description: "Before leaving, your cleaner does a final walkthrough. You'll receive a summary after the clean and a direct line if anything needs attention."
   }
 ];
 
@@ -42,7 +30,7 @@ export default function Process() {
         <div className="text-center mb-16">
           <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Our SOP</h4>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
-            The 8-step system behind every perfect clean.
+            The 5-step system behind every clean.
           </h2>
         </div>
 

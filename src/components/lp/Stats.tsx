@@ -40,9 +40,9 @@ export default function Stats() {
 
           {/* Other Stats */}
           <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
-            <p className="text-muted-foreground text-xs font-bold uppercase tracking-wider mb-2">RE-CLEAN WINDOW</p>
-            <span className="text-5xl font-bold text-primary mb-2">48hrs</span>
-            <p className="text-muted-foreground text-sm font-medium">Maximum re-clean turnaround</p>
+            <p className="text-muted-foreground text-xs font-bold uppercase tracking-wider mb-2">FULLY INSURED</p>
+            <span className="text-5xl font-bold text-primary mb-2">100%</span>
+            <p className="text-muted-foreground text-sm font-medium">All cleaners fully insured</p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
@@ -53,7 +53,7 @@ export default function Stats() {
 
           <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
             <p className="text-muted-foreground text-xs font-bold uppercase tracking-wider mb-2">CONSISTENCY</p>
-            <span className="text-5xl font-bold text-primary mb-2">90%</span>
+            <span className="text-5xl font-bold text-primary mb-2">97%</span>
             <p className="text-muted-foreground text-sm font-medium">Same cleaner consistency rate</p>
           </div>
         </div>

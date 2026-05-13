@@ -162,9 +162,8 @@ export default function Checklist() {
         <div className="bg-transparent animate-fade-in">
           {currentData.map((section, idx) => (
             <div key={idx} className="mb-8">
-              <h3 className="text-sm font-bold text-primary uppercase tracking-widest border-b border-orange-100/50 pb-4 mb-6 flex justify-between items-center">
-                <span>{section.category}</span>
-                <span className="text-muted-foreground/60 text-xs font-semibold">{section.items.length} ITEMS</span>
+              <h3 className="text-sm font-bold text-primary uppercase tracking-widest border-b border-orange-100/50 pb-4 mb-6">
+                {section.category}
               </h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12 text-foreground/80 text-sm font-medium">
                 {section.items.map((item: string, i: number) => (
