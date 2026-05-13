@@ -71,16 +71,16 @@ export default function Testimonials() {
         </div>
 
         {/* Bottom Grid: Reviews */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow">
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col h-full hover:shadow-md transition-shadow">
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, idx) => (
                   <Star key={idx} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
               <p className="text-foreground font-medium text-sm leading-relaxed mb-6">"{review.text}"</p>
-              <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase">{review.author}</p>
+              <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase mt-auto">{review.author}</p>
             </div>
           ))}
         </div>
