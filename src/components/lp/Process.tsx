@@ -40,15 +40,19 @@ export default function Process() {
 
           <div className="space-y-16 relative z-10">
             {steps.map((step, index) => (
-              <div key={index} className="relative">
+              <div key={index} className="relative group">
                 {/* Number Indicator */}
-                <div className="absolute -left-[32px] md:-left-[52px] top-0 w-10 h-10 rounded-full bg-primary text-white font-bold text-lg flex items-center justify-center shadow-md border-4 border-white">
+                <div className="absolute -left-[32px] md:-left-[52px] top-8 w-10 h-10 rounded-full bg-orange-50/80 text-primary font-bold text-base flex items-center justify-center shadow-sm border-[4px] border-white ring-1 ring-orange-100 z-20 group-hover:scale-110 transition-transform">
                   {index + 1}
                 </div>
 
-                <div className="pt-1.5">
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">{step.title}</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">{step.description}</p>
+                <div className="pl-6 md:pl-4 py-2">
+                  <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-orange-100/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">
+                      Step {index + 1} — {step.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{step.description}</p>
+                  </div>
                 </div>
               </div>
             ))}

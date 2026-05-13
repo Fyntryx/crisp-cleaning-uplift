@@ -121,11 +121,7 @@ const Navbar = () => {
         <Link
           href="/"
           className="flex items-center gap-2 outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0">
-          <img
-            src="/logo.png"
-            alt="Crisp Logo"
-            className="h-14 w-auto object-contain outline-none border-none"
-          />
+          <span className="font-poppins text-3xl font-bold tracking-tight text-primary">crisp.</span>
         </Link>
 
         <nav

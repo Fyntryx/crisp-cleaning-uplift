@@ -6,11 +6,11 @@ import { ArrowRight, Star } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#FAF9F6] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center">
+    <section className="relative overflow-hidden bg-[#1E1915] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-[95vh]">
 
       {/* Hero Video Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-center">
           <source src="/hero.webm" type="video/webm" />
         </video>
       </div>
@@ -22,12 +22,12 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1200px] mx-auto flex flex-col items-center">
 
         {/* Badge */}
-        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-orange-100 text-primary text-sm font-semibold tracking-[0.12em] uppercase">
+        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 text-sm font-semibold tracking-[0.12em] uppercase shadow-lg">
           Melbourne's most consistent home clean
         </div>
 
         {/* Headline */}
-        <h1 className="max-w-[1150px] text-[46px] md:text-[72px] font-extrabold text-[#140B05] tracking-[-0.03em] leading-[1.1] mb-8">
+        <h1 className="max-w-[1150px] text-[46px] md:text-[72px] font-extrabold text-white tracking-[-0.03em] leading-[1.1] mb-8">
           Walk in. Breathe out.
           <br />
           <span className="whitespace-nowrap">Your home is exactly{" "}<span className="text-primary">how it</span></span>
@@ -36,7 +36,7 @@ export default function Hero() {
         </h1>
 
         {/* Sub Copy */}
-        <p className="max-w-2xl text-lg md:text-xl text-[#5E5A57] leading-relaxed mb-10">
+        <p className="max-w-2xl text-lg md:text-xl text-white/90 leading-relaxed mb-10">
           You shouldn't have to supervise your cleaner, explain things twice,
           or wonder if they actually showed up. Crisp delivers a consistent,
           detailed clean — every visit, without the mental load.
@@ -52,7 +52,7 @@ export default function Hero() {
         </Button>
 
         {/* Sub CTA */}
-        <div className="flex flex-wrap items-center justify-center gap-x-2 text-sm font-medium text-[#6B6763] mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-x-2 text-sm font-medium text-white/70 mb-10">
           <span>Trusted by Melbourne households</span>
           <span>·</span>
           <span>Insured & vetted cleaners</span>
@@ -63,22 +63,22 @@ export default function Hero() {
         {/* Trust Pills */}
         <div className="flex flex-wrap items-center justify-center gap-3">
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-orange-100 rounded-full shadow-sm text-sm font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
             <Star className="w-4 h-4 fill-primary text-primary" />
             4.9 Google
           </div>
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-orange-100 rounded-full shadow-sm text-sm font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
             <span className="text-primary">97%</span>
             same cleaner
           </div>
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-orange-100 rounded-full shadow-sm text-sm font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
             <span className="text-primary">100%</span>
             insured
           </div>
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-orange-100 rounded-full shadow-sm text-sm font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
             <span className="text-primary">30sec</span>
             booking
           </div>
