@@ -11,7 +11,6 @@ import Guarantee from "@/components/lp/Guarantee";
 import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Footer from "@/components/Footer";
-import ParallaxBubbles from "@/components/ParallaxBubbles";
 
 export const metadata = {
   title: "Crisp Cleaning | Melbourne's most consistent home clean",
@@ -21,9 +20,6 @@ export const metadata = {
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary">
-      {/* Background Effect */}
-      <ParallaxBubbles />
-      
       <Navbar />
       
       <Hero />

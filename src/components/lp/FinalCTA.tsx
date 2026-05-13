@@ -7,7 +7,7 @@ export default function FinalCTA() {
     <section className="py-24 bg-[#1E1915] text-white">
       <div className="container mx-auto px-4 max-w-4xl text-center flex flex-col items-center">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
-          Every week without a cleaner is another week catching up...
+          Every week without a cleaner is another week of catching up
         </h2>
         
         <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">

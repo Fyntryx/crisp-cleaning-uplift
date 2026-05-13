@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
@@ -5,6 +7,13 @@ import { ArrowRight, Star } from "lucide-react";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#FAF9F6] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center">
+
+      {/* Hero Video Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+          <source src="/hero.webm" type="video/webm" />
+        </video>
+      </div>
 
       {/* Background Decorations */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
@@ -18,7 +27,7 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="max-w-[1150px] text-[46px] md:text-[72px] font-extrabold text-[#140B05] tracking-[-0.03em] leading-[0.9] mb-8">
+        <h1 className="max-w-[1150px] text-[46px] md:text-[72px] font-extrabold text-[#140B05] tracking-[-0.03em] leading-[1.1] mb-8">
           Walk in. Breathe out.
           <br />
           <span className="whitespace-nowrap">Your home is exactly{" "}<span className="text-primary">how it</span></span>

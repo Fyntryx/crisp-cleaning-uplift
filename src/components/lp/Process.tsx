@@ -28,7 +28,7 @@ export default function Process() {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
-          <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Our SOP</h4>
+          <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">How It Works</h4>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
             The 5-step system behind every clean.
           </h2>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Check } from "lucide-react";
 
 const tabs = ["Regular", "Deep", "Vacate", "Add-ons"];
 
@@ -165,10 +165,12 @@ export default function Checklist() {
               <h3 className="text-sm font-bold text-primary uppercase tracking-widest border-b border-orange-100/50 pb-4 mb-6">
                 {section.category}
               </h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12 text-foreground/80 text-sm font-medium">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-7 gap-x-12 text-foreground/80 text-sm font-medium">
                 {section.items.map((item: string, i: number) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 fill-orange-50" />
+                    <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                    </div>
                     <span>{item}</span>
                   </li>
                 ))}

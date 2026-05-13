@@ -12,7 +12,7 @@ const navLinks = [
 
 const Footer = () => {
   return (
-    <footer className="relative w-full mt-24 rounded-t-[3rem] overflow-hidden border-t border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
+    <footer className="relative w-full rounded-t-[3rem] overflow-hidden border-t border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
 
       {/* 1. MINIMALIST COLORED GRADIENT (No Images) */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-primary/5 z-0"></div>
