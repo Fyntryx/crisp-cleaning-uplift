@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Poppins"', 'sans-serif'],
-        display: ['"Poppins"', 'sans-serif'],
+        sans: ['var(--font-poppins)', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        display: ['var(--font-poppins)', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
