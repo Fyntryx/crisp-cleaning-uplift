@@ -1,5 +1,5 @@
 import React from "react";
-import { Star, Clock, ArrowRightLeft } from "lucide-react";
+import { Star, Clock, ArrowRightLeft, ArrowRight } from "lucide-react";
 
 // Placeholder BeforeAfterSlider
 const BeforeAfterSlider = () => (
@@ -38,10 +38,10 @@ const ComingSoonCard = ({ title }: { title: string }) => (
 
 const reviews = [
   { text: "Honestly felt like a brand new home.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "VERIFIED GOOGLE REVIEW" },
   { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "VERIFIED GOOGLE REVIEW" },
+  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "VERIFIED GOOGLE REVIEW" },
   { text: "One of the best decisions we've made. Coming home to a clean house every week has made life much easier.", author: "VERIFIED GOOGLE REVIEW" },
+  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "VERIFIED GOOGLE REVIEW" },
   { text: "Super impressed. Our place looked like a display home afterwards.", author: "VERIFIED GOOGLE REVIEW" }
 ];
 
@@ -70,19 +70,28 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Bottom Grid: Reviews */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Bottom Grid: Reviews (Masonry) */}
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
           {reviews.map((review, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col h-full hover:shadow-md transition-shadow">
+            <div key={i} className="break-inside-avoid mb-6 bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow">
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, idx) => (
                   <Star key={idx} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
               <p className="text-foreground font-medium text-sm leading-relaxed mb-6">"{review.text}"</p>
-              <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase mt-auto">{review.author}</p>
+              <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase mt-6">{review.author}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center items-center gap-3">
+          <div className="flex gap-1">
+            {[...Array(5)].map((_, idx) => (
+              <Star key={idx} className="w-5 h-5 fill-primary text-primary" />
+            ))}
+          </div>
+          <span className="font-bold text-sm text-foreground">Rated 4.9 stars on Google by Melbourne homeowners</span>
         </div>
       </div>
     </section>

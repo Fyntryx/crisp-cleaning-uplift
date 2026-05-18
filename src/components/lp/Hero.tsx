@@ -10,7 +10,7 @@ export default function Hero() {
 
       {/* Hero Video Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-center">
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-center opacity-40">
           <source src="/hero.webm" type="video/webm" />
         </video>
       </div>
@@ -30,13 +30,13 @@ export default function Hero() {
         <h1 className="max-w-[1150px] text-[46px] md:text-[72px] font-extrabold text-white tracking-[-0.03em] leading-[1.1] mb-8">
           Walk in. Breathe out.
           <br />
-          <span className="whitespace-nowrap">Your home is exactly{" "}<span className="text-primary">how it</span></span>
+          <span className="whitespace-nowrap">Your home is exactly how it</span>
           <br />
-          <span className="text-primary">should be.</span>
+          <span>should be.</span>
         </h1>
 
         {/* Sub Copy */}
-        <p className="max-w-2xl text-lg md:text-xl text-white/90 leading-relaxed mb-10">
+        <p className="max-w-2xl text-lg md:text-xl text-neutral-200 leading-relaxed mb-10">
           You shouldn't have to supervise your cleaner, explain things twice,
           or wonder if they actually showed up. Crisp delivers a consistent,
           detailed clean — every visit, without the mental load.
@@ -69,17 +69,17 @@ export default function Hero() {
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
-            <span className="text-primary">97%</span>
+            <span className="text-white">97%</span>
             same cleaner
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
-            <span className="text-primary">100%</span>
+            <span className="text-white">100%</span>
             insured
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
-            <span className="text-primary">30sec</span>
+            <span className="text-white">30sec</span>
             booking
           </div>
 

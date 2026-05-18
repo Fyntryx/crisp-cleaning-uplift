@@ -1,38 +1,71 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Zap } from "lucide-react";
+import { Tag, Clock, ArrowRight } from "lucide-react";
 
 export default function FinalCTA() {
   return (
-    <section className="py-24 bg-[#1E1915] text-white">
-      <div className="container mx-auto px-4 max-w-4xl text-center flex flex-col items-center">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
-          Every week without a cleaner is another week of catching up
-        </h2>
-        
-        <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Every week without a system is another week of catching up. Crisp has limited weekly slots per cleaner — once they're gone, they're gone.
-        </p>
+    <section className="py-24 bg-[#FAF9F6] overflow-hidden">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Rounded Charcoal/Grid Card */}
+        <div 
+          className="relative rounded-[32px] md:rounded-[40px] bg-[#14120F] text-white p-12 md:p-20 overflow-hidden shadow-2xl border border-white/5"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px)
+            `,
+            backgroundSize: '36px 36px',
+          }}
+        >
+          {/* Radial Ambient Corner Glows */}
+          <div className="absolute -bottom-36 -right-36 w-[450px] h-[450px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute -bottom-36 -left-36 w-[450px] h-[450px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+          
+          <div className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center">
+            {/* Pre-header */}
+            <span className="text-[10px] md:text-xs font-bold text-primary tracking-[0.2em] uppercase mb-6">
+              LIMITED WEEKLY SLOTS
+            </span>
 
-        <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full bg-orange-100/10 text-orange-200 text-sm font-semibold tracking-wide border border-orange-500/30">
-          25% off your first clean — code WELCOME25
-        </div>
+            {/* Main Header with orange accent */}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight max-w-2xl">
+              Your home won't clean itself. <span className="text-primary">But we will.</span>
+            </h2>
+            
+            {/* Subtext */}
+            <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+              Every week without a system is another week of catching up. Crisp has limited weekly slots per cleaner — once they're gone, they're gone.
+            </p>
 
-        <Button size="xl" className="rounded-full px-12 py-7 text-lg font-bold bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all mb-8 w-full sm:w-auto">
-          Claim Your First Clean
-        </Button>
+            {/* Configured Promo and Info Badge */}
+            <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl sm:rounded-full px-5 py-2.5 mb-10 text-xs md:text-sm text-white/80">
+              <div className="flex items-center gap-2">
+                <Tag className="w-4 h-4 text-primary" />
+                <span>25% off your first clean. Use code</span>
+                <span className="bg-primary/20 text-primary border border-primary/30 text-[10px] font-extrabold px-2 py-0.5 rounded tracking-wide">WELCOME25</span>
+              </div>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-primary" />
+                <span>Limited slots available this week across Melbourne.</span>
+              </div>
+            </div>
 
-        <div className="flex items-center gap-2 text-sm text-orange-300 font-medium mb-8">
-          <Zap className="w-4 h-4 fill-orange-400 text-orange-400" />
-          <span>Limited slots available this week across Melbourne</span>
-        </div>
+            {/* Glowing Action Button */}
+            <Button size="xl" className="rounded-full px-12 py-7 text-lg font-bold bg-primary hover:bg-primary/95 text-white shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:shadow-[0_0_40px_rgba(249,115,22,0.65)] hover:-translate-y-0.5 transition-all duration-300 mb-8 flex items-center gap-2 group">
+              Claim Your First Clean
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/60 font-medium">
-          <span>Takes 30 seconds</span>
-          <span className="hidden sm:inline">·</span>
-          <span>No lock-in contracts</span>
-          <span className="hidden sm:inline">·</span>
-          <span>Cancel anytime</span>
+            {/* Bottom trust footer */}
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs md:text-sm text-white/40 font-medium">
+              <span>Takes 30 seconds</span>
+              <span className="hidden sm:inline text-white/10">·</span>
+              <span>No lock-in contracts</span>
+              <span className="hidden sm:inline text-white/10">·</span>
+              <span>Cancel anytime</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

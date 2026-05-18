@@ -15,16 +15,18 @@ const crispPoints = [
   "Standardised procedures to ensure detail on every clean",
   "Better paid cleaners + real experience = more accountability + superior service",
   "Dedicated point of contact, always responsive",
-  "You walk in. It's Done"
+  "You walk in. It's Done",
+  "Rigorous vetting, background checks & active training",
+  "100% Satisfaction Guarantee — free re-clean within 48h"
 ];
 
 export default function Difference() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-28 bg-white overflow-visible">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">The Difference</h4>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-6">
+          <h2 className="text-[28px] md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6 lg:whitespace-nowrap">
             Most cleaning companies are inconsistent by design.
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -32,9 +34,9 @@ export default function Difference() {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-6 lg:gap-8">
+        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-6 lg:gap-8 overflow-visible pt-6">
           {/* Industry Average Box */}
-          <div className="w-full lg:w-[590px] bg-[#F5F3ED] p-9 rounded-3xl border border-orange-100/50 flex flex-col justify-center relative overflow-hidden">
+          <div className="w-full lg:w-[500px] bg-[#F5F3ED] p-9 rounded-3xl border border-orange-100/50 flex flex-col justify-center relative overflow-hidden">
             <div className="flex justify-between items-center mb-8">
               <h3 className="text-xl font-bold text-foreground">Other Cleaners</h3>
               <span className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest">INDUSTRY AVERAGE</span>
@@ -51,8 +53,8 @@ export default function Difference() {
             </ul>
           </div>
 
-          {/* Crisp Cleaning Box (Visually Bigger) */}
-          <div className="w-full lg:w-[590px] bg-primary p-9 rounded-3xl shadow-2xl flex flex-col justify-center text-white relative overflow-hidden">
+          {/* Crisp Cleaning Box (3D Popped Out Floating Card) */}
+          <div className="w-full lg:w-[560px] bg-primary p-10 lg:p-12 rounded-3xl shadow-[0_20px_50px_rgba(249,115,22,0.3)] flex flex-col justify-center text-white relative overflow-visible transform lg:-translate-y-8 lg:translate-x-2 lg:z-10 mt-8 lg:mt-0 border-4 border-orange-400/40">
             <div className="flex justify-between items-center mb-8">
               <h3 className="text-xl md:text-2xl font-bold text-white">Crisp Cleaning</h3>
               <span className="text-[10px] font-bold text-white/90 uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full">THE NEW STANDARD</span>
@@ -60,7 +62,7 @@ export default function Difference() {
             <ul className="space-y-6">
               {crispPoints.map((point, i) => (
                 <li key={i} className="flex items-start gap-4">
-                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                     <Check className="w-4 h-4 text-primary" strokeWidth={4} />
                   </div>
                   <span className="text-white font-semibold text-[15px] leading-snug">{point}</span>

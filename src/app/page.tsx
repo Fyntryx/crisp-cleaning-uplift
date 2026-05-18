@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/lp/Hero";
+import QuoteRequestPanel from "@/components/QuoteRequestPanel";
 import Testimonials from "@/components/lp/Testimonials";
 import Difference from "@/components/lp/Difference";
 import WhyCrisp from "@/components/lp/WhyCrisp";
@@ -23,6 +24,7 @@ export default function LandingPage() {
       <Navbar />
       
       <Hero />
+      <QuoteRequestPanel />
       <Testimonials />
       <Difference />
       <WhyCrisp />

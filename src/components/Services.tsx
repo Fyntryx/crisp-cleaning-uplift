@@ -23,6 +23,22 @@ import {
   Eye,
   EyeOff,
   Tag,
+  Check,
+  ArrowRight,
+  Sliders,
+  Calendar,
+  ClipboardList,
+  Bath,
+  Bed,
+  ChefHat,
+  Sofa,
+  Clock,
+  PawPrint,
+  Car,
+  Key,
+  AlertTriangle,
+  FileText,
+  Lock,
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import useScrollScale from "@/hooks/useScrollScale";
@@ -144,125 +160,135 @@ const BookingSummaryCard = ({
   setPromoCode: (val: string) => void;
 }) => (
   <div
-    className={`bg-gray-900 text-white rounded-3xl p-6 shadow-2xl relative overflow-hidden group hover:shadow-primary/20 transition-all duration-300 ${className}`}>
-    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-    <h3 className="text-lg font-display font-bold mb-4 relative z-10">
-      Summary
+    className={`bg-[#1E1915] text-white rounded-[28px] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:shadow-orange-500/5 transition-all duration-300 ${className}`}
+  >
+    {/* Soft Orange Glow */}
+    <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
+    <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
+
+    <h3 className="text-xl font-extrabold mb-5 relative z-10 tracking-tight text-white">
+      Booking Summary
     </h3>
 
     {/* Satisfaction Guaranteed Badge */}
-    <div className="relative z-10 group/guarantee mb-4">
-      <div className="flex items-center gap-2 bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-2 rounded-lg cursor-help transition-colors hover:bg-green-500/20">
-        <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-        <span className="text-sm font-bold">Satisfaction Guaranteed</span>
+    <div className="relative z-10 group/guarantee mb-6">
+      <div className="flex items-center gap-3 bg-green-500/10 text-green-400 border border-green-500/10 px-4 py-3 rounded-2xl cursor-help transition-all hover:bg-green-500/15">
+        <Check className="w-5 h-5 flex-shrink-0" strokeWidth={3} />
+        <span className="text-xs font-extrabold uppercase tracking-wider">Satisfaction Guaranteed</span>
       </div>
-      <div className="absolute top-full left-0 mt-2 w-full bg-gray-800 text-white text-xs p-3 rounded-xl shadow-xl opacity-0 invisible group-hover/guarantee:opacity-100 group-hover/guarantee:visible transition-all duration-300 z-50 border border-gray-700 pointer-events-none">
-        Not happy? Receive a 100% refund if you're concerns are not addressed!
+      <div className="absolute top-full left-0 mt-2 w-full bg-[#27211C] text-gray-300 text-xs p-3.5 rounded-2xl shadow-2xl opacity-0 invisible group-hover/guarantee:opacity-100 group-hover/guarantee:visible transition-all duration-300 z-50 border border-[#362D27] pointer-events-none leading-relaxed">
+        Not completely satisfied? We will return and clean it again for free!
       </div>
     </div>
 
-    <div className="space-y-3 relative z-10 text-gray-300 text-sm">
-      <div className="flex justify-between border-b border-white/10 pb-3">
-        <span>Service Type</span>
-        <span className="text-white font-medium capitalize">
+    <div className="space-y-4 relative z-10 text-gray-300 text-xs">
+      <div className="flex justify-between border-b border-white/5 pb-3">
+        <span className="text-gray-400 font-semibold">Service Type</span>
+        <span className="text-white font-extrabold capitalize">
           {formData.cleaningType} Clean
         </span>
       </div>
-      <div className="flex justify-between border-b border-white/10 pb-3">
-        <span>Frequency</span>
-        <span className="text-white font-medium capitalize">
+      <div className="flex justify-between border-b border-white/5 pb-3">
+        <span className="text-gray-400 font-semibold">Frequency</span>
+        <span className="text-white font-extrabold capitalize">
           {formData.frequency || "Not Selected"}
         </span>
       </div>
+      
       <div className="py-2">
-        <span className="block mb-2 text-xs uppercase tracking-wider text-gray-500">
-          Breakdown
+        <span className="block mb-3 text-[10px] font-extrabold uppercase tracking-widest text-gray-500">
+          Price Breakdown
         </span>
-        {pricingResult?.breakdown.cleaningType && (
-          <div className="flex justify-between mb-1">
-            <span>{pricingResult.breakdown.cleaningType.name} Clean</span>
-            <span>A${pricingResult.breakdown.cleaningType.price}</span>
-          </div>
-        )}
-        {(formData.homeDetails.bedrooms || 0) > 0 && (
-          <div className="flex justify-between mb-1">
-            <span>{formData.homeDetails.bedrooms}x Bedroom</span>
-            <span>
-              A$
-              {HOME_DETAIL_PRICES.Bedroom *
-                (formData.homeDetails.bedrooms || 0)}
-            </span>
-          </div>
-        )}
-        {(formData.homeDetails.bathrooms || 0) > 0 && (
-          <div className="flex justify-between mb-1">
-            <span>{formData.homeDetails.bathrooms}x Bathroom</span>
-            <span>
-              A$
-              {HOME_DETAIL_PRICES.Bathroom *
-                (formData.homeDetails.bathrooms || 0)}
-            </span>
-          </div>
-        )}
-        {(formData.homeDetails.kitchens || 0) > 0 && (
-          <div className="flex justify-between mb-1">
-            <span>{formData.homeDetails.kitchens}x Kitchen</span>
-            <span>
-              A$
-              {HOME_DETAIL_PRICES.Kitchen *
-                (formData.homeDetails.kitchens || 0)}
-            </span>
-          </div>
-        )}
-        {(formData.homeDetails.other || 0) > 0 && (
-          <div className="flex justify-between mb-1">
-            <span>{formData.homeDetails.other}x Other Area</span>
-            <span>
-              A${HOME_DETAIL_PRICES.Other * (formData.homeDetails.other || 0)}
-            </span>
-          </div>
-        )}
-        {pricingResult?.breakdown.extras.items.map((e: any) => (
-          <div key={e.name} className="flex justify-between mb-1">
-            <span>+ {e.name}</span>
-            <span>A${e.price}</span>
-          </div>
-        ))}
+        
+        <div className="space-y-2.5">
+          {pricingResult?.breakdown.cleaningType && (
+            <div className="flex justify-between font-semibold">
+              <span className="text-gray-400">{pricingResult.breakdown.cleaningType.name} Base Clean</span>
+              <span className="text-white font-bold">A${pricingResult.breakdown.cleaningType.price}</span>
+            </div>
+          )}
+          {(formData.homeDetails.bedrooms || 0) > 0 && (
+            <div className="flex justify-between font-semibold">
+              <span className="text-gray-400">{formData.homeDetails.bedrooms}x Bedroom</span>
+              <span className="text-white font-bold">
+                A$
+                {HOME_DETAIL_PRICES.Bedroom *
+                  (formData.homeDetails.bedrooms || 0)}
+              </span>
+            </div>
+          )}
+          {(formData.homeDetails.bathrooms || 0) > 0 && (
+            <div className="flex justify-between font-semibold">
+              <span className="text-gray-400">{formData.homeDetails.bathrooms}x Bathroom</span>
+              <span className="text-white font-bold">
+                A$
+                {HOME_DETAIL_PRICES.Bathroom *
+                  (formData.homeDetails.bathrooms || 0)}
+              </span>
+            </div>
+          )}
+          {(formData.homeDetails.kitchens || 0) > 0 && (
+            <div className="flex justify-between font-semibold">
+              <span className="text-gray-400">{formData.homeDetails.kitchens}x Kitchen</span>
+              <span className="text-white font-bold">
+                A$
+                {HOME_DETAIL_PRICES.Kitchen *
+                  (formData.homeDetails.kitchens || 0)}
+              </span>
+            </div>
+          )}
+          {(formData.homeDetails.other || 0) > 0 && (
+            <div className="flex justify-between font-semibold">
+              <span className="text-gray-400">{formData.homeDetails.other}x Other Area</span>
+              <span className="text-white font-bold">
+                A${HOME_DETAIL_PRICES.Other * (formData.homeDetails.other || 0)}
+              </span>
+            </div>
+          )}
+          {pricingResult?.breakdown.extras.items.map((e: any) => (
+            <div key={e.name} className="flex justify-between font-semibold">
+              <span className="text-gray-400">+ {e.name}</span>
+              <span className="text-white font-bold">A${e.price}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* --- PROMO CODE SECTION --- */}
-      <div className="py-2 border-t border-white/10">
-        <div className="relative flex items-center mt-2">
-          <Tag className="absolute left-3 w-4 h-4 text-gray-500" />
+      <div className="py-2 border-t border-white/5">
+        <div className="relative flex items-center mt-3">
+          <Tag className="absolute left-3.5 w-4 h-4 text-gray-500" />
           <input
             type="text"
             placeholder="Promo Code"
-            className="w-full bg-gray-800/50 border border-gray-700 text-white text-sm rounded-xl py-2.5 pl-9 pr-20 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-gray-500"
+            className="w-full bg-white/5 border border-white/5 text-white text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/10 transition-all placeholder:text-gray-500 font-semibold"
             value={promoCode}
             onChange={(e) => setPromoCode(e.target.value)}
           />
-          <button className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-gray-700 hover:bg-primary hover:text-white text-gray-300 text-xs font-bold rounded-lg transition-all">
+          <button className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-white/10 hover:bg-primary hover:text-white text-gray-200 text-[10px] font-extrabold uppercase tracking-wider rounded-lg transition-all">
             Apply
           </button>
         </div>
       </div>
 
-      <div className="pt-3 mt-1 border-t border-white/20">
+      <div className="pt-4 mt-2 border-t border-white/10">
         {pricingResult?.discounts.frequency && (
-          <div className="flex justify-between text-green-400 mb-2">
+          <div className="flex justify-between text-green-400 mb-3 font-semibold">
             <span>Discount ({pricingResult.discounts.frequency.name})</span>
-            <span>-A${pricingResult.discounts.frequency.amount.toFixed(2)}</span>
+            <span className="font-bold">-A${pricingResult.discounts.frequency.amount.toFixed(2)}</span>
           </div>
         )}
+        
         <div className="flex justify-between items-end">
-          <span className="text-lg">Total</span>
-          <span className="text-2xl font-display font-bold text-primary">
+          <span className="text-base font-extrabold text-white">Total</span>
+          <span className="text-3xl font-extrabold text-primary tracking-tight">
             A${(pricingResult?.total || 0).toFixed(2)}
           </span>
         </div>
+
         {formData.frequency &&
           formData.frequency !== "One time" && (
-            <p className="text-xs text-gray-400 mt-2">
+            <p className="text-[10px] text-gray-500 mt-3 leading-relaxed font-medium">
               You&apos;ll be charged this amount every{" "}
               {formData.frequency === "Weekly"
                 ? "week"
@@ -284,7 +310,7 @@ const Services = () => {
 const formObserverRef = useRef<HTMLDivElement>(null);
 const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
-    serviceCategory: "",
+    serviceCategory: "residential",
     cleaningType: "Regular" as CleaningType,
     homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
     extras: [] as Extra[],
@@ -292,7 +318,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
     selectedDays: [] as string[],
     selectedDate: undefined as Date | undefined,
     selectedTime: "",
-    instructions: { entry: "", parking: "", pets: "", notes: "" },
+    instructions: { entry: "", parking: "", pets: "", areasToAvoid: "", notes: "" },
 
     commercial: {
       businessName: "",
@@ -311,6 +337,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
       email: "",
       phone: "",
       address: "",
+      suburb: "",
       password: "",
       terms: false,
     },
@@ -802,94 +829,215 @@ const formContentRef = useRef<HTMLDivElement>(null);
     }));
   };
 
-  const renderStep1 = () => (
-    <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full content-center">
-      {servicesList.map((service) => (
-        <div
-          key={service.id}
-          onClick={() =>
-            setFormData({ ...formData, serviceCategory: service.id })
-          }
-          className={`group glass-card border-2 rounded-3xl p-8 cursor-pointer transition-all duration-200 relative overflow-hidden hover:shadow-xl hover:border-primary ${formData.serviceCategory === service.id
-            ? "bg-primary/5 border-primary shadow-md"
-            : "bg-secondary/10 border-transparent hover:border-primary"
-            }`}>
-          <div
-            className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-sm transition-colors duration-300 ${formData.serviceCategory === service.id
-              ? "bg-primary text-white"
-              : "bg-white text-primary"
-              }`}>
-            <service.icon className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-display font-semibold mb-3">
-            {service.title}
-          </h3>
-          <p className="text-muted-foreground leading-relaxed text-sm">
-            {service.description}
-          </p>
-          <div
-            className={`absolute top-6 right-6 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${formData.serviceCategory === service.id
-              ? "border-primary bg-primary"
-              : "border-gray-300"
-              }`}>
-            {formData.serviceCategory === service.id && (
-              <CheckCircle2 className="w-4 h-4 text-white" />
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+  const renderStep1 = () => {
+    const step1Types = [
+      {
+        id: "Regular",
+        label: "Regular Clean",
+        desc: "Consistent, detailed maintenance on your schedule",
+        icon: Home,
+      },
+      {
+        id: "Deep",
+        label: "Deep Clean",
+        desc: "A full reset for every room, every corner",
+        icon: Sparkles,
+        badge: "MOST THOROUGH",
+      },
+      {
+        id: "Vacate",
+        label: "Vacate Clean",
+        desc: "Cleaned to rental inspection standard",
+        icon: DoorOpen,
+      },
+    ];
 
-  const renderResStep2 = () => (
-    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start md:justify-center gap-6 py-4 md:py-0">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {cleaningTypesUI.map((type) => (
-          <button
-            key={type.id}
-            onClick={() =>
-              setFormData({
-                ...formData,
-                cleaningType: type.id as CleaningType,
-              })
-            }
-            className={`p-6 rounded-2xl border-2 transition-all duration-200 flex flex-col items-center gap-3 hover:shadow-xl hover:border-primary ${formData.cleaningType === type.id
-              ? "bg-white border-primary shadow-lg ring-1 ring-primary/20"
-              : "bg-white border-gray-100"
-              }`}>
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto animate-in fade-in duration-500 py-2">
+        {step1Types.map((type) => {
+          const isSelected = formData.cleaningType === type.id;
+          const Icon = type.icon;
+
+          return (
             <div
-              className={`w-12 h-12 rounded-xl flex items-center justify-center ${type.bg} ${type.color}`}>
-              <type.icon className="w-6 h-6" />
+              key={type.id}
+              onClick={() =>
+                setFormData({
+                  ...formData,
+                  cleaningType: type.id as CleaningType,
+                })
+              }
+              className={`group bg-white border-2 rounded-[24px] p-6 cursor-pointer transition-all duration-300 relative overflow-visible flex flex-col items-start min-h-[200px] ${
+                isSelected
+                  ? "border-[#F97316] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
+                  : "border-gray-100 hover:border-gray-200 hover:shadow-md"
+              }`}
+            >
+              {/* MOST THOROUGH Badge */}
+              {type.badge && (
+                <span className="absolute -top-3.5 left-6 bg-[#F97316] text-white text-[8px] font-black tracking-widest uppercase px-3 py-1 rounded-full shadow-md z-10">
+                  {type.badge}
+                </span>
+              )}
+
+              {/* Top Row: Icon container & Custom Checkbox */}
+              <div className="flex items-center justify-between w-full mb-5">
+                <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-[#F97316] flex items-center justify-center shadow-sm">
+                  <Icon className="w-5 h-5" />
+                </div>
+
+                <div
+                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                    isSelected
+                      ? "border-[#F97316] bg-[#F97316] shadow-sm"
+                      : "border-gray-200 group-hover:border-gray-300"
+                  }`}
+                >
+                  {isSelected && (
+                    <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                  )}
+                </div>
+              </div>
+
+              {/* Description Block */}
+              <h3 className="text-base font-extrabold text-gray-900 mb-1 group-hover:text-[#F97316] transition-colors">
+                {type.label}
+              </h3>
+              <p className="text-xs text-gray-500 leading-relaxed">
+                {type.desc}
+              </p>
             </div>
-            <span className="font-semibold text-gray-800">{type.label}</span>
-            {formData.cleaningType === type.id && (
-              <div className="w-2 h-2 rounded-full bg-primary mt-1" />
-            )}
-          </button>
-        ))}
+          );
+        })}
       </div>
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="space-y-4">
-          <h3 className="font-display font-bold text-xl text-foreground text-center md:text-left">
-            Room Details <span className="text-red-500 ml-1 font-bold">*</span>
-          </h3>
-          <div className="space-y-2">
+    );
+  };
+
+  const renderResStep2 = () => {
+    // Custom description matching selected plan
+    const getPlanDescription = () => {
+      if (formData.cleaningType === "Deep") {
+        return "Complete detailed scrub of every corner of your home, walls & details. Designed to restore freshness to neglected spaces.";
+      }
+      if (formData.cleaningType === "Vacate") {
+        return "Cleaned to rental inspection standards. End of lease specialized service with bond-back assurance checklist.";
+      }
+      return "Maintenance clean on your schedule — same cleaner every visit. Defined room-by-room checklist covering general areas, floors, bedrooms, bathroom and kitchen.";
+    };
+
+    const getPlanIcon = () => {
+      if (formData.cleaningType === "Deep") return Sparkles;
+      if (formData.cleaningType === "Vacate") return DoorOpen;
+      return Home;
+    };
+
+    const SelectedIcon = getPlanIcon();
+
+    return (
+      <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Column: Title Block & Selected Service Card & Add-ons */}
+          <div className="md:col-span-5 flex flex-col items-stretch space-y-6">
+            
+            {/* Title Block */}
+            <div className="text-left">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
+                <Sliders className="w-2.5 h-2.5" /> CUSTOMISE
+              </span>
+              <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">Customise your clean.</h2>
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">Select your rooms and any add-ons.</p>
+            </div>
+
+            {/* Selected Service Card */}
+            <div className="bg-white rounded-3xl border border-gray-100 p-6 flex flex-col items-start space-y-4 shadow-sm relative overflow-hidden group hover:border-gray-200 transition-all duration-300">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
+                  <SelectedIcon className="w-5 h-5 text-[#F97316]" />
+                </div>
+                <div>
+                  <span className="block text-[9px] font-black uppercase text-[#F97316] tracking-wider">
+                    SELECTED SERVICE
+                  </span>
+                  <span className="font-extrabold text-lg text-gray-900 leading-tight">
+                    {formData.cleaningType} Clean
+                  </span>
+                </div>
+              </div>
+              
+              <p className="text-xs text-gray-500 leading-relaxed font-medium">
+                {getPlanDescription()}
+              </p>
+
+              <a
+                href="#what-is-included"
+                onClick={(e) => {
+                  e.preventDefault();
+                  // Toggles standard checklist info or scrolls
+                }}
+                className="text-xs font-bold text-[#F97316] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
+              >
+                What's included <ChevronRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            {/* ADD-ONS Section */}
+            <div className="space-y-3">
+              <span className="block text-[10px] font-black uppercase text-gray-400 tracking-widest">
+                ADD-ONS
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {(Object.keys(EXTRA_PRICES) as Extra[])
+                  .filter((extra) => !["Garage", "Laundry"].includes(extra))
+                  .map((extra) => {
+                    const isSelected = formData.extras?.includes(extra);
+                    return (
+                      <button
+                        key={extra}
+                        onClick={() => toggleExtra(extra)}
+                        className={`flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-xs font-bold transition-all duration-200 ${
+                          isSelected
+                            ? "bg-[#F97316] border-[#F97316] text-white shadow-md shadow-orange-500/10"
+                            : "bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
+                        }`}
+                      >
+                        {isSelected ? (
+                          <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                        ) : (
+                          <span>+</span>
+                        )}
+                        <span>{extra}</span>
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: Counters list */}
+          <div className="md:col-span-7 space-y-4">
+            
+            {/* Counters ordered Bathroom first, then Bedroom, Kitchen, Other */}
             <RoomCounter
-              label="Bedrooms"
-              count={formData.homeDetails.bedrooms || 0}
-              onUpdate={(v) => updateRooms("bedrooms", v)}
-            />
-            <RoomCounter
-              label="Bathrooms"
+              label="Bathroom"
               count={formData.homeDetails.bathrooms || 0}
               onUpdate={(v) => updateRooms("bathrooms", v)}
             />
+
             <RoomCounter
-              label="Kitchens"
+              label="Bedroom"
+              count={formData.homeDetails.bedrooms || 0}
+              onUpdate={(v) => updateRooms("bedrooms", v)}
+            />
+
+            <RoomCounter
+              label="Kitchen"
               count={formData.homeDetails.kitchens || 0}
               onUpdate={(v) => updateRooms("kitchens", v)}
             />
-            <div className="relative group">
+
+            <div className="relative group w-full">
               <RoomCounter
                 label="Other Areas"
                 count={formData.homeDetails.other || 0}
@@ -897,38 +1045,17 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 hasInfo={true}
               />
               <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-                This includes living rooms, studies, laundries, theatres, gyms,
-                etc.
+                This includes living rooms, studies, laundries, theatres, gyms, etc.
                 <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
               </div>
             </div>
+
           </div>
-        </div>
-        <div>
-          <h3 className="font-display font-bold text-xl text-foreground mb-4 text-center md:text-left">
-            Extras
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {(Object.keys(EXTRA_PRICES) as Extra[])
-              .filter(
-                (extra) => !["Garage", "Laundry"].includes(extra)
-              )
-              .map((extra) => (
-                <button
-                  key={extra}
-                  onClick={() => toggleExtra(extra)}
-                  className={`p-3 text-xs font-medium rounded-xl border-2 transition-all duration-200 truncate hover:shadow-md hover:border-primary ${formData.extras?.includes(extra)
-                    ? "bg-primary/10 border-primary text-primary"
-                    : "bg-white border-gray-100 text-gray-500"
-                    }`}>
-                  {extra}
-                </button>
-              ))}
-          </div>
+
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderResStep3 = () => {
     const today = new Date();
@@ -983,93 +1110,96 @@ const formContentRef = useRef<HTMLDivElement>(null);
       return t < new Date(today.getTime() + 48 * 60 * 60 * 1000);
     };
 
-    const frequencyGroups = {
-      oneTime: ["One time"],
-      regular: ["Weekly", "Fortnightly", "Monthly"],
-    };
+    const frequencies = [
+      { id: "One time", label: "One-time", save: null },
+      { id: "Weekly", label: "Weekly", save: "SAVE 15%" },
+      { id: "Fortnightly", label: "Fortnightly", save: "SAVE 10%" },
+      { id: "Monthly", label: "Monthly", save: "SAVE 5%" },
+    ];
 
     return (
-      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start md:justify-center py-2">
-        <div className="mb-6">
-          <label className="block text-base font-display font-bold text-foreground mb-3">
-            How often?
-          </label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <button
-              onClick={() =>
-                setFormData({ ...formData, frequency: "One time" })
-              }
-              className={`p-4 rounded-xl border-2 flex items-center justify-center transition-all duration-200 hover:border-primary/50 ${formData.frequency === "One time"
-                ? "bg-white border-primary shadow-md text-primary font-bold"
-                : "bg-white border-gray-200 text-gray-600"
-                }`}>
-              One Time Clean
-            </button>
-            <div className="flex gap-2">
-              {frequencyGroups.regular.map((freq) => (
-                <div key={freq} className="flex-1 relative group">
-                  <button
-                    onClick={() =>
-                      setFormData({ ...formData, frequency: freq as Frequency })
-                    }
-                    className={`w-full h-full p-2 rounded-xl border-2 flex flex-col items-center justify-center transition-all duration-200 hover:border-orange-300 ${formData.frequency === freq
-                      ? "bg-orange-50 border-orange-500 shadow-md text-orange-600 font-bold"
-                      : "bg-white border-gray-200 text-gray-600"
-                      }`}>
-                    <span className="text-xs sm:text-sm">{freq}</span>
-                    {FREQUENCY_DISCOUNTS[freq as Frequency] > 0 && (
-                      <span className="text-[10px] bg-orange-200 text-orange-800 px-1.5 rounded-full mt-1">
-                        -{FREQUENCY_DISCOUNTS[freq as Frequency]}%
-                      </span>
-                    )}
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowInfoModal(true);
-                    }}
-                    className="absolute -top-2 -right-2 p-1 rounded-full bg-gray-200 hover:bg-orange-500 hover:text-white text-gray-500 transition-colors z-10 shadow-sm">
-                    <Info className="w-3 h-3" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-6 py-2">
+        
+        {/* Title Block */}
+        <div className="text-left mb-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
+            <Calendar className="w-2.5 h-2.5" /> SCHEDULE
+          </span>
+          <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">When would you like your clean?</h2>
+          <p className="text-xs text-gray-500 mt-1.5 font-medium">Select a date, frequency, and time slot.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 bg-white border-2 border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all duration-200">
-            <div className="flex items-center justify-between mb-4">
-              <span className="font-display font-bold text-lg text-foreground">
-                Select Date{" "}
-                <span className="text-red-500 ml-1 font-bold">*</span>
+        {/* Dynamic Rounded Frequency Tabs bar */}
+        <div className="relative inline-flex items-center justify-between bg-gray-50/50 border border-gray-100 rounded-full p-1.5 max-w-lg w-full mb-4">
+          {frequencies.map((freq) => {
+            const isSelected = formData.frequency === freq.id;
+            return (
+              <div key={freq.id} className="relative flex-1 text-center">
+                
+                {/* Floating Orange SAVE Badge */}
+                {freq.save && (
+                  <span className="bg-[#F97316] text-white text-[8px] font-black px-2 py-0.5 rounded-full absolute -top-3.5 left-1/2 -translate-x-1/2 shadow-sm border border-white">
+                    {freq.save}
+                  </span>
+                )}
+
+                <button
+                  onClick={() =>
+                    setFormData({ ...formData, frequency: freq.id as any })
+                  }
+                  className={`w-full py-2.5 rounded-full text-xs font-black transition-all ${
+                    isSelected
+                      ? "bg-[#F97316] text-white shadow-md shadow-orange-500/10"
+                      : "text-gray-500 hover:text-gray-950 hover:bg-gray-100/50"
+                  }`}
+                >
+                  {freq.label}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Grid: Calendar Left & Time Slots Right */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          
+          {/* Calendar picker Card */}
+          <div className="md:col-span-6 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+            <div className="flex items-center justify-between mb-6 border-b border-gray-50 pb-4">
+              <span className="font-extrabold text-sm text-gray-900">
+                Select Date <span className="text-red-500 font-bold">*</span>
               </span>
 
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevMonth}
-                  className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-                  <ChevronLeft className="w-4 h-4 text-gray-600" />
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-50 text-gray-600 transition-colors border border-gray-100"
+                >
+                  <ChevronLeft className="w-4 h-4" />
                 </button>
-                <span className="text-sm text-gray-500 font-medium w-32 text-center">
+                <span className="text-xs font-black text-gray-900 w-24 text-center">
                   {monthName}
                 </span>
                 <button
                   onClick={handleNextMonth}
-                  className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-                  <ChevronRight className="w-4 h-4 text-gray-600" />
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-50 text-gray-600 transition-colors border border-gray-100"
+                >
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            <div className="grid grid-cols-7 gap-1 text-center text-xs mb-2 text-gray-400 font-bold">
-              {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+            {/* Weekdays names */}
+            <div className="grid grid-cols-7 gap-1 text-center text-[10px] mb-3 text-gray-400 font-black uppercase tracking-wider">
+              {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
                 <div key={`${d}-${i}`}>{d}</div>
               ))}
             </div>
-            <div className="grid grid-cols-7 gap-1">
+            
+            {/* Days Grid */}
+            <div className="grid grid-cols-7 gap-1.5">
               {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-                <div key={`empty-${i}`} className="h-10 w-full" />
+                <div key={`empty-${i}`} className="h-9 w-full" />
               ))}
               {Array.from({ length: daysInMonth }).map((_, i) => {
                 const day = i + 1;
@@ -1081,139 +1211,214 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     key={day}
                     onClick={() => !past && handleDateSelect(day)}
                     disabled={past}
-                    className={`h-10 w-full rounded-xl flex flex-col items-center justify-center text-sm transition-all relative ${selected
-                      ? "bg-primary text-white shadow-md font-bold"
-                      : ""
-                      } ${past
-                        ? "text-gray-300 cursor-not-allowed bg-gray-50/50"
-                        : "hover:bg-gray-100 text-gray-600"
-                      } ${todayMark && !selected
-                        ? "text-primary font-bold bg-orange-50"
+                    className={`h-9 w-full rounded-xl flex flex-col items-center justify-center text-xs font-bold transition-all relative ${
+                      selected
+                        ? "bg-[#F97316] text-white shadow-md shadow-orange-500/10"
                         : ""
-                      }`}>
+                    } ${
+                      past
+                        ? "text-gray-200 cursor-not-allowed bg-transparent"
+                        : "hover:bg-gray-50 text-gray-700"
+                    } ${
+                      todayMark && !selected
+                        ? "text-[#F97316] bg-orange-50/50"
+                        : ""
+                    }`}
+                  >
                     {day}
                     {todayMark && (
                       <span
-                        className={`absolute bottom-1.5 w-1 h-1 rounded-full ${selected ? "bg-white" : "bg-primary"
-                          }`}></span>
+                        className={`absolute bottom-1 w-1 h-1 rounded-full ${
+                          selected ? "bg-white" : "bg-[#F97316]"
+                        }`}
+                      />
                     )}
                   </button>
                 );
               })}
             </div>
-            <p className="text-[10px] text-gray-400 mt-2 text-center">
-              * Bookings must be made at least 48 hours in advance.
-            </p>
           </div>
-          <div className="md:col-span-1 flex flex-col">
-            <label className="block text-base font-display font-bold text-foreground mb-3">
-              Start Time <span className="text-red-500 ml-1 font-bold">*</span>
-            </label>
-            <div className="grid grid-cols-2 md:grid-cols-1 gap-2 overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[300px]">
-              {timeSlots.map((time) => (
-                <button
-                  key={time}
-                  onClick={() =>
-                    setFormData((prev) => ({ ...prev, selectedTime: time }))
-                  }
-                  className={`p-3 rounded-xl border-2 text-xs font-medium transition-all duration-200 hover:shadow-md hover:border-primary ${formData.selectedTime === time
-                    ? "bg-primary text-white border-primary"
-                    : "bg-white border-gray-100 text-gray-600"
-                    }`}>
-                  {time}
-                </button>
-              ))}
+          
+          {/* Available time slots Card */}
+          <div className="md:col-span-6 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+            <span className="flex items-center gap-2 font-extrabold text-sm text-gray-900 mb-6 border-b border-gray-50 pb-4">
+              <Clock className="w-4 h-4 text-[#F97316]" /> Available time slots
+            </span>
+
+            <div className="grid grid-cols-3 gap-3">
+              {timeSlots.map((time) => {
+                const isSelected = formData.selectedTime === time;
+                // Mock unavailable slots for gorgeous high-fidelity accuracy matching the screenshot
+                const isUnavailable = ["12:00 PM", "2:00 PM"].includes(time);
+                
+                return (
+                  <button
+                    key={time}
+                    disabled={isUnavailable}
+                    onClick={() =>
+                      setFormData((prev) => ({ ...prev, selectedTime: time }))
+                    }
+                    className={`py-3.5 rounded-xl border text-center text-xs font-bold transition-all ${
+                      isSelected
+                        ? "bg-[#F97316] border-[#F97316] text-white shadow-md shadow-orange-500/10 hover:scale-105"
+                        : isUnavailable
+                          ? "opacity-30 cursor-not-allowed select-none bg-gray-50 border-transparent text-gray-400 font-medium"
+                          : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
+                    }`}
+                  >
+                    {time}
+                  </button>
+                );
+              })}
             </div>
           </div>
+
         </div>
       </div>
     );
   };
 
   const renderResStep4 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start md:justify-center gap-4 py-2">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-white p-4 rounded-3xl border-2 border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-200">
-          <label className="block text-base font-display font-bold text-foreground mb-2">
-            How do we get in? <span className="text-red-500">*</span>
-          </label>
-          <select
-            className="w-full p-2 bg-gray-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-primary/20 text-gray-700 font-medium cursor-pointer text-sm"
-            value={formData.instructions.entry}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                instructions: {
-                  ...formData.instructions,
-                  entry: e.target.value,
-                },
-              })
-            }>
-            <option value="" disabled>
-              Select an option
-            </option>
-            <option>I will be home</option>
-            <option>I will leave a key</option>
-            <option>I will provide a lockbox/access key</option>
-            <option>Other (Please Specify)</option>
-          </select>
-        </div>
-        <div className="bg-white p-4 rounded-3xl border-2 border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-200">
-          <label className="block text-base font-display font-bold text-foreground mb-2">
-            Parking <span className="text-red-500">*</span>
-          </label>
-          <select
-            className="w-full p-2 bg-gray-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-primary/20 text-gray-700 font-medium cursor-pointer text-sm"
-            value={formData.instructions.parking}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                instructions: {
-                  ...formData.instructions,
-                  parking: e.target.value,
-                },
-              })
-            }>
-            <option value="" disabled>
-              Select an option
-            </option>
-            <option>I will provide parking onsite</option>
-            <option>There is free parking nearby/on the street</option>
-            <option>Other (Please Specify)</option>
-          </select>
-        </div>
-        <div className="bg-white p-4 rounded-3xl border-2 border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-200">
-          <label className="block text-base font-display font-bold text-foreground mb-2">
-            Pets <span className="text-red-500">*</span>
-          </label>
-          <select
-            className="w-full p-2 bg-gray-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-primary/20 text-gray-700 font-medium cursor-pointer text-sm"
-            value={formData.instructions.pets}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                instructions: {
-                  ...formData.instructions,
-                  pets: e.target.value,
-                },
-              })
-            }>
-            <option value="" disabled>
-              Select an option
-            </option>
-            <option>Dog/Cat</option>
-            <option>No Pets</option>
-            <option>Other</option>
-          </select>
-        </div>
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 py-2">
+      
+      {/* Title Block */}
+      <div className="text-left mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
+          <ClipboardList className="w-2.5 h-2.5" /> DETAILS
+        </span>
+        <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">A few quick questions before your clean.</h2>
+        <p className="text-xs text-gray-500 mt-1.5 font-medium">This helps your cleaner prepare and arrive ready.</p>
       </div>
-      <div className="bg-white p-4 rounded-3xl border-2 border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-200">
-        <label className="block text-base font-display font-bold text-foreground mb-2">
-          Additional Notes
-        </label>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        {/* Pets Dropdown */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <PawPrint className="w-4 h-4 text-[#F97316]" />
+            DO YOU HAVE ANY PETS?
+          </span>
+          <div className="relative">
+            <select
+              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
+              value={formData.instructions.pets}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  instructions: {
+                    ...formData.instructions,
+                    pets: e.target.value,
+                  },
+                })
+              }
+            >
+              <option value="" disabled>Select...</option>
+              <option>No Pets</option>
+              <option>Yes cat</option>
+              <option>Dog/Cat</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Parking Dropdown */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <Car className="w-4 h-4 text-[#F97316]" />
+            IS PARKING AVAILABLE?
+          </span>
+          <div className="relative">
+            <select
+              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
+              value={formData.instructions.parking}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  instructions: {
+                    ...formData.instructions,
+                    parking: e.target.value,
+                  },
+                })
+              }
+            >
+              <option value="" disabled>Select...</option>
+              <option>Street parking</option>
+              <option>I will provide parking onsite</option>
+              <option>There is free parking nearby/on the street</option>
+              <option>Other (Please Specify)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Entry Dropdown */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <Key className="w-4 h-4 text-[#F97316]" />
+            HOW WILL WE GET IN?
+          </span>
+          <div className="relative">
+            <select
+              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
+              value={formData.instructions.entry}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  instructions: {
+                    ...formData.instructions,
+                    entry: e.target.value,
+                  },
+                })
+              }
+            >
+              <option value="" disabled>Select...</option>
+              <option>Key lockbox</option>
+              <option>I will be home</option>
+              <option>I will leave a key</option>
+              <option>I will provide a lockbox/access key</option>
+              <option>Other (Please Specify)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Areas to Avoid Dropdown */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <AlertTriangle className="w-4 h-4 text-[#F97316]" />
+            ANY AREAS TO AVOID?
+          </span>
+          <div className="relative">
+            <select
+              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
+              value={formData.instructions.areasToAvoid}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  instructions: {
+                    ...formData.instructions,
+                    areasToAvoid: e.target.value,
+                  },
+                })
+              }
+            >
+              <option value="" disabled>Select...</option>
+              <option>None</option>
+              <option>Specific rooms</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Notes Textarea */}
+      <div className="bg-white p-6 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+        <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+          <FileText className="w-4 h-4 text-[#F97316]" />
+          ANYTHING ELSE WE SHOULD KNOW?
+        </span>
         <textarea
-          className="w-full p-3 bg-gray-50 rounded-xl border-transparent focus:ring-2 focus:ring-primary/20 outline-none resize-none h-24 text-gray-700 text-sm"
-          placeholder="Please focus on the kitchen..."
+          className="w-full p-4 bg-gray-50 rounded-2xl border-transparent focus:ring-2 focus:ring-orange-500/10 outline-none resize-none h-28 text-gray-800 text-xs font-extrabold placeholder:text-gray-400 leading-relaxed"
+          placeholder="e.g. fragile items, allergies, specific instructions..."
           value={formData.instructions.notes}
           onChange={(e) =>
             setFormData({
@@ -1227,37 +1432,38 @@ const formContentRef = useRef<HTMLDivElement>(null);
   );
 
   const renderCommStep2 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center">
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">
+        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
           Tell Us About Your Business
         </h3>
-        <p className="text-gray-500">
+        <p className="text-gray-500 text-sm">
           Let's start with some basic information about your business.
         </p>
       </div>
       <div className="space-y-6">
         <div className="space-y-2">
-          <label className="block text-sm font-bold text-gray-800">
+          <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
             Business Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             placeholder="Enter business name"
-            className="w-full p-4 bg-white border-2 border-gray-100 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+            className="w-full p-4 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white transition-all text-sm font-bold text-gray-800"
             value={formData.commercial.businessName}
             onChange={(e) => updateComm("businessName", e.target.value)}
           />
         </div>
-        <div className="space-y-2">
-          <label className="block text-sm font-bold text-gray-800">
+        <div className="space-y-2 flex flex-col">
+          <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
             Business Size <span className="text-red-500">*</span>
           </label>
           <div className="relative">
             <select
-              className="w-full p-4 bg-white border-2 border-gray-100 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all appearance-none cursor-pointer"
+              className="w-full p-4 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white transition-all appearance-none cursor-pointer text-sm font-bold text-gray-800"
               value={formData.commercial.businessSize}
-              onChange={(e) => updateComm("businessSize", e.target.value)}>
+              onChange={(e) => updateComm("businessSize", e.target.value)}
+            >
               <option value="" disabled>
                 Select business size
               </option>
@@ -1267,7 +1473,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 </option>
               ))}
             </select>
-            <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 rotate-90" />
+            <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 rotate-90 pointer-events-none" />
           </div>
         </div>
       </div>
@@ -1275,132 +1481,161 @@ const formContentRef = useRef<HTMLDivElement>(null);
   );
 
   const renderCommStep3 = () => (
-    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">
+        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
           What Needs Cleaning
         </h3>
-        <p className="text-gray-500">
-          Tell us about your cleaning requirements.
+        <p className="text-gray-500 text-sm">
+          Tell us about your commercial cleaning requirements.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 gap-10">
-        <div className="space-y-4">
-          <label className="block text-sm font-bold text-gray-800">
+      <div className="grid md:grid-cols-12 gap-8 items-start">
+        
+        {/* Type of Environment */}
+        <div className="md:col-span-7 space-y-4">
+          <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
             Type of Environment <span className="text-red-500">*</span>
           </label>
           <div className="grid grid-cols-2 gap-2">
-            {commEnvironments.map((env) => (
-              <button
-                key={env}
-                onClick={() => updateComm("environment", env)}
-                className={`p-3 text-xs font-medium rounded-xl border-2 transition-all duration-200 text-center hover:border-primary hover:shadow-md truncate
-                              ${formData.commercial.environment === env
-                    ? "bg-primary text-white border-primary shadow-md"
-                    : "bg-white border-gray-100 text-gray-600"
-                  }
-                            `}>
-                {env}
-              </button>
-            ))}
+            {commEnvironments.map((env) => {
+              const isSelected = formData.commercial.environment === env;
+              
+              return (
+                <button
+                  key={env}
+                  onClick={() => updateComm("environment", env)}
+                  className={`p-3 text-xs font-bold rounded-xl border-2 transition-all duration-200 text-center hover:border-primary hover:shadow-md truncate ${
+                    isSelected
+                      ? "bg-primary text-white border-primary shadow-md"
+                      : "bg-white border-gray-100 text-gray-600"
+                  }`}
+                >
+                  {env}
+                </button>
+              );
+            })}
           </div>
         </div>
-        <div className="space-y-4">
-          <label className="block text-sm font-bold text-gray-800">
+
+        {/* Type of Clean */}
+        <div className="md:col-span-5 space-y-4">
+          <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
             Type of Clean <span className="text-red-500">*</span>
           </label>
           <div className="grid grid-cols-1 gap-2">
-            {commCleanTypes.map((type) => (
-              <button
-                key={type}
-                onClick={() => updateComm("cleanType", type)}
-                className={`p-4 text-sm font-medium rounded-xl border-2 transition-all duration-200 text-left px-5 hover:border-primary hover:shadow-md
-                              ${formData.commercial.cleanType === type
-                    ? "bg-primary text-white border-primary shadow-md"
-                    : "bg-white border-gray-100 text-gray-600"
-                  }
-                            `}>
-                {type}
-              </button>
-            ))}
+            {commCleanTypes.map((type) => {
+              const isSelected = formData.commercial.cleanType === type;
+              
+              return (
+                <button
+                  key={type}
+                  onClick={() => updateComm("cleanType", type)}
+                  className={`p-4 text-xs font-bold rounded-xl border-2 transition-all duration-200 text-left px-5 hover:border-primary hover:shadow-md ${
+                    isSelected
+                      ? "bg-primary text-white border-primary shadow-md"
+                      : "bg-white border-gray-100 text-gray-600"
+                  }`}
+                >
+                  {type}
+                </button>
+              );
+            })}
           </div>
         </div>
+
       </div>
     </div>
   );
 
   const renderCommStep4 = () => (
-    <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center">
+    <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">
-          How Often
+        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+          How Often & Availability
         </h3>
-        <p className="text-gray-500">When do you need cleaning services?</p>
+        <p className="text-gray-500 text-sm">When do you need cleaning services?</p>
       </div>
       <div className="space-y-8">
+        
+        {/* Frequency Select Grid */}
         <div className="space-y-4">
-          <label className="block text-sm font-bold text-gray-800">
+          <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
             Frequency <span className="text-red-500">*</span>
           </label>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-            {commFrequencies.map((freq) => (
-              <button
-                key={freq}
-                onClick={() => updateComm("frequency", freq)}
-                className={`py-3 rounded-xl border-2 font-medium text-xs sm:text-sm transition-all hover:border-primary
-                              ${formData.commercial.frequency === freq
-                    ? "bg-primary text-white border-primary shadow-md"
-                    : "bg-white border-gray-100 text-gray-600"
-                  }
-                            `}>
-                {freq}
-              </button>
-            ))}
+            {commFrequencies.map((freq) => {
+              const isSelected = formData.commercial.frequency === freq;
+              
+              return (
+                <button
+                  key={freq}
+                  onClick={() => updateComm("frequency", freq)}
+                  className={`py-3 rounded-xl border-2 font-bold text-xs transition-all hover:border-primary ${
+                    isSelected
+                      ? "bg-primary text-white border-primary shadow-md"
+                      : "bg-white border-gray-100 text-gray-600"
+                  }`}
+                >
+                  {freq}
+                </button>
+              );
+            })}
           </div>
         </div>
 
+        {/* Days of Week availability */}
         <div className="space-y-4">
-          <label className="block text-sm font-bold text-gray-800">
+          <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest text-center">
             Availability (Days of Week)
           </label>
           <div className="flex gap-2 flex-wrap justify-center">
-            {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-              <button
-                key={day}
-                onClick={() => toggleDay(day)}
-                className={`w-12 h-12 rounded-full border-2 text-sm font-bold transition-all hover:border-primary
-                              ${formData.commercial.days.includes(day)
-                    ? "bg-primary text-white border-primary shadow-md"
-                    : "bg-white border-gray-100 text-gray-600"
-                  }
-                            `}>
-                {day}
-              </button>
-            ))}
+            {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => {
+              const isSelected = formData.commercial.days.includes(day);
+              
+              return (
+                <button
+                  key={day}
+                  onClick={() => toggleDay(day)}
+                  className={`w-12 h-12 rounded-full border-2 text-xs font-bold transition-all hover:border-primary ${
+                    isSelected
+                      ? "bg-primary text-white border-primary shadow-md"
+                      : "bg-white border-gray-100 text-gray-600"
+                  }`}
+                >
+                  {day}
+                </button>
+              );
+            })}
           </div>
         </div>
+
       </div>
     </div>
   );
 
   const renderCommStep5 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center">
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">
+        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
           Insurance & Budget
         </h3>
-        <p className="text-gray-500">
+        <p className="text-gray-500 text-sm">
           Let's discuss insurance requirements and your budget.
         </p>
       </div>
       <div className="space-y-8">
-        <div className="bg-white p-6 rounded-2xl border-2 border-gray-100">
+        
+        {/* Insurance Request Toggle */}
+        <div className="bg-white p-6 rounded-2xl border-2 border-gray-100 shadow-sm">
           <label className="flex items-start gap-4 cursor-pointer group">
             <div
-              className={`mt-1 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${formData.commercial.insuranceRequired
-                ? "bg-primary border-primary"
-                : "border-gray-300 bg-gray-50"
-                }`}>
+              className={`mt-1 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
+                formData.commercial.insuranceRequired
+                  ? "bg-primary border-primary"
+                  : "border-gray-200 bg-gray-50"
+              }`}
+            >
               <input
                 type="checkbox"
                 className="hidden"
@@ -1410,14 +1645,14 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 }
               />
               {formData.commercial.insuranceRequired && (
-                <CheckCircle2 className="w-4 h-4 text-white" />
+                <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
               )}
             </div>
             <div>
               <span className="block font-bold text-gray-800 group-hover:text-primary transition-colors">
                 Insurance and bonding documentation required
               </span>
-              <span className="text-sm text-gray-500 mt-1 block">
+              <span className="text-xs text-gray-500 mt-1 block">
                 Check this if you require our team to provide insurance and
                 bonding documentation before service begins.
               </span>
@@ -1425,123 +1660,141 @@ const formContentRef = useRef<HTMLDivElement>(null);
           </label>
         </div>
 
+        {/* Budget Grid */}
         <div className="space-y-4">
-          <label className="block text-sm font-bold text-gray-800">
+          <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
             Monthly Budget <span className="text-red-500">*</span>
           </label>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {commBudgets.map((bg) => (
-              <button
-                key={bg}
-                onClick={() => updateComm("budget", bg)}
-                className={`py-3 px-2 rounded-xl border-2 font-medium text-xs sm:text-sm transition-all hover:border-primary truncate
-                              ${formData.commercial.budget === bg
-                    ? "bg-primary text-white border-primary shadow-md"
-                    : "bg-white border-gray-100 text-gray-600"
-                  }
-                            `}>
-                {bg}
-              </button>
-            ))}
+            {commBudgets.map((bg) => {
+              const isSelected = formData.commercial.budget === bg;
+              
+              return (
+                <button
+                  key={bg}
+                  onClick={() => updateComm("budget", bg)}
+                  className={`py-3 px-2 rounded-xl border-2 font-bold text-xs transition-all hover:border-primary truncate ${
+                    isSelected
+                      ? "bg-primary text-white border-primary shadow-md"
+                      : "bg-white border-gray-100 text-gray-600"
+                  }`}
+                >
+                  {bg}
+                </button>
+              );
+            })}
           </div>
         </div>
+
       </div>
     </div>
   );
 
   const renderCommStep6 = () => (
-    <div className="max-w-xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center">
+    <div className="max-w-xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">
-          Sign Up
+        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+          Commercial Sign Up
         </h3>
-        <p className="text-gray-500">
+        <p className="text-gray-500 text-sm">
           Provide your business contact information for the service agreement.
         </p>
       </div>
-      <div className="space-y-4 bg-white p-8 rounded-3xl border-2 border-gray-100 shadow-xl">
+      
+      <div className="space-y-4 bg-white p-8 rounded-[28px] border border-gray-100 shadow-lg">
+        
+        {/* Contact Name */}
         <div className="space-y-1">
-          <label className="text-xs font-display font-bold uppercase text-foreground">
+          <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
             Primary Contact <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             placeholder="Primary contact person name"
-            className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-primary transition-all"
+            className="w-full p-3 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white text-sm font-semibold text-gray-800 transition-all"
             value={formData.contact.firstName}
             onChange={(e) => updateContact("firstName", e.target.value)}
           />
         </div>
+
+        {/* Contact details Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className="text-xs font-display font-bold uppercase text-foreground">
+            <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
               Business Email <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
               placeholder="business@company.com"
-              className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-primary transition-all"
+              className="w-full p-3 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white text-sm font-semibold text-gray-800 transition-all"
               value={formData.contact.email}
               onChange={(e) => updateContact("email", e.target.value)}
             />
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-display font-bold uppercase text-foreground">
+            <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
               Business Phone <span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
               placeholder="(03) 1234 5678"
-              className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-primary transition-all"
+              className="w-full p-3 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white text-sm font-semibold text-gray-800 transition-all"
               value={formData.contact.phone}
               onChange={(e) => updateContact("phone", e.target.value)}
             />
           </div>
         </div>
+
+        {/* Address Autocomplete */}
         <div className="space-y-1">
-          <label className="text-xs font-display font-bold uppercase text-foreground">
+          <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
             Business Address <span className="text-red-500">*</span>
           </label>
           <AddressAutocomplete
             value={formData.contact.address}
             onChange={(value) => updateContact("address", value)}
             placeholder="Full business address"
-            inputClassName="p-3 border border-gray-200 rounded-lg"
-            onValidityChange={setIsAddressValid} // Pass validity handler
+            inputClassName="p-3 border-transparent"
+            onValidityChange={setIsAddressValid}
           />
         </div>
 
+        {/* Commercial Terms Acceptance */}
         <div className="pt-2">
-          <label className="flex items-center gap-2 cursor-pointer">
+          <label className="flex items-center gap-2.5 cursor-pointer">
             <input
               type="checkbox"
-              className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary accent-primary"
+              className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary accent-primary cursor-pointer"
               checked={formData.contact.terms}
               onChange={(e) => updateContact("terms", e.target.checked)}
             />
-            <span className="text-xs text-gray-500">
+            <span className="text-xs text-gray-500 font-medium">
               I accept the{" "}
-              <a href="#" className="underline text-primary">
+              <a href="#" className="underline text-primary hover:text-primary/80 transition-colors">
                 Commercial Service Agreement
               </a>
             </span>
           </label>
         </div>
 
+        {/* Feedback Messages */}
         {submitError && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+          <div className="mt-4 p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
             {submitError}
           </div>
         )}
         {submitSuccess && (
-          <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm">
+          <div className="mt-4 p-3.5 bg-green-50 border border-green-200 rounded-xl text-green-700 text-xs font-semibold">
             {submitSuccess}
           </div>
         )}
+
+        {/* Trigger Button */}
         <button
           onClick={handleSubmit}
-          disabled={isSubmitting || !isAddressValid} // Block if invalid
-          className="w-full mt-4 bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/25 hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+          disabled={isSubmitting || !isAddressValid}
+          className="w-full mt-4 bg-primary hover:bg-primary/95 text-white py-4 rounded-xl font-bold shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        >
           {isSubmitting ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -1556,136 +1809,198 @@ const formContentRef = useRef<HTMLDivElement>(null);
   );
 
   const renderResStep5 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start md:justify-center py-2">
-      <div className="items-start">
-        <div className="space-y-4">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">Finalise Booking</h3>
-            <p className="text-gray-500">Just a few more details to secure your booking.</p>
-          </div>
-          <h3 className="text-xl font-display font-bold mb-4">
-            Contact Details
-          </h3>
-          <div className="grid grid-cols-2 gap-4">
-            <InputField
-              icon={User}
-              label="First Name"
-              placeholder="John"
-              value={formData.contact.firstName}
-              onChange={(v: string) => updateContact("firstName", v)}
-            />
-            <InputField
-              icon={User}
-              label="Last Name"
-              placeholder="Doe"
-              value={formData.contact.lastName}
-              onChange={(v: string) => updateContact("lastName", v)}
-            />
-          </div>
-          <InputField
-            icon={Mail}
-            label="Email Address"
-            placeholder="john@example.com"
-            type="email"
-            value={formData.contact.email}
-            onChange={(v: string) => updateContact("email", v)}
-          />
-          <div className="space-y-1 group">
-            <label className="text-[10px] font-semibold text-gray-500 uppercase">
-              Password
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="w-full pl-4 pr-10 py-2.5 bg-gray-50 rounded-xl outline-none border-2 border-transparent focus:border-primary focus:bg-white transition-all hover:border-gray-200 text-sm"
-                placeholder="Create a password"
-                value={formData.contact.password}
-                onChange={(e) => updateContact("password", e.target.value)}
-              />
-              <button
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
-                {showPassword ? (
-                  <EyeOff className="w-4 h-4" />
-                ) : (
-                  <Eye className="w-4 h-4" />
-                )}
-              </button>
-            </div>
-          </div>
-          <InputField
-            icon={Phone}
-            label="Phone Number"
-            placeholder="+61 ..."
-            type="tel"
-            value={formData.contact.phone}
-            onChange={(v: string) => updateContact("phone", v)}
-          />
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-gray-500 uppercase">
-              Service Address
-            </label>
-            <AddressAutocomplete
-              value={formData.contact.address}
-              onChange={(value) => updateContact("address", value)}
-              placeholder="123 Clean St..."
-              showLocationButton={true}
-              onLocationClick={handleUseCurrentLocation}
-              isLoadingLocation={isLoadingLoc}
-              onValidityChange={setIsAddressValid} // Pass validity handler
-            />
-          </div>
-          <div className="flex items-center gap-2 pt-2">
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 py-2">
+      
+      {/* Title Block */}
+      <div className="text-left mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
+          <CreditCard className="w-2.5 h-2.5" /> CONFIRM
+        </span>
+        <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">Finalise your booking.</h2>
+        <p className="text-xs text-gray-500 mt-1.5 font-medium">Enter your details and complete payment.</p>
+      </div>
+
+      <div className="space-y-5">
+        
+        {/* Name and Phone Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          
+          {/* Full Name */}
+          <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+            <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+              <User className="w-4 h-4 text-[#F97316]" />
+              FULL NAME
+            </span>
             <input
-              type="checkbox"
-              id="terms"
-              className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary/20 accent-primary cursor-pointer"
-              checked={formData.contact.terms}
-              onChange={(e) => updateContact("terms", e.target.checked)}
+              type="text"
+              placeholder="e.g. John Doe"
+              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
+              value={formData.contact.firstName}
+              onChange={(e) => updateContact("firstName", e.target.value)}
             />
-            <label
-              htmlFor="terms"
-              className="text-xs text-gray-500 cursor-pointer select-none">
-              I accept the{" "}
-              <a
-                href="#"
-                className="underline hover:text-primary transition-colors">
-                Terms & Conditions
-              </a>
-            </label>
           </div>
-          {submitError && (
-            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
-              {submitError}
-            </div>
-          )}
-          {submitSuccess && (
-            <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm">
-              {submitSuccess}
-            </div>
-          )}
+
+          {/* Phone Number */}
+          <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+            <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+              <Phone className="w-4 h-4 text-[#F97316]" />
+              PHONE NUMBER
+            </span>
+            <input
+              type="tel"
+              placeholder="e.g. +61 400 000 000"
+              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
+              value={formData.contact.phone}
+              onChange={(e) => updateContact("phone", e.target.value)}
+            />
+          </div>
+
+        </div>
+
+        {/* Email Address */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <Mail className="w-4 h-4 text-[#F97316]" />
+            EMAIL ADDRESS
+          </span>
+          <input
+            type="email"
+            placeholder="e.g. john@example.com"
+            className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
+            value={formData.contact.email}
+            onChange={(e) => updateContact("email", e.target.value)}
+          />
+        </div>
+
+        {/* Create Password */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <Key className="w-4 h-4 text-[#F97316]" />
+            CREATE ACCOUNT PASSWORD (MIN 8 CHARACTERS)
+          </span>
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Create a secure password"
+              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400 pr-12"
+              value={formData.contact.password}
+              onChange={(e) => updateContact("password", e.target.value)}
+            />
+            <button
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4" />
+              ) : (
+                <Eye className="w-4 h-4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Full Address autocomplete */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <MapPin className="w-4 h-4 text-[#F97316]" />
+            FULL ADDRESS
+          </span>
+          <AddressAutocomplete
+            value={formData.contact.address}
+            onChange={(value) => updateContact("address", value)}
+            placeholder="123 Clean St..."
+            showLocationButton={true}
+            onLocationClick={handleUseCurrentLocation}
+            isLoadingLocation={isLoadingLoc}
+            onValidityChange={setIsAddressValid}
+          />
+        </div>
+
+        {/* Suburb */}
+        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
+            <Building2 className="w-4 h-4 text-[#F97316]" />
+            SUBURB
+          </span>
+          <input
+            type="text"
+            placeholder="e.g. Richmond"
+            className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
+            value={formData.contact.suburb}
+            onChange={(e) => updateContact("suburb", e.target.value)}
+          />
+        </div>
+
+        {/* Terms checkbox */}
+        <div className="flex items-center gap-2.5 pt-2">
+          <input
+            type="checkbox"
+            id="terms"
+            className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary/20 accent-primary cursor-pointer"
+            checked={formData.contact.terms}
+            onChange={(e) => updateContact("terms", e.target.checked)}
+          />
+          <label
+            htmlFor="terms"
+            className="text-xs text-gray-500 cursor-pointer select-none font-bold"
+          >
+            I accept the{" "}
+            <a
+              href="#"
+              className="underline text-primary hover:text-primary/80 transition-colors"
+            >
+              Terms & Conditions
+            </a>
+          </label>
+        </div>
+
+        {/* Feedback Messages */}
+        {submitError && (
+          <div className="mt-4 p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
+            {submitError}
+          </div>
+        )}
+        {submitSuccess && (
+          <div className="mt-4 p-3.5 bg-green-50 border border-green-200 rounded-xl text-green-700 text-xs font-semibold">
+            {submitSuccess}
+          </div>
+        )}
+
+        {/* Action controls row matching premium Step 5 design */}
+        <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between gap-4">
+          <button
+            onClick={handlePrevModal}
+            className="flex items-center gap-1.5 text-[#F97316] hover:text-[#F97316]/80 font-extrabold text-[10px] uppercase tracking-widest transition-all shrink-0"
+          >
+            <ChevronLeft className="w-4 h-4" /> Back
+          </button>
+
           <button
             onClick={handleSubmit}
-            disabled={isSubmitting || !isAddressValid} // Block if invalid
-            className="w-full mt-4 bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/25 hover:shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+            disabled={isSubmitting || !isAddressValid}
+            className="flex-grow max-w-md bg-[#111827] hover:bg-black text-white py-4 px-6 rounded-full font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             {isSubmitting ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="w-4.5 h-4.5 animate-spin" />
                 Processing...
               </>
             ) : (
               <>
-                Book Now & Pay <CreditCard className="w-4 h-4" />
+                <Lock className="w-4 h-4 text-gray-400" />
+                Pay Now — Confirm Booking
               </>
             )}
           </button>
-          <p className="text-center text-xs text-gray-500 mt-4">
-            Already have an account?{" "}
-            <button className="font-bold text-primary hover:underline transition-all">
-              Login
-            </button>
-          </p>
         </div>
+
+        <p className="text-center text-xs text-gray-500 mt-4 font-medium">
+          Already have an account?{" "}
+          <button className="font-extrabold text-primary hover:underline transition-all">
+            Login
+          </button>
+        </p>
+
       </div>
     </div>
   );
@@ -1733,7 +2048,23 @@ const formContentRef = useRef<HTMLDivElement>(null);
       return (
         <span className="text-gray-900">Choose Service</span>
       );
-    if (isCommercial) return "";
+    
+    if (isCommercial) {
+      switch (currentStep) {
+        case 2:
+          return "Tell Us About Your Business";
+        case 3:
+          return "What Needs Cleaning";
+        case 4:
+          return "How Often & Availability";
+        case 5:
+          return "Insurance & Budget";
+        case 6:
+          return "Commercial Sign Up";
+        default:
+          return "";
+      }
+    }
 
     switch (currentStep) {
       case 2:
@@ -1754,69 +2085,168 @@ const formContentRef = useRef<HTMLDivElement>(null);
       <section
         id="services"
         ref={formObserverRef}
-        className="w-full relative flex flex-col justify-center">
-
+        className="w-full relative flex flex-col justify-center"
+      >
         {/* INLINE STEP 1 CONTAINER */}
-        <div className="w-full bg-white rounded-[2.5rem] border border-gray-100 shadow-xl overflow-hidden pt-10 pb-10 px-6 sm:px-8 flex flex-col items-center">
-
-          <div className="text-center mb-6">
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full mb-3">
-              Step 1 of {totalSteps}
-            </span>
-            <h2 className="text-2xl md:text-3xl font-display font-bold">Choose Service</h2>
-            <p className="text-gray-500 mt-2 text-sm">Select the type of cleaning service you require.</p>
+        <div className="w-full max-w-4xl mx-auto bg-white rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)] overflow-hidden p-6 md:p-8 flex flex-col items-stretch">
+          
+          {/* Top Bar: Logo & Step Fractional Badge */}
+          <div className="flex items-center justify-between w-full border-b border-gray-100 pb-5 mb-6">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-white shadow-sm shadow-orange-500/20">
+                <Sparkles className="w-4.5 h-4.5" />
+              </div>
+              <span className="font-display font-extrabold text-lg text-gray-900 tracking-tight">crisp cleaning</span>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest">
+                STEP <span className="text-primary font-black">1</span> OF 5
+              </span>
+              <button className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
-          <div className="w-full mb-6">
+          {/* Connected Stepper Row */}
+          <div className="w-full flex items-center justify-between pb-6 mb-8 border-b border-gray-50 overflow-x-auto custom-scrollbar">
+            {[
+              { label: "Service", active: true, icon: Sparkles },
+              { label: "Customise", active: false, icon: Sliders },
+              { label: "Schedule", active: false, icon: Calendar },
+              { label: "Details", active: false, icon: ClipboardList },
+              { label: "Confirm", active: false, icon: CreditCard },
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2 shrink-0">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                  item.active 
+                    ? "bg-primary text-white shadow-sm shadow-orange-500/20" 
+                    : "bg-gray-50 border border-gray-100 text-gray-400"
+                }`}>
+                  <item.icon className="w-4 h-4" />
+                </div>
+                <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
+                  item.active ? "text-gray-900" : "text-gray-400"
+                }`}>
+                  {item.label}
+                </span>
+                {idx < 4 && (
+                  <div className="w-6 md:w-12 h-0.5 bg-gray-100 mx-2" />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Header Block */}
+          <div className="text-left mb-6">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
+              <Sparkles className="w-2.5 h-2.5" /> SERVICE
+            </span>
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">What type of clean do you need?</h2>
+            <p className="text-xs text-gray-500 mt-1.5 font-medium">Select a service to get started.</p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="w-full mb-8">
             {renderStep1()}
           </div>
 
-          <button
-            onClick={() => {
-              if (currentStep === 1 && isStepValid()) {
-                setCurrentStep(2);
-                setIsModalOpen(true);
-              } else if (currentStep > 1) {
-                setIsModalOpen(true);
-              }
-            }}
-            disabled={currentStep === 1 && !isStepValid()}
-            className={`px-10 py-3.5 text-base rounded-full font-bold transition-all shadow-lg hover:shadow-xl flex items-center gap-2 ${(currentStep === 1 && !isStepValid())
-              ? "bg-gray-100 text-gray-400 cursor-not-allowed shadow-none hover:shadow-none"
-              : "bg-black text-white hover:bg-gray-800 hover:scale-[1.02]"
-              }`}>
-            {currentStep > 1 ? "Resume Booking" : "Continue"}
-            <ChevronRight className="w-5 h-5 ml-1" />
-          </button>
+          {/* Bottom Bar: Action Trigger Row */}
+          <div className="flex items-center justify-between border-t border-gray-100 pt-6">
+            <div className="flex items-center">
+              <div className="flex items-center gap-1.5 text-gray-300 font-extrabold text-[10px] uppercase tracking-widest cursor-not-allowed select-none mr-6">
+                <ChevronLeft className="w-4 h-4" /> Back
+              </div>
+              <a href="#plans" className="text-xs font-extrabold text-primary hover:underline transition-all">
+                Compare all plans &rarr;
+              </a>
+            </div>
+
+            <button
+              onClick={() => {
+                if (currentStep === 1 && isStepValid()) {
+                  setCurrentStep(2);
+                  setIsModalOpen(true);
+                }
+              }}
+              disabled={currentStep === 1 && !isStepValid()}
+              className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-orange-500/10 transition-all hover:scale-[1.02] flex items-center gap-2"
+            >
+              Continue
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* OVERLAY BOOKING MODAL FOR STEPS >= 2 */}
         {mounted && isModalOpen && createPortal(
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-            <div className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] rounded-[2rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 bg-[#1E1915]/60 backdrop-blur-md animate-in fade-in duration-300">
+            <div className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300 border border-gray-100">
 
               {/* Modal Header */}
-              <div className="flex-none bg-white px-6 py-4 border-b border-gray-100 flex items-center justify-between relative shadow-sm z-20">
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={handlePrevModal}
-                    className="w-10 h-10 bg-gray-50 hover:bg-gray-100 rounded-full flex items-center justify-center shadow-sm transition-all text-gray-600">
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <div>
-                    <span className="block text-[10px] sm:text-xs font-bold uppercase text-primary tracking-wider">
-                      Step {currentStep} of {totalSteps}
+              <div className="flex-none bg-white px-6 py-4 border-b border-gray-100 flex flex-col gap-4 relative shadow-sm z-20">
+                {/* Top Bar: Logo & Step Fractional Badge */}
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-xl bg-[#F97316] flex items-center justify-center text-white shadow-sm shadow-orange-500/20">
+                      <Sparkles className="w-4.5 h-4.5" />
+                    </div>
+                    <span className="font-display font-extrabold text-lg text-gray-900 tracking-tight">crisp cleaning</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest">
+                      STEP <span className="text-[#F97316] font-black">{currentStep}</span> OF 5
                     </span>
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-display font-bold">
-                      {getStepTitle()}
-                    </h2>
+                    <button
+                      onClick={() => setIsModalOpen(false)}
+                      className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="w-10 h-10 bg-gray-50 hover:bg-red-50 rounded-full flex items-center justify-center transition-colors text-gray-500 hover:text-red-500">
-                  <X className="w-5 h-5" />
-                </button>
+
+                {/* Connected Stepper Row */}
+                <div className="w-full flex items-center justify-between pb-1 overflow-x-auto custom-scrollbar">
+                  {[
+                    { label: "Service", step: 1, icon: Sparkles },
+                    { label: "Customise", step: 2, icon: Sliders },
+                    { label: "Schedule", step: 3, icon: Calendar },
+                    { label: "Details", step: 4, icon: ClipboardList },
+                    { label: "Confirm", step: 5, icon: CreditCard },
+                  ].map((item, idx) => {
+                    const isCompleted = item.step < currentStep;
+                    const isActive = item.step === currentStep;
+
+                    return (
+                      <div key={idx} className="flex items-center gap-2 shrink-0">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                          isActive 
+                            ? "bg-[#F97316] text-white shadow-sm shadow-orange-500/20" 
+                            : isCompleted
+                              ? "bg-orange-50 border border-orange-100 text-[#F97316]"
+                              : "bg-gray-50 border border-gray-100 text-gray-400"
+                        }`}>
+                          {isCompleted ? (
+                            <Check className="w-4 h-4 text-[#F97316]" strokeWidth={3} />
+                          ) : (
+                            <item.icon className="w-4 h-4" />
+                          )}
+                        </div>
+                        <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
+                          isActive ? "text-gray-900" : "text-gray-400"
+                        }`}>
+                          {item.label}
+                        </span>
+                        {idx < 4 && (
+                          <div className="w-6 md:w-12 h-0.5 bg-gray-100 mx-2" />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Modal Body (Two Column Layout) */}
@@ -1829,16 +2259,25 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
                   {/* Inner Step Controls */}
                   {currentStep < totalSteps && (
-                    <div className="mt-8 pt-6 border-t border-gray-100 flex justify-end">
+                    <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+                      <button
+                        onClick={handlePrevModal}
+                        className="flex items-center gap-1.5 text-[#F97316] hover:text-[#F97316]/80 font-extrabold text-[10px] uppercase tracking-widest transition-all"
+                      >
+                        <ChevronLeft className="w-4 h-4" /> Back
+                      </button>
+
                       <button
                         onClick={handleNext}
                         disabled={!isStepValid()}
-                        className={`px-8 py-3 rounded-full font-bold text-sm transition-all flex items-center gap-2 ${!isStepValid()
-                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                          : "bg-black text-white hover:bg-gray-800 shadow-md hover:shadow-lg"
-                          }`}>
+                        className={`px-8 py-3.5 rounded-full font-bold text-sm transition-all flex items-center gap-2 ${
+                          !isStepValid()
+                            ? "bg-gray-150 text-gray-400 cursor-not-allowed"
+                            : "bg-[#F97316] hover:bg-[#F97316]/95 text-white shadow-lg shadow-orange-500/10 hover:scale-[1.02]"
+                        }`}
+                      >
                         Continue
-                        <ChevronRight className="w-4 h-4 ml-1" />
+                        <ArrowRight className="w-4 h-4" />
                       </button>
                     </div>
                   )}
@@ -1846,7 +2285,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
                 {/* Right Column (Sticky Summary - Only for Residential) */}
                 {!isCommercial && (
-                  <div className="w-full xl:w-[35%] bg-gray-50 border-t xl:border-t-0 xl:border-l border-gray-200 overflow-y-auto custom-scrollbar flex-col justify-between hidden xl:flex">
+                  <div className="w-full xl:w-[35%] bg-gray-50 border-t xl:border-t-0 xl:border-l border-gray-100 overflow-y-auto custom-scrollbar flex-col justify-between hidden xl:flex">
                     <div className="p-6 md:p-8 sticky top-0">
                       <BookingSummaryCard
                         formData={formData}
@@ -1861,7 +2300,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
               {/* Mobile Sticky Footer Summary */}
               {mounted && !isCommercial && currentStep >= 2 && currentStep < totalSteps && (
-                <div className="xl:hidden flex-none bg-gray-900 p-4 flex items-center justify-between z-30">
+                <div className="xl:hidden flex-none bg-gray-950 p-4 flex items-center justify-between z-30">
                   <div className="flex flex-col">
                     <span className="text-[10px] text-gray-400 uppercase tracking-wider">Total</span>
                     <span className="text-xl font-display font-bold text-primary">A${(pricingResult?.total || 0).toFixed(2)}</span>
@@ -1876,35 +2315,36 @@ const formContentRef = useRef<HTMLDivElement>(null);
         {/* Info Modal / Cleaners Pass */}
         {showInfoModal && (
           <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full relative shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full relative shadow-2xl animate-in zoom-in-95 duration-200 border border-gray-50">
               <button
                 onClick={() => setShowInfoModal(false)}
-                className="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
+                className="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
+              >
                 <X className="w-5 h-5 text-gray-500" />
               </button>
-              <h3 className="text-2xl font-display font-bold mb-4 text-gray-900">
+              <h3 className="text-2xl font-extrabold text-gray-900 mb-4 tracking-tight">
                 Cleaners Pass
               </h3>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-gray-600 leading-relaxed text-sm font-medium">
                 <p>
                   Schedule regular cleans with us and instantly save up to{" "}
-                  <span className="font-bold text-primary">15% off</span> per
+                  <span className="font-extrabold text-primary">15% off</span> per
                   clean! Also gain access to our loyalty and rewards systems to
                   earn up to 25% off per clean, for life!
                 </p>
-                <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 text-sm">
-                  <span className="font-bold text-orange-600">Note:</span> Weekly
+                <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 text-xs">
+                  <span className="font-extrabold text-orange-600">Note:</span> Weekly
                   cleans earn the highest discount. The higher the frequency the
                   higher the discount! Regardless of the frequency, our rewards
-                  system will increase your discount
+                  system will increase your discount.
                 </div>
                 <div className="border-t pt-4">
                   <h4 className="font-bold text-gray-900 mb-1">Cancellations</h4>
-                  <p className="text-sm mb-3">
+                  <p className="text-xs mb-3">
                     Please note, cancellation fees may apply if you opt out of
                     your cleaner's pass within the first 3 cleans.
                   </p>
-                  <button className="px-4 py-2 bg-black text-white rounded-lg text-sm font-bold">
+                  <button className="px-5 py-2.5 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-bold transition-all">
                     Learn more on our FAQs
                   </button>
                 </div>
@@ -1912,7 +2352,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
             </div>
           </div>
         )}
-        {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
+
         {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
         {mounted &&
           currentStep >= 2 &&
@@ -1920,7 +2360,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
           !isCommercial &&
           createPortal(
             <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
-              <div className="bg-gray-900 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-700 shadow-2xl transition-all duration-300">
+              <div className="bg-gray-950 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-800 shadow-2xl transition-all duration-300">
                 <div className="flex flex-col">
                   <span className="text-[10px] text-gray-400 uppercase tracking-wider">
                     Total
@@ -1934,13 +2374,12 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 {!isFormVisible && (
                   <button
                     onClick={() => {
-                      // Simply scroll back to the form
                       formObserverRef.current?.scrollIntoView({
                         behavior: "smooth",
                         block: "center"
                       });
                     }}
-                    className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 animate-in fade-in slide-in-from-right-4 duration-300"
+                    className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 animate-in fade-in"
                   >
                     Book Now <ChevronRight className="w-4 h-4" />
                   </button>
@@ -1954,33 +2393,50 @@ const formContentRef = useRef<HTMLDivElement>(null);
   );
 };
 
-const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => (
-  <div
-    className={`flex items-center justify-between bg-gray-50 p-3 rounded-2xl border-2 border-transparent hover:border-gray-100 hover:shadow-md transition-all ${hasInfo ? "group" : ""
-      }`}>
-    <div className="flex items-center gap-1.5">
-      <span className="capitalize font-medium text-gray-700 text-sm">
-        {label}
-      </span>
-      {hasInfo && (
-        <Info className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary transition-colors cursor-help" />
-      )}
+const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => {
+  const getCounterIcon = (lbl: string) => {
+    const lower = lbl.toLowerCase();
+    if (lower.includes("bedroom")) return Bed;
+    if (lower.includes("bathroom")) return Bath;
+    if (lower.includes("kitchen")) return ChefHat;
+    return Sofa;
+  };
+
+  const Icon = getCounterIcon(label);
+
+  return (
+    <div className={`w-full bg-white p-4 rounded-[20px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md ${hasInfo ? "group" : ""}`}>
+      <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
+          <Icon className="w-5 h-5 text-[#F97316]" />
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="capitalize font-bold text-gray-800 text-sm">
+            {label}
+          </span>
+          {hasInfo && (
+            <Info className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary transition-colors cursor-help" />
+          )}
+        </div>
+      </div>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => onUpdate(-1)}
+          className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors border border-gray-100"
+        >
+          <Minus className="w-3.5 h-3.5" />
+        </button>
+        <span className="w-5 text-center font-extrabold text-base text-gray-900">{count}</span>
+        <button
+          onClick={() => onUpdate(1)}
+          className="w-8 h-8 rounded-full bg-[#F97316] flex items-center justify-center text-white hover:bg-[#F97316]/95 transition-all shadow-md shadow-orange-500/10 hover:shadow-orange-500/20 hover:scale-105"
+        >
+          <Plus className="w-3.5 h-3.5" />
+        </button>
+      </div>
     </div>
-    <div className="flex items-center gap-3">
-      <button
-        onClick={() => onUpdate(-1)}
-        className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-gray-800 transition-colors border border-gray-100">
-        <Minus className="w-3 h-3" />
-      </button>
-      <span className="w-4 text-center font-bold text-base">{count}</span>
-      <button
-        onClick={() => onUpdate(1)}
-        className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-600 hover:bg-orange-50 hover:text-orange-500 transition-colors border border-gray-100">
-        <Plus className="w-3 h-3" />
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 interface AddressAutocompleteProps {
   value: string;

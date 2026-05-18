@@ -2,7 +2,6 @@
 
 import React from "react";
 import Services from "./Services";
-import { CheckCircle2 } from "lucide-react";
 
 interface QuoteRequestPanelProps {
   headline?: React.ReactNode;
@@ -15,76 +14,35 @@ export default function QuoteRequestPanel({
   headline,
   subheadline,
   contextPoints,
-  seoKeyword = "cleaning",
+  seoKeyword,
 }: QuoteRequestPanelProps) {
-  // Default content if none is provided via props
-  const defaultHeadline = (
-    <>
-      Get Your <span className="text-primary">Instant</span> Price in Seconds
-    </>
-  );
-
-  const defaultSubheadline =
-    "Transparent pricing. No hidden fees. Book online immediately.";
-
-  const defaultContextPoints = [
-    `Top-rated ${seoKeyword} professionals in your area.`,
-    "Flexible scheduling to fit your needs.",
-    "100% Satisfaction Guarantee.",
-  ];
-
-  const renderHeadline = headline || defaultHeadline;
-  const renderSubheadline = subheadline || defaultSubheadline;
-  const renderContextPoints = contextPoints || defaultContextPoints;
-
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-gray-50/50">
+    <section className="relative py-12 md:py-20 overflow-hidden bg-gray-50/30">
       {/* Subtle Background Pattern & Gradient */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
+      <div className="absolute inset-0 z-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/5 via-transparent to-transparent -z-10 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="max-w-4xl mx-auto flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom duration-700">
           
-          {/* Left Panel: Value Proposition */}
-          <div className="lg:col-span-5 flex flex-col justify-center animate-in fade-in slide-in-from-left duration-700">
-            <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-              
-              {/* Subtle animated element to draw the eye */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-6 animate-bounce shadow-sm">
-                <CheckCircle2 className="w-6 h-6" />
-              </div>
-
-              <h2 className="text-3xl md:text-4xl lg:text-[40px] font-display font-bold leading-tight text-gray-900 mb-6 tracking-tight">
-                {renderHeadline}
+          {/* If custom headline is passed, render a sleek centered header block */}
+          {headline && (
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <h2 className="text-3xl md:text-4xl font-display font-bold leading-tight text-gray-900 mb-4 tracking-tight">
+                {headline}
               </h2>
-              
-              <p className="text-lg md:text-xl text-gray-600 mb-8 font-medium">
-                {renderSubheadline}
-              </p>
-
-              <div className="space-y-4 text-left inline-block lg:block mx-auto">
-                {renderContextPoints.map((point, index) => (
-                  <div key={index} className="flex items-start gap-3 text-base text-muted-foreground font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                    <span>{point}</span>
-                  </div>
-                ))}
-              </div>
+              {subheadline && (
+                <p className="text-base md:text-lg text-gray-600 font-medium leading-relaxed">
+                  {subheadline}
+                </p>
+              )}
             </div>
-          </div>
+          )}
 
-          {/* Right Panel: Interactive Form */}
-          <div className="lg:col-span-7 animate-in fade-in slide-in-from-right duration-700 delay-150">
-            {/* 
-              We wrap Services in a container that handles the shadow and shaping. 
-              Services itself manages the inner padding and max-width now.
-            */}
-            <div className="relative w-full max-w-2xl mx-auto lg:max-w-none lg:ml-auto">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-[2.5rem] blur-xl opacity-50 z-0"></div>
-              <div className="relative z-10 w-full">
-                <Services />
-              </div>
+          <div className="relative w-full">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-orange-500/10 rounded-[2.5rem] blur-xl opacity-40 z-0"></div>
+            <div className="relative z-10 w-full">
+              <Services />
             </div>
           </div>
         </div>

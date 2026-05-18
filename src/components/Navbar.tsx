@@ -75,10 +75,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const showScrolledStyle = !isHomePage || isScrolled;
-
-  // Dynamic colors based on scroll state
-  const textColorClass = showScrolledStyle ? "text-foreground/70" : "text-white/90";
+  // Always use scrolled style for solid white navbar
+  const textColorClass = "text-foreground/70";
   const hoverColorClass = "hover:text-primary";
 
   const handleNavClick = (href: string) => {
@@ -109,10 +107,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-linear ${showScrolledStyle
-        ? "bg-card/90 backdrop-blur-lg shadow-sm py-3"
-        : "bg-transparent py-6"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-sm py-3 transition-colors duration-300 ease-linear`}
       style={{
         borderBottomLeftRadius: !isHomePage ? "0px" : `${radius}px`,
         borderBottomRightRadius: !isHomePage ? "0px" : `${radius}px`,
@@ -181,19 +176,14 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           <a
             href="tel:0451433786"
-            className={`flex items-center gap-2 font-medium transition-colors hover:text-primary ${showScrolledStyle ? "text-foreground" : "text-white"
-              }`}>
+            className={`flex items-center gap-2 font-medium transition-colors hover:text-primary text-foreground`}>
             <Phone size={18} />
             <span>0451 433 786</span>
           </a>
           <Button
             variant="ghost"
             size="sm"
-            className={
-              showScrolledStyle
-                ? ""
-                : "text-white hover:bg-white/20 hover:text-white"
-            }>
+            className="">
             <Link
               href={
                 process.env.NEXT_PUBLIC_API_BASE_URL ||
@@ -209,8 +199,7 @@ const Navbar = () => {
 
         {/* --- MOBILE MENU TOGGLE --- */}
         <button
-          className={`md:hidden p-2 transition-colors ${showScrolledStyle ? "text-foreground" : "text-white"
-            }`}
+          className={`md:hidden p-2 transition-colors text-foreground`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
