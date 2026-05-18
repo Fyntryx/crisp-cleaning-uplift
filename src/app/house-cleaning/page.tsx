@@ -1,341 +1,398 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FAQs from "@/components/FAQs"; // Make sure this path matches where your FAQs component is!
 import {
   ArrowRight,
-  CheckCircle2,
+  Check,
+  X,
   Shield,
-  CalendarClock,
+  Clock,
   Star,
+  Sparkles,
+  Heart,
+  Smile,
+  CheckCircle2,
   DollarSign,
-  Phone,
+  Calendar,
+  ThumbsUp,
+  MapPin,
+  ChevronDown,
+  UserCheck
 } from "lucide-react";
-import QuoteRequestPanel from "@/components/QuoteRequestPanel";
-import ParallaxBubbles from "@/components/ParallaxBubbles";
-import { CTASection } from "@/components/CTASection";
 
-// --- DATA OBJECT ---
-const houseCleaningData = {
-  hero: {
-    headline: "Professional House Cleaning in Melbourne",
-    subheadline: "Reliable cleaners. Instant online quote. Book in 60 seconds.",
-    primaryCta: "Get Instant Quote",
-    secondaryCta: "Call Now",
-    secondaryCtaLink: "tel:+61000000000",
+// --- DATA STRUCTURES ---
+const trustIndicators = [
+  { text: "30 second instant quote", icon: Clock },
+  { text: "no lock-in contract", icon: Shield },
+  { text: "insured & vetted", icon: UserCheck }
+];
+
+const audiences = [
+  {
+    title: "Busy Professionals",
+    description: "Get your weekends back. Let us handle the cleaning while you focus on your career, hobbies, and personal time.",
+    icon: Sparkles,
+    tag: "POPULAR"
   },
-  trustBar: [
-    { text: "4.9 Google Rating", icon: Star },
-    { text: "Fully Insured Cleaners", icon: Shield },
-    { text: "100% Satisfaction Guarantee", icon: CheckCircle2 },
+  {
+    title: "Growing Families",
+    description: "Keep your home hygienic, clean, and safe for your little ones and pets without adding more chores to your daily to-do list.",
+    icon: Heart,
+    tag: "RECOMMENDED"
+  },
+  {
+    title: "NDIS & Seniors",
+    description: "Reliable, fully vetted, and caring cleaning assistance tailored perfectly to maintain your comfort, safety, and independence at home.",
+    icon: Smile,
+    tag: "COMPLIANT"
+  }
+];
+
+const crispDifferences = [
+  {
+    num: "01",
+    title: "Vetted & Insured Cleaners",
+    description: "Every professional undergoes strict police background checks and is fully insured for complete peace of mind."
+  },
+  {
+    num: "02",
+    title: "100% Happiness Guarantee",
+    description: "If something isn't perfect, just tell us within 24 hours and we'll come back to reclean it completely free."
+  },
+  {
+    num: "03",
+    title: "Seamless Online Booking",
+    description: "Book, schedule, customize, and pay completely online in under 60 seconds. Zero phone tag required."
+  },
+  {
+    num: "04",
+    title: "Transparent Flat-Rate Pricing",
+    description: "No hourly milkers. No hidden fees. We price transparently based on bedrooms and bathrooms."
+  },
+  {
+    num: "05",
+    title: "Premium Cleaning Tools",
+    description: "We bring high-end eco-friendly products and advanced vacuums that are highly safe for pets and kids."
+  },
+  {
+    num: "06",
+    title: "No Lock-in Contracts",
+    description: "Cancel, pause, or reschedule your cleans with absolute flexibility. You only pay for what you receive."
+  }
+];
+
+const inclusionCategories = [
+  { id: "kitchen", label: "Kitchen" },
+  { id: "bathroom", label: "Bathrooms" },
+  { id: "bedrooms", label: "Bedrooms & Living" },
+  { id: "exclusions", label: "Exclusions" }
+];
+
+const inclusionsData = {
+  kitchen: [
+    { text: "Wiping exterior of all cupboards & drawers", included: true },
+    { text: "Sanitising countertops & kitchen benches", included: true },
+    { text: "Scrubbing stovetop, burners & knobs", included: true },
+    { text: "Polishing sink, tapware & splashback", included: true },
+    { text: "Wiping microwave interior & exterior", included: true },
+    { text: "Emptying rubbish bins & relining", included: true },
+    { text: "Vacuuming & mopping floors", included: true },
+    { text: "Interior oven deep scrub", included: false }
   ],
-  whatsIncluded: {
-    targetKeyword: "house cleaning melbourne",
-    headline: <>What's Included in Our <span className="text-primary">House Cleaning</span>?</>,
-    seoParagraph: (
-      <>
-        Our professional <Link href="/deep-cleaning" className="text-primary hover:underline font-medium">house cleaning</Link> service is designed to keep your home consistently clean, hygienic, and comfortable. Our trained cleaners focus on the most important areas of your home, including kitchens, bathrooms, bedrooms, and living spaces, ensuring every room is thoroughly cleaned and refreshed. Whether you need regular weekly cleaning, fortnightly home cleaning, or a one-off service, our team follows a detailed checklist to deliver consistent results. From wiping surfaces and sanitising bathrooms to vacuuming carpets and mopping floors, our professional house cleaners ensure your home stays spotless and well maintained. The tasks below outline what is typically included in a standard residential house cleaning service.
-      </>
-    ),
-    items: [
-      "Kitchen cleaning",
-      "Bathroom sanitisation",
-      "Dusting and vacuuming",
-      "Floor mopping",
-      "Bedroom cleaning",
-    ],
-    cta: "Get Instant Price",
-  },
-  features: {
-    headline: <>Why Choose <span className="text-primary">Crisp Cleaning</span></>,
-    items: [
-      { title: "Transparent pricing", icon: DollarSign },
-      { title: "Instant online booking", icon: CalendarClock },
-      { title: "Professional vetted cleaners", icon: Shield },
-      { title: "Satisfaction guarantee", icon: Star },
-    ],
-  },
-  pricingExplanation: {
-    headline: "Flat-Rate Pricing. No Surprises.",
-    description:
-      "Our pricing is incredibly simple. We charge a flat rate based on the number of bedrooms and bathrooms in your home. No hidden fees, no hourly milkers—just a perfectly clean home.",
-    cta: "Get Instant Quote",
-  },
-  finalCta: {
-    headline: "Ready for a spotless home?",
-    buttonText: "Book Your Cleaning Today",
-  },
-  faqs: [
-    {
-      _id: "faq-1",
-      question: "What is exactly included in a standard house cleaning?",
-      answer: "Our standard house cleaning includes dusting all surfaces, vacuuming carpets, mopping hard floors, and fully sanitizing your kitchen and bathrooms.",
-      category: "booking",
-    },
-    {
-      _id: "faq-2",
-      question: "Do I need to be home while the cleaners are there?",
-      answer: "Not at all! You can simply provide entry instructions (like a hidden key or lockbox code) when you book online.",
-      category: "booking",
-    },
-    {
-      _id: "faq-3",
-      question: "Are your cleaners background-checked and insured?",
-      answer: "Yes, 100%. Every single Crisp Cleaning professional undergoes a strict police background check and is fully insured for your peace of mind.",
-      category: "safety",
-    },
-    {
-      _id: "faq-4",
-      question: "What kind of cleaning products do you use?",
-      answer: "We use high-quality, eco-friendly cleaning solutions that are tough on dirt but completely safe for your pets and children.",
-      category: "safety",
-    },
+  bathroom: [
+    { text: "Scrubbing & sanitising toilets", included: true },
+    { text: "Descaling & scrubbing shower screens & tiles", included: true },
+    { text: "Scrubbing bath, basin, & vanity surfaces", included: true },
+    { text: "Polishing mirrors & tapware", included: true },
+    { text: "Wiping cabinet exteriors", included: true },
+    { text: "Emptying rubbish bins", included: true },
+    { text: "Vacuuming & mopping floors", included: true },
+    { text: "Deep grout mould removal & remediation", included: false }
   ],
+  bedrooms: [
+    { text: "Dusting all flat surfaces & furniture", included: true },
+    { text: "Vacuuming carpets & rugs", included: true },
+    { text: "Mopping hard floors", included: true },
+    { text: "Making beds & changing 1 set of linen", included: true },
+    { text: "Emptying bins", included: true },
+    { text: "Dusting skirting boards & doors", included: true },
+    { text: "Cleaning accessible glass panels", included: true },
+    { text: "Moving heavy furniture (>15kg)", included: false }
+  ],
+  exclusions: [
+    { text: "Wet-wiping high lightbulbs or ceiling fans", included: false },
+    { text: "Deep mould remediation or biohazard cleanup", included: false },
+    { text: "Professional carpet steam cleaning", included: false },
+    { text: "Exterior window cleaning", included: false },
+    { text: "Wall washing or scrub downs", included: false }
+  ]
 };
 
-// --- PLACEHOLDER COMPONENTS ---
-const BeforeAfterSlider = () => (
-  <div className="w-full aspect-video bg-gray-100 rounded-2xl border border-gray-200 flex items-center justify-center overflow-hidden relative">
-    <div className="absolute inset-0 flex">
-      <div className="w-1/2 relative bg-gray-200">
-        <img src="https://via.placeholder.com/800x600/e5e7eb/e5e7eb" alt="Professional kitchen cleaning by Crisp Cleaning Melbourne - Before" className="w-full h-full object-cover" />
-      </div>
-      <div className="w-1/2 relative bg-white">
-        <img src="https://via.placeholder.com/800x600/ffffff/ffffff" alt="Professional kitchen cleaning by Crisp Cleaning Melbourne - After" className="w-full h-full object-cover" />
-      </div>
-    </div>
-    <div className="z-10 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm font-medium text-gray-600">
-      [ Before & After Slider Placeholder ]
-    </div>
-    <div className="absolute inset-y-0 left-1/2 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] transform -translate-x-1/2 cursor-ew-resize">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100">
-        <div className="w-4 h-1 flex justify-between">
-          <div className="w-1 h-full bg-gray-300 rounded-full"></div>
-          <div className="w-1 h-full bg-gray-300 rounded-full"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+const processSteps = [
+  {
+    step: "1",
+    title: "Get an Instant Price",
+    description: "Enter your bedrooms, bathrooms, and preferred schedule using our instant booking wizard."
+  },
+  {
+    step: "2",
+    title: "Customise Your Clean",
+    description: "Add special instructions, tell us about pets, or select optional premium extras to suit your home."
+  },
+  {
+    step: "3",
+    title: "Vetted Professional Arrives",
+    description: "Our fully insured, police-checked professional arrives equipped with premium tools to clean your home."
+  },
+  {
+    step: "4",
+    title: "Experience the Sparkle",
+    description: "Walk into a meticulously cleaned home that smells fresh, hygienic, and perfectly ordered."
+  }
+];
 
-const GoogleReviewsCarousel = () => (
-  <div className="w-full py-16 bg-gray-50 rounded-3xl flex flex-col items-center justify-center border border-gray-100 overflow-hidden relative">
-    <div className="text-gray-400 font-medium mb-8 z-10 bg-white px-4 py-1 rounded-full text-sm">
-      [ Google Reviews Carousel Placeholder ]
-    </div>
-    <div className="flex gap-4 opacity-50 absolute inset-0 items-center justify-center">
-      {[1, 2, 3].map((i) => (
-        <div
-          key={i}
-          className="w-64 h-32 bg-white rounded-xl shadow-sm border border-gray-100 p-4 shrink-0"
-        >
-          <div className="flex gap-1 mb-3">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <Star
-                key={s}
-                className="w-4 h-4 fill-yellow-400 text-yellow-400"
-              />
-            ))}
-          </div>
-          <div className="w-full h-2 bg-gray-100 rounded-full mb-2"></div>
-          <div className="w-3/4 h-2 bg-gray-100 rounded-full"></div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+const faqs = [
+  {
+    question: "What is exactly included in a standard house cleaning?",
+    answer: "Our standard house cleaning includes dusting all surfaces, vacuuming carpets, mopping hard floors, and fully sanitizing your kitchen and bathrooms."
+  },
+  {
+    question: "Do I need to be home while the cleaners are there?",
+    answer: "Not at all! You can simply provide entry instructions (like a hidden key or lockbox code) when you book online."
+  },
+  {
+    question: "Are your cleaners background-checked and insured?",
+    answer: "Yes, 100%. Every single Crisp Cleaning professional undergoes a strict police background check and is fully insured for your peace of mind."
+  },
+  {
+    question: "What kind of cleaning products do you use?",
+    answer: "We use high-quality, eco-friendly cleaning solutions that are tough on dirt but completely safe for your pets and children."
+  }
+];
 
 export default function HouseCleaningPage() {
-  const {
-    hero,
-    trustBar,
-    whatsIncluded,
-    features,
-    pricingExplanation,
-    finalCta,
-    faqs,
-  } = houseCleaningData;
+  const [activeTab, setActiveTab] = useState<"kitchen" | "bathroom" | "bedrooms" | "exclusions">("kitchen");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "LocalBusiness",
-                "@id": "https://crisp-cleaning-app-seven.vercel.app/#localbusiness",
-                "name": "Crisp Cleaning",
-                "image": "https://crisp-cleaning-app-seven.vercel.app/logo.png",
-                "description": "Professional house cleaning service in Melbourne.",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Melbourne",
-                  "addressRegion": "VIC",
-                  "addressCountry": "AU"
-                },
-                "areaServed": {
-                  "@type": "GeoCircle",
-                  "geoMidpoint": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -37.8136,
-                    "longitude": 144.9631
-                  },
-                  "geoRadius": "50000"
-                },
-                "aggregateRating": {
-                  "@type": "AggregateRating",
-                  "ratingValue": "4.9",
-                  "bestRating": "5",
-                  "reviewCount": "250"
-                }
-              },
-              {
-                "@type": "Service",
-                "serviceType": "House Cleaning",
-                "provider": {
-                  "@id": "https://crisp-cleaning-app-seven.vercel.app/#localbusiness"
-                }
-              },
-              {
-                "@type": "FAQPage",
-                "mainEntity": faqs.map(faq => ({
-                  "@type": "Question",
-                  "name": faq.question,
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": faq.answer
-                  }
-                }))
-              }
-            ]
-          })
-        }}
-      />
       <Navbar />
 
-      {/* 1. Hero / Quote Request Section */}
-      <div className="pt-24 lg:pt-32">
-        <QuoteRequestPanel
-          headline={
-            <>
-              {hero.headline.split("Melbourne")[0]}
-              <span className="text-primary">Melbourne</span>
-              {hero.headline.split("Melbourne")[1]}
-            </>
-          }
-          subheadline={hero.subheadline}
-          seoKeyword="house cleaning"
-          contextPoints={[
-            "Top-rated house cleaning professionals in Melbourne.",
-            "Flexible scheduling to fit your needs.",
-            "100% Satisfaction Guarantee.",
-          ]}
-        />
-      </div>
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-gradient-to-b from-orange-50/50 via-white to-white overflow-hidden flex flex-col items-center text-center px-6">
+        {/* Glow ambient meshes */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-500/5 via-orange-500/0 to-transparent pointer-events-none z-0" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[10px] font-extrabold tracking-wider uppercase mb-5 bg-orange-50">
+            <Sparkles className="w-3 h-3" /> REGULAR HOUSE CLEANING
+          </span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 tracking-tight leading-none mb-6">
+            Walk in. Breathe out.<br />
+            Your home <span className="text-primary">exactly</span> how it should be.
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg text-gray-500 max-w-2xl font-medium leading-relaxed mb-8">
+            Book Melbourne's most trusted home cleaning service in seconds. Premium service. Zero hassle.
+          </p>
 
-      {/* 2. Trust Indicators Bar */}
-      <section className="bg-primary/5 border-y border-primary/10 py-6">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 lg:gap-12">
-            {trustBar.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-primary">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <span className="font-semibold text-foreground text-sm md:text-base">
-                    {item.text}
-                  </span>
+          {/* Centered CTA */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-10 w-full justify-center">
+            <Link href="/booking" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto px-10 py-4.5 bg-primary hover:bg-primary/95 text-white rounded-full font-black text-xs uppercase tracking-wider shadow-lg shadow-orange-500/20 hover:scale-[1.02] transition-all">
+                Get Your Instant Price
+              </button>
+            </Link>
+          </div>
+
+          {/* Trust Indicators Row below Hero */}
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 border-t border-gray-100 pt-8 w-full max-w-3xl">
+            {trustIndicators.map((t, idx) => (
+              <div key={idx} className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-orange-50 flex items-center justify-center text-primary">
+                  <Check className="w-3.5 h-3.5" strokeWidth={3} />
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 2.5 Testimonials */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground tracking-tight">
-              Loved by <span className="text-primary">Melbourne</span>
-            </h2>
-          </div>
-          <GoogleReviewsCarousel />
-        </div>
-      </section>
-
-      {/* 3. What's Included */}
-      <section className="py-24 bg-background relative overflow-hidden">
-        <ParallaxBubbles className="absolute inset-0 z-[-1]" />
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-foreground tracking-tight">
-              {whatsIncluded.headline}
-            </h2>
-            <div className="text-lg text-muted-foreground leading-relaxed text-left md:text-center p-6 bg-muted/20 rounded-2xl border border-border/50">
-              {whatsIncluded.seoParagraph}
-            </div>
-          </div>
-
-          <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-12">
-            {whatsIncluded.items.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-muted/30 border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
-                </div>
-                <span className="text-lg font-medium text-foreground">
-                  {item}
+                <span className="text-xs font-bold text-gray-700 capitalize tracking-tight">
+                  {t.text}
                 </span>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="text-center">
-            <Link href="/booking">
-              <Button
-                size="lg"
-                className="rounded-full px-10 h-14 text-lg font-semibold shadow-lg shadow-primary/20"
+      {/* --- AUDIENCES SECTION --- */}
+      <section className="py-20 bg-gray-50/50 border-y border-gray-100">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-12">
+            <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">WHO IS THIS FOR?</span>
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight mt-2">A spotless home, shaped for your lifestyle.</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {audiences.map((aud, index) => (
+              <div
+                key={index}
+                className="bg-white p-8 rounded-[28px] border border-gray-100 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
               >
-                {whatsIncluded.cta}
-              </Button>
-            </Link>
+                <div>
+                  <span className="inline-block text-[8px] font-black uppercase tracking-wider text-primary px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-100 mb-5">
+                    {aud.tag}
+                  </span>
+                  <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-primary mb-6">
+                    <aud.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-extrabold text-gray-900 mb-3">{aud.title}</h3>
+                  <p className="text-xs text-gray-500 font-medium leading-relaxed">{aud.description}</p>
+                </div>
+                <div className="mt-8 border-t border-gray-50 pt-5">
+                  <Link href="/booking" className="inline-flex items-center gap-1.5 text-xs font-extrabold text-primary hover:underline">
+                    Book Clean Now <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Why Choose Crisp Cleaning (Features Grid) */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
+      {/* --- CRISP DIFFERENCES --- */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground tracking-tight">
-              {features.headline}
+            <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">WHY US</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mt-2">
+              What makes Crisp different?<br />
+              <span className="text-gray-400 font-extrabold">(spoiler: it's everything)</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {features.items.map((feature, index) => {
-              const Icon = feature.icon;
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {crispDifferences.map((diff, index) => (
+              <div key={index} className="flex gap-4">
+                <span className="text-3xl font-black text-orange-200 leading-none">{diff.num}</span>
+                <div>
+                  <h3 className="text-base font-extrabold text-gray-900 mb-2">{diff.title}</h3>
+                  <p className="text-xs text-gray-500 leading-relaxed font-medium">{diff.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- INCLUSIONS / EXCLUSIONS CHECKLIST --- */}
+      <section className="py-24 bg-gray-50/50 border-y border-gray-100">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="text-center mb-12">
+            <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">OUR DETAILED CHECKLIST</span>
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight mt-2">Nothing is a secret. Everything is cleared.</h2>
+            <p className="text-xs text-gray-500 mt-2 font-medium">See exactly what we do (and what we leave to specialists).</p>
+          </div>
+
+          {/* Interactive Category Tabs */}
+          <div className="flex gap-2 pb-1 overflow-x-auto justify-center mb-8 custom-scrollbar">
+            {inclusionCategories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveTab(cat.id as any)}
+                className={`px-6 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${
+                  activeTab === cat.id
+                    ? "bg-[#111827] text-white border-transparent"
+                    : "bg-white text-gray-600 border-gray-100 hover:border-gray-300"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Inclusions / Exclusions List Card */}
+          <div className="bg-white rounded-[2rem] border border-gray-100 shadow-md p-6 md:p-10">
+            <div className="space-y-4">
+              {inclusionsData[activeTab].map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`flex items-start gap-4 p-4.5 rounded-2xl border transition-all duration-300 ${
+                    item.included
+                      ? "bg-orange-50/20 border-orange-100/50 hover:bg-orange-50/30"
+                      : "bg-gray-50/50 border-gray-100 hover:bg-gray-50"
+                  }`}
+                >
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
+                    item.included ? "bg-primary text-white" : "bg-gray-200 text-gray-500"
+                  }`}>
+                    {item.included ? (
+                      <Check className="w-3.5 h-3.5" strokeWidth={3} />
+                    ) : (
+                      <X className="w-3.5 h-3.5" strokeWidth={3} />
+                    )}
+                  </div>
+                  <span className={`text-xs md:text-sm font-extrabold ${
+                    item.included ? "text-gray-800" : "text-gray-400 line-through"
+                  }`}>
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- HOW IT WORKS --- */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="text-center mb-16">
+            <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">HOW IT WORKS</span>
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight mt-2">Book in 60 seconds — here's exactly what happens.</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {processSteps.map((p, idx) => (
+              <div key={idx} className="bg-gray-50 p-6 rounded-[28px] border border-gray-100 flex flex-col justify-between">
+                <div>
+                  <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-xs font-black text-primary border border-orange-100 shadow-sm mb-6">
+                    {p.step}
+                  </span>
+                  <h3 className="text-sm font-black text-gray-900 mb-2">{p.title}</h3>
+                  <p className="text-[11px] text-gray-500 leading-relaxed font-medium">{p.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FAQS SECTION --- */}
+      <section className="py-24 bg-gray-50/50 border-t border-gray-100">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center mb-16">
+            <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">FAQ</span>
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight mt-2">Everything you might be wondering</h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
               return (
                 <div
-                  key={index}
-                  className="bg-background p-8 rounded-3xl shadow-sm border border-border flex flex-col items-center text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                  key={idx}
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 text-primary shrink-0">
-                    <Icon className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground">
-                    {feature.title}
-                  </h3>
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full px-6 py-5 text-left flex items-center justify-between gap-4"
+                  >
+                    <span className="text-xs md:text-sm font-black text-gray-800">{faq.question}</span>
+                    <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 shrink-0 ${isOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  {isOpen && (
+                    <div className="px-6 pb-6 pt-1 text-xs text-gray-500 font-semibold leading-relaxed border-t border-gray-50 animate-in slide-in-from-top duration-300">
+                      {faq.answer}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -343,105 +400,29 @@ export default function HouseCleaningPage() {
         </div>
       </section>
 
-      {/* 5. Pricing Explanation Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto bg-primary text-primary-foreground rounded-[2rem] p-10 md:p-16 relative overflow-hidden shadow-2xl">
-            {/* Decorative background shapes */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
-
-            <div className="relative z-10 text-center">
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 tracking-tight">
-                {pricingExplanation.headline}
-              </h2>
-              <p className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-                {pricingExplanation.description}
-              </p>
-              <Link href="/booking">
-                <Button
-                  size="xl"
-                  variant="secondary"
-                  className="rounded-full text-lg px-10 h-14 text-primary font-bold shadow-xl hover:shadow-2xl transition-all"
-                >
-                  {pricingExplanation.cta}
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Visual Proof Section */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-foreground tracking-tight">
-              See The Difference
+      {/* --- BOTTOM BANNER / FINAL CTA --- */}
+      <section className="py-24 bg-white px-6">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-orange-500 to-[#F97316] text-white rounded-[2.5rem] p-10 md:p-16 relative overflow-hidden shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="relative z-10 max-w-xl text-center md:text-left">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/20 text-[9px] font-black tracking-widest uppercase mb-4 text-white">
+              MELBOURNE'S BEST CLEAN
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-none mb-4">
+              The right clean makes things bright & simple.
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Swipe to see our signature clean.
+            <p className="text-xs text-white/90 font-medium leading-relaxed max-w-md">
+              Book a regular professional cleaning service today and experience the fresh feel of a pristine home.
             </p>
           </div>
-          <div className="max-w-5xl mx-auto">
-            <BeforeAfterSlider />
+          <div className="relative z-10 shrink-0">
+            <Link href="/booking">
+              <button className="px-8 py-4.5 bg-white hover:bg-gray-50 text-primary rounded-full font-black text-xs uppercase tracking-wider shadow-lg hover:scale-[1.02] transition-all">
+                Book in 60 Seconds
+              </button>
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* 7. Service Areas & FAQs */}
-      <section className="py-24 bg-background relative z-10 overflow-hidden">
-        <ParallaxBubbles className="absolute inset-0 z-[-1]" />
-        <div className="container mx-auto px-6 space-y-24">
-          {/* --- UPDATED SERVICE AREAS DESIGN --- */}
-          <div>
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground tracking-tight">
-                Service <span className="text-primary">Areas</span>
-              </h2>
-            </div>
-
-            <div className="max-w-5xl mx-auto bg-muted/20 border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm relative overflow-hidden">
-              {/* Subtle background glow */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-
-              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
-                {/* Location Map Pin Icon */}
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-
-                <p className="text-lg text-muted-foreground leading-relaxed md:text-left text-center">
-                  <span className="font-semibold text-foreground">Crisp Cleaning</span> provides professional cleaning services across Melbourne and surrounding suburbs within a 50km radius of the CBD. Our experienced cleaners regularly service homes and businesses throughout Melbourne CBD, Southbank, Docklands, South Yarra, Richmond, Carlton, Fitzroy, St Kilda, Brunswick, Footscray, Essendon, Preston, Coburg, Box Hill, Doncaster, Glen Waverley, Clayton, Dandenong, Frankston, Craigieburn and surrounding areas. Whether you need house cleaning, deep cleaning, end of lease cleaning, apartment cleaning, or commercial cleaning, our team delivers reliable, high-quality cleaning services across metropolitan Melbourne with easy online booking and transparent pricing.
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* -------------------------------------- */}
-
-          {/* Integrated Interactive FAQ Component */}
-          <div className="w-full -mx-6 lg:mx-0">
-            <FAQs data={faqs} />
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Final CTA Section */}
-      <CTASection
-        heading="Experience the Difference"
-        description="Ready for a spotless home? Book your professional cleaning service today and feel the Crisp difference."
-        primaryAction={{
-          text: "Book Now",
-          href: "/booking",
-        }}
-        secondaryAction={{
-          text: "Contact Us",
-          href: "/contact",
-        }}
-      />
 
       <Footer />
     </main>
