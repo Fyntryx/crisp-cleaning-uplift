@@ -146,6 +146,7 @@ export default function HouseCleaningPage() {
             "Instant booking and online schedule management.",
             "100% Satisfaction Guarantee.",
           ]}
+          variant="cta"
         />
       </div>
 

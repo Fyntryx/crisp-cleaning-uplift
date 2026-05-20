@@ -124,6 +124,7 @@ export default function VacateCleaningPage() {
             "Bond-back guarantee for ultimate peace of mind.",
             "Fully equipped and insured cleaners.",
           ]}
+          variant="cta"
         />
       </div>
 

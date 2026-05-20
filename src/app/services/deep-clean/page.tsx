@@ -123,6 +123,7 @@ export default function DeepCleaningPage() {
             "Detailed degreasing and tile scrubbing.",
             "100% Satisfaction Guarantee.",
           ]}
+          variant="cta"
         />
       </div>
 
