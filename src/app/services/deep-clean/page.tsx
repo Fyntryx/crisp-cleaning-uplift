@@ -13,9 +13,9 @@ import Testimonials from "@/components/lp/Testimonials";
 import { Shield, Star, CheckCircle2 } from "lucide-react";
 
 // --- DATA OBJECT ---
-const commercialCleaningData = {
+const deepCleaningData = {
   hero: {
-    headline: "Professional Commercial Cleaning in Melbourne",
+    headline: "Professional Deep Cleaning in Melbourne",
     subheadline: "Reliable cleaners. Instant online quote. Book in 60 seconds.",
   },
   trustBar: [
@@ -25,26 +25,26 @@ const commercialCleaningData = {
   ],
   faqs: [
     {
-      question: "What is included in commercial cleaning?",
-      answer: "Commercial cleaning includes comprehensive workplace sanitisation: cleaning and dusting desks/workstations, sanitising kitchenettes and breakrooms, sanitising bathrooms, vacuuming and mopping floors, emptying office rubbish bins, and disinfecting high-touch surfaces."
+      question: "What is exactly included in a deep cleaning?",
+      answer: "Deep cleaning includes everything in a standard clean, plus detailed kitchen degreasing, grout and tile scrubbing, interior cabinet and drawer cleaning, skirting boards, door frames, light switches, internal window sills, and spot cleaning of walls. It's a complete reset for your home.",
     },
     {
-      question: "Can you clean after hours?",
-      answer: "Yes! We completely understand that you need to minimize disruption to your business operations. We can schedule cleans after hours, on weekends, or during times that suit your company's schedule."
+      question: "How often should I get a deep cleaning?",
+      answer: "We recommend booking a deep cleaning 2 to 4 times a year, or as a first clean before starting a standard house cleaning service. This helps maintain a higher level of hygiene and cleanliness in the home.",
     },
     {
-      question: "Are your cleaners background-checked and fully insured?",
-      answer: "Absolutely. Security and trust are critical for business environments. Every Crisp Cleaning commercial cleaner undergoes strict national police background checks and is fully covered by public liability insurance."
+      question: "Are your cleaners background-checked and insured?",
+      answer: "Yes, 100%. Every Crisp Cleaning professional undergoes rigorous police checks and carries full liability insurance.",
     },
     {
-      question: "Can we get custom invoices for tax and accounting purposes?",
-      answer: "Yes, we provide fully detailed GST tax invoices immediately after each clean is completed and processed. You can easily manage all invoices through your company dashboard."
-    }
+      question: "Do I need to supply any cleaning products or equipment?",
+      answer: "No, our deep cleaning teams arrive fully equipped with high-end commercial vacuums, mop systems, and eco-friendly cleaning products that are completely safe for children and pets.",
+    },
   ],
 };
 
-export default function CommercialCleaningPage() {
-  const { hero, trustBar, faqs } = commercialCleaningData;
+export default function DeepCleaningPage() {
+  const { hero, trustBar, faqs } = deepCleaningData;
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">
@@ -59,7 +59,7 @@ export default function CommercialCleaningPage() {
                 "@id": "https://crispcleaning.com.au/#localbusiness",
                 "name": "Crisp Cleaning",
                 "image": "https://crispcleaning.com.au/logo.png",
-                "description": "Professional office and commercial cleaning service in Melbourne.",
+                "description": "Professional deep cleaning service in Melbourne.",
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Melbourne",
@@ -84,7 +84,7 @@ export default function CommercialCleaningPage() {
               },
               {
                 "@type": "Service",
-                "serviceType": "Commercial Cleaning",
+                "serviceType": "Deep Cleaning",
                 "provider": {
                   "@id": "https://crispcleaning.com.au/#localbusiness"
                 }
@@ -117,11 +117,11 @@ export default function CommercialCleaningPage() {
             </>
           }
           subheadline={hero.subheadline}
-          seoKeyword="commercial cleaning"
+          seoKeyword="deep cleaning"
           contextPoints={[
-            "Top-rated commercial and office cleaning in Melbourne.",
-            "After-hours and weekend slots available.",
-            "Rigorous safety protocols and fully insured cleaners.",
+            "Top-rated deep cleaning professionals in Melbourne.",
+            "Detailed degreasing and tile scrubbing.",
+            "100% Satisfaction Guarantee.",
           ]}
         />
       </div>
@@ -154,7 +154,7 @@ export default function CommercialCleaningPage() {
       <Process />
 
       {/* 5. Inclusions Checklist Tabbed Section */}
-      <Checklist defaultTab="Standard" />
+      <Checklist defaultTab="Deep" />
 
       {/* 6. Our Promise / Satisfaction Guarantee */}
       <Guarantee />
@@ -168,7 +168,7 @@ export default function CommercialCleaningPage() {
               Where we clean in Melbourne
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We provide premium commercial and office cleaning across Melbourne and surrounding suburbs within a 50km radius.
+              We provide premium deep home cleaning across Melbourne and surrounding suburbs within a 50km radius.
             </p>
           </div>
 

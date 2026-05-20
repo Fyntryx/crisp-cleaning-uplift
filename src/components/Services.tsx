@@ -6,6 +6,7 @@ import {
   Building2,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Minus,
   Plus,
   CheckCircle2,
@@ -82,8 +83,8 @@ const servicesList = [
 
 const cleaningTypesUI = [
   {
-    id: "Regular",
-    label: "Regular Clean",
+    id: "Standard",
+    label: "Standard Clean",
     icon: Sparkles,
     color: "text-orange-500",
     bg: "bg-orange-50",
@@ -122,7 +123,7 @@ const commEnvironments = [
   "Other",
 ];
 const commCleanTypes = [
-  "Regular Maintenance",
+  "Standard Maintenance",
   "Deep Clean",
   "Post-Construction",
   "Move-in/Move-out",
@@ -160,57 +161,53 @@ const BookingSummaryCard = ({
   setPromoCode: (val: string) => void;
 }) => (
   <div
-    className={`bg-[#1E1915] text-white rounded-[28px] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:shadow-orange-500/5 transition-all duration-300 ${className}`}
+    className={`bg-white text-gray-800 rounded-[28px] p-8 shadow-sm border border-gray-100 relative overflow-visible group hover:border-gray-200 transition-all duration-300 ${className}`}
   >
-    {/* Soft Orange Glow */}
-    <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
-    <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
-
-    <h3 className="text-xl font-extrabold mb-5 relative z-10 tracking-tight text-white">
-      Booking Summary
-    </h3>
-
-    {/* Satisfaction Guaranteed Badge */}
-    <div className="relative z-10 group/guarantee mb-6">
-      <div className="flex items-center gap-3 bg-green-500/10 text-green-400 border border-green-500/10 px-4 py-3 rounded-2xl cursor-help transition-all hover:bg-green-500/15">
-        <Check className="w-5 h-5 flex-shrink-0" strokeWidth={3} />
-        <span className="text-xs font-extrabold uppercase tracking-wider">Satisfaction Guaranteed</span>
+    <div className="flex items-center gap-2 mb-4 relative z-10">
+      <div className="w-5 h-5 rounded bg-orange-50 flex items-center justify-center text-[#F97316]">
+        <FileText className="w-3.5 h-3.5" />
       </div>
-      <div className="absolute top-full left-0 mt-2 w-full bg-[#27211C] text-gray-300 text-xs p-3.5 rounded-2xl shadow-2xl opacity-0 invisible group-hover/guarantee:opacity-100 group-hover/guarantee:visible transition-all duration-300 z-50 border border-[#362D27] pointer-events-none leading-relaxed">
-        Not completely satisfied? We will return and clean it again for free!
-      </div>
+      <h3 className="text-sm font-semibold tracking-tight text-gray-800">
+        Order summary
+      </h3>
     </div>
 
-    <div className="space-y-4 relative z-10 text-gray-300 text-xs">
-      <div className="flex justify-between border-b border-white/5 pb-3">
-        <span className="text-gray-400 font-semibold">Service Type</span>
-        <span className="text-white font-extrabold capitalize">
-          {formData.cleaningType} Clean
-        </span>
-      </div>
-      <div className="flex justify-between border-b border-white/5 pb-3">
-        <span className="text-gray-400 font-semibold">Frequency</span>
-        <span className="text-white font-extrabold capitalize">
-          {formData.frequency || "Not Selected"}
-        </span>
-      </div>
-      
+    {/* --- Inline Pill Tags (Matches Figma) --- */}
+    <div className="flex flex-wrap items-center gap-2 mb-6 relative z-10">
+      {/* Frequency Pill */}
+      {formData.frequency && (
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-gray-50/50 text-gray-700 text-xs font-medium">
+          <Calendar className="w-3.5 h-3.5 text-gray-500" />
+          {formData.frequency}
+        </div>
+      )}
+
+      {/* Discount Pill (Only renders if recurring) */}
+      {formData.frequency && formData.frequency !== "One time" && formData.frequency !== "One-time" && (
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-700 text-xs font-medium">
+          <Tag className="w-3.5 h-3.5" />
+          Save {formData.frequency === "Weekly" ? "15" : formData.frequency === "Fortnightly" ? "10" : "5"}% — {formData.frequency} booking
+        </div>
+      )}
+    </div>
+
+    <div className="space-y-4 relative z-10 text-gray-500 text-[13px]">
       <div className="py-2">
-        <span className="block mb-3 text-[10px] font-extrabold uppercase tracking-widest text-gray-500">
+        <span className="block mb-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
           Price Breakdown
         </span>
         
         <div className="space-y-2.5">
           {pricingResult?.breakdown.cleaningType && (
-            <div className="flex justify-between font-semibold">
-              <span className="text-gray-400">{pricingResult.breakdown.cleaningType.name} Base Clean</span>
-              <span className="text-white font-bold">A${pricingResult.breakdown.cleaningType.price}</span>
+            <div className="flex justify-between text-sm font-normal text-gray-600">
+              <span>{pricingResult.breakdown.cleaningType.name} Clean — base</span>
+              <span>A${pricingResult.breakdown.cleaningType.price}</span>
             </div>
           )}
           {(formData.homeDetails.bedrooms || 0) > 0 && (
-            <div className="flex justify-between font-semibold">
-              <span className="text-gray-400">{formData.homeDetails.bedrooms}x Bedroom</span>
-              <span className="text-white font-bold">
+            <div className="flex justify-between text-sm font-normal text-gray-600">
+              <span>Bedroom × {formData.homeDetails.bedrooms}</span>
+              <span>
                 A$
                 {HOME_DETAIL_PRICES.Bedroom *
                   (formData.homeDetails.bedrooms || 0)}
@@ -218,9 +215,9 @@ const BookingSummaryCard = ({
             </div>
           )}
           {(formData.homeDetails.bathrooms || 0) > 0 && (
-            <div className="flex justify-between font-semibold">
-              <span className="text-gray-400">{formData.homeDetails.bathrooms}x Bathroom</span>
-              <span className="text-white font-bold">
+            <div className="flex justify-between text-sm font-normal text-gray-600">
+              <span>Bathroom × {formData.homeDetails.bathrooms}</span>
+              <span>
                 A$
                 {HOME_DETAIL_PRICES.Bathroom *
                   (formData.homeDetails.bathrooms || 0)}
@@ -228,9 +225,9 @@ const BookingSummaryCard = ({
             </div>
           )}
           {(formData.homeDetails.kitchens || 0) > 0 && (
-            <div className="flex justify-between font-semibold">
-              <span className="text-gray-400">{formData.homeDetails.kitchens}x Kitchen</span>
-              <span className="text-white font-bold">
+            <div className="flex justify-between text-sm font-normal text-gray-600">
+              <span>Kitchen × {formData.homeDetails.kitchens}</span>
+              <span>
                 A$
                 {HOME_DETAIL_PRICES.Kitchen *
                   (formData.homeDetails.kitchens || 0)}
@@ -238,50 +235,56 @@ const BookingSummaryCard = ({
             </div>
           )}
           {(formData.homeDetails.other || 0) > 0 && (
-            <div className="flex justify-between font-semibold">
-              <span className="text-gray-400">{formData.homeDetails.other}x Other Area</span>
-              <span className="text-white font-bold">
+            <div className="flex justify-between text-sm font-normal text-gray-600">
+              <span>Other Area × {formData.homeDetails.other}</span>
+              <span>
                 A${HOME_DETAIL_PRICES.Other * (formData.homeDetails.other || 0)}
               </span>
             </div>
           )}
           {pricingResult?.breakdown.extras.items.map((e: any) => (
-            <div key={e.name} className="flex justify-between font-semibold">
-              <span className="text-gray-400">+ {e.name}</span>
-              <span className="text-white font-bold">A${e.price}</span>
+            <div key={e.name} className="flex justify-between text-sm font-normal text-gray-600">
+              <span>+ {e.name}</span>
+              <span>A${e.price}</span>
             </div>
           ))}
+          {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && (
+            <div className="flex justify-between text-sm font-semibold text-[#F97316] pt-2 border-t border-gray-100">
+              <span>{pricingResult?.breakdown?.discount?.name}</span>
+              <span>-A${pricingResult?.breakdown?.discount?.amount?.toFixed(2)}</span>
+            </div>
+          )}
         </div>
       </div>
 
       {/* --- PROMO CODE SECTION --- */}
-      <div className="py-2 border-t border-white/5">
+      <div className="py-2 border-t border-gray-100">
         <div className="relative flex items-center mt-3">
-          <Tag className="absolute left-3.5 w-4 h-4 text-gray-500" />
+          <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
           <input
             type="text"
             placeholder="Promo Code"
-            className="w-full bg-white/5 border border-white/5 text-white text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/10 transition-all placeholder:text-gray-500 font-semibold"
+            className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/10 transition-all placeholder:text-gray-400 font-semibold"
             value={promoCode}
-            onChange={(e) => setPromoCode(e.target.value)}
+            onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
           />
-          <button className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-white/10 hover:bg-primary hover:text-white text-gray-200 text-[10px] font-extrabold uppercase tracking-wider rounded-lg transition-all">
+          <button className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#F97316]/10 hover:bg-[#F97316] hover:text-white text-[#F97316] text-[10px] font-semibold uppercase tracking-wider rounded-lg transition-all">
             Apply
           </button>
         </div>
       </div>
 
-      <div className="pt-4 mt-2 border-t border-white/10">
-        {pricingResult?.discounts.frequency && (
-          <div className="flex justify-between text-green-400 mb-3 font-semibold">
-            <span>Discount ({pricingResult.discounts.frequency.name})</span>
-            <span className="font-bold">-A${pricingResult.discounts.frequency.amount.toFixed(2)}</span>
+      <div className="pt-4 mt-2 border-t border-gray-200">
+        {pricingResult?.discounts?.frequency && (
+          <div className="flex justify-between text-[#F97316] mb-3 text-sm font-semibold">
+            <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
+            <span className="font-semibold">-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
           </div>
         )}
         
         <div className="flex justify-between items-end">
-          <span className="text-base font-extrabold text-white">Total</span>
-          <span className="text-3xl font-extrabold text-primary tracking-tight">
+          <span className="text-base font-semibold text-gray-800">Total</span>
+          <span className="text-3xl font-semibold text-[#F97316] tracking-tight">
             A${(pricingResult?.total || 0).toFixed(2)}
           </span>
         </div>
@@ -311,7 +314,7 @@ const formObserverRef = useRef<HTMLDivElement>(null);
 const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     serviceCategory: "residential",
-    cleaningType: "Regular" as CleaningType,
+    cleaningType: "Standard" as CleaningType,
     homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
     extras: [] as Extra[],
     frequency: "One time" as Frequency,
@@ -832,8 +835,8 @@ const formContentRef = useRef<HTMLDivElement>(null);
   const renderStep1 = () => {
     const step1Types = [
       {
-        id: "Regular",
-        label: "Regular Clean",
+        id: "Standard",
+        label: "Standard Clean",
         desc: "Consistent, detailed maintenance on your schedule",
         icon: Home,
       },
@@ -849,6 +852,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
         label: "Vacate Clean",
         desc: "Cleaned to rental inspection standard",
         icon: DoorOpen,
+        badge: "BOND BACK GUARANTEE",
       },
     ];
 
@@ -875,7 +879,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
             >
               {/* MOST THOROUGH Badge */}
               {type.badge && (
-                <span className="absolute -top-3.5 left-6 bg-[#F97316] text-white text-[8px] font-black tracking-widest uppercase px-3 py-1 rounded-full shadow-md z-10">
+                <span className="absolute -top-3.5 left-6 bg-[#F97316] text-white text-[8px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full shadow-md z-10">
                   {type.badge}
                 </span>
               )}
@@ -900,10 +904,10 @@ const formContentRef = useRef<HTMLDivElement>(null);
               </div>
 
               {/* Description Block */}
-              <h3 className="text-base font-extrabold text-gray-900 mb-1 group-hover:text-[#F97316] transition-colors">
+              <h3 className="text-sm font-semibold text-gray-800 mb-1 group-hover:text-[#F97316] transition-colors">
                 {type.label}
               </h3>
-              <p className="text-xs text-gray-500 leading-relaxed">
+              <p className="text-[13.5px] font-normal leading-relaxed text-gray-500">
                 {type.desc}
               </p>
             </div>
@@ -935,58 +939,92 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          
-          {/* Left Column: Title Block & Selected Service Card & Add-ons */}
-          <div className="md:col-span-5 flex flex-col items-stretch space-y-6">
-            
-            {/* Title Block */}
-            <div className="text-left">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
-                <Sliders className="w-2.5 h-2.5" /> CUSTOMISE
-              </span>
-              <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">Customise your clean.</h2>
-              <p className="text-xs text-gray-500 mt-1.5 font-medium">Select your rooms and any add-ons.</p>
-            </div>
+        
+        {/* Step Identifier Tag */}
+        <div className="mb-4">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
+            <Sliders className="w-3 h-3" /> CUSTOMISE
+          </span>
+        </div>
 
-            {/* Selected Service Card */}
-            <div className="bg-white rounded-3xl border border-gray-100 p-6 flex flex-col items-start space-y-4 shadow-sm relative overflow-hidden group hover:border-gray-200 transition-all duration-300">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
-                  <SelectedIcon className="w-5 h-5 text-[#F97316]" />
-                </div>
-                <div>
-                  <span className="block text-[9px] font-black uppercase text-[#F97316] tracking-wider">
-                    SELECTED SERVICE
-                  </span>
-                  <span className="font-extrabold text-lg text-gray-900 leading-tight">
-                    {formData.cleaningType} Clean
-                  </span>
+        <div className="flex flex-col space-y-8">
+          
+          {/* TOP ROW: Full-Width Selected Service Card */}
+          <div className="w-full bg-white rounded-3xl border border-gray-100 p-6 flex flex-col items-start space-y-4 shadow-sm relative overflow-hidden group hover:border-gray-200 transition-all duration-300">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
+                <SelectedIcon className="w-5 h-5 text-[#F97316]" />
+              </div>
+              <div>
+                <span className="block text-[11px] font-semibold uppercase text-gray-400 tracking-wider">
+                  SELECTED SERVICE
+                </span>
+                <span className="font-semibold text-sm text-gray-800 leading-tight">
+                  {formData.cleaningType} Clean
+                </span>
+              </div>
+            </div>
+            
+            <p className="text-[13.5px] font-normal leading-relaxed text-gray-500">
+              {getPlanDescription()}
+            </p>
+
+            <a
+              href="#what-is-included"
+              onClick={(e) => {
+                e.preventDefault();
+                // Toggles standard checklist info or scrolls
+              }}
+              className="text-xs font-bold text-[#F97316] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
+            >
+              What's included &rarr;
+            </a>
+          </div>
+
+          {/* BOTTOM ROW: 2-Column Grid for Counters and Add-ons */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            
+            {/* LEFT COLUMN: Counters */}
+            <div className="space-y-4">
+              {/* Counters ordered Bathroom first, then Bedroom, Kitchen, Other */}
+              <RoomCounter
+                label="Bathroom"
+                count={formData.homeDetails.bathrooms || 0}
+                onUpdate={(v) => updateRooms("bathrooms", v)}
+              />
+
+              <RoomCounter
+                label="Bedroom"
+                count={formData.homeDetails.bedrooms || 0}
+                onUpdate={(v) => updateRooms("bedrooms", v)}
+              />
+
+              <RoomCounter
+                label="Kitchen"
+                count={formData.homeDetails.kitchens || 0}
+                onUpdate={(v) => updateRooms("kitchens", v)}
+              />
+
+              <div className="relative group w-full">
+                <RoomCounter
+                  label="Other Areas"
+                  count={formData.homeDetails.other || 0}
+                  onUpdate={(v) => updateRooms("other", v)}
+                  hasInfo={true}
+                />
+                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
+                  laundry, office, study, theatre, gym, rumpus room, playroom, etc.
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
                 </div>
               </div>
-              
-              <p className="text-xs text-gray-500 leading-relaxed font-medium">
-                {getPlanDescription()}
-              </p>
-
-              <a
-                href="#what-is-included"
-                onClick={(e) => {
-                  e.preventDefault();
-                  // Toggles standard checklist info or scrolls
-                }}
-                className="text-xs font-bold text-[#F97316] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
-              >
-                What's included <ChevronRight className="w-3.5 h-3.5" />
-              </a>
             </div>
 
-            {/* ADD-ONS Section */}
-            <div className="space-y-3">
-              <span className="block text-[10px] font-black uppercase text-gray-400 tracking-widest">
+            {/* RIGHT COLUMN: Add-ons */}
+            <div className="space-y-3 bg-white rounded-3xl border border-gray-100 p-6 shadow-sm">
+              <span className="block text-[11px] font-bold uppercase text-[#F97316] tracking-widest mb-4 border-b border-gray-50 pb-2">
                 ADD-ONS
               </span>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {(Object.keys(EXTRA_PRICES) as Extra[])
                   .filter((extra) => !["Garage", "Laundry"].includes(extra))
                   .map((extra) => {
@@ -995,18 +1033,18 @@ const formContentRef = useRef<HTMLDivElement>(null);
                       <button
                         key={extra}
                         onClick={() => toggleExtra(extra)}
-                        className={`flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-xs font-bold transition-all duration-200 ${
+                        className={`flex items-center justify-center gap-1.5 py-3 px-3 rounded-full border text-xs font-semibold transition-all duration-200 w-full ${
                           isSelected
                             ? "bg-[#F97316] border-[#F97316] text-white shadow-md shadow-orange-500/10"
                             : "bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
                         }`}
                       >
                         {isSelected ? (
-                          <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                          <Check className="w-3 h-3 text-white shrink-0" strokeWidth={3} />
                         ) : (
-                          <span>+</span>
+                          <span className="shrink-0 text-gray-400">+</span>
                         )}
-                        <span>{extra}</span>
+                        <span className="truncate">{extra}</span>
                       </button>
                     );
                   })}
@@ -1014,44 +1052,6 @@ const formContentRef = useRef<HTMLDivElement>(null);
             </div>
 
           </div>
-
-          {/* Right Column: Counters list */}
-          <div className="md:col-span-7 space-y-4">
-            
-            {/* Counters ordered Bathroom first, then Bedroom, Kitchen, Other */}
-            <RoomCounter
-              label="Bathroom"
-              count={formData.homeDetails.bathrooms || 0}
-              onUpdate={(v) => updateRooms("bathrooms", v)}
-            />
-
-            <RoomCounter
-              label="Bedroom"
-              count={formData.homeDetails.bedrooms || 0}
-              onUpdate={(v) => updateRooms("bedrooms", v)}
-            />
-
-            <RoomCounter
-              label="Kitchen"
-              count={formData.homeDetails.kitchens || 0}
-              onUpdate={(v) => updateRooms("kitchens", v)}
-            />
-
-            <div className="relative group w-full">
-              <RoomCounter
-                label="Other Areas"
-                count={formData.homeDetails.other || 0}
-                onUpdate={(v) => updateRooms("other", v)}
-                hasInfo={true}
-              />
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-                This includes living rooms, studies, laundries, theatres, gyms, etc.
-                <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
-              </div>
-            </div>
-
-          </div>
-
         </div>
       </div>
     );
@@ -1119,18 +1119,13 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-6 py-2">
-        
-        {/* Title Block */}
-        <div className="text-left mb-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
-            <Calendar className="w-2.5 h-2.5" /> SCHEDULE
+        {/* Step Identifier Tag */}
+        <div className="mb-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
+            <Calendar className="w-3 h-3" /> SCHEDULE
           </span>
-          <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">When would you like your clean?</h2>
-          <p className="text-xs text-gray-500 mt-1.5 font-medium">Select a date, frequency, and time slot.</p>
         </div>
-
-        {/* Dynamic Rounded Frequency Tabs bar */}
-        <div className="relative inline-flex items-center justify-between bg-gray-50/50 border border-gray-100 rounded-full p-1.5 max-w-lg w-full mb-4">
+        <div className="relative inline-flex items-center justify-between bg-gray-50/50 border border-gray-100 rounded-full p-2 max-w-xl w-full mb-4">
           {frequencies.map((freq) => {
             const isSelected = formData.frequency === freq.id;
             return (
@@ -1138,7 +1133,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 
                 {/* Floating Orange SAVE Badge */}
                 {freq.save && (
-                  <span className="bg-[#F97316] text-white text-[8px] font-black px-2 py-0.5 rounded-full absolute -top-3.5 left-1/2 -translate-x-1/2 shadow-sm border border-white">
+                  <span className="bg-[#F97316] text-white text-[9px] font-semibold font-sans px-2.5 py-0.5 rounded-full absolute -top-3 -right-2 whitespace-nowrap z-10 pointer-events-none border-2 border-white tracking-wider">
                     {freq.save}
                   </span>
                 )}
@@ -1147,7 +1142,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                   onClick={() =>
                     setFormData({ ...formData, frequency: freq.id as any })
                   }
-                  className={`w-full py-2.5 rounded-full text-xs font-black transition-all ${
+                  className={`w-full py-3 rounded-full text-[14px] font-semibold transition-all ${
                     isSelected
                       ? "bg-[#F97316] text-white shadow-md shadow-orange-500/10"
                       : "text-gray-500 hover:text-gray-950 hover:bg-gray-100/50"
@@ -1160,29 +1155,36 @@ const formContentRef = useRef<HTMLDivElement>(null);
           })}
         </div>
 
+        {/* --- NEW: Dynamic Discount Banner --- */}
+        {formData.frequency && formData.frequency !== "One time" && (
+          <div className="animate-in slide-in-from-top-2 fade-in duration-300 flex items-center gap-2 bg-[#F97316] text-white px-5 py-3 rounded-xl shadow-lg shadow-orange-500/20 max-w-xl w-fit mb-8 font-semibold text-sm">
+            <Tag className="w-4.5 h-4.5 text-white shrink-0" />
+            <span>
+              Save {formData.frequency === "Weekly" ? "15" : formData.frequency === "Fortnightly" ? "10" : "5"}% on every clean — best value
+            </span>
+          </div>
+        )}
+
         {/* Grid: Calendar Left & Time Slots Right */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           
           {/* Calendar picker Card */}
-          <div className="md:col-span-6 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="flex items-center justify-between mb-6 border-b border-gray-50 pb-4">
+          <div className="md:col-span-8 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+            <div className="flex items-center justify-between mb-6 border-b border-gray-55 pb-4">
               <span className="font-extrabold text-sm text-gray-900">
-                Select Date <span className="text-red-500 font-bold">*</span>
+                {monthName}
               </span>
 
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevMonth}
-                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-50 text-gray-600 transition-colors border border-gray-100"
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <span className="text-xs font-black text-gray-900 w-24 text-center">
-                  {monthName}
-                </span>
                 <button
                   onClick={handleNextMonth}
-                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-50 text-gray-600 transition-colors border border-gray-100"
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -1190,7 +1192,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
             </div>
 
             {/* Weekdays names */}
-            <div className="grid grid-cols-7 gap-1 text-center text-[10px] mb-3 text-gray-400 font-black uppercase tracking-wider">
+            <div className="grid grid-cols-7 gap-1 text-center text-[10px] mb-3 text-gray-400 font-semibold uppercase tracking-wider">
               {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
                 <div key={`${d}-${i}`}>{d}</div>
               ))}
@@ -1211,7 +1213,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     key={day}
                     onClick={() => !past && handleDateSelect(day)}
                     disabled={past}
-                    className={`h-9 w-full rounded-xl flex flex-col items-center justify-center text-xs font-bold transition-all relative ${
+                    className={`h-9 w-full rounded-xl flex flex-col items-center justify-center text-xs font-medium transition-all relative ${
                       selected
                         ? "bg-[#F97316] text-white shadow-md shadow-orange-500/10"
                         : ""
@@ -1240,30 +1242,25 @@ const formContentRef = useRef<HTMLDivElement>(null);
           </div>
           
           {/* Available time slots Card */}
-          <div className="md:col-span-6 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
-            <span className="flex items-center gap-2 font-extrabold text-sm text-gray-900 mb-6 border-b border-gray-50 pb-4">
+          <div className="md:col-span-4 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+            <span className="flex items-center gap-2 font-semibold text-sm text-gray-800 mb-6 border-b border-gray-50 pb-4">
               <Clock className="w-4 h-4 text-[#F97316]" /> Available time slots
             </span>
 
             <div className="grid grid-cols-3 gap-3">
               {timeSlots.map((time) => {
                 const isSelected = formData.selectedTime === time;
-                // Mock unavailable slots for gorgeous high-fidelity accuracy matching the screenshot
-                const isUnavailable = ["12:00 PM", "2:00 PM"].includes(time);
                 
                 return (
                   <button
                     key={time}
-                    disabled={isUnavailable}
                     onClick={() =>
                       setFormData((prev) => ({ ...prev, selectedTime: time }))
                     }
-                    className={`py-3.5 rounded-xl border text-center text-xs font-bold transition-all ${
+                    className={`py-3.5 rounded-xl border text-center text-xs font-medium transition-all ${
                       isSelected
                         ? "bg-[#F97316] border-[#F97316] text-white shadow-md shadow-orange-500/10 hover:scale-105"
-                        : isUnavailable
-                          ? "opacity-30 cursor-not-allowed select-none bg-gray-50 border-transparent text-gray-400 font-medium"
-                          : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
+                        : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
                     }`}
                   >
                     {time}
@@ -1280,153 +1277,150 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
   const renderResStep4 = () => (
     <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 py-2">
-      
-      {/* Title Block */}
-      <div className="text-left mb-2">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
-          <ClipboardList className="w-2.5 h-2.5" /> DETAILS
+      {/* Step Identifier Tag */}
+      <div className="mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50 shadow-sm">
+          <ClipboardList className="w-3 h-3" /> DETAILS
         </span>
-        <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">A few quick questions before your clean.</h2>
-        <p className="text-xs text-gray-500 mt-1.5 font-medium">This helps your cleaner prepare and arrive ready.</p>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* Pets Dropdown */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <PawPrint className="w-4 h-4 text-[#F97316]" />
-            DO YOU HAVE ANY PETS?
-          </span>
-          <div className="relative">
-            <select
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
-              value={formData.instructions.pets}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  instructions: {
-                    ...formData.instructions,
-                    pets: e.target.value,
-                  },
-                })
-              }
-            >
-              <option value="" disabled>Select...</option>
-              <option>No Pets</option>
-              <option>Yes cat</option>
-              <option>Dog/Cat</option>
-              <option>Other</option>
-            </select>
+      <div className="bg-white border border-gray-100 rounded-[32px] p-6 md:p-8 shadow-sm space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          
+          {/* Pets Dropdown */}
+          <div className="flex flex-col space-y-1.5">
+            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+              <PawPrint className="w-3.5 h-3.5 text-[#F97316]" /> DO YOU HAVE ANY PETS?
+            </label>
+            <div className="relative flex items-center">
+              <select
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                value={formData.instructions.pets}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    instructions: {
+                      ...formData.instructions,
+                      pets: e.target.value,
+                    },
+                  })
+                }
+              >
+                <option value="" disabled>Select...</option>
+                <option>No Pets</option>
+                <option>Yes cat</option>
+                <option>Dog/Cat</option>
+                <option>Other</option>
+              </select>
+              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+            </div>
           </div>
+
+          {/* Parking Dropdown */}
+          <div className="flex flex-col space-y-1.5">
+            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+              <Car className="w-3.5 h-3.5 text-[#F97316]" /> IS PARKING AVAILABLE?
+            </label>
+            <div className="relative flex items-center">
+              <select
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                value={formData.instructions.parking}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    instructions: {
+                      ...formData.instructions,
+                      parking: e.target.value,
+                    },
+                  })
+                }
+              >
+                <option value="" disabled>Select...</option>
+                <option>Street parking</option>
+                <option>I will provide parking onsite</option>
+                <option>There is free parking nearby/on the street</option>
+                <option>Other (Please Specify)</option>
+              </select>
+              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Entry Dropdown */}
+          <div className="flex flex-col space-y-1.5">
+            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+              <Key className="w-3.5 h-3.5 text-[#F97316]" /> HOW WILL WE GET IN?
+            </label>
+            <div className="relative flex items-center">
+              <select
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                value={formData.instructions.entry}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    instructions: {
+                      ...formData.instructions,
+                      entry: e.target.value,
+                    },
+                  })
+                }
+              >
+                <option value="" disabled>Select...</option>
+                <option>Key lockbox</option>
+                <option>I will be home</option>
+                <option>I will leave a key</option>
+                <option>I will provide a lockbox/access key</option>
+                <option>Other (Please Specify)</option>
+              </select>
+              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Areas to Avoid Dropdown */}
+          <div className="flex flex-col space-y-1.5">
+            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+              <AlertTriangle className="w-3.5 h-3.5 text-[#F97316]" /> ANY AREAS TO AVOID?
+            </label>
+            <div className="relative flex items-center">
+              <select
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                value={formData.instructions.areasToAvoid}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    instructions: {
+                      ...formData.instructions,
+                      areasToAvoid: e.target.value,
+                    },
+                  })
+                }
+              >
+                <option value="" disabled>Select...</option>
+                <option>None</option>
+                <option>Specific rooms</option>
+                <option>Other</option>
+              </select>
+              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+            </div>
+          </div>
+
         </div>
 
-        {/* Parking Dropdown */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <Car className="w-4 h-4 text-[#F97316]" />
-            IS PARKING AVAILABLE?
-          </span>
-          <div className="relative">
-            <select
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
-              value={formData.instructions.parking}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  instructions: {
-                    ...formData.instructions,
-                    parking: e.target.value,
-                  },
-                })
-              }
-            >
-              <option value="" disabled>Select...</option>
-              <option>Street parking</option>
-              <option>I will provide parking onsite</option>
-              <option>There is free parking nearby/on the street</option>
-              <option>Other (Please Specify)</option>
-            </select>
-          </div>
+        {/* Notes Textarea */}
+        <div className="flex flex-col space-y-1.5 border-t border-gray-105 pt-5">
+          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+            <FileText className="w-3.5 h-3.5 text-[#F97316]" /> ANYTHING ELSE WE SHOULD KNOW?
+          </label>
+          <textarea
+            className="w-full p-4 bg-gray-50 border border-gray-100/50 rounded-xl outline-none resize-none h-28 text-gray-700 text-xs font-semibold placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-orange-500/10"
+            placeholder="e.g. fragile items, allergies, specific instructions..."
+            value={formData.instructions.notes}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                instructions: { ...formData.instructions, notes: e.target.value },
+              })
+            }
+          />
         </div>
-
-        {/* Entry Dropdown */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <Key className="w-4 h-4 text-[#F97316]" />
-            HOW WILL WE GET IN?
-          </span>
-          <div className="relative">
-            <select
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
-              value={formData.instructions.entry}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  instructions: {
-                    ...formData.instructions,
-                    entry: e.target.value,
-                  },
-                })
-              }
-            >
-              <option value="" disabled>Select...</option>
-              <option>Key lockbox</option>
-              <option>I will be home</option>
-              <option>I will leave a key</option>
-              <option>I will provide a lockbox/access key</option>
-              <option>Other (Please Specify)</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Areas to Avoid Dropdown */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <AlertTriangle className="w-4 h-4 text-[#F97316]" />
-            ANY AREAS TO AVOID?
-          </span>
-          <div className="relative">
-            <select
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs cursor-pointer appearance-none pr-10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F97316%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_1.25rem_center] bg-no-repeat"
-              value={formData.instructions.areasToAvoid}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  instructions: {
-                    ...formData.instructions,
-                    areasToAvoid: e.target.value,
-                  },
-                })
-              }
-            >
-              <option value="" disabled>Select...</option>
-              <option>None</option>
-              <option>Specific rooms</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Notes Textarea */}
-      <div className="bg-white p-6 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-        <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-          <FileText className="w-4 h-4 text-[#F97316]" />
-          ANYTHING ELSE WE SHOULD KNOW?
-        </span>
-        <textarea
-          className="w-full p-4 bg-gray-50 rounded-2xl border-transparent focus:ring-2 focus:ring-orange-500/10 outline-none resize-none h-28 text-gray-800 text-xs font-extrabold placeholder:text-gray-400 leading-relaxed"
-          placeholder="e.g. fragile items, allergies, specific instructions..."
-          value={formData.instructions.notes}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              instructions: { ...formData.instructions, notes: e.target.value },
-            })
-          }
-        />
       </div>
     </div>
   );
@@ -1810,129 +1804,135 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
   const renderResStep5 = () => (
     <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 py-2">
-      
-      {/* Title Block */}
-      <div className="text-left mb-2">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
-          <CreditCard className="w-2.5 h-2.5" /> CONFIRM
+      {/* Step Identifier Tag */}
+      <div className="mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50 shadow-sm">
+          <CheckCircle2 className="w-3 h-3" /> CONFIRM
         </span>
-        <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">Finalise your booking.</h2>
-        <p className="text-xs text-gray-500 mt-1.5 font-medium">Enter your details and complete payment.</p>
       </div>
-
-      <div className="space-y-5">
+      <div className="bg-white border border-gray-100 rounded-[32px] p-6 md:p-8 shadow-sm space-y-6">
         
-        {/* Name and Phone Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Section: Contact Information */}
+        <div className="space-y-5">
+          <span className="block text-sm font-semibold text-gray-800 uppercase tracking-wider border-b border-gray-50 pb-2">
+            1. Contact Details
+          </span>
           
-          {/* Full Name */}
-          <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-            <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-              <User className="w-4 h-4 text-[#F97316]" />
-              FULL NAME
-            </span>
-            <input
-              type="text"
-              placeholder="e.g. John Doe"
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
-              value={formData.contact.firstName}
-              onChange={(e) => updateContact("firstName", e.target.value)}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Full Name */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
+                <User className="w-3.5 h-3.5 text-[#F97316]" /> FULL NAME
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. John Doe"
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
+                value={formData.contact.firstName}
+                onChange={(e) => updateContact("firstName", e.target.value)}
+              />
+            </div>
+
+            {/* Phone Number */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
+                <Phone className="w-3.5 h-3.5 text-[#F97316]" /> PHONE NUMBER
+              </label>
+              <input
+                type="tel"
+                placeholder="e.g. +61 400 000 000"
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
+                value={formData.contact.phone}
+                onChange={(e) => updateContact("phone", e.target.value)}
+              />
+            </div>
           </div>
 
-          {/* Phone Number */}
-          <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-            <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-              <Phone className="w-4 h-4 text-[#F97316]" />
-              PHONE NUMBER
-            </span>
-            <input
-              type="tel"
-              placeholder="e.g. +61 400 000 000"
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
-              value={formData.contact.phone}
-              onChange={(e) => updateContact("phone", e.target.value)}
-            />
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Email Address */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
+                <Mail className="w-3.5 h-3.5 text-[#F97316]" /> EMAIL ADDRESS
+              </label>
+              <input
+                type="email"
+                placeholder="e.g. john@example.com"
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
+                value={formData.contact.email}
+                onChange={(e) => updateContact("email", e.target.value)}
+              />
+            </div>
 
-        </div>
-
-        {/* Email Address */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <Mail className="w-4 h-4 text-[#F97316]" />
-            EMAIL ADDRESS
-          </span>
-          <input
-            type="email"
-            placeholder="e.g. john@example.com"
-            className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
-            value={formData.contact.email}
-            onChange={(e) => updateContact("email", e.target.value)}
-          />
-        </div>
-
-        {/* Create Password */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <Key className="w-4 h-4 text-[#F97316]" />
-            CREATE ACCOUNT PASSWORD (MIN 8 CHARACTERS)
-          </span>
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Create a secure password"
-              className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400 pr-12"
-              value={formData.contact.password}
-              onChange={(e) => updateContact("password", e.target.value)}
-            />
-            <button
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              {showPassword ? (
-                <EyeOff className="w-4 h-4" />
-              ) : (
-                <Eye className="w-4 h-4" />
-              )}
-            </button>
+            {/* Create Password */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
+                <Key className="w-3.5 h-3.5 text-[#F97316]" /> CREATE ACCOUNT PASSWORD
+              </label>
+              <div className="relative flex items-center">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Create a secure password"
+                  className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450 pr-12"
+                  value={formData.contact.password}
+                  onChange={(e) => updateContact("password", e.target.value)}
+                />
+                <button
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Full Address autocomplete */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <MapPin className="w-4 h-4 text-[#F97316]" />
-            FULL ADDRESS
+        {/* Section: Service Location */}
+        <div className="space-y-5 border-t border-gray-50 pt-5">
+          <span className="block text-sm font-semibold text-gray-800 uppercase tracking-wider border-b border-gray-50 pb-2">
+            2. Service Location
           </span>
-          <AddressAutocomplete
-            value={formData.contact.address}
-            onChange={(value) => updateContact("address", value)}
-            placeholder="123 Clean St..."
-            showLocationButton={true}
-            onLocationClick={handleUseCurrentLocation}
-            isLoadingLocation={isLoadingLoc}
-            onValidityChange={setIsAddressValid}
-          />
-        </div>
 
-        {/* Suburb */}
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col">
-          <span className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-wider mb-2.5">
-            <Building2 className="w-4 h-4 text-[#F97316]" />
-            SUBURB
-          </span>
-          <input
-            type="text"
-            placeholder="e.g. Richmond"
-            className="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-extrabold text-xs placeholder:text-gray-400"
-            value={formData.contact.suburb}
-            onChange={(e) => updateContact("suburb", e.target.value)}
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Full Address */}
+            <div className="flex flex-col md:col-span-2">
+              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#F97316]" /> FULL ADDRESS
+              </label>
+              <AddressAutocomplete
+                value={formData.contact.address}
+                onChange={(value) => updateContact("address", value)}
+                placeholder="123 Clean St..."
+                showLocationButton={true}
+                onLocationClick={handleUseCurrentLocation}
+                isLoadingLocation={isLoadingLoc}
+                onValidityChange={setIsAddressValid}
+                inputClassName="!py-3.5 !text-xs !font-semibold !text-gray-800 !pl-10 !pr-12 !border !border-gray-100/50 focus:!ring-2 focus:!ring-orange-500/10"
+              />
+            </div>
+
+            {/* Suburb */}
+            <div className="flex flex-col md:col-span-2">
+              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
+                <Building2 className="w-3.5 h-3.5 text-[#F97316]" /> SUBURB
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. Richmond"
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
+                value={formData.contact.suburb}
+                onChange={(e) => updateContact("suburb", e.target.value)}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Terms checkbox */}
-        <div className="flex items-center gap-2.5 pt-2">
+        <div className="flex items-center gap-2.5 pt-2 border-t border-gray-50">
           <input
             type="checkbox"
             id="terms"
@@ -1942,7 +1942,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
           />
           <label
             htmlFor="terms"
-            className="text-xs text-gray-500 cursor-pointer select-none font-bold"
+            className="text-xs text-gray-500 cursor-pointer select-none font-semibold"
           >
             I accept the{" "}
             <a
@@ -1967,18 +1967,11 @@ const formContentRef = useRef<HTMLDivElement>(null);
         )}
 
         {/* Action controls row matching premium Step 5 design */}
-        <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between gap-4">
-          <button
-            onClick={handlePrevModal}
-            className="flex items-center gap-1.5 text-[#F97316] hover:text-[#F97316]/80 font-extrabold text-[10px] uppercase tracking-widest transition-all shrink-0"
-          >
-            <ChevronLeft className="w-4 h-4" /> Back
-          </button>
-
+        <div className="mt-8 pt-6 border-t border-gray-50 flex items-center justify-center">
           <button
             onClick={handleSubmit}
             disabled={isSubmitting || !isAddressValid}
-            className="flex-grow max-w-md bg-[#111827] hover:bg-black text-white py-4 px-6 rounded-full font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-[#F97316] hover:bg-[#F97316]/90 text-white py-5 px-6 rounded-2xl font-semibold text-sm shadow-lg shadow-orange-500/10 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>
@@ -1987,16 +1980,16 @@ const formContentRef = useRef<HTMLDivElement>(null);
               </>
             ) : (
               <>
-                <Lock className="w-4 h-4 text-gray-400" />
-                Pay Now — Confirm Booking
+                <span>Book Now & Pay</span>
+                <CreditCard className="w-4.5 h-4.5 text-white" />
               </>
             )}
           </button>
         </div>
 
-        <p className="text-center text-xs text-gray-500 mt-4 font-medium">
+        <p className="text-center text-xs text-gray-500 mt-4 font-semibold">
           Already have an account?{" "}
-          <button className="font-extrabold text-primary hover:underline transition-all">
+          <button className="font-semibold text-primary hover:underline transition-all">
             Login
           </button>
         </p>
@@ -2090,60 +2083,12 @@ const formContentRef = useRef<HTMLDivElement>(null);
         {/* INLINE STEP 1 CONTAINER */}
         <div className="w-full max-w-4xl mx-auto bg-white rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)] overflow-hidden p-6 md:p-8 flex flex-col items-stretch">
           
-          {/* Top Bar: Logo & Step Fractional Badge */}
-          <div className="flex items-center justify-between w-full border-b border-gray-100 pb-5 mb-6">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-white shadow-sm shadow-orange-500/20">
-                <Sparkles className="w-4.5 h-4.5" />
-              </div>
-              <span className="font-display font-extrabold text-lg text-gray-900 tracking-tight">crisp cleaning</span>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest">
-                STEP <span className="text-primary font-black">1</span> OF 5
-              </span>
-              <button className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Connected Stepper Row */}
-          <div className="w-full flex items-center justify-between pb-6 mb-8 border-b border-gray-50 overflow-x-auto custom-scrollbar">
-            {[
-              { label: "Service", active: true, icon: Sparkles },
-              { label: "Customise", active: false, icon: Sliders },
-              { label: "Schedule", active: false, icon: Calendar },
-              { label: "Details", active: false, icon: ClipboardList },
-              { label: "Confirm", active: false, icon: CreditCard },
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2 shrink-0">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                  item.active 
-                    ? "bg-primary text-white shadow-sm shadow-orange-500/20" 
-                    : "bg-gray-50 border border-gray-100 text-gray-400"
-                }`}>
-                  <item.icon className="w-4 h-4" />
-                </div>
-                <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
-                  item.active ? "text-gray-900" : "text-gray-400"
-                }`}>
-                  {item.label}
-                </span>
-                {idx < 4 && (
-                  <div className="w-6 md:w-12 h-0.5 bg-gray-100 mx-2" />
-                )}
-              </div>
-            ))}
-          </div>
-
           {/* Header Block */}
           <div className="text-left mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[9px] font-extrabold tracking-wider uppercase mb-3 bg-orange-50/50">
-              <Sparkles className="w-2.5 h-2.5" /> SERVICE
+            <span className="inline-flex items-center px-3 py-1 rounded-full border border-orange-100 text-primary text-[11px] font-semibold tracking-wider uppercase mb-3 bg-orange-50/50">
+              SERVICE TYPE
             </span>
-            <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-tight">What type of clean do you need?</h2>
+            <h2 className="text-[32px] font-semibold text-gray-800 tracking-tight leading-[40px]">What type of clean do you need?</h2>
             <p className="text-xs text-gray-500 mt-1.5 font-medium">Select a service to get started.</p>
           </div>
 
@@ -2155,10 +2100,10 @@ const formContentRef = useRef<HTMLDivElement>(null);
           {/* Bottom Bar: Action Trigger Row */}
           <div className="flex items-center justify-between border-t border-gray-100 pt-6">
             <div className="flex items-center">
-              <div className="flex items-center gap-1.5 text-gray-300 font-extrabold text-[10px] uppercase tracking-widest cursor-not-allowed select-none mr-6">
+              <div className="flex items-center gap-1.5 text-gray-300 font-semibold text-[10px] uppercase tracking-widest cursor-not-allowed select-none mr-6">
                 <ChevronLeft className="w-4 h-4" /> Back
               </div>
-              <a href="#plans" className="text-xs font-extrabold text-primary hover:underline transition-all">
+              <a href="#plans" className="text-xs font-semibold text-primary hover:underline transition-all">
                 Compare all plans &rarr;
               </a>
             </div>
@@ -2182,34 +2127,13 @@ const formContentRef = useRef<HTMLDivElement>(null);
         {/* OVERLAY BOOKING MODAL FOR STEPS >= 2 */}
         {mounted && isModalOpen && createPortal(
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 bg-[#1E1915]/60 backdrop-blur-md animate-in fade-in duration-300">
-            <div className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300 border border-gray-100">
+            <div className="bg-[#FAF9F6] w-full max-w-5xl h-[90vh] md:h-[85vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300 border border-gray-200/50">
 
               {/* Modal Header */}
-              <div className="flex-none bg-white px-6 py-4 border-b border-gray-100 flex flex-col gap-4 relative shadow-sm z-20">
-                {/* Top Bar: Logo & Step Fractional Badge */}
-                <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-xl bg-[#F97316] flex items-center justify-center text-white shadow-sm shadow-orange-500/20">
-                      <Sparkles className="w-4.5 h-4.5" />
-                    </div>
-                    <span className="font-display font-extrabold text-lg text-gray-900 tracking-tight">crisp cleaning</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest">
-                      STEP <span className="text-[#F97316] font-black">{currentStep}</span> OF 5
-                    </span>
-                    <button
-                      onClick={() => setIsModalOpen(false)}
-                      className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-
+              <div className="flex-none bg-[#FAF9F6] px-6 py-4 border-b border-gray-200/50 flex relative z-20 items-center justify-between">
+                
                 {/* Connected Stepper Row */}
-                <div className="w-full flex items-center justify-between pb-1 overflow-x-auto custom-scrollbar">
+                <div className="flex items-center overflow-x-auto custom-scrollbar flex-1">
                   {[
                     { label: "Service", step: 1, icon: Sparkles },
                     { label: "Customise", step: 2, icon: Sliders },
@@ -2221,25 +2145,37 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     const isActive = item.step === currentStep;
 
                     return (
-                      <div key={idx} className="flex items-center gap-2 shrink-0">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                          isActive 
-                            ? "bg-[#F97316] text-white shadow-sm shadow-orange-500/20" 
-                            : isCompleted
-                              ? "bg-orange-50 border border-orange-100 text-[#F97316]"
-                              : "bg-gray-50 border border-gray-100 text-gray-400"
-                        }`}>
-                          {isCompleted ? (
-                            <Check className="w-4 h-4 text-[#F97316]" strokeWidth={3} />
-                          ) : (
-                            <item.icon className="w-4 h-4" />
-                          )}
-                        </div>
-                        <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
-                          isActive ? "text-gray-900" : "text-gray-400"
-                        }`}>
-                          {item.label}
-                        </span>
+                      <div key={idx} className="flex items-center shrink-0">
+                        <button
+                          disabled={item.step >= currentStep}
+                          onClick={() => {
+                            if (item.step < currentStep) {
+                              setCurrentStep(item.step);
+                            }
+                          }}
+                          className={`flex items-center gap-2 transition-all ${
+                            item.step < currentStep ? "cursor-pointer hover:opacity-80" : "cursor-default"
+                          }`}
+                        >
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                            isActive 
+                              ? "bg-[#F97316] text-white shadow-sm shadow-orange-500/20" 
+                              : isCompleted
+                                ? "bg-orange-50 border border-orange-100 text-[#F97316]"
+                                : "bg-gray-50 border border-gray-100 text-gray-400"
+                          }`}>
+                            {isCompleted ? (
+                              <Check className="w-4 h-4 text-[#F97316]" strokeWidth={3} />
+                            ) : (
+                              <item.icon className="w-4 h-4" />
+                            )}
+                          </div>
+                          <span className={`text-[11px] font-semibold uppercase tracking-wider ${
+                            isActive ? "text-gray-800" : "text-gray-400"
+                          }`}>
+                            {item.label}
+                          </span>
+                        </button>
                         {idx < 4 && (
                           <div className="w-6 md:w-12 h-0.5 bg-gray-100 mx-2" />
                         )}
@@ -2247,12 +2183,24 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     );
                   })}
                 </div>
+                
+                <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200/50 shrink-0">
+                  <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider hidden md:inline-block">
+                    STEP <span className="text-[#F97316] font-bold">{currentStep}</span> OF 5
+                  </span>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors shrink-0"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
               {/* Modal Body (Two Column Layout) */}
               <div className="flex-grow overflow-hidden flex flex-col xl:flex-row relative">
                 {/* Left Column (Active Step Content) */}
-                <div className={`w-full ${isCommercial ? "" : "xl:w-[65%]"} h-full overflow-y-auto px-6 md:px-12 py-8 bg-white custom-scrollbar flex flex-col`}>
+                <div className={`w-full ${isCommercial ? "" : "xl:w-[65%]"} h-full overflow-y-auto px-6 md:px-12 py-8 bg-[#FAF9F6] custom-scrollbar flex flex-col`}>
                   <div className="flex-grow">
                     {currentStep >= 2 && renderContent()}
                   </div>
@@ -2262,7 +2210,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
                       <button
                         onClick={handlePrevModal}
-                        className="flex items-center gap-1.5 text-[#F97316] hover:text-[#F97316]/80 font-extrabold text-[10px] uppercase tracking-widest transition-all"
+                        className="flex items-center gap-1.5 text-[#F97316] hover:text-[#F97316]/80 font-semibold text-[10px] uppercase tracking-wider transition-all"
                       >
                         <ChevronLeft className="w-4 h-4" /> Back
                       </button>
@@ -2270,7 +2218,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                       <button
                         onClick={handleNext}
                         disabled={!isStepValid()}
-                        className={`px-8 py-3.5 rounded-full font-bold text-sm transition-all flex items-center gap-2 ${
+                        className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${
                           !isStepValid()
                             ? "bg-gray-150 text-gray-400 cursor-not-allowed"
                             : "bg-[#F97316] hover:bg-[#F97316]/95 text-white shadow-lg shadow-orange-500/10 hover:scale-[1.02]"
@@ -2327,7 +2275,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
               </h3>
               <div className="space-y-4 text-gray-600 leading-relaxed text-sm font-medium">
                 <p>
-                  Schedule regular cleans with us and instantly save up to{" "}
+                  Schedule standard cleans with us and instantly save up to{" "}
                   <span className="font-extrabold text-primary">15% off</span> per
                   clean! Also gain access to our loyalty and rewards systems to
                   earn up to 25% off per clean, for life!
@@ -2411,7 +2359,7 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => {
           <Icon className="w-5 h-5 text-[#F97316]" />
         </div>
         <div className="flex items-center gap-1">
-          <span className="capitalize font-bold text-gray-800 text-sm">
+          <span className="capitalize font-medium text-gray-800 text-[14.5px]">
             {label}
           </span>
           {hasInfo && (
@@ -2426,7 +2374,7 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => {
         >
           <Minus className="w-3.5 h-3.5" />
         </button>
-        <span className="w-5 text-center font-extrabold text-base text-gray-900">{count}</span>
+        <span className="w-5 text-center font-semibold text-base text-gray-800">{count}</span>
         <button
           onClick={() => onUpdate(1)}
           className="w-8 h-8 rounded-full bg-[#F97316] flex items-center justify-center text-white hover:bg-[#F97316]/95 transition-all shadow-md shadow-orange-500/10 hover:shadow-orange-500/20 hover:scale-105"

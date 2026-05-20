@@ -15,22 +15,10 @@ import {
   X,
   Phone,
   ChevronDown,
-  Home,
-  Sparkles,
-  Key,
-  Building2,
-  Briefcase
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+
+import { RefreshCw, Sparkles, Key } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -38,16 +26,28 @@ const navLinks = [
     name: "Services",
     href: "#",
     subLinks: [
-      { name: "Apartment Cleaning", href: "/apartment-cleaning" },
-      { name: "Commercial Cleaning", href: "/commercial-cleaning" },
-      { name: "Deep Cleaning", href: "/deep-cleaning" },
-      { name: "House Cleaning", href: "/house-cleaning" },
-      { name: "Vacate Cleaning", href: "/vacate-cleaning" },
+      { 
+        name: "Standard House Clean", 
+        desc: "Consistent maintenance on your schedule",
+        href: "/services/standard-house-clean",
+        icon: RefreshCw 
+      },
+      { 
+        name: "Deep Clean", 
+        desc: "A thorough reset for every room",
+        href: "/services/deep-clean",
+        icon: Sparkles 
+      },
+      { 
+        name: "Vacate Clean", 
+        desc: "Cleaned to inspection standard",
+        href: "/services/vacate-clean",
+        icon: Key 
+      },
     ],
   },
-  { name: "About", href: "/about" },
-  { name: "Reviews", href: "/review" },
-  { name: "FAQs", href: "/faq" },
+  { name: "About Us", href: "/about" },
+  { name: "Service Areas", href: "/#services" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -58,26 +58,14 @@ const Navbar = () => {
 
   const isHomePage = pathname === "/";
 
-  const [radius, setRadius] = useState(0);
-  const ANIMATION_END_POINT = 300;
-
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > ANIMATION_END_POINT);
-
-      const progress = Math.min(scrollY / 200, 1);
-      const newRadius = progress * 40;
-      setRadius(newRadius);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Always use scrolled style for solid white navbar
-  const textColorClass = "text-foreground/70";
-  const hoverColorClass = "hover:text-primary";
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
@@ -93,64 +81,76 @@ const Navbar = () => {
     }
   };
 
-  // Helper to check active state
-  const isLinkActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const textColorClass = isScrolled || !isHomePage
+    ? "text-neutral-700 hover:text-[#F97316]"
+    : "text-white/90 hover:text-[#F97316]";
 
-  // Helper for applying Shadcn classes WITH your dynamic scroll colors
-  const navItemClass = (href: string) => cn(
-    navigationMenuTriggerStyle(),
-    "bg-transparent hover:bg-transparent focus:bg-transparent text-sm transition-colors duration-300",
-    hoverColorClass,
-    isLinkActive(href) ? "text-primary font-bold" : textColorClass
-  );
+  const hoverColorClass = "hover:text-[#F97316]";
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-sm py-3 transition-colors duration-300 ease-linear`}
-      style={{
-        borderBottomLeftRadius: !isHomePage ? "0px" : `${radius}px`,
-        borderBottomRightRadius: !isHomePage ? "0px" : `${radius}px`,
-      }}>
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
+        isScrolled 
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5" 
+          : isHomePage
+            ? "bg-transparent py-5 border-b border-transparent shadow-none"
+            : "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5"
+      )}
+    >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
         <Link
           href="/"
-          className="flex items-center gap-2 outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0">
-          <span className="font-poppins text-3xl font-bold tracking-tight text-primary">crisp.</span>
+          className="flex items-center outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0"
+        >
+          <img 
+            src="/logo.png?v=3" 
+            alt="Crisp Cleaning" 
+            className="h-12 md:h-14 w-auto object-contain"
+          />
         </Link>
 
-        <nav
-          className="hidden md:flex items-center gap-6 max-[990px]:flex-1 max-[990px]:justify-center min-[991px]:absolute min-[991px]:left-1/2 min-[991px]:top-1/2 
-  min-[991px]:-translate-x-1/2 min-[991px]:-translate-y-1/2 min-[991px]:gap-8">
+        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {navLinks.map((link) => {
             if (link.subLinks) {
               const isSubActive = link.subLinks.some(
                 (sub) => sub.href === pathname,
               );
               return (
-                <DropdownMenu key={link.name}>
-                  <DropdownMenuTrigger
-                    className={`flex items-center gap-1 text-sm font-medium transition-colors duration-300 outline-none ${hoverColorClass} ${
-                      isSubActive ? "text-primary" : textColorClass
-                    }`}
+                <div key={link.name} className="relative group">
+                  <div
+                    className={cn(
+                      "flex items-center gap-1 text-sm font-semibold transition-colors duration-300 outline-none cursor-pointer py-6",
+                      hoverColorClass,
+                      isSubActive ? "text-[#F97316]" : textColorClass
+                    )}
                   >
                     {link.name}
-                    <ChevronDown size={14} />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="center" className="min-w-[200px]">
-                    {link.subLinks.map((subLink) => (
-                      <DropdownMenuItem key={subLink.href} asChild>
+                    <ChevronDown size={14} className="opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                  </div>
+                  {/* Hover Dropdown */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-[340px] bg-white rounded-2xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    {link.subLinks.map((subLink) => {
+                      const Icon = subLink.icon;
+                      return (
                         <Link
+                          key={subLink.href}
                           href={subLink.href}
-                          className="w-full cursor-pointer"
                           onClick={() => handleNavClick(subLink.href)}
+                          className="flex items-start gap-4 p-3 rounded-xl hover:bg-orange-50/50 transition-colors group/item"
                         >
-                          {subLink.name}
+                          <div className="bg-[#FFF4ED] text-[#F97316] p-2.5 rounded-xl shrink-0 group-hover/item:scale-110 transition-transform duration-300">
+                            {Icon && <Icon size={20} strokeWidth={2.5} />}
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-[15px] font-bold text-gray-900 group-hover/item:text-[#F97316] transition-colors">{subLink.name}</span>
+                            <span className="text-[13px] text-gray-500 font-medium mt-0.5">{subLink.desc}</span>
+                          </div>
                         </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                      );
+                    })}
+                  </div>
+                </div>
               );
             }
 
@@ -162,9 +162,11 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`text-sm font-medium transition-colors duration-300 ${hoverColorClass} ${
-                  isActive ? "text-primary" : textColorClass
-                }`}
+                className={cn(
+                  "text-sm font-semibold transition-colors duration-300",
+                  hoverColorClass,
+                  isActive ? "text-[#F97316] font-bold" : textColorClass
+                )}
               >
                 {link.name}
               </Link>
@@ -173,55 +175,59 @@ const Navbar = () => {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-6">
           <a
             href="tel:0451433786"
-            className={`flex items-center gap-2 font-medium transition-colors hover:text-primary text-foreground`}>
-            <Phone size={18} />
+            className={cn(
+              "flex items-center gap-2 font-semibold transition-colors duration-300",
+              isScrolled || !isHomePage
+                ? "text-neutral-700 hover:text-[#F97316]"
+                : "text-white/90 hover:text-[#F97316]"
+            )}
+          >
+            <Phone size={16} className="opacity-80" />
             <span>0451 433 786</span>
           </a>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="">
-            <Link
-              href={
-                process.env.NEXT_PUBLIC_API_BASE_URL ||
-                "https://crisp-cleaning-app-seven.vercel.app/"
-              }>
-              Login
-            </Link>
-          </Button>
-          <Button variant="hero" size="default" className="mr-10" asChild>
-            <Link href="/#booking">Book Clean</Link>
+
+          <Button 
+            variant="hero" 
+            size="default" 
+            className="rounded-full px-6 py-2.5 font-extrabold bg-[#F97316] hover:bg-[#F97316]/90 text-white shadow-md shadow-orange-500/10 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+            asChild
+          >
+            <Link href="/#booking">Get an Instant Quote</Link>
           </Button>
         </div>
 
         {/* --- MOBILE MENU TOGGLE --- */}
         <button
-          className={`md:hidden p-2 transition-colors text-foreground`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          className={cn(
+            "md:hidden p-2 transition-colors rounded-xl",
+            isScrolled || !isHomePage ? "text-neutral-800" : "text-white"
+          )}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* --- MOBILE MENU CONTENT --- */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in max-h-[85vh] overflow-y-auto">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-150 animate-fade-in max-h-[85vh] overflow-y-auto">
           <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {navLinks.map((link) => {
               if (link.subLinks) {
                 return (
                   <div key={link.name} className="flex flex-col gap-2">
-                    <span className="text-base font-medium text-foreground/50 px-0 py-1">
+                    <span className="text-xs font-extrabold text-neutral-400 uppercase tracking-widest px-0 py-1">
                       {link.name}
                     </span>
-                    <div className="flex flex-col gap-2 pl-4 border-l border-border">
+                    <div className="flex flex-col gap-2 pl-4 border-l border-gray-150">
                       {link.subLinks.map((subLink) => (
                         <Link
                           key={subLink.href}
                           href={subLink.href}
-                          className="text-base font-medium text-foreground/70 hover:text-primary transition-colors"
+                          className="text-sm font-semibold text-neutral-700 hover:text-[#F97316] transition-colors"
                           onClick={() => handleNavClick(subLink.href)}
                         >
                           {subLink.name}
@@ -235,28 +241,25 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-base font-medium text-foreground/70 hover:text-primary transition-colors"
+                  className="text-sm font-semibold text-neutral-700 hover:text-[#F97316] transition-colors"
                   onClick={() => handleNavClick(link.href)}
                 >
                   {link.name}
                 </Link>
               );
             })}
-            <div className="flex flex-col gap-3 pt-4 border-t border-border">
-              <a href="tel:0451433786" className="flex items-center justify-center gap-2 font-bold py-2 text-foreground">
-                <Phone size={18} className="text-primary" /> 0451 433 786
+            <div className="flex flex-col gap-3 pt-4 border-t border-gray-150">
+              <a href="tel:0451433786" className="flex items-center justify-center gap-2 font-bold py-2 text-neutral-800 hover:text-[#F97316] transition-colors">
+                <Phone size={16} className="text-[#F97316]" /> 0451 433 786
               </a>
-              <Button variant="ghost" asChild>
-                <Link
-                  href={
-                    process.env.NEXT_PUBLIC_API_BASE_URL ||
-                    "https://crisp-cleaning-app-seven.vercel.app/"
-                  }>
-                  Login
+              <Button 
+                variant="hero" 
+                className="w-full rounded-full bg-[#F97316] text-white font-bold"
+                asChild
+              >
+                <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>
+                  Get an Instant Quote
                 </Link>
-              </Button>
-              <Button variant="hero" asChild>
-                <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>Book Clean</Link>
               </Button>
             </div>
           </nav>
@@ -267,4 +270,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

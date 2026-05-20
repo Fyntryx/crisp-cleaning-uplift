@@ -6,11 +6,11 @@ import { ArrowRight, Star } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#1E1915] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-[95vh]">
+    <section className="w-full relative overflow-hidden bg-[#F97316]/5 md:bg-[#1E1915] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-screen">
 
       {/* Hero Video Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-center opacity-40">
+        <video autoPlay loop muted playsInline className="hidden md:block w-full h-full object-cover object-center opacity-65">
           <source src="/hero.webm" type="video/webm" />
         </video>
       </div>
@@ -22,21 +22,22 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1200px] mx-auto flex flex-col items-center">
 
         {/* Badge */}
-        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 text-sm font-semibold tracking-[0.12em] uppercase shadow-lg">
+        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/20 md:bg-white/10 md:text-white md:border-white/20 text-sm font-semibold tracking-[0.12em] uppercase shadow-lg md:shadow-none">
           Melbourne's most consistent home clean
         </div>
 
         {/* Headline */}
-        <h1 className="max-w-[1150px] text-[46px] md:text-[72px] font-extrabold text-white tracking-[-0.03em] leading-[1.1] mb-8">
+        <h1 className="max-w-[1150px] text-[46px] md:text-[72px] font-extrabold text-gray-900 md:text-white tracking-[-0.03em] leading-[1.1] mb-8">
           Walk in. Breathe out.
           <br />
-          <span className="whitespace-nowrap">Your home is exactly how it</span>
-          <br />
-          <span>should be.</span>
+          <span>Your home is exactly </span>
+          <span className="text-[#F97316] relative inline-block">
+            how it should be.
+          </span>
         </h1>
 
         {/* Sub Copy */}
-        <p className="max-w-2xl text-lg md:text-xl text-neutral-200 leading-relaxed mb-10">
+        <p className="max-w-2xl text-lg md:text-xl text-gray-600 md:text-neutral-200 leading-relaxed mb-10">
           You shouldn't have to supervise your cleaner, explain things twice,
           or wonder if they actually showed up. Crisp delivers a consistent,
           detailed clean — every visit, without the mental load.
@@ -45,14 +46,14 @@ export default function Hero() {
         {/* CTA */}
         <Button
           size="xl"
-          className="rounded-full px-10 py-7 text-lg font-bold bg-primary hover:bg-primary/90 text-white shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 mb-6"
+          className="rounded-full px-10 py-7 text-lg font-bold bg-[#F97316] hover:bg-[#F97316]/90 text-white shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 mb-6"
         >
           Book Your First Clean — 25% Off
           <ArrowRight className="w-5 h-5" />
         </Button>
 
         {/* Sub CTA */}
-        <div className="flex flex-wrap items-center justify-center gap-x-2 text-sm font-medium text-white/70 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-x-2 text-sm font-medium text-gray-500 md:text-white/70 mb-10">
           <span>Trusted by Melbourne households</span>
           <span>·</span>
           <span>Insured & vetted cleaners</span>
@@ -63,23 +64,23 @@ export default function Hero() {
         {/* Trust Pills */}
         <div className="flex flex-wrap items-center justify-center gap-3">
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
-            <Star className="w-4 h-4 fill-primary text-primary" />
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
+            <Star className="w-4 h-4 fill-[#F97316] text-[#F97316]" />
             4.9 Google
           </div>
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
-            <span className="text-white">97%</span>
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
+            <span className="text-[#F97316] md:text-white font-bold">97%</span>
             same cleaner
           </div>
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
-            <span className="text-white">100%</span>
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
+            <span className="text-[#F97316] md:text-white font-bold">100%</span>
             insured
           </div>
 
-          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-sm text-sm font-semibold text-white">
-            <span className="text-white">30sec</span>
+          <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
+            <span className="text-[#F97316] md:text-white font-bold">30sec</span>
             booking
           </div>
 

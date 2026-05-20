@@ -1,7 +1,7 @@
 // utils/pricing.ts
 
 export const CLEANING_TYPE_PRICES = {
-  Regular: 45,
+  Standard: 45,
   Deep: 135,
   Vacate: 280,
 } as const;
@@ -71,6 +71,7 @@ export interface PricingResponse {
       total: number;
     };
     extras: { items: Array<{ name: string; price: number }>; total: number };
+    discount?: { name: string; amount: number };
   };
 }
 

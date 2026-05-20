@@ -45,7 +45,7 @@ const Footer = () => {
           <div className="md:col-span-5 flex flex-col items-center md:items-start">
             {/* <-- Replaced Text with Logo Image --> */}
             <img
-              src="/logo.png"
+              src="/logo.png?v=3"
               alt="Crisp Cleaning Logo"
               // Added md:-ml-3 to pull it left and optically align the logo text with the paragraph
               className="h-12 w-auto mb-6 object-contain md:-ml-3"

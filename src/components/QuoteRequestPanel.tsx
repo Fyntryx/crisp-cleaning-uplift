@@ -1,7 +1,6 @@
-"use client";
-
 import React from "react";
-import Services from "./Services";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 interface QuoteRequestPanelProps {
   headline?: React.ReactNode;
@@ -13,8 +12,6 @@ interface QuoteRequestPanelProps {
 export default function QuoteRequestPanel({
   headline,
   subheadline,
-  contextPoints,
-  seoKeyword,
 }: QuoteRequestPanelProps) {
   return (
     <section className="relative py-12 md:py-20 overflow-hidden bg-gray-50/30">
@@ -25,25 +22,38 @@ export default function QuoteRequestPanel({
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom duration-700">
           
-          {/* If custom headline is passed, render a sleek centered header block */}
+          {/* Headline */}
           {headline && (
             <div className="text-center max-w-2xl mx-auto mb-10">
-              <h2 className="text-3xl md:text-4xl font-display font-bold leading-tight text-gray-900 mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-[40px] font-display font-bold leading-tight text-gray-900 mb-4 tracking-tight">
                 {headline}
               </h2>
               {subheadline && (
-                <p className="text-base md:text-lg text-gray-600 font-medium leading-relaxed">
+                <p className="text-[15px] md:text-[16px] text-gray-600 font-medium leading-[24px] font-sans antialiased">
                   {subheadline}
                 </p>
               )}
             </div>
           )}
 
-          <div className="relative w-full">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-orange-500/10 rounded-[2.5rem] blur-xl opacity-40 z-0"></div>
-            <div className="relative z-10 w-full">
-              <Services />
+          {/* Standalone Dark CTA Box */}
+          <div className="w-full max-w-md mx-auto bg-[#14120F] rounded-[32px] p-8 text-center text-white border border-white/5 shadow-2xl relative overflow-hidden">
+            <div className="absolute -bottom-24 -right-24 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[80px] pointer-events-none" />
+            
+            <div className="flex items-center justify-center gap-2 text-sm text-white/60 mb-3 relative z-10">
+              <span>Takes 30 seconds</span>
+              <span>·</span>
+              <span>No lock-in contracts</span>
             </div>
+
+            <p className="text-base font-semibold text-white mb-8 relative z-10">
+              Your quote is calculated instantly based on your home size.
+            </p>
+
+            <Link href="/quote" className="inline-flex w-full items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-white px-8 py-4 font-bold text-lg shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all group relative z-10">
+              Get a quote
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </div>

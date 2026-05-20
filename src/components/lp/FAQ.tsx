@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: "Not satisfied?",
-    answer: "Our 100% Satisfaction Guarantee means that if you're not happy with the clean, simply contact us within 32 hours and send a photo. We will return within 48 hours to fix it at no extra cost to you."
+    answer: "Our 100% Satisfaction Guarantee means that if you're not happy with the clean, simply contact us within 24 hours and send a photo. We will return within 72 hours to fix it at no extra cost to you."
   },
   {
     question: "Insured and licensed?",
@@ -33,19 +33,30 @@ const faqs = [
   }
 ];
 
-export default function FAQ() {
+interface FAQItem {
+  question: string;
+  answer: React.ReactNode;
+}
+
+interface FAQProps {
+  data?: FAQItem[];
+  title?: string;
+}
+
+export default function FAQ({ data, title }: FAQProps) {
+  const currentFaqs = data || faqs;
   return (
     <section className="py-24 bg-[#FAF9F6]">
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-12">
           <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Common Questions</h4>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
-            Everything you might be wondering.
+            {title || "Everything you might be wondering."}
           </h2>
         </div>
 
         <Accordion type="single" collapsible className="w-full space-y-4">
-          {faqs.map((faq, index) => (
+          {currentFaqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-orange-50 rounded-2xl px-6 py-2 shadow-sm data-[state=open]:border-primary/30 transition-all">
               <AccordionTrigger className="text-left font-bold text-lg hover:no-underline hover:text-primary transition-colors">
                 {faq.question}

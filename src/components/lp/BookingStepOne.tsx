@@ -18,12 +18,12 @@ import {
 } from "lucide-react";
 
 export default function BookingStepOne() {
-  const [selectedPlan, setSelectedPlan] = useState("Regular");
+  const [selectedPlan, setSelectedPlan] = useState("Standard");
 
   const plans = [
     { 
-      id: "Regular", 
-      label: "Regular Clean",
+      id: "Standard", 
+      label: "Standard Clean",
       description: "Consistent, detailed maintenance on your schedule",
       icon: Home
     },
@@ -38,7 +38,8 @@ export default function BookingStepOne() {
       id: "Vacate", 
       label: "Vacate Clean",
       description: "Cleaned to rental inspection standard",
-      icon: Key
+      icon: Key,
+      badge: "BOND BACK GUARANTEE"
     }
   ];
 
@@ -59,11 +60,8 @@ export default function BookingStepOne() {
         
         {/* Wizard Header */}
         <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shadow-sm shadow-orange-500/30">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <span className="font-extrabold text-base text-foreground tracking-tight">crisp cleaning</span>
+          <div className="flex items-center">
+            <img src="/logo.png?v=3" alt="Crisp Cleaning" className="h-8 md:h-10 object-contain" />
           </div>
           <div className="flex items-center gap-4">
             <span className="text-[9px] font-extrabold tracking-widest text-muted-foreground/50 uppercase">STEP 1 OF 5</span>
@@ -168,7 +166,7 @@ export default function BookingStepOne() {
                 <h3 className="font-extrabold text-base md:text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
                   {plan.label}
                 </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-[15px] font-sans antialiased leading-[24px] text-muted-foreground font-medium">
                   {plan.description}
                 </p>
               </button>

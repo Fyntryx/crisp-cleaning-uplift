@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary">
+    <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary relative w-full overflow-x-hidden">
       <Navbar />
       
       <Hero />

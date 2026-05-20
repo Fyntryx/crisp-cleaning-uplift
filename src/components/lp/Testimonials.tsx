@@ -45,33 +45,46 @@ const reviews = [
   { text: "Super impressed. Our place looked like a display home afterwards.", author: "VERIFIED GOOGLE REVIEW" }
 ];
 
-export default function Testimonials() {
+interface TestimonialsProps {
+  title?: string;
+  subtitle?: string;
+  topTitle?: string | null;
+  hideBeforeAfter?: boolean;
+  hideReviews?: boolean;
+}
+
+export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews }: TestimonialsProps) {
   return (
     <section className="py-24 bg-[#FAF9F6]">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="mb-12">
-          <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">Testimonials</h4>
+          {topTitle !== null && (
+            <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">{topTitle || "Testimonials"}</h4>
+          )}
           <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
-            Stop settling for average.
+            {title || "Stop settling for average."}
           </h2>
-          <p className="text-lg text-muted-foreground">Here's what happened when they switched to Crisp.</p>
+          <p className="text-lg text-muted-foreground">{subtitle || "Here's what happened when they switched to Crisp."}</p>
         </div>
 
         {/* Top Grid: Before/After */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="col-span-1">
-            <BeforeAfterSlider />
+        {!hideBeforeAfter && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="col-span-1">
+              <BeforeAfterSlider />
+            </div>
+            <div className="col-span-1">
+              <ComingSoonCard title="Kitchen" />
+            </div>
+            <div className="col-span-1">
+              <ComingSoonCard title="Living room" />
+            </div>
           </div>
-          <div className="col-span-1">
-            <ComingSoonCard title="Kitchen" />
-          </div>
-          <div className="col-span-1">
-            <ComingSoonCard title="Living room" />
-          </div>
-        </div>
+        )}
 
         {/* Bottom Grid: Reviews (Masonry) */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
+        {!hideReviews && (
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
           {reviews.map((review, i) => (
             <div key={i} className="break-inside-avoid mb-6 bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow">
               <div className="flex gap-1 mb-6">
@@ -84,15 +97,18 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
+        )}
 
-        <div className="mt-12 flex justify-center items-center gap-3">
-          <div className="flex gap-1">
-            {[...Array(5)].map((_, idx) => (
-              <Star key={idx} className="w-5 h-5 fill-primary text-primary" />
-            ))}
+        {!hideReviews && (
+          <div className="mt-12 flex justify-center items-center gap-3">
+            <div className="flex gap-1">
+              {[...Array(5)].map((_, idx) => (
+                <Star key={idx} className="w-5 h-5 fill-primary text-primary" />
+              ))}
+            </div>
+            <span className="font-bold text-sm text-foreground">Rated 4.9 stars on Google by Melbourne homeowners</span>
           </div>
-          <span className="font-bold text-sm text-foreground">Rated 4.9 stars on Google by Melbourne homeowners</span>
-        </div>
+        )}
       </div>
     </section>
   );

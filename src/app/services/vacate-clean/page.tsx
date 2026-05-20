@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuoteRequestPanel from "@/components/QuoteRequestPanel";
@@ -13,9 +14,9 @@ import Testimonials from "@/components/lp/Testimonials";
 import { Shield, Star, CheckCircle2 } from "lucide-react";
 
 // --- DATA OBJECT ---
-const commercialCleaningData = {
+const vacateCleaningData = {
   hero: {
-    headline: "Professional Commercial Cleaning in Melbourne",
+    headline: "Professional Vacate Cleaning in Melbourne",
     subheadline: "Reliable cleaners. Instant online quote. Book in 60 seconds.",
   },
   trustBar: [
@@ -25,26 +26,26 @@ const commercialCleaningData = {
   ],
   faqs: [
     {
-      question: "What is included in commercial cleaning?",
-      answer: "Commercial cleaning includes comprehensive workplace sanitisation: cleaning and dusting desks/workstations, sanitising kitchenettes and breakrooms, sanitising bathrooms, vacuuming and mopping floors, emptying office rubbish bins, and disinfecting high-touch surfaces."
+      question: "What is exactly included in a vacate cleaning?",
+      answer: "Our vacate cleaning is designed to meet strict Australian end-of-lease standards. It includes a deep scrub of kitchens (oven, rangehood, stovetop, cabinets inside/out), full bathroom sanitisation, skirting boards, window tracks, internal windows, door frames, wall spot cleaning, and exhaustive vacuuming and mopping throughout.",
     },
     {
-      question: "Can you clean after hours?",
-      answer: "Yes! We completely understand that you need to minimize disruption to your business operations. We can schedule cleans after hours, on weekends, or during times that suit your company's schedule."
+      question: "Do you guarantee I will get my bond back?",
+      answer: "Yes! We offer a 100% Bond-Back Guarantee. If your landlord or property manager raises any issues regarding the cleanliness of the property within 72 hours of our service, we will return to re-clean the flagged areas at absolutely no extra cost to you.",
     },
     {
-      question: "Are your cleaners background-checked and fully insured?",
-      answer: "Absolutely. Security and trust are critical for business environments. Every Crisp Cleaning commercial cleaner undergoes strict national police background checks and is fully covered by public liability insurance."
+      question: "Are your cleaners background-checked and insured?",
+      answer: "Yes, 100%. Every single Crisp Cleaning professional undergoes a strict police background check and is fully insured for your complete peace of mind.",
     },
     {
-      question: "Can we get custom invoices for tax and accounting purposes?",
-      answer: "Yes, we provide fully detailed GST tax invoices immediately after each clean is completed and processed. You can easily manage all invoices through your company dashboard."
-    }
+      question: "Do I need to be home during the clean?",
+      answer: "Not at all! You can simply provide entry instructions (like a key box code or key release details) when you book online. Our cleaners are completely vetted and secure, so you can trust us to lock up when done.",
+    },
   ],
 };
 
-export default function CommercialCleaningPage() {
-  const { hero, trustBar, faqs } = commercialCleaningData;
+export default function VacateCleaningPage() {
+  const { hero, trustBar, faqs } = vacateCleaningData;
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">
@@ -59,7 +60,7 @@ export default function CommercialCleaningPage() {
                 "@id": "https://crispcleaning.com.au/#localbusiness",
                 "name": "Crisp Cleaning",
                 "image": "https://crispcleaning.com.au/logo.png",
-                "description": "Professional office and commercial cleaning service in Melbourne.",
+                "description": "Professional vacate cleaning service in Melbourne.",
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Melbourne",
@@ -84,7 +85,7 @@ export default function CommercialCleaningPage() {
               },
               {
                 "@type": "Service",
-                "serviceType": "Commercial Cleaning",
+                "serviceType": "Vacate Cleaning",
                 "provider": {
                   "@id": "https://crispcleaning.com.au/#localbusiness"
                 }
@@ -117,11 +118,11 @@ export default function CommercialCleaningPage() {
             </>
           }
           subheadline={hero.subheadline}
-          seoKeyword="commercial cleaning"
+          seoKeyword="vacate cleaning"
           contextPoints={[
-            "Top-rated commercial and office cleaning in Melbourne.",
-            "After-hours and weekend slots available.",
-            "Rigorous safety protocols and fully insured cleaners.",
+            "Top-rated vacate cleaning professionals in Melbourne.",
+            "Bond-back guarantee for ultimate peace of mind.",
+            "Fully equipped and insured cleaners.",
           ]}
         />
       </div>
@@ -154,7 +155,7 @@ export default function CommercialCleaningPage() {
       <Process />
 
       {/* 5. Inclusions Checklist Tabbed Section */}
-      <Checklist defaultTab="Standard" />
+      <Checklist defaultTab="Vacate" />
 
       {/* 6. Our Promise / Satisfaction Guarantee */}
       <Guarantee />
@@ -168,7 +169,7 @@ export default function CommercialCleaningPage() {
               Where we clean in Melbourne
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We provide premium commercial and office cleaning across Melbourne and surrounding suburbs within a 50km radius.
+              We provide premium end of lease and vacate cleaning across Melbourne and surrounding suburbs within a 50km radius.
             </p>
           </div>
 

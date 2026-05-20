@@ -14,7 +14,7 @@ export default function Guarantee() {
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-bold mb-6">100% Satisfaction Guarantee</h3>
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-              Not satisfied with your clean? Contact us within 32 hours, send us a photo, and we'll be back within 48 hours to fix it — at no extra cost. No arguments, no awkward conversations.
+              Not satisfied with your clean? Contact us within <span className="underline underline-offset-4 decoration-white/40 font-semibold">24 hours</span>, send us a photo, and we'll be back within <span className="underline underline-offset-4 decoration-white/40 font-semibold">72 hours</span> to fix it — at no extra cost. No arguments, no awkward conversations.
             </p>
             
             <Button size="xl" className="rounded-full px-10 py-7 text-lg font-bold bg-white text-primary hover:bg-orange-50 shadow-lg hover:shadow-xl transition-all mb-8">

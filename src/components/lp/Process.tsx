@@ -26,7 +26,12 @@ const steps = [
   }
 ];
 
-export default function Process() {
+interface ProcessProps {
+  title?: string;
+  subtitle?: string;
+}
+
+export default function Process({ title, subtitle }: ProcessProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -45,8 +50,11 @@ export default function Process() {
         <div className="text-center mb-16">
           <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">How It Works</h4>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
-            The 5-step system behind every clean.
+            {title || "The 5-step system behind every clean."}
           </h2>
+          {subtitle && (
+            <p className="text-lg text-muted-foreground">{subtitle}</p>
+          )}
         </div>
 
         <div className="relative pl-8 md:pl-16">

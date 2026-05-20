@@ -1,9 +1,9 @@
 {
   "pages": {
-    "/page": [
+    "/services/standard-house-clean/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/services/standard-house-clean/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",

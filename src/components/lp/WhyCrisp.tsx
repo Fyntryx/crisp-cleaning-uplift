@@ -25,7 +25,7 @@ const features = [
   {
     icon: ThumbsUp,
     title: "Satisfaction Guaranteed",
-    description: "Not happy? We'll re-clean within 48 hours, no questions asked. If we can't make it right, you don't pay."
+    description: "Not happy? We'll re-clean within 72 hours, no questions asked. If we can't make it right, you don't pay."
   },
   {
     icon: Smartphone,
@@ -37,27 +37,41 @@ const features = [
 export default function WhyCrisp() {
   return (
     <section className="py-24 bg-[#FAF9F6]">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-16">
-          <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Why Crisp</h4>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
+      <div className="container mx-auto px-4 max-w-[1200px]">
+        <div className="text-center mb-16 md:mb-20">
+          <h4 className="text-[#F97316] font-bold tracking-widest text-[11px] uppercase mb-4">Why Crisp</h4>
+          <h2 className="text-4xl md:text-[42px] font-bold text-gray-900 tracking-tight mb-6">
             It isn't one thing. It's everything.
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Increased gap from gap-6 to gap-8 for more breathing room */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
-              <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 hover:shadow-md hover:-translate-y-1 transition-all duration-300 relative group">
-                <span className="absolute top-6 right-8 text-muted-foreground/30 font-bold text-sm">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div className="w-12 h-12 bg-orange-50 group-hover:bg-primary transition-colors duration-300 rounded-xl flex items-center justify-center mb-6">
-                  <Icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+              /* Upgraded padding to p-10, radius to rounded-[32px], and softened the border */
+              <div key={i} className="bg-white p-8 md:p-10 rounded-[32px] shadow-sm border border-gray-100 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1 transition-all duration-300 relative group">
+
+                <div className="w-12 h-12 bg-orange-50 group-hover:bg-[#F97316] transition-colors duration-300 rounded-[14px] flex items-center justify-center mb-6">
+                  {i === 5 ? (
+                    <img
+                      src="/workflow.png?v=2"
+                      alt={feature.title}
+                      /* Reduced custom icon size slightly to match Lucide icons */
+                      className="w-5 h-5 object-contain transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+                    />
+                  ) : (
+                    /* Reduced Lucide icon size from w-6 to w-5 for a more delicate, premium look */
+                    <Icon className="w-5 h-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
+                  )}
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+
+                {/* Fixed Typography: Down to text-[17px] and font-semibold to remove the "heavy" look */}
+                <h3 className="text-[17px] font-semibold text-gray-900 mb-3 tracking-tight">{feature.title}</h3>
+
+                {/* Fixed Body Text: Standardized to 14px with relaxed line height */}
+                <p className="text-[14px] text-gray-500 leading-relaxed font-normal">{feature.description}</p>
               </div>
             );
           })}
