@@ -6,7 +6,7 @@ import { ArrowRight, Star } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="w-full relative overflow-hidden bg-[#F97316]/5 md:bg-[#1E1915] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-screen">
+    <section className="w-full relative overflow-hidden bg-[#FB8C42]/5 md:bg-[#1E1915] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-screen">
 
       {/* Hero Video Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1200px] mx-auto flex flex-col items-center">
 
         {/* Badge */}
-        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/20 md:bg-white/10 md:text-white md:border-white/20 text-sm font-semibold tracking-[0.12em] uppercase shadow-lg md:shadow-none">
+        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20 md:bg-white/10 md:text-white md:border-white/20 text-sm font-semibold tracking-[0.12em] uppercase shadow-lg md:shadow-none">
           Melbourne's most consistent home clean
         </div>
 
@@ -31,7 +31,7 @@ export default function Hero() {
           Walk in. Breathe out.
           <br />
           <span>Your home is exactly </span>
-          <span className="text-[#F97316] relative inline-block">
+          <span className="text-[#FB8C42] relative inline-block">
             how it should be.
           </span>
         </h1>
@@ -46,7 +46,7 @@ export default function Hero() {
         {/* CTA */}
         <Button
           size="xl"
-          className="rounded-full px-10 py-7 text-lg font-bold bg-[#F97316] hover:bg-[#F97316]/90 text-white shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 mb-6"
+          className="rounded-full px-10 py-7 text-lg font-bold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 mb-6"
         >
           Book Your First Clean — 25% Off
           <ArrowRight className="w-5 h-5" />
@@ -65,22 +65,22 @@ export default function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-3">
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
-            <Star className="w-4 h-4 fill-[#F97316] text-[#F97316]" />
+            <Star className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" />
             4.9 Google
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
-            <span className="text-[#F97316] md:text-white font-bold">97%</span>
+            <span className="text-[#FB8C42] md:text-white font-bold">97%</span>
             same cleaner
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
-            <span className="text-[#F97316] md:text-white font-bold">100%</span>
+            <span className="text-[#FB8C42] md:text-white font-bold">100%</span>
             insured
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
-            <span className="text-[#F97316] md:text-white font-bold">30sec</span>
+            <span className="text-[#FB8C42] md:text-white font-bold">30sec</span>
             booking
           </div>
 

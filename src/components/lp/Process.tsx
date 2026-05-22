@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 const steps = [
   {
@@ -29,15 +29,53 @@ const steps = [
 interface ProcessProps {
   title?: string;
   subtitle?: string;
+  layout?: "center" | "left";
 }
 
-export default function Process({ title, subtitle }: ProcessProps = {}) {
+function StepCircle({ index, totalSteps, scrollYProgress }: {
+  index: number;
+  totalSteps: number;
+  scrollYProgress: any;
+}) {
+  // Each step activates when the line reaches it
+  // Step threshold is evenly distributed across 0-1 scroll range
+  const threshold = index === totalSteps - 1 ? 0.9 : index / (totalSteps - 1);
+
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [threshold - 0.05, threshold + 0.05],
+    ["rgba(255, 247, 237, 0.8)", "#FB8C42"]
+  );
+
+  const color = useTransform(
+    scrollYProgress,
+    [threshold - 0.05, threshold + 0.05],
+    ["#FB8C42", "#ffffff"]
+  );
+
+  const scale = useTransform(
+    scrollYProgress,
+    [threshold - 0.05, threshold + 0.05],
+    [1, 1.15]
+  );
+
+  return (
+    <motion.div
+      style={{ backgroundColor, color, scale }}
+      className="absolute -left-[32px] md:-left-[52px] top-8 w-10 h-10 rounded-full font-bold text-base flex items-center justify-center shadow-sm border-[4px] border-white ring-1 ring-orange-100 z-20 leading-none pt-0.5"
+    >
+      {index + 1}
+    </motion.div>
+  );
+}
+
+export default function Process({ title, subtitle, layout = "center" }: ProcessProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "end center"]
+    offset: ["start center", "end end"]
   });
-  
+
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -46,68 +84,58 @@ export default function Process({ title, subtitle }: ProcessProps = {}) {
 
   return (
     <section className="py-24 bg-white" ref={containerRef}>
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-16">
-          <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">How It Works</h4>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
+      <div className={`container mx-auto px-4 ${layout === "left" ? "max-w-[1216px]" : "max-w-4xl"}`}>
+        <div className={`mb-16 ${layout === "left" ? "max-w-[896px]" : "text-center"}`}>
+          {layout === "left" ? (
+            <div className="mb-3">
+              <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
+                How It Works
+              </span>
+            </div>
+          ) : (
+            <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">How It Works</h4>
+          )}
+          <h2
+            style={layout === "left" ? { letterSpacing: "-1.2px", lineHeight: "48px" } : undefined}
+            className={`mb-5 ${layout === "left" ? "text-[48px] font-semibold text-gray-900 mt-3" : "text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6"}`}
+          >
             {title || "The 5-step system behind every clean."}
           </h2>
           {subtitle && (
-            <p className="text-lg text-muted-foreground">{subtitle}</p>
+            <p className={`${layout === "left" ? "text-[18px] text-gray-500 font-normal leading-[28px] max-w-[600px]" : "text-lg text-muted-foreground"}`}>{subtitle}</p>
           )}
         </div>
 
         <div className="relative pl-8 md:pl-16">
-          {/* Vertical line connecting steps */}
+          {/* Background line */}
           <div className="absolute left-[15px] md:left-[35px] top-8 bottom-12 w-px bg-orange-100/50"></div>
-          
-          {/* Animated fill line */}
-          <motion.div 
+
+          {/* Animated fill line — tied to scroll */}
+          <motion.div
             className="absolute left-[15px] md:left-[35px] top-8 bottom-12 w-px bg-primary origin-top"
             style={{ scaleY }}
-          ></motion.div>
+          />
 
           <div className="space-y-16 relative z-10">
-            {steps.map((step, index) => {
-              const circleVariants = {
-                inactive: {
-                  backgroundColor: "rgba(255, 247, 237, 0.8)", // bg-orange-50/80
-                  color: "#f97316", // text-primary
-                  scale: 1,
-                },
-                active: {
-                  backgroundColor: "#f97316", // bg-primary (solid orange)
-                  color: "#ffffff", // text-white
-                  scale: 1.15,
-                  transition: { type: "spring" as const, stiffness: 300, damping: 20 }
-                }
-              };
-
-              return (
-                <div key={index} className="relative group">
-                  {/* Number Indicator (fills with bg-primary when line enters circle) */}
-                  <motion.div 
-                    variants={circleVariants}
-                    initial="inactive"
-                    whileInView="active"
-                    whileHover={{ scale: 1.25 }}
-                    viewport={{ once: false, margin: "100% 0px -50% 0px" }}
-                    className="absolute -left-[32px] md:-left-[52px] top-8 w-10 h-10 rounded-full font-bold text-base flex items-center justify-center shadow-sm border-[4px] border-white ring-1 ring-orange-100 z-20 transition-transform leading-none pt-0.5 cursor-default"
-                  >
-                    {index + 1}
-                  </motion.div>
-
-                  <div className="pl-6 md:pl-4 py-2">
-                    <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-orange-100/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow">
-                      <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">
-                        Step {index + 1} — {step.title}
-                      </h3>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{step.description}</p>
-                    </div>
+            {steps.map((step, index) => (
+              <div key={index} className="relative group">
+                <StepCircle
+                  index={index}
+                  totalSteps={steps.length}
+                  scrollYProgress={scaleY}
+                />
+                <div className="pl-6 md:pl-4 py-2">
+                  <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-orange-100/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">
+                      Step {index + 1} — {step.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
 

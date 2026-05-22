@@ -213,17 +213,16 @@ const HowWeWork = () => {
 
                 const desktopStyle = isDesktop
                   ? {
-                      left: pos.left,
-                      top: "50%",
-                      transform: `translate(-50%, -50%) scale(${
-                        isVisible ? 1 : 0.9
+                    left: pos.left,
+                    top: "50%",
+                    transform: `translate(-50%, -50%) scale(${isVisible ? 1 : 0.9
                       })`,
-                      opacity: isVisible ? 1 : 0,
-                      filter: isVisible ? "blur(0px)" : "blur(4px)",
+                    opacity: isVisible ? 1 : 0,
+                    filter: isVisible ? "blur(0px)" : "blur(4px)",
 
-                      transition: "all 0.3s ease-out",
-                      zIndex: 30,
-                    }
+                    transition: "all 0.3s ease-out",
+                    zIndex: 30,
+                  }
                   : {};
 
                 return (
@@ -231,8 +230,7 @@ const HowWeWork = () => {
                     key={index}
                     className="relative w-full max-w-md mx-auto md:absolute md:w-[24%] md:h-[260px] md:m-0"
                     style={desktopStyle}>
-                    <div className="md:hidden absolute left-4 top-16 bottom-[-3rem] w-0.5 bg-white/20 last:hidden" />
-
+                    <div className="md:hidden absolute left-1/2 -translate-x-1/2 -bottom-12 w-[2px] h-12 bg-white/30 z-0" />
                     <div className="bg-white/10 backdrop-blur-md p-4 lg:p-6 rounded-3xl border border-white/20 relative z-30 shadow-lg text-center flex flex-col items-center h-full justify-center">
                       <div className="flex items-center justify-center gap-3 mb-3 lg:mb-4">
                         <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white text-primary font-bold text-base lg:text-lg flex items-center justify-center shadow-sm border-4 border-white/20">

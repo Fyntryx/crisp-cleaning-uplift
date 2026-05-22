@@ -34,10 +34,13 @@ export const CTASection = ({
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="relative rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-accent p-12 md:p-16 overflow-hidden shadow-xl text-center">
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
+            <h2 
+              style={{ letterSpacing: "-1.2px", lineHeight: "1.1" }}
+              className="text-[48px] font-semibold text-white mb-6"
+            >
               {heading}
             </h2>
-            <p className="text-white/90 text-lg mb-8">{description}</p>
+            <p className="text-white/90 text-[18px] leading-[28px] max-w-[600px] mx-auto mb-8 font-normal">{description}</p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={primaryAction.href}>

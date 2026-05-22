@@ -1,5 +1,5 @@
 import React from "react";
-import { Star, Clock, ArrowRightLeft, ArrowRight } from "lucide-react";
+import { Star, Clock, ArrowRightLeft, ArrowRight, ExternalLink } from "lucide-react";
 
 // Placeholder BeforeAfterSlider
 const BeforeAfterSlider = () => (
@@ -36,7 +36,7 @@ const ComingSoonCard = ({ title }: { title: string }) => (
   </div>
 );
 
-const reviews = [
+const defaultReviews = [
   { text: "Honestly felt like a brand new home.", author: "VERIFIED GOOGLE REVIEW" },
   { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "VERIFIED GOOGLE REVIEW" },
   { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "VERIFIED GOOGLE REVIEW" },
@@ -46,25 +46,38 @@ const reviews = [
 ];
 
 interface TestimonialsProps {
-  title?: string;
+  title?: React.ReactNode;
   subtitle?: string;
   topTitle?: string | null;
   hideBeforeAfter?: boolean;
   hideReviews?: boolean;
+  layout?: "center" | "left";
+  reviews?: { text: string; author: string }[];
 }
 
-export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews }: TestimonialsProps) {
+export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews }: TestimonialsProps) {
   return (
     <section className="py-24 bg-[#FAF9F6]">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="mb-12">
+      <div className={`container mx-auto px-4 ${layout === "left" ? "max-w-[1216px]" : "max-w-6xl"}`}>
+        <div className={`mb-12 ${layout === "left" ? "max-w-[896px]" : ""}`}>
           {topTitle !== null && (
-            <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">{topTitle || "Testimonials"}</h4>
+            layout === "left" ? (
+              <div className="mb-3">
+                <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
+                  {topTitle || "Testimonials"}
+                </span>
+              </div>
+            ) : (
+              <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">{topTitle || "Testimonials"}</h4>
+            )
           )}
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
+          <h2 
+            style={layout === "left" ? { letterSpacing: "-1.2px", lineHeight: "48px" } : undefined}
+            className={`mb-4 ${layout === "left" ? "text-[48px] font-semibold text-gray-900 mt-3" : "text-4xl md:text-5xl font-bold text-foreground tracking-tight"}`}
+          >
             {title || "Stop settling for average."}
           </h2>
-          <p className="text-lg text-muted-foreground">{subtitle || "Here's what happened when they switched to Crisp."}</p>
+          <p className={`${layout === "left" ? "text-[18px] text-gray-500 font-normal leading-[28px] max-w-[600px]" : "text-lg text-muted-foreground"}`}>{subtitle || "Here's what happened when they switched to Crisp."}</p>
         </div>
 
         {/* Top Grid: Before/After */}
@@ -82,31 +95,44 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
           </div>
         )}
 
-        {/* Bottom Grid: Reviews (Masonry) */}
+        {/* Bottom Grid: Reviews */}
         {!hideReviews && (
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review, i) => (
-            <div key={i} className="break-inside-avoid mb-6 bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow">
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow h-full">
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, idx) => (
                   <Star key={idx} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
               <p className="text-foreground font-medium text-sm leading-relaxed mb-6">"{review.text}"</p>
-              <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase mt-6">{review.author}</p>
+              <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase mt-auto pt-2">{review.author}</p>
             </div>
           ))}
         </div>
         )}
 
         {!hideReviews && (
-          <div className="mt-12 flex justify-center items-center gap-3">
-            <div className="flex gap-1">
-              {[...Array(5)].map((_, idx) => (
-                <Star key={idx} className="w-5 h-5 fill-primary text-primary" />
-              ))}
+          <div className="mt-12 flex flex-col md:flex-row justify-center items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, idx) => (
+                  <Star key={idx} className="w-5 h-5 fill-[#FB8C42] text-[#FB8C42]" />
+                ))}
+              </div>
+              <span className="font-bold text-sm text-gray-900">Rated 4.9 on Google · 14 verified reviews</span>
             </div>
-            <span className="font-bold text-sm text-foreground">Rated 4.9 stars on Google by Melbourne homeowners</span>
+            
+            <a 
+              href="https://www.google.com/maps/place/Crisp+Cleaning/@-37.9725665,145.0531353,9z/data=!4m8!3m7!1s0x6e098402deb63a2b:0x31de0e2a713fa297!8m2!3d-37.9725665!4d145.0531353!9m1!1b1!16s%2Fg%2F11nb2s2grt" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-200 text-[#FB8C42] text-[12px] font-bold hover:bg-orange-50 transition-colors"
+            >
+              <span className="font-extrabold text-[13px]">G</span>
+              <span>View on Google</span>
+              <ExternalLink size={14} />
+            </a>
           </div>
         )}
       </div>

@@ -74,7 +74,7 @@ export default function QuoteRequestPanel({
           ) : (
             /* Interactive Booking Form */
             <div className="relative w-full">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-orange-500/10 rounded-[2.5rem] blur-xl opacity-40 z-0"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-[#FB8C42]/10 rounded-[2.5rem] blur-xl opacity-40 z-0"></div>
               <div className="relative z-10 w-full">
                 <Services />
               </div>

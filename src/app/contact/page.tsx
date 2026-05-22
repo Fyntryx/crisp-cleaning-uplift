@@ -49,11 +49,11 @@ const ContactPage = () => {
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-1">Working Hours</h3>
-                      <p className="text-muted-foreground text-sm mb-2">
+                      <h3 className="text-[17px] font-semibold text-gray-900 mb-1">Working Hours</h3>
+                      <p className="text-[14px] text-gray-500 font-normal mb-2">
                         We're here to help
                       </p>
-                      <div className="text-foreground font-medium space-y-1">
+                      <div className="text-gray-900 font-medium space-y-1 text-[15px]">
                         <p>Mon - Fri: 8:00 AM - 5:00 PM</p>
                       </div>
                     </div>
@@ -66,13 +66,13 @@ const ContactPage = () => {
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="font-bold text-lg mb-1">Email Us</h3>
-                      <p className="text-muted-foreground text-sm mb-2">
+                      <h3 className="text-[17px] font-semibold text-gray-900 mb-1">Email Us</h3>
+                      <p className="text-[14px] text-gray-500 font-normal mb-2">
                         We'll respond within 24 hours
                       </p>
                       <a
                         href="mailto:crispcleaningmelbourne@outlook.com"
-                        className="text-primary font-medium hover:underline break-all">
+                        className="text-[#FB8C42] font-medium hover:underline break-all text-[15px]">
                         crispcleaningmelbourne@outlook.com
                       </a>
                     </div>
@@ -85,13 +85,13 @@ const ContactPage = () => {
                       <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-1">Call Us</h3>
-                      <p className="text-muted-foreground text-sm mb-2">
+                      <h3 className="text-[17px] font-semibold text-gray-900 mb-1">Call Us</h3>
+                      <p className="text-[14px] text-gray-500 font-normal mb-2">
                         Mon-Fri from 8am to 5pm
                       </p>
                       <a
                         href="tel:+61451433786"
-                        className="text-primary font-medium hover:underline">
+                        className="text-[#FB8C42] font-medium hover:underline text-[15px]">
                         +61 451 433 786
                       </a>
                     </div>
@@ -104,8 +104,8 @@ const ContactPage = () => {
                       <Instagram className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-1">Socials</h3>
-                      <p className="text-muted-foreground text-sm mb-3">
+                      <h3 className="text-[17px] font-semibold text-gray-900 mb-1">Socials</h3>
+                      <p className="text-[14px] text-gray-500 font-normal mb-3">
                         Follow us on social media
                       </p>
 
@@ -137,10 +137,13 @@ const ContactPage = () => {
               <div className="lg:col-span-3">
                 <div className="glass-card rounded-3xl p-8 md:p-12 shadow-xl border border-border/50">
                   <div className="mb-8">
-                    <h2 className="text-2xl md:text-3xl font-display font-bold mb-3">
+                    <h2 
+                      style={{ letterSpacing: "-1.2px", lineHeight: "1.1" }}
+                      className="text-[48px] font-semibold text-gray-900 mb-4"
+                    >
                       Send us a Message
                     </h2>
-                    <p className="text-muted-foreground">
+                    <p className="text-[18px] text-gray-500 font-normal leading-[28px]">
                       Fill out the form below and we'll get back to you shortly.
                     </p>
                   </div>

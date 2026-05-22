@@ -25,20 +25,23 @@ export const PageHero = ({
 
       <div className="relative z-10 container mx-auto px-6 pt-40 pb-20 text-center">
         {badge && (
-          <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full mb-6 border border-white/20 animate-fade-up">
-            {badge}
-          </span>
+          <div className="mb-4">
+            <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px] animate-fade-up">
+              {badge}
+            </span>
+          </div>
         )}
 
         <h1
-          className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-6 text-white drop-shadow-md animate-fade-up"
-          style={{ animationDelay: "100ms" }}>
+          style={{ letterSpacing: "-1.2px", lineHeight: "1.1", animationDelay: "100ms" }}
+          className="text-[48px] md:text-[64px] font-semibold text-white drop-shadow-md animate-fade-up mb-6 max-w-[896px] mx-auto"
+        >
           {title}
         </h1>
 
         <p
-          className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto animate-fade-up font-medium"
-          style={{ animationDelay: "200ms" }}>
+          className="text-[18px] md:text-[20px] text-white/90 max-w-2xl mx-auto animate-fade-up font-normal"
+          style={{ animationDelay: "200ms", lineHeight: "1.6" }}>
           {description}
         </p>
       </div>

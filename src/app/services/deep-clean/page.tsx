@@ -3,49 +3,81 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import QuoteRequestPanel from "@/components/QuoteRequestPanel";
+import ServiceHero from "./ServiceHero";
 import Checklist from "@/components/lp/Checklist";
 import Process from "@/components/lp/Process";
 import Guarantee from "@/components/lp/Guarantee";
 import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Testimonials from "@/components/lp/Testimonials";
-import { Shield, Star, CheckCircle2 } from "lucide-react";
+import DeepCleanPlans from "./DeepCleanPlans";
+import WhoItsFor from "./WhoItsFor";
+import BuiltForYou from "@/components/lp/BuiltForYou";
+import ServiceDifference from "./ServiceDifference";
+import BeforeAfter from "./BeforeAfter";
+import ServiceAreas from "@/components/lp/ServiceAreas";
+import { Sparkles, Clock, Shield, UserCheck } from "lucide-react";
 
-// --- DATA OBJECT ---
-const deepCleaningData = {
-  hero: {
-    headline: "Professional Deep Cleaning in Melbourne",
-    subheadline: "Reliable cleaners. Instant online quote. Book in 60 seconds.",
+// --- DATA STRUCTURES ---
+const trustIndicators = [
+  { text: "30 second instant quote", icon: Clock },
+  { text: "no lock-in contract", icon: Shield },
+  { text: "insured & vetted", icon: UserCheck }
+];
+
+const faqs = [
+  {
+    question: "What's actually included in a Deep Clean?",
+    answer: (
+      <>
+        The real question is what isn't? Everything in a Standard Clean, plus the detail work that builds up over time — skirting boards, interior windows, edge vacuuming, wall spot cleaning, under-bed vacuum, deep bathroom scrub, mould removal, polish tapware, deep mop, and more. Check the full room-by-room checklist <a href="#checklist" className="font-semibold text-primary hover:underline transition-colors">here</a>.
+      </>
+    )
   },
-  trustBar: [
-    { text: "4.9 Google Rating", icon: Star },
-    { text: "Fully Insured Cleaners", icon: Shield },
-    { text: "100% Satisfaction Guarantee", icon: CheckCircle2 },
-  ],
-  faqs: [
-    {
-      question: "What is exactly included in a deep cleaning?",
-      answer: "Deep cleaning includes everything in a standard clean, plus detailed kitchen degreasing, grout and tile scrubbing, interior cabinet and drawer cleaning, skirting boards, door frames, light switches, internal window sills, and spot cleaning of walls. It's a complete reset for your home.",
-    },
-    {
-      question: "How often should I get a deep cleaning?",
-      answer: "We recommend booking a deep cleaning 2 to 4 times a year, or as a first clean before starting a standard house cleaning service. This helps maintain a higher level of hygiene and cleanliness in the home.",
-    },
-    {
-      question: "Are your cleaners background-checked and insured?",
-      answer: "Yes, 100%. Every Crisp Cleaning professional undergoes rigorous police checks and carries full liability insurance.",
-    },
-    {
-      question: "Do I need to supply any cleaning products or equipment?",
-      answer: "No, our deep cleaning teams arrive fully equipped with high-end commercial vacuums, mop systems, and eco-friendly cleaning products that are completely safe for children and pets.",
-    },
-  ],
-};
+  {
+    question: "How is a Deep Clean different from a Standard Clean?",
+    answer: "A Standard Clean maintains your home on a consistent basis. A Deep Clean is a thorough reset — it covers everything a Standard Clean does, plus all the detail work to ensure your space is truly shining!"
+  },
+  {
+    question: "How long does a Deep Clean take?",
+    answer: "A deep clean can take up to twice the length of a standard clean. A 3-bedroom home typically takes around 3–5 hours. You'll get a time estimate when you book."
+  },
+  {
+    question: "Should I start with a Deep Clean before switching to Standard Cleans?",
+    answer: "Honestly, yes — we'd strongly recommend it. A Deep Clean sets the right baseline so your Standard Cleans can maintain it efficiently from there. Trying to maintain a home that hasn't had a proper reset just won't get that shine you're looking for."
+  },
+  {
+    question: "Will I get the same cleaner every time?",
+    answer: "Yes. We assign you a dedicated cleaner who keeps notes on your home. We hold a 97% same-cleaner consistency across all our bookings. If your cleaner is ever unavailable, you'll hear from us in advance."
+  },
+  {
+    question: "Do I need to be home?",
+    answer: "It's entirely up to you. Many of our clients prefer to provide access to their space and continue with their daily activities. Rest assured, our team is professional and trustworthy, and we'll treat your space with the utmost respect and care. You will receive an ETA before arriving and a summary when we're done."
+  },
+  {
+    question: "What products do you use?",
+    answer: "Eco-friendly, non-toxic, and kid and pet safe products are the standard. If something stronger is needed for a particular job, your cleaner will assess and ask your permission before using it."
+  },
+  {
+    question: "What if I'm not happy?",
+    answer: (
+      <>
+        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay. You can view our full terms <a href="/terms" className="font-semibold text-primary hover:underline transition-colors">here</a>.
+      </>
+    )
+  }
+];
 
-export default function DeepCleaningPage() {
-  const { hero, trustBar, faqs } = deepCleaningData;
+const deepCleanReviews = [
+  { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "MELBOURNE HOMEOWNER" },
+  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "MELBOURNE HOMEOWNER" },
+  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "MELBOURNE HOMEOWNER" },
+  { text: "Coming home to a clean house every week has made life much easier.", author: "MELBOURNE HOMEOWNER" },
+  { text: "Super impressed. Our place looked like a display home afterwards.", author: "MELBOURNE HOMEOWNER" },
+  { text: "Team took great care. Really appreciated the communication — the small details don't go unnoticed. Keep it up Crisp.", author: "MELBOURNE HOMEOWNER" }
+];
 
+export default function HouseCleaningPage() {
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">
       <script
@@ -59,7 +91,7 @@ export default function DeepCleaningPage() {
                 "@id": "https://crispcleaning.com.au/#localbusiness",
                 "name": "Crisp Cleaning",
                 "image": "https://crispcleaning.com.au/logo.png",
-                "description": "Professional deep cleaning service in Melbourne.",
+                "description": "Professional home and house cleaning service in Melbourne.",
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Melbourne",
@@ -84,7 +116,7 @@ export default function DeepCleaningPage() {
               },
               {
                 "@type": "Service",
-                "serviceType": "Deep Cleaning",
+                "serviceType": "Standard House Cleaning",
                 "provider": {
                   "@id": "https://crispcleaning.com.au/#localbusiness"
                 }
@@ -106,121 +138,65 @@ export default function DeepCleaningPage() {
       />
       <Navbar />
 
-      {/* 1. Hero / Quote Request Section */}
-      <div className="pt-24 lg:pt-32">
-        <QuoteRequestPanel
-          headline={
-            <>
-              {hero.headline.split("Melbourne")[0]}
-              <span className="text-primary">Melbourne</span>
-              {hero.headline.split("Melbourne")[1]}
-            </>
-          }
-          subheadline={hero.subheadline}
-          seoKeyword="deep cleaning"
-          contextPoints={[
-            "Top-rated deep cleaning professionals in Melbourne.",
-            "Detailed degreasing and tile scrubbing.",
-            "100% Satisfaction Guarantee.",
-          ]}
-          variant="cta"
-        />
-      </div>
+      {/* 1. Hero */}
+      <ServiceHero />
 
-      {/* 2. Trust Indicators Bar */}
-      <section className="bg-primary/5 border-y border-primary/10 py-6">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 lg:gap-12">
-            {trustBar.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-primary">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <span className="font-semibold text-foreground text-sm md:text-base">
-                    {item.text}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* Wrap remaining sections to reduce vertical gap by ~20% */}
+      <div className="[&>section]:!py-16 lg:[&>section]:!py-20">
+        {/* 2. Choose Your Plan */}
+        <DeepCleanPlans />
 
-      {/* 3. Testimonials (Google reviews & Before/After slider) */}
-      <Testimonials />
+      {/* 3. Before/After */}
+      <BeforeAfter />
 
-      {/* 4. Process Section (How It Works) */}
-      <Process />
+      {/* 4. Checklist */}
+      <Checklist 
+        defaultTab="Deep" 
+        title="Nothing is assumed. Everything is covered." 
+        topTitle="What's Included"
+        layout="left"
+        subtitle="Every Deep Clean follows a defined room-by-room checklist. Not a vibe — a system. Here's exactly what gets done."
+        availableTabs={["Deep", "Standard"]}
+      />
 
-      {/* 5. Inclusions Checklist Tabbed Section */}
-      <Checklist defaultTab="Deep" />
+      {/* 5. Who It's For (4 Cards) */}
+      <WhoItsFor />
 
-      {/* 6. Our Promise / Satisfaction Guarantee */}
+      {/* 6. Difference */}
+      <ServiceDifference 
+        title="Why this isn't like every other deep clean you've had."
+        subtitle=""
+      />
+
+      {/* 7. Process Section (How It Works) */}
+      <Process 
+        title="From quote to clean — here's exactly what happens."
+        subtitle=""
+        layout="left"
+      />
+
+      {/* 8. Reviews */}
+      <Testimonials 
+        title="What Melbourne homeowners are saying."
+        subtitle=""
+        topTitle="SOCIAL PROOF"
+        hideBeforeAfter={true}
+        layout="left"
+        reviews={deepCleanReviews}
+      />
+
+      {/* 9. Our Promise / Satisfaction Guarantee */}
       <Guarantee />
 
-      {/* 7. Service Areas Card Section */}
-      <section className="py-24 bg-white relative z-10 overflow-hidden">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-12">
-            <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Service Areas</h4>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
-              Where we clean in Melbourne
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We provide premium deep home cleaning across Melbourne and surrounding suburbs within a 50km radius.
-            </p>
-          </div>
+      {/* 10. Service Areas Section */}
+      <ServiceAreas />
 
-          <div className="bg-[#FAF9F6] rounded-[2rem] border border-orange-100/70 p-8 md:p-12 shadow-sm relative overflow-hidden grid md:grid-cols-12 gap-8 items-center">
-            {/* Subtle background glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      {/* 11. FAQs Accordion */}
+      <FAQ data={faqs} title="Common questions about Deep Cleaning" />
 
-            <div className="md:col-span-6 relative z-10 flex flex-col gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-foreground">Melbourne Metropolitan Coverage</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                Crisp Cleaning covers all suburbs in metropolitan Melbourne. Our professional teams service areas from Melbourne CBD, South Yarra, Richmond, Fitzroy, and St Kilda to outer growth zones like Box Hill, Doncaster, Glen Waverley, Frankston, and Craigieburn.
-              </p>
-              <div>
-                <a
-                  href="https://maps.app.goo.gl/Uz5ANCsisxJQEnc6A"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold bg-primary text-white hover:bg-primary/95 transition-all shadow-md shadow-primary/10 hover:shadow-lg"
-                >
-                  View Service Area Map
-                </a>
-              </div>
-            </div>
-
-            <div className="md:col-span-6 w-full h-[350px] relative rounded-2xl overflow-hidden border border-orange-100/50 shadow-sm bg-white">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373531531688!3d-37.81627977975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0456760532d400!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1625584852925!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. FAQs Accordion */}
-      <FAQ data={faqs} />
-
-      {/* 9. Final CTA Section */}
-      <FinalCTA />
+        {/* 12. Final CTA Section */}
+        <FinalCTA />
+      </div>
 
       <Footer />
     </main>

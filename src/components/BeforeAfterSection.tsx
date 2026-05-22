@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Sparkles, MoveHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const IMAGE_BEFORE = "/before.png";
-const IMAGE_AFTER = "/after.jpg";
+const IMAGE_BEFORE = "/images/kitchen-before.jpg";
+const IMAGE_AFTER = "/images/kitchen-after.jpg";
 
 export const BeforeAfterSection = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -79,17 +79,25 @@ export const BeforeAfterSection = () => {
           </div>
 
           <div className="w-full lg:w-2/5 flex flex-col justify-center text-foreground relative">
-            <div className="w-16 h-16 rounded-full border-2 border-primary/30 flex items-center justify-center mb-8 bg-primary/5">
-              <Sparkles className="w-8 h-8 text-primary" />
+            <div className="w-16 h-16 rounded-full border-2 border-[#FB8C42]/30 flex items-center justify-center mb-6 bg-[#FB8C42]/5">
+              <Sparkles className="w-8 h-8 text-[#FB8C42]" />
             </div>
 
             <div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight mb-8">
-                We aim to <span className="text-primary">liberate you</span>{" "}
+              <div className="mb-4">
+                <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
+                  OUR MISSION
+                </span>
+              </div>
+              <h2 
+                style={{ letterSpacing: "-1.2px", lineHeight: "1.1" }}
+                className="text-[48px] font-semibold text-gray-900 mb-6"
+              >
+                We aim to <span className="text-[#FB8C42]">liberate you</span>{" "}
                 from the burden of cleaning
               </h2>
 
-              <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
+              <div className="space-y-6 text-[18px] text-gray-500 font-normal leading-[28px] max-w-[600px]">
                 <p>
                   Our mission is simple yet powerful: to be your all-in-one
                   cleaning solution, taking the weight of cleaning

@@ -82,10 +82,10 @@ const Navbar = () => {
   };
 
   const textColorClass = isScrolled || !isHomePage
-    ? "text-neutral-700 hover:text-[#F97316]"
-    : "text-white/90 hover:text-[#F97316]";
+    ? "text-neutral-700 hover:text-[#FB8C42]"
+    : "text-white/90 hover:text-[#FB8C42]";
 
-  const hoverColorClass = "hover:text-[#F97316]";
+  const hoverColorClass = "hover:text-[#FB8C42]";
 
   return (
     <header
@@ -122,7 +122,7 @@ const Navbar = () => {
                     className={cn(
                       "flex items-center gap-1 text-sm font-semibold transition-colors duration-300 outline-none cursor-pointer py-6",
                       hoverColorClass,
-                      isSubActive ? "text-[#F97316]" : textColorClass
+                      isSubActive ? "text-[#FB8C42]" : textColorClass
                     )}
                   >
                     {link.name}
@@ -139,11 +139,11 @@ const Navbar = () => {
                           onClick={() => handleNavClick(subLink.href)}
                           className="flex items-start gap-4 p-3 rounded-xl hover:bg-orange-50/50 transition-colors group/item"
                         >
-                          <div className="bg-[#FFF4ED] text-[#F97316] p-2.5 rounded-xl shrink-0 group-hover/item:scale-110 transition-transform duration-300">
+                          <div className="bg-[#FFF4ED] text-[#FB8C42] p-2.5 rounded-xl shrink-0 group-hover/item:scale-110 transition-transform duration-300">
                             {Icon && <Icon size={20} strokeWidth={2.5} />}
                           </div>
                           <div className="flex flex-col">
-                            <span className="text-[15px] font-bold text-gray-900 group-hover/item:text-[#F97316] transition-colors">{subLink.name}</span>
+                            <span className="text-[15px] font-bold text-gray-900 group-hover/item:text-[#FB8C42] transition-colors">{subLink.name}</span>
                             <span className="text-[13px] text-gray-500 font-medium mt-0.5">{subLink.desc}</span>
                           </div>
                         </Link>
@@ -165,7 +165,7 @@ const Navbar = () => {
                 className={cn(
                   "text-sm font-semibold transition-colors duration-300",
                   hoverColorClass,
-                  isActive ? "text-[#F97316] font-bold" : textColorClass
+                  isActive ? "text-[#FB8C42] font-bold" : textColorClass
                 )}
               >
                 {link.name}
@@ -181,8 +181,8 @@ const Navbar = () => {
             className={cn(
               "flex items-center gap-2 font-semibold transition-colors duration-300",
               isScrolled || !isHomePage
-                ? "text-neutral-700 hover:text-[#F97316]"
-                : "text-white/90 hover:text-[#F97316]"
+                ? "text-neutral-700 hover:text-[#FB8C42]"
+                : "text-white/90 hover:text-[#FB8C42]"
             )}
           >
             <Phone size={16} className="opacity-80" />
@@ -192,7 +192,7 @@ const Navbar = () => {
           <Button 
             variant="hero" 
             size="default" 
-            className="rounded-full px-6 py-2.5 font-extrabold bg-[#F97316] hover:bg-[#F97316]/90 text-white shadow-md shadow-orange-500/10 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+            className="rounded-full px-6 py-2.5 font-extrabold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-md shadow-[#FB8C42]/10 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
             asChild
           >
             <Link href="/#booking">Get an Instant Quote</Link>
@@ -227,7 +227,7 @@ const Navbar = () => {
                         <Link
                           key={subLink.href}
                           href={subLink.href}
-                          className="text-sm font-semibold text-neutral-700 hover:text-[#F97316] transition-colors"
+                          className="text-sm font-semibold text-neutral-700 hover:text-[#FB8C42] transition-colors"
                           onClick={() => handleNavClick(subLink.href)}
                         >
                           {subLink.name}
@@ -241,7 +241,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-semibold text-neutral-700 hover:text-[#F97316] transition-colors"
+                  className="text-sm font-semibold text-neutral-700 hover:text-[#FB8C42] transition-colors"
                   onClick={() => handleNavClick(link.href)}
                 >
                   {link.name}
@@ -249,12 +249,12 @@ const Navbar = () => {
               );
             })}
             <div className="flex flex-col gap-3 pt-4 border-t border-gray-150">
-              <a href="tel:0451433786" className="flex items-center justify-center gap-2 font-bold py-2 text-neutral-800 hover:text-[#F97316] transition-colors">
-                <Phone size={16} className="text-[#F97316]" /> 0451 433 786
+              <a href="tel:0451433786" className="flex items-center justify-center gap-2 font-bold py-2 text-neutral-800 hover:text-[#FB8C42] transition-colors">
+                <Phone size={16} className="text-[#FB8C42]" /> 0451 433 786
               </a>
               <Button 
                 variant="hero" 
-                className="w-full rounded-full bg-[#F97316] text-white font-bold"
+                className="w-full rounded-full bg-[#FB8C42] text-white font-bold"
                 asChild
               >
                 <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>

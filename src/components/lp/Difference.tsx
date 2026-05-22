@@ -17,9 +17,7 @@ const crispPoints = [
   "Better paid cleaners = superior service",
   "Dedicated support, always responsive",
   "Lifetime discounts and loyalty rewards",
-  "Eco-friendly, non-toxic, and kid/pet safe chemicals",
-  "You walk in. It's Done",
-  "100% Satisfaction Guarantee"
+  "Eco-friendly, non-toxic, and kid/pet safe chemicals"
 ];
 
 interface DifferenceProps {
@@ -45,7 +43,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 overflow-visible pt-10 pb-8">
+        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-10 lg:gap-16 overflow-visible pt-10 pb-8">
           {/* Industry Average Box */}
           <div className="w-full lg:w-[460px] bg-[#F5F3ED] p-9 rounded-3xl border border-orange-100/30 flex flex-col justify-between relative overflow-hidden shadow-none min-h-[480px]">
             <div>
@@ -55,8 +53,8 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
               </div>
               <ul className="space-y-[18px]">
                 {industryPoints.map((point, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <div className="w-6 h-6 bg-gray-200/50 rounded-full flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                  <li key={i} className="flex items-center gap-4">
+                    <div className="w-6 h-6 bg-gray-200/50 rounded-full flex items-center justify-center shrink-0 shadow-sm">
                       <X className="w-3.5 h-3.5 text-muted-foreground" strokeWidth={3} />
                     </div>
                     <span className="font-sans font-medium text-[15px] leading-relaxed text-muted-foreground antialiased">
@@ -69,7 +67,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
           </div>
 
           {/* Crisp Cleaning Box (3D Popped Out Floating Card) */}
-          <div className="w-full lg:w-[460px] bg-primary p-9 md:p-10 rounded-3xl shadow-[0_25px_60px_rgba(249,115,22,0.35)] flex flex-col justify-between text-white relative overflow-visible transform lg:scale-[1.14] lg:z-10 border-4 border-orange-400/40 min-h-[480px] mt-8 lg:mt-0">
+          <div className="w-full lg:w-[460px] bg-primary p-9 md:p-10 rounded-3xl shadow-[0_25px_60px_rgba(249,115,22,0.35)] flex flex-col justify-between text-white relative overflow-visible transform lg:scale-110 lg:z-10 border-4 border-orange-400/40 min-h-[480px] mt-8 lg:mt-0">
             <div>
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-xl md:text-2xl font-bold text-white">Crisp Cleaning</h3>
@@ -77,8 +75,8 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
               </div>
               <ul className="space-y-[18px]">
                 {crispPoints.map((point, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                  <li key={i} className="flex items-center gap-4">
+                    <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm">
                       <Check className="w-3.5 h-3.5 text-primary" strokeWidth={4} />
                     </div>
                     <span className="font-sans font-medium text-[15px] leading-relaxed text-white antialiased">

@@ -8,28 +8,32 @@ import {
 
 const faqs = [
   {
-    question: "Do I need to be present?",
-    answer: "No, you do not need to be present. Many of our clients provide entry instructions (like a hidden key or lockbox code) or let us in before heading to work. Our cleaners are fully vetted and insured, so you can trust them with your home while you're away."
+    question: "Do I need to be home during the clean?",
+    answer: "It's entirely up to you. Many of our clients prefer to provide access to their space and continue with their daily activities. Rest assured, our team is professional and trustworthy, and we'll treat your space with the utmost respect and care. You will receive an ETA before arriving and a summary when we're done."
   },
   {
-    question: "Cancellation and refund policy",
-    answer: "You can cancel or reschedule your booking penalty-free up to 24 hours before your scheduled clean. For cancellations within 24 hours, a small fee may apply. If you're not satisfied with the clean, we will re-clean the area at no extra cost rather than issuing a refund."
+    question: "What is your policy on cancellations and refunds?",
+    answer: "We understand if you ever need to reschedule, that’s why if you cancel with more than 48 hours of from your booking, you will receive a 100% refund! Unfortunately, if you cancel within 48 hours a 50% refund will be applicable, as our cleaners have already been assigned to your home."
   },
   {
-    question: "Safe for family and pets?",
-    answer: "Absolutely. We use high-quality, eco-friendly cleaning solutions that are tough on dirt but completely safe for your children and pets. If you have specific product requirements or allergies, simply let us know."
+    question: "Are your cleaning products safe for family and pets?",
+    answer: "Absolutely. We use high-quality, eco-friendly cleaning solutions that are tough on dirt but completely safe for your children and pets. If something stronger is needed for a particular job, your cleaner will assess and ask your permission before using it. If you have specific product requirements or allergies, simply let us know."
   },
   {
-    question: "Not satisfied?",
-    answer: "Our 100% Satisfaction Guarantee means that if you're not happy with the clean, simply contact us within 24 hours and send a photo. We will return within 72 hours to fix it at no extra cost to you."
+    question: "What if I'm not happy?",
+    answer: (
+      <>
+        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay. You can view our full terms <a href="/terms" className="font-semibold text-primary hover:underline transition-colors">here</a>.
+      </>
+    )
   },
   {
-    question: "Insured and licensed?",
-    answer: "Yes, Crisp Cleaning is fully insured and licensed. Every cleaner undergoes a rigorous background check and is fully covered, giving you complete peace of mind when we enter your home."
+    question: "Are you fully insured and licensed?",
+    answer: "Yes, Crisp Cleaning is fully insured and licensed. Our company is committed to operating with the highest standards of professionalism and integrity. Every cleaner undergoes a rigorous background check, giving you complete peace of mind when we enter your home."
   },
   {
-    question: "Security of property?",
-    answer: "We take your security very seriously. Key management protocols are strict, and our vetted cleaners respect your privacy and property. Your home is always locked and secured upon completion of the clean."
+    question: "How do you ensure security of my property?",
+    answer: "We take your security very seriously. Our team members undergo thorough background checks, a and we have stringent protocols in place to safeguard your property. Your home is always locked and secured upon completion of the clean."
   }
 ];
 

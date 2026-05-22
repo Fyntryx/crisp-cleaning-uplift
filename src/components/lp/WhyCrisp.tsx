@@ -39,7 +39,7 @@ export default function WhyCrisp() {
     <section className="py-24 bg-[#FAF9F6]">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <div className="text-center mb-16 md:mb-20">
-          <h4 className="text-[#F97316] font-bold tracking-widest text-[11px] uppercase mb-4">Why Crisp</h4>
+          <h4 className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-4">Why Crisp</h4>
           <h2 className="text-4xl md:text-[42px] font-bold text-gray-900 tracking-tight mb-6">
             It isn't one thing. It's everything.
           </h2>
@@ -51,9 +51,9 @@ export default function WhyCrisp() {
             const Icon = feature.icon;
             return (
               /* Upgraded padding to p-10, radius to rounded-[32px], and softened the border */
-              <div key={i} className="bg-white p-8 md:p-10 rounded-[32px] shadow-sm border border-gray-100 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1 transition-all duration-300 relative group">
+              <div key={i} className="bg-white p-8 md:p-10 rounded-[32px] shadow-sm border border-gray-100 hover:shadow-lg hover:shadow-[#FB8C42]/5 hover:-translate-y-1 transition-all duration-300 relative group">
 
-                <div className="w-12 h-12 bg-orange-50 group-hover:bg-[#F97316] transition-colors duration-300 rounded-[14px] flex items-center justify-center mb-6">
+                <div className="w-12 h-12 bg-orange-50 group-hover:bg-[#FB8C42] transition-colors duration-300 rounded-[14px] flex items-center justify-center mb-6">
                   {i === 5 ? (
                     <img
                       src="/workflow.png?v=2"
@@ -63,7 +63,7 @@ export default function WhyCrisp() {
                     />
                   ) : (
                     /* Reduced Lucide icon size from w-6 to w-5 for a more delicate, premium look */
-                    <Icon className="w-5 h-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
+                    <Icon className="w-5 h-5 text-[#FB8C42] group-hover:text-white transition-colors duration-300" />
                   )}
                 </div>
 

@@ -42,7 +42,7 @@ export default function FinalCTA() {
               <div className="flex items-center gap-2">
                 <Tag className="w-4 h-4 text-primary" />
                 <span>25% off your first clean. Use code</span>
-                <span className="bg-primary/20 text-primary border border-primary/30 text-[10px] font-extrabold px-2 py-0.5 rounded tracking-wide">WELCOME25</span>
+                <span className="bg-primary/20 text-primary border border-primary/30 text-[10px] font-extrabold px-2 py-0.5 rounded-full tracking-wide">WELCOME25</span>
               </div>
               <span className="hidden sm:inline text-white/20">|</span>
               <div className="flex items-center gap-2">

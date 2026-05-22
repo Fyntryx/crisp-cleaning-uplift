@@ -13,7 +13,7 @@ export default function Stats() {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
-          <h4 className="text-[#F97316] font-bold tracking-widest text-sm uppercase mb-4">By The Numbers</h4>
+          <h4 className="text-[#FB8C42] font-bold tracking-widest text-sm uppercase mb-4">By The Numbers</h4>
           <h2 className="text-4xl md:text-[42px] font-bold text-gray-900 tracking-tight mb-12">
             The numbers behind the standard.
           </h2>
@@ -31,34 +31,34 @@ export default function Stats() {
             <div className="flex items-center gap-2 mb-4">
               <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google" className="w-5 h-5" />
               <span className="font-bold text-sm tracking-wide text-gray-800">GOOGLE REVIEWS</span>
-              <ExternalLink className="w-4 h-4 text-gray-400 ml-auto group-hover:text-[#F97316] transition-colors" />
+              <ExternalLink className="w-4 h-4 text-gray-400 ml-auto group-hover:text-[#FB8C42] transition-colors" />
             </div>
             <div>
               <div className="flex items-end gap-2 mb-2">
                 <span className="text-5xl font-bold text-gray-800 leading-none">4.9</span>
-                <Star className="w-6 h-6 fill-[#F97316] text-[#F97316] mb-1" />
+                <Star className="w-6 h-6 fill-[#FB8C42] text-[#FB8C42] mb-1" />
               </div>
               <p className="text-gray-500 text-sm font-medium mb-4">Average rating across all reviews</p>
-              <span className="text-[#F97316] text-sm font-semibold hover:underline">Read on Google →</span>
+              <span className="text-[#FB8C42] text-sm font-semibold hover:underline">Read on Google →</span>
             </div>
           </a>
 
           {/* Other Stats */}
           <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
             <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2">FULLY INSURED</p>
-            <span className="text-5xl font-bold text-[#F97316] mb-2">100%</span>
+            <span className="text-5xl font-bold text-[#FB8C42] mb-2">100%</span>
             <p className="text-gray-500 text-sm font-medium">All cleaners fully insured</p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
             <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2">BOOKING TIME</p>
-            <span className="text-5xl font-bold text-[#F97316] mb-2">30<span className="text-3xl">sec</span></span>
+            <span className="text-5xl font-bold text-[#FB8C42] mb-2">30<span className="text-3xl">sec</span></span>
             <p className="text-gray-500 text-sm font-medium">Average booking time</p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
             <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2">CONSISTENCY</p>
-            <span className="text-5xl font-bold text-[#F97316] mb-2">97%</span>
+            <span className="text-5xl font-bold text-[#FB8C42] mb-2">97%</span>
             <p className="text-gray-500 text-sm font-medium">Same cleaner consistency rate</p>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function Stats() {
             <div key={i} className="bg-[#FAF9F6] p-8 rounded-2xl border border-orange-50 shadow-sm flex flex-col">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, idx) => (
-                  <Star key={idx} className="w-4 h-4 fill-[#F97316] text-[#F97316]" />
+                  <Star key={idx} className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" />
                 ))}
               </div>
               <p className="text-gray-800 font-medium leading-relaxed flex-grow mb-6">"{review.text}"</p>

@@ -144,7 +144,7 @@ const TeamCard = ({ member }: { member: TeamMember }) => {
         </div>
 
         <motion.div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-orange-500 rounded-t-md"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-[#FB8C42] rounded-t-md"
           variants={{
             initial: { width: "20%" },
             hover: {

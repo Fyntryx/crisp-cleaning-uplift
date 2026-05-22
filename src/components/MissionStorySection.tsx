@@ -20,8 +20,8 @@ const CONTENT = {
           ourselves to providing accessible solutions for people everywhere.
         </p>
         <div className="flex items-center gap-4 mt-8">
-          <div className="h-1 w-12 bg-primary rounded-full" />
-          <span className="font-semibold text-foreground italic">
+          <div className="h-1 w-12 bg-[#FB8C42] rounded-full" />
+          <span className="font-semibold text-gray-900 italic">
             Redefining excellence since 2023.
           </span>
         </div>
@@ -45,8 +45,8 @@ const CONTENT = {
           professional touch in their daily lives.
         </p>
         <div className="flex items-center gap-4 mt-8">
-          <div className="h-1 w-12 bg-primary rounded-full" />
-          <span className="font-semibold text-foreground italic">
+          <div className="h-1 w-12 bg-[#FB8C42] rounded-full" />
+          <span className="font-semibold text-gray-900 italic">
             Redefining excellence since 2023.
           </span>
         </div>
@@ -72,9 +72,11 @@ export const MissionStorySection = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="relative z-10">
-            <span className="inline-block px-4 py-1.5 bg-primary text-white text-xs font-bold tracking-wider rounded-full mb-8">
-              ABOUT US
-            </span>
+            <div className="mb-6">
+              <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
+                ABOUT US
+              </span>
+            </div>
 
             <div className="relative min-h-[300px] mb-8">
               <AnimatePresence mode="wait">
@@ -84,10 +86,13 @@ export const MissionStorySection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.2 }}>
-                  <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6 leading-tight">
+                  <h3 
+                    style={{ letterSpacing: "-1.2px", lineHeight: "1.1" }}
+                    className="text-[48px] font-semibold text-gray-900 mb-6"
+                  >
                     {activeContent.heading}
                   </h3>
-                  <div className="text-muted-foreground text-lg leading-relaxed">
+                  <div className="text-[18px] text-gray-500 font-normal leading-[28px] max-w-[600px]">
                     {activeContent.text}
                   </div>
                 </motion.div>

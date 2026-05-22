@@ -86,7 +86,7 @@ const cleaningTypesUI = [
     id: "Standard",
     label: "Standard Clean",
     icon: Sparkles,
-    color: "text-orange-500",
+    color: "text-[#FB8C42]",
     bg: "bg-orange-50",
   },
   {
@@ -163,49 +163,44 @@ const BookingSummaryCard = ({
   <div
     className={`bg-white text-gray-800 rounded-[28px] p-8 shadow-sm border border-gray-100 relative overflow-visible group hover:border-gray-200 transition-all duration-300 ${className}`}
   >
-    <div className="flex items-center gap-2 mb-4 relative z-10">
-      <div className="w-5 h-5 rounded bg-orange-50 flex items-center justify-center text-[#F97316]">
-        <FileText className="w-3.5 h-3.5" />
+    <h3 className="text-xl font-bold tracking-tight text-gray-900 mb-5 relative z-10">
+      Booking Summary
+    </h3>
+
+    <div className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-50/50 border border-emerald-100 text-emerald-700 font-semibold text-[13px] mb-6 relative z-10">
+      <CheckCircle2 className="w-4 h-4" /> Satisfaction Guaranteed
+    </div>
+
+    <div className="relative z-10 text-[14.5px]">
+
+      <div className="flex justify-between items-center py-3.5">
+        <span className="text-gray-500 font-normal">Service Type</span>
+        <span className="font-medium text-gray-800">{formData.cleaningType || "Standard"} Clean</span>
       </div>
-      <h3 className="text-sm font-semibold tracking-tight text-gray-800">
-        Order summary
-      </h3>
-    </div>
 
-    {/* --- Inline Pill Tags (Matches Figma) --- */}
-    <div className="flex flex-wrap items-center gap-2 mb-6 relative z-10">
-      {/* Frequency Pill */}
-      {formData.frequency && (
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-gray-50/50 text-gray-700 text-xs font-medium">
-          <Calendar className="w-3.5 h-3.5 text-gray-500" />
-          {formData.frequency}
-        </div>
-      )}
+      <div className="border-t border-gray-100"></div>
 
-      {/* Discount Pill (Only renders if recurring) */}
-      {formData.frequency && formData.frequency !== "One time" && formData.frequency !== "One-time" && (
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-700 text-xs font-medium">
-          <Tag className="w-3.5 h-3.5" />
-          Save {formData.frequency === "Weekly" ? "15" : formData.frequency === "Fortnightly" ? "10" : "5"}% — {formData.frequency} booking
-        </div>
-      )}
-    </div>
+      <div className="flex justify-between items-center py-3.5">
+        <span className="text-gray-500 font-normal">Frequency</span>
+        <span className="font-medium text-gray-800">{formData.frequency || "One time"}</span>
+      </div>
 
-    <div className="space-y-4 relative z-10 text-gray-500 text-[13px]">
-      <div className="py-2">
-        <span className="block mb-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-          Price Breakdown
+      <div className="border-t border-gray-100 mb-5"></div>
+
+      <div className="pt-1">
+        <span className="block mb-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+          BREAKDOWN
         </span>
-        
-        <div className="space-y-2.5">
+
+        <div className="space-y-3">
           {pricingResult?.breakdown.cleaningType && (
-            <div className="flex justify-between text-sm font-normal text-gray-600">
+            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>{pricingResult.breakdown.cleaningType.name} Clean — base</span>
               <span>A${pricingResult.breakdown.cleaningType.price}</span>
             </div>
           )}
           {(formData.homeDetails.bedrooms || 0) > 0 && (
-            <div className="flex justify-between text-sm font-normal text-gray-600">
+            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>Bedroom × {formData.homeDetails.bedrooms}</span>
               <span>
                 A$
@@ -215,7 +210,7 @@ const BookingSummaryCard = ({
             </div>
           )}
           {(formData.homeDetails.bathrooms || 0) > 0 && (
-            <div className="flex justify-between text-sm font-normal text-gray-600">
+            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>Bathroom × {formData.homeDetails.bathrooms}</span>
               <span>
                 A$
@@ -225,7 +220,7 @@ const BookingSummaryCard = ({
             </div>
           )}
           {(formData.homeDetails.kitchens || 0) > 0 && (
-            <div className="flex justify-between text-sm font-normal text-gray-600">
+            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>Kitchen × {formData.homeDetails.kitchens}</span>
               <span>
                 A$
@@ -235,7 +230,7 @@ const BookingSummaryCard = ({
             </div>
           )}
           {(formData.homeDetails.other || 0) > 0 && (
-            <div className="flex justify-between text-sm font-normal text-gray-600">
+            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>Other Area × {formData.homeDetails.other}</span>
               <span>
                 A${HOME_DETAIL_PRICES.Other * (formData.homeDetails.other || 0)}
@@ -243,75 +238,76 @@ const BookingSummaryCard = ({
             </div>
           )}
           {pricingResult?.breakdown.extras.items.map((e: any) => (
-            <div key={e.name} className="flex justify-between text-sm font-normal text-gray-600">
+            <div key={e.name} className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>+ {e.name}</span>
               <span>A${e.price}</span>
             </div>
           ))}
           {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && (
-            <div className="flex justify-between text-sm font-semibold text-[#F97316] pt-2 border-t border-gray-100">
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
               <span>{pricingResult?.breakdown?.discount?.name}</span>
               <span>-A${pricingResult?.breakdown?.discount?.amount?.toFixed(2)}</span>
+            </div>
+          )}
+          {pricingResult?.discounts?.frequency && (
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-1">
+              <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
+              <span>-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
             </div>
           )}
         </div>
       </div>
 
+      <div className="border-t border-gray-100 mt-2"></div>
+
       {/* --- PROMO CODE SECTION --- */}
-      <div className="py-2 border-t border-gray-100">
-        <div className="relative flex items-center mt-3">
+      <div className="py-1">
+        <div className="relative flex items-center">
           <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
           <input
             type="text"
             placeholder="Promo Code"
-            className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/10 transition-all placeholder:text-gray-400 font-semibold"
+            className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#FB8C42] focus:ring-1 focus:ring-[#FB8C42]/10 transition-all placeholder:text-gray-400 font-semibold"
             value={promoCode}
             onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
           />
-          <button className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#F97316]/10 hover:bg-[#F97316] hover:text-white text-[#F97316] text-[10px] font-semibold uppercase tracking-wider rounded-lg transition-all">
+          <button className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white text-[#FB8C42] text-[10px] font-semibold uppercase tracking-wider rounded-lg transition-all">
             Apply
           </button>
         </div>
       </div>
 
-      <div className="pt-4 mt-2 border-t border-gray-200">
-        {pricingResult?.discounts?.frequency && (
-          <div className="flex justify-between text-[#F97316] mb-3 text-sm font-semibold">
-            <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
-            <span className="font-semibold">-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
-          </div>
-        )}
-        
-        <div className="flex justify-between items-end">
-          <span className="text-base font-semibold text-gray-800">Total</span>
-          <span className="text-3xl font-semibold text-[#F97316] tracking-tight">
-            A${(pricingResult?.total || 0).toFixed(2)}
-          </span>
-        </div>
+      <div className="border-t border-gray-100"></div>
 
-        {formData.frequency &&
-          formData.frequency !== "One time" && (
-            <p className="text-[10px] text-gray-500 mt-3 leading-relaxed font-medium">
-              You&apos;ll be charged this amount every{" "}
-              {formData.frequency === "Weekly"
-                ? "week"
-                : formData.frequency === "Fortnightly"
-                  ? "fortnight"
-                  : formData.frequency === "Monthly"
-                    ? "month"
-                    : "period"}
-              .
-            </p>
-          )}
+      <div className="flex justify-between items-end pt-3">
+        <span className="text-base font-semibold text-gray-800 leading-[24px]">Total</span>
+        <span className="text-2xl font-bold text-[#FB8C42] tracking-tight leading-[32px]">
+          A${(pricingResult?.total || 0).toFixed(2)}
+        </span>
       </div>
+
+      {formData.frequency &&
+        formData.frequency !== "One time" && (
+          <p className="text-[10px] text-gray-400 mt-2 leading-relaxed font-medium">
+            You&apos;ll be charged this amount every{" "}
+            {formData.frequency === "Weekly"
+              ? "week"
+              : formData.frequency === "Fortnightly"
+                ? "fortnight"
+                : formData.frequency === "Monthly"
+                  ? "month"
+                  : "period"}
+            . Cancel anytime.
+          </p>
+        )}
     </div>
   </div>
 );
 
 const Services = () => {
   const [isFormVisible, setIsFormVisible] = useState(true);
-const formObserverRef = useRef<HTMLDivElement>(null);
-const formContentRef = useRef<HTMLDivElement>(null);
+  const formObserverRef = useRef<HTMLDivElement>(null);
+  const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     serviceCategory: "residential",
     cleaningType: "Standard" as CleaningType,
@@ -871,31 +867,29 @@ const formContentRef = useRef<HTMLDivElement>(null);
                   cleaningType: type.id as CleaningType,
                 })
               }
-              className={`group bg-white border-2 rounded-[24px] p-6 cursor-pointer transition-all duration-300 relative overflow-visible flex flex-col items-start min-h-[200px] ${
-                isSelected
-                  ? "border-[#F97316] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
-                  : "border-gray-100 hover:border-gray-200 hover:shadow-md"
-              }`}
+              className={`group bg-white border-2 rounded-[24px] p-6 cursor-pointer transition-all duration-300 relative overflow-visible flex flex-col items-start min-h-[200px] ${isSelected
+                ? "border-[#FB8C42] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
+                : "border-gray-100 hover:border-gray-200 hover:shadow-md"
+                }`}
             >
               {/* MOST THOROUGH Badge */}
               {type.badge && (
-                <span className="absolute -top-3.5 left-6 bg-[#F97316] text-white text-[8px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full shadow-md z-10">
+                <span className="absolute -top-3.5 left-6 bg-[#FB8C42] text-white text-[8px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full shadow-md z-10">
                   {type.badge}
                 </span>
               )}
 
               {/* Top Row: Icon container & Custom Checkbox */}
               <div className="flex items-center justify-between w-full mb-5">
-                <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-[#F97316] flex items-center justify-center shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-[#FB8C42] flex items-center justify-center shadow-sm">
                   <Icon className="w-5 h-5" />
                 </div>
 
                 <div
-                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                    isSelected
-                      ? "border-[#F97316] bg-[#F97316] shadow-sm"
-                      : "border-gray-200 group-hover:border-gray-300"
-                  }`}
+                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${isSelected
+                    ? "border-[#FB8C42] bg-[#FB8C42] shadow-sm"
+                    : "border-gray-200 group-hover:border-gray-300"
+                    }`}
                 >
                   {isSelected && (
                     <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
@@ -904,7 +898,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
               </div>
 
               {/* Description Block */}
-              <h3 className="text-sm font-semibold text-gray-800 mb-1 group-hover:text-[#F97316] transition-colors">
+              <h3 className="text-sm font-semibold text-gray-800 mb-1 group-hover:text-[#FB8C42] transition-colors">
                 {type.label}
               </h3>
               <p className="text-[13.5px] font-normal leading-relaxed text-gray-500">
@@ -939,21 +933,21 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
-        
+
         {/* Step Identifier Tag */}
         <div className="mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
             <Sliders className="w-3 h-3" /> CUSTOMISE
           </span>
         </div>
 
-        <div className="flex flex-col space-y-8">
-          
+        <div className="flex flex-col space-y-6">
+
           {/* TOP ROW: Full-Width Selected Service Card */}
           <div className="w-full bg-white rounded-3xl border border-gray-100 p-6 flex flex-col items-start space-y-4 shadow-sm relative overflow-hidden group hover:border-gray-200 transition-all duration-300">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
-                <SelectedIcon className="w-5 h-5 text-[#F97316]" />
+                <SelectedIcon className="w-5 h-5 text-[#FB8C42]" />
               </div>
               <div>
                 <span className="block text-[11px] font-semibold uppercase text-gray-400 tracking-wider">
@@ -964,7 +958,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 </span>
               </div>
             </div>
-            
+
             <p className="text-[13.5px] font-normal leading-relaxed text-gray-500">
               {getPlanDescription()}
             </p>
@@ -975,83 +969,77 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 e.preventDefault();
                 // Toggles standard checklist info or scrolls
               }}
-              className="text-xs font-bold text-[#F97316] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
+              className="text-xs font-bold text-[#FB8C42] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
             >
-              What's included &rarr;
+              {"What's included \u2192"}
             </a>
           </div>
 
-          {/* BOTTOM ROW: 2-Column Grid for Counters and Add-ons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            
-            {/* LEFT COLUMN: Counters */}
-            <div className="space-y-4">
-              {/* Counters ordered Bathroom first, then Bedroom, Kitchen, Other */}
-              <RoomCounter
-                label="Bathroom"
-                count={formData.homeDetails.bathrooms || 0}
-                onUpdate={(v) => updateRooms("bathrooms", v)}
-              />
+          {/* MIDDLE ROW: 2-Column Grid for Counters */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <RoomCounter
+              label="Bathroom"
+              count={formData.homeDetails.bathrooms || 0}
+              onUpdate={(v) => updateRooms("bathrooms", v)}
+            />
 
-              <RoomCounter
-                label="Bedroom"
-                count={formData.homeDetails.bedrooms || 0}
-                onUpdate={(v) => updateRooms("bedrooms", v)}
-              />
+            <RoomCounter
+              label="Kitchen"
+              count={formData.homeDetails.kitchens || 0}
+              onUpdate={(v) => updateRooms("kitchens", v)}
+            />
 
-              <RoomCounter
-                label="Kitchen"
-                count={formData.homeDetails.kitchens || 0}
-                onUpdate={(v) => updateRooms("kitchens", v)}
-              />
+            <RoomCounter
+              label="Bedroom"
+              count={formData.homeDetails.bedrooms || 0}
+              onUpdate={(v) => updateRooms("bedrooms", v)}
+            />
 
-              <div className="relative group w-full">
-                <RoomCounter
-                  label="Other Areas"
-                  count={formData.homeDetails.other || 0}
-                  onUpdate={(v) => updateRooms("other", v)}
-                  hasInfo={true}
-                />
-                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-                  laundry, office, study, theatre, gym, rumpus room, playroom, etc.
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
-                </div>
+            <div className="relative group w-full">
+              <RoomCounter
+                label="Other Areas"
+                count={formData.homeDetails.other || 0}
+                onUpdate={(v) => updateRooms("other", v)}
+                hasInfo={true}
+              />
+              <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
+                laundry, office, study, theatre, gym, rumpus room, playroom, etc.
+                <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
               </div>
             </div>
-
-            {/* RIGHT COLUMN: Add-ons */}
-            <div className="space-y-3 bg-white rounded-3xl border border-gray-100 p-6 shadow-sm">
-              <span className="block text-[11px] font-bold uppercase text-[#F97316] tracking-widest mb-4 border-b border-gray-50 pb-2">
-                ADD-ONS
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {(Object.keys(EXTRA_PRICES) as Extra[])
-                  .filter((extra) => !["Garage", "Laundry"].includes(extra))
-                  .map((extra) => {
-                    const isSelected = formData.extras?.includes(extra);
-                    return (
-                      <button
-                        key={extra}
-                        onClick={() => toggleExtra(extra)}
-                        className={`flex items-center justify-center gap-1.5 py-3 px-3 rounded-full border text-xs font-semibold transition-all duration-200 w-full ${
-                          isSelected
-                            ? "bg-[#F97316] border-[#F97316] text-white shadow-md shadow-orange-500/10"
-                            : "bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
-                        }`}
-                      >
-                        {isSelected ? (
-                          <Check className="w-3 h-3 text-white shrink-0" strokeWidth={3} />
-                        ) : (
-                          <span className="shrink-0 text-gray-400">+</span>
-                        )}
-                        <span className="truncate">{extra}</span>
-                      </button>
-                    );
-                  })}
-              </div>
-            </div>
-
           </div>
+
+          {/* BOTTOM ROW: Full-width Add-ons */}
+          <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm">
+            <span className="block text-[11px] font-bold uppercase text-[#FB8C42] tracking-widest mb-4 border-b border-gray-50 pb-2">
+              ADD-ONS
+            </span>
+            <div className="flex flex-wrap gap-2.5">
+              {(Object.keys(EXTRA_PRICES) as Extra[])
+                .filter((extra) => !["Garage", "Laundry"].includes(extra))
+                .map((extra) => {
+                  const isSelected = formData.extras?.includes(extra);
+                  return (
+                    <button
+                      key={extra}
+                      onClick={() => toggleExtra(extra)}
+                      className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-[13px] font-semibold transition-all duration-200 whitespace-nowrap ${isSelected
+                        ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
+                        : "bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
+                        }`}
+                    >
+                      {isSelected ? (
+                        <Check className="w-3.5 h-3.5 text-white shrink-0" strokeWidth={3} />
+                      ) : (
+                        <Plus className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                      )}
+                      {extra}
+                    </button>
+                  );
+                })}
+            </div>
+          </div>
+
         </div>
       </div>
     );
@@ -1121,7 +1109,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
       <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-6 py-2">
         {/* Step Identifier Tag */}
         <div className="mb-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
             <Calendar className="w-3 h-3" /> SCHEDULE
           </span>
         </div>
@@ -1130,10 +1118,10 @@ const formContentRef = useRef<HTMLDivElement>(null);
             const isSelected = formData.frequency === freq.id;
             return (
               <div key={freq.id} className="relative flex-1 text-center">
-                
+
                 {/* Floating Orange SAVE Badge */}
                 {freq.save && (
-                  <span className="bg-[#F97316] text-white text-[9px] font-semibold font-sans px-2.5 py-0.5 rounded-full absolute -top-3 -right-2 whitespace-nowrap z-10 pointer-events-none border-2 border-white tracking-wider">
+                  <span className="bg-[#FB8C42] text-white text-[9px] font-semibold font-sans px-2.5 py-0.5 rounded-full absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap z-10 pointer-events-none border-2 border-white tracking-wider shadow-sm">
                     {freq.save}
                   </span>
                 )}
@@ -1142,11 +1130,10 @@ const formContentRef = useRef<HTMLDivElement>(null);
                   onClick={() =>
                     setFormData({ ...formData, frequency: freq.id as any })
                   }
-                  className={`w-full py-3 rounded-full text-[14px] font-semibold transition-all ${
-                    isSelected
-                      ? "bg-[#F97316] text-white shadow-md shadow-orange-500/10"
-                      : "text-gray-500 hover:text-gray-950 hover:bg-gray-100/50"
-                  }`}
+                  className={`w-full py-3 rounded-full text-[14px] font-semibold transition-all ${isSelected
+                    ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
+                    : "text-gray-500 hover:text-gray-950 hover:bg-gray-100/50"
+                    }`}
                 >
                   {freq.label}
                 </button>
@@ -1155,23 +1142,15 @@ const formContentRef = useRef<HTMLDivElement>(null);
           })}
         </div>
 
-        {/* --- NEW: Dynamic Discount Banner --- */}
-        {formData.frequency && formData.frequency !== "One time" && (
-          <div className="animate-in slide-in-from-top-2 fade-in duration-300 flex items-center gap-2 bg-[#F97316] text-white px-5 py-3 rounded-xl shadow-lg shadow-orange-500/20 max-w-xl w-fit mb-8 font-semibold text-sm">
-            <Tag className="w-4.5 h-4.5 text-white shrink-0" />
-            <span>
-              Save {formData.frequency === "Weekly" ? "15" : formData.frequency === "Fortnightly" ? "10" : "5"}% on every clean — best value
-            </span>
-          </div>
-        )}
+
 
         {/* Grid: Calendar Left & Time Slots Right */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+
           {/* Calendar picker Card */}
-          <div className="md:col-span-8 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col">
             <div className="flex items-center justify-between mb-6 border-b border-gray-55 pb-4">
-              <span className="font-extrabold text-sm text-gray-900">
+              <span className="text-base font-semibold text-gray-900 leading-[24px]">
                 {monthName}
               </span>
 
@@ -1197,7 +1176,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 <div key={`${d}-${i}`}>{d}</div>
               ))}
             </div>
-            
+
             {/* Days Grid */}
             <div className="grid grid-cols-7 gap-1.5">
               {Array.from({ length: firstDayOfMonth }).map((_, i) => (
@@ -1213,26 +1192,22 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     key={day}
                     onClick={() => !past && handleDateSelect(day)}
                     disabled={past}
-                    className={`h-9 w-full rounded-xl flex flex-col items-center justify-center text-xs font-medium transition-all relative ${
-                      selected
-                        ? "bg-[#F97316] text-white shadow-md shadow-orange-500/10"
-                        : ""
-                    } ${
-                      past
+                    className={`h-9 w-full rounded-xl flex flex-col items-center justify-center text-xs font-medium transition-all relative ${selected
+                      ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
+                      : ""
+                      } ${past
                         ? "text-gray-200 cursor-not-allowed bg-transparent"
                         : "hover:bg-gray-50 text-gray-700"
-                    } ${
-                      todayMark && !selected
-                        ? "text-[#F97316] bg-orange-50/50"
+                      } ${todayMark && !selected
+                        ? "text-[#FB8C42] bg-orange-50/50"
                         : ""
-                    }`}
+                      }`}
                   >
                     {day}
                     {todayMark && (
                       <span
-                        className={`absolute bottom-1 w-1 h-1 rounded-full ${
-                          selected ? "bg-white" : "bg-[#F97316]"
-                        }`}
+                        className={`absolute bottom-1 w-1 h-1 rounded-full ${selected ? "bg-white" : "bg-[#FB8C42]"
+                          }`}
                       />
                     )}
                   </button>
@@ -1240,28 +1215,27 @@ const formContentRef = useRef<HTMLDivElement>(null);
               })}
             </div>
           </div>
-          
+
           {/* Available time slots Card */}
-          <div className="md:col-span-4 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+          <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full">
             <span className="flex items-center gap-2 font-semibold text-sm text-gray-800 mb-6 border-b border-gray-50 pb-4">
-              <Clock className="w-4 h-4 text-[#F97316]" /> Available time slots
+              <Clock className="w-4 h-4 text-[#FB8C42]" /> Available time slots
             </span>
 
             <div className="grid grid-cols-3 gap-3">
               {timeSlots.map((time) => {
                 const isSelected = formData.selectedTime === time;
-                
+
                 return (
                   <button
                     key={time}
                     onClick={() =>
                       setFormData((prev) => ({ ...prev, selectedTime: time }))
                     }
-                    className={`py-3.5 rounded-xl border text-center text-xs font-medium transition-all ${
-                      isSelected
-                        ? "bg-[#F97316] border-[#F97316] text-white shadow-md shadow-orange-500/10 hover:scale-105"
-                        : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
-                    }`}
+                    className={`py-3.5 rounded-xl border text-center text-xs font-medium transition-all ${isSelected
+                      ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 hover:scale-105"
+                      : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
+                      }`}
                   >
                     {time}
                   </button>
@@ -1276,24 +1250,24 @@ const formContentRef = useRef<HTMLDivElement>(null);
   };
 
   const renderResStep4 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 py-2">
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 p-6 md:p-8 bg-[#FFFAF6] rounded-[32px]">
       {/* Step Identifier Tag */}
       <div className="mb-2">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50 shadow-sm">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
           <ClipboardList className="w-3 h-3" /> DETAILS
         </span>
       </div>
-      <div className="bg-white border border-gray-100 rounded-[32px] p-6 md:p-8 shadow-sm space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
           {/* Pets Dropdown */}
-          <div className="flex flex-col space-y-1.5">
+          <div className="flex flex-col space-y-2">
             <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <PawPrint className="w-3.5 h-3.5 text-[#F97316]" /> DO YOU HAVE ANY PETS?
+              <PawPrint className="w-3.5 h-3.5 text-[#FB8C42]" /> DO YOU HAVE ANY PETS?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.pets}
                 onChange={(e) =>
                   setFormData({
@@ -1316,13 +1290,13 @@ const formContentRef = useRef<HTMLDivElement>(null);
           </div>
 
           {/* Parking Dropdown */}
-          <div className="flex flex-col space-y-1.5">
+          <div className="flex flex-col space-y-2">
             <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <Car className="w-3.5 h-3.5 text-[#F97316]" /> IS PARKING AVAILABLE?
+              <Car className="w-3.5 h-3.5 text-[#FB8C42]" /> IS PARKING AVAILABLE?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.parking}
                 onChange={(e) =>
                   setFormData({
@@ -1345,13 +1319,13 @@ const formContentRef = useRef<HTMLDivElement>(null);
           </div>
 
           {/* Entry Dropdown */}
-          <div className="flex flex-col space-y-1.5">
+          <div className="flex flex-col space-y-2">
             <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <Key className="w-3.5 h-3.5 text-[#F97316]" /> HOW WILL WE GET IN?
+              <Key className="w-3.5 h-3.5 text-[#FB8C42]" /> HOW WILL WE GET IN?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.entry}
                 onChange={(e) =>
                   setFormData({
@@ -1375,13 +1349,13 @@ const formContentRef = useRef<HTMLDivElement>(null);
           </div>
 
           {/* Areas to Avoid Dropdown */}
-          <div className="flex flex-col space-y-1.5">
+          <div className="flex flex-col space-y-2">
             <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <AlertTriangle className="w-3.5 h-3.5 text-[#F97316]" /> ANY AREAS TO AVOID?
+              <AlertTriangle className="w-3.5 h-3.5 text-[#FB8C42]" /> ANY AREAS TO AVOID?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10"
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.areasToAvoid}
                 onChange={(e) =>
                   setFormData({
@@ -1405,12 +1379,12 @@ const formContentRef = useRef<HTMLDivElement>(null);
         </div>
 
         {/* Notes Textarea */}
-        <div className="flex flex-col space-y-1.5 border-t border-gray-105 pt-5">
+        <div className="flex flex-col space-y-2 pt-2">
           <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-            <FileText className="w-3.5 h-3.5 text-[#F97316]" /> ANYTHING ELSE WE SHOULD KNOW?
+            <FileText className="w-3.5 h-3.5 text-[#FB8C42]" /> ANYTHING ELSE WE SHOULD KNOW?
           </label>
           <textarea
-            className="w-full p-4 bg-gray-50 border border-gray-100/50 rounded-xl outline-none resize-none h-28 text-gray-700 text-xs font-semibold placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-orange-500/10"
+            className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none resize-none h-28 text-gray-700 text-xs font-semibold placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-[#FB8C42]/10 shadow-sm transition-all"
             placeholder="e.g. fragile items, allergies, specific instructions..."
             value={formData.instructions.notes}
             onChange={(e) =>
@@ -1485,7 +1459,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
         </p>
       </div>
       <div className="grid md:grid-cols-12 gap-8 items-start">
-        
+
         {/* Type of Environment */}
         <div className="md:col-span-7 space-y-4">
           <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
@@ -1494,16 +1468,15 @@ const formContentRef = useRef<HTMLDivElement>(null);
           <div className="grid grid-cols-2 gap-2">
             {commEnvironments.map((env) => {
               const isSelected = formData.commercial.environment === env;
-              
+
               return (
                 <button
                   key={env}
                   onClick={() => updateComm("environment", env)}
-                  className={`p-3 text-xs font-bold rounded-xl border-2 transition-all duration-200 text-center hover:border-primary hover:shadow-md truncate ${
-                    isSelected
-                      ? "bg-primary text-white border-primary shadow-md"
-                      : "bg-white border-gray-100 text-gray-600"
-                  }`}
+                  className={`p-3 text-xs font-bold rounded-xl border-2 transition-all duration-200 text-center hover:border-primary hover:shadow-md truncate ${isSelected
+                    ? "bg-primary text-white border-primary shadow-md"
+                    : "bg-white border-gray-100 text-gray-600"
+                    }`}
                 >
                   {env}
                 </button>
@@ -1520,16 +1493,15 @@ const formContentRef = useRef<HTMLDivElement>(null);
           <div className="grid grid-cols-1 gap-2">
             {commCleanTypes.map((type) => {
               const isSelected = formData.commercial.cleanType === type;
-              
+
               return (
                 <button
                   key={type}
                   onClick={() => updateComm("cleanType", type)}
-                  className={`p-4 text-xs font-bold rounded-xl border-2 transition-all duration-200 text-left px-5 hover:border-primary hover:shadow-md ${
-                    isSelected
-                      ? "bg-primary text-white border-primary shadow-md"
-                      : "bg-white border-gray-100 text-gray-600"
-                  }`}
+                  className={`p-4 text-xs font-bold rounded-xl border-2 transition-all duration-200 text-left px-5 hover:border-primary hover:shadow-md ${isSelected
+                    ? "bg-primary text-white border-primary shadow-md"
+                    : "bg-white border-gray-100 text-gray-600"
+                    }`}
                 >
                   {type}
                 </button>
@@ -1551,7 +1523,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
         <p className="text-gray-500 text-sm">When do you need cleaning services?</p>
       </div>
       <div className="space-y-8">
-        
+
         {/* Frequency Select Grid */}
         <div className="space-y-4">
           <label className="block text-xs font-extrabold text-gray-700 uppercase tracking-widest">
@@ -1560,16 +1532,15 @@ const formContentRef = useRef<HTMLDivElement>(null);
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
             {commFrequencies.map((freq) => {
               const isSelected = formData.commercial.frequency === freq;
-              
+
               return (
                 <button
                   key={freq}
                   onClick={() => updateComm("frequency", freq)}
-                  className={`py-3 rounded-xl border-2 font-bold text-xs transition-all hover:border-primary ${
-                    isSelected
-                      ? "bg-primary text-white border-primary shadow-md"
-                      : "bg-white border-gray-100 text-gray-600"
-                  }`}
+                  className={`py-3 rounded-xl border-2 font-bold text-xs transition-all hover:border-primary ${isSelected
+                    ? "bg-primary text-white border-primary shadow-md"
+                    : "bg-white border-gray-100 text-gray-600"
+                    }`}
                 >
                   {freq}
                 </button>
@@ -1586,16 +1557,15 @@ const formContentRef = useRef<HTMLDivElement>(null);
           <div className="flex gap-2 flex-wrap justify-center">
             {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => {
               const isSelected = formData.commercial.days.includes(day);
-              
+
               return (
                 <button
                   key={day}
                   onClick={() => toggleDay(day)}
-                  className={`w-12 h-12 rounded-full border-2 text-xs font-bold transition-all hover:border-primary ${
-                    isSelected
-                      ? "bg-primary text-white border-primary shadow-md"
-                      : "bg-white border-gray-100 text-gray-600"
-                  }`}
+                  className={`w-12 h-12 rounded-full border-2 text-xs font-bold transition-all hover:border-primary ${isSelected
+                    ? "bg-primary text-white border-primary shadow-md"
+                    : "bg-white border-gray-100 text-gray-600"
+                    }`}
                 >
                   {day}
                 </button>
@@ -1619,16 +1589,15 @@ const formContentRef = useRef<HTMLDivElement>(null);
         </p>
       </div>
       <div className="space-y-8">
-        
+
         {/* Insurance Request Toggle */}
         <div className="bg-white p-6 rounded-2xl border-2 border-gray-100 shadow-sm">
           <label className="flex items-start gap-4 cursor-pointer group">
             <div
-              className={`mt-1 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
-                formData.commercial.insuranceRequired
-                  ? "bg-primary border-primary"
-                  : "border-gray-200 bg-gray-50"
-              }`}
+              className={`mt-1 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${formData.commercial.insuranceRequired
+                ? "bg-primary border-primary"
+                : "border-gray-200 bg-gray-50"
+                }`}
             >
               <input
                 type="checkbox"
@@ -1662,16 +1631,15 @@ const formContentRef = useRef<HTMLDivElement>(null);
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {commBudgets.map((bg) => {
               const isSelected = formData.commercial.budget === bg;
-              
+
               return (
                 <button
                   key={bg}
                   onClick={() => updateComm("budget", bg)}
-                  className={`py-3 px-2 rounded-xl border-2 font-bold text-xs transition-all hover:border-primary truncate ${
-                    isSelected
-                      ? "bg-primary text-white border-primary shadow-md"
-                      : "bg-white border-gray-100 text-gray-600"
-                  }`}
+                  className={`py-3 px-2 rounded-xl border-2 font-bold text-xs transition-all hover:border-primary truncate ${isSelected
+                    ? "bg-primary text-white border-primary shadow-md"
+                    : "bg-white border-gray-100 text-gray-600"
+                    }`}
                 >
                   {bg}
                 </button>
@@ -1694,9 +1662,9 @@ const formContentRef = useRef<HTMLDivElement>(null);
           Provide your business contact information for the service agreement.
         </p>
       </div>
-      
+
       <div className="space-y-4 bg-white p-8 rounded-[28px] border border-gray-100 shadow-lg">
-        
+
         {/* Contact Name */}
         <div className="space-y-1">
           <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
@@ -1787,7 +1755,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
         <button
           onClick={handleSubmit}
           disabled={isSubmitting || !isAddressValid}
-          className="w-full mt-4 bg-primary hover:bg-primary/95 text-white py-4 rounded-xl font-bold shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full mt-4 bg-primary hover:bg-primary/95 text-white py-4 rounded-xl font-bold shadow-lg shadow-[#FB8C42]/10 hover:shadow-xl hover:shadow-[#FB8C42]/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isSubmitting ? (
             <>
@@ -1803,136 +1771,123 @@ const formContentRef = useRef<HTMLDivElement>(null);
   );
 
   const renderResStep5 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 py-2">
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 p-6 md:p-8 bg-[#FFFAF6] rounded-[32px]">
       {/* Step Identifier Tag */}
       <div className="mb-2">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#F97316] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50 shadow-sm">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
           <CheckCircle2 className="w-3 h-3" /> CONFIRM
         </span>
       </div>
-      <div className="bg-white border border-gray-100 rounded-[32px] p-6 md:p-8 shadow-sm space-y-6">
+
+      <div className="space-y-6">
         
-        {/* Section: Contact Information */}
-        <div className="space-y-5">
-          <span className="block text-sm font-semibold text-gray-800 uppercase tracking-wider border-b border-gray-50 pb-2">
-            1. Contact Details
-          </span>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Full Name */}
-            <div className="flex flex-col">
-              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
-                <User className="w-3.5 h-3.5 text-[#F97316]" /> FULL NAME
-              </label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* FIRST NAME */}
+          <div className="flex flex-col space-y-2">
+            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+              <User className="w-4 h-4 text-[#FB8C42]" /> FIRST NAME
+            </label>
+            <div className="relative flex items-center">
               <input
                 type="text"
-                placeholder="e.g. John Doe"
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
                 value={formData.contact.firstName}
                 onChange={(e) => updateContact("firstName", e.target.value)}
               />
             </div>
-
-            {/* Phone Number */}
-            <div className="flex flex-col">
-              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
-                <Phone className="w-3.5 h-3.5 text-[#F97316]" /> PHONE NUMBER
-              </label>
-              <input
-                type="tel"
-                placeholder="e.g. +61 400 000 000"
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
-                value={formData.contact.phone}
-                onChange={(e) => updateContact("phone", e.target.value)}
-              />
-            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Email Address */}
-            <div className="flex flex-col">
-              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#F97316]" /> EMAIL ADDRESS
-              </label>
+          {/* LAST NAME */}
+          <div className="flex flex-col space-y-2">
+            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+              <User className="w-4 h-4 text-[#FB8C42]" /> LAST NAME
+            </label>
+            <div className="relative flex items-center">
               <input
-                type="email"
-                placeholder="e.g. john@example.com"
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
-                value={formData.contact.email}
-                onChange={(e) => updateContact("email", e.target.value)}
+                type="text"
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
+                value={formData.contact.lastName}
+                onChange={(e) => updateContact("lastName", e.target.value)}
               />
-            </div>
-
-            {/* Create Password */}
-            <div className="flex flex-col">
-              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
-                <Key className="w-3.5 h-3.5 text-[#F97316]" /> CREATE ACCOUNT PASSWORD
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Create a secure password"
-                  className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450 pr-12"
-                  value={formData.contact.password}
-                  onChange={(e) => updateContact("password", e.target.value)}
-                />
-                <button
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-4 h-4" />
-                  ) : (
-                    <Eye className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Section: Service Location */}
-        <div className="space-y-5 border-t border-gray-50 pt-5">
-          <span className="block text-sm font-semibold text-gray-800 uppercase tracking-wider border-b border-gray-50 pb-2">
-            2. Service Location
-          </span>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Full Address */}
-            <div className="flex flex-col md:col-span-2">
-              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[#F97316]" /> FULL ADDRESS
-              </label>
-              <AddressAutocomplete
-                value={formData.contact.address}
-                onChange={(value) => updateContact("address", value)}
-                placeholder="123 Clean St..."
-                showLocationButton={true}
-                onLocationClick={handleUseCurrentLocation}
-                isLoadingLocation={isLoadingLoc}
-                onValidityChange={setIsAddressValid}
-                inputClassName="!py-3.5 !text-xs !font-semibold !text-gray-800 !pl-10 !pr-12 !border !border-gray-100/50 focus:!ring-2 focus:!ring-orange-500/10"
-              />
-            </div>
-
-            {/* Suburb */}
-            <div className="flex flex-col md:col-span-2">
-              <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5 mb-1.5">
-                <Building2 className="w-3.5 h-3.5 text-[#F97316]" /> SUBURB
-              </label>
-              <input
-                type="text"
-                placeholder="e.g. Richmond"
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/10 text-gray-800 font-semibold text-xs placeholder:text-gray-450"
-                value={formData.contact.suburb}
-                onChange={(e) => updateContact("suburb", e.target.value)}
-              />
-            </div>
+        {/* EMAIL ADDRESS */}
+        <div className="flex flex-col space-y-2">
+          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+            <Mail className="w-4 h-4 text-[#FB8C42]" /> EMAIL ADDRESS
+          </label>
+          <div className="relative flex items-center">
+            <input
+              type="email"
+              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
+              value={formData.contact.email}
+              onChange={(e) => updateContact("email", e.target.value)}
+            />
           </div>
+        </div>
+
+        {/* PASSWORD */}
+        <div className="flex flex-col space-y-2">
+          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+            <Key className="w-4 h-4 text-[#FB8C42]" /> PASSWORD
+          </label>
+          <div className="relative flex items-center">
+            <input
+              type={showPassword ? "text" : "password"}
+              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all pr-12"
+              value={formData.contact.password}
+              onChange={(e) => updateContact("password", e.target.value)}
+            />
+            <button
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4" />
+              ) : (
+                <Eye className="w-4 h-4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* PHONE NUMBER */}
+        <div className="flex flex-col space-y-2">
+          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+            <Phone className="w-4 h-4 text-[#FB8C42]" /> PHONE NUMBER
+          </label>
+          <div className="relative flex items-center">
+            <input
+              type="tel"
+              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
+              value={formData.contact.phone}
+              onChange={(e) => updateContact("phone", e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* SERVICE ADDRESS */}
+        <div className="flex flex-col space-y-2">
+          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+            <MapPin className="w-4 h-4 text-[#FB8C42]" /> SERVICE ADDRESS
+          </label>
+          <AddressAutocomplete
+            value={formData.contact.address}
+            onChange={(value) => updateContact("address", value)}
+            placeholder=""
+            showLocationButton={true}
+            onLocationClick={handleUseCurrentLocation}
+            isLoadingLocation={isLoadingLoc}
+            onValidityChange={setIsAddressValid}
+            inputClassName="!py-3.5 !text-xs !font-semibold !text-gray-700 !bg-white !border !border-gray-200 !shadow-sm focus:!ring-2 focus:!ring-[#FB8C42]/10 !pl-4"
+            className="[&>div>svg:first-child]:hidden"
+          />
         </div>
 
         {/* Terms checkbox */}
-        <div className="flex items-center gap-2.5 pt-2 border-t border-gray-50">
+        <div className="flex items-center gap-2.5 pt-2">
           <input
             type="checkbox"
             id="terms"
@@ -1947,7 +1902,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
             I accept the{" "}
             <a
               href="#"
-              className="underline text-primary hover:text-primary/80 transition-colors"
+              className="underline text-gray-500 hover:text-gray-700 transition-colors"
             >
               Terms & Conditions
             </a>
@@ -1956,22 +1911,22 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
         {/* Feedback Messages */}
         {submitError && (
-          <div className="mt-4 p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
+          <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
             {submitError}
           </div>
         )}
         {submitSuccess && (
-          <div className="mt-4 p-3.5 bg-green-50 border border-green-200 rounded-xl text-green-700 text-xs font-semibold">
+          <div className="p-3.5 bg-green-50 border border-green-200 rounded-xl text-green-700 text-xs font-semibold">
             {submitSuccess}
           </div>
         )}
 
-        {/* Action controls row matching premium Step 5 design */}
-        <div className="mt-8 pt-6 border-t border-gray-50 flex items-center justify-center">
+        {/* Action controls row */}
+        <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col items-center justify-center space-y-4">
           <button
             onClick={handleSubmit}
             disabled={isSubmitting || !isAddressValid}
-            className="w-full bg-[#F97316] hover:bg-[#F97316]/90 text-white py-5 px-6 rounded-2xl font-semibold text-sm shadow-lg shadow-orange-500/10 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-5 px-6 rounded-2xl font-semibold text-sm shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>
@@ -1985,14 +1940,14 @@ const formContentRef = useRef<HTMLDivElement>(null);
               </>
             )}
           </button>
+          
+          <p className="text-center text-xs text-gray-500 font-semibold">
+            Already have an account?{" "}
+            <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
+              Login
+            </button>
+          </p>
         </div>
-
-        <p className="text-center text-xs text-gray-500 mt-4 font-semibold">
-          Already have an account?{" "}
-          <button className="font-semibold text-primary hover:underline transition-all">
-            Login
-          </button>
-        </p>
 
       </div>
     </div>
@@ -2041,7 +1996,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
       return (
         <span className="text-gray-900">Choose Service</span>
       );
-    
+
     if (isCommercial) {
       switch (currentStep) {
         case 2:
@@ -2082,7 +2037,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
       >
         {/* INLINE STEP 1 CONTAINER */}
         <div className="w-full max-w-4xl mx-auto bg-white rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)] overflow-hidden p-6 md:p-8 flex flex-col items-stretch">
-          
+
           {/* Header Block */}
           <div className="text-left mb-6">
             <span className="inline-flex items-center px-3 py-1 rounded-full border border-orange-100 text-primary text-[11px] font-semibold tracking-wider uppercase mb-3 bg-orange-50/50">
@@ -2116,7 +2071,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                 }
               }}
               disabled={currentStep === 1 && !isStepValid()}
-              className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-orange-500/10 transition-all hover:scale-[1.02] flex items-center gap-2"
+              className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-[#FB8C42]/10 transition-all hover:scale-[1.02] flex items-center gap-2"
             >
               Continue
               <ArrowRight className="w-4 h-4" />
@@ -2131,7 +2086,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
 
               {/* Modal Header */}
               <div className="flex-none bg-[#FAF9F6] px-6 py-4 border-b border-gray-200/50 flex relative z-20 items-center justify-between">
-                
+
                 {/* Connected Stepper Row */}
                 <div className="flex items-center overflow-x-auto custom-scrollbar flex-1">
                   {[
@@ -2153,26 +2108,23 @@ const formContentRef = useRef<HTMLDivElement>(null);
                               setCurrentStep(item.step);
                             }
                           }}
-                          className={`flex items-center gap-2 transition-all ${
-                            item.step < currentStep ? "cursor-pointer hover:opacity-80" : "cursor-default"
-                          }`}
+                          className={`flex items-center gap-2 transition-all ${item.step < currentStep ? "cursor-pointer hover:opacity-80" : "cursor-default"
+                            }`}
                         >
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                            isActive 
-                              ? "bg-[#F97316] text-white shadow-sm shadow-orange-500/20" 
-                              : isCompleted
-                                ? "bg-orange-50 border border-orange-100 text-[#F97316]"
-                                : "bg-gray-50 border border-gray-100 text-gray-400"
-                          }`}>
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isActive
+                            ? "bg-[#FB8C42] text-white shadow-sm shadow-[#FB8C42]/20"
+                            : isCompleted
+                              ? "bg-orange-50 border border-orange-100 text-[#FB8C42]"
+                              : "bg-gray-50 border border-gray-100 text-gray-400"
+                            }`}>
                             {isCompleted ? (
-                              <Check className="w-4 h-4 text-[#F97316]" strokeWidth={3} />
+                              <Check className="w-4 h-4 text-[#FB8C42]" strokeWidth={3} />
                             ) : (
                               <item.icon className="w-4 h-4" />
                             )}
                           </div>
-                          <span className={`text-[11px] font-semibold uppercase tracking-wider ${
-                            isActive ? "text-gray-800" : "text-gray-400"
-                          }`}>
+                          <span className={`text-[11px] font-semibold uppercase tracking-wider ${isActive ? "text-gray-800" : "text-gray-400"
+                            }`}>
                             {item.label}
                           </span>
                         </button>
@@ -2183,10 +2135,10 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     );
                   })}
                 </div>
-                
+
                 <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200/50 shrink-0">
                   <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider hidden md:inline-block">
-                    STEP <span className="text-[#F97316] font-bold">{currentStep}</span> OF 5
+                    STEP <span className="text-[#FB8C42] font-bold">{currentStep}</span> OF 5
                   </span>
                   <button
                     onClick={() => setIsModalOpen(false)}
@@ -2210,7 +2162,7 @@ const formContentRef = useRef<HTMLDivElement>(null);
                     <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
                       <button
                         onClick={handlePrevModal}
-                        className="flex items-center gap-1.5 text-[#F97316] hover:text-[#F97316]/80 font-semibold text-[10px] uppercase tracking-wider transition-all"
+                        className="flex items-center gap-1.5 text-[#FB8C42] hover:text-[#FB8C42]/80 font-semibold text-[10px] uppercase tracking-wider transition-all"
                       >
                         <ChevronLeft className="w-4 h-4" /> Back
                       </button>
@@ -2218,11 +2170,10 @@ const formContentRef = useRef<HTMLDivElement>(null);
                       <button
                         onClick={handleNext}
                         disabled={!isStepValid()}
-                        className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${
-                          !isStepValid()
-                            ? "bg-gray-150 text-gray-400 cursor-not-allowed"
-                            : "bg-[#F97316] hover:bg-[#F97316]/95 text-white shadow-lg shadow-orange-500/10 hover:scale-[1.02]"
-                        }`}
+                        className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid()
+                          ? "bg-gray-150 text-gray-400 cursor-not-allowed"
+                          : "bg-[#FB8C42] hover:bg-[#FB8C42]/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.02]"
+                          }`}
                       >
                         Continue
                         <ArrowRight className="w-4 h-4" />
@@ -2353,39 +2304,43 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => {
   const Icon = getCounterIcon(label);
 
   return (
-    <div className={`w-full bg-white p-4 rounded-[20px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md ${hasInfo ? "group" : ""}`}>
-      <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
-          <Icon className="w-5 h-5 text-[#F97316]" />
+    <div className={`w-full bg-white py-4 pl-4 pr-3 rounded-[20px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md gap-3 ${hasInfo ? "group" : ""}`}>
+
+      {/* LEFT SIDE: flex-1 and min-w-0 prevent text from pushing the controls */}
+      <div className="flex items-center gap-3 flex-1 min-w-0">
+        <div className="w-10 h-10 rounded-xl bg-orange-50/70 border border-orange-100 flex items-center justify-center shadow-sm shrink-0">
+          <Icon className="w-5 h-5 text-[#FB8C42]" />
         </div>
-        <div className="flex items-center gap-1">
-          <span className="capitalize font-medium text-gray-800 text-[14.5px]">
+        <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+          <span className="capitalize font-semibold text-gray-800 text-sm whitespace-normal leading-tight break-words">
             {label}
           </span>
           {hasInfo && (
-            <Info className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary transition-colors cursor-help" />
+            <Info className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary transition-colors cursor-help shrink-0" />
           )}
         </div>
       </div>
-      <div className="flex items-center gap-3">
+
+      {/* RIGHT SIDE: shrink-0 ensures identical width across all cards for perfect vertical alignment */}
+      <div className="flex items-center gap-2 shrink-0">
         <button
           onClick={() => onUpdate(-1)}
-          className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors border border-gray-100"
+          className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors border border-gray-100 shrink-0"
         >
           <Minus className="w-3.5 h-3.5" />
         </button>
-        <span className="w-5 text-center font-semibold text-base text-gray-800">{count}</span>
+        <span className="w-5 text-center font-bold text-sm text-gray-800 shrink-0">{count}</span>
         <button
           onClick={() => onUpdate(1)}
-          className="w-8 h-8 rounded-full bg-[#F97316] flex items-center justify-center text-white hover:bg-[#F97316]/95 transition-all shadow-md shadow-orange-500/10 hover:shadow-orange-500/20 hover:scale-105"
+          className="w-8 h-8 rounded-full bg-[#FB8C42] flex items-center justify-center text-white hover:bg-[#FB8C42]/95 transition-all shadow-md shadow-[#FB8C42]/10 hover:shadow-[#FB8C42]/20 hover:scale-105 shrink-0"
         >
           <Plus className="w-3.5 h-3.5" />
         </button>
       </div>
+
     </div>
   );
 };
-
 interface AddressAutocompleteProps {
   value: string;
   onChange: (value: string) => void;

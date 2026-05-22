@@ -183,7 +183,7 @@ export default function BookingStepOne() {
           <Button 
             onClick={handleContinue} 
             size="lg" 
-            className="rounded-full px-8 py-5 text-sm font-bold bg-primary hover:bg-primary/95 text-white shadow-lg shadow-orange-500/10 hover:shadow-orange-500/20 transition-all flex items-center gap-2 group"
+            className="rounded-full px-8 py-5 text-sm font-bold bg-primary hover:bg-primary/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:shadow-[#FB8C42]/20 transition-all flex items-center gap-2 group"
           >
             Continue
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

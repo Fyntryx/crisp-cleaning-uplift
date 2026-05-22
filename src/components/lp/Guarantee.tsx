@@ -1,31 +1,72 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function Guarantee() {
   return (
-    <section className="py-24 bg-[#FAF9F6]">
-      <div className="container mx-auto px-4 max-w-4xl text-center">
-        <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Our Promise</h4>
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-12">
-          If it's not right, we make it right. Simple.
-        </h2>
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-4 max-w-[1216px]">
 
-        <div className="bg-primary p-10 md:p-16 rounded-[2rem] shadow-xl text-white relative overflow-hidden">
-          <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">100% Satisfaction Guarantee</h3>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-              Not satisfied with your clean? Contact us within <span className="underline underline-offset-4 decoration-white/40 font-semibold">24 hours</span>, send us a photo, and we'll be back within <span className="underline underline-offset-4 decoration-white/40 font-semibold">72 hours</span> to fix it — at no extra cost. No arguments, no awkward conversations.
-            </p>
-            
-            <Button size="xl" className="rounded-full px-10 py-7 text-lg font-bold bg-white text-primary hover:bg-orange-50 shadow-lg hover:shadow-xl transition-all mb-8">
-              Book With Confidence
-            </Button>
+        {/* Guarantee Card */}
+        <div
+          className="relative overflow-hidden text-white"
+          style={{
+            backgroundColor: "rgb(251, 140, 66)",
+            borderRadius: "32px",
+            padding: "64px",
+            boxShadow: "rgba(251, 140, 66, 0.32) 0px 8px 24px 0px, rgba(251, 140, 66, 0.18) 0px 2px 6px 0px",
+          }}
+        >
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/5 pointer-events-none" />
 
-            <p className="text-sm text-white/80 max-w-lg mx-auto">
-              Re-clean subject to access, scope and reasonable conditions.<br className="hidden sm:block" /> Full terms available at booking.
-            </p>
+          <div className="relative z-10 flex flex-col md:flex-row items-start gap-10">
+
+            {/* Shield Icon */}
+            <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-8 h-8 text-white" strokeWidth={2} />
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 max-w-[700px]">
+              {/* Tag */}
+              <div className="mb-3">
+                <span className="text-white font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
+                  THE CRISP GUARANTEE
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h2
+                style={{ letterSpacing: "-1.2px", lineHeight: "48px" }}
+                className="text-[48px] font-semibold text-white mb-5 mt-3"
+              >
+                Not satisfied? We'll make it right. No questions asked.
+              </h2>
+
+              {/* Description */}
+              <p className="text-[18px] text-white/90 font-normal leading-[28px] max-w-[600px] mb-8">
+                Contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">32 hours</span> of your clean with a photo and a description. We'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">48 hours</span> to fix it — completely free. If we can't make it right, you don't pay.
+              </p>
+
+              {/* CTA Button */}
+              <Link
+                href="/#booking"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-gray-900 px-8 py-4 font-bold text-[16px] hover:bg-white/90 transition-all shadow-lg mb-6"
+              >
+                Book With Confidence — 25% Off Your First Clean
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+
+              {/* Disclaimer */}
+              <p className="text-[14px] text-white/70 font-normal">
+                Re-clean subject to access, scope, and reasonable conditions. Full terms at booking.
+              </p>
+            </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );

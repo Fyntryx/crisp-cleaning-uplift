@@ -3,7 +3,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import QuoteRequestPanel from "@/components/QuoteRequestPanel";
+import ServiceHero from "./ServiceHero";
 import Checklist from "@/components/lp/Checklist";
 import Process from "@/components/lp/Process";
 import Guarantee from "@/components/lp/Guarantee";
@@ -11,8 +11,10 @@ import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Testimonials from "@/components/lp/Testimonials";
 import FrequencyCards from "@/components/lp/FrequencyCards";
+import WhoItsFor from "./WhoItsFor";
 import BuiltForYou from "@/components/lp/BuiltForYou";
-import Difference from "@/components/lp/Difference";
+import ServiceDifference from "./ServiceDifference";
+import BeforeAfter from "./BeforeAfter";
 import ServiceAreas from "@/components/lp/ServiceAreas";
 import { Sparkles, Clock, Shield, UserCheck } from "lucide-react";
 
@@ -131,48 +133,32 @@ export default function HouseCleaningPage() {
       />
       <Navbar />
 
-      {/* 1. Hero / Quote Request Section */}
-      <div className="pt-24 lg:pt-32">
-        <QuoteRequestPanel
-          headline={
-            <>
-              A consistent, detailed clean — every visit, without the mental load.
-            </>
-          }
-          subheadline="Book Melbourne's most trusted home cleaning service in seconds. Premium service. Zero hassle."
-          seoKeyword="house cleaning"
-          contextPoints={[
-            "Top-rated house cleaning professionals in Melbourne.",
-            "Instant booking and online schedule management.",
-            "100% Satisfaction Guarantee.",
-          ]}
-          variant="cta"
-        />
-      </div>
+      {/* 1. Hero */}
+      <ServiceHero />
 
-      {/* 2. Frequency Cards */}
-      <FrequencyCards />
+      {/* Wrap remaining sections to reduce vertical gap by ~20% */}
+      <div className="[&>section]:!py-16 lg:[&>section]:!py-20">
+        {/* 2. Frequency Cards */}
+        <FrequencyCards />
 
-      {/* 3. Testimonials (Before/After slider) */}
-      <Testimonials 
-        title="Real results from Melbourne homes."
-        subtitle=""
-        topTitle={null}
-        hideReviews={true}
-      />
+      {/* 3. Before/After */}
+      <BeforeAfter />
 
       {/* 4. Checklist */}
       <Checklist 
         defaultTab="Standard" 
-        title="Nothing is assumed. Everything is cleaned." 
-        topTitle="The Checklist"
+        title="Nothing is assumed. Everything is covered." 
+        topTitle="What's Included"
+        layout="left"
+        subtitle="Every Regular Clean follows a defined room-by-room checklist. Not a vibe — a system. Here's exactly what gets done."
+        availableTabs={["Standard", "Deep"]}
       />
 
-      {/* 5. Built for You (4 Cards) */}
-      <BuiltForYou />
+      {/* 5. Who It's For (4 Cards) */}
+      <WhoItsFor />
 
       {/* 6. Difference */}
-      <Difference 
+      <ServiceDifference 
         title="Why Crisp isn't like every other cleaning service you've tried."
         subtitle=""
       />
@@ -181,6 +167,7 @@ export default function HouseCleaningPage() {
       <Process 
         title="From quote to clean — here's exactly what happens."
         subtitle=""
+        layout="left"
       />
 
       {/* 8. Reviews */}
@@ -189,6 +176,7 @@ export default function HouseCleaningPage() {
         subtitle=""
         topTitle={null}
         hideBeforeAfter={true}
+        layout="left"
       />
 
       {/* 9. Our Promise / Satisfaction Guarantee */}
@@ -200,8 +188,9 @@ export default function HouseCleaningPage() {
       {/* 11. FAQs Accordion */}
       <FAQ data={faqs} title="Common questions about standard house cleaning" />
 
-      {/* 12. Final CTA Section */}
-      <FinalCTA />
+        {/* 12. Final CTA Section */}
+        <FinalCTA />
+      </div>
 
       <Footer />
     </main>
