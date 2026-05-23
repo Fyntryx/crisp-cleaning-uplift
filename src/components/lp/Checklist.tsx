@@ -32,7 +32,7 @@ const checklistData: Record<string, ChecklistData> = {
         "Air freshen / deodorise"
       ],
       "Floors": [
-        "Vacuum accessible floors (incl. under furniture)",
+        "Vacuum accessible floors",
         "Mop hard floors"
       ],
       "Bedrooms": [
@@ -58,19 +58,89 @@ const checklistData: Record<string, ChecklistData> = {
       ]
     },
     exclusions: [
-      "Wipe sills, doors, and skirting",
-      "Move light furniture",
-      "Wall spot cleaning",
-      "Window tracks / sills (detailed)",
-      "Deep floor cleaning (incl. edges)",
-      "Under-bed / furniture vacuum",
+      "Extensive organisation / declutter",
+      "Deep clean of sills, doors, and skirting",
+      "Extensive wall spot cleaning / adhesive removal",
+      "Detailed window tracks / sills",
+      "Windows (interior)",
+      "Ceiling fan / top edge dusting",
+      "Deep floor cleaning and scrubbing (incl. edges)",
+      "Under furniture / bed vacuum",
       "Door frames & detailed surfaces",
-      "Interior windows / sills"
+      "Interior windows",
+      "Deep scrub (shower, bath, sink, toilet)",
+      "Tapware/chrome polished",
+      "Grout/tile scrubbing (incl. complete mould removal)",
+      "Exhaust fan cleaning",
+      "Tapware polished",
+      "Stainless steel polished"
     ]
   },
   Deep: {
     inclusions: {
       "General Areas": [
+        "Wipe sills, doors, and skirting",
+        "Move light furniture",
+        "Wall spot cleaning",
+        "Window tracks / sills (detailed)",
+        "Light organisation / tidy up",
+        "Cobweb removal",
+        "Empty bins",
+        "Dust/wipe reachable surfaces",
+        "Dust sills, doors, skirting, and switches",
+        "Mirrors cleaned",
+        "Blinds (light dust)",
+        "Air freshen / deodorise"
+      ],
+      "Floors": [
+        "Vacuum accessible floors (incl. under furniture)",
+        "Mop hard floors",
+        "Deep floor cleaning (incl. edges)"
+      ],
+      "Bedrooms": [
+        "Under-bed / furniture vacuum",
+        "Door frames & detailed surfaces",
+        "Interior windows / sills",
+        "Light tidy & bed straighten",
+        "Dust / wipe all surfaces",
+        "Vacuum / mop floors",
+        "Light switches & power points",
+        "Dust Blinds"
+      ],
+      "Bathroom": [
+        "Deep scrub (shower, bath, sink)",
+        "Grout / tile scrubbing (incl. mould removal)",
+        "Tapware/Chrome polished",
+        "Mirrors cleaned",
+        "Benches & surfaces wiped",
+        "Cupboards (exterior)",
+        "Empty bins"
+      ],
+      "Kitchen": [
+        "Tapware polished",
+        "Stainless steel polished",
+        "Benches, splashback, surfaces",
+        "Light stovetop / rangehood wipe",
+        "Sink cleaned",
+        "Appliances (exterior)",
+        "Cupboards (exterior)"
+      ]
+    },
+    exclusions: [
+      "Detailed interior windows (light wipe down included)",
+      "Ceiling fan / top edge dusting",
+      "Adhesive / tape / scuff removal",
+      "Exhaust fan cleaning"
+    ]
+  },
+  Vacate: {
+    inclusions: {
+      "General Areas": [
+        "Windows (interior)",
+        "Laundry",
+        "Adhesive/tape/scuff removal",
+        "Ceiling fan / top edge dusting",
+        "Garages - light sweep",
         "Cobweb removal",
         "Empty bins",
         "Dust/wipe reachable surfaces",
@@ -89,121 +159,43 @@ const checklistData: Record<string, ChecklistData> = {
         "Deep floor cleaning (incl. edges)"
       ],
       "Bedrooms": [
-        "Dust / wipe all surfaces",
-        "Vacuum / mop floors",
-        "Light switches & power points",
-        "Dust Blinds",
-        "Under-bed / furniture vacuum",
-        "Door frames & detailed surfaces",
-        "Interior windows / sills"
-      ],
-      "Bathroom": [
-        "Clean bath, shower, sink, toilet",
-        "Deep scrub (shower, bath, sink)",
-        "Mirrors cleaned",
-        "Benches & surfaces wiped",
-        "Tapware/Chrome polished",
-        "Cupboards (exterior)",
-        "Empty bins",
-        "Grout / tile scrubbing (incl. mould removal)"
-      ],
-      "Kitchen": [
-        "Benches, splashback, surfaces",
-        "Light stovetop / rangehood wipe",
-        "Sink cleaned",
-        "Tapware polished",
-        "Appliances (exterior)",
-        "Cupboards (exterior)",
-        "Stainless steel polished"
-      ]
-    },
-    exclusions: [
-      "Light organisation / tidy up",
-      "Full wall cleaning",
-      "Blinds (deep clean)",
-      "Windows (interior)",
-      "Windows (exterior)",
-      "Ceilings",
-      "Ceiling fan / top edge dusting",
-      "Garages",
-      "Laundry",
-      "Adhesive/tape/scuff removal",
-      "Exhaust fan cleaning",
-      "Inside drawers / cabinets (bathroom)",
-      "Inside drawers / cabinets (kitchen)",
-      "Microwave (interior)"
-    ]
-  },
-  Vacate: {
-    inclusions: {
-      "General Areas": [
-        "Cobweb removal",
-        "Empty bins",
-        "Dust/wipe reachable surfaces",
-        "Dust sills, doors, skirting, and switches",
-        "Mirrors cleaned",
-        "Blinds (light dust)",
-        "Air freshen / deodorise",
-        "Wipe sills, doors, and skirting",
-        "Move light furniture",
-        "Wall spot cleaning",
-        "Window tracks / sills (detailed)",
-        "Extensive organisation / declutter",
-        "Full wall cleaning",
-        "Blinds (deep clean)",
-        "Windows (interior)",
-        "Windows (exterior)",
-        "Ceilings",
-        "Ceiling fan / top edge dusting",
-        "Garages (light sweep)",
-        "Laundry",
-        "Adhesive/tape/scuff removal"
-      ],
-      "Floors": [
-        "Vacuum accessible floors (incl. under furniture)",
-        "Mop hard floors",
-        "Deep floor cleaning (incl. edges)"
-      ],
-      "Bedrooms": [
-        "Dust / wipe all surfaces",
-        "Vacuum / mop floors",
-        "Light switches & power points",
-        "Dust Blinds",
+        "Inside drawers / cabinets / wardrobes",
         "Under-bed / furniture vacuum",
         "Door frames & detailed surfaces",
         "Interior windows / sills",
-        "Inside drawers / cabinets / wardrobes"
+        "Dust / wipe all surfaces",
+        "Vacuum / mop floors",
+        "Light switches & power points",
+        "Dust Blinds"
       ],
       "Bathroom": [
-        "Clean bath, shower, sink, toilet",
+        "Exhaust fan cleaning",
+        "Inside drawers / cabinets",
         "Deep scrub (shower, bath, sink)",
+        "Grout / tile scrubbing (incl. mould removal)",
+        "Tapware/Chrome polished",
         "Mirrors cleaned",
         "Benches & surfaces wiped",
-        "Tapware/Chrome polished",
         "Cupboards (exterior)",
-        "Empty bins",
-        "Grout / tile scrubbing (incl. mould removal)",
-        "Exhaust fan cleaning",
-        "Inside drawers / cabinets"
+        "Empty bins"
       ],
       "Kitchen": [
-        "Benches, splashback, surfaces",
-        "Light stovetop / rangehood wipe (incl. vent dusting)",
-        "Sink cleaned",
-        "Tapware polished",
-        "Appliances (exterior)",
-        "Cupboards (exterior)",
-        "Stainless steel polished",
+        "Microwave (interior)",
         "Inside drawers / cabinets",
-        "Microwave (interior)"
+        "Light stovetop / rangehood wipe (incl. vent dusting)",
+        "Tapware polished",
+        "Stainless steel polished",
+        "Benches, splashback, surfaces",
+        "Light stovetop / rangehood wipe",
+        "Sink cleaned",
+        "Appliances (exterior)",
+        "Cupboards (exterior)"
       ]
     },
     exclusions: [
-      "Light organisation / tidy up",
-      "Light tidy & bed straighten",
-      "Deep stovetop / oven / rangehood clean",
-      "Dishwasher (interior)",
-      "Oven interior"
+      "Organisation (home should be empty)",
+      "Deep garage clean (light clean included)",
+      "Tidy / straighten bed (home should be empty)"
     ]
   },
   "Add-ons": {
