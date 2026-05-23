@@ -15,7 +15,7 @@ const tabDescriptions = {
 
 type ChecklistData = {
   inclusions: Record<string, string[]>;
-  exclusions: string[];
+  exclusions: Record<string, string[]>;
 };
 
 const checklistData: Record<string, ChecklistData> = {
@@ -57,24 +57,34 @@ const checklistData: Record<string, ChecklistData> = {
         "Cupboards (exterior)"
       ]
     },
-    exclusions: [
-      "Extensive organisation / declutter",
-      "Deep clean of sills, doors, and skirting",
-      "Extensive wall spot cleaning / adhesive removal",
-      "Detailed window tracks / sills",
-      "Windows (interior)",
-      "Ceiling fan / top edge dusting",
-      "Deep floor cleaning and scrubbing (incl. edges)",
-      "Under furniture / bed vacuum",
-      "Door frames & detailed surfaces",
-      "Interior windows",
-      "Deep scrub (shower, bath, sink, toilet)",
-      "Tapware/chrome polished",
-      "Grout/tile scrubbing (incl. complete mould removal)",
-      "Exhaust fan cleaning",
-      "Tapware polished",
-      "Stainless steel polished"
-    ]
+    exclusions: {
+      "General Areas": [
+        "Extensive organisation / declutter",
+        "Deep clean of sills, doors, and skirting",
+        "Extensive wall spot cleaning / adhesive removal",
+        "Detailed window tracks / sills",
+        "Windows (interior)",
+        "Ceiling fan / top edge dusting"
+      ],
+      "Floors": [
+        "Deep floor cleaning and scrubbing (incl. edges)"
+      ],
+      "Bedrooms": [
+        "Under furniture / bed vacuum",
+        "Door frames & detailed surfaces",
+        "Interior windows"
+      ],
+      "Bathrooms": [
+        "Deep scrub (shower, bath, sink, toilet)",
+        "Tapware/chrome polished",
+        "Grout/tile scrubbing (incl. complete mould removal)",
+        "Exhaust fan cleaning"
+      ],
+      "Kitchen": [
+        "Tapware polished",
+        "Stainless steel polished"
+      ]
+    }
   },
   Deep: {
     inclusions: {
@@ -126,12 +136,16 @@ const checklistData: Record<string, ChecklistData> = {
         "Cupboards (exterior)"
       ]
     },
-    exclusions: [
-      "Detailed interior windows (light wipe down included)",
-      "Ceiling fan / top edge dusting",
-      "Adhesive / tape / scuff removal",
-      "Exhaust fan cleaning"
-    ]
+    exclusions: {
+      "General Areas": [
+        "Detailed interior windows (light wipe down included)",
+        "Ceiling fan / top edge dusting",
+        "Adhesive / tape / scuff removal"
+      ],
+      "Bathroom": [
+        "Exhaust fan cleaning"
+      ]
+    }
   },
   Vacate: {
     inclusions: {
@@ -192,11 +206,15 @@ const checklistData: Record<string, ChecklistData> = {
         "Cupboards (exterior)"
       ]
     },
-    exclusions: [
-      "Organisation (home should be empty)",
-      "Deep garage clean (light clean included)",
-      "Tidy / straighten bed (home should be empty)"
-    ]
+    exclusions: {
+      "General Areas": [
+        "Organisation (home should be empty)",
+        "Deep garage clean (light clean included)"
+      ],
+      "Bedrooms": [
+        "Tidy / straighten bed (home should be empty)"
+      ]
+    }
   },
   "Add-ons": {
     inclusions: {
@@ -215,7 +233,7 @@ const checklistData: Record<string, ChecklistData> = {
         "Ceiling (incl. fans)"
       ]
     },
-    exclusions: []
+    exclusions: {}
   }
 };
 
@@ -318,21 +336,28 @@ export default function Checklist({
           {/* Sidebar Column */}
           <div className="w-full md:w-[320px] shrink-0 flex flex-col gap-6 relative">
             {/* Exclusions */}
-            {currentData.exclusions.length > 0 && (
+            {Object.keys(currentData.exclusions).length > 0 && (
               <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
                 <h3 className="text-lg font-bold text-gray-900 mb-6">
                   Exclusions
                 </h3>
-                <ul className="flex flex-col gap-4 text-[14px] text-gray-500">
-                  {currentData.exclusions.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0 mt-0.5">
-                        <X className="w-3 h-3 text-gray-400" strokeWidth={3} />
-                      </div>
-                      <span className="leading-snug">{item}</span>
-                    </li>
+                <div className="flex flex-col gap-6">
+                  {Object.entries(currentData.exclusions).map(([category, items]) => (
+                    <div key={category}>
+                      <h4 className="text-[13px] font-bold text-gray-900 mb-3 uppercase tracking-wider">{category}</h4>
+                      <ul className="flex flex-col gap-3 text-[14px] text-gray-500">
+                        {items.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0 mt-0.5">
+                              <X className="w-3 h-3 text-gray-400" strokeWidth={3} />
+                            </div>
+                            <span className="leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
 
