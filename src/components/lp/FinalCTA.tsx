@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Tag, Clock, ArrowRight } from "lucide-react";
 
@@ -61,10 +62,12 @@ export default function FinalCTA({ title, discountText }: FinalCTAProps) {
             </div>
 
             {/* Glowing Action Button */}
-            <Button size="xl" className="rounded-full px-12 py-7 text-lg font-bold bg-primary hover:bg-primary/95 text-white shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:shadow-[0_0_40px_rgba(249,115,22,0.65)] hover:-translate-y-0.5 transition-all duration-300 mb-8 flex items-center gap-2 group">
-              Claim Your First Clean
-              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
+            <Link href="/#booking" className="mb-8 inline-block">
+              <Button size="xl" className="rounded-full px-12 py-7 text-lg font-bold bg-primary hover:bg-primary/95 text-white shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:shadow-[0_0_40px_rgba(249,115,22,0.65)] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group w-full">
+                Claim Your First Clean
+                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </Link>
 
             {/* Bottom trust footer */}
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs md:text-sm text-white/40 font-medium">
