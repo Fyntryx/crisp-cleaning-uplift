@@ -89,7 +89,6 @@ const checklistData: Record<string, ChecklistData> = {
   Deep: {
     inclusions: {
       "General Areas": [
-        "Wipe sills, doors, and skirting",
         "Move light furniture",
         "Wall spot cleaning",
         "Window tracks / sills (detailed)",
@@ -97,7 +96,7 @@ const checklistData: Record<string, ChecklistData> = {
         "Cobweb removal",
         "Empty bins",
         "Dust/wipe reachable surfaces",
-        "Dust sills, doors, skirting, and switches",
+        "Dust & wipe sills, doors, skirting, and switches",
         "Mirrors cleaned",
         "Blinds (light dust)",
         "Air freshen / deodorise"
@@ -158,11 +157,10 @@ const checklistData: Record<string, ChecklistData> = {
         "Cobweb removal",
         "Empty bins",
         "Dust/wipe reachable surfaces",
-        "Dust sills, doors, skirting, and switches",
+        "Dust & wipe sills, doors, skirting, and switches",
         "Mirrors cleaned",
         "Blinds (light dust)",
         "Air freshen / deodorise",
-        "Wipe sills, doors, and skirting",
         "Move light furniture",
         "Wall spot cleaning",
         "Window tracks / sills (detailed)"
