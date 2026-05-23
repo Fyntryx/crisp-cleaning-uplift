@@ -26,7 +26,7 @@ export default function DeepCleanPlans() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch max-w-4xl mx-auto">
           
           {/* Left Card: One-Off Deep Clean */}
           <div className="relative flex flex-col bg-white rounded-[24px] p-8 border border-gray-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">

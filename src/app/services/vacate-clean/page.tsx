@@ -165,7 +165,7 @@ export default function HouseCleaningPage() {
         topTitle="What's Included"
         layout="left"
         subtitle="Every Vacate Clean follows a defined room-by-room checklist. Not a vibe — a system. Here's exactly what gets done."
-        availableTabs={["Vacate", "Deep"]}
+        availableTabs={["Vacate"]}
       />
 
       {/* 6. Difference */}
@@ -183,7 +183,7 @@ export default function HouseCleaningPage() {
 
       {/* 8. Reviews */}
       <Testimonials 
-        title={<>What Melbourne homeowners<br className="hidden md:block"/> are saying.</>}
+        title="Bound beyond the bond"
         subtitle=""
         topTitle="SOCIAL PROOF"
         hideBeforeAfter={true}
@@ -198,10 +198,14 @@ export default function HouseCleaningPage() {
       <ServiceAreas />
 
       {/* 11. FAQs Accordion */}
-      <FAQ data={faqs} title="Common questions about standard house cleaning" />
+      <FAQ data={faqs} title="Second thoughts? Let's vacate them" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA />
+        <FinalCTA title={
+          <>
+            Why not leave the place <span className="text-primary">crisp-ier</span> than you found it?
+          </>
+        } />
       </div>
 
       <Footer />

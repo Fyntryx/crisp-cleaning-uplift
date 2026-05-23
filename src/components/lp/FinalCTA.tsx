@@ -2,7 +2,12 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Tag, Clock, ArrowRight } from "lucide-react";
 
-export default function FinalCTA() {
+interface FinalCTAProps {
+  title?: React.ReactNode;
+  discountText?: string;
+}
+
+export default function FinalCTA({ title, discountText }: FinalCTAProps) {
   return (
     <section className="py-24 bg-[#FAF9F6] overflow-hidden">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -29,7 +34,11 @@ export default function FinalCTA() {
 
             {/* Main Header with orange accent */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight max-w-2xl">
-              Your home won't clean itself. <span className="text-primary">But we will.</span>
+              {title || (
+                <>
+                  Your home won't clean itself. <span className="text-primary">But we will.</span>
+                </>
+              )}
             </h2>
             
             {/* Subtext */}
@@ -41,7 +50,7 @@ export default function FinalCTA() {
             <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl sm:rounded-full px-5 py-2.5 mb-10 text-xs md:text-sm text-white/80">
               <div className="flex items-center gap-2">
                 <Tag className="w-4 h-4 text-primary" />
-                <span>25% off your first clean. Use code</span>
+                <span>{discountText || "25% off your first clean. Use code"}</span>
                 <span className="bg-primary/20 text-primary border border-primary/30 text-[10px] font-extrabold px-2 py-0.5 rounded-full tracking-wide">WELCOME25</span>
               </div>
               <span className="hidden sm:inline text-white/20">|</span>

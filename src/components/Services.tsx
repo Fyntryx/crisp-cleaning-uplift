@@ -195,7 +195,7 @@ const BookingSummaryCard = ({
         <div className="space-y-3">
           {pricingResult?.breakdown.cleaningType && (
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>{pricingResult.breakdown.cleaningType.name} Clean — base</span>
+              <span>{pricingResult.breakdown.cleaningType.name} Clean</span>
               <span>A${pricingResult.breakdown.cleaningType.price}</span>
             </div>
           )}
@@ -932,7 +932,7 @@ const Services = () => {
     const SelectedIcon = getPlanIcon();
 
     return (
-      <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
+      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
 
         {/* Step Identifier Tag */}
         <div className="mb-4">
@@ -963,16 +963,18 @@ const Services = () => {
               {getPlanDescription()}
             </p>
 
-            <a
-              href="#what-is-included"
+            <button
               onClick={(e) => {
                 e.preventDefault();
-                // Toggles standard checklist info or scrolls
+                setIsModalOpen(false);
+                setTimeout(() => {
+                  document.getElementById("checklist")?.scrollIntoView({ behavior: "smooth" });
+                }, 100);
               }}
               className="text-xs font-bold text-[#FB8C42] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
             >
               {"What's included \u2192"}
-            </a>
+            </button>
           </div>
 
           {/* MIDDLE ROW: 2-Column Grid for Counters */}
@@ -1106,7 +1108,7 @@ const Services = () => {
     ];
 
     return (
-      <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-6 py-2">
+      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-6 py-2">
         {/* Step Identifier Tag */}
         <div className="mb-2">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
@@ -1250,7 +1252,7 @@ const Services = () => {
   };
 
   const renderResStep4 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 p-6 md:p-8 bg-[#FFFAF6] rounded-[32px]">
+    <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
       {/* Step Identifier Tag */}
       <div className="mb-2">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
@@ -1262,12 +1264,12 @@ const Services = () => {
 
           {/* Pets Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <PawPrint className="w-3.5 h-3.5 text-[#FB8C42]" /> DO YOU HAVE ANY PETS?
+            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
+              <PawPrint className="w-4 h-4 text-[#FB8C42]" /> DO YOU HAVE ANY PETS?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.pets}
                 onChange={(e) =>
                   setFormData({
@@ -1291,12 +1293,12 @@ const Services = () => {
 
           {/* Parking Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <Car className="w-3.5 h-3.5 text-[#FB8C42]" /> IS PARKING AVAILABLE?
+            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
+              <Car className="w-4 h-4 text-[#FB8C42]" /> IS PARKING AVAILABLE?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.parking}
                 onChange={(e) =>
                   setFormData({
@@ -1320,12 +1322,12 @@ const Services = () => {
 
           {/* Entry Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <Key className="w-3.5 h-3.5 text-[#FB8C42]" /> HOW WILL WE GET IN?
+            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
+              <Key className="w-4 h-4 text-[#FB8C42]" /> HOW WILL WE GET IN?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.entry}
                 onChange={(e) =>
                   setFormData({
@@ -1350,12 +1352,12 @@ const Services = () => {
 
           {/* Areas to Avoid Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-              <AlertTriangle className="w-3.5 h-3.5 text-[#FB8C42]" /> ANY AREAS TO AVOID?
+            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 text-[#FB8C42]" /> ANY AREAS TO AVOID?
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.areasToAvoid}
                 onChange={(e) =>
                   setFormData({
@@ -1380,11 +1382,11 @@ const Services = () => {
 
         {/* Notes Textarea */}
         <div className="flex flex-col space-y-2 pt-2">
-          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
-            <FileText className="w-3.5 h-3.5 text-[#FB8C42]" /> ANYTHING ELSE WE SHOULD KNOW?
+          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
+            <FileText className="w-4 h-4 text-[#FB8C42]" /> ANYTHING ELSE WE SHOULD KNOW?
           </label>
           <textarea
-            className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none resize-none h-28 text-gray-700 text-xs font-semibold placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-[#FB8C42]/10 shadow-sm transition-all"
+            className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none resize-none h-32 text-stone-900 text-[14.5px] font-normal tracking-normal placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-[#FB8C42]/10 shadow-sm transition-all"
             placeholder="e.g. fragile items, allergies, specific instructions..."
             value={formData.instructions.notes}
             onChange={(e) =>
@@ -1771,7 +1773,7 @@ const Services = () => {
   );
 
   const renderResStep5 = () => (
-    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 p-6 md:p-8 bg-[#FFFAF6] rounded-[32px]">
+    <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
       {/* Step Identifier Tag */}
       <div className="mb-2">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
@@ -1784,13 +1786,13 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* FIRST NAME */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
               <User className="w-4 h-4 text-[#FB8C42]" /> FIRST NAME
             </label>
             <div className="relative flex items-center">
               <input
                 type="text"
-                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
                 value={formData.contact.firstName}
                 onChange={(e) => updateContact("firstName", e.target.value)}
               />
@@ -1799,13 +1801,13 @@ const Services = () => {
 
           {/* LAST NAME */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
               <User className="w-4 h-4 text-[#FB8C42]" /> LAST NAME
             </label>
             <div className="relative flex items-center">
               <input
                 type="text"
-                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
                 value={formData.contact.lastName}
                 onChange={(e) => updateContact("lastName", e.target.value)}
               />
@@ -1815,13 +1817,13 @@ const Services = () => {
 
         {/* EMAIL ADDRESS */}
         <div className="flex flex-col space-y-2">
-          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
             <Mail className="w-4 h-4 text-[#FB8C42]" /> EMAIL ADDRESS
           </label>
           <div className="relative flex items-center">
             <input
               type="email"
-              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
+              className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
               value={formData.contact.email}
               onChange={(e) => updateContact("email", e.target.value)}
             />
@@ -1830,13 +1832,13 @@ const Services = () => {
 
         {/* PASSWORD */}
         <div className="flex flex-col space-y-2">
-          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
             <Key className="w-4 h-4 text-[#FB8C42]" /> PASSWORD
           </label>
           <div className="relative flex items-center">
             <input
               type={showPassword ? "text" : "password"}
-              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all pr-12"
+              className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all pr-12"
               value={formData.contact.password}
               onChange={(e) => updateContact("password", e.target.value)}
             />
@@ -1855,13 +1857,13 @@ const Services = () => {
 
         {/* PHONE NUMBER */}
         <div className="flex flex-col space-y-2">
-          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
             <Phone className="w-4 h-4 text-[#FB8C42]" /> PHONE NUMBER
           </label>
           <div className="relative flex items-center">
             <input
               type="tel"
-              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-gray-700 font-semibold text-xs shadow-sm transition-all"
+              className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
               value={formData.contact.phone}
               onChange={(e) => updateContact("phone", e.target.value)}
             />
@@ -1870,7 +1872,7 @@ const Services = () => {
 
         {/* SERVICE ADDRESS */}
         <div className="flex flex-col space-y-2">
-          <label className="text-[11px] font-semibold uppercase text-gray-400 tracking-wider flex items-center gap-1.5">
+          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
             <MapPin className="w-4 h-4 text-[#FB8C42]" /> SERVICE ADDRESS
           </label>
           <AddressAutocomplete
@@ -2036,7 +2038,7 @@ const Services = () => {
         className="w-full relative flex flex-col justify-center"
       >
         {/* INLINE STEP 1 CONTAINER */}
-        <div className="w-full max-w-4xl mx-auto bg-white rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)] overflow-hidden p-6 md:p-8 flex flex-col items-stretch">
+        <div className="w-full max-w-5xl mx-auto bg-white rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)] overflow-hidden p-6 md:p-8 flex flex-col items-stretch">
 
           {/* Header Block */}
           <div className="text-left mb-6">
@@ -2058,9 +2060,18 @@ const Services = () => {
               <div className="flex items-center gap-1.5 text-gray-300 font-semibold text-[10px] uppercase tracking-widest cursor-not-allowed select-none mr-6">
                 <ChevronLeft className="w-4 h-4" /> Back
               </div>
-              <a href="#plans" className="text-xs font-semibold text-primary hover:underline transition-all">
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsModalOpen(false);
+                  setTimeout(() => {
+                    document.getElementById("checklist")?.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
+                }}
+                className="text-xs font-semibold text-primary hover:underline transition-all"
+              >
                 Compare all plans &rarr;
-              </a>
+              </button>
             </div>
 
             <button
@@ -2082,7 +2093,7 @@ const Services = () => {
         {/* OVERLAY BOOKING MODAL FOR STEPS >= 2 */}
         {mounted && isModalOpen && createPortal(
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 bg-[#1E1915]/60 backdrop-blur-md animate-in fade-in duration-300">
-            <div className="bg-[#FAF9F6] w-full max-w-5xl h-[90vh] md:h-[85vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300 border border-gray-200/50">
+            <div className="bg-[#FAF9F6] w-full max-w-7xl h-[90vh] md:h-[85vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300 border border-gray-200/50">
 
               {/* Modal Header */}
               <div className="flex-none bg-[#FAF9F6] px-6 py-4 border-b border-gray-200/50 flex relative z-20 items-center justify-between">
@@ -2104,7 +2115,10 @@ const Services = () => {
                         <button
                           disabled={item.step >= currentStep}
                           onClick={() => {
-                            if (item.step < currentStep) {
+                            if (item.step === 1) {
+                              setIsModalOpen(false);
+                              setCurrentStep(1);
+                            } else if (item.step < currentStep) {
                               setCurrentStep(item.step);
                             }
                           }}

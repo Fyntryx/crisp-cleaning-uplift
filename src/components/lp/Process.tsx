@@ -62,7 +62,7 @@ function StepCircle({ index, totalSteps, scrollYProgress }: {
   return (
     <motion.div
       style={{ backgroundColor, color, scale }}
-      className="absolute -left-[32px] md:-left-[52px] top-8 w-10 h-10 rounded-full font-bold text-base flex items-center justify-center shadow-sm border-[4px] border-white ring-1 ring-orange-100 z-20 leading-none pt-0.5"
+      className="absolute -left-[32px] md:-left-[52px] top-14 w-10 h-10 rounded-full font-bold text-base flex items-center justify-center shadow-sm border-[4px] border-white ring-1 ring-orange-100 z-20 leading-none pt-0.5"
     >
       {index + 1}
     </motion.div>
@@ -108,11 +108,11 @@ export default function Process({ title, subtitle, layout = "center" }: ProcessP
 
         <div className="relative pl-8 md:pl-16">
           {/* Background line */}
-          <div className="absolute left-[15px] md:left-[35px] top-8 bottom-12 w-px bg-orange-100/50"></div>
+          <div className="absolute left-[20px] md:left-[32px] top-8 bottom-12 w-px bg-orange-100/50"></div>
 
           {/* Animated fill line — tied to scroll */}
           <motion.div
-            className="absolute left-[15px] md:left-[35px] top-8 bottom-12 w-px bg-primary origin-top"
+            className="absolute left-[20px] md:left-[32px] top-8 bottom-12 w-px bg-[#FB8C42] origin-top"
             style={{ scaleY }}
           />
 

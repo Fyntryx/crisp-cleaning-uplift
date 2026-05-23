@@ -41,7 +41,7 @@ export default function WhyCrisp() {
         <div className="text-center mb-16 md:mb-20">
           <h4 className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-4">Why Crisp</h4>
           <h2 className="text-4xl md:text-[42px] font-bold text-gray-900 tracking-tight mb-6">
-            It isn't one thing. It's everything.
+            It's not one thing. It's everything.
           </h2>
         </div>
 

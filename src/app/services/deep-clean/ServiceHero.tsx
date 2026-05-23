@@ -18,7 +18,7 @@ export default function ServiceHero() {
       <div className="container mx-auto px-4 max-w-[1216px] pt-32 md:pt-40 pb-8">
 
         {/* Main Content */}
-        <div className="max-w-[896px] mb-12">
+        <div className="max-w-[896px] mx-auto text-center mb-12">
           {/* Badge */}
           <div className="mb-6">
             <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
@@ -28,15 +28,15 @@ export default function ServiceHero() {
 
           {/* Heading */}
           <h1
-            style={{ maxWidth: "896px", letterSpacing: "-1.2px", lineHeight: "1.1" }}
-            className="text-[48px] md:text-[64px] font-semibold text-gray-900 mb-5 mt-3"
+            style={{ letterSpacing: "-1.2px", lineHeight: "1.1" }}
+            className="text-[48px] md:text-[64px] font-semibold text-gray-900 mb-5 mt-3 mx-auto"
           >
             Your home, reset to the <br className="hidden md:block" />
             standard <span className="text-[#FB8C42]">it deserves.</span>
           </h1>
 
           {/* Description */}
-          <p className="text-[18px] text-gray-500 font-normal leading-[28px] max-w-[800px]">
+          <p className="text-[18px] text-gray-500 font-normal leading-[28px] max-w-[800px] mx-auto">
             A Crisp Deep Clean goes beyond the surface. Every room. Every corner.<br className="hidden md:block" />
             Every detail — done properly, with a defined system and a cleaner who<br className="hidden md:block" />
             takes pride in the result.
@@ -44,7 +44,7 @@ export default function ServiceHero() {
         </div>
 
         {/* CTA Box (Wide White Bar) */}
-        <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mb-12">
+        <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mx-auto mb-12">
           
           {/* Booking Info */}
           <div className="flex-1 flex flex-col gap-1 w-full text-center md:text-left">

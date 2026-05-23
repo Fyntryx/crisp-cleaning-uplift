@@ -45,19 +45,19 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
 
         <div className="flex flex-col lg:flex-row items-stretch justify-center gap-10 lg:gap-16 overflow-visible pt-10 pb-8">
           {/* Industry Average Box */}
-          <div className="w-full lg:w-[460px] bg-[#F5F3ED] p-9 rounded-3xl border border-orange-100/30 flex flex-col justify-between relative overflow-hidden shadow-none min-h-[480px]">
-            <div>
-              <div className="flex justify-between items-center mb-8">
-                <h3 className="text-xl font-bold text-foreground">Other Cleaners</h3>
-                <span className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest">INDUSTRY AVERAGE</span>
-              </div>
+          <div className="w-full lg:w-[460px] bg-[#F5F3ED] p-9 rounded-3xl border border-orange-100/30 flex flex-col relative overflow-hidden shadow-none min-h-[480px]">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-bold text-foreground">Other Cleaners</h3>
+              <span className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest">INDUSTRY AVERAGE</span>
+            </div>
+            <div className="flex-1 flex flex-col justify-center">
               <ul className="space-y-[18px]">
                 {industryPoints.map((point, i) => (
                   <li key={i} className="flex items-center gap-4">
                     <div className="w-6 h-6 bg-gray-200/50 rounded-full flex items-center justify-center shrink-0 shadow-sm">
                       <X className="w-3.5 h-3.5 text-muted-foreground" strokeWidth={3} />
                     </div>
-                    <span className="font-sans font-medium text-[15px] leading-relaxed text-muted-foreground antialiased">
+                    <span className="font-sans font-medium text-[15px] leading-relaxed text-muted-foreground antialiased text-left">
                       {point}
                     </span>
                   </li>

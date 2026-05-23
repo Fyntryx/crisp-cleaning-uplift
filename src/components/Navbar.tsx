@@ -120,7 +120,7 @@ const Navbar = () => {
                 <div key={link.name} className="relative group">
                   <div
                     className={cn(
-                      "flex items-center gap-1 text-sm font-semibold transition-colors duration-300 outline-none cursor-pointer py-6",
+                      "flex items-center gap-1 text-[14.5px] font-medium transition-colors duration-300 outline-none cursor-pointer py-6",
                       hoverColorClass,
                       isSubActive ? "text-[#FB8C42]" : textColorClass
                     )}
@@ -163,7 +163,7 @@ const Navbar = () => {
                 href={link.href}
                 onClick={() => handleNavClick(link.href)}
                 className={cn(
-                  "text-sm font-semibold transition-colors duration-300",
+                  "text-[14.5px] font-medium transition-colors duration-300",
                   hoverColorClass,
                   isActive ? "text-[#FB8C42] font-bold" : textColorClass
                 )}
@@ -179,7 +179,7 @@ const Navbar = () => {
           <a
             href="tel:0451433786"
             className={cn(
-              "flex items-center gap-2 font-semibold transition-colors duration-300",
+              "flex items-center gap-2 text-[15px] font-semibold transition-colors duration-300",
               isScrolled || !isHomePage
                 ? "text-neutral-700 hover:text-[#FB8C42]"
                 : "text-white/90 hover:text-[#FB8C42]"
@@ -192,7 +192,10 @@ const Navbar = () => {
           <Button 
             variant="hero" 
             size="default" 
-            className="rounded-full px-6 py-2.5 font-extrabold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-md shadow-[#FB8C42]/10 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+            style={{
+              boxShadow: "rgba(251, 140, 66, 0.32) 0px 8px 24px, rgba(251, 140, 66, 0.18) 0px 2px 6px"
+            }}
+            className="rounded-full px-6 py-2.5 text-[14px] font-semibold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white transition-all duration-300 flex items-center justify-center hover:scale-[1.02]"
             asChild
           >
             <Link href="/#booking">Get an Instant Quote</Link>
@@ -227,7 +230,7 @@ const Navbar = () => {
                         <Link
                           key={subLink.href}
                           href={subLink.href}
-                          className="text-sm font-semibold text-neutral-700 hover:text-[#FB8C42] transition-colors"
+                          className="text-[15px] font-semibold text-neutral-700 hover:text-[#FB8C42] transition-colors"
                           onClick={() => handleNavClick(subLink.href)}
                         >
                           {subLink.name}
@@ -241,7 +244,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-semibold text-neutral-700 hover:text-[#FB8C42] transition-colors"
+                  className="text-[15px] font-semibold text-neutral-700 hover:text-[#FB8C42] transition-colors"
                   onClick={() => handleNavClick(link.href)}
                 >
                   {link.name}

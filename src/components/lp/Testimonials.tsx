@@ -1,40 +1,58 @@
+"use client";
+
 import React from "react";
 import { Star, Clock, ArrowRightLeft, ArrowRight, ExternalLink } from "lucide-react";
 
 // Placeholder BeforeAfterSlider
-const BeforeAfterSlider = () => (
-  <div className="w-full h-full aspect-[4/5] bg-muted rounded-3xl overflow-hidden relative shadow-sm group">
-    <div className="absolute inset-0 flex">
-      <div className="w-1/2 relative bg-gray-200">
-        <img src="https://via.placeholder.com/400x500/e5e7eb/e5e7eb?text=Before" alt="Before clean" className="w-full h-full object-cover" />
-      </div>
-      <div className="w-1/2 relative bg-white">
-        <img src="https://via.placeholder.com/400x500/ffffff/ffffff?text=After" alt="After clean" className="w-full h-full object-cover" />
-      </div>
-    </div>
-    
-    {/* Badges */}
-    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full z-10">Before</div>
-    <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full z-10">After</div>
+const BeforeAfterSlider = ({ beforeImage, afterImage, title }: { beforeImage: string, afterImage: string, title?: string }) => {
+  const [sliderPosition, setSliderPosition] = React.useState(50);
+  const [isDragging, setIsDragging] = React.useState(false);
 
-    {/* Slider Handle */}
-    <div className="absolute inset-y-0 left-1/2 w-0.5 bg-white transform -translate-x-1/2 cursor-ew-resize flex items-center justify-center">
-      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 group-hover:scale-110 transition-transform">
-        <ArrowRightLeft className="w-4 h-4 text-gray-500" />
+  return (
+    <div 
+      className="w-full h-full aspect-[4/5] bg-muted rounded-3xl overflow-hidden relative shadow-sm group select-none cursor-ew-resize"
+      onMouseDown={() => setIsDragging(true)}
+      onMouseUp={() => setIsDragging(false)}
+      onMouseLeave={() => setIsDragging(false)}
+      onTouchStart={() => setIsDragging(true)}
+      onTouchEnd={() => setIsDragging(false)}
+      onMouseMove={(e) => {
+        if (!isDragging) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        setSliderPosition(Math.max(0, Math.min(100, (x / rect.width) * 100)));
+      }}
+      onTouchMove={(e) => {
+        if (!isDragging) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        setSliderPosition(Math.max(0, Math.min(100, (x / rect.width) * 100)));
+      }}
+    >
+      <div className="absolute inset-0 z-10">
+        <img src={afterImage} alt="After clean" className="w-full h-full object-cover pointer-events-none" />
+        <div className="absolute top-4 right-4 bg-[#FB8C42] text-white text-[12px] font-bold px-3 py-1.5 rounded-full pointer-events-none">After</div>
       </div>
+      <div 
+        className="absolute inset-0 z-20 pointer-events-none"
+        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+      >
+        <img src={beforeImage} alt="Before clean" className="w-full h-full object-cover" />
+        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white text-[12px] font-bold px-3 py-1.5 rounded-full pointer-events-none">Before</div>
+      </div>
+      <div className="absolute inset-y-0 w-0.5 bg-white cursor-ew-resize pointer-events-none z-30" style={{ left: `${sliderPosition}%` }}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 group-hover:scale-110 transition-transform">
+          <ArrowRightLeft className="w-4 h-4 text-gray-500" />
+        </div>
+      </div>
+      {title && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-bold px-4 py-2 rounded-full z-30 shadow-sm pointer-events-none">
+          {title}
+        </div>
+      )}
     </div>
-  </div>
-);
-
-const ComingSoonCard = ({ title }: { title: string }) => (
-  <div className="w-full h-full aspect-[4/5] rounded-3xl border border-dashed border-gray-200 flex flex-col items-center justify-center p-8 text-center bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#f9fafb_10px,#f9fafb_20px)]">
-    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-primary text-[10px] font-bold tracking-wider uppercase mb-4 bg-white">
-      <Clock className="w-3 h-3" /> Coming soon
-    </div>
-    <h3 className="text-xl font-bold text-foreground mb-2">{title} • Coming soon</h3>
-    <p className="text-sm text-muted-foreground max-w-[200px]">We're photographing real Melbourne jobs. Drop in soon.</p>
-  </div>
-);
+  );
+};
 
 const defaultReviews = [
   { text: "Honestly felt like a brand new home.", author: "VERIFIED GOOGLE REVIEW" },
@@ -84,22 +102,22 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
         {!hideBeforeAfter && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div className="col-span-1">
-              <BeforeAfterSlider />
+              <BeforeAfterSlider beforeImage="/images/KitchenSinkBefore.png" afterImage="/images/KitchenSinkAfter.jpg" title="Kitchen Sink" />
             </div>
             <div className="col-span-1">
-              <ComingSoonCard title="Kitchen" />
+              <BeforeAfterSlider beforeImage="/images/BathtubeBefore.jpg" afterImage="/images/BathTubeAfter.jpg" title="Bathtub" />
             </div>
             <div className="col-span-1">
-              <ComingSoonCard title="Living room" />
+              <BeforeAfterSlider beforeImage="/images/StoveTopBefore.jpg" afterImage="/images/StoveTopAfter.jpg" title="Stovetop" />
             </div>
           </div>
         )}
 
         {/* Bottom Grid: Reviews */}
         {!hideReviews && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
           {reviews.map((review, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow h-full">
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow break-inside-avoid">
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, idx) => (
                   <Star key={idx} className="w-4 h-4 fill-primary text-primary" />

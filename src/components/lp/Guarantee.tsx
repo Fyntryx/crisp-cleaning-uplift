@@ -20,7 +20,7 @@ export default function Guarantee() {
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/5 pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col md:flex-row items-start gap-10">
+          <div className="relative z-10 flex flex-col items-center text-center gap-6">
 
             {/* Shield Icon */}
             <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shrink-0">
@@ -28,7 +28,7 @@ export default function Guarantee() {
             </div>
 
             {/* Content */}
-            <div className="flex-1 max-w-[700px]">
+            <div className="flex-1 max-w-[700px] flex flex-col items-center">
               {/* Tag */}
               <div className="mb-3">
                 <span className="text-white font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
@@ -46,7 +46,7 @@ export default function Guarantee() {
 
               {/* Description */}
               <p className="text-[18px] text-white/90 font-normal leading-[28px] max-w-[600px] mb-8">
-                Contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">32 hours</span> of your clean with a photo and a description. We'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">48 hours</span> to fix it — completely free. If we can't make it right, you don't pay.
+                Contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">24 hours</span> of your clean with a photo and a description. We'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">72 hours</span> to fix it — completely free. If we can't make it right, you don't pay.
               </p>
 
               {/* CTA Button */}

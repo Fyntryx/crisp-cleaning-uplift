@@ -192,10 +192,10 @@ export default function HouseCleaningPage() {
       <ServiceAreas />
 
       {/* 11. FAQs Accordion */}
-      <FAQ data={faqs} title="Common questions about Deep Cleaning" />
+      <FAQ data={faqs} title="Thinking too deeply? We got you" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA />
+        <FinalCTA discountText="Let us make it even crispier!" />
       </div>
 
       <Footer />
