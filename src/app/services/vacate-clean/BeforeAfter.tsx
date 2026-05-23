@@ -18,21 +18,21 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
       <div className="relative w-full aspect-[4/5] rounded-[32px] overflow-hidden group select-none shadow-sm">
         
         {/* After Image (Background) & Badge */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-10">
           <Image 
             src={afterImage} 
             alt="After clean" 
             fill 
             className="object-cover pointer-events-none" 
           />
-          <div className="absolute top-5 right-5 bg-[#FB8C42] text-white text-[12px] font-bold px-4 py-1.5 rounded-full tracking-wide z-10 pointer-events-none shadow-sm">
+          <div className="absolute top-5 right-5 bg-[#FB8C42] text-white text-[12px] font-bold px-4 py-1.5 rounded-full tracking-wide pointer-events-none shadow-sm">
             After
           </div>
         </div>
 
         {/* Before Image (Clipped) & Badge */}
         <div 
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 z-20 pointer-events-none"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <Image 
@@ -41,14 +41,14 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
             fill 
             className="object-cover" 
           />
-          <div className="absolute top-5 left-5 bg-[#2A2A2A] text-white text-[12px] font-bold px-4 py-1.5 rounded-full tracking-wide z-10 pointer-events-none shadow-sm">
+          <div className="absolute top-5 left-5 bg-[#2A2A2A] text-white text-[12px] font-bold px-4 py-1.5 rounded-full tracking-wide pointer-events-none shadow-sm">
             Before
           </div>
         </div>
 
         {/* Slider Line & Handle */}
         <div 
-          className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(0,0,0,0.3)] z-20 pointer-events-none flex items-center justify-center transition-transform duration-75"
+          className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(0,0,0,0.3)] z-30 pointer-events-none flex items-center justify-center transition-transform duration-75"
           style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
         >
           <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg text-gray-700">
