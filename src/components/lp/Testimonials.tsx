@@ -75,7 +75,7 @@ interface TestimonialsProps {
 
 export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews }: TestimonialsProps) {
   return (
-    <section className="py-24 bg-[#FAF9F6]">
+    <section id="testimonials" className="py-24 bg-[#FAF9F6]">
       <div className={`container mx-auto px-4 ${layout === "left" ? "max-w-[1216px]" : "max-w-6xl"}`}>
         <div className={`mb-12 ${layout === "left" ? "max-w-[896px]" : ""}`}>
           {topTitle !== null && (

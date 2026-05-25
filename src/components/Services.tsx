@@ -310,7 +310,7 @@ const Services = () => {
   const formContentRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     serviceCategory: "residential",
-    cleaningType: "Standard" as CleaningType,
+    cleaningType: "" as any as CleaningType,
     homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
     extras: [] as Extra[],
     frequency: "One time" as Frequency,
@@ -425,7 +425,10 @@ const Services = () => {
   ]);
 
   const isStepValid = () => {
-    if (currentStep === 1) return !!formData.serviceCategory;
+    if (currentStep === 1) {
+      if (formData.serviceCategory === "residential") return !!formData.cleaningType;
+      return !!formData.serviceCategory;
+    }
 
     if (isCommercial) {
       switch (currentStep) {

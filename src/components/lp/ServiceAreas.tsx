@@ -72,7 +72,7 @@ export default function ServiceAreas() {
   const getRegion = (name: string) => regions.find(r => r.name === name);
 
   return (
-    <section className="py-24 bg-white relative z-10">
+    <section id="service-area" className="py-24 bg-white relative z-10">
       <div className="container mx-auto px-4 max-w-[1400px]">
         {/* Header Section */}
         <div className="mb-10 max-w-3xl">

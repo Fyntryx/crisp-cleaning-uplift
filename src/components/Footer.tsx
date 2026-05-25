@@ -4,9 +4,11 @@ import { Star, ArrowRight } from "lucide-react";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Services", href: "/#services" }, // <-- Added Services
-  { name: "Reviews", href: "/review" },
-  { name: "FAQs", href: "/faq" },
+  { name: "Services", href: "/#services" },
+  { name: "— Standard House Clean", href: "/services/standard-house-clean", isSub: true },
+  { name: "— Deep Clean", href: "/services/deep-clean", isSub: true },
+  { name: "— Vacate Clean", href: "/services/vacate-clean", isSub: true },
+  { name: "Reviews", href: "/#testimonials" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -63,7 +65,7 @@ const Footer = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="group flex items-center text-muted-foreground hover:text-primary transition-all font-medium py-1"
+                  className={`group flex items-center transition-all font-medium py-1 ${link.isSub ? "ml-4 text-sm text-muted-foreground/80 hover:text-primary" : "text-muted-foreground hover:text-primary"}`}
                 >
                   <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 mr-2" />
                   <span>{link.name}</span>

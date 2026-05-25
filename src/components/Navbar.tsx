@@ -47,7 +47,7 @@ const navLinks = [
     ],
   },
   { name: "About Us", href: "/about" },
-  { name: "Service Areas", href: "/#services" },
+  { name: "Service Areas", href: "/services/standard-house-clean#service-area" },
   { name: "Contact", href: "/contact" },
 ];
 
