@@ -941,13 +941,13 @@ const Services = () => {
           </span>
         </div>
 
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-4">
 
           {/* TOP ROW: Full-Width Selected Service Card */}
-          <div className="w-full bg-white rounded-3xl border border-gray-100 p-6 flex flex-col items-start space-y-4 shadow-sm relative overflow-hidden group hover:border-gray-200 transition-all duration-300">
+          <div className="w-full bg-white rounded-3xl border border-gray-100 p-4 md:p-5 flex flex-col items-start space-y-3 shadow-sm relative overflow-hidden group hover:border-gray-200 transition-all duration-300">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
-                <SelectedIcon className="w-5 h-5 text-[#FB8C42]" />
+              <div className="w-10 h-10 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
+                <SelectedIcon className="w-4 h-4 text-[#FB8C42]" />
               </div>
               <div>
                 <span className="block text-[11px] font-semibold uppercase text-gray-400 tracking-wider">
@@ -978,7 +978,7 @@ const Services = () => {
           </div>
 
           {/* MIDDLE ROW: 2-Column Grid for Counters */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <RoomCounter
               label="Bathroom"
               count={formData.homeDetails.bathrooms || 0}
@@ -1012,7 +1012,7 @@ const Services = () => {
           </div>
 
           {/* BOTTOM ROW: Full-width Add-ons */}
-          <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm">
+          <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm">
             <span className="block text-[11px] font-bold uppercase text-[#FB8C42] tracking-widest mb-4 border-b border-gray-50 pb-2">
               ADD-ONS
             </span>
@@ -2318,12 +2318,12 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => {
   const Icon = getCounterIcon(label);
 
   return (
-    <div className={`w-full bg-white py-4 pl-4 pr-3 rounded-[20px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md gap-3 ${hasInfo ? "group" : ""}`}>
+    <div className={`w-full bg-white py-2.5 pl-3.5 pr-3 rounded-[16px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md gap-3 ${hasInfo ? "group" : ""}`}>
 
       {/* LEFT SIDE: flex-1 and min-w-0 prevent text from pushing the controls */}
-      <div className="flex items-center gap-3 flex-1 min-w-0">
-        <div className="w-10 h-10 rounded-xl bg-orange-50/70 border border-orange-100 flex items-center justify-center shadow-sm shrink-0">
-          <Icon className="w-5 h-5 text-[#FB8C42]" />
+      <div className="flex items-center gap-2.5 flex-1 min-w-0">
+        <div className="w-9 h-9 rounded-xl bg-orange-50/70 border border-orange-100 flex items-center justify-center shadow-sm shrink-0">
+          <Icon className="w-4 h-4 text-[#FB8C42]" />
         </div>
         <div className="flex items-center gap-1.5 flex-wrap min-w-0">
           <span className="capitalize font-semibold text-gray-800 text-sm whitespace-normal leading-tight break-words">
