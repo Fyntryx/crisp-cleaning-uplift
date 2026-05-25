@@ -329,6 +329,25 @@ export default function Checklist({
                 </div>
               ))}
             </div>
+
+            {/* Add-ons (Moved from sidebar) */}
+            <div className="mt-12">
+              <div className="inline-block px-4 py-1.5 bg-white border border-gray-200 rounded-lg shadow-sm mb-6">
+                <h3 className="text-[15px] font-bold text-gray-900">
+                  Add-ons
+                </h3>
+              </div>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-[15px] text-gray-700">
+                {checklistData["Add-ons"].inclusions["AVAILABLE ADD-ONS"].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <Plus className="w-3 h-3 text-primary" strokeWidth={3} />
+                    </div>
+                    <span className="leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Sidebar Column */}
@@ -356,25 +375,6 @@ export default function Checklist({
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-
-            {/* Add-ons */}
-            {isHomePage && (
-              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm sticky top-24">
-                <h3 className="text-lg font-bold text-gray-900 mb-6">
-                  Add-ons
-                </h3>
-                <ul className="flex flex-col gap-4 text-[14px] text-gray-500">
-                  {checklistData["Add-ons"].inclusions["AVAILABLE ADD-ONS"].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                        <Plus className="w-3 h-3 text-primary" strokeWidth={3} />
-                      </div>
-                      <span className="leading-snug">{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             )}
           </div>
