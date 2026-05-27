@@ -56,6 +56,7 @@ export interface PricingRequest {
     type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL';
     value: number;
   };
+  outOfAreaFee?: number;
 }
 
 export interface PricingConfig {
@@ -77,6 +78,7 @@ export interface PricingResponse {
   };
   totalDiscount: number;
   total: number;
+  outOfAreaFee?: number;
   breakdown: {
     cleaningType: { name: string; price: number };
     homeDetails: {
@@ -189,14 +191,17 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
     }
   }
 
+  const outOfAreaFee = request.outOfAreaFee || 0;
+
   // Calculate final total (ensure it doesn't go below 0)
-  const total = Math.max(0, subtotal - totalDiscount);
+  const total = Math.max(0, subtotal - totalDiscount) + outOfAreaFee;
 
   return {
     subtotal,
     discounts,
     totalDiscount,
     total: Math.round(total * 100) / 100,
+    outOfAreaFee,
     breakdown: {
       cleaningType: { name: request.cleaningType, price: cleaningTypePrice },
       homeDetails: {

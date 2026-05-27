@@ -495,6 +495,7 @@ const Services = () => {
         frequency: formData.frequency,
         actionTakerDiscount: false,
         appliedPromo,
+        outOfAreaFee,
       }, pricingConfig);
       setPricingResult(result);
     } catch (e) {
@@ -508,6 +509,7 @@ const Services = () => {
     isCommercial,
     appliedPromo,
     pricingConfig,
+    outOfAreaFee,
   ]);
 
   const isStepValid = () => {
@@ -1790,6 +1792,7 @@ const Services = () => {
             placeholder="Full business address"
             inputClassName="p-3 border-transparent"
             onValidityChange={setIsAddressValid}
+            onOutOfAreaFeeChange={setOutOfAreaFee}
           />
         </div>
 
@@ -1953,6 +1956,7 @@ const Services = () => {
             onLocationClick={handleUseCurrentLocation}
             isLoadingLocation={isLoadingLoc}
             onValidityChange={setIsAddressValid}
+            onOutOfAreaFeeChange={setOutOfAreaFee}
             inputClassName="!py-3.5 !text-xs !font-semibold !text-gray-700 !bg-white !border !border-gray-200 !shadow-sm focus:!ring-2 focus:!ring-[#FB8C42]/10 !pl-4"
             className="[&>div>svg:first-child]:hidden"
           />
@@ -2441,6 +2445,7 @@ interface AddressAutocompleteProps {
   isLoadingLocation?: boolean;
   onValidityChange?: (isValid: boolean) => void;
   setExternalError?: (error: string | null) => void;
+  onOutOfAreaFeeChange?: (fee: number) => void;
 }
 
 const AddressAutocomplete = ({
@@ -2454,6 +2459,7 @@ const AddressAutocomplete = ({
   isLoadingLocation = false,
   onValidityChange,
   setExternalError,
+  onOutOfAreaFeeChange,
 }: AddressAutocompleteProps) => {
   const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -2573,10 +2579,12 @@ const AddressAutocomplete = ({
         setLocalError(msg);
         if (setExternalError) setExternalError(msg);
         if (onValidityChange) onValidityChange(false);
+        if (onOutOfAreaFeeChange) onOutOfAreaFeeChange(0);
       } else {
         setLocalError(null);
         if (setExternalError) setExternalError(null);
         if (onValidityChange) onValidityChange(true);
+        if (onOutOfAreaFeeChange) onOutOfAreaFeeChange(check.outsideAreaFee || 0);
       }
     }
   };
