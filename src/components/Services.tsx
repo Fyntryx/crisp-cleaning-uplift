@@ -157,6 +157,7 @@ const BookingSummaryCard = ({
   setIsValidatingPromo,
   setAppliedPromo,
   apiBaseUrl,
+  outOfAreaFee = 0,
 }: {
   className?: string;
   formData: any;
@@ -167,6 +168,7 @@ const BookingSummaryCard = ({
   setIsValidatingPromo: (val: boolean) => void;
   setAppliedPromo: (val: any) => void;
   apiBaseUrl: string;
+  outOfAreaFee?: number;
 }) => (
   <div
     className={`bg-white text-gray-800 rounded-[28px] p-8 shadow-sm border border-gray-100 relative overflow-visible group hover:border-gray-200 transition-all duration-300 ${className}`}
@@ -321,6 +323,19 @@ const BookingSummaryCard = ({
 
       <div className="border-t border-gray-100"></div>
 
+      {/* Out of Area Fee Banner */}
+      {outOfAreaFee > 0 && (
+        <div className="flex items-start gap-2.5 p-3 bg-amber-50 border border-amber-200 rounded-xl my-2">
+          <span className="text-amber-600 text-base mt-0.5">⚠️</span>
+          <div>
+            <p className="text-[11px] font-bold text-amber-800 uppercase tracking-wide">Extended Service Area</p>
+            <p className="text-[11px] text-amber-700 leading-relaxed mt-0.5">
+              Your address is outside our standard 40km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-between items-end pt-3">
         <span className="text-base font-semibold text-gray-800 leading-[24px]">Total</span>
         <span className="text-2xl font-bold text-[#FB8C42] tracking-tight leading-[32px]">
@@ -410,6 +425,7 @@ const Services = () => {
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
   const [pricingConfig, setPricingConfig] = useState<PricingConfig | undefined>(undefined);
   const [isLoadingConfig, setIsLoadingConfig] = useState(true);
+  const [outOfAreaFee, setOutOfAreaFee] = useState(0); // $50 if outside 40km, within service area
 
   // API Configuration
   const API_BASE_URL = (
@@ -580,11 +596,11 @@ const Services = () => {
         const check = checkAddressServiceability(addressData.coordinates.lat, addressData.coordinates.lon);
         setIsAddressValid(check.serviceable);
         if (!check.serviceable) {
-          // You might want to set a transient error state to pass down if needed, 
-          // or rely on the user seeing the red outline in the input if they interact
           setSubmitError(check.error || "Location outside service area");
+          setOutOfAreaFee(0);
         } else {
           setSubmitError(null);
+          setOutOfAreaFee(check.outsideAreaFee || 0);
         }
       }
     } catch (error) {
@@ -658,6 +674,7 @@ const Services = () => {
       petsInstructions: formData.instructions.pets || "",
       notes: formData.instructions.notes || "",
       referralCode: promoCode || undefined,
+      outOfAreaFee: outOfAreaFee || 0,
     };
   };
 
@@ -2262,6 +2279,7 @@ const Services = () => {
                         setIsValidatingPromo={setIsValidatingPromo}
                         setAppliedPromo={setAppliedPromo}
                         apiBaseUrl={API_BASE_URL}
+                        outOfAreaFee={outOfAreaFee}
                       />
                     </div>
                   </div>
