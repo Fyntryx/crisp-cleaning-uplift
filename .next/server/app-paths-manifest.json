@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/services/vacate-clean/page": "app/services/vacate-clean/page.js",
-  "/services/deep-clean/page": "app/services/deep-clean/page.js",
-  "/about/page": "app/about/page.js",
-  "/contact/page": "app/contact/page.js"
-}

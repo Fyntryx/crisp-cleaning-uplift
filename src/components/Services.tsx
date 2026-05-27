@@ -153,12 +153,20 @@ const BookingSummaryCard = ({
   pricingResult,
   promoCode,
   setPromoCode,
+  isValidatingPromo,
+  setIsValidatingPromo,
+  setAppliedPromo,
+  apiBaseUrl,
 }: {
   className?: string;
   formData: any;
   pricingResult: PricingResponse | null;
   promoCode: string;
   setPromoCode: (val: string) => void;
+  isValidatingPromo: boolean;
+  setIsValidatingPromo: (val: boolean) => void;
+  setAppliedPromo: (val: any) => void;
+  apiBaseUrl: string;
 }) => (
   <div
     className={`bg-white text-gray-800 rounded-[28px] p-8 shadow-sm border border-gray-100 relative overflow-visible group hover:border-gray-200 transition-all duration-300 ${className}`}
@@ -271,8 +279,42 @@ const BookingSummaryCard = ({
             value={promoCode}
             onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
           />
-          <button className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white text-[#FB8C42] text-[10px] font-semibold uppercase tracking-wider rounded-lg transition-all">
-            Apply
+          <button 
+            type="button"
+            disabled={isValidatingPromo || !promoCode.trim()}
+            onClick={async (e) => {
+              e.preventDefault();
+              if (promoCode.trim()) {
+                setIsValidatingPromo(true);
+                try {
+                  const res = await fetch(`${apiBaseUrl}/api/validate-promo`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: promoCode }),
+                  });
+                  const data = await res.json();
+                  if (data.valid) {
+                    setAppliedPromo(data.promo);
+                    if (data.promo.type === 'REFERRAL') {
+                      alert(`Referral code '${data.promo.code}' applied!`);
+                    } else {
+                      alert(`Promo code '${data.promo.code}' applied successfully!`);
+                    }
+                  } else {
+                    setAppliedPromo(undefined);
+                    alert(data.error || 'Invalid promo code');
+                  }
+                } catch (error) {
+                  console.error('Error validating promo code:', error);
+                  alert('Error validating promo code. Please try again.');
+                } finally {
+                  setIsValidatingPromo(false);
+                }
+              }
+            }}
+            className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[10px] font-semibold uppercase tracking-wider rounded-lg transition-all"
+          >
+            {isValidatingPromo ? '...' : 'Apply'}
           </button>
         </div>
       </div>
@@ -351,6 +393,8 @@ const Services = () => {
   const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [promoCode, setPromoCode] = useState("");
+  const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number } | undefined>(undefined);
+  const [isValidatingPromo, setIsValidatingPromo] = useState(false);
 
   // NEW: State for address validity
   const [isAddressValid, setIsAddressValid] = useState(true);
@@ -364,14 +408,37 @@ const Services = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
+  const [pricingConfig, setPricingConfig] = useState<PricingConfig | undefined>(undefined);
+  const [isLoadingConfig, setIsLoadingConfig] = useState(true);
 
   // API Configuration
-  const API_BASE_URL =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app/";
+  const API_BASE_URL = (
+    process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
+  ).replace(/\/$/, "");
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    // Fetch dynamic pricing config
+    const fetchPricingConfig = async () => {
+      try {
+        setIsLoadingConfig(true);
+        const res = await fetch(`${API_BASE_URL}/api/public/pricing-config`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data) {
+            setPricingConfig(data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch pricing config:", err);
+      } finally {
+        setIsLoadingConfig(false);
+      }
+    };
+    
+    fetchPricingConfig();
+  }, [API_BASE_URL]);
 
   // Add this to track if the form is in the viewport
   useEffect(() => {
@@ -411,7 +478,8 @@ const Services = () => {
         extras: formData.extras,
         frequency: formData.frequency,
         actionTakerDiscount: false,
-      });
+        appliedPromo,
+      }, pricingConfig);
       setPricingResult(result);
     } catch (e) {
       console.error("Pricing Error", e);
@@ -422,6 +490,8 @@ const Services = () => {
     formData.extras,
     formData.frequency,
     isCommercial,
+    appliedPromo,
+    pricingConfig,
   ]);
 
   const isStepValid = () => {
@@ -556,36 +626,13 @@ const Services = () => {
 
     const apiFrequency = frequencyMap[formData.frequency] || "OneTime";
 
-    // Map extras array to individual count fields
-    const extrasMap: Record<Exclude<Extra, "Garage" | "Laundry">, string> = {
-      Windows: "extraWindows",
-      Walls: "extraWalls",
-      Cabinets: "extraCabinets",
-      Organisation: "extraOrganisation",
-      Blinds: "extraBlinds",
-      "Oven/Stovetops": "extraOvenStovetop",
-      Fridge: "extraFridge",
-      Dishwasher: "extraDishwasher",
-      Microwave: "extraMicrowave",
-    };
-
-    const extrasPayload: Record<string, number> = {
-      extraWalls: 0,
-      extraWindows: 0,
-      extraCabinets: 0,
-      extraOrganisation: 0,
-      extraBlinds: 0,
-      extraOvenStovetop: 0,
-      extraFridge: 0,
-      extraDishwasher: 0,
-      extraMicrowave: 0,
-    };
+    const addonsPayload: Record<string, number> = {};
 
     formData.extras.forEach((extra) => {
-      // Use a type guard or check if the extra exists in our map
-      if (extra in extrasMap) {
-        const fieldName = extrasMap[extra as keyof typeof extrasMap];
-        extrasPayload[fieldName] = 1;
+      let key = extra as string;
+      if (key === "Oven/Stovetops") key = "Oven/Stovetop";
+      if (key !== "Garage" && key !== "Laundry") {
+        addonsPayload[key] = 1;
       }
     });
 
@@ -598,18 +645,19 @@ const Services = () => {
       address: formData.contact.address,
       accountType: "residential" as const,
       bookingDate: bookingDate.toISOString(),
-      cleaningType: formData.cleaningType,
+      cleaningType: formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType,
       frequency: apiFrequency,
       actionTakerDiscount: false,
       roomsBedrooms: formData.homeDetails.bedrooms || 0,
       roomsBathrooms: formData.homeDetails.bathrooms || 0,
       roomsKitchens: formData.homeDetails.kitchens || 0,
       roomsOther: formData.homeDetails.other || 0,
-      ...extrasPayload,
+      addons: addonsPayload,
       entryInstructions: formData.instructions.entry || "",
       parkingInstructions: formData.instructions.parking || "",
       petsInstructions: formData.instructions.pets || "",
       notes: formData.instructions.notes || "",
+      referralCode: promoCode || undefined,
     };
   };
 
@@ -1020,7 +1068,9 @@ const Services = () => {
               ADD-ONS
             </span>
             <div className="flex flex-wrap gap-2.5">
-              {(Object.keys(EXTRA_PRICES) as Extra[])
+              {isLoadingConfig ? (
+                <div className="text-xs text-gray-400 py-2">Loading available add-ons...</div>
+              ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
                 .filter((extra) => !["Garage", "Laundry"].includes(extra))
                 .map((extra) => {
                   const isSelected = formData.extras?.includes(extra);
@@ -2208,6 +2258,10 @@ const Services = () => {
                         pricingResult={pricingResult}
                         promoCode={promoCode}
                         setPromoCode={setPromoCode}
+                        isValidatingPromo={isValidatingPromo}
+                        setIsValidatingPromo={setIsValidatingPromo}
+                        setAppliedPromo={setAppliedPromo}
+                        apiBaseUrl={API_BASE_URL}
                       />
                     </div>
                   </div>
