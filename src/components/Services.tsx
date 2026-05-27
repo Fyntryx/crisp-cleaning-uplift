@@ -55,6 +55,7 @@ import {
   type CleaningType,
   type Extra,
   type Frequency,
+  type PricingConfig,
 } from "@/utils/pricing";
 
 import {
