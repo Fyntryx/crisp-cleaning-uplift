@@ -54,7 +54,7 @@ export default function Guarantee() {
                 href="/#booking"
                 className="inline-flex items-center gap-2 rounded-full bg-white text-gray-900 px-8 py-4 font-bold text-[16px] hover:bg-white/90 transition-all shadow-lg mb-6"
               >
-                Book With Confidence — 25% Off Your First Clean
+                Book With Confidence — 15% Off Your First Clean
                 <ArrowRight className="w-5 h-5" />
               </Link>
 

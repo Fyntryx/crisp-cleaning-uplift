@@ -217,45 +217,45 @@ const BookingSummaryCard = ({
         <div className="space-y-3">
           {pricingResult?.breakdown.cleaningType && (
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>{pricingResult.breakdown.cleaningType.name} Clean</span>
-              <span>A${pricingResult.breakdown.cleaningType.price}</span>
+              <span>{pricingResult.breakdown.cleaningType.name} Clean Base</span>
+              <span>A${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
             </div>
           )}
           {(formData.homeDetails.bedrooms || 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>Bedroom × {formData.homeDetails.bedrooms}</span>
+              <span>{formData.homeDetails.bedrooms}x Bedroom</span>
               <span>
                 A$
-                {(pricingConfig?.homeDetailPrices?.Bedroom ?? HOME_DETAIL_PRICES.Bedroom) *
-                  (formData.homeDetails.bedrooms || 0)}
+                {(((pricingConfig?.homeDetailPrices?.Bedroom ?? HOME_DETAIL_PRICES.Bedroom) *
+                  (formData.homeDetails.bedrooms || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
               </span>
             </div>
           )}
           {(formData.homeDetails.bathrooms || 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>Bathroom × {formData.homeDetails.bathrooms}</span>
+              <span>{formData.homeDetails.bathrooms}x Bathroom</span>
               <span>
                 A$
-                {(pricingConfig?.homeDetailPrices?.Bathroom ?? HOME_DETAIL_PRICES.Bathroom) *
-                  (formData.homeDetails.bathrooms || 0)}
+                {(((pricingConfig?.homeDetailPrices?.Bathroom ?? HOME_DETAIL_PRICES.Bathroom) *
+                  (formData.homeDetails.bathrooms || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
               </span>
             </div>
           )}
           {(formData.homeDetails.kitchens || 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>Kitchen × {formData.homeDetails.kitchens}</span>
+              <span>{formData.homeDetails.kitchens}x Kitchen</span>
               <span>
                 A$
-                {(pricingConfig?.homeDetailPrices?.Kitchen ?? HOME_DETAIL_PRICES.Kitchen) *
-                  (formData.homeDetails.kitchens || 0)}
+                {(((pricingConfig?.homeDetailPrices?.Kitchen ?? HOME_DETAIL_PRICES.Kitchen) *
+                  (formData.homeDetails.kitchens || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
               </span>
             </div>
           )}
           {(formData.homeDetails.other || 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>Other Area × {formData.homeDetails.other}</span>
+              <span>{formData.homeDetails.other}x Other Area</span>
               <span>
-                A${(pricingConfig?.homeDetailPrices?.Other ?? HOME_DETAIL_PRICES.Other) * (formData.homeDetails.other || 0)}
+                A${(((pricingConfig?.homeDetailPrices?.Other ?? HOME_DETAIL_PRICES.Other) * (formData.homeDetails.other || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
               </span>
             </div>
           )}
@@ -2439,7 +2439,7 @@ const Services = () => {
                   Schedule standard cleans with us and instantly save up to{" "}
                   <span className="font-extrabold text-primary">15% off</span> per
                   clean! Also gain access to our loyalty and rewards systems to
-                  earn up to 25% off per clean, for life!
+                  earn up to 15% off per clean, for life!
                 </p>
                 <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 text-xs">
                   <span className="font-extrabold text-orange-600">Note:</span> Weekly

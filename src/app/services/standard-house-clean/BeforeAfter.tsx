@@ -80,8 +80,8 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
 export default function BeforeAfter() {
   const comparisons = [
     {
-      beforeImage: "/images/bathroom-after.jpg",
-      afterImage: "/images/bathroom-before.jpg",
+      beforeImage: "/images/bathroom-before.jpg",
+      afterImage: "/images/bathroom-after.jpg",
       label: "BATHROOM SINK · BEFORE/AFTER"
     },
     {

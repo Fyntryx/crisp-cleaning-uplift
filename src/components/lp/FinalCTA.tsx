@@ -51,7 +51,7 @@ export default function FinalCTA({ title, discountText }: FinalCTAProps) {
             <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl sm:rounded-full px-5 py-2.5 mb-10 text-xs md:text-sm text-white/80">
               <div className="flex items-center gap-2">
                 <Tag className="w-4 h-4 text-primary" />
-                <span>{discountText || "25% off your first clean. Use code"}</span>
+                <span>{discountText || "15% off your first clean. Use code"}</span>
                 <span className="bg-primary/20 text-primary border border-primary/30 text-[10px] font-extrabold px-2 py-0.5 rounded-full tracking-wide">WELCOME25</span>
               </div>
               <span className="hidden sm:inline text-white/20">|</span>

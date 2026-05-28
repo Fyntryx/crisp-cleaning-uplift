@@ -65,7 +65,7 @@ export default function ServiceHero() {
               href="/#booking"
               className="inline-flex w-full md:w-auto items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-8 py-4 font-bold text-[16px] shadow-[0_0_20px_rgba(249,115,22,0.2)] transition-all group mb-3"
             >
-              Get an Instant Quote — 25% Off
+              Get an Instant Quote — 15% Off
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
             <div className="text-[12px] text-gray-400 font-medium">
