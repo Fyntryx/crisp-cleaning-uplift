@@ -263,6 +263,12 @@ const BookingSummaryCard = ({
               <span>A${e.price}</span>
             </div>
           ))}
+          {pricingResult?.largeServiceDiscountAmount && pricingResult.largeServiceDiscountAmount > 0 ? (
+            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+              <span>Large Service Discount</span>
+              <span>-A${pricingResult.largeServiceDiscountAmount}</span>
+            </div>
+          ) : null}
           {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
               <span>{pricingResult?.breakdown?.discount?.name}</span>
@@ -340,7 +346,7 @@ const BookingSummaryCard = ({
           <div>
             <p className="text-[11px] font-bold text-amber-800 uppercase tracking-wide">Extended Service Area</p>
             <p className="text-[11px] text-amber-700 leading-relaxed mt-0.5">
-              Your address is outside our standard 40km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+              Your address is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
             </p>
           </div>
         </div>
@@ -442,7 +448,70 @@ const Services = () => {
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
   const [pricingConfig, setPricingConfig] = useState<PricingConfig | undefined>(undefined);
   const [isLoadingConfig, setIsLoadingConfig] = useState(true);
-  const [outOfAreaFee, setOutOfAreaFee] = useState(0); // $50 if outside 40km, within service area
+  const [outOfAreaFee, setOutOfAreaFee] = useState(0); // $50 if outside standard radius, within service area
+  const [actionTakerTimeLeft, setActionTakerTimeLeft] = useState(15 * 60);
+
+  const resetForm = () => {
+    setFormData({
+      serviceCategory: "residential",
+      cleaningType: "" as any as CleaningType,
+      homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
+      extras: [] as Extra[],
+      frequency: "One time" as Frequency,
+      selectedDays: [] as string[],
+      selectedDate: undefined as Date | undefined,
+      selectedTime: "",
+      instructions: { entry: "", parking: "", pets: "", areasToAvoid: "", notes: "" },
+
+      commercial: {
+        businessName: "",
+        businessSize: "",
+        environment: "",
+        cleanType: "",
+        frequency: "",
+        days: [] as string[],
+        insuranceRequired: false,
+        budget: "",
+      },
+
+      contact: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        suburb: "",
+        password: "",
+        terms: false,
+      },
+    });
+    setCurrentStep(1);
+    setSubmitSuccess(null);
+    setSubmitError(null);
+    setAppliedPromo(undefined);
+    setPromoCode("");
+    setOutOfAreaFee(0);
+    setIsAddressValid(true);
+  };
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      const timer = setTimeout(() => {
+        resetForm();
+      }, 300);
+      setActionTakerTimeLeft(15 * 60);
+      return () => clearTimeout(timer);
+    }
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (isModalOpen && actionTakerTimeLeft > 0) {
+      const timer = setInterval(() => {
+        setActionTakerTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [isModalOpen, actionTakerTimeLeft]);
 
   // API Configuration
   const API_BASE_URL = (
@@ -459,8 +528,8 @@ const Services = () => {
         const res = await fetch(`${API_BASE_URL}/api/public/pricing-config`);
         if (res.ok) {
           const data = await res.json();
-          if (data) {
-            setPricingConfig(data);
+          if (data && data.pricing) {
+            setPricingConfig(data.pricing);
           }
         }
       } catch (err) {
@@ -510,7 +579,7 @@ const Services = () => {
         homeDetails: formData.homeDetails,
         extras: formData.extras,
         frequency: formData.frequency,
-        actionTakerDiscount: false,
+        actionTakerDiscount: actionTakerTimeLeft > 0,
         appliedPromo,
         outOfAreaFee,
       }, pricingConfig);
@@ -666,9 +735,7 @@ const Services = () => {
     formData.extras.forEach((extra) => {
       let key = extra as string;
       if (key === "Oven/Stovetops") key = "Oven/Stovetop";
-      if (key !== "Garage" && key !== "Laundry") {
-        addonsPayload[key] = 1;
-      }
+      addonsPayload[key] = 1;
     });
 
     return {
@@ -682,7 +749,7 @@ const Services = () => {
       bookingDate: bookingDate.toISOString(),
       cleaningType: formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType,
       frequency: apiFrequency,
-      actionTakerDiscount: false,
+      actionTakerDiscount: actionTakerTimeLeft > 0,
       roomsBedrooms: formData.homeDetails.bedrooms || 0,
       roomsBathrooms: formData.homeDetails.bathrooms || 0,
       roomsKitchens: formData.homeDetails.kitchens || 0,
@@ -1107,7 +1174,6 @@ const Services = () => {
               {isLoadingConfig ? (
                 <div className="text-xs text-gray-400 py-2">Loading available add-ons...</div>
               ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
-                .filter((extra) => !["Garage", "Laundry"].includes(extra))
                 .map((extra) => {
                   const isSelected = formData.extras?.includes(extra);
                   return (
@@ -1187,6 +1253,14 @@ const Services = () => {
       const t = new Date(currentYear, currentMonth, day);
       t.setHours(23, 59, 59);
       return t < new Date(today.getTime() + 48 * 60 * 60 * 1000);
+    };
+
+    const isBlockedDate = (day: number) => {
+      if (!pricingConfig?.systemBlockedDates) return false;
+      const mm = String(currentMonth + 1).padStart(2, '0');
+      const dd = String(day).padStart(2, '0');
+      const dateStr = `${currentYear}-${mm}-${dd}`;
+      return pricingConfig.systemBlockedDates.includes(dateStr);
     };
 
     const frequencies = [
@@ -1276,17 +1350,19 @@ const Services = () => {
               {Array.from({ length: daysInMonth }).map((_, i) => {
                 const day = i + 1;
                 const past = isPastDate(day);
+                const blocked = isBlockedDate(day);
+                const disabled = past || blocked;
                 const selected = isDateSelected(day);
                 const todayMark = isToday(day);
                 return (
                   <button
                     key={day}
-                    onClick={() => !past && handleDateSelect(day)}
-                    disabled={past}
+                    onClick={() => !disabled && handleDateSelect(day)}
+                    disabled={disabled}
                     className={`h-9 w-full rounded-xl flex flex-col items-center justify-center text-xs font-medium transition-all relative ${selected
                       ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
                       : ""
-                      } ${past
+                      } ${disabled
                         ? "text-gray-200 cursor-not-allowed bg-transparent"
                         : "hover:bg-gray-50 text-gray-700"
                       } ${todayMark && !selected
@@ -1314,24 +1390,56 @@ const Services = () => {
             </span>
 
             <div className="grid grid-cols-3 gap-3">
-              {timeSlots.map((time) => {
-                const isSelected = formData.selectedTime === time;
+              {(() => {
+                let availableTimes = timeSlots;
+                if (formData.selectedDate && pricingConfig?.systemBlockedTimeSlots) {
+                  const mm = String(formData.selectedDate.getMonth() + 1).padStart(2, '0');
+                  const dd = String(formData.selectedDate.getDate()).padStart(2, '0');
+                  const dateStr = `${formData.selectedDate.getFullYear()}-${mm}-${dd}`;
+                  
+                  const toMinutes = (timeStr: string) => {
+                    const [time, modifier] = timeStr.split(' ');
+                    let [hours, minutes] = time.split(':');
+                    if (hours === '12') hours = '0';
+                    if (modifier === 'PM') hours = String(parseInt(hours, 10) + 12);
+                    return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+                  };
 
-                return (
-                  <button
-                    key={time}
-                    onClick={() =>
-                      setFormData((prev) => ({ ...prev, selectedTime: time }))
-                    }
-                    className={`py-3.5 rounded-xl border text-center text-xs font-medium transition-all ${isSelected
-                      ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 hover:scale-105"
-                      : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
-                      }`}
-                  >
-                    {time}
-                  </button>
-                );
-              })}
+                  const getHoursBetween = (start: string, end: string) => {
+                    const startMins = toMinutes(start);
+                    const endMins = toMinutes(end);
+                    return timeSlots.filter(t => {
+                      const tMins = toMinutes(t);
+                      return tMins >= startMins && tMins < endMins;
+                    });
+                  };
+
+                  const blockedTimesForDate = pricingConfig.systemBlockedTimeSlots
+                    .filter(slot => slot.date === dateStr)
+                    .flatMap(slot => getHoursBetween(slot.start, slot.end));
+
+                  availableTimes = timeSlots.filter(time => !blockedTimesForDate.includes(time));
+                }
+
+                return availableTimes.map((time) => {
+                  const isSelected = formData.selectedTime === time;
+
+                  return (
+                    <button
+                      key={time}
+                      onClick={() =>
+                        setFormData((prev) => ({ ...prev, selectedTime: time }))
+                      }
+                      className={`py-3.5 rounded-xl border text-center text-xs font-medium transition-all ${isSelected
+                        ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 hover:scale-105"
+                        : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
+                        }`}
+                    >
+                      {time}
+                    </button>
+                  );
+                });
+              })()}
             </div>
           </div>
 

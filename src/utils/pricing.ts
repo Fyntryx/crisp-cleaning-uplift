@@ -75,6 +75,9 @@ export interface PricingConfig {
     vacateMultiplier: number;
     baseTime: number;
   };
+  systemBlockedDates?: string[];
+  systemBlockedTimeSlots?: { date: string, start: string, end: string }[];
+  serviceRadiusKm?: number;
 }
 
 export interface PricingResponse {
@@ -88,6 +91,7 @@ export interface PricingResponse {
   total: number;
   outOfAreaFee?: number;
   estimatedMinutes?: number;
+  largeServiceDiscountAmount?: number;
   breakdown: {
     cleaningType: { name: string; price: number };
     homeDetails: {
@@ -122,8 +126,9 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   // NOTE: If backend uses multiplier logic, it calculates (rooms * multiplier) + baseRate.
   // The frontend was previously just doing `CLEANING_TYPE_PRICES[request.cleaningType]`.
   // To keep exactly aligned with backend:
-  const baseRate = Number(servicePricingConfig[request.cleaningType]?.baseRate ?? 60);
-  const multiplier = Number(servicePricingConfig[request.cleaningType]?.multiplier ?? 1);
+  const mappedCleaningType = request.cleaningType === 'Standard' ? 'Regular' : request.cleaningType;
+  const baseRate = Number(servicePricingConfig[mappedCleaningType]?.baseRate ?? 60);
+  const multiplier = Number(servicePricingConfig[mappedCleaningType]?.multiplier ?? 1);
 
   // Calculate home details total (roomSum in backend)
   const homeDetailsTotal =
@@ -179,6 +184,17 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
     totalDiscount += actionTakerDiscountAmount;
   }
 
+  // Large Service Discount
+  let largeServiceDiscountAmount = 0;
+  if (config?.smallServiceFeeConfig) {
+    if (homeDetailsTotal > config.smallServiceFeeConfig.threshold) {
+      largeServiceDiscountAmount = config.smallServiceFeeConfig.amount;
+      // You can add it to the discounts breakdown if you want it to show in UI
+      // but in backend it just gets added to totalDiscount.
+      totalDiscount += largeServiceDiscountAmount;
+    }
+  }
+
   // Promo discount (applied to the subtotal before frequency, or after?
   // Let's apply it to the base subtotal, matching backend logic.
   let promoDiscountAmount = 0;
@@ -227,6 +243,7 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
     total: Math.round(total * 100) / 100,
     outOfAreaFee,
     estimatedMinutes,
+    largeServiceDiscountAmount,
     breakdown: {
       cleaningType: { name: request.cleaningType, price: cleaningTypePrice },
       homeDetails: {

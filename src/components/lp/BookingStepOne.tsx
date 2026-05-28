@@ -44,8 +44,7 @@ export default function BookingStepOne() {
   ];
 
   const handleContinue = () => {
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app/";
-    window.location.href = `${baseUrl}?plan=${selectedPlan.toLowerCase()}`;
+    window.location.href = `/?plan=${selectedPlan.toLowerCase()}#booking`;
   };
 
   const handleCompare = (e: React.MouseEvent) => {
