@@ -160,6 +160,7 @@ const formatEta = (minutes?: number) => {
 const BookingSummaryCard = ({
   className = "",
   formData,
+  pricingConfig,
   pricingResult,
   promoCode,
   setPromoCode,
@@ -171,6 +172,7 @@ const BookingSummaryCard = ({
 }: {
   className?: string;
   formData: any;
+  pricingConfig: PricingConfig | undefined;
   pricingResult: PricingResponse | null;
   promoCode: string;
   setPromoCode: (val: string) => void;
@@ -224,7 +226,7 @@ const BookingSummaryCard = ({
               <span>Bedroom × {formData.homeDetails.bedrooms}</span>
               <span>
                 A$
-                {HOME_DETAIL_PRICES.Bedroom *
+                {(pricingConfig?.homeDetailPrices?.Bedroom ?? HOME_DETAIL_PRICES.Bedroom) *
                   (formData.homeDetails.bedrooms || 0)}
               </span>
             </div>
@@ -234,7 +236,7 @@ const BookingSummaryCard = ({
               <span>Bathroom × {formData.homeDetails.bathrooms}</span>
               <span>
                 A$
-                {HOME_DETAIL_PRICES.Bathroom *
+                {(pricingConfig?.homeDetailPrices?.Bathroom ?? HOME_DETAIL_PRICES.Bathroom) *
                   (formData.homeDetails.bathrooms || 0)}
               </span>
             </div>
@@ -244,7 +246,7 @@ const BookingSummaryCard = ({
               <span>Kitchen × {formData.homeDetails.kitchens}</span>
               <span>
                 A$
-                {HOME_DETAIL_PRICES.Kitchen *
+                {(pricingConfig?.homeDetailPrices?.Kitchen ?? HOME_DETAIL_PRICES.Kitchen) *
                   (formData.homeDetails.kitchens || 0)}
               </span>
             </div>
@@ -253,7 +255,7 @@ const BookingSummaryCard = ({
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>Other Area × {formData.homeDetails.other}</span>
               <span>
-                A${HOME_DETAIL_PRICES.Other * (formData.homeDetails.other || 0)}
+                A${(pricingConfig?.homeDetailPrices?.Other ?? HOME_DETAIL_PRICES.Other) * (formData.homeDetails.other || 0)}
               </span>
             </div>
           )}
@@ -281,6 +283,7 @@ const BookingSummaryCard = ({
               <span>-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
             </div>
           )}
+
         </div>
       </div>
 
@@ -449,7 +452,6 @@ const Services = () => {
   const [pricingConfig, setPricingConfig] = useState<PricingConfig | undefined>(undefined);
   const [isLoadingConfig, setIsLoadingConfig] = useState(true);
   const [outOfAreaFee, setOutOfAreaFee] = useState(0); // $50 if outside standard radius, within service area
-  const [actionTakerTimeLeft, setActionTakerTimeLeft] = useState(15 * 60);
 
   const resetForm = () => {
     setFormData({
@@ -499,19 +501,9 @@ const Services = () => {
       const timer = setTimeout(() => {
         resetForm();
       }, 300);
-      setActionTakerTimeLeft(15 * 60);
       return () => clearTimeout(timer);
     }
   }, [isModalOpen]);
-
-  useEffect(() => {
-    if (isModalOpen && actionTakerTimeLeft > 0) {
-      const timer = setInterval(() => {
-        setActionTakerTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-      }, 1000);
-      return () => clearInterval(timer);
-    }
-  }, [isModalOpen, actionTakerTimeLeft]);
 
   // API Configuration
   const API_BASE_URL = (
@@ -528,8 +520,8 @@ const Services = () => {
         const res = await fetch(`${API_BASE_URL}/api/public/pricing-config`);
         if (res.ok) {
           const data = await res.json();
-          if (data && data.pricing) {
-            setPricingConfig(data.pricing);
+          if (data) {
+            setPricingConfig(data);
           }
         }
       } catch (err) {
@@ -579,7 +571,7 @@ const Services = () => {
         homeDetails: formData.homeDetails,
         extras: formData.extras,
         frequency: formData.frequency,
-        actionTakerDiscount: actionTakerTimeLeft > 0,
+        actionTakerDiscount: false,
         appliedPromo,
         outOfAreaFee,
       }, pricingConfig);
@@ -749,7 +741,7 @@ const Services = () => {
       bookingDate: bookingDate.toISOString(),
       cleaningType: formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType,
       frequency: apiFrequency,
-      actionTakerDiscount: actionTakerTimeLeft > 0,
+      actionTakerDiscount: false,
       roomsBedrooms: formData.homeDetails.bedrooms || 0,
       roomsBathrooms: formData.homeDetails.bathrooms || 0,
       roomsKitchens: formData.homeDetails.kitchens || 0,
@@ -1265,9 +1257,9 @@ const Services = () => {
 
     const frequencies = [
       { id: "One time", label: "One-time", save: null },
-      { id: "Weekly", label: "Weekly", save: "SAVE 15%" },
-      { id: "Fortnightly", label: "Fortnightly", save: "SAVE 10%" },
-      { id: "Monthly", label: "Monthly", save: "SAVE 5%" },
+      { id: "Weekly", label: "Weekly", save: `SAVE ${pricingConfig?.frequencyDiscounts?.Weekly ?? 15}%` },
+      { id: "Fortnightly", label: "Fortnightly", save: `SAVE ${pricingConfig?.frequencyDiscounts?.Fortnightly ?? 10}%` },
+      { id: "Monthly", label: "Monthly", save: `SAVE ${pricingConfig?.frequencyDiscounts?.Monthly ?? 5}%` },
     ];
 
     return (
@@ -1318,7 +1310,6 @@ const Services = () => {
               <span className="text-base font-semibold text-gray-900 leading-[24px]">
                 {monthName}
               </span>
-
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevMonth}
@@ -2401,6 +2392,7 @@ const Services = () => {
                     <div className="p-6 md:p-8 sticky top-0">
                       <BookingSummaryCard
                         formData={formData}
+                        pricingConfig={pricingConfig}
                         pricingResult={pricingResult}
                         promoCode={promoCode}
                         setPromoCode={setPromoCode}
