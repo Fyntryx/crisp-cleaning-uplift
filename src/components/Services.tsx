@@ -148,6 +148,15 @@ const commBudgets = [
   "Custom Quote",
 ];
 
+const formatEta = (minutes?: number) => {
+  if (!minutes) return null;
+  if (minutes < 60) return `${minutes} mins`;
+  const hours = Math.floor(minutes / 60);
+  const remainingMins = minutes % 60;
+  if (remainingMins === 0) return `${hours} hr${hours > 1 ? 's' : ''}`;
+  return `${hours} hr${hours > 1 ? 's' : ''} ${remainingMins} mins`;
+};
+
 const BookingSummaryCard = ({
   className = "",
   formData,
@@ -334,6 +343,13 @@ const BookingSummaryCard = ({
               Your address is outside our standard 40km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
             </p>
           </div>
+        </div>
+      )}
+
+      {pricingResult?.estimatedMinutes && (
+        <div className="flex justify-between items-center mt-4 mb-2 bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
+            <span className="text-blue-800/80 font-bold text-sm tracking-tight">Estimated Time</span>
+            <span className="font-black text-blue-900">{formatEta(pricingResult.estimatedMinutes)}</span>
         </div>
       )}
 

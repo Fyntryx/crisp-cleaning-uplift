@@ -66,7 +66,15 @@ export interface PricingConfig {
   extraPrices: Record<string, number>;
   frequencyDiscounts: Record<string, number>;
   actionTakerDiscount: number;
-  timeConfig?: Record<string, number>;
+  timeConfig?: {
+    bedroom: number;
+    bathroom: number;
+    kitchen: number;
+    other: number;
+    deepMultiplier: number;
+    vacateMultiplier: number;
+    baseTime: number;
+  };
 }
 
 export interface PricingResponse {
@@ -79,6 +87,7 @@ export interface PricingResponse {
   totalDiscount: number;
   total: number;
   outOfAreaFee?: number;
+  estimatedMinutes?: number;
   breakdown: {
     cleaningType: { name: string; price: number };
     homeDetails: {
@@ -196,12 +205,28 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   // Calculate final total (ensure it doesn't go below 0)
   const total = Math.max(0, subtotal - totalDiscount) + outOfAreaFee;
 
+  let estimatedMinutes: number | undefined = undefined;
+  if (config?.timeConfig) {
+    const tc = config.timeConfig;
+    let mins = tc.baseTime +
+      ((request.homeDetails.bedrooms || 0) * tc.bedroom) +
+      ((request.homeDetails.bathrooms || 0) * tc.bathroom) +
+      ((request.homeDetails.kitchens || 0) * tc.kitchen) +
+      ((request.homeDetails.other || 0) * tc.other);
+    
+    if (request.cleaningType === 'Deep') mins *= tc.deepMultiplier;
+    if (request.cleaningType === 'Vacate') mins *= tc.vacateMultiplier;
+    
+    estimatedMinutes = Math.round(mins);
+  }
+
   return {
     subtotal,
     discounts,
     totalDiscount,
     total: Math.round(total * 100) / 100,
     outOfAreaFee,
+    estimatedMinutes,
     breakdown: {
       cleaningType: { name: request.cleaningType, price: cleaningTypePrice },
       homeDetails: {
