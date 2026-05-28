@@ -65,7 +65,7 @@ export default function LeadPopup() {
 
     try {
       // Assuming you will create this endpoint in your backend to catch the data
-      await fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/api/leads", {
+      await fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/api/public/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
