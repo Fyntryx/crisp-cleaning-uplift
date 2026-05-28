@@ -27,7 +27,7 @@ interface DifferenceProps {
 
 export default function Difference({ title, subtitle }: DifferenceProps = {}) {
   return (
-    <section className="py-28 bg-white overflow-visible">
+    <section id="difference-section" className="py-28 bg-white overflow-visible">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-20">
           <div className="flex justify-center mb-6">

@@ -12,6 +12,7 @@ import Guarantee from "@/components/lp/Guarantee";
 import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Footer from "@/components/Footer";
+import LeadPopup from "@/components/LeadPopup";
 
 export const metadata = {
   title: "Crisp Cleaning | Melbourne's most consistent home clean",
@@ -35,6 +36,7 @@ export default function LandingPage() {
       <FAQ />
       <FinalCTA />
       
+      <LeadPopup />
       <Footer />
     </main>
   );
