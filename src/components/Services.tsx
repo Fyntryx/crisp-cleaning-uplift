@@ -1126,6 +1126,12 @@ const Services = () => {
           {/* MIDDLE ROW: 2-Column Grid for Counters */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <RoomCounter
+              label="Bedroom"
+              count={formData.homeDetails.bedrooms || 0}
+              onUpdate={(v) => updateRooms("bedrooms", v)}
+            />
+
+            <RoomCounter
               label="Bathroom"
               count={formData.homeDetails.bathrooms || 0}
               onUpdate={(v) => updateRooms("bathrooms", v)}
@@ -1135,12 +1141,6 @@ const Services = () => {
               label="Kitchen"
               count={formData.homeDetails.kitchens || 0}
               onUpdate={(v) => updateRooms("kitchens", v)}
-            />
-
-            <RoomCounter
-              label="Bedroom"
-              count={formData.homeDetails.bedrooms || 0}
-              onUpdate={(v) => updateRooms("bedrooms", v)}
             />
 
             <div className="relative group w-full">
@@ -2245,7 +2245,7 @@ const Services = () => {
           </div>
 
           {/* Bottom Bar: Action Trigger Row */}
-          <div className="flex items-center justify-between border-t border-gray-100 pt-6">
+          <div className="sticky bottom-0 bg-white/95 backdrop-blur-md z-30 pb-6 pt-4 -mx-6 px-6 md:-mx-8 md:px-8 border-t border-gray-100 flex items-center justify-between mt-auto shadow-[0_-10px_30px_rgba(0,0,0,0.02)] translate-y-[24px] md:translate-y-[32px] w-[calc(100%+48px)] md:w-[calc(100%+64px)]">
             <div className="flex items-center">
               <div className="flex items-center gap-1.5 text-gray-300 font-semibold text-[10px] uppercase tracking-widest cursor-not-allowed select-none mr-6">
                 <ChevronLeft className="w-4 h-4" /> Back
