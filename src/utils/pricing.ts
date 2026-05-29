@@ -6,11 +6,25 @@ export const CLEANING_TYPE_PRICES = {
   Vacate: 280,
 } as const;
 
-export const HOME_DETAIL_PRICES = {
-  Bedroom: 20,
-  Bathroom: 45,
-  Kitchen: 35,
-  Other: 20,
+export const ROOM_PRICES = {
+  Regular: {
+    Bedroom: 25,
+    Bathroom: 50,
+    Kitchen: 40,
+    Other: 30,
+  },
+  Deep: {
+    Bedroom: 40,
+    Bathroom: 80,
+    Kitchen: 64,
+    Other: 48,
+  },
+  Vacate: {
+    Bedroom: 40,
+    Bathroom: 80,
+    Kitchen: 64,
+    Other: 48,
+  },
 } as const;
 
 export const EXTRA_PRICES = {
@@ -60,22 +74,19 @@ export interface PricingRequest {
 }
 
 export interface PricingConfig {
-  servicePricingConfig: Record<string, { baseRate: number; multiplier: number }>;
+  servicePricingConfig: Record<string, { baseRate: number; multiplier?: number }>;
   smallServiceFeeConfig: { threshold: number; amount: number };
-  homeDetailPrices: Record<string, number>;
   roomPrices?: Record<string, Record<string, number>>;
   extraPrices: Record<string, number>;
   frequencyDiscounts: Record<string, number>;
   actionTakerDiscount: number;
-  timeConfig?: {
+  timeConfig?: Record<string, {
     bedroom: number;
     bathroom: number;
     kitchen: number;
     other: number;
-    deepMultiplier: number;
-    vacateMultiplier: number;
     baseTime: number;
-  };
+  }>;
   systemBlockedDates?: string[];
   systemBlockedTimeSlots?: { date: string, start: string, end: string }[];
   serviceRadiusKm?: number;
@@ -115,34 +126,41 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
 
   // Use dynamic config if provided, otherwise fallback to static constants
   const servicePricingConfig = config?.servicePricingConfig || {
-    Standard: { baseRate: CLEANING_TYPE_PRICES.Standard, multiplier: 1 },
-    Deep: { baseRate: CLEANING_TYPE_PRICES.Deep, multiplier: 1.6 },
-    Vacate: { baseRate: CLEANING_TYPE_PRICES.Vacate, multiplier: 1.6 },
+    Standard: { baseRate: CLEANING_TYPE_PRICES.Standard },
+    Deep: { baseRate: CLEANING_TYPE_PRICES.Deep },
+    Vacate: { baseRate: CLEANING_TYPE_PRICES.Vacate },
   };
-  const homeDetailPrices = config?.homeDetailPrices || HOME_DETAIL_PRICES;
+  const roomPrices = config?.roomPrices || ROOM_PRICES;
   const extraPrices = config?.extraPrices || EXTRA_PRICES;
   const frequencyDiscounts = config?.frequencyDiscounts || FREQUENCY_DISCOUNTS;
   const actionTakerDiscount = config?.actionTakerDiscount ?? ACTION_TAKER_DISCOUNT;
   
-  // NOTE: If backend uses multiplier logic, it calculates (rooms * multiplier) + baseRate.
-  // The frontend was previously just doing `CLEANING_TYPE_PRICES[request.cleaningType]`.
-  // To keep exactly aligned with backend:
   const mappedCleaningType = request.cleaningType === 'Standard' ? 'Regular' : request.cleaningType;
   const baseRate = Number(servicePricingConfig[mappedCleaningType]?.baseRate ?? 60);
-  const multiplier = Number(servicePricingConfig[mappedCleaningType]?.multiplier ?? 1);
 
-  // Calculate home details total (roomSum in backend)
+  // Get current room prices
+  const currentRoomPrices = roomPrices[mappedCleaningType] || roomPrices.Regular || ROOM_PRICES.Regular;
+
+  // Calculate home details total based on selected service type
   const homeDetailsTotal =
-    (request.homeDetails.bedrooms || 0) * (homeDetailPrices['Bedroom'] ?? 20) +
-    (request.homeDetails.bathrooms || 0) * (homeDetailPrices['Bathroom'] ?? 45) +
-    (request.homeDetails.kitchens || 0) * (homeDetailPrices['Kitchen'] ?? 35) +
-    (request.homeDetails.other || 0) * (homeDetailPrices['Other'] ?? 20);
+    (request.homeDetails.bedrooms || 0) * (currentRoomPrices.Bedroom ?? 25) +
+    (request.homeDetails.bathrooms || 0) * (currentRoomPrices.Bathroom ?? 50) +
+    (request.homeDetails.kitchens || 0) * (currentRoomPrices.Kitchen ?? 40) +
+    (request.homeDetails.other || 0) * (currentRoomPrices.Other ?? 30);
 
-  // Calculate base cleaning type price (aligned with backend logic)
+  // Calculate baseline home details total for threshold check
+  const baselineRoomPrices = roomPrices.Regular || ROOM_PRICES.Regular;
+  const baselineHomeDetailsTotal =
+    (request.homeDetails.bedrooms || 0) * (baselineRoomPrices.Bedroom ?? 25) +
+    (request.homeDetails.bathrooms || 0) * (baselineRoomPrices.Bathroom ?? 50) +
+    (request.homeDetails.kitchens || 0) * (baselineRoomPrices.Kitchen ?? 40) +
+    (request.homeDetails.other || 0) * (baselineRoomPrices.Other ?? 30);
+
+  // Calculate base cleaning type price
   const cleaningTypePrice = baseRate;
   
-  // Subtotal for rooms + baseRate based on multiplier
-  const cleaningAndRoomsTotal = (homeDetailsTotal * multiplier) + baseRate;
+  // Subtotal for rooms + baseRate (no multipliers anymore)
+  const cleaningAndRoomsTotal = homeDetailsTotal + baseRate;
 
   // Calculate extras total
   const extrasItems = Object.entries(request.extras || {}).map(([extra, count]) => ({
@@ -188,7 +206,7 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   // Large Service Discount
   let largeServiceDiscountAmount = 0;
   if (config?.smallServiceFeeConfig) {
-    if (homeDetailsTotal > config.smallServiceFeeConfig.threshold) {
+    if (baselineHomeDetailsTotal > config.smallServiceFeeConfig.threshold) {
       largeServiceDiscountAmount = config.smallServiceFeeConfig.amount;
       // You can add it to the discounts breakdown if you want it to show in UI
       // but in backend it just gets added to totalDiscount.
@@ -224,17 +242,17 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
 
   let estimatedMinutes: number | undefined = undefined;
   if (config?.timeConfig) {
-    const tc = config.timeConfig;
-    let mins = tc.baseTime +
-      ((request.homeDetails.bedrooms || 0) * tc.bedroom) +
-      ((request.homeDetails.bathrooms || 0) * tc.bathroom) +
-      ((request.homeDetails.kitchens || 0) * tc.kitchen) +
-      ((request.homeDetails.other || 0) * tc.other);
-    
-    if (request.cleaningType === 'Deep') mins *= tc.deepMultiplier;
-    if (request.cleaningType === 'Vacate') mins *= tc.vacateMultiplier;
-    
-    estimatedMinutes = Math.round(mins);
+    const serviceKey = request.cleaningType === 'Standard' ? 'regular' : request.cleaningType.toLowerCase();
+    const tc = config.timeConfig[serviceKey] || config.timeConfig.regular;
+    if (tc) {
+      let mins = tc.baseTime +
+        ((request.homeDetails.bedrooms || 0) * tc.bedroom) +
+        ((request.homeDetails.bathrooms || 0) * tc.bathroom) +
+        ((request.homeDetails.kitchens || 0) * tc.kitchen) +
+        ((request.homeDetails.other || 0) * tc.other);
+      
+      estimatedMinutes = Math.round(mins);
+    }
   }
 
   return {

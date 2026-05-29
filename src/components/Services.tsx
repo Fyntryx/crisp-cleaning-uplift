@@ -47,7 +47,7 @@ import useScrollScale from "@/hooks/useScrollScale";
 import {
   calculatePricing,
   CLEANING_TYPE_PRICES,
-  HOME_DETAIL_PRICES,
+  ROOM_PRICES,
   EXTRA_PRICES,
   FREQUENCY_DISCOUNTS,
   type PricingRequest,
@@ -227,7 +227,7 @@ const BookingSummaryCard = ({
           )}
           {(() => {
             const mappedCleaningType = formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType;
-            const currentRoomPrices = pricingConfig?.roomPrices?.[mappedCleaningType] || pricingConfig?.roomPrices?.Regular || HOME_DETAIL_PRICES;
+            const currentRoomPrices = pricingConfig?.roomPrices?.[mappedCleaningType] || pricingConfig?.roomPrices?.Regular || ROOM_PRICES.Regular;
             return (
               <>
                 {(formData.homeDetails.bedrooms || 0) > 0 && (
