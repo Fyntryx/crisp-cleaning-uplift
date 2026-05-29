@@ -31,7 +31,7 @@ export default function QuoteRequestPanel({
   const renderSubheadline = subheadline !== undefined ? subheadline : defaultSubheadline;
 
   return (
-    <section className="relative py-12 md:py-20 overflow-hidden bg-gray-50/30">
+    <section id="booking" className="relative py-12 md:py-20 overflow-hidden bg-gray-50/30">
       {/* Subtle Background Pattern & Gradient */}
       <div className="absolute inset-0 z-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/5 via-transparent to-transparent -z-10 pointer-events-none"></div>
