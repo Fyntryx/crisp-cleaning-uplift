@@ -225,44 +225,46 @@ const BookingSummaryCard = ({
               <span>A${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
             </div>
           )}
-          {(formData.homeDetails.bedrooms || 0) > 0 && (
-            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>{formData.homeDetails.bedrooms}x Bedroom</span>
-              <span>
-                A$
-                {(((pricingConfig?.homeDetailPrices?.Bedroom ?? HOME_DETAIL_PRICES.Bedroom) *
-                  (formData.homeDetails.bedrooms || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
-              </span>
-            </div>
-          )}
-          {(formData.homeDetails.bathrooms || 0) > 0 && (
-            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>{formData.homeDetails.bathrooms}x Bathroom</span>
-              <span>
-                A$
-                {(((pricingConfig?.homeDetailPrices?.Bathroom ?? HOME_DETAIL_PRICES.Bathroom) *
-                  (formData.homeDetails.bathrooms || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
-              </span>
-            </div>
-          )}
-          {(formData.homeDetails.kitchens || 0) > 0 && (
-            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>{formData.homeDetails.kitchens}x Kitchen</span>
-              <span>
-                A$
-                {(((pricingConfig?.homeDetailPrices?.Kitchen ?? HOME_DETAIL_PRICES.Kitchen) *
-                  (formData.homeDetails.kitchens || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
-              </span>
-            </div>
-          )}
-          {(formData.homeDetails.other || 0) > 0 && (
-            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>{formData.homeDetails.other}x Other Area</span>
-              <span>
-                A${(((pricingConfig?.homeDetailPrices?.Other ?? HOME_DETAIL_PRICES.Other) * (formData.homeDetails.other || 0)) * (pricingConfig?.servicePricingConfig?.[formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType]?.multiplier ?? 1)).toFixed(2)}
-              </span>
-            </div>
-          )}
+          {(() => {
+            const mappedCleaningType = formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType;
+            const currentRoomPrices = pricingConfig?.roomPrices?.[mappedCleaningType] || pricingConfig?.roomPrices?.Regular || HOME_DETAIL_PRICES;
+            return (
+              <>
+                {(formData.homeDetails.bedrooms || 0) > 0 && (
+                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                    <span>{formData.homeDetails.bedrooms}x Bedroom</span>
+                    <span>
+                      A${(currentRoomPrices.Bedroom * (formData.homeDetails.bedrooms || 0)).toFixed(2)}
+                    </span>
+                  </div>
+                )}
+                {(formData.homeDetails.bathrooms || 0) > 0 && (
+                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                    <span>{formData.homeDetails.bathrooms}x Bathroom</span>
+                    <span>
+                      A${(currentRoomPrices.Bathroom * (formData.homeDetails.bathrooms || 0)).toFixed(2)}
+                    </span>
+                  </div>
+                )}
+                {(formData.homeDetails.kitchens || 0) > 0 && (
+                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                    <span>{formData.homeDetails.kitchens}x Kitchen</span>
+                    <span>
+                      A${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
+                    </span>
+                  </div>
+                )}
+                {(formData.homeDetails.other || 0) > 0 && (
+                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                    <span>{formData.homeDetails.other}x Other Area</span>
+                    <span>
+                      A${(currentRoomPrices.Other * (formData.homeDetails.other || 0)).toFixed(2)}
+                    </span>
+                  </div>
+                )}
+              </>
+            );
+          })()}
           {pricingResult?.breakdown.extras.items.map((e: any) => (
             <div key={e.name} className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>

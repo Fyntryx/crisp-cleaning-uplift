@@ -63,6 +63,7 @@ export interface PricingConfig {
   servicePricingConfig: Record<string, { baseRate: number; multiplier: number }>;
   smallServiceFeeConfig: { threshold: number; amount: number };
   homeDetailPrices: Record<string, number>;
+  roomPrices?: Record<string, Record<string, number>>;
   extraPrices: Record<string, number>;
   frequencyDiscounts: Record<string, number>;
   actionTakerDiscount: number;
@@ -101,7 +102,7 @@ export interface PricingResponse {
       other?: number;
       total: number;
     };
-    extras: { items: Array<{ name: string; price: number }>; total: number };
+    extras: { items: Array<{ name: string; count: number; price: number }>; total: number };
     discount?: { name: string; amount: number };
   };
 }
