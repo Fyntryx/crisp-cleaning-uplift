@@ -42,7 +42,7 @@ export default function ServiceDifference({ title, subtitle }: ServiceDifference
 
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden relative">
-      <div style={{ maxWidth: "1216px", paddingLeft: "-0px", paddingRight: "32px" }} className="mx-auto relative z-10">
+      <div className="container mx-auto px-4 md:px-6 max-w-[1216px] relative z-10">
 
         {/* Header Section */}
         <div className="mb-12 md:mb-16">
@@ -78,8 +78,7 @@ export default function ServiceDifference({ title, subtitle }: ServiceDifference
               </div>
               <div className="flex flex-col gap-1">
                 <h3
-                  style={{ fontSize: "18px", fontWeight: 600, lineHeight: "28px", width: "514.667px", maxWidth: "100%" }}
-                  className="text-gray-900"
+                  className="text-[18px] font-semibold leading-[28px] text-gray-900"
                 >
                   {feature.title}
                 </h3>

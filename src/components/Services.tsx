@@ -2285,9 +2285,6 @@ const Services = () => {
           {/* Bottom Bar: Action Trigger Row */}
           <div className="sticky bottom-0 bg-white/95 backdrop-blur-md z-30 pb-6 pt-4 -mx-6 px-6 md:-mx-8 md:px-8 border-t border-gray-100 flex items-center justify-between mt-auto shadow-[0_-10px_30px_rgba(0,0,0,0.02)] translate-y-[24px] md:translate-y-[32px] w-[calc(100%+48px)] md:w-[calc(100%+64px)]">
             <div className="flex items-center">
-              <div className="flex items-center gap-1.5 text-gray-300 font-semibold text-[10px] uppercase tracking-widest cursor-not-allowed select-none mr-6">
-                <ChevronLeft className="w-4 h-4" /> Back
-              </div>
               <button 
                 onClick={(e) => {
                   e.preventDefault();

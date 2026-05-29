@@ -45,7 +45,7 @@ export default function Hero() {
         {/* CTA */}
         <Button
           size="xl"
-          className="rounded-full px-10 py-7 text-lg font-bold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 mb-6"
+          className="w-[calc(100%-2rem)] sm:w-auto rounded-full px-4 py-4 md:px-10 md:py-7 text-[15px] sm:text-base md:text-lg font-bold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 mb-6"
         >
           Book Your First Clean — 15% Off
           <ArrowRight className="w-5 h-5" />

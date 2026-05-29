@@ -52,10 +52,10 @@ export default function Guarantee() {
               {/* CTA Button */}
               <Link
                 href="/#booking"
-                className="inline-flex items-center gap-2 rounded-full bg-white text-gray-900 px-8 py-4 font-bold text-[16px] hover:bg-white/90 transition-all shadow-lg mb-6"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-gray-900 px-6 py-4 md:px-8 md:py-4 font-bold text-[14px] md:text-[16px] hover:bg-white/90 transition-all shadow-lg mb-6 max-w-full text-center leading-tight"
               >
-                Book With Confidence — 15% Off Your First Clean
-                <ArrowRight className="w-5 h-5" />
+                <span>Book With Confidence — 15% Off Your First Clean</span>
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
               </Link>
 
               {/* Disclaimer */}

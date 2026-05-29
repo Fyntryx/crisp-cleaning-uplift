@@ -71,7 +71,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
             <div>
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-xl md:text-2xl font-bold text-white">Crisp Cleaning</h3>
-                <span className="text-[10px] font-bold text-white/90 uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full">THE NEW STANDARD</span>
+                <span className="text-[10px] font-bold text-white/90 uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full whitespace-nowrap">THE NEW STANDARD</span>
               </div>
               <ul className="space-y-[18px]">
                 {crispPoints.map((point, i) => (
