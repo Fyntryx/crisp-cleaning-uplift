@@ -48,7 +48,7 @@ export interface PricingRequest {
     kitchens?: number;
     other?: number;
   };
-  extras?: Extra[];
+  extras?: Record<string, number>;
   frequency: Frequency;
   actionTakerDiscount?: boolean;
   appliedPromo?: {
@@ -144,11 +144,11 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   const cleaningAndRoomsTotal = (homeDetailsTotal * multiplier) + baseRate;
 
   // Calculate extras total
-  const extrasItems =
-    request.extras?.map((extra) => ({
-      name: extra,
-      price: extraPrices[extra as keyof typeof extraPrices] ?? 0,
-    })) || [];
+  const extrasItems = Object.entries(request.extras || {}).map(([extra, count]) => ({
+    name: extra,
+    count,
+    price: (extraPrices[extra as keyof typeof extraPrices] ?? 0) * count,
+  }));
 
   const extrasTotal = extrasItems.reduce((sum, item) => sum + item.price, 0);
 

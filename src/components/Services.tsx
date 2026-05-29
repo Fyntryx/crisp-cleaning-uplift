@@ -265,7 +265,7 @@ const BookingSummaryCard = ({
           )}
           {pricingResult?.breakdown.extras.items.map((e: any) => (
             <div key={e.name} className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>+ {e.name}</span>
+              <span>+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
               <span>A${e.price}</span>
             </div>
           ))}
@@ -399,7 +399,7 @@ const Services = () => {
     serviceCategory: "residential",
     cleaningType: "" as any as CleaningType,
     homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
-    extras: [] as Extra[],
+    extras: {} as Record<string, number>,
     frequency: "One time" as Frequency,
     selectedDays: [] as string[],
     selectedDate: undefined as Date | undefined,
@@ -462,7 +462,7 @@ const Services = () => {
       serviceCategory: "residential",
       cleaningType: "" as any as CleaningType,
       homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
-      extras: [] as Extra[],
+      extras: {} as Record<string, number>,
       frequency: "One time" as Frequency,
       selectedDays: [] as string[],
       selectedDate: undefined as Date | undefined,
@@ -721,10 +721,10 @@ const Services = () => {
 
     const addonsPayload: Record<string, number> = {};
 
-    formData.extras.forEach((extra) => {
-      let key = extra as string;
-      if (key === "Oven/Stovetops") key = "Oven/Stovetop";
-      addonsPayload[key] = 1;
+    Object.entries(formData.extras).forEach(([key, count]) => {
+      let formattedKey = key;
+      if (formattedKey === "Oven/Stovetops") formattedKey = "Oven/Stovetop";
+      addonsPayload[formattedKey] = count as number;
     });
 
     return {
@@ -930,15 +930,25 @@ const Services = () => {
 
   const toggleExtra = (extraKey: Extra) => {
     setFormData((prev) => {
-      const currentExtras = prev.extras || [];
-      const exists = currentExtras.includes(extraKey);
-      return {
-        ...prev,
-        extras: exists
-          ? currentExtras.filter((e) => e !== extraKey)
-          : [...currentExtras, extraKey],
-      };
+      const currentExtras = { ...(prev.extras || {}) };
+      if (currentExtras[extraKey]) {
+        delete currentExtras[extraKey];
+      } else {
+        currentExtras[extraKey] = 1;
+      }
+      return { ...prev, extras: currentExtras };
     });
+  };
+
+  const updateExtraCount = (extraKey: Extra, count: number) => {
+    if (count < 1) {
+        toggleExtra(extraKey);
+        return;
+    }
+    setFormData((prev) => ({
+      ...prev,
+      extras: { ...(prev.extras || {}), [extraKey]: count },
+    }));
   };
 
   const toggleDay = (day: string) => {
@@ -1164,21 +1174,47 @@ const Services = () => {
                 <div className="text-xs text-gray-400 py-2">Loading available add-ons...</div>
               ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
                 .map((extra) => {
-                  const isSelected = formData.extras?.includes(extra);
+                  const count = formData.extras?.[extra] || 0;
+                  const isSelected = count > 0;
+                  
+                  if (isSelected) {
+                    return (
+                      <div
+                        key={extra}
+                        className="inline-flex items-center gap-1.5 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
+                      >
+                        <button
+                          type="button"
+                          onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count - 1); }}
+                          className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
+                        >
+                          <Minus className="w-3 h-3 text-white" strokeWidth={3} />
+                        </button>
+                        <span className="text-[13px] font-semibold min-w-[12px] text-center">
+                          {count}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
+                          className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
+                        >
+                          <Plus className="w-3 h-3 text-white" strokeWidth={3} />
+                        </button>
+                        <span className="text-[13px] font-semibold pr-3 pl-1">
+                          {extra}
+                        </span>
+                      </div>
+                    );
+                  }
+
                   return (
                     <button
                       key={extra}
+                      type="button"
                       onClick={() => toggleExtra(extra)}
-                      className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-[13px] font-semibold transition-all duration-200 whitespace-nowrap ${isSelected
-                        ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
-                        : "bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
-                        }`}
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-[13px] font-semibold transition-all duration-200 whitespace-nowrap bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
                     >
-                      {isSelected ? (
-                        <Check className="w-3.5 h-3.5 text-white shrink-0" strokeWidth={3} />
-                      ) : (
-                        <Plus className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                      )}
+                      <Plus className="w-3.5 h-3.5 text-gray-400 shrink-0" />
                       {extra}
                     </button>
                   );
