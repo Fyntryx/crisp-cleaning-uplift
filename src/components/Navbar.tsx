@@ -202,16 +202,26 @@ const Navbar = () => {
           </Button>
         </div>
 
-        {/* --- MOBILE MENU TOGGLE --- */}
-        <button
-          className={cn(
-            "md:hidden p-2 transition-colors rounded-xl",
-            isScrolled || !isHomePage ? "text-neutral-800" : "text-white"
-          )}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* --- MOBILE CTA & TOGGLE --- */}
+        <div className="flex md:hidden items-center gap-3">
+          <Link
+            href="/#booking"
+            className="px-4 py-2 bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white text-[13px] font-bold rounded-full shadow-[0_4px_14px_rgba(251,140,66,0.35)] transition-colors"
+          >
+            Get a Quote
+          </Link>
+          <button
+            className={cn(
+              "w-9 h-9 flex items-center justify-center transition-colors rounded-full border",
+              isScrolled || !isHomePage 
+                ? "text-neutral-800 border-gray-200 bg-white shadow-sm" 
+                : "text-white border-white/20 bg-white/10"
+            )}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* --- MOBILE MENU CONTENT --- */}
