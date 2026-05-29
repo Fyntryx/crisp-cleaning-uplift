@@ -496,14 +496,7 @@ const Services = () => {
     setIsAddressValid(true);
   };
 
-  useEffect(() => {
-    if (!isModalOpen) {
-      const timer = setTimeout(() => {
-        resetForm();
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isModalOpen]);
+
 
   // API Configuration
   const API_BASE_URL = (
