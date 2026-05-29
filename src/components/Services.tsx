@@ -317,7 +317,10 @@ const BookingSummaryCard = ({
                   const res = await fetch(`${apiBaseUrl}/api/validate-promo`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ code: promoCode }),
+                    body: JSON.stringify({ 
+                      code: promoCode,
+                      frequency: formData.frequency || "One time"
+                    }),
                   });
                   const data = await res.json();
                   if (data.valid) {
