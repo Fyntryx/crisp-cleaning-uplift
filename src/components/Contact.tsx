@@ -52,7 +52,7 @@ const Contact = () => {
                 <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">Email</p>
                   <p className="font-medium break-all">
-                    crispcleaningmelbourne@outlook.com
+                    crispcleaningmelbourne@gmail.com
                   </p>
                 </div>
               </div>

@@ -71,9 +71,9 @@ const ContactPage = () => {
                         We'll respond within 24 hours
                       </p>
                       <a
-                        href="mailto:crispcleaningmelbourne@outlook.com"
+                        href="mailto:crispcleaningmelbourne@gmail.com"
                         className="text-[#FB8C42] font-medium hover:underline break-all text-[15px]">
-                        crispcleaningmelbourne@outlook.com
+                        crispcleaningmelbourne@gmail.com
                       </a>
                     </div>
                   </div>

@@ -83,8 +83,8 @@ const Footer = () => {
                 <a href="tel:0451433786" className="text-foreground hover:text-primary transition-colors block text-2xl font-bold mb-2">
                   0451 433 786
                 </a>
-                <a href="mailto:crispcleaningmelbourne@outlook.com" className="text-muted-foreground hover:text-primary transition-colors block font-medium">
-                  crispcleaningmelbourne@outlook.com
+                <a href="mailto:crispcleaningmelbourne@gmail.com" className="text-muted-foreground hover:text-primary transition-colors block font-medium">
+                  crispcleaningmelbourne@gmail.com
                 </a>
                 <Link href="/contact" className="text-primary font-bold hover:underline transition-all mt-2 inline-flex items-center gap-2">
                   Send us a message <span className="text-xl">&rarr;</span>
