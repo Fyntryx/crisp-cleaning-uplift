@@ -114,13 +114,13 @@ const HowWeWork = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative px-4 md:px-6 py-12 md:py-12 flex items-center justify-center md:min-h-[75vh]">
+      className="relative px-6 md:px-8 py-12 md:py-12 flex items-center justify-center md:min-h-[75vh]">
       <div
         className="absolute inset-x-4 inset-y-0 md:inset-x-6 bg-primary overflow-hidden shadow-xl z-0"
         style={{ borderRadius: "3rem" }}
       />
 
-      <div className="relative w-full max-w-7xl mx-auto z-10 flex flex-col items-center justify-center h-full px-4 md:px-0">
+      <div className="relative w-full max-w-7xl mx-auto z-10 flex flex-col items-center justify-center h-full px-6 md:px-0">
         <span className="inline-block px-4 py-2 bg-white/10 text-white text-sm font-medium rounded-full mb-6 border border-white/10 backdrop-blur-sm">
           Our Process
         </span>
