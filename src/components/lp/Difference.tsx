@@ -47,7 +47,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
           {/* Industry Average Box */}
           <div className="w-full lg:w-[460px] mx-auto lg:mx-0 bg-[#F5F3ED] p-7 md:p-9 rounded-3xl border border-orange-100/30 flex flex-col relative overflow-hidden shadow-none min-h-[300px] lg:min-h-[480px]">
             <div className="flex justify-between items-center mb-8">
-              <h3 className="text-xl font-bold text-foreground">Other Cleaners</h3>
+              <h3 className="text-lg md:text-xl font-bold text-foreground">Other Cleaners</h3>
               <span className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest">INDUSTRY AVERAGE</span>
             </div>
             <div className="flex-1 flex flex-col justify-center">
@@ -70,7 +70,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
           <div className="w-full lg:w-[460px] mx-auto lg:mx-0 bg-primary p-7 md:p-10 rounded-3xl shadow-[0_25px_60px_rgba(249,115,22,0.35)] flex flex-col justify-between text-white relative overflow-visible transform lg:scale-110 lg:z-10 border-4 border-orange-400/40 min-h-[360px] lg:min-h-[480px] mt-8 lg:mt-0">
             <div>
               <div className="flex justify-between items-center mb-8">
-                <h3 className="text-xl md:text-2xl font-bold text-white">Crisp Cleaning</h3>
+                <h3 className="text-lg md:text-2xl font-bold text-white">Crisp Cleaning</h3>
                 <span className="text-[10px] font-bold text-white/90 uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full whitespace-nowrap">THE NEW STANDARD</span>
               </div>
               <ul className="space-y-[18px]">
