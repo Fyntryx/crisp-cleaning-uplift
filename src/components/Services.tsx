@@ -2457,11 +2457,11 @@ const Services = () => {
 
                   {/* Expanded Summary (Absolute positioned above the dark bar) */}
                   <div 
-                    className={`absolute bottom-full left-0 right-0 bg-white rounded-t-3xl overflow-hidden transition-all duration-300 ease-in-out origin-bottom z-[110] shadow-[0_-10px_40px_rgba(0,0,0,0.15)] ${
-                      isMobileSummaryOpen ? "max-h-[70vh] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                    className={`absolute bottom-full left-4 right-4 mb-4 bg-white rounded-2xl overflow-hidden transition-all duration-300 ease-in-out z-[110] shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-gray-100 ${
+                      isMobileSummaryOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
                     }`}
                   >
-                    <div className="p-5 md:p-6 overflow-y-auto max-h-[70vh] custom-scrollbar">
+                    <div className="overflow-y-auto max-h-[60vh] custom-scrollbar p-1">
                       <BookingSummaryCard
                         formData={formData}
                         pricingConfig={pricingConfig}
@@ -2473,7 +2473,7 @@ const Services = () => {
                         setAppliedPromo={setAppliedPromo}
                         apiBaseUrl={API_BASE_URL}
                         outOfAreaFee={outOfAreaFee}
-                        className="shadow-none border-none !p-0 !bg-transparent"
+                        className="shadow-none border-none !bg-transparent"
                       />
                     </div>
                   </div>
