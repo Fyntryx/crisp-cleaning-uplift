@@ -63,7 +63,7 @@ export default function FinalCTA({ title, discountText }: FinalCTAProps) {
 
             {/* Glowing Action Button */}
             <Link href="/#booking" className="mb-8 inline-block">
-              <Button size="xl" className="rounded-full px-12 py-7 text-lg font-bold bg-primary hover:bg-primary/95 text-white shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:shadow-[0_0_40px_rgba(249,115,22,0.65)] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group w-full">
+              <Button size="xl" className="rounded-full px-8 md:px-12 py-7 text-[16px] md:text-lg font-bold bg-primary hover:bg-primary/95 text-white shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:shadow-[0_0_40px_rgba(249,115,22,0.65)] hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 group w-auto mx-auto">
                 Claim Your First Clean
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
