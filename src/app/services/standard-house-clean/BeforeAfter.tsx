@@ -142,15 +142,25 @@ export default function BeforeAfter() {
         </div>
 
         {/* Comparisons Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {comparisons.map((comp, index) => (
-            <ComparisonCard
-              key={index}
-              beforeImage={comp.beforeImage}
-              afterImage={comp.afterImage}
-              label={comp.label}
-            />
-          ))}
+        <div 
+          className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden mb-8 md:mb-12" 
+          ref={beforeAfterRef}
+          onMouseEnter={() => setIsInteracting(true)}
+          onMouseLeave={() => setIsInteracting(false)}
+          onTouchStart={() => setIsInteracting(true)}
+          onTouchEnd={() => setIsInteracting(false)}
+        >
+          <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 touch-pan-y">
+            {comparisons.map((comp, index) => (
+              <div key={index} className={`flex-[0_0_85%] md:flex-none min-w-0 ${index === comparisons.length - 1 ? "pr-6 md:pr-0" : ""}`}>
+                <ComparisonCard
+                  beforeImage={comp.beforeImage}
+                  afterImage={comp.afterImage}
+                  label={comp.label}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
