@@ -150,7 +150,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
                     ))}
                   </div>
                   <p className="text-foreground font-medium text-[13px] md:text-sm leading-relaxed mb-4 md:mb-5">"{review.text}"</p>
-                  <p className="font-bold text-muted-foreground text-[9px] md:text-[10px] tracking-wider uppercase mt-auto pt-2">{review.author}</p>
+                  <p className="font-bold text-muted-foreground text-[9px] md:text-[10px] tracking-wider uppercase mt-auto pt-1 md:pt-2">{review.author}</p>
                 </div>
               ))}
             </div>
