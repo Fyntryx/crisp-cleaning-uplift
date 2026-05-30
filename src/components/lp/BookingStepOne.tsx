@@ -54,8 +54,8 @@ export default function BookingStepOne() {
   };
 
   return (
-    <section id="booking" className="relative -mt-12 z-20 px-3 md:px-4 mb-20">
-      <div className="max-w-4xl mx-auto bg-white rounded-[32px] md:rounded-[40px] p-4 md:p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden">
+    <section id="booking" className="relative -mt-12 z-20 px-1.5 md:px-4 mb-20">
+      <div className="max-w-4xl mx-auto bg-white rounded-[24px] md:rounded-[40px] p-4 md:p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden">
         
         {/* Wizard Header */}
         <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
