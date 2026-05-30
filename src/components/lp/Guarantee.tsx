@@ -4,12 +4,12 @@ import { ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function Guarantee() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-6 md:px-8 max-w-[1216px]">
 
         {/* Guarantee Card */}
         <div
-          className="relative overflow-hidden text-white px-6 py-12 md:p-16"
+          className="relative overflow-hidden text-white px-6 py-8 md:p-16"
           style={{
             backgroundColor: "rgb(251, 140, 66)",
             borderRadius: "32px",
@@ -19,7 +19,7 @@ export default function Guarantee() {
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/5 pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col items-start md:items-center text-left md:text-center gap-6">
+          <div className="relative z-10 flex flex-col items-start md:items-center text-left md:text-center gap-4 md:gap-6">
 
             {/* Shield Icon */}
             <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shrink-0">
