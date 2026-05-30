@@ -43,7 +43,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-5 lg:gap-16 overflow-visible pt-10 pb-8">
+        <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-2.5 lg:gap-16 overflow-visible pt-10 pb-8">
           {/* Industry Average Box */}
           <div className="w-full lg:w-[460px] mx-auto lg:mx-0 bg-[#F5F3ED] p-7 md:p-9 rounded-3xl border border-orange-100/30 flex flex-col relative overflow-hidden shadow-none min-h-[300px] lg:min-h-[480px]">
             <div className="flex justify-between items-center mb-8">
