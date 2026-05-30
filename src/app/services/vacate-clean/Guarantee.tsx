@@ -50,7 +50,7 @@ export default function VacateGuarantee() {
             {/* Heading */}
             <h2
               style={{ letterSpacing: "-1.2px", lineHeight: "1.1" }}
-              className="text-[48px] md:text-[56px] font-semibold text-white mb-6"
+              className="text-[30px] md:text-[56px] font-extrabold text-white mb-6"
             >
               We guarantee your bond back.
             </h2>
