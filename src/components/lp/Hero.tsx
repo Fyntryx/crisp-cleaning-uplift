@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1200px] mx-auto flex flex-col items-center">
 
         {/* Badge */}
-        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20 md:bg-white/10 md:text-white md:border-white/20 text-sm font-semibold tracking-[0.12em] uppercase shadow-lg md:shadow-none">
+        <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20 md:bg-white/10 md:text-white md:border-white/20 text-[12px] md:text-sm font-semibold tracking-[0.12em] uppercase shadow-lg md:shadow-none">
           Melbourne's most consistent home clean
         </div>
 
@@ -36,7 +36,7 @@ export default function Hero() {
         </h1>
 
         {/* Sub Copy */}
-        <p className="max-w-2xl text-lg md:text-xl text-gray-600 md:text-neutral-200 leading-relaxed mb-10">
+        <p className="max-w-2xl text-[16px] md:text-xl text-gray-600 md:text-neutral-200 leading-relaxed mb-10">
           You shouldn't have to supervise your cleaner, explain things twice,
           or wonder if they actually showed up. Crisp delivers a consistent,
           detailed clean — every visit, without the mental load.
