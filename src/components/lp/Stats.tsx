@@ -20,46 +20,46 @@ export default function Stats() {
         </div>
 
         {/* Stat Cards Row */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-8">
           {/* Google Review Card - Entire Card is Clickable */}
           <a
             href="https://g.page/r/CZeiP3EqDt4xEAI/review"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-orange-50/50 p-6 rounded-2xl border border-orange-100 shadow-sm flex flex-col justify-between relative hover:-translate-y-1 transition-all duration-300 hover:shadow-md hover:border-orange-200 group"
+            className="bg-orange-50/50 p-4 md:p-6 rounded-2xl border border-orange-100 shadow-sm flex flex-col justify-between relative hover:-translate-y-1 transition-all duration-300 hover:shadow-md hover:border-orange-200 group"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google" className="w-5 h-5" />
-              <span className="font-bold text-sm tracking-wide text-gray-800">GOOGLE REVIEWS</span>
-              <ExternalLink className="w-4 h-4 text-gray-400 ml-auto group-hover:text-[#FB8C42] transition-colors" />
+            <div className="flex items-start md:items-center gap-1.5 md:gap-2 mb-4">
+              <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google" className="w-4 h-4 md:w-5 md:h-5 mt-0.5 md:mt-0" />
+              <span className="font-bold text-[10px] md:text-sm tracking-wide text-gray-800 uppercase leading-tight md:leading-normal">GOOGLE<br className="md:hidden" /> REVIEWS</span>
+              <ExternalLink className="w-3 h-3 md:w-4 md:h-4 text-gray-400 ml-auto group-hover:text-[#FB8C42] transition-colors" />
             </div>
             <div>
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-bold text-gray-800 leading-none">4.9</span>
-                <Star className="w-6 h-6 fill-[#FB8C42] text-[#FB8C42] mb-1" />
+              <div className="flex items-end gap-1.5 md:gap-2 mb-2">
+                <span className="text-4xl md:text-5xl font-bold text-gray-800 leading-none">4.9</span>
+                <Star className="w-5 h-5 md:w-6 md:h-6 fill-[#FB8C42] text-[#FB8C42] mb-1" />
               </div>
-              <p className="text-gray-500 text-sm font-medium mb-4">Average rating across all reviews</p>
-              <span className="text-[#FB8C42] text-sm font-semibold hover:underline">Read on Google →</span>
+              <p className="text-gray-500 text-[11px] md:text-sm font-medium mb-3 md:mb-4 leading-snug">Average rating across all reviews</p>
+              <span className="text-[#FB8C42] text-[10px] md:text-sm font-semibold hover:underline">Read on Google &rarr;</span>
             </div>
           </a>
 
           {/* Other Stats */}
-          <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
-            <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2">FULLY INSURED</p>
-            <span className="text-5xl font-bold text-[#FB8C42] mb-2">100%</span>
-            <p className="text-gray-500 text-sm font-medium">All cleaners fully insured</p>
+          <div className="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
+            <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">RE-CLEAN WINDOW</p>
+            <span className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 leading-none">48<span className="text-[#FB8C42]">hrs</span></span>
+            <p className="text-gray-500 text-[11px] md:text-sm font-medium leading-snug">Maximum re-clean turnaround</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
-            <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2">BOOKING TIME</p>
-            <span className="text-5xl font-bold text-[#FB8C42] mb-2">30<span className="text-3xl">sec</span></span>
-            <p className="text-gray-500 text-sm font-medium">Average booking time</p>
+          <div className="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
+            <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">BOOKING TIME</p>
+            <span className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 leading-none">30<span className="text-[#FB8C42]">sec</span></span>
+            <p className="text-gray-500 text-[11px] md:text-sm font-medium leading-snug">Average booking time</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-orange-50 shadow-sm flex flex-col justify-center">
-            <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2">CONSISTENCY</p>
-            <span className="text-5xl font-bold text-[#FB8C42] mb-2">97%</span>
-            <p className="text-gray-500 text-sm font-medium">Same cleaner consistency rate</p>
+          <div className="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
+            <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">CONSISTENCY</p>
+            <span className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 leading-none">90<span className="text-[#FB8C42]">%</span></span>
+            <p className="text-gray-500 text-[11px] md:text-sm font-medium leading-snug">Same cleaner consistency rate</p>
           </div>
         </div>
 
