@@ -192,7 +192,7 @@ const BookingSummaryCard = ({
     <div className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-50/50 border border-emerald-100 text-emerald-700 font-semibold text-[13px] mb-6 relative z-10 group/tooltip cursor-pointer">
       <CheckCircle2 className="w-4 h-4" /> Satisfaction Guaranteed
       <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-[11px] font-normal leading-relaxed rounded-xl shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all z-50 pointer-events-none text-center">
-        If you&apos;re not 100% satisfied with your clean, we will come back and re-clean the missed spots for free.
+        Not Happy? Receive a 100% refund if your concerns are not addressed!
         <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
       </div>
     </div>
