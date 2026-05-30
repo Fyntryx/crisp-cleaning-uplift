@@ -2569,15 +2569,15 @@ const Services = () => {
         )}
 
         {/* MOBILE STICKY BOOK NOW (LANDING PAGE ONLY) */}
-        {mounted && !isModalOpen && createPortal(
+        {mounted && !isModalOpen && pricingResult && pricingResult.total > 0 && createPortal(
           <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[90] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
             <div className="bg-gray-950 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-800 shadow-2xl transition-all duration-300">
               <div className="flex flex-col">
-                <span className="text-[10px] text-[#FB8C42] font-bold uppercase tracking-wider mb-0.5">
-                  Ready?
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
+                  Total
                 </span>
                 <span className="text-lg font-display font-bold text-white leading-tight">
-                  Book a clean
+                  A${pricingResult.total.toFixed(0)}
                 </span>
               </div>
 
