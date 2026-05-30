@@ -273,7 +273,7 @@ export default function Checklist({
           )}
           <h2 
             style={layout === "left" ? { letterSpacing: "-1.2px", lineHeight: "1.2" } : undefined}
-            className={`text-[30px] font-semibold text-gray-900 mb-5 tracking-tight ${layout === "left" ? "mt-3" : ""}`}
+            className={`text-[30px] font-extrabold text-gray-900 mb-5 tracking-tight ${layout === "left" ? "mt-3" : ""}`}
           >
             {title || "Nothing is assumed. Everything is covered."}
           </h2>

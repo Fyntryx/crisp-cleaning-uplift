@@ -31,7 +31,7 @@ export default function ServiceHero() {
 
             <h1
               style={{ maxWidth: "896px", letterSpacing: "-1.2px", lineHeight: "1.2" }}
-              className="text-[40px] md:text-[40px] font-semibold text-gray-900 mb-5 mt-3"
+              className="text-[40px] md:text-[40px] font-extrabold text-gray-900 mb-5 mt-3"
             >
               A consistent, detailed clean — every visit, without the mental load.
             </h1>

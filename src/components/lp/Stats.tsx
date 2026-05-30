@@ -14,7 +14,7 @@ export default function Stats() {
       <div className="container mx-auto px-6 md:px-8 max-w-6xl">
         <div className="text-center mb-12">
           <h4 className="text-[#FB8C42] font-bold tracking-widest text-sm uppercase mb-4">By The Numbers</h4>
-          <h2 className="text-[30px] md:text-[30px] font-semibold text-gray-900 tracking-tight mb-12">
+          <h2 className="text-[30px] md:text-[30px] font-extrabold text-gray-900 tracking-tight mb-12">
             The numbers behind the standard.
           </h2>
         </div>
