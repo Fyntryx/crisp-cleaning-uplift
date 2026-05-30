@@ -2399,7 +2399,7 @@ const Services = () => {
 
                   {/* Inner Step Controls */}
                   {currentStep < totalSteps && (
-                    <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+                    <div className={`mt-8 pt-6 border-t border-gray-100 items-center justify-between ${!isCommercial ? 'hidden xl:flex' : 'flex'}`}>
                       <button
                         onClick={handlePrevModal}
                         className="flex items-center gap-1.5 text-[#FB8C42] hover:text-[#FB8C42]/80 font-semibold text-[10px] uppercase tracking-wider transition-all"
@@ -2497,6 +2497,28 @@ const Services = () => {
                       <span className="text-[13px] font-bold">{isMobileSummaryOpen ? 'Hide summary' : 'View summary'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileSummaryOpen ? '' : 'rotate-180'}`} />
                     </div>
+                  </div>
+
+                  {/* Mobile Back / Continue Controls */}
+                  <div className="bg-white px-5 py-4 flex items-center justify-between relative z-50 border-t border-gray-100">
+                    <button
+                      onClick={handlePrevModal}
+                      className="flex items-center gap-1.5 text-gray-600 hover:text-gray-900 font-semibold text-sm transition-all"
+                    >
+                      <ChevronLeft className="w-4 h-4" /> Back
+                    </button>
+
+                    <button
+                      onClick={handleNext}
+                      disabled={!isStepValid()}
+                      className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid()
+                        ? "bg-gray-150 text-gray-400 cursor-not-allowed"
+                        : "bg-[#FB8C42] hover:bg-[#FB8C42]/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.02]"
+                        }`}
+                    >
+                      Continue
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
               )}
