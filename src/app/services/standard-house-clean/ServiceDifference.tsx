@@ -52,8 +52,8 @@ export default function ServiceDifference({ title, subtitle }: ServiceDifference
             </span>
           </div>
           <h2
-            style={{ maxWidth: "896px", letterSpacing: "-1.2px", lineHeight: "48px" }}
-            className="text-[48px] font-semibold text-gray-900 mb-5 mt-3"
+            style={{ maxWidth: "896px", letterSpacing: "-1.2px", lineHeight: "1.2" }}
+            className="text-[30px] md:text-[30px] font-semibold text-gray-900 mb-5 mt-3"
           >
             {title || "Why this isn't like every other cleaning service you've tried."}
           </h2>

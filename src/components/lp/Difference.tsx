@@ -35,7 +35,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
               The Difference
             </span>
           </div>
-          <h2 className="text-[28px] md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6 lg:whitespace-nowrap">
+          <h2 className="text-[30px] font-semibold text-foreground tracking-tight mb-6 lg:whitespace-nowrap">
             {title || "Most cleaning companies are inconsistent by design."}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
