@@ -3,6 +3,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -46,9 +47,12 @@ export default function Hero() {
         <Button
           size="xl"
           className="w-[calc(100%-2rem)] sm:w-auto rounded-full px-4 py-4 md:px-10 md:py-7 text-[15px] sm:text-base md:text-lg font-bold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 mb-6"
+          asChild
         >
-          Book Your First Clean
-          <ArrowRight className="w-5 h-5" />
+          <Link href="/#booking">
+            Book Your First Clean
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </Button>
 
         {/* Sub CTA */}
