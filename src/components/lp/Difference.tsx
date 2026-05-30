@@ -27,9 +27,9 @@ interface DifferenceProps {
 
 export default function Difference({ title, subtitle }: DifferenceProps = {}) {
   return (
-    <section id="difference-section" className="py-28 bg-white overflow-visible">
+    <section id="difference-section" className="py-14 md:py-28 bg-white overflow-visible">
       <div className="container mx-auto px-5 md:px-8 max-w-6xl">
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 md:mb-20">
           <div className="flex justify-center mb-6">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-widest border border-primary/20 shadow-sm">
               The Difference
@@ -43,7 +43,7 @@ export default function Difference({ title, subtitle }: DifferenceProps = {}) {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-2.5 lg:gap-16 overflow-visible pt-10 pb-8">
+        <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-2.5 lg:gap-16 overflow-visible pt-4 md:pt-10 pb-8">
           {/* Industry Average Box */}
           <div className="w-full lg:w-[460px] mx-auto lg:mx-0 bg-[#F5F3ED] p-7 md:p-9 rounded-3xl border border-orange-100/30 flex flex-col relative overflow-hidden shadow-none min-h-[300px] lg:min-h-[480px]">
             <div className="flex justify-between items-center mb-8">

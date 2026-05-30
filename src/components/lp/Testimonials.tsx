@@ -75,9 +75,9 @@ interface TestimonialsProps {
 
 export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews }: TestimonialsProps) {
   return (
-    <section id="testimonials" className="py-24 bg-[#FAF9F6]">
+    <section id="testimonials" className="py-12 md:py-24 bg-[#FAF9F6]">
       <div className={`container mx-auto px-6 md:px-8 ${layout === "left" ? "max-w-[1216px]" : "max-w-6xl"}`}>
-        <div className={`mb-12 ${layout === "left" ? "max-w-[896px]" : ""}`}>
+        <div className={`mb-6 md:mb-12 ${layout === "left" ? "max-w-[896px]" : ""}`}>
           {topTitle !== null && (
             layout === "left" ? (
               <div className="mb-3">
@@ -100,7 +100,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
 
         {/* Top Grid: Before/After */}
         {!hideBeforeAfter && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 md:mb-12">
             <div className="col-span-1">
               <BeforeAfterSlider beforeImage="/images/KitchenSinkBefore.png" afterImage="/images/KitchenSinkAfter.jpg" title="Kitchen Sink" />
             </div>
@@ -131,7 +131,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
         )}
 
         {!hideReviews && (
-          <div className="mt-12 flex flex-col md:flex-row justify-center items-center gap-4">
+          <div className="mt-8 md:mt-12 flex flex-col md:flex-row justify-center items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, idx) => (
