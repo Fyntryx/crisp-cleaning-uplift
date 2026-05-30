@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { Star, Clock, ArrowRightLeft, ArrowRight, ExternalLink } from "lucide-react";
 
 // Placeholder BeforeAfterSlider
@@ -74,6 +75,20 @@ interface TestimonialsProps {
 }
 
 export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews }: TestimonialsProps) {
+  const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ loop: true, align: 'center', breakpoints: { '(min-width: 768px)': { active: false } } });
+  const [reviewsRef] = useEmblaCarousel({ loop: false, align: 'start', breakpoints: { '(min-width: 768px)': { active: false } } });
+
+  useEffect(() => {
+    if (!beforeAfterApi) return;
+    const interval = setInterval(() => {
+      // Only scroll automatically if viewport is mobile (embla is active)
+      if (window.innerWidth < 768) {
+        beforeAfterApi.scrollNext();
+      }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [beforeAfterApi]);
+
   return (
     <section id="testimonials" className="py-12 md:py-24 bg-[#FAF9F6]">
       <div className={`container mx-auto px-6 md:px-8 ${layout === "left" ? "max-w-[1216px]" : "max-w-6xl"}`}>
@@ -100,34 +115,38 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
 
         {/* Top Grid: Before/After */}
         {!hideBeforeAfter && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 md:mb-12">
-            <div className="col-span-1">
-              <BeforeAfterSlider beforeImage="/images/KitchenSinkBefore.png" afterImage="/images/KitchenSinkAfter.jpg" title="Kitchen Sink" />
-            </div>
-            <div className="col-span-1">
-              <BeforeAfterSlider beforeImage="/images/BathtubeBefore.jpg" afterImage="/images/BathTubeAfter.jpg" title="Bathtub" />
-            </div>
-            <div className="col-span-1">
-              <BeforeAfterSlider beforeImage="/images/StoveTopBefore.jpg" afterImage="/images/StoveTopAfter.jpg" title="Stovetop" />
+          <div className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden mb-8 md:mb-12" ref={beforeAfterRef}>
+            <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 touch-pan-y">
+              <div className="flex-[0_0_85%] md:flex-none min-w-0">
+                <BeforeAfterSlider beforeImage="/images/KitchenSinkBefore.png" afterImage="/images/KitchenSinkAfter.jpg" title="Kitchen Sink" />
+              </div>
+              <div className="flex-[0_0_85%] md:flex-none min-w-0">
+                <BeforeAfterSlider beforeImage="/images/BathtubeBefore.jpg" afterImage="/images/BathTubeAfter.jpg" title="Bathtub" />
+              </div>
+              <div className="flex-[0_0_85%] md:flex-none min-w-0 pr-6 md:pr-0">
+                <BeforeAfterSlider beforeImage="/images/StoveTopBefore.jpg" afterImage="/images/StoveTopAfter.jpg" title="Stovetop" />
+              </div>
             </div>
           </div>
         )}
 
         {/* Bottom Grid: Reviews */}
         {!hideReviews && (
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {reviews.map((review, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow break-inside-avoid">
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, idx) => (
-                  <Star key={idx} className="w-4 h-4 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-foreground font-medium text-sm leading-relaxed mb-6">"{review.text}"</p>
-              <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase mt-auto pt-2">{review.author}</p>
+          <div className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden" ref={reviewsRef}>
+            <div className="flex md:block md:columns-2 lg:columns-3 gap-4 md:gap-6 touch-pan-y">
+              {reviews.map((review, i) => (
+                <div key={i} className="flex-[0_0_85%] md:flex-none min-w-0 md:mb-6 bg-white p-8 rounded-2xl shadow-sm border border-orange-50 flex flex-col hover:shadow-md transition-shadow break-inside-avoid">
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(5)].map((_, idx) => (
+                      <Star key={idx} className="w-4 h-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <p className="text-foreground font-medium text-sm leading-relaxed mb-6">"{review.text}"</p>
+                  <p className="font-bold text-muted-foreground text-[10px] tracking-wider uppercase mt-auto pt-2">{review.author}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
         )}
 
         {!hideReviews && (
