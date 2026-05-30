@@ -84,7 +84,7 @@ export default function Process({ title, subtitle, layout = "center" }: ProcessP
 
   return (
     <section className="py-24 bg-white" ref={containerRef}>
-      <div className={`container mx-auto px-4 ${layout === "left" ? "max-w-[1216px]" : "max-w-4xl"}`}>
+      <div className={`container mx-auto px-6 md:px-8 ${layout === "left" ? "max-w-[1216px]" : "max-w-4xl"}`}>
         <div className={`mb-16 ${layout === "left" ? "max-w-[896px]" : "text-center"}`}>
           {layout === "left" ? (
             <div className="mb-3">

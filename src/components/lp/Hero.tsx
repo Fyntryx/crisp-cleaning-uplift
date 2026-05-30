@@ -6,7 +6,7 @@ import { ArrowRight, Star } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="w-full relative overflow-hidden bg-[#FB8C42]/5 md:bg-[#1E1915] px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-screen">
+    <section className="w-full relative overflow-hidden bg-[#FB8C42]/5 md:bg-[#1E1915] px-6 md:px-8 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-screen">
 
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video autoPlay loop muted playsInline className="hidden md:block w-full h-full object-cover object-center opacity-85">

@@ -16,7 +16,7 @@ export default function ServiceHero() {
     <>
       {/* Top Banner */}
       <div className="bg-[#FB8C42] w-full py-4 relative z-20 mt-[76px] md:mt-[84px]">
-        <div className="container mx-auto px-4 max-w-[1216px] flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="container mx-auto px-6 md:px-8 max-w-[1216px] flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-start md:items-center gap-3 text-white text-[14px] font-medium leading-relaxed">
             <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 md:mt-0" />
             <p>
@@ -33,7 +33,7 @@ export default function ServiceHero() {
       </div>
 
       <section className="relative bg-[#FDFBF9] overflow-hidden">
-        <div className="container mx-auto px-4 max-w-[1216px] pt-20 md:pt-28 pb-20">
+        <div className="container mx-auto px-6 md:px-8 max-w-[1216px] pt-20 md:pt-28 pb-20">
 
           {/* Main Content Grid */}
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">

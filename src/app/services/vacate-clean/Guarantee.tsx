@@ -19,7 +19,7 @@ export default function VacateGuarantee() {
 
   return (
     <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 max-w-[1216px]">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1216px]">
         
         {/* Guarantee Card */}
         <div

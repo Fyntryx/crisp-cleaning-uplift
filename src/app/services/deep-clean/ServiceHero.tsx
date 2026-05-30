@@ -15,7 +15,7 @@ const trustItems = [
 export default function ServiceHero() {
   return (
     <section className="relative bg-[#FDF8F4] overflow-hidden">
-      <div className="container mx-auto px-4 max-w-[1216px] pt-32 md:pt-40 pb-8">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1216px] pt-32 md:pt-40 pb-8">
 
         {/* Main Content */}
         <div className="max-w-[896px] mx-auto text-center mb-12">

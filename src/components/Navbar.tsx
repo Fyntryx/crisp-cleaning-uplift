@@ -91,11 +91,12 @@ const Navbar = () => {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
+        "bg-white shadow-sm border-b border-gray-100 py-3.5", // Mobile default (opaque)
         isScrolled 
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5" 
+          ? "md:bg-white/95 md:backdrop-blur-md md:shadow-sm md:border-gray-100 md:py-3.5" 
           : isHomePage
-            ? "bg-transparent py-5 border-b border-transparent shadow-none"
-            : "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5"
+            ? "md:bg-transparent md:py-5 md:border-transparent md:shadow-none"
+            : "md:bg-white/95 md:backdrop-blur-md md:shadow-sm md:border-gray-100 md:py-3.5"
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
@@ -213,9 +214,10 @@ const Navbar = () => {
           <button
             className={cn(
               "w-9 h-9 flex items-center justify-center transition-colors rounded-full border",
+              "text-neutral-800 border-gray-200 bg-white shadow-sm", // Mobile always dark
               isScrolled || !isHomePage 
-                ? "text-neutral-800 border-gray-200 bg-white shadow-sm" 
-                : "text-white border-white/20 bg-white/10"
+                ? "md:text-neutral-800 md:border-gray-200 md:bg-white md:shadow-sm" 
+                : "md:text-white md:border-white/20 md:bg-white/10"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >

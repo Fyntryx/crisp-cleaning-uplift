@@ -36,7 +36,7 @@ export default function QuoteRequestPanel({
       <div className="absolute inset-0 z-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/5 via-transparent to-transparent -z-10 pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-6 md:px-8 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom duration-700">
           
           {/* Headline */}

@@ -258,7 +258,7 @@ export default function Checklist({
 
   return (
     <section id="checklist" className="py-24 bg-[#FAF9F6]">
-      <div className={`container mx-auto px-4 ${layout === "left" ? "max-w-[1216px]" : "max-w-5xl"}`}>
+      <div className={`container mx-auto px-6 md:px-8 ${layout === "left" ? "max-w-[1216px]" : "max-w-5xl"}`}>
         <div className={`mb-12 ${layout === "left" ? "max-w-[896px]" : "text-center"}`}>
           {layout === "left" ? (
             <div className="mb-3">

@@ -73,7 +73,7 @@ export default function ServiceAreas() {
 
   return (
     <section id="service-area" className="py-24 bg-white relative z-10">
-      <div className="container mx-auto px-4 max-w-[1400px]">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1400px]">
         {/* Header Section */}
         <div className="mb-10 max-w-3xl">
           <h4 className="text-primary font-bold tracking-widest text-[11px] uppercase mb-4">

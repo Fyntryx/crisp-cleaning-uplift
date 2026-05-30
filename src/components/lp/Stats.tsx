@@ -11,7 +11,7 @@ const reviews = [
 export default function Stats() {
   return (
     <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-6 md:px-8 max-w-6xl">
         <div className="text-center mb-12">
           <h4 className="text-[#FB8C42] font-bold tracking-widest text-sm uppercase mb-4">By The Numbers</h4>
           <h2 className="text-4xl md:text-[42px] font-bold text-gray-900 tracking-tight mb-12">

@@ -15,7 +15,7 @@ const trustItems = [
 export default function ServiceHero() {
   return (
     <section className="relative bg-[#FDF8F4] overflow-hidden">
-      <div className="container mx-auto px-4 max-w-[1216px] pt-32 md:pt-40 pb-8">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1216px] pt-32 md:pt-40 pb-8">
 
         {/* Main Content Grid */}
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">

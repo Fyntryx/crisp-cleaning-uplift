@@ -98,7 +98,7 @@ export default function BeforeAfter() {
 
   return (
     <section className="py-24 md:py-32 bg-[#FDFBF9] relative">
-      <div className="container mx-auto px-4 max-w-[1216px]">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1216px]">
         
         {/* Header Section */}
         <div className="mb-16 md:mb-20 max-w-[896px]">
