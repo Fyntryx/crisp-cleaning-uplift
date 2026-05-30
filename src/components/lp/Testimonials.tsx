@@ -58,7 +58,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }: { beforeImage: st
 const defaultReviews = [
   { text: "Honestly felt like a brand new home.", author: "Andre B" },
   { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "Sabina K" },
-  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "Kaan S" },
+  { text: "Team took great care, really appreciated the communication - the small details dont go unnoticed! keep it up crisp", author: "Natch L" },
   { text: "One of the best decisions we've made. Coming home to a clean house every week has made life much easier.", author: "Aiden A" },
   { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "Ardi T" },
   { text: "Super impressed. Our place looked like a display home afterwards.", author: "Ben A" }
