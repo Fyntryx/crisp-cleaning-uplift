@@ -75,7 +75,7 @@ interface TestimonialsProps {
 }
 
 export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews }: TestimonialsProps) {
-  const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ loop: true, align: 'center', breakpoints: { '(min-width: 768px)': { active: false } } });
+  const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ loop: true, align: 'center', watchDrag: false, breakpoints: { '(min-width: 768px)': { active: false } } });
   const [reviewsRef] = useEmblaCarousel({ loop: false, align: 'start', breakpoints: { '(min-width: 768px)': { active: false } } });
 
   useEffect(() => {
