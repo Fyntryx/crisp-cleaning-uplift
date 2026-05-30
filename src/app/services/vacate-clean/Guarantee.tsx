@@ -23,11 +23,10 @@ export default function VacateGuarantee() {
         
         {/* Guarantee Card */}
         <div
-          className="relative overflow-hidden text-white flex flex-col items-center text-center"
+          className="relative overflow-hidden text-white flex flex-col items-center text-center p-8 md:p-[64px]"
           style={{
             backgroundColor: "rgb(251, 140, 66)",
             borderRadius: "32px",
-            padding: "64px",
             boxShadow: "rgba(251, 140, 66, 0.32) 0px 8px 24px 0px, rgba(251, 140, 66, 0.18) 0px 2px 6px 0px",
           }}
         >
