@@ -10,7 +10,7 @@ interface FinalCTAProps {
 
 export default function FinalCTA({ title, discountText }: FinalCTAProps) {
   return (
-    <section className="py-24 bg-[#FAF9F6] overflow-hidden">
+    <section className="pt-12 pb-24 bg-[#FAF9F6] overflow-hidden">
       <div className="container mx-auto px-6 md:px-8 max-w-6xl">
         {/* Rounded Charcoal/Grid Card */}
         <div 

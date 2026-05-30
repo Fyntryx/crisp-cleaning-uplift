@@ -50,7 +50,7 @@ interface FAQProps {
 export default function FAQ({ data, title }: FAQProps) {
   const currentFaqs = data || faqs;
   return (
-    <section id="faqs" className="py-24 bg-[#FAF9F6]">
+    <section id="faqs" className="pt-24 pb-12 bg-[#FAF9F6]">
       <div className="container mx-auto px-6 md:px-8 max-w-3xl">
         <div className="text-center mb-12">
           <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Common Questions</h4>
