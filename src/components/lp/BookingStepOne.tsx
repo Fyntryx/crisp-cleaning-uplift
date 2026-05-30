@@ -54,8 +54,8 @@ export default function BookingStepOne() {
   };
 
   return (
-    <section id="booking" className="relative -mt-12 z-20 px-6 md:px-4 mb-20">
-      <div className="max-w-4xl mx-auto bg-white rounded-[32px] md:rounded-[40px] p-6 md:p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden">
+    <section id="booking" className="relative -mt-12 z-20 px-3 md:px-4 mb-20">
+      <div className="max-w-4xl mx-auto bg-white rounded-[32px] md:rounded-[40px] p-4 md:p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden">
         
         {/* Wizard Header */}
         <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
@@ -135,7 +135,7 @@ export default function BookingStepOne() {
               <button
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`relative p-5 md:p-6 rounded-2xl border md:border-2 min-h-[155px] md:min-h-auto transition-all duration-300 flex flex-col items-start text-left group ${
+                className={`relative p-4 md:p-6 rounded-2xl border md:border-2 min-h-[140px] md:min-h-auto transition-all duration-300 flex flex-col items-start text-left group ${
                   isSelected 
                     ? "border-primary bg-white shadow-[0_12px_25px_rgba(249,115,22,0.06)]" 
                     : "border-gray-100 hover:border-gray-200 bg-white hover:shadow-sm"
