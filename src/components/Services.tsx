@@ -2445,20 +2445,20 @@ const Services = () => {
 
               {/* Mobile Sticky Footer Summary */}
               {mounted && !isCommercial && currentStep >= 2 && currentStep < totalSteps && (
-                <div className="xl:hidden flex-none z-[110] flex flex-col mt-auto relative shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+                <div className="xl:hidden flex-none z-50 flex flex-col mt-auto relative shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
                   
                   {/* Backdrop Overlay to close when clicking outside */}
                   {isMobileSummaryOpen && (
                     <div 
-                      className="fixed inset-0 z-[105] bg-black/20 md:bg-transparent"
+                      className="fixed inset-0 z-40 bg-black/20 md:bg-transparent"
                       onClick={() => setIsMobileSummaryOpen(false)}
                     />
                   )}
 
                   {/* Expanded Summary (Absolute positioned above the dark bar) */}
                   <div 
-                    className={`absolute bottom-full left-4 right-4 mb-4 bg-white rounded-2xl overflow-hidden transition-all duration-300 ease-in-out z-[110] shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-gray-100 ${
-                      isMobileSummaryOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
+                    className={`absolute bottom-full left-4 right-4 mb-4 bg-white rounded-2xl overflow-hidden transition-all duration-300 ease-in-out z-50 shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-gray-100 ${
+                      isMobileSummaryOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-8 pointer-events-none"
                     }`}
                   >
                     <div className="overflow-y-auto max-h-[60vh] custom-scrollbar p-1">
@@ -2480,7 +2480,7 @@ const Services = () => {
 
                   {/* Dark Bar */}
                   <div 
-                    className="bg-[#1C1917] px-5 py-4 flex items-center justify-between cursor-pointer select-none border-t border-white/5 relative z-[110]"
+                    className="bg-[#1C1917] px-5 py-4 flex items-center justify-between cursor-pointer select-none border-t border-white/5 relative z-50"
                     onClick={() => setIsMobileSummaryOpen(!isMobileSummaryOpen)}
                   >
                     <div className="flex items-center gap-3">
