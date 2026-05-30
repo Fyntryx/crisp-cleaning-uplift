@@ -135,7 +135,7 @@ export default function BookingStepOne() {
               <button
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`relative p-6 rounded-2xl border-2 transition-all duration-300 flex flex-col items-start text-left group ${
+                className={`relative p-5 md:p-6 rounded-2xl border md:border-2 min-h-[155px] md:min-h-auto transition-all duration-300 flex flex-col items-start text-left group ${
                   isSelected 
                     ? "border-primary bg-white shadow-[0_12px_25px_rgba(249,115,22,0.06)]" 
                     : "border-gray-100 hover:border-gray-200 bg-white hover:shadow-sm"
