@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
 
           {/* Sitemap */}
-          <div className="md:col-span-3 flex flex-col items-center md:items-start">
+          <div className="hidden md:flex md:col-span-3 flex-col items-center md:items-start">
             <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Sitemap</h4>
             <nav className="flex flex-col gap-3 w-full items-center md:items-start">
               {navLinks.map((link) => (
