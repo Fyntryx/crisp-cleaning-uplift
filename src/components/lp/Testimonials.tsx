@@ -143,7 +143,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
           <div className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden" ref={reviewsRef}>
             <div className="flex md:block md:columns-2 lg:columns-3 gap-4 md:gap-6 touch-pan-y">
               {reviews.map((review, i) => (
-                <div key={i} className="flex-[0_0_85%] md:flex-none min-w-0 md:mb-6 bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-orange-50 flex flex-col h-full md:h-fit hover:shadow-md transition-shadow break-inside-avoid">
+                <div key={i} className="flex-[0_0_85%] md:flex-none min-w-0 md:mb-6 bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-orange-50 flex flex-col md:h-fit hover:shadow-md transition-shadow break-inside-avoid">
                   <div className="flex gap-1 mb-3 md:mb-4">
                     {[...Array(5)].map((_, idx) => (
                       <Star key={idx} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-primary text-primary" />
