@@ -37,8 +37,8 @@ export default function WhoItsFor() {
             </span>
           </div>
           <h2 
-            style={{ letterSpacing: "-1.2px", lineHeight: "48px" }}
-            className="text-[48px] font-semibold text-gray-900 mb-5 mt-3"
+            style={{ letterSpacing: "-1.2px", lineHeight: "1.2" }}
+            className="text-[30px] md:text-[30px] font-extrabold text-gray-900 mb-5 mt-3"
           >
             Is a Deep Clean right for you?
           </h2>
@@ -48,21 +48,21 @@ export default function WhoItsFor() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 items-stretch">
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
             return (
               <div 
                 key={index} 
-                className="bg-white rounded-[24px] p-8 shadow-[0_2px_12px_rgb(0,0,0,0.03)] border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300"
+                className="bg-white rounded-[20px] md:rounded-[24px] p-5 md:p-8 shadow-[0_2px_12px_rgb(0,0,0,0.03)] border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300"
               >
-                <div className="w-10 h-10 bg-[#FFF5EE] rounded-xl flex items-center justify-center text-[#FB8C42] shrink-0 mb-6 transition-colors duration-300">
-                  <Icon className="w-5 h-5" strokeWidth={2} />
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-[#FFF5EE] rounded-xl flex items-center justify-center text-[#FB8C42] shrink-0 mb-4 md:mb-6 transition-colors duration-300">
+                  <Icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
                 </div>
-                <h3 className="text-[18px] font-semibold leading-[28px] text-gray-900 mb-2">
+                <h3 className="text-[14px] md:text-[18px] font-semibold leading-[20px] md:leading-[28px] text-gray-900 mb-2">
                   {audience.title}
                 </h3>
-                <p className="text-[15px] text-gray-500 leading-[24px] font-normal">
+                <p className="text-[12px] md:text-[15px] text-gray-500 leading-[18px] md:leading-[24px] font-normal">
                   {audience.description}
                 </p>
               </div>
