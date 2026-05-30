@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { ArrowLeftRight } from "lucide-react";
 
@@ -78,6 +79,28 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
 }
 
 export default function BeforeAfter() {
+    const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ 
+    align: "start",
+    dragFree: true,
+    containScroll: "trimSnaps",
+    watchDrag: false,
+    breakpoints: {
+      '(min-width: 768px)': { active: false }
+    }
+  });
+  const [isInteracting, setIsInteracting] = useState(false);
+
+  useEffect(() => {
+    if (!beforeAfterApi || isInteracting) return;
+    const interval = setInterval(() => {
+      // Only scroll automatically if viewport is mobile (embla is active)
+      if (window.innerWidth < 768) {
+        beforeAfterApi.scrollNext();
+      }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [beforeAfterApi, isInteracting]);
+
   const comparisons = [
     {
       beforeImage: "/images/bathroom-before.jpg",

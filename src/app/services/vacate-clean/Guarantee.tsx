@@ -56,9 +56,8 @@ export default function VacateGuarantee() {
               We guarantee your bond back.
             </h2>
 
-            {/* Description */}
             <p className="text-[18px] text-white/95 font-normal leading-[28px] max-w-[800px] mb-12">
-              If your property manager identifies anything that wasn't cleaned to standard, contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">32 hours</span> with a photo and we'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">48 hours</span> to fix it — completely free. No arguments, no re-booking fees.
+              If your property manager identifies anything that wasn't cleaned to standard, contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">24 hours</span> with a photo and we'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">72 hours</span> to fix it — completely free. No arguments, no re-booking fees.
             </p>
 
             {/* Boxes Grid */}
@@ -96,12 +95,11 @@ export default function VacateGuarantee() {
 
             </div>
 
-            {/* CTA Button */}
             <Link
               href="/#booking"
               className="inline-flex items-center gap-2 rounded-full bg-white text-gray-900 px-8 py-4 font-bold text-[16px] hover:bg-white/90 transition-all shadow-lg mb-6"
             >
-              Book Your Vacate Clean — 15% Off First Clean
+              Book Your Vacate Clean
               <ArrowRight className="w-5 h-5" />
             </Link>
 

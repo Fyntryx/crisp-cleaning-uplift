@@ -11,9 +11,9 @@ const frequencies = [
     dark: false,
   },
   {
-    id: "monthly",
-    title: "Monthly Clean",
-    description: "Maintaining a clean home with minimal effort",
+    id: "weekly",
+    title: "Weekly Clean",
+    description: "High-traffic homes, families, or those who want hands-off maintenance",
     isPopular: true,
     dark: true,
   },
@@ -25,9 +25,9 @@ const frequencies = [
     dark: false,
   },
   {
-    id: "weekly",
-    title: "Weekly Clean",
-    description: "High-traffic homes, families, or those who want hands-off maintenance",
+    id: "monthly",
+    title: "Monthly Clean",
+    description: "Maintaining a clean home with minimal effort",
     isPopular: false,
     dark: false,
   }
