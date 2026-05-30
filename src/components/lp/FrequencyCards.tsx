@@ -57,46 +57,47 @@ export default function FrequencyCards() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 items-stretch">
           {frequencies.map((freq) => (
             <div 
               key={freq.id} 
-              className={`relative flex flex-col rounded-[24px] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+              className={`relative flex flex-col rounded-[20px] md:rounded-[24px] p-4 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
                 freq.dark 
                   ? 'bg-[#1A1814] text-white shadow-xl shadow-orange-900/10' 
                   : 'bg-white text-gray-900 border border-gray-100 shadow-sm'
               }`}
             >
               {freq.isPopular && (
-                <div className="absolute -top-3 left-6 bg-[#FB8C42] text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 tracking-[0.1em] uppercase shadow-md">
-                  <Star className="w-3 h-3 fill-current" /> POPULAR
+                <div className="absolute -top-3 left-4 md:left-6 bg-[#FB8C42] text-white text-[9px] md:text-[10px] font-bold px-2 md:px-3 py-1 md:py-1.5 rounded-full flex items-center gap-1 md:gap-1.5 tracking-[0.1em] uppercase shadow-md">
+                  <Star className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current" /> POPULAR
                 </div>
               )}
               
-              <h3 className={`text-[18px] font-semibold leading-[28px] mb-8 ${freq.dark ? 'text-white' : 'text-gray-900'}`}>
+              <h3 className={`text-[14px] md:text-[18px] font-semibold leading-[20px] md:leading-[28px] mb-4 md:mb-8 pr-2 md:pr-0 ${freq.dark ? 'text-white' : 'text-gray-900'}`}>
                 {freq.title}
               </h3>
 
-              <div className="flex flex-col gap-2.5 mb-auto pb-10">
-                <span className={`text-[10px] font-bold tracking-[0.15em] uppercase ${freq.dark ? 'text-[#FB8C42]' : 'text-gray-400'}`}>
+              <div className="flex flex-col gap-1 md:gap-2.5 mb-auto pb-6 md:pb-10">
+                <span className={`text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase ${freq.dark ? 'text-[#FB8C42]' : 'text-gray-400'}`}>
                   BEST FOR
                 </span>
-                <p className={`text-[15px] font-normal leading-[24px] ${freq.dark ? 'text-gray-300' : 'text-gray-500'}`}>
+                <p className={`text-[12px] md:text-[15px] font-normal leading-[16px] md:leading-[24px] ${freq.dark ? 'text-gray-300' : 'text-gray-500'}`}>
                   {freq.description}
                 </p>
               </div>
 
-              <div className={`mt-auto pt-6 border-t ${freq.dark ? 'border-white/10' : 'border-gray-100'}`}>
+              <div className={`mt-auto pt-4 md:pt-6 border-t ${freq.dark ? 'border-white/10' : 'border-gray-100'}`}>
                 <Link
                   href="/#booking"
-                  className={`flex items-center justify-center gap-2 w-full rounded-full px-5 py-3.5 text-[15px] font-bold transition-all ${
+                  className={`flex items-center justify-center gap-1.5 md:gap-2 w-full rounded-full px-2 py-2.5 md:px-5 md:py-3.5 text-[12px] md:text-[15px] font-bold transition-all ${
                     freq.dark 
                       ? 'bg-[#FB8C42] text-white hover:bg-[#ea6309]' 
                       : 'bg-gray-50 text-gray-900 hover:bg-gray-100 border border-transparent hover:border-gray-200'
                   }`}
                 >
-                  <span>Get a Quote</span>
-                  <ArrowRight size={16} />
+                  <span className="hidden md:inline">Get a Quote</span>
+                  <span className="md:hidden">Quote</span>
+                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
                 </Link>
               </div>
             </div>
