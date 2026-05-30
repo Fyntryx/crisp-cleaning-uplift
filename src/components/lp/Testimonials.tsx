@@ -56,12 +56,12 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }: { beforeImage: st
 };
 
 const defaultReviews = [
-  { text: "Honestly felt like a brand new home.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "One of the best decisions we've made. Coming home to a clean house every week has made life much easier.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "Super impressed. Our place looked like a display home afterwards.", author: "VERIFIED GOOGLE REVIEW" }
+  { text: "Honestly felt like a brand new home.", author: "Andre B" },
+  { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "Sabina K" },
+  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "Kaan S" },
+  { text: "One of the best decisions we've made. Coming home to a clean house every week has made life much easier.", author: "Aiden A" },
+  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "Ardi T" },
+  { text: "Super impressed. Our place looked like a display home afterwards.", author: "Ben A" }
 ];
 
 interface TestimonialsProps {
