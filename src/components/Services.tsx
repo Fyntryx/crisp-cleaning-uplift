@@ -2568,6 +2568,32 @@ const Services = () => {
           </div>
         )}
 
+        {/* MOBILE STICKY BOOK NOW (LANDING PAGE ONLY) */}
+        {mounted && !isModalOpen && createPortal(
+          <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[90] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
+            <div className="bg-gray-950 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-800 shadow-2xl transition-all duration-300">
+              <div className="flex flex-col">
+                <span className="text-[10px] text-[#FB8C42] font-bold uppercase tracking-wider mb-0.5">
+                  Ready?
+                </span>
+                <span className="text-lg font-display font-bold text-white leading-tight">
+                  Book a clean
+                </span>
+              </div>
+
+              <button
+                onClick={() => {
+                  setCurrentStep(2);
+                  setIsModalOpen(true);
+                }}
+                className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-[#FB8C42] text-white hover:bg-[#FB8C42]/90 shadow-lg shadow-[#FB8C42]/20 active:scale-95"
+              >
+                Book Now <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>,
+          document.body
+        )}
 
       </section>
     </>
