@@ -19,7 +19,7 @@ export default function Guarantee() {
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/5 pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col items-center text-center gap-6">
+          <div className="relative z-10 flex flex-col items-start md:items-center text-left md:text-center gap-6">
 
             {/* Shield Icon */}
             <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shrink-0">
@@ -27,7 +27,7 @@ export default function Guarantee() {
             </div>
 
             {/* Content */}
-            <div className="flex-1 max-w-[700px] flex flex-col items-center">
+            <div className="flex-1 max-w-[700px] flex flex-col items-start md:items-center">
               {/* Tag */}
               <div className="mb-3">
                 <span className="text-white font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
@@ -52,7 +52,7 @@ export default function Guarantee() {
                 href="/#booking"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-gray-900 px-6 py-4 md:px-8 md:py-4 font-bold text-[14px] md:text-[16px] hover:bg-white/90 transition-all shadow-lg mb-6 max-w-full text-center leading-tight"
               >
-                <span>Book With Confidence — 15% Off Your First Clean</span>
+                <span>Book With Confidence</span>
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
               </Link>
 
