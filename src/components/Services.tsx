@@ -1025,7 +1025,7 @@ const Services = () => {
                   cleaningType: type.id as CleaningType,
                 })
               }
-              className={`group bg-white border md:border-2 rounded-[24px] p-5 md:p-6 cursor-pointer transition-all duration-300 relative overflow-visible flex flex-col items-start min-h-[175px] md:min-h-[200px] ${isSelected
+              className={`group bg-white border md:border-2 rounded-[24px] p-5 md:p-6 cursor-pointer transition-all duration-300 relative overflow-visible flex flex-col items-start min-h-[176px] md:min-h-[200px] ${isSelected
                 ? "border-[#FB8C42] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
                 : "border-gray-100 hover:border-gray-200 hover:shadow-md"
                 }`}
