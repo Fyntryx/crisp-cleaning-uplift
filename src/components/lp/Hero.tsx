@@ -64,8 +64,8 @@ export default function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-3">
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
-            <Star className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" />
-            4.9 Google
+            <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google" className="w-4 h-4" />
+            <span className="font-bold">4.9</span> Google
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">

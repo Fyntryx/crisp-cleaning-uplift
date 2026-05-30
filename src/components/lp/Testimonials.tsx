@@ -147,7 +147,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-200 text-[#FB8C42] text-[12px] font-bold hover:bg-orange-50 transition-colors"
             >
-              <span className="font-extrabold text-[13px]">G</span>
+              <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google" className="w-3.5 h-3.5" />
               <span>View on Google</span>
               <ExternalLink size={14} />
             </a>
