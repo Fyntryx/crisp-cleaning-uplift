@@ -89,10 +89,16 @@ export default function ServiceAreas() {
 
         {/* Map Container */}
         <div className="w-full relative shadow-sm border border-gray-100 rounded-[32px] overflow-hidden bg-gray-50 mb-16">
+          {/* Map Overlay Badge */}
+          <div className="absolute top-4 left-4 md:top-6 md:left-6 z-10 bg-white/95 backdrop-blur-sm shadow-sm border border-gray-100 px-4 py-2.5 rounded-full flex items-center gap-2 pointer-events-none">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]"></div>
+            <span className="text-[10px] font-bold text-gray-900 tracking-widest uppercase">Melbourne · Service Coverage</span>
+          </div>
+          
           {/* Google My Maps Live Embed */}
           <iframe
             src="https://www.google.com/maps/d/embed?mid=11PYOwOoDelJTAgTpJpjNStPXKjAcyeU&ehbc=2E312F"
-            className="w-full h-[250px] md:h-[400px] border-0"
+            className="w-full aspect-square md:aspect-auto md:h-[450px] border-0"
             title="Crisp Cleaning Service Areas in Melbourne"
             allowFullScreen
             loading="lazy"
