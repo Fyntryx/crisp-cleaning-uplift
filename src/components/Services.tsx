@@ -445,6 +445,7 @@ const Services = () => {
   const [promoCode, setPromoCode] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number } | undefined>(undefined);
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
+  const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
   // NEW: State for address validity
   const [isAddressValid, setIsAddressValid] = useState(true);
@@ -2444,10 +2445,58 @@ const Services = () => {
 
               {/* Mobile Sticky Footer Summary */}
               {mounted && !isCommercial && currentStep >= 2 && currentStep < totalSteps && (
-                <div className="xl:hidden flex-none bg-gray-950 p-4 flex items-center justify-between z-30">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider">Total</span>
-                    <span className="text-xl font-display font-bold text-primary">A${(pricingResult?.total || 0).toFixed(2)}</span>
+                <div className="xl:hidden flex-none z-[110] flex flex-col mt-auto relative shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+                  
+                  {/* Backdrop Overlay to close when clicking outside */}
+                  {isMobileSummaryOpen && (
+                    <div 
+                      className="fixed inset-0 z-[105] bg-black/20 md:bg-transparent"
+                      onClick={() => setIsMobileSummaryOpen(false)}
+                    />
+                  )}
+
+                  {/* Expanded Summary (Absolute positioned above the dark bar) */}
+                  <div 
+                    className={`absolute bottom-full left-0 right-0 bg-white rounded-t-3xl overflow-hidden transition-all duration-300 ease-in-out origin-bottom z-[110] shadow-[0_-10px_40px_rgba(0,0,0,0.15)] ${
+                      isMobileSummaryOpen ? "max-h-[70vh] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                    }`}
+                  >
+                    <div className="p-5 md:p-6 overflow-y-auto max-h-[70vh] custom-scrollbar">
+                      <BookingSummaryCard
+                        formData={formData}
+                        pricingConfig={pricingConfig}
+                        pricingResult={pricingResult}
+                        promoCode={promoCode}
+                        setPromoCode={setPromoCode}
+                        isValidatingPromo={isValidatingPromo}
+                        setIsValidatingPromo={setIsValidatingPromo}
+                        setAppliedPromo={setAppliedPromo}
+                        apiBaseUrl={API_BASE_URL}
+                        outOfAreaFee={outOfAreaFee}
+                        className="shadow-none border-none !p-0 !bg-transparent"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Dark Bar */}
+                  <div 
+                    className="bg-[#1C1917] px-5 py-4 flex items-center justify-between cursor-pointer select-none border-t border-white/5 relative z-[110]"
+                    onClick={() => setIsMobileSummaryOpen(!isMobileSummaryOpen)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="text-[#FB8C42]">
+                        <FileText className="w-5 h-5" />
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                         <span className="text-[12px] font-bold text-gray-400 uppercase tracking-widest">Total</span>
+                         <span className="text-xl font-bold text-[#FB8C42]">A${(pricingResult?.total || 0).toFixed(0)}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-white">
+                      <span className="text-[13px] font-bold">{isMobileSummaryOpen ? 'Hide summary' : 'View summary'}</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileSummaryOpen ? '' : 'rotate-180'}`} />
+                    </div>
                   </div>
                 </div>
               )}
