@@ -77,9 +77,10 @@ interface TestimonialsProps {
 export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews }: TestimonialsProps) {
   const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ loop: true, align: 'center', watchDrag: false, breakpoints: { '(min-width: 768px)': { active: false } } });
   const [reviewsRef] = useEmblaCarousel({ loop: false, align: 'start', breakpoints: { '(min-width: 768px)': { active: false } } });
+  const [isInteracting, setIsInteracting] = React.useState(false);
 
   useEffect(() => {
-    if (!beforeAfterApi) return;
+    if (!beforeAfterApi || isInteracting) return;
     const interval = setInterval(() => {
       // Only scroll automatically if viewport is mobile (embla is active)
       if (window.innerWidth < 768) {
@@ -87,7 +88,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [beforeAfterApi]);
+  }, [beforeAfterApi, isInteracting]);
 
   return (
     <section id="testimonials" className="py-12 md:py-24 bg-[#FAF9F6]">
@@ -115,7 +116,14 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
 
         {/* Top Grid: Before/After */}
         {!hideBeforeAfter && (
-          <div className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden mb-8 md:mb-12" ref={beforeAfterRef}>
+          <div 
+            className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden mb-8 md:mb-12" 
+            ref={beforeAfterRef}
+            onMouseEnter={() => setIsInteracting(true)}
+            onMouseLeave={() => setIsInteracting(false)}
+            onTouchStart={() => setIsInteracting(true)}
+            onTouchEnd={() => setIsInteracting(false)}
+          >
             <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 touch-pan-y">
               <div className="flex-[0_0_85%] md:flex-none min-w-0">
                 <BeforeAfterSlider beforeImage="/images/KitchenSinkBefore.png" afterImage="/images/KitchenSinkAfter.jpg" title="Kitchen Sink" />
