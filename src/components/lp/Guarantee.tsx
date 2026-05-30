@@ -9,11 +9,10 @@ export default function Guarantee() {
 
         {/* Guarantee Card */}
         <div
-          className="relative overflow-hidden text-white"
+          className="relative overflow-hidden text-white px-6 py-12 md:p-16"
           style={{
             backgroundColor: "rgb(251, 140, 66)",
             borderRadius: "32px",
-            padding: "64px",
             boxShadow: "rgba(251, 140, 66, 0.32) 0px 8px 24px 0px, rgba(251, 140, 66, 0.18) 0px 2px 6px 0px",
           }}
         >
@@ -38,14 +37,13 @@ export default function Guarantee() {
 
               {/* Heading */}
               <h2
-                style={{ letterSpacing: "-1.2px", lineHeight: "48px" }}
-                className="text-[48px] font-semibold text-white mb-5 mt-3"
+                className="text-[36px] md:text-[48px] font-semibold text-white mb-5 mt-3 leading-tight md:leading-[48px] tracking-[-1.2px]"
               >
                 Not satisfied? We'll make it right. No questions asked.
               </h2>
 
               {/* Description */}
-              <p className="text-[18px] text-white/90 font-normal leading-[28px] max-w-[600px] mb-8">
+              <p className="text-[16px] md:text-[18px] text-white/90 font-normal leading-relaxed md:leading-[28px] max-w-[600px] mb-8">
                 Contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">24 hours</span> of your clean with a photo and a description. We'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">72 hours</span> to fix it — completely free. If we can't make it right, you don't pay.
               </p>
 
