@@ -2546,41 +2546,7 @@ const Services = () => {
           </div>
         )}
 
-        {/* MOBILE STICKY SUMMARY (RESIDENTIAL ONLY) */}
-        {mounted &&
-          currentStep >= 2 &&
-          currentStep < totalSteps &&
-          !isCommercial &&
-          createPortal(
-            <div className="xl:hidden fixed bottom-6 left-4 right-4 z-[9999] animate-in slide-in-from-bottom duration-300 pointer-events-auto">
-              <div className="bg-gray-950 text-white p-4 rounded-2xl flex items-center justify-between border border-gray-800 shadow-2xl transition-all duration-300">
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-gray-400 uppercase tracking-wider">
-                    Total
-                  </span>
-                  <span className="text-xl font-display font-bold text-primary">
-                    A${(pricingResult?.total || 0).toFixed(2)}
-                  </span>
-                </div>
 
-                {/* Only show the button when the form is scrolled out of view */}
-                {!isFormVisible && (
-                  <button
-                    onClick={() => {
-                      formObserverRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                      });
-                    }}
-                    className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 animate-in fade-in"
-                  >
-                    Book Now <ChevronRight className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-            </div>,
-            document.body
-          )}
       </section>
     </>
   );
