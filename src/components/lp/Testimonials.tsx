@@ -158,7 +158,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
         )}
 
         {!hideReviews && (
-          <div className="mt-8 md:mt-12 flex flex-col md:flex-row justify-center items-center gap-4">
+          <div className="mt-[34px] md:mt-[50px] flex flex-col md:flex-row justify-center items-center gap-4 translate-y-[1px]">
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, idx) => (
