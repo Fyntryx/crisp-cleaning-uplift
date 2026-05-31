@@ -2,10 +2,10 @@ import React from "react";
 import { Star, ExternalLink } from "lucide-react";
 
 const reviews = [
-  { text: "Team took great care. Really appreciated the communication — the small details don't go unnoticed. Keep it up Crisp.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "Didn't realise how much time I spent cleaning until I started the standard service. Great value for money.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "Super easy to sign up — clear pricing, got a booking in a few clicks. Quick and easy.", author: "VERIFIED GOOGLE REVIEW" },
-  { text: "They've done an amazing job on our home. Incredibly detailed, didn't miss a single crook.", author: "VERIFIED GOOGLE REVIEW" }
+  { text: "Team took great care. Really appreciated the communication — the small details don't go unnoticed. Keep it up Crisp.", author: "Natch L" },
+  { text: "Didn't realise how much time I spent cleaning until I started the standard service. Great value for money.", author: "Philip R" },
+  { text: "Super easy to sign up — clear pricing, got a booking in a few clicks. Quick and easy.", author: "Adnan S" },
+  { text: "They've done an amazing job on our home. Incredibly detailed, didn't miss a single crook.", author: "Abdi S" }
 ];
 
 export default function Stats() {

@@ -69,12 +69,12 @@ const faqs = [
 ];
 
 const deepCleanReviews = [
-  { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "MELBOURNE HOMEOWNER" },
-  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "MELBOURNE HOMEOWNER" },
-  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "MELBOURNE HOMEOWNER" },
-  { text: "Coming home to a clean house every week has made life much easier.", author: "MELBOURNE HOMEOWNER" },
-  { text: "Super impressed. Our place looked like a display home afterwards.", author: "MELBOURNE HOMEOWNER" },
-  { text: "Team took great care. Really appreciated the communication — the small details don't go unnoticed. Keep it up Crisp.", author: "MELBOURNE HOMEOWNER" }
+  { text: "I must say this was the most streamlined service I have experienced — from the quoting, to the scheduling, and not to mention the service quality. 5 stars.", author: "Adnan S" },
+  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "Kaan S" },
+  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "Ardi T" },
+  { text: "Coming home to a clean house every week has made life much easier.", author: "Aiden A" },
+  { text: "Super impressed. Our place looked like a display home afterwards.", author: "Ben A" },
+  { text: "Team took great care. Really appreciated the communication — the small details don't go unnoticed. Keep it up Crisp.", author: "Natch L" }
 ];
 
 export default function HouseCleaningPage() {
