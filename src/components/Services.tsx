@@ -409,7 +409,7 @@ const Services = () => {
     selectedDays: [] as string[],
     selectedDate: undefined as Date | undefined,
     selectedTime: "",
-    instructions: { entry: "", parking: "", pets: "", areasToAvoid: "", notes: "" },
+    instructions: { entry: "", parking: "", pets: "", chemicals: "", notes: "" },
 
     commercial: {
       businessName: "",
@@ -473,7 +473,7 @@ const Services = () => {
       selectedDays: [] as string[],
       selectedDate: undefined as Date | undefined,
       selectedTime: "",
-      instructions: { entry: "", parking: "", pets: "", areasToAvoid: "", notes: "" },
+      instructions: { entry: "", parking: "", pets: "", chemicals: "", notes: "" },
 
       commercial: {
         businessName: "",
@@ -753,6 +753,7 @@ const Services = () => {
       entryInstructions: formData.instructions.entry || "",
       parkingInstructions: formData.instructions.parking || "",
       petsInstructions: formData.instructions.pets || "",
+      preferredChemicals: formData.instructions.chemicals || "",
       notes: formData.instructions.notes || "",
       referralCode: promoCode || undefined,
       outOfAreaFee: outOfAreaFee || 0,
@@ -1588,29 +1589,29 @@ const Services = () => {
             </div>
           </div>
 
-          {/* Areas to Avoid Dropdown */}
+          {/* Preferred Chemicals Dropdown */}
           <div className="flex flex-col space-y-2">
             <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-[#FB8C42]" /> ANY AREAS TO AVOID?
+              <AlertTriangle className="w-4 h-4 text-[#FB8C42]" /> PREFERRED CHEMICALS?
             </label>
             <div className="relative flex items-center">
               <select
                 className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
-                value={formData.instructions.areasToAvoid}
+                value={formData.instructions.chemicals}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
                     instructions: {
                       ...formData.instructions,
-                      areasToAvoid: e.target.value,
+                      chemicals: e.target.value,
                     },
                   })
                 }
               >
                 <option value="" disabled>Select...</option>
-                <option>None</option>
-                <option>Specific rooms</option>
-                <option>Other</option>
+                <option>No preference</option>
+                <option>Eco-friendly only</option>
+                <option>Other (please specify below)</option>
               </select>
               <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
             </div>
