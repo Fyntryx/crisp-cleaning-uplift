@@ -6,12 +6,12 @@ export default function VacateGuarantee() {
   const coveredItems = [
     "All items on the standard exit checklist",
     "Any areas flagged by property manager post-inspection",
-    "Re-clean within 48 hours at no cost",
+    "Re-clean within 72 hours at no cost",
     "Refunds and credits where applicable"
   ];
 
   const conditions = [
-    "Claim must be made within 32 hours of clean",
+    "Claim must be made within 24 hours of clean",
     "Photo evidence required",
     "Property must be vacant and accessible",
     "Scope must match original booking"
@@ -20,7 +20,7 @@ export default function VacateGuarantee() {
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6 md:px-8 max-w-[1216px]">
-        
+
         {/* Guarantee Card */}
         <div
           className="relative overflow-hidden text-white flex flex-col items-center text-center p-8 md:p-[64px]"
@@ -34,7 +34,7 @@ export default function VacateGuarantee() {
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/5 pointer-events-none" />
 
           <div className="relative z-10 w-full flex flex-col items-center">
-            
+
             {/* Shield Icon */}
             <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-6">
               <ShieldCheck className="w-8 h-8 text-white" strokeWidth={2} />
@@ -61,7 +61,7 @@ export default function VacateGuarantee() {
 
             {/* Boxes Grid */}
             <div className="w-full max-w-[900px] grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 text-left">
-              
+
               {/* Box 1: What's Covered */}
               <div className="rounded-[24px] border border-white/20 bg-white/5 p-8 backdrop-blur-sm">
                 <h4 className="text-white font-bold text-[13px] uppercase tracking-[0.15em] mb-6 border-b border-white/20 pb-4">
