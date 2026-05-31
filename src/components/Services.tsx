@@ -396,7 +396,7 @@ const BookingSummaryCard = ({
   </div>
 );
 
-const Services = () => {
+const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isFormVisible, setIsFormVisible] = useState(true);
   const formObserverRef = useRef<HTMLDivElement>(null);
   const formContentRef = useRef<HTMLDivElement>(null);
@@ -448,38 +448,54 @@ const Services = () => {
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Handle both /?service=Deep#booking and /#booking?service=Deep
-      const url = new URL(window.location.href);
-      const params = url.searchParams;
-      let serviceParam = params.get("service");
-      
-      // Fallback: if search param is empty but hash contains ?service=
-      if (!serviceParam && url.hash.includes("?service=")) {
-        const hashParams = new URLSearchParams(url.hash.split("?")[1]);
-        serviceParam = hashParams.get("service");
-      }
-
-      if (serviceParam) {
-        const lowerService = serviceParam.toLowerCase();
-        let matchedType: any = null;
-        if (lowerService.includes("deep")) matchedType = "Deep";
-        else if (lowerService.includes("vacate")) matchedType = "Vacate";
-        else if (lowerService.includes("standard")) matchedType = "Standard";
+    const handleUrlBooking = () => {
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        let serviceParam = params.get("service");
         
-        if (matchedType) {
-          setFormData(prev => ({
-            ...prev,
-            cleaningType: matchedType,
-            serviceCategory: "residential"
-          }));
-          // Auto-progress to step 2 and open the modal
-          setCurrentStep(2);
-          setIsModalOpen(true);
+        if (!serviceParam && url.hash.includes("?service=")) {
+          const hashParams = new URLSearchParams(url.hash.split("?")[1]);
+          serviceParam = hashParams.get("service");
+        }
+
+        if (serviceParam || url.hash.includes("booking")) {
+          const lowerService = (serviceParam || "").toLowerCase();
+          let matchedType: any = null;
+          if (lowerService.includes("deep")) matchedType = "Deep";
+          else if (lowerService.includes("vacate")) matchedType = "Vacate";
+          else if (lowerService.includes("standard")) matchedType = "Standard";
+          
+          if (matchedType) {
+            setFormData(prev => ({
+              ...prev,
+              cleaningType: matchedType,
+              serviceCategory: "residential"
+            }));
+            setCurrentStep(2);
+            setIsModalOpen(true);
+            
+            // Clear hash so it can be triggered again
+            if (url.hash) {
+              window.history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
+          } else if (url.hash.includes("booking") && hiddenInline) {
+            setIsModalOpen(true);
+            if (url.hash) {
+              window.history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
+          }
         }
       }
-    }
-  }, []);
+    };
+
+    // Run on mount
+    handleUrlBooking();
+
+    // Run on hash change
+    window.addEventListener("hashchange", handleUrlBooking);
+    return () => window.removeEventListener("hashchange", handleUrlBooking);
+  }, [hiddenInline]);
 
   // NEW: State for address validity
   const [isAddressValid, setIsAddressValid] = useState(true);
@@ -2313,58 +2329,60 @@ const Services = () => {
         className="w-full relative flex flex-col justify-center"
       >
         {/* INLINE STEP 1 CONTAINER */}
-        <div className="w-full max-w-5xl mx-auto bg-white rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)] overflow-hidden p-6 md:p-8 flex flex-col items-stretch">
+        {!hiddenInline && (
+          <div className="w-full max-w-5xl mx-auto bg-white rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)] overflow-hidden p-6 md:p-8 flex flex-col items-stretch">
 
-          {/* Header Block */}
-          <div className="text-left mb-6">
-            <span className="inline-flex items-center px-3 py-1 rounded-full border border-orange-100 text-primary text-[11px] font-semibold tracking-wider uppercase mb-3 bg-orange-50/50">
-              SERVICE TYPE
-            </span>
-            <h2 className="text-[32px] font-semibold text-gray-800 tracking-tight leading-[40px]">What type of clean do you need?</h2>
-            <p className="text-xs text-gray-500 mt-1.5 font-medium">Select a service to get started.</p>
-          </div>
-
-          {/* Cards Grid */}
-          <div className="w-full mb-8">
-            {renderStep1()}
-          </div>
-
-          {/* Bottom Bar: Action Trigger Row */}
-          <div className="sticky bottom-0 bg-white/95 backdrop-blur-md z-30 pb-6 pt-4 -mx-6 px-6 md:-mx-8 md:px-8 border-t border-gray-100 flex items-center justify-between mt-auto shadow-[0_-10px_30px_rgba(0,0,0,0.02)] translate-y-[24px] md:translate-y-[32px] w-[calc(100%+48px)] md:w-[calc(100%+64px)]">
-            <div className="flex items-center">
-              <button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsModalOpen(false);
-                  setTimeout(() => {
-                    document.getElementById("checklist")?.scrollIntoView({ behavior: "smooth" });
-                  }, 100);
-                }}
-                className="text-xs font-semibold text-primary hover:underline transition-all"
-              >
-                Compare all plans &rarr;
-              </button>
+            {/* Header Block */}
+            <div className="text-left mb-6">
+              <span className="inline-flex items-center px-3 py-1 rounded-full border border-orange-100 text-primary text-[11px] font-semibold tracking-wider uppercase mb-3 bg-orange-50/50">
+                SERVICE TYPE
+              </span>
+              <h2 className="text-[32px] font-semibold text-gray-800 tracking-tight leading-[40px]">What type of clean do you need?</h2>
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">Select a service to get started.</p>
             </div>
 
-            <button
-              onClick={() => {
-                if (currentStep === 1) {
-                  if (isStepValid()) {
-                    setCurrentStep(2);
+            {/* Cards Grid */}
+            <div className="w-full mb-8">
+              {renderStep1()}
+            </div>
+
+            {/* Bottom Bar: Action Trigger Row */}
+            <div className="sticky bottom-0 bg-white/95 backdrop-blur-md z-30 pb-6 pt-4 -mx-6 px-6 md:-mx-8 md:px-8 border-t border-gray-100 flex items-center justify-between mt-auto shadow-[0_-10px_30px_rgba(0,0,0,0.02)] translate-y-[24px] md:translate-y-[32px] w-[calc(100%+48px)] md:w-[calc(100%+64px)]">
+              <div className="flex items-center">
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsModalOpen(false);
+                    setTimeout(() => {
+                      document.getElementById("checklist")?.scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                  }}
+                  className="text-xs font-semibold text-primary hover:underline transition-all"
+                >
+                  Compare all plans &rarr;
+                </button>
+              </div>
+
+              <button
+                onClick={() => {
+                  if (currentStep === 1) {
+                    if (isStepValid()) {
+                      setCurrentStep(2);
+                      setIsModalOpen(true);
+                    }
+                  } else {
                     setIsModalOpen(true);
                   }
-                } else {
-                  setIsModalOpen(true);
-                }
-              }}
-              disabled={(currentStep === 1 && !isStepValid()) || (currentStep > 1 && (isCommercial ? !formData.commercial.cleanType : !formData.cleaningType))}
-              className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-[#FB8C42]/10 transition-all hover:scale-[1.02] flex items-center gap-2"
-            >
-              Continue
-              <ArrowRight className="w-4 h-4" />
-            </button>
+                }}
+                disabled={(currentStep === 1 && !isStepValid()) || (currentStep > 1 && (isCommercial ? !formData.commercial.cleanType : !formData.cleaningType))}
+                className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-[#FB8C42]/10 transition-all hover:scale-[1.02] flex items-center gap-2"
+              >
+                Continue
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* OVERLAY BOOKING MODAL FOR STEPS >= 2 */}
         {mounted && isModalOpen && createPortal(
