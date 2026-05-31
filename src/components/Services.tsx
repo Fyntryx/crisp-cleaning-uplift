@@ -271,12 +271,12 @@ const BookingSummaryCard = ({
               <span>A${e.price}</span>
             </div>
           ))}
-          {pricingResult?.largeServiceDiscountAmount && pricingResult.largeServiceDiscountAmount > 0 ? (
+          {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
               <span>Large Service Discount</span>
-              <span>-A${pricingResult.largeServiceDiscountAmount.toFixed(2)}</span>
+              <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
             </div>
-          ) : null}
+          )}
           {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
               <span>{pricingResult?.breakdown?.discount?.name}</span>
