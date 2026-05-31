@@ -60,7 +60,7 @@ const ContactPage = () => {
                         We're here to help
                       </p>
                       <div className="text-gray-900 font-medium space-y-1 text-[15px]">
-                        <p>Mon - Fri: 8:00 AM - 5:00 PM</p>
+                        <p>Mon - Fri: 8:00 AM - 8:00 PM</p>
                       </div>
                     </div>
                   </div>
@@ -93,7 +93,7 @@ const ContactPage = () => {
                     <div>
                       <h3 className="text-[17px] font-semibold text-gray-900 mb-1">Call Us</h3>
                       <p className="text-[14px] text-gray-500 font-normal mb-2">
-                        Mon-Fri from 8am to 5pm
+                        Mon-Fri from 8am to 8pm
                       </p>
                       <a
                         href="tel:+61451433786"
@@ -117,14 +117,6 @@ const ContactPage = () => {
 
                       <div className="flex items-center gap-3">
                         <a
-                          href="https://www.tiktok.com/@crispcleaningmelbourne"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
-                          aria-label="TikTok">
-                          <TiktokIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                        </a>
-                        <a
                           href="#"
                           className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
                           aria-label="Instagram">
@@ -135,6 +127,20 @@ const ContactPage = () => {
                           className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
                           aria-label="Facebook">
                           <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        </a>
+                        <a
+                          href="#"
+                          className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
+                          aria-label="LinkedIn">
+                          <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        </a>
+                        <a
+                          href="https://www.tiktok.com/@crispcleaningmelbourne"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
+                          aria-label="TikTok">
+                          <TiktokIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
                         </a>
                       </div>
                     </div>
