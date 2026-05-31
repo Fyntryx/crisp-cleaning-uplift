@@ -20,6 +20,12 @@ import useScrollScale from "@/hooks/useScrollScale";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
 
+const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
 const ContactPage = () => {
   const { ref: contactContentRef, style: contactContentStyle } = useScrollScale(
     { threshold: 0.1 }
@@ -111,6 +117,14 @@ const ContactPage = () => {
 
                       <div className="flex items-center gap-3">
                         <a
+                          href="https://www.tiktok.com/@crispcleaningmelbourne"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
+                          aria-label="TikTok">
+                          <TiktokIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        </a>
+                        <a
                           href="#"
                           className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
                           aria-label="Instagram">
@@ -121,12 +135,6 @@ const ContactPage = () => {
                           className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
                           aria-label="Facebook">
                           <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                        </a>
-                        <a
-                          href="#"
-                          className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
-                          aria-label="LinkedIn">
-                          <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                         </a>
                       </div>
                     </div>
