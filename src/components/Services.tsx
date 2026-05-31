@@ -492,9 +492,62 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     // Run on mount
     handleUrlBooking();
 
-    // Run on hash change
+    // Run on hash change (fallback)
     window.addEventListener("hashchange", handleUrlBooking);
-    return () => window.removeEventListener("hashchange", handleUrlBooking);
+
+    // Intercept clicks on Next.js Links that point to #booking on the same page
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a');
+      if (link && link.href && link.href.includes('#booking')) {
+        try {
+          const url = new URL(link.href, window.location.origin);
+          // Only intercept if the link is for the current page
+          if (url.pathname === window.location.pathname || link.getAttribute('href')?.startsWith('#')) {
+            e.preventDefault();
+            
+            // Extract service param
+            let serviceParam = url.searchParams.get("service");
+            if (!serviceParam && url.hash.includes("?service=")) {
+              const hashParams = new URLSearchParams(url.hash.split("?")[1]);
+              serviceParam = hashParams.get("service");
+            }
+
+            if (serviceParam || url.hash.includes("booking")) {
+              const lowerService = (serviceParam || "").toLowerCase();
+              let matchedType: any = null;
+              if (lowerService.includes("deep")) matchedType = "Deep";
+              else if (lowerService.includes("vacate")) matchedType = "Vacate";
+              else if (lowerService.includes("standard")) matchedType = "Standard";
+              
+              if (matchedType) {
+                setFormData(prev => ({
+                  ...prev,
+                  cleaningType: matchedType,
+                  serviceCategory: "residential"
+                }));
+                setCurrentStep(2);
+                setIsModalOpen(true);
+              } else if (hiddenInline) {
+                setIsModalOpen(true);
+              } else {
+                // If not hiddenInline, we might just want to scroll to it
+                document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+              }
+            }
+          }
+        } catch (err) {
+          // ignore invalid URLs
+        }
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick, true); // use capture phase to beat Next.js Link
+
+    return () => {
+      window.removeEventListener("hashchange", handleUrlBooking);
+      document.removeEventListener("click", handleGlobalClick, true);
+    };
   }, [hiddenInline]);
 
   // NEW: State for address validity
