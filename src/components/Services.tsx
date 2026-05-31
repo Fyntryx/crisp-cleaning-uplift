@@ -367,7 +367,7 @@ const BookingSummaryCard = ({
       {(pricingResult?.estimatedMinutes ?? 0) > 0 && (
         <div className="flex justify-between items-center mt-4 mb-2 bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
             <span className="text-blue-800/80 font-bold text-sm tracking-tight">Estimated Time</span>
-            <span className="font-black text-blue-900">{formatEta(pricingResult.estimatedMinutes)}</span>
+            <span className="font-black text-blue-900">{formatEta(pricingResult!.estimatedMinutes)}</span>
         </div>
       )}
 
