@@ -9,6 +9,7 @@ import Process from "@/components/lp/Process";
 import Guarantee from "@/components/lp/Guarantee";
 import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
+import Services from "@/components/Services";
 import Testimonials from "@/components/lp/Testimonials";
 import FrequencyCards from "@/components/lp/FrequencyCards";
 import WhoItsFor from "./WhoItsFor";
@@ -131,7 +132,7 @@ export default function HouseCleaningPage() {
           })
         }}
       />
-      <Navbar />
+      <Navbar bookingLink="#booking?service=Standard" />
 
       {/* 1. Hero */}
       <ServiceHero />
@@ -139,7 +140,7 @@ export default function HouseCleaningPage() {
       {/* Wrap remaining sections to reduce vertical gap by ~20% */}
       <div className="[&>section]:!py-16 lg:[&>section]:!py-20">
         {/* 2. Frequency Cards */}
-        <FrequencyCards />
+        <FrequencyCards bookingLink="#booking?service=Standard" />
 
       {/* 3. Before/After */}
       <BeforeAfter />
@@ -180,7 +181,7 @@ export default function HouseCleaningPage() {
       />
 
       {/* 9. Our Promise / Satisfaction Guarantee */}
-      <Guarantee />
+      <Guarantee bookingLink="#booking?service=Standard" />
 
       {/* 10. Service Areas Section */}
       <ServiceAreas />
@@ -189,9 +190,10 @@ export default function HouseCleaningPage() {
       <FAQ data={faqs} title="Common questions about standard house cleaning" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA bookingLink="/#booking?service=Standard" />
+        <FinalCTA bookingLink="#booking?service=Standard" />
       </div>
 
+      <Services hiddenInline />
       <Footer />
     </main>
   );

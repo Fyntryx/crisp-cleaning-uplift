@@ -51,7 +51,7 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
-const Navbar = () => {
+export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: string }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -189,23 +189,19 @@ const Navbar = () => {
             <span>0451 433 786</span>
           </a>
 
-          <Button 
-            variant="hero" 
-            size="default" 
-            style={{
-              boxShadow: "rgba(251, 140, 66, 0.32) 0px 8px 24px, rgba(251, 140, 66, 0.18) 0px 2px 6px"
-            }}
-            className="rounded-full px-6 py-2.5 text-[14px] font-semibold bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white transition-all duration-300 flex items-center justify-center hover:scale-[1.02]"
-            asChild
-          >
-            <Link href="/#booking">Get an Instant Quote</Link>
-          </Button>
+          <div className="hidden lg:block ml-8">
+            <Link href={bookingLink}>
+              <button className="bg-[#FB8C42] hover:bg-[#ea6309] text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_14px_rgba(249,115,22,0.3)] transition-all hover:-translate-y-0.5">
+                Get an Instant Quote
+              </button>
+            </Link>
+          </div>
         </div>
 
         {/* --- MOBILE CTA & TOGGLE --- */}
         <div className="flex md:hidden items-center gap-3">
           <Link
-            href="/#booking"
+            href={bookingLink}
             className="px-4 py-2 bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white text-[13px] font-bold rounded-full shadow-[0_4px_14px_rgba(251,140,66,0.35)] transition-colors"
           >
             Get a Quote
@@ -265,21 +261,17 @@ const Navbar = () => {
               <a href="tel:0451433786" className="flex items-center justify-center gap-2 font-bold py-2 text-neutral-800 hover:text-[#FB8C42] transition-colors">
                 <Phone size={16} className="text-[#FB8C42]" /> 0451 433 786
               </a>
-              <Button 
-                variant="hero" 
-                className="w-full rounded-full bg-[#FB8C42] text-white font-bold"
-                asChild
-              >
-                <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>
-                  Get an Instant Quote
+              <div className="mt-8 flex flex-col gap-4">
+                <Link href={bookingLink} onClick={() => setIsMobileMenuOpen(false)}>
+                  <button className="w-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-6 py-3 rounded-full font-bold text-sm shadow-md transition-all">
+                    Get an Instant Quote
+                  </button>
                 </Link>
-              </Button>
+              </div>
             </div>
           </nav>
         </div>
       )}
     </header>
   );
-};
-
-export default Navbar;
+}

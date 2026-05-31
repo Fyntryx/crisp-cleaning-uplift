@@ -9,6 +9,7 @@ import Process from "@/components/lp/Process";
 import Guarantee from "./Guarantee";
 import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
+import Services from "@/components/Services";
 import Testimonials from "@/components/lp/Testimonials";
 import FrequencyCards from "@/components/lp/FrequencyCards";
 import WhoItsFor from "./WhoItsFor";
@@ -144,7 +145,7 @@ export default function HouseCleaningPage() {
           })
         }}
       />
-      <Navbar />
+      <Navbar bookingLink="#booking?service=Vacate" />
 
       {/* 1. Hero */}
       <ServiceHero />
@@ -201,13 +202,14 @@ export default function HouseCleaningPage() {
       <FAQ data={faqs} title="Second thoughts? Let's vacate them" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA bookingLink="/#booking?service=Vacate" title={
+        <FinalCTA bookingLink="#booking?service=Vacate" title={
           <>
             Why not leave the place <span className="text-primary">crisp-ier</span> than you found it?
           </>
         } />
       </div>
 
+      <Services hiddenInline />
       <Footer />
     </main>
   );

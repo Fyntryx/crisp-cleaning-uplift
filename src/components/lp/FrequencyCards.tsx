@@ -33,7 +33,7 @@ const frequencies = [
   }
 ];
 
-export default function FrequencyCards() {
+export default function FrequencyCards({ bookingLink = "/#booking" }: { bookingLink?: string }) {
   return (
     <section className="py-20 md:py-32 bg-[#FDFBF9] relative">
       <div className="container mx-auto px-6 md:px-8 max-w-[1216px]">
@@ -88,7 +88,7 @@ export default function FrequencyCards() {
 
               <div className={`mt-auto pt-4 md:pt-6 border-t ${freq.dark ? 'border-white/10' : 'border-gray-100'}`}>
                 <Link
-                  href="/#booking"
+                  href={bookingLink}
                   className={`flex items-center justify-center gap-1.5 md:gap-2 w-full rounded-full px-2 py-2.5 md:px-5 md:py-3.5 text-[12px] md:text-[15px] font-bold transition-all ${
                     freq.dark 
                       ? 'bg-[#FB8C42] text-white hover:bg-[#ea6309]' 

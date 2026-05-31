@@ -45,7 +45,7 @@ export default function DeepCleanPlans() {
 
             <div className="mt-auto pt-6 border-t border-gray-100">
               <Link
-                href="/#booking?service=Deep"
+                href="#booking?service=Deep"
                 className="flex items-center justify-center gap-2 w-full rounded-full px-5 py-3.5 text-[15px] font-bold bg-gray-50 text-gray-900 hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-all"
               >
                 <span>Get a Quote</span>
@@ -75,7 +75,7 @@ export default function DeepCleanPlans() {
 
             <div className="mt-auto pt-6 border-t border-white/10">
               <Link
-                href="/#booking?service=Deep"
+                href="#booking?service=Deep"
                 className="flex items-center justify-center gap-2 w-full rounded-full px-5 py-3.5 text-[15px] font-bold bg-[#FB8C42] text-white hover:bg-[#ea6309] transition-all shadow-md shadow-[#FB8C42]/20 hover:shadow-[#FB8C42]/30"
               >
                 <span>Get a Quote</span>

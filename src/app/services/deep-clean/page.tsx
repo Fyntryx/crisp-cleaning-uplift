@@ -9,6 +9,7 @@ import Process from "@/components/lp/Process";
 import Guarantee from "@/components/lp/Guarantee";
 import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
+import Services from "@/components/Services";
 import Testimonials from "@/components/lp/Testimonials";
 import DeepCleanPlans from "./DeepCleanPlans";
 import WhoItsFor from "./WhoItsFor";
@@ -136,7 +137,7 @@ export default function HouseCleaningPage() {
           })
         }}
       />
-      <Navbar />
+      <Navbar bookingLink="#booking?service=Deep" />
 
       {/* 1. Hero */}
       <ServiceHero />
@@ -186,7 +187,7 @@ export default function HouseCleaningPage() {
       />
 
       {/* 9. Our Promise / Satisfaction Guarantee */}
-      <Guarantee />
+      <Guarantee bookingLink="#booking?service=Deep" />
 
       {/* 10. Service Areas Section */}
       <ServiceAreas />
@@ -195,9 +196,10 @@ export default function HouseCleaningPage() {
       <FAQ data={faqs} title="Thinking too deeply? We got you" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA bookingLink="/#booking?service=Deep" discountText="Let us make it even crispier!" />
+        <FinalCTA bookingLink="#booking?service=Deep" discountText="Let us make it even crispier!" />
       </div>
 
+      <Services hiddenInline />
       <Footer />
     </main>
   );

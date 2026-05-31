@@ -95,7 +95,7 @@ export default function VacateGuarantee() {
             </div>
 
             <Link
-              href="/#booking?service=Vacate"
+              href="#booking?service=Vacate"
               className="inline-flex items-center gap-2 rounded-full bg-white text-gray-900 px-8 py-4 font-bold text-[16px] hover:bg-white/90 transition-all shadow-lg mb-6"
             >
               Book Your Vacate Clean

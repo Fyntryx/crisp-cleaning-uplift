@@ -62,7 +62,7 @@ export default function ServiceHero() {
           {/* Button Area */}
           <div className="flex-1 flex flex-col items-center md:items-end w-full">
             <Link
-              href="/#booking?service=Deep"
+              href="#booking?service=Deep"
               className="inline-flex w-full md:w-auto items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-8 py-4 font-bold text-[16px] shadow-[0_0_20px_rgba(249,115,22,0.2)] transition-all group mb-3"
             >
               Get an Instant Quote
