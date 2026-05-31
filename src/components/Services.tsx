@@ -449,8 +449,17 @@ const Services = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const serviceParam = params.get("service");
+      // Handle both /?service=Deep#booking and /#booking?service=Deep
+      const url = new URL(window.location.href);
+      const params = url.searchParams;
+      let serviceParam = params.get("service");
+      
+      // Fallback: if search param is empty but hash contains ?service=
+      if (!serviceParam && url.hash.includes("?service=")) {
+        const hashParams = new URLSearchParams(url.hash.split("?")[1]);
+        serviceParam = hashParams.get("service");
+      }
+
       if (serviceParam) {
         const lowerService = serviceParam.toLowerCase();
         let matchedType: any = null;
@@ -464,6 +473,9 @@ const Services = () => {
             cleaningType: matchedType,
             serviceCategory: "residential"
           }));
+          // Auto-progress to step 2 and open the modal
+          setCurrentStep(2);
+          setIsModalOpen(true);
         }
       }
     }
