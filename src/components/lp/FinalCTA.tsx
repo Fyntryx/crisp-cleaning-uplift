@@ -37,14 +37,14 @@ export default function FinalCTA({ title, discountText }: FinalCTAProps) {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight max-w-2xl">
               {title || (
                 <>
-                  Your home won't clean itself. <span className="text-primary">But we will.</span>
+                  Every week without a cleaner is another week of <span className="text-primary">catching up.</span>
                 </>
               )}
             </h2>
             
             {/* Subtext */}
             <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Every week without a system is another week of catching up. Crisp has limited weekly slots per cleaner — once they're gone, they're gone.
+              Crisp has limited weekly slots per cleaner — once they're gone, they're gone.
             </p>
 
             {/* Configured Promo and Info Badge */}
