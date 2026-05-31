@@ -5,6 +5,10 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { ArrowLeftRight } from "lucide-react";
 
+import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
+import { ArrowLeftRight } from "lucide-react";
+
 interface ComparisonCardProps {
   beforeImage: string;
   afterImage: string;
@@ -13,80 +17,60 @@ interface ComparisonCardProps {
 
 function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <div className="flex flex-col">
-      <div className="relative w-full aspect-[4/5] rounded-[32px] overflow-hidden group select-none shadow-sm">
-        
-        {/* After Image (Background) & Badge */}
-        <div className="absolute inset-0 z-10">
-          <Image 
-            src={afterImage} 
-            alt="After clean" 
-            fill 
-            className="object-cover pointer-events-none" 
-          />
-          <div className="absolute top-5 right-5 bg-[#FB8C42] text-white text-[12px] font-bold px-4 py-1.5 rounded-full tracking-wide pointer-events-none shadow-sm">
-            After
-          </div>
-        </div>
-
-        {/* Before Image (Clipped) & Badge */}
-        <div 
-          className="absolute inset-0 z-20 pointer-events-none"
-          style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-        >
-          <Image 
-            src={beforeImage} 
-            alt="Before clean" 
-            fill 
-            className="object-cover" 
-          />
-          <div className="absolute top-5 left-5 bg-[#2A2A2A] text-white text-[12px] font-bold px-4 py-1.5 rounded-full tracking-wide pointer-events-none shadow-sm">
-            Before
-          </div>
-        </div>
-
-        {/* Slider Line & Handle */}
-        <div 
-          className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(0,0,0,0.3)] z-30 pointer-events-none flex items-center justify-center transition-transform duration-75"
-          style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
-        >
-          <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg text-gray-700">
-            <ArrowLeftRight size={18} />
-          </div>
-        </div>
-
-        {/* Invisible Range Input */}
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={sliderPosition}
-          onChange={(e) => setSliderPosition(Number(e.target.value))}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 touch-pan-y"
-        />
+    <div
+      className="w-full h-full aspect-[4/5] bg-muted rounded-3xl overflow-hidden relative shadow-sm group select-none cursor-ew-resize"
+      onMouseDown={() => setIsDragging(true)}
+      onMouseUp={() => setIsDragging(false)}
+      onMouseLeave={() => setIsDragging(false)}
+      onTouchStart={() => setIsDragging(true)}
+      onTouchEnd={() => setIsDragging(false)}
+      onMouseMove={(e) => {
+        if (!isDragging) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        setSliderPosition(Math.max(0, Math.min(100, (x / rect.width) * 100)));
+      }}
+      onTouchMove={(e) => {
+        if (!isDragging) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        setSliderPosition(Math.max(0, Math.min(100, (x / rect.width) * 100)));
+      }}
+    >
+      <div className="absolute inset-0 z-10">
+        <Image src={afterImage} alt="After clean" fill className="object-cover pointer-events-none" />
+        <div className="absolute top-4 right-4 bg-[#FB8C42] text-white text-[12px] font-bold px-3 py-1.5 rounded-full pointer-events-none">After</div>
       </div>
-
-      {/* Label */}
-      <div className="text-center mt-6">
-        <span className="text-[12px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-          {label}
-        </span>
+      <div
+        className="absolute inset-0 z-20 pointer-events-none"
+        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+      >
+        <Image src={beforeImage} alt="Before clean" fill className="object-cover" />
+        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white text-[12px] font-bold px-3 py-1.5 rounded-full pointer-events-none">Before</div>
       </div>
+      <div className="absolute inset-y-0 w-0.5 bg-white cursor-ew-resize pointer-events-none z-30" style={{ left: `${sliderPosition}%` }}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 group-hover:scale-110 transition-transform">
+          <ArrowLeftRight className="w-4 h-4 text-gray-500" />
+        </div>
+      </div>
+      {label && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-bold px-4 py-2 rounded-full z-30 shadow-sm pointer-events-none whitespace-nowrap">
+          {label.replace(' · Before/After', '')}
+        </div>
+      )}
     </div>
   );
 }
 
-export default function BeforeAfter() {
+  export default function BeforeAfter() {
     const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ 
-    align: "start",
-    dragFree: true,
-    containScroll: "trimSnaps",
-    watchDrag: false,
-    breakpoints: {
-      '(min-width: 768px)': { active: false }
-    }
+    loop: true, 
+    align: 'center',
+    watchDrag: false, 
+    breakpoints: { '(min-width: 768px)': { active: false } } 
   });
   const [isInteracting, setIsInteracting] = useState(false);
 

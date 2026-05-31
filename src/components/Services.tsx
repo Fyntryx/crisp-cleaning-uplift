@@ -443,7 +443,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [promoCode, setPromoCode] = useState("");
-  const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number } | undefined>(undefined);
+  const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number; isStackable?: boolean } | undefined>(undefined);
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
@@ -1441,9 +1441,15 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 )}
 
                 <button
-                  onClick={() =>
-                    setFormData({ ...formData, frequency: freq.id as any })
-                  }
+                  onClick={() => {
+                    const newFreq = freq.id;
+                    if (appliedPromo && appliedPromo.isStackable === false && newFreq !== "One time") {
+                      setAppliedPromo(undefined);
+                      setPromoCode("");
+                      alert("Your promo code has been removed because it cannot be combined with frequency discounts.");
+                    }
+                    setFormData({ ...formData, frequency: newFreq as any });
+                  }}
                   className={`w-full py-3 rounded-full text-[14px] font-semibold transition-all ${isSelected
                     ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
                     : "text-gray-500 hover:text-gray-950 hover:bg-gray-100/50"

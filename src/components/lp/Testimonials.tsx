@@ -10,7 +10,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }: { beforeImage: st
   const [isDragging, setIsDragging] = React.useState(false);
 
   return (
-    <div 
+    <div
       className="w-full h-full aspect-[4/5] bg-muted rounded-3xl overflow-hidden relative shadow-sm group select-none cursor-ew-resize"
       onMouseDown={() => setIsDragging(true)}
       onMouseUp={() => setIsDragging(false)}
@@ -34,7 +34,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }: { beforeImage: st
         <img src={afterImage} alt="After clean" className="w-full h-full object-cover pointer-events-none" />
         <div className="absolute top-4 right-4 bg-[#FB8C42] text-white text-[12px] font-bold px-3 py-1.5 rounded-full pointer-events-none">After</div>
       </div>
-      <div 
+      <div
         className="absolute inset-0 z-20 pointer-events-none"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
@@ -105,7 +105,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
               <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">{topTitle || "Testimonials"}</h4>
             )
           )}
-          <h2 
+          <h2
             style={layout === "left" ? { letterSpacing: "-1.2px", lineHeight: "48px" } : undefined}
             className={`mb-4 ${layout === "left" ? "text-[48px] font-semibold text-gray-900 mt-3" : "text-4xl md:text-5xl font-bold text-foreground tracking-tight"}`}
           >
@@ -116,8 +116,8 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
 
         {/* Top Grid: Before/After */}
         {!hideBeforeAfter && (
-          <div 
-            className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden mb-8 md:mb-12" 
+          <div
+            className="-mx-6 px-6 md:mx-0 md:px-0 overflow-hidden mb-8 md:mb-12"
             ref={beforeAfterRef}
             onMouseEnter={() => setIsInteracting(true)}
             onMouseLeave={() => setIsInteracting(false)}
@@ -158,7 +158,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
         )}
 
         {!hideReviews && (
-          <div className="mt-[34px] md:mt-[50px] flex flex-col md:flex-row justify-center items-center gap-4 translate-y-[1px]">
+          <div className="mt-[34px] md:mt-[50px] flex flex-col md:flex-row justify-center items-center gap-4 translate-y-[8px]">
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, idx) => (
@@ -167,10 +167,10 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
               </div>
               <span className="font-bold text-sm text-gray-900">Rated 4.9 on Google · 14 verified reviews</span>
             </div>
-            
-            <a 
-              href="https://www.google.com/maps/place/Crisp+Cleaning/@-37.9725665,145.0531353,9z/data=!4m8!3m7!1s0x6e098402deb63a2b:0x31de0e2a713fa297!8m2!3d-37.9725665!4d145.0531353!9m1!1b1!16s%2Fg%2F11nb2s2grt" 
-              target="_blank" 
+
+            <a
+              href="https://www.google.com/maps/place/Crisp+Cleaning/@-37.9725665,145.0531353,9z/data=!4m8!3m7!1s0x6e098402deb63a2b:0x31de0e2a713fa297!8m2!3d-37.9725665!4d145.0531353!9m1!1b1!16s%2Fg%2F11nb2s2grt"
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-200 text-[#FB8C42] text-[12px] font-bold hover:bg-orange-50 transition-colors"
             >
