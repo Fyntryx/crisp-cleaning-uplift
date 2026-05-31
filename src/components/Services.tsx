@@ -2314,12 +2314,16 @@ const Services = () => {
 
             <button
               onClick={() => {
-                if (currentStep === 1 && isStepValid()) {
-                  setCurrentStep(2);
+                if (currentStep === 1) {
+                  if (isStepValid()) {
+                    setCurrentStep(2);
+                    setIsModalOpen(true);
+                  }
+                } else {
                   setIsModalOpen(true);
                 }
               }}
-              disabled={currentStep === 1 && !isStepValid()}
+              disabled={(currentStep === 1 && !isStepValid()) || (currentStep > 1 && (isCommercial ? !formData.commercial.cleanType : !formData.cleaningType))}
               className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-[#FB8C42]/10 transition-all hover:scale-[1.02] flex items-center gap-2"
             >
               Continue
@@ -2595,7 +2599,9 @@ const Services = () => {
 
               <button
                 onClick={() => {
-                  setCurrentStep(2);
+                  if (currentStep === 1) {
+                    setCurrentStep(2);
+                  }
                   setIsModalOpen(true);
                 }}
                 className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-[#FB8C42] text-white hover:bg-[#FB8C42]/90 shadow-lg shadow-[#FB8C42]/20 active:scale-95"
