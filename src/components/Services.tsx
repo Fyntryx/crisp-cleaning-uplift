@@ -1288,7 +1288,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   const isSelected = count > 0;
                   const isCounterAddon = extra === 'Windows' || extra === 'Walls';
 
-                  if (isCounterAddon) {
+                  if (isCounterAddon && isSelected) {
                     return (
                       <div
                         key={extra}
