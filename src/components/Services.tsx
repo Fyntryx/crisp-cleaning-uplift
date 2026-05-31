@@ -1524,7 +1524,6 @@ const Services = () => {
               >
                 <option value="" disabled>Select...</option>
                 <option>No Pets</option>
-                <option>Yes cat</option>
                 <option>Dog/Cat</option>
                 <option>Other</option>
               </select>
@@ -1552,7 +1551,6 @@ const Services = () => {
                 }
               >
                 <option value="" disabled>Select...</option>
-                <option>Street parking</option>
                 <option>I will provide parking onsite</option>
                 <option>There is free parking nearby/on the street</option>
                 <option>Other (Please Specify)</option>
@@ -1581,7 +1579,6 @@ const Services = () => {
                 }
               >
                 <option value="" disabled>Select...</option>
-                <option>Key lockbox</option>
                 <option>I will be home</option>
                 <option>I will leave a key</option>
                 <option>I will provide a lockbox/access key</option>
