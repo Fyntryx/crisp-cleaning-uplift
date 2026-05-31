@@ -117,13 +117,17 @@ const ContactPage = () => {
 
                       <div className="flex items-center gap-3">
                         <a
-                          href="#"
+                          href="https://www.instagram.com/crispcleaningmelbourne/"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
                           aria-label="Instagram">
                           <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform" />
                         </a>
                         <a
-                          href="#"
+                          href="https://www.facebook.com/profile.php?id=61586616255939"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors text-primary group"
                           aria-label="Facebook">
                           <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
