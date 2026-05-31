@@ -158,7 +158,7 @@ export default function LeadPopup() {
                 disabled={isSubmitting}
                 className="w-full bg-black hover:bg-gray-900 text-white font-bold rounded-xl py-4 mt-2 transition-all shadow-lg flex justify-center items-center"
               >
-                {isSubmitting ? "Saving..." : "Book Now and Save"}
+                {isSubmitting ? "Saving..." : "Claim Now!"}
               </button>
             </form>
 
