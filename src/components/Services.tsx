@@ -1182,53 +1182,52 @@ const Services = () => {
                 .map((extra) => {
                   const count = formData.extras?.[extra] || 0;
                   const isSelected = count > 0;
-                  
-                  if (isSelected) {
-                    const isCounterAddon = extra === 'Windows' || extra === 'Walls';
+                  const isCounterAddon = extra === 'Windows' || extra === 'Walls';
 
-                    if (isCounterAddon) {
-                      return (
-                        <div
-                          key={extra}
-                          className="inline-flex items-center gap-1.5 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
-                        >
-                          <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count - 1); }}
-                            className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
-                          >
-                            <Minus className="w-3 h-3 text-white" strokeWidth={3} />
-                          </button>
-                          <span className="text-[13px] font-semibold min-w-[12px] text-center">
-                            {count}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
-                            className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
-                          >
-                            <Plus className="w-3 h-3 text-white" strokeWidth={3} />
-                          </button>
-                          <span className="text-[13px] font-semibold pr-3 pl-1">
-                            {extra}
-                          </span>
-                        </div>
-                      );
-                    } else {
-                      return (
+                  if (isCounterAddon) {
+                    return (
+                      <div
+                        key={extra}
+                        className="inline-flex items-center gap-1.5 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
+                      >
                         <button
-                          key={extra}
                           type="button"
-                          onClick={() => toggleExtra(extra)}
-                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
+                          onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, Math.max(0, count - 1)); }}
+                          className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
-                          <span className="text-[13px] font-semibold pr-1">
-                            {extra}
-                          </span>
+                          <Minus className="w-3 h-3 text-white" strokeWidth={3} />
                         </button>
-                      );
-                    }
+                        <span className="text-[13px] font-semibold min-w-[12px] text-center">
+                          {count}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
+                          className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
+                        >
+                          <Plus className="w-3 h-3 text-white" strokeWidth={3} />
+                        </button>
+                        <span className="text-[13px] font-semibold pr-3 pl-1">
+                          {extra}
+                        </span>
+                      </div>
+                    );
+                  }
+
+                  if (isSelected) {
+                    return (
+                      <button
+                        key={extra}
+                        type="button"
+                        onClick={() => toggleExtra(extra)}
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
+                        <span className="text-[13px] font-semibold pr-1">
+                          {extra}
+                        </span>
+                      </button>
+                    );
                   }
 
                   return (
