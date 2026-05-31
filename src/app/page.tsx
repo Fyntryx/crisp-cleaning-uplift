@@ -34,7 +34,11 @@ export default function LandingPage() {
       <Stats />
       <Guarantee />
       <FAQ />
-      <FinalCTA />
+      <FinalCTA title={
+        <>
+          Every week without a cleaner is another week of <span className="text-primary">catching up.</span>
+        </>
+      } />
       
       <LeadPopup />
       <Footer />

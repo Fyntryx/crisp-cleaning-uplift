@@ -38,7 +38,7 @@ export default function FinalCTA({ title, discountText, bookingLink = "/#booking
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight max-w-2xl">
               {title || (
                 <>
-                  Every week without a cleaner is another week of <span className="text-primary">catching up.</span>
+                  Your home won't clean itself. <span className="text-primary">But we will.</span>
                 </>
               )}
             </h2>

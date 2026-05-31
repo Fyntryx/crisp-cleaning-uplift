@@ -190,7 +190,14 @@ export default function HouseCleaningPage() {
       <FAQ data={faqs} title="Common questions about standard house cleaning" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA bookingLink="#booking?service=Standard" />
+        <FinalCTA 
+          bookingLink="#booking?service=Standard" 
+          title={
+            <>
+              Your home won't clean itself. <span className="text-primary">But we will.</span>
+            </>
+          }
+        />
       </div>
 
       <Services hiddenInline />
