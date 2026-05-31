@@ -37,7 +37,7 @@ export default function ServiceHero() {
 
           {/* Description */}
           <p className="text-[18px] text-gray-500 font-normal leading-[28px] max-w-[800px] mx-auto">
-            A Crisp Deep Clean goes beyond the surface. Every room. Every corner.<br className="hidden md:block" />
+            A Crisp Deep Clean goes beyond the surface. Every room. Every corner. <br className="hidden md:block" />
             Every detail — done properly, with a defined system and a cleaner who<br className="hidden md:block" />
             takes pride in the result.
           </p>
@@ -45,7 +45,7 @@ export default function ServiceHero() {
 
         {/* CTA Box (Wide White Bar) */}
         <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mx-auto mb-12">
-          
+
           {/* Booking Info */}
           <div className="flex-1 flex flex-col gap-1 w-full text-center md:text-left">
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-1">
