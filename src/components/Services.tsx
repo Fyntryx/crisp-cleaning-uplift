@@ -1188,7 +1188,7 @@ const Services = () => {
                     return (
                       <div
                         key={extra}
-                        className="inline-flex items-center gap-1.5 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
+                        className="inline-flex items-center gap-2 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
                       >
                         <button
                           type="button"
@@ -1197,8 +1197,8 @@ const Services = () => {
                         >
                           <Minus className="w-3 h-3 text-white" strokeWidth={3} />
                         </button>
-                        <span className="text-[13px] font-semibold min-w-[12px] text-center">
-                          {count}
+                        <span className="text-[13px] font-semibold min-w-[20px] text-center px-1">
+                          {count} {extra}
                         </span>
                         <button
                           type="button"
@@ -1207,9 +1207,6 @@ const Services = () => {
                         >
                           <Plus className="w-3 h-3 text-white" strokeWidth={3} />
                         </button>
-                        <span className="text-[13px] font-semibold pr-3 pl-1">
-                          {extra}
-                        </span>
                       </div>
                     );
                   }
