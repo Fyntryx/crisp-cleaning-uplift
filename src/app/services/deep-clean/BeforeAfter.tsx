@@ -5,9 +5,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { ArrowLeftRight } from "lucide-react";
 
-import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
-import { ArrowLeftRight } from "lucide-react";
 
 interface ComparisonCardProps {
   beforeImage: string;
