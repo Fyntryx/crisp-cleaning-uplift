@@ -5,11 +5,12 @@ import { Tag, Clock, ArrowRight } from "lucide-react";
 
 interface FinalCTAProps {
   title?: React.ReactNode;
+  description?: React.ReactNode;
   discountText?: string;
   bookingLink?: string;
 }
 
-export default function FinalCTA({ title, discountText, bookingLink = "/#booking" }: FinalCTAProps) {
+export default function FinalCTA({ title, description, discountText, bookingLink = "/#booking" }: FinalCTAProps) {
   return (
     <section className="pt-12 pb-24 bg-[#FAF9F6] overflow-hidden">
       <div className="container mx-auto px-6 md:px-8 max-w-6xl">
@@ -45,7 +46,7 @@ export default function FinalCTA({ title, discountText, bookingLink = "/#booking
             
             {/* Subtext */}
             <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Crisp has limited weekly slots per cleaner — once they're gone, they're gone.
+              {description || "Crisp has limited weekly slots per cleaner — once they're gone, they're gone."}
             </p>
 
             {/* Configured Promo and Info Badge */}

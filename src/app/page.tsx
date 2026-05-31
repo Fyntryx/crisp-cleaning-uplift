@@ -34,11 +34,7 @@ export default function LandingPage() {
       <Stats />
       <Guarantee />
       <FAQ />
-      <FinalCTA title={
-        <>
-          Every week without a cleaner is another week of <span className="text-primary">catching up.</span>
-        </>
-      } />
+      <FinalCTA description="Every week without a cleaner is another week of catching up. Crisp has limited weekly slots per cleaner — once they're gone, they're gone." />
       
       <LeadPopup />
       <Footer />
