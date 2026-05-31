@@ -6,9 +6,10 @@ import { Tag, Clock, ArrowRight } from "lucide-react";
 interface FinalCTAProps {
   title?: React.ReactNode;
   discountText?: string;
+  bookingLink?: string;
 }
 
-export default function FinalCTA({ title, discountText }: FinalCTAProps) {
+export default function FinalCTA({ title, discountText, bookingLink = "/#booking" }: FinalCTAProps) {
   return (
     <section className="pt-12 pb-24 bg-[#FAF9F6] overflow-hidden">
       <div className="container mx-auto px-6 md:px-8 max-w-6xl">

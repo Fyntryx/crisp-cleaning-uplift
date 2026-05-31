@@ -79,7 +79,7 @@ export default function ServiceHero() {
               {/* White CTA Card */}
               <div className="bg-white rounded-[24px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 relative">
                 <Link
-                  href="/#booking"
+                  href="/#booking?service=Vacate"
                   className="inline-flex w-full items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-8 py-4 font-bold text-[16px] shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all group"
                 >
                   Get an Instant Quote

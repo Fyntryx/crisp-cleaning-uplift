@@ -57,7 +57,7 @@ export default function ServiceHero() {
                 </span>
 
                 <Link
-                  href="/#booking"
+                  href="/#booking?service=Standard"
                   className="inline-flex w-full items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-8 py-4 font-bold text-[17px] shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all group mb-5"
                 >
                   Get an Instant Quote

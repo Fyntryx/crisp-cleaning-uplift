@@ -447,6 +447,28 @@ const Services = () => {
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const serviceParam = params.get("service");
+      if (serviceParam) {
+        const lowerService = serviceParam.toLowerCase();
+        let matchedType: any = null;
+        if (lowerService.includes("deep")) matchedType = "Deep";
+        else if (lowerService.includes("vacate")) matchedType = "Vacate";
+        else if (lowerService.includes("standard")) matchedType = "Standard";
+        
+        if (matchedType) {
+          setFormData(prev => ({
+            ...prev,
+            cleaningType: matchedType,
+            serviceCategory: "residential"
+          }));
+        }
+      }
+    }
+  }, []);
+
   // NEW: State for address validity
   const [isAddressValid, setIsAddressValid] = useState(true);
 

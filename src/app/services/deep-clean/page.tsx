@@ -195,7 +195,7 @@ export default function HouseCleaningPage() {
       <FAQ data={faqs} title="Thinking too deeply? We got you" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA discountText="Let us make it even crispier!" />
+        <FinalCTA bookingLink="/#booking?service=Deep" discountText="Let us make it even crispier!" />
       </div>
 
       <Footer />
