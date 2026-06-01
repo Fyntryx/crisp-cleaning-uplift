@@ -27,7 +27,7 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="max-w-[1150px] text-[40px] md:text-[40px] font-extrabold text-gray-900 md:text-white tracking-[-0.03em] leading-[1.1] mb-8">
+        <h1 className="max-w-[1150px] text-[40px] md:text-[72px] font-extrabold text-gray-900 md:text-white tracking-[-0.03em] leading-[1.1] mb-8">
           Walk in. Breathe out.
           <br />
           <span>Your home is exactly </span>
