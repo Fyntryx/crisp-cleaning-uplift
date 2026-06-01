@@ -50,7 +50,11 @@ export default function RefundCancellationPage() {
           </div>
         </section>
 
-        <CTASection />
+        <CTASection 
+          heading="Ready for a Crisp Clean?"
+          description="Book your next clean in under 60 seconds and experience the difference."
+          primaryAction={{ text: "Book Now", href: "/#booking" }}
+        />
       </div>
       <Footer />
     </>
