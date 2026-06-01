@@ -2083,7 +2083,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             />
             <span className="text-xs text-gray-500 font-medium">
               I accept the{" "}
-              <a href="#" className="underline text-primary hover:text-primary/80 transition-colors">
+              <a href="/commercial-agreement" className="underline text-primary hover:text-primary/80 transition-colors">
                 Commercial Service Agreement
               </a>
             </span>
@@ -2253,7 +2253,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           >
             I accept the{" "}
             <a
-              href="#"
+              href="/terms-conditions"
               className="underline text-gray-500 hover:text-gray-700 transition-colors"
             >
               Terms & Conditions

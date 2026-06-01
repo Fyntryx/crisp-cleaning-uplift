@@ -23,7 +23,7 @@ const faqs = [
     question: "What if I'm not happy?",
     answer: (
       <>
-        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay. You can view our full terms <a href="/terms" className="font-semibold text-primary hover:underline transition-colors">here</a>.
+        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay. You can view our full terms <a href="/terms-conditions" className="font-semibold text-primary hover:underline transition-colors">here</a>.
       </>
     )
   },
