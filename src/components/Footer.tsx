@@ -100,15 +100,9 @@ const Footer = () => {
             © {new Date().getFullYear()} Crisp Cleaning. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-            {["Style Guide", "Licenses", "Changelog", "Privacy Policy"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium"
-              >
-                {item}
-              </a>
-            ))}
+            <Link href="/refund-cancellation" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Refund Policy</Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Privacy Policy</Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Terms of Service</Link>
           </div>
         </div>
       </div>
