@@ -22,7 +22,7 @@ import { CTASection } from "@/components/CTASection";
 
 const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+    <path d="M9 12.5a5 5 0 1 0 5 5V1.5a6 6 0 0 0 6 6" />
   </svg>
 );
 
