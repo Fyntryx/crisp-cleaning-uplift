@@ -6,6 +6,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import Providers from "./providers";
 import StickyPhoneWidget from "@/components/StickyPhoneWidget";
 import RadiusInitializer from "@/components/RadiusInitializer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <Toaster />
           <Sonner />
           <StickyPhoneWidget />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
