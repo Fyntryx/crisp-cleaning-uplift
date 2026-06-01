@@ -89,14 +89,14 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
       label: "BATHROOM SINK · BEFORE/AFTER"
     },
     {
-      beforeImage: "/images/CouchBefore.png",
-      afterImage: "/images/CouchAfter.png",
-      label: "COUCH · BEFORE/AFTER"
+      beforeImage: "/images/GasStoveBefore.jpg",
+      afterImage: "/images/GasStoveAfter.png",
+      label: "GAS STOVE · BEFORE/AFTER"
     },
     {
-      beforeImage: "/images/kitchen-before.jpg",
-      afterImage: "/images/kitchen-after.jpg",
-      label: "KITCHEN · BEFORE/AFTER"
+      beforeImage: "/images/FridgeBefore.jpg",
+      afterImage: "/images/FridgeAfter.jpg",
+      label: "FRIDGE · BEFORE/AFTER"
     }
   ];
 

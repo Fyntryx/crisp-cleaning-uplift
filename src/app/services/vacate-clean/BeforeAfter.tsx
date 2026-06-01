@@ -55,7 +55,7 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
       </div>
       {label && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-bold px-4 py-2 rounded-full z-30 shadow-sm pointer-events-none whitespace-nowrap">
-          {label.replace(' · Before/After', '')}
+          {label.replace(' · Before/After', '').replace(' — BEFORE/AFTER', '')}
         </div>
       )}
     </div>
@@ -84,19 +84,19 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
 
   const comparisons = [
     {
-      beforeImage: "/images/KitchenSinkBefore.png",
-      afterImage: "/images/KitchenSinkAfter.jpg",
-      label: "KITCHEN SINK — BEFORE/AFTER"
+      beforeImage: "/images/CabinetBefore.jpg",
+      afterImage: "/images/CabinetAfter.png",
+      label: "CABINET BOTTOM"
     },
     {
-      beforeImage: "/images/WindowBefore.jpg",
-      afterImage: "/images/WindowAfter.jpg",
-      label: "WINDOW PANE — BEFORE/AFTER"
+      beforeImage: "/images/ToiletBefore.jpg",
+      afterImage: "/images/ToiletAfter.jpg",
+      label: "TOILET"
     },
     {
-      beforeImage: "/images/BathtubeBefore.jpg",
-      afterImage: "/images/BathTubeAfter.jpg",
-      label: "BATHROOM — BEFORE/AFTER"
+      beforeImage: "/images/DrawerBefore.png",
+      afterImage: "/images/DrawerAfter.jpg",
+      label: "DRAWERS"
     }
   ];
 

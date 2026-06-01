@@ -84,19 +84,19 @@ function ComparisonCard({ beforeImage, afterImage, label }: ComparisonCardProps)
 
   const comparisons = [
     {
-      beforeImage: "/images/StoveTopBefore.jpg",
-      afterImage: "/images/StoveTopAfter.jpg",
-      label: "Stovetop · Before/After"
-    },
-    {
-      beforeImage: "/images/BathtubeBefore.jpg",
-      afterImage: "/images/BathTubeAfter.jpg",
-      label: "Bathtub · Before/After"
+      beforeImage: "/images/CouchBefore.png",
+      afterImage: "/images/CouchAfter.png",
+      label: "SOFA · BEFORE/AFTER"
     },
     {
       beforeImage: "/images/WindowBefore.jpg",
       afterImage: "/images/WindowAfter.jpg",
-      label: "Window · Before/After"
+      label: "WINDOW · BEFORE/AFTER"
+    },
+    {
+      beforeImage: "/images/ChimneyBefore.jpg",
+      afterImage: "/images/ChimneyAfter.jpg",
+      label: "CHIMNEY · BEFORE/AFTER"
     }
   ];
 
