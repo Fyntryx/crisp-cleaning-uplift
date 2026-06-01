@@ -120,7 +120,7 @@ export default function LeadPopup() {
               </svg>
             </div>
             <h3 className="text-2xl font-black text-gray-900 mb-2">Got it!</h3>
-            <p className="text-gray-500 text-sm">Your 15% discount has been secured. Our team will be in touch shortly.</p>
+            <p className="text-gray-500 text-sm">Your 15% discount has been secured. A copy of the discount code has been sent to your email!</p>
           </div>
         ) : (
           <>
