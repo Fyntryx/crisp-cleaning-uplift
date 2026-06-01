@@ -57,6 +57,10 @@ export default function LeadPopup() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const API_BASE_URL = (
+      process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
+    ).replace(/\/$/, "");
+
     const payload = {
       ...formData,
       source: "Popup Lead Form",
@@ -65,7 +69,7 @@ export default function LeadPopup() {
 
     try {
       // Assuming you will create this endpoint in your backend to catch the data
-      await fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/api/public/leads", {
+      await fetch(`${API_BASE_URL}/api/public/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
