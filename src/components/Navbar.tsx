@@ -175,7 +175,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-4">
           <a
             href="tel:0451433786"
             className={cn(
@@ -189,7 +189,21 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
             <span>0451 433 786</span>
           </a>
 
-          <div className="hidden lg:block ml-8">
+          <a
+            href="https://crisp-cleaning-app-seven.vercel.app/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "text-[14.5px] font-bold px-5 py-2 rounded-full border transition-all duration-200 hover:-translate-y-0.5",
+              isScrolled || !isHomePage
+                ? "border-[#FB8C42] text-[#FB8C42] hover:bg-[#FB8C42] hover:text-white"
+                : "border-white/60 text-white/90 hover:bg-white hover:text-[#FB8C42]"
+            )}
+          >
+            Login
+          </a>
+
+          <div className="hidden lg:block">
             <Link href={bookingLink}>
               <button className="bg-[#FB8C42] hover:bg-[#ea6309] text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_14px_rgba(249,115,22,0.3)] transition-all hover:-translate-y-0.5">
                 Get an Instant Quote
@@ -261,7 +275,16 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
               <a href="tel:0451433786" className="flex items-center justify-center gap-2 font-bold py-2 text-neutral-800 hover:text-[#FB8C42] transition-colors">
                 <Phone size={16} className="text-[#FB8C42]" /> 0451 433 786
               </a>
-              <div className="mt-8 flex flex-col gap-4">
+              <div className="mt-3 flex flex-col gap-3">
+                <a
+                  href="https://crisp-cleaning-app-seven.vercel.app/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center border border-[#FB8C42] text-[#FB8C42] px-6 py-3 rounded-full font-bold text-sm transition-all hover:bg-[#FB8C42] hover:text-white"
+                >
+                  Login
+                </a>
                 <Link href={bookingLink} onClick={() => setIsMobileMenuOpen(false)}>
                   <button className="w-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-6 py-3 rounded-full font-bold text-sm shadow-md transition-all">
                     Get an Instant Quote
