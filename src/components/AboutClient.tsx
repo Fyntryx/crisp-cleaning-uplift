@@ -6,11 +6,23 @@ import { MissionStorySection } from "@/components/MissionStorySection";
 import { BeforeAfterSection } from "@/components/BeforeAfterSection";
 import { PageHero } from "@/components/PageHero";
 import { StatsSection } from "@/components/StatsSection";
-import { ImageStripGallery } from "@/components/ImageStripGallery";
 import { CTASection } from "@/components/CTASection";
 import TeamSection from "./TeamSection";
+import ImageEffect from "./ImageEffect";
 
-const AboutClient = () => {
+interface CtaData {
+  heading: string;
+  subheading: string;
+  buttonText: string;
+  buttonLink: string;
+  floatingImages: any[];
+}
+
+interface AboutClientProps {
+  cta: CtaData | null;
+}
+
+const AboutClient = ({ cta }: AboutClientProps) => {
   return (
     <>
       <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
@@ -23,11 +35,12 @@ const AboutClient = () => {
         <StatsSection />
 
         <MissionStorySection />
-        
+
         <BeforeAfterSection />
 
-        <ImageStripGallery />
-        
+        {/* Sanity-connected floating images gallery */}
+        {cta && <ImageEffect data={cta} />}
+
         <CTASection
           heading="Ready to experience the difference?"
           description="Join hundreds of satisfied customers who have reclaimed their time and space."
