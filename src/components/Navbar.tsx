@@ -190,7 +190,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
           </a>
 
           <a
-            href="https://crisp-cleaning-app-seven.vercel.app/login"
+            href="https://app.crispcleaning.com.au/"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
@@ -277,7 +277,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
               </a>
               <div className="mt-3 flex flex-col gap-3">
                 <a
-                  href="https://crisp-cleaning-app-seven.vercel.app/login"
+                  href="https://app.crispcleaning.com.au/"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}
