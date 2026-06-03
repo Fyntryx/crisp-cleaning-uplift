@@ -26,23 +26,23 @@ const navLinks = [
     name: "Services",
     href: "#",
     subLinks: [
-      { 
-        name: "Standard House Clean", 
+      {
+        name: "Standard House Clean",
         desc: "Consistent maintenance on your schedule",
         href: "/services/standard-house-clean",
-        icon: RefreshCw 
+        icon: RefreshCw
       },
-      { 
-        name: "Deep Clean", 
+      {
+        name: "Deep Clean",
         desc: "A thorough reset for every room",
         href: "/services/deep-clean",
-        icon: Sparkles 
+        icon: Sparkles
       },
-      { 
-        name: "Vacate Clean", 
+      {
+        name: "Vacate Clean",
         desc: "Cleaned to inspection standard",
         href: "/services/vacate-clean",
-        icon: Key 
+        icon: Key
       },
     ],
   },
@@ -91,8 +91,8 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
-        isScrolled 
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5" 
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5"
           : isHomePage
             ? "bg-white md:bg-transparent py-3.5 md:py-5 border-b border-gray-100 md:border-transparent shadow-sm md:shadow-none"
             : "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5"
@@ -103,14 +103,14 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
           href="/"
           className="flex items-center outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0"
         >
-          <img 
-            src="/logo.png?v=3" 
-            alt="Crisp Cleaning" 
+          <img
+            src="/logo.png?v=3"
+            alt="Crisp Cleaning"
             className="h-12 md:h-14 w-auto object-contain"
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <nav className="hidden md:flex items-center gap-8 absolute left-[46%] top-1/2 -translate-x-1/2 -translate-y-1/2">
           {navLinks.map((link) => {
             if (link.subLinks) {
               const isSubActive = link.subLinks.some(
@@ -223,8 +223,8 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
           <button
             className={cn(
               "w-9 h-9 flex items-center justify-center transition-colors rounded-full border",
-              isScrolled || !isHomePage 
-                ? "text-neutral-800 border-gray-200 bg-white shadow-sm" 
+              isScrolled || !isHomePage
+                ? "text-neutral-800 border-gray-200 bg-white shadow-sm"
                 : "text-neutral-800 border-gray-200 bg-white shadow-sm md:text-white md:border-white/20 md:bg-white/10"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
