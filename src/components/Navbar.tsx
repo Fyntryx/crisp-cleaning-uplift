@@ -98,7 +98,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
             : "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5"
       )}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between relative">
+      <div className="container mx-auto px-6 flex items-center gap-4">
         <Link
           href="/"
           className="flex items-center outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0"
@@ -110,7 +110,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <nav className="hidden md:flex flex-1 items-center justify-center gap-8">
           {navLinks.map((link) => {
             if (link.subLinks) {
               const isSubActive = link.subLinks.some(
