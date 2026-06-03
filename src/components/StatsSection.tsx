@@ -83,10 +83,10 @@ const StatCard = ({ number, label, delay = 0, controls }: any) => {
 
 export const StatsSection = () => {
   const stats = [
-    { number: "10+", label: "Years of experience" },
-    { number: "10+", label: "Amazing customers" },
-    { number: "300+", label: "Hours of cleaning" },
-    { number: "100+", label: "Projects done" },
+    { number: "5+", label: "Years of experience" },
+    { number: "2000+", label: "Amazing customers" },
+    { number: "10000+", label: "Hours of cleaning" },
+    { number: "100+", label: "5 star reviews" },
   ];
 
   const controls = useAnimationControls();
