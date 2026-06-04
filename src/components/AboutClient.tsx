@@ -25,7 +25,7 @@ interface AboutClientProps {
 const AboutClient = ({ cta }: AboutClientProps) => {
   return (
     <>
-      <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
+      <div className="min-h-screen bg-background flex flex-col">
         <PageHero
           badge="Who We Are"
           title="About Crisp Cleaning"

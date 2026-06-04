@@ -255,7 +255,7 @@ const ImageEffect = ({ data }: { data: any }) => {
     <section
       ref={containerRef}
       className="relative h-[200vh] pb-16 max-[990px]:mb-20">
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center">
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute top-1/2 left-1/2 w-0 h-0">
           {floatingImages &&
             activeConfig.map((config, i) => (
