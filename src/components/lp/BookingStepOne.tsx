@@ -44,7 +44,17 @@ export default function BookingStepOne() {
   ];
 
   const handleContinue = () => {
-    window.location.href = `/?plan=${selectedPlan.toLowerCase()}#booking`;
+    // Push GTM dataLayer event for "Begin Booking" (Step 2 entry)
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        event: 'begin_booking',
+        booking_step: 2,
+        service_type: selectedPlan, // 'Standard' | 'Deep' | 'Vacate'
+      });
+    }
+
+    // Update hash to #booking-step-2 so GTM can also use URL/hash trigger
+    window.location.href = `/?plan=${selectedPlan.toLowerCase()}#booking-step-2`;
   };
 
   const handleCompare = (e: React.MouseEvent) => {
