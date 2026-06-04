@@ -27,7 +27,8 @@ const CONTENT = {
         </div>
       </>
     ),
-    mainImage: "./before.png",
+    mainImage: "/images/OurMissionbedroom_2.jpg",
+    secondaryImage: "/images/OurMissionliving_room_4.png",
   },
   story: {
     heading: "From a humble vision to a pioneering force in cleaning",
@@ -52,11 +53,10 @@ const CONTENT = {
         </div>
       </>
     ),
-    mainImage: "./after.jpg",
+    mainImage: "/images/OurStory.png",
+    secondaryImage: "/images/OurStoryliving_room_7.png",
   },
 };
-
-const STATIC_SECONDARY_IMAGE = "./after.jpg";
 
 export const MissionStorySection = () => {
   const [activeTab, setActiveTab] = useState<"mission" | "story">("mission");
@@ -120,7 +120,7 @@ export const MissionStorySection = () => {
           <div className="relative h-[600px] w-full hidden lg:block">
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeTab}
+                key={activeTab + "-main"}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -133,13 +133,21 @@ export const MissionStorySection = () => {
                 />
               </motion.div>
             </AnimatePresence>
-            <div className="absolute bottom-10 left-0 w-[45%] h-[40%] rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white z-20">
-              <img
-                src={STATIC_SECONDARY_IMAGE}
-                alt="Secondary Static"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab + "-secondary"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute bottom-10 left-0 w-[45%] h-[40%] rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white z-20">
+                <img
+                  src={activeContent.secondaryImage}
+                  alt="Secondary"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
             <div className="absolute top-10 left-10 w-24 h-24 bg-primary/10 rounded-full blur-2xl -z-10" />
           </div>
         </motion.div>
