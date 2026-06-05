@@ -44,12 +44,11 @@ export default function BookingStepOne() {
   ];
 
   const handleContinue = () => {
-    // Push GTM dataLayer event for "Begin Booking" (Step 2 entry)
+    // Push GTM dataLayer event for "Service Selected"
     if (typeof window !== 'undefined' && (window as any).dataLayer) {
       (window as any).dataLayer.push({
-        event: 'begin_booking',
-        booking_step: 2,
-        service_type: selectedPlan, // 'Standard' | 'Deep' | 'Vacate'
+        event: 'service_selected',
+        service_type: selectedPlan.toLowerCase(), // 'standard' | 'deep' | 'vacate'
       });
     }
 
