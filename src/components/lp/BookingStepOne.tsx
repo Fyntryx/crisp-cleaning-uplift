@@ -44,16 +44,20 @@ export default function BookingStepOne() {
   ];
 
   const handleContinue = () => {
-    // Push GTM dataLayer event for "Service Selected"
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+    // Ensure dataLayer exists
+    if (typeof window !== 'undefined') {
+      (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
         event: 'service_selected',
         service_type: selectedPlan.toLowerCase(), // 'standard' | 'deep' | 'vacate'
       });
     }
 
-    // Update hash to #booking-step-2 so GTM can also use URL/hash trigger
-    window.location.href = `/?plan=${selectedPlan.toLowerCase()}#booking-step-2`;
+    // Delay navigation slightly to ensure GTM tag fires before page unloads
+    setTimeout(() => {
+      // Update hash to #booking-step-2 so GTM can also use URL/hash trigger
+      window.location.href = `/?plan=${selectedPlan.toLowerCase()}#booking-step-2`;
+    }, 300);
   };
 
   const handleCompare = (e: React.MouseEvent) => {
