@@ -46,7 +46,7 @@ export default function Stats() {
           {/* Other Stats */}
           <div className="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
             <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">RE-CLEAN WINDOW</p>
-            <span className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 leading-none">48<span className="text-[#FB8C42]">hrs</span></span>
+            <span className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 leading-none">72<span className="text-[#FB8C42]">hrs</span></span>
             <p className="text-gray-500 text-[11px] md:text-sm font-medium leading-snug">Maximum re-clean turnaround</p>
           </div>
 
@@ -58,7 +58,7 @@ export default function Stats() {
 
           <div className="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
             <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">CONSISTENCY</p>
-            <span className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 leading-none">90<span className="text-[#FB8C42]">%</span></span>
+            <span className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 leading-none">97<span className="text-[#FB8C42]">%</span></span>
             <p className="text-gray-500 text-[11px] md:text-sm font-medium leading-snug">Same cleaner consistency rate</p>
           </div>
         </div>

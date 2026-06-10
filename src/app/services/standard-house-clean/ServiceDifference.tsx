@@ -11,7 +11,7 @@ export default function ServiceDifference({ title, subtitle }: ServiceDifference
     {
       icon: <Users className="w-5 h-5 text-[#FB8C42]" />,
       title: "Same cleaner, every visit",
-      description: "We assign you a dedicated cleaner who learns your home. 90% same-cleaner consistency rate. No re-explaining. No surprises."
+      description: "We assign you a dedicated cleaner who learns your home. 97% same-cleaner consistency rate. No re-explaining. No surprises."
     },
     {
       icon: <CircleDollarSign className="w-5 h-5 text-[#FB8C42]" />,
