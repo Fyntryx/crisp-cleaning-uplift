@@ -22,6 +22,145 @@ export const metadata = {
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary relative w-full overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "LocalBusiness",
+                "@id": "https://crispcleaning.com.au/#localbusiness",
+                "name": "Crisp Cleaning",
+                "image": "https://crispcleaning.com.au/logo.png",
+                "description": "Professional home and house cleaning service in Melbourne.",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Melbourne",
+                  "addressRegion": "VIC",
+                  "addressCountry": "AU"
+                },
+                "areaServed": {
+                  "@type": "GeoCircle",
+                  "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -37.8136,
+                    "longitude": 144.9631
+                  },
+                  "geoRadius": "50000"
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.9",
+                  "bestRating": "5",
+                  "reviewCount": "250"
+                },
+                "review": [
+                  {
+                    "@type": "Review",
+                    "author": {
+                      "@type": "Person",
+                      "name": "Andre B"
+                    },
+                    "reviewRating": {
+                      "@type": "Rating",
+                      "ratingValue": "5",
+                      "bestRating": "5"
+                    },
+                    "reviewBody": "Honestly felt like a brand new home."
+                  },
+                  {
+                    "@type": "Review",
+                    "author": {
+                      "@type": "Person",
+                      "name": "Natch L"
+                    },
+                    "reviewRating": {
+                      "@type": "Rating",
+                      "ratingValue": "5",
+                      "bestRating": "5"
+                    },
+                    "reviewBody": "Team took great care, really appreciated the communication - the small details dont go unnoticed! keep it up crisp"
+                  },
+                  {
+                    "@type": "Review",
+                    "author": {
+                      "@type": "Person",
+                      "name": "Kaan S"
+                    },
+                    "reviewRating": {
+                      "@type": "Rating",
+                      "ratingValue": "5",
+                      "bestRating": "5"
+                    },
+                    "reviewBody": "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work."
+                  }
+                ]
+              },
+              {
+                "@type": "Service",
+                "serviceType": "House Cleaning",
+                "provider": {
+                  "@id": "https://crispcleaning.com.au/#localbusiness"
+                }
+              },
+              {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "Do I need to be home during the clean?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "It's entirely up to you. Many of our clients prefer to provide access to their space and continue with their daily activities. Rest assured, our team is professional and trustworthy, and we'll treat your space with the utmost respect and care. You will receive an ETA before arriving and a summary when we're done."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What is your policy on cancellations and refunds?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "We understand if you ever need to reschedule, that’s why if you cancel with more than 48 hours of from your booking, you will receive a 100% refund! Unfortunately, if you cancel within 48 hours a 50% refund will be applicable, as our cleaners have already been assigned to your home."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Are your cleaning products safe for family and pets?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Absolutely. We use high-quality, eco-friendly cleaning solutions that are tough on dirt but completely safe for your children and pets. If something stronger is needed for a particular job, your cleaner will assess and ask your permission before using it. If you have specific product requirements or allergies, simply let us know."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What if I'm not happy?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Are you fully insured and licensed?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, Crisp Cleaning is fully insured and licensed. Our company is committed to operating with the highest standards of professionalism and integrity. Every cleaner undergoes a rigorous background check, giving you complete peace of mind when we enter your home."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How do you ensure security of my property?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "We take your security very seriously. Our team members undergo thorough background checks, a and we have stringent protocols in place to safeguard your property. Your home is always locked and secured upon completion of the clean."
+                    }
+                  }
+                ]
+              }
+            ]
+          })
+        }}
+      />
       <Navbar />
       
       <Hero />
