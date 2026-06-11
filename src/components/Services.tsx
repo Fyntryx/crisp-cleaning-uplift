@@ -1201,6 +1201,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           lead_source: "Booking Flow Discount Step",
           offer: "WELCOME15"
         });
+        sessionStorage.setItem("crisp_lead_captured", "true");
       }
 
       setPromoCode("WELCOME15");
@@ -1234,6 +1235,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     if (currentStep === 2) {
       setCurrentStep(1);
       setIsModalOpen(false);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("triggerLeadPopup"));
+      }
     } else {
       handlePrev();
     }
@@ -2784,6 +2788,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                             if (item.step === 1) {
                               setIsModalOpen(false);
                               setCurrentStep(1);
+                              if (typeof window !== "undefined") {
+                                window.dispatchEvent(new Event("triggerLeadPopup"));
+                              }
                             } else if (item.step < currentStep) {
                               setCurrentStep(item.step);
                             }
@@ -2821,7 +2828,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     STEP <span className="text-[#FB8C42] font-bold">{currentStep}</span> OF {totalSteps}
                   </span>
                   <button
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={() => {
+                      setIsModalOpen(false);
+                      if (currentStep >= 2 && typeof window !== "undefined") {
+                        window.dispatchEvent(new Event("triggerLeadPopup"));
+                      }
+                    }}
                     className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors shrink-0"
                   >
                     <X className="w-4 h-4" />

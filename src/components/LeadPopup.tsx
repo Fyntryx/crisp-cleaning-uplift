@@ -19,15 +19,17 @@ export default function LeadPopup() {
 
   const showPopup = useCallback(() => {
     if (hasTriggered) return;
+    if (sessionStorage.getItem("crisp_lead_captured") === "true") return;
     setIsOpen(true);
     setHasTriggered(true);
     sessionStorage.setItem("crisp_lead_popup_shown", "true");
   }, [hasTriggered]);
 
   useEffect(() => {
-    // Check if already triggered in this session
+    // Check if already triggered in this session or lead already captured
     const alreadyShown = sessionStorage.getItem("crisp_lead_popup_shown");
-    if (alreadyShown) {
+    const leadCaptured = sessionStorage.getItem("crisp_lead_captured") === "true";
+    if (alreadyShown || leadCaptured) {
       setHasTriggered(true);
       return;
     }
@@ -48,12 +50,19 @@ export default function LeadPopup() {
       }
     };
 
+    // Trigger 3: Custom event from booking modal
+    const handleCustomTrigger = () => {
+      showPopup();
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("triggerLeadPopup", handleCustomTrigger);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("triggerLeadPopup", handleCustomTrigger);
     };
   }, [hasTriggered, showPopup]);
 
@@ -88,6 +97,9 @@ export default function LeadPopup() {
           offer: "15% off expiry"
         });
       }
+      
+      // Mark lead as captured
+      sessionStorage.setItem("crisp_lead_captured", "true");
       
       // We don't block on success since the endpoint might not exist yet
     } catch (err) {
