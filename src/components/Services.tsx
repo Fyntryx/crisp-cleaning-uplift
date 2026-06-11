@@ -464,6 +464,53 @@ const CountdownTimer = ({ onTimeout }: { onTimeout?: () => void }) => {
   );
 };
 
+const ReservationTimer = () => {
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem("crisp_reservation_endtime");
+    let remaining = 0;
+    
+    if (saved) {
+      remaining = Math.floor((parseInt(saved) - Date.now()) / 1000);
+    }
+    
+    // If no timer or timer expired, start a fresh 10 minute timer
+    if (!saved || remaining <= 0) {
+      const newEndTime = Date.now() + 600 * 1000;
+      sessionStorage.setItem("crisp_reservation_endtime", newEndTime.toString());
+      setTimeLeft(600);
+    } else {
+      setTimeLeft(remaining);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (timeLeft === null || timeLeft <= 0) return;
+    const intervalId = setInterval(() => {
+      setTimeLeft(t => {
+        if (t === null || t <= 1) {
+          clearInterval(intervalId);
+          return 0;
+        }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  if (timeLeft === null) return null;
+
+  const mins = Math.floor(timeLeft / 60);
+  const secs = timeLeft % 60;
+  
+  return (
+    <span className="inline-flex items-center gap-1.5 text-red-500 text-[11px] font-bold tracking-wider uppercase">
+      - Booking reserved for {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
+    </span>
+  );
+};
+
 const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isFormVisible, setIsFormVisible] = useState(true);
   const formObserverRef = useRef<HTMLDivElement>(null);
@@ -2313,10 +2360,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const renderResStep5 = () => (
     <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
       {/* Step Identifier Tag */}
-      <div className="mb-2">
+      <div className="mb-2 flex items-center flex-wrap gap-2">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
           <CheckCircle2 className="w-3 h-3" /> CONFIRM
         </span>
+        <ReservationTimer />
       </div>
 
       <div className="space-y-6">
