@@ -813,6 +813,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     outOfAreaFee,
   ]);
 
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
+
   const isStepValid = () => {
     if (currentStep === 1) {
       if (formData.serviceCategory === "residential") return !!formData.cleaningType;
@@ -1024,9 +1027,24 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     setSubmitSuccess(null);
 
     try {
-      // Validate required fields
+      // Validate required fields and formats
       if (!formData.contact.firstName || !formData.contact.email || !formData.contact.phone || !formData.contact.address) {
         setSubmitError("Please fill in all required fields.");
+        setIsSubmitting(false);
+        return;
+      }
+      
+      const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
+
+      if (!isValidEmail(formData.contact.email)) {
+        setSubmitError("Please enter a valid email address.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (!isValidPhone(formData.contact.phone)) {
+        setSubmitError("Please enter a valid phone number.");
         setIsSubmitting(false);
         return;
       }
@@ -1119,6 +1137,21 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const handleDiscountSubmit = async () => {
     setIsSubmittingDiscount(true);
     setDiscountError(null);
+
+    const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
+
+    if (!isValidEmail(formData.contact.email)) {
+      setDiscountError("Please enter a valid email address.");
+      setIsSubmittingDiscount(false);
+      return;
+    }
+
+    if (!isValidPhone(formData.contact.phone)) {
+      setDiscountError("Please enter a valid phone number.");
+      setIsSubmittingDiscount(false);
+      return;
+    }
 
     const API_BASE_URL = (
       process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
