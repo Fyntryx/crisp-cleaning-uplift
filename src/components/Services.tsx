@@ -166,6 +166,7 @@ const BookingSummaryCard = ({
   setPromoCode,
   isValidatingPromo,
   setIsValidatingPromo,
+  appliedPromo,
   setAppliedPromo,
   apiBaseUrl,
   outOfAreaFee = 0,
@@ -178,6 +179,7 @@ const BookingSummaryCard = ({
   setPromoCode: (val: string) => void;
   isValidatingPromo: boolean;
   setIsValidatingPromo: (val: boolean) => void;
+  appliedPromo?: { code: string; type: string; value: number; isStackable?: boolean; referralType?: string; category?: string };
   setAppliedPromo: (val: any) => void;
   apiBaseUrl: string;
   outOfAreaFee?: number;
@@ -205,6 +207,18 @@ const BookingSummaryCard = ({
       </div>
 
       <div className="border-t border-gray-100"></div>
+
+      {formData.selectedDate && formData.selectedTime && (
+        <>
+          <div className="flex justify-between items-center py-3.5 gap-4">
+            <span className="text-gray-500 font-normal whitespace-nowrap">Date & Time</span>
+            <span className="font-medium text-gray-800 text-right">
+              {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
+            </span>
+          </div>
+          <div className="border-t border-gray-100"></div>
+        </>
+      )}
 
       <div className="flex justify-between items-center py-3.5">
         <span className="text-gray-500 font-normal">Frequency</span>
@@ -277,7 +291,7 @@ const BookingSummaryCard = ({
               <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
             </div>
           )}
-          {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && (
+          {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && appliedPromo?.category !== 'REFERRAL' && (
             <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
               <span>{pricingResult?.breakdown?.discount?.name}</span>
               <span>-A${pricingResult?.breakdown?.discount?.amount?.toFixed(2)}</span>
@@ -287,6 +301,16 @@ const BookingSummaryCard = ({
             <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-1">
               <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
               <span>-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
+            </div>
+          )}
+
+          {/* Referral Applied Confirmation */}
+          {appliedPromo?.category === 'REFERRAL' && (
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
+              <span className="flex items-center gap-1.5">
+                ✓ {appliedPromo.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
+              </span>
+              <span>-A${appliedPromo.value.toFixed(2)}</span>
             </div>
           )}
 
@@ -325,11 +349,7 @@ const BookingSummaryCard = ({
                   const data = await res.json();
                   if (data.valid) {
                     setAppliedPromo(data.promo);
-                    if (data.promo.type === 'REFERRAL') {
-                      alert(`Referral code '${data.promo.code}' applied!`);
-                    } else {
-                      alert(`Promo code '${data.promo.code}' applied successfully!`);
-                    }
+                    setPromoCode('');
                   } else {
                     setAppliedPromo(undefined);
                     alert(data.error || 'Invalid promo code');
@@ -396,6 +416,28 @@ const BookingSummaryCard = ({
   </div>
 );
 
+const CountdownTimer = () => {
+  const [timeLeft, setTimeLeft] = useState(600);
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const intervalId = setInterval(() => {
+      setTimeLeft(t => t - 1);
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  const mins = Math.floor(timeLeft / 60);
+  const secs = timeLeft % 60;
+  
+  return (
+    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-600 rounded-full text-xs font-bold tracking-widest mt-2 border border-red-100 shadow-sm uppercase">
+      <Clock className="w-3.5 h-3.5" />
+      Expires in {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
+    </div>
+  );
+};
+
 const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isFormVisible, setIsFormVisible] = useState(true);
   const formObserverRef = useRef<HTMLDivElement>(null);
@@ -435,7 +477,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   });
 
   const isCommercial = formData.serviceCategory === "commercial";
-  const totalSteps = isCommercial ? 6 : 5;
+  const totalSteps = 6;
 
   const [currentStep, setCurrentStep] = useState(1);
   const [showInfoModal, setShowInfoModal] = useState(false);
@@ -443,7 +485,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [promoCode, setPromoCode] = useState("");
-  const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number; isStackable?: boolean } | undefined>(undefined);
+  const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number; isStackable?: boolean; referralType?: 'CLEANER_REFERRAL' | 'CUSTOMER_REFERRAL'; category?: string } | undefined>(undefined);
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
@@ -562,6 +604,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
+  const [isSubmittingDiscount, setIsSubmittingDiscount] = useState(false);
+  const [discountError, setDiscountError] = useState<string | null>(null);
   const [pricingConfig, setPricingConfig] = useState<PricingConfig | undefined>(undefined);
   const [isLoadingConfig, setIsLoadingConfig] = useState(true);
   const [outOfAreaFee, setOutOfAreaFee] = useState(0); // $50 if outside standard radius, within service area
@@ -740,27 +784,26 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             0
           );
         case 3:
+          return !!formData.contact.firstName && !!formData.contact.email && !!formData.contact.phone;
+        case 4:
           return (
             !!formData.selectedDate &&
             !!formData.selectedTime &&
             !!formData.frequency
           );
-        case 4:
+        case 5:
           return (
             !!formData.instructions.entry &&
-            !!formData.instructions.parking &&
-            !!formData.instructions.pets
+            !!formData.instructions.parking
           );
-        case 5:
+        case 6:
           return (
             !!formData.contact.firstName &&
             !!formData.contact.email &&
-            !!formData.contact.password &&
-            formData.contact.password.length >= 8 &&
             !!formData.contact.phone &&
             !!formData.contact.address &&
             formData.contact.terms &&
-            isAddressValid // Check validity here too
+            isAddressValid
           );
         default:
           return true;
@@ -1000,7 +1043,53 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     }
   };
 
+  const handleDiscountSubmit = async () => {
+    setIsSubmittingDiscount(true);
+    setDiscountError(null);
+
+    const API_BASE_URL = (
+      process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
+    ).replace(/\/$/, "");
+
+    const payload = {
+      fullName: `${formData.contact.firstName} ${formData.contact.lastName}`.trim(),
+      email: formData.contact.email,
+      phone: formData.contact.phone,
+      source: "Booking Flow Discount Step",
+      offer: "WELCOME15",
+      bedrooms: formData.homeDetails.bedrooms || 0,
+      bathrooms: formData.homeDetails.bathrooms || 0,
+      kitchen: formData.homeDetails.kitchens || 0,
+      other: formData.homeDetails.other || 0,
+      serviceType: formData.cleaningType || formData.serviceCategory,
+    };
+
+    try {
+      await fetch(`${API_BASE_URL}/api/public/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      setPromoCode("WELCOME15");
+      setAppliedPromo({ code: "WELCOME15", type: "PERCENT_OFF", value: 15 });
+      
+      setSubmitError(null);
+      setSubmitSuccess(null);
+      setCurrentStep(4);
+    } catch (err) {
+      console.error("Failed to submit lead", err);
+      setDiscountError("Failed to claim discount. Please try again.");
+    } finally {
+      setIsSubmittingDiscount(false);
+    }
+  };
+
   const handleNext = () => {
+    if (currentStep === 3 && !isCommercial) {
+      handleDiscountSubmit();
+      return;
+    }
+
     if (isStepValid() && currentStep < totalSteps) {
       setSubmitError(null); // Clear errors when navigating
       setSubmitSuccess(null); // Clear success message when navigating
@@ -1346,6 +1435,76 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           </div>
 
+        </div>
+      </div>
+    );
+  };
+
+  const renderResStepDiscount = () => {
+    return (
+      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
+        {/* Step Identifier Tag */}
+        <div className="mb-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50 shadow-sm">
+            <Tag className="w-3 h-3" /> DISCOUNT
+          </span>
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-white rounded-[24px] border border-gray-100 p-6 md:p-8 flex flex-col items-center text-center shadow-sm relative overflow-hidden">
+            <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center text-[#FB8C42] mb-4">
+              <Tag className="w-8 h-8" />
+            </div>
+            <h2 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-2">Claim 15% OFF your FIRST clean!</h2>
+            <CountdownTimer />
+            <p className="text-gray-500 text-sm font-medium max-w-md mx-auto mb-6 mt-4">
+              Enter your details and save!
+            </p>
+
+            <div className="w-full max-w-sm space-y-4 text-left">
+              <div className="flex flex-col space-y-2">
+                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Jane Doe"
+                  className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
+                  value={`${formData.contact.firstName || ""} ${formData.contact.lastName || ""}`.trim()}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    const parts = val.trimStart().split(/\s+/);
+                    updateContact("firstName", parts[0] || "");
+                    updateContact("lastName", parts.slice(1).join(" "));
+                  }}
+                />
+              </div>
+              <div className="flex flex-col space-y-2">
+                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">Email Address</label>
+                <input
+                  type="email"
+                  placeholder="jane@example.com"
+                  className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
+                  value={formData.contact.email}
+                  onChange={(e) => updateContact("email", e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col space-y-2">
+                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">Phone Number</label>
+                <input
+                  type="tel"
+                  placeholder="0400 000 000"
+                  className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
+                  value={formData.contact.phone}
+                  onChange={(e) => updateContact("phone", e.target.value)}
+                />
+              </div>
+
+              {discountError && (
+                <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
+                  {discountError}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -2332,10 +2491,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         case 2:
           return renderResStep2();
         case 3:
-          return renderResStep3();
+          return renderResStepDiscount();
         case 4:
-          return renderResStep4();
+          return renderResStep3();
         case 5:
+          return renderResStep4();
+        case 6:
           return renderResStep5();
         default:
           return null;
@@ -2370,10 +2531,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       case 2:
         return "Property Details";
       case 3:
-        return "Schedule Cleaning";
+        return "Claim Your Discount";
       case 4:
-        return "Special Instructions";
+        return "Schedule Cleaning";
       case 5:
+        return "Special Instructions";
+      case 6:
         return "Finalise Booking";
       default:
         return "";
@@ -2433,11 +2596,15 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     setIsModalOpen(true);
                   }
                 }}
-                disabled={(currentStep === 1 && !isStepValid()) || (currentStep > 1 && (isCommercial ? !formData.commercial.cleanType : !formData.cleaningType))}
-                className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-[#FB8C42]/10 transition-all hover:scale-[1.02] flex items-center gap-2"
+                disabled={(currentStep === 1 && !isStepValid()) || (currentStep > 1 && (isCommercial ? !formData.commercial.cleanType : !formData.cleaningType)) || (currentStep === 3 && !isCommercial && isSubmittingDiscount)}
+                className="bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-[#FB8C42]/10 transition-all hover:scale-[1.02] flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Continue
-                <ArrowRight className="w-4 h-4" />
+                {currentStep === 3 && !isCommercial ? (isSubmittingDiscount ? "Claiming..." : "Claim") : "Continue"}
+                {isSubmittingDiscount && currentStep === 3 && !isCommercial ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <ArrowRight className="w-4 h-4" />
+                )}
               </button>
             </div>
           </div>
@@ -2453,13 +2620,21 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                 {/* Connected Stepper Row */}
                 <div className="flex items-center overflow-x-auto custom-scrollbar flex-1">
-                  {[
+                  {(isCommercial ? [
+                    { label: "Service", step: 1, icon: Sparkles },
+                    { label: "Business", step: 2, icon: Building2 },
+                    { label: "Needs", step: 3, icon: SprayCan },
+                    { label: "Schedule", step: 4, icon: Calendar },
+                    { label: "Budget", step: 5, icon: ClipboardList },
+                    { label: "Sign Up", step: 6, icon: CreditCard },
+                  ] : [
                     { label: "Service", step: 1, icon: Sparkles },
                     { label: "Customise", step: 2, icon: Sliders },
-                    { label: "Schedule", step: 3, icon: Calendar },
-                    { label: "Details", step: 4, icon: ClipboardList },
-                    { label: "Confirm", step: 5, icon: CreditCard },
-                  ].map((item, idx) => {
+                    { label: "Discount", step: 3, icon: Tag },
+                    { label: "Schedule", step: 4, icon: Calendar },
+                    { label: "Details", step: 5, icon: ClipboardList },
+                    { label: "Confirm", step: 6, icon: CreditCard },
+                  ]).map((item, idx, arr) => {
                     const isCompleted = item.step < currentStep;
                     const isActive = item.step === currentStep;
 
@@ -2495,7 +2670,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                             {item.label}
                           </span>
                         </button>
-                        {idx < 4 && (
+                        {idx < arr.length - 1 && (
                           <div className="w-6 md:w-12 h-0.5 bg-gray-100 mx-2" />
                         )}
                       </div>
@@ -2505,7 +2680,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                 <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200/50 shrink-0">
                   <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider hidden md:inline-block">
-                    STEP <span className="text-[#FB8C42] font-bold">{currentStep}</span> OF 5
+                    STEP <span className="text-[#FB8C42] font-bold">{currentStep}</span> OF {totalSteps}
                   </span>
                   <button
                     onClick={() => setIsModalOpen(false)}
@@ -2536,14 +2711,18 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                       <button
                         onClick={handleNext}
-                        disabled={!isStepValid()}
-                        className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid()
+                        disabled={!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)}
+                        className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)
                           ? "bg-gray-150 text-gray-400 cursor-not-allowed"
                           : "bg-[#FB8C42] hover:bg-[#FB8C42]/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.02]"
                           }`}
                       >
-                        Continue
-                        <ArrowRight className="w-4 h-4" />
+                        {currentStep === 3 && !isCommercial ? (isSubmittingDiscount ? "Claiming..." : "Claim") : "Continue"}
+                        {isSubmittingDiscount && currentStep === 3 && !isCommercial ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <ArrowRight className="w-4 h-4" />
+                        )}
                       </button>
                     </div>
                   )}
@@ -2561,6 +2740,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         setPromoCode={setPromoCode}
                         isValidatingPromo={isValidatingPromo}
                         setIsValidatingPromo={setIsValidatingPromo}
+                        appliedPromo={appliedPromo}
                         setAppliedPromo={setAppliedPromo}
                         apiBaseUrl={API_BASE_URL}
                         outOfAreaFee={outOfAreaFee}
@@ -2571,7 +2751,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </div>
 
               {/* Mobile Sticky Footer Summary */}
-              {mounted && !isCommercial && currentStep >= 2 && currentStep < totalSteps && (
+              {mounted && !isCommercial && currentStep >= 2 && currentStep <= totalSteps && (
                 <div className="xl:hidden flex-none z-50 flex flex-col mt-auto relative shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
                   
                   {/* Backdrop Overlay to close when clicking outside */}
@@ -2597,6 +2777,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         setPromoCode={setPromoCode}
                         isValidatingPromo={isValidatingPromo}
                         setIsValidatingPromo={setIsValidatingPromo}
+                        appliedPromo={appliedPromo}
                         setAppliedPromo={setAppliedPromo}
                         apiBaseUrl={API_BASE_URL}
                         outOfAreaFee={outOfAreaFee}
@@ -2627,8 +2808,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   </div>
 
                   {/* Mobile Back / Continue Controls */}
-                  <div className="bg-white px-5 py-4 flex items-center justify-between relative z-50 border-t border-gray-100">
-                    <button
+                  {currentStep < totalSteps && (
+                    <div className="bg-white px-5 py-4 flex items-center justify-between relative z-50 border-t border-gray-100">
+                      <button
                       onClick={handlePrevModal}
                       className="flex items-center gap-1.5 text-gray-600 hover:text-gray-900 font-semibold text-sm transition-all"
                     >
@@ -2637,16 +2819,21 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                     <button
                       onClick={handleNext}
-                      disabled={!isStepValid()}
-                      className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid()
+                      disabled={!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)}
+                      className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)
                         ? "bg-gray-150 text-gray-400 cursor-not-allowed"
                         : "bg-[#FB8C42] hover:bg-[#FB8C42]/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.02]"
                         }`}
                     >
-                      Continue
-                      <ArrowRight className="w-4 h-4" />
+                      {currentStep === 3 && !isCommercial ? (isSubmittingDiscount ? "Claiming..." : "Claim") : "Continue"}
+                      {isSubmittingDiscount && currentStep === 3 && !isCommercial ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <ArrowRight className="w-4 h-4" />
+                      )}
                     </button>
                   </div>
+                  )}
                 </div>
               )}
             </div>

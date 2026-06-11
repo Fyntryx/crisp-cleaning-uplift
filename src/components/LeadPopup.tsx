@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 
@@ -17,6 +17,13 @@ export default function LeadPopup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const showPopup = useCallback(() => {
+    if (hasTriggered) return;
+    setIsOpen(true);
+    setHasTriggered(true);
+    sessionStorage.setItem("crisp_lead_popup_shown", "true");
+  }, [hasTriggered]);
+
   useEffect(() => {
     // Check if already triggered in this session
     const alreadyShown = sessionStorage.getItem("crisp_lead_popup_shown");
@@ -25,33 +32,30 @@ export default function LeadPopup() {
       return;
     }
 
+    // Trigger 1: 40% scroll depth
     const handleScroll = () => {
-      if (hasTriggered) return;
+      const scrollPercent =
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercent >= 40) {
+        showPopup();
+      }
+    };
 
-      // Find the Difference section to trigger after it
-      const diffSection = document.getElementById("difference-section");
-      
-      if (diffSection) {
-        const rect = diffSection.getBoundingClientRect();
-        // Trigger when the bottom of the difference section passes the middle of the viewport
-        if (rect.bottom < window.innerHeight / 2) {
-          setIsOpen(true);
-          setHasTriggered(true);
-          sessionStorage.setItem("crisp_lead_popup_shown", "true");
-        }
-      } else {
-        // Fallback: trigger after scrolling 1500px if section not found
-        if (window.scrollY > 1500) {
-          setIsOpen(true);
-          setHasTriggered(true);
-          sessionStorage.setItem("crisp_lead_popup_shown", "true");
-        }
+    // Trigger 2: Exit intent — cursor leaves the page
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        showPopup();
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasTriggered]);
+    document.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [hasTriggered, showPopup]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,10 +129,10 @@ export default function LeadPopup() {
         ) : (
           <>
             <h2 className="text-[32px] font-black text-gray-900 leading-none tracking-tight mb-3">
-              HEY YOU!
+              15% OFF your first clean!
             </h2>
             <p className="text-gray-600 font-medium text-sm leading-relaxed mb-6 px-2">
-              Your 15% off expires soon, let&apos;s catch it.
+              Expires soon! Let&apos;s catch it
             </p>
 
             <form onSubmit={handleSubmit} className="w-full space-y-3">
@@ -170,7 +174,7 @@ export default function LeadPopup() {
               onClick={() => setIsOpen(false)}
               className="text-gray-400 font-semibold text-xs mt-5 hover:text-gray-600 transition-colors uppercase tracking-wider"
             >
-              Not interested
+              No thanks, I don&apos;t want to save
             </button>
           </>
         )}
