@@ -1131,7 +1131,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           (window as any).dataLayer.push({
             event: "begin_checkout",
             service_type: formData.cleaningType,
-            value: Object.values(finalPricing.breakdown).reduce((a, b) => a + b, 0)
+            value: pricingResult?.total || 0
           });
         }
         window.location.href = result.checkoutUrl;
