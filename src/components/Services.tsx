@@ -416,16 +416,42 @@ const BookingSummaryCard = ({
   </div>
 );
 
-const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = useState(600);
+const CountdownTimer = ({ onTimeout }: { onTimeout?: () => void }) => {
+  const [timeLeft, setTimeLeft] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = sessionStorage.getItem("crisp_discount_endtime");
+      if (saved) {
+        const remaining = Math.floor((parseInt(saved) - Date.now()) / 1000);
+        return Math.max(0, remaining);
+      }
+      const newEndTime = Date.now() + 600 * 1000;
+      sessionStorage.setItem("crisp_discount_endtime", newEndTime.toString());
+      return 600;
+    }
+    return 600;
+  });
+
+  const isInitiallyExpired = useRef(timeLeft <= 0);
 
   useEffect(() => {
-    if (timeLeft <= 0) return;
+    if (timeLeft <= 0) {
+      if (!isInitiallyExpired.current && onTimeout) {
+        onTimeout();
+        isInitiallyExpired.current = true; // prevent firing again
+      }
+      return;
+    }
     const intervalId = setInterval(() => {
-      setTimeLeft(t => t - 1);
+      setTimeLeft(t => {
+        if (t <= 1) {
+          clearInterval(intervalId);
+          return 0;
+        }
+        return t - 1;
+      });
     }, 1000);
     return () => clearInterval(intervalId);
-  }, [timeLeft]);
+  }, [timeLeft, onTimeout]);
 
   const mins = Math.floor(timeLeft / 60);
   const secs = timeLeft % 60;
@@ -1071,7 +1097,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         body: JSON.stringify(payload),
       });
       setPromoCode("WELCOME15");
-      setAppliedPromo({ code: "WELCOME15", type: "PERCENT_OFF", value: 15 });
+      setAppliedPromo({ code: "WELCOME15", type: "PERCENT_OFF", value: 15, isStackable: false });
       
       setSubmitError(null);
       setSubmitSuccess(null);
@@ -1456,7 +1482,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               <Tag className="w-8 h-8" />
             </div>
             <h2 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-2">Claim 15% OFF your FIRST clean!</h2>
-            <CountdownTimer />
+            <CountdownTimer onTimeout={() => {
+              setSubmitError(null);
+              setSubmitSuccess(null);
+              setCurrentStep((prev) => prev + 1);
+            }} />
             <p className="text-gray-500 text-sm font-medium max-w-md mx-auto mb-6 mt-4">
               Enter your details and save!
             </p>
