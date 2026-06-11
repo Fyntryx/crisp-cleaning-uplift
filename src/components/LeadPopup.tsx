@@ -78,6 +78,17 @@ export default function LeadPopup() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
+      // Push to GTM dataLayer
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "generate_lead",
+          lead_source: "Popup Lead Form",
+          offer: "15% off expiry"
+        });
+      }
+      
       // We don't block on success since the endpoint might not exist yet
     } catch (err) {
       console.error("Failed to submit lead", err);

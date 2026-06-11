@@ -1103,6 +1103,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
       // Handle commercial bookings (no payment, just store data)
       if (isCommercial) {
+        if (typeof window !== "undefined") {
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: "commercial_booking_submitted",
+            service_type: formData.commercial.cleanType
+          });
+        }
         setSubmitSuccess(
           "Thank you for your commercial booking request! We'll contact you soon to discuss your cleaning needs."
         );
@@ -1118,6 +1125,15 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
 
       if (result.checkoutUrl) {
+        // Push to GTM dataLayer
+        if (typeof window !== "undefined") {
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: "begin_checkout",
+            service_type: formData.cleaningType,
+            value: Object.values(finalPricing.breakdown).reduce((a, b) => a + b, 0)
+          });
+        }
         window.location.href = result.checkoutUrl;
       } else {
         setSubmitError("No checkout URL received. Please contact support.");
@@ -1176,6 +1192,17 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
+      // Push to GTM dataLayer
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "generate_lead",
+          lead_source: "Booking Flow Discount Step",
+          offer: "WELCOME15"
+        });
+      }
+
       setPromoCode("WELCOME15");
       setAppliedPromo({ code: "WELCOME15", type: "PERCENT_OFF", value: 15, isStackable: false });
       
