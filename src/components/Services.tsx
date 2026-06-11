@@ -306,11 +306,13 @@ const BookingSummaryCard = ({
 
           {/* Referral Applied Confirmation */}
           {appliedPromo?.category === 'REFERRAL' && (
-            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
-              <span className="flex items-center gap-1.5">
-                ✓ {appliedPromo.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
-              </span>
-              <span>-A${appliedPromo.value.toFixed(2)}</span>
+            <div className="flex flex-col gap-0.5 pt-2 border-t border-gray-100">
+              <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42]">
+                <span className="flex items-center gap-1.5">
+                  ✓ {appliedPromo.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
+                </span>
+              </div>
+              <p className="text-[11px] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
             </div>
           )}
 
