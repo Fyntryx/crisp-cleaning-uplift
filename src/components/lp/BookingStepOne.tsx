@@ -193,6 +193,7 @@ export default function BookingStepOne() {
           </button>
           
           <Button 
+            id="btn-initiate-booking"
             onClick={handleContinue} 
             size="lg" 
             className="rounded-full px-8 py-5 text-sm font-bold bg-primary hover:bg-primary/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:shadow-[#FB8C42]/20 transition-all flex items-center gap-2 group"
