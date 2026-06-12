@@ -70,7 +70,7 @@ interface TestimonialsProps {
   topTitle?: string | null;
   hideBeforeAfter?: boolean;
   hideReviews?: boolean;
-  layout?: "center" | "split";
+  layout?: "center" | "left";
   reviews?: { text: string; author: string }[];
   googleReviewCount?: number;
 }
