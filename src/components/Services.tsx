@@ -291,9 +291,12 @@ const BookingSummaryCard = ({
               <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
             </div>
           )}
-          {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && appliedPromo?.category !== 'REFERRAL' && (
+          {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && appliedPromo && (
             <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
-              <span>{pricingResult?.breakdown?.discount?.name}</span>
+              <span className="flex items-center gap-1.5">
+                {pricingResult?.breakdown?.discount?.name}
+                <button onClick={() => setAppliedPromo(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove promo code">✕</button>
+              </span>
               <span>-A${pricingResult?.breakdown?.discount?.amount?.toFixed(2)}</span>
             </div>
           )}
@@ -305,11 +308,12 @@ const BookingSummaryCard = ({
           )}
 
           {/* Referral Applied Confirmation */}
-          {appliedPromo?.category === 'REFERRAL' && (
+          {appliedReferral && (
             <div className="flex flex-col gap-0.5 pt-2 border-t border-gray-100">
               <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42]">
                 <span className="flex items-center gap-1.5">
-                  ✓ {appliedPromo.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
+                  ✓ {appliedReferral.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
+                  <button onClick={() => setAppliedReferral(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove referral code">✕</button>
                 </span>
               </div>
               <p className="text-[11px] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
@@ -350,10 +354,13 @@ const BookingSummaryCard = ({
                   });
                   const data = await res.json();
                   if (data.valid) {
-                    setAppliedPromo(data.promo);
+                    if (data.promo.category === 'REFERRAL') {
+                      setAppliedReferral(data.promo);
+                    } else {
+                      setAppliedPromo(data.promo);
+                    }
                     setPromoCode('');
                   } else {
-                    setAppliedPromo(undefined);
                     alert(data.error || 'Invalid promo code');
                   }
                 } catch (error) {
@@ -561,6 +568,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number; isStackable?: boolean; referralType?: 'CLEANER_REFERRAL' | 'CUSTOMER_REFERRAL'; category?: string } | undefined>(undefined);
+  const [appliedReferral, setAppliedReferral] = useState<{ code: string; type: 'REFERRAL'; value: number; referralType: 'CLEANER_REFERRAL' | 'CUSTOMER_REFERRAL' } | undefined>(undefined);
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
@@ -979,7 +987,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       petsInstructions: formData.instructions.pets || "",
       preferredChemicals: formData.instructions.chemicals || "",
       notes: formData.instructions.notes || "",
-      referralCode: promoCode || undefined,
+      referralCode: appliedReferral?.code || undefined,
+      promoCode: appliedPromo?.code || promoCode || undefined,
       outOfAreaFee: outOfAreaFee || 0,
     };
   };
