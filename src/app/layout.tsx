@@ -7,6 +7,7 @@ import Providers from "./providers";
 import StickyPhoneWidget from "@/components/StickyPhoneWidget";
 import RadiusInitializer from "@/components/RadiusInitializer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ fbq('track', 'PageView');`
           <Sonner />
           <StickyPhoneWidget />
           <SpeedInsights />
+          <Analytics />
         </Providers>
       </body>
     </html>
