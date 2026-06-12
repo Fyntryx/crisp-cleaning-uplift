@@ -168,6 +168,8 @@ const BookingSummaryCard = ({
   setIsValidatingPromo,
   appliedPromo,
   setAppliedPromo,
+  appliedReferral,
+  setAppliedReferral,
   apiBaseUrl,
   outOfAreaFee = 0,
 }: {
@@ -181,6 +183,8 @@ const BookingSummaryCard = ({
   setIsValidatingPromo: (val: boolean) => void;
   appliedPromo?: { code: string; type: string; value: number; isStackable?: boolean; referralType?: string; category?: string };
   setAppliedPromo: (val: any) => void;
+  appliedReferral?: { code: string; type: string; value: number; referralType?: string; category?: string };
+  setAppliedReferral: (val: any) => void;
   apiBaseUrl: string;
   outOfAreaFee?: number;
 }) => (
@@ -2903,6 +2907,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         setIsValidatingPromo={setIsValidatingPromo}
                         appliedPromo={appliedPromo}
                         setAppliedPromo={setAppliedPromo}
+                        appliedReferral={appliedReferral as any}
+                        setAppliedReferral={setAppliedReferral}
                         apiBaseUrl={API_BASE_URL}
                         outOfAreaFee={outOfAreaFee}
                       />
@@ -2940,6 +2946,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         setIsValidatingPromo={setIsValidatingPromo}
                         appliedPromo={appliedPromo}
                         setAppliedPromo={setAppliedPromo}
+                        appliedReferral={appliedReferral as any}
+                        setAppliedReferral={setAppliedReferral}
                         apiBaseUrl={API_BASE_URL}
                         outOfAreaFee={outOfAreaFee}
                         className="shadow-none border-none !bg-transparent"
