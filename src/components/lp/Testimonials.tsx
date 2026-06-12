@@ -70,11 +70,12 @@ interface TestimonialsProps {
   topTitle?: string | null;
   hideBeforeAfter?: boolean;
   hideReviews?: boolean;
-  layout?: "center" | "left";
+  layout?: "center" | "split";
   reviews?: { text: string; author: string }[];
+  googleReviewCount?: number;
 }
 
-export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews }: TestimonialsProps) {
+export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews, googleReviewCount = 14 }: TestimonialsProps) {
   const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ loop: true, align: 'center', watchDrag: false, breakpoints: { '(min-width: 768px)': { active: false } } });
   const [reviewsRef] = useEmblaCarousel({ loop: false, align: 'start', breakpoints: { '(min-width: 768px)': { active: false } } });
   const [isInteracting, setIsInteracting] = React.useState(false);
@@ -165,7 +166,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
                   <Star key={idx} className="w-5 h-5 fill-[#FB8C42] text-[#FB8C42]" />
                 ))}
               </div>
-              <span className="font-bold text-sm text-gray-900">Rated 4.9 on Google · 14 verified reviews</span>
+              <span className="font-bold text-sm text-gray-900">Rated 4.9 on Google · {googleReviewCount} verified reviews</span>
             </div>
 
             <a

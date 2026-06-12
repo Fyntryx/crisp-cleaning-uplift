@@ -13,13 +13,20 @@ import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Footer from "@/components/Footer";
 import LeadPopup from "@/components/LeadPopup";
+import { sanityFetch } from "@/sanity/lib/live";
 
 export const metadata = {
   title: "Crisp Cleaning | Melbourne's most consistent home clean",
   description: "Walk in. Breathe out. Your home is exactly how it should be. Book your consistent, detailed clean today.",
 };
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount }`
+  });
+  
+  const googleReviewCount = siteSettings?.googleReviewCount || 14;
+
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary relative w-full overflow-x-hidden">
       <script
@@ -165,7 +172,7 @@ export default function LandingPage() {
       
       <Hero />
       <QuoteRequestPanel />
-      <Testimonials />
+      <Testimonials googleReviewCount={googleReviewCount} />
       <Difference />
       <WhyCrisp />
       <Process />
