@@ -575,6 +575,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [appliedReferral, setAppliedReferral] = useState<{ code: string; type: 'REFERRAL'; value: number; referralType: 'CLEANER_REFERRAL' | 'CUSTOMER_REFERRAL' } | undefined>(undefined);
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
+  const [discountClaimed, setDiscountClaimed] = useState(false);
 
   useEffect(() => {
     const handleUrlBooking = () => {
@@ -1221,6 +1222,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
       setPromoCode("WELCOME15");
       setAppliedPromo({ code: "WELCOME15", type: "PERCENT_OFF", value: 15, isStackable: false });
+      setDiscountClaimed(true);
       
       setSubmitError(null);
       setSubmitSuccess(null);
@@ -1242,7 +1244,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     if (isStepValid() && currentStep < totalSteps) {
       setSubmitError(null); // Clear errors when navigating
       setSubmitSuccess(null); // Clear success message when navigating
-      setCurrentStep((prev) => prev + 1);
+      // If discount was already claimed, skip step 3 when navigating forward from step 2
+      if (currentStep === 2 && !isCommercial && discountClaimed) {
+        setCurrentStep(4);
+      } else {
+        setCurrentStep((prev) => prev + 1);
+      }
     }
   };
 
@@ -1262,7 +1269,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     if (currentStep > 1) {
       setSubmitError(null); // Clear errors when navigating
       setSubmitSuccess(null); // Clear success message when navigating
-      setCurrentStep((prev) => prev - 1);
+      if (currentStep === 4 && !isCommercial) {
+        setCurrentStep(2); // Skip Step 3 (Discount step) when going back from Step 4
+      } else {
+        setCurrentStep((prev) => prev - 1);
+      }
     }
   };
 
@@ -2794,11 +2805,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   ]).map((item, idx, arr) => {
                     const isCompleted = item.step < currentStep;
                     const isActive = item.step === currentStep;
+                    const isStepDisabled = item.step >= currentStep || (!isCommercial && item.step === 3 && currentStep > 3);
 
                     return (
                       <div key={idx} className="flex items-center shrink-0">
                         <button
-                          disabled={item.step >= currentStep}
+                          disabled={isStepDisabled}
                           onClick={() => {
                             if (item.step === 1) {
                               setIsModalOpen(false);
@@ -2807,10 +2819,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                                 window.dispatchEvent(new Event("triggerLeadPopup"));
                               }
                             } else if (item.step < currentStep) {
+                              if (item.step === 3 && currentStep > 3) return;
                               setCurrentStep(item.step);
                             }
                           }}
-                          className={`flex items-center gap-2 transition-all ${item.step < currentStep ? "cursor-pointer hover:opacity-80" : "cursor-default"
+                          className={`flex items-center gap-2 transition-all ${!isStepDisabled && item.step < currentStep ? "cursor-pointer hover:opacity-80" : "cursor-default"
                             }`}
                         >
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isActive

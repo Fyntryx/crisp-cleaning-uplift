@@ -69,6 +69,7 @@ export interface PricingRequest {
     code: string;
     type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL';
     value: number;
+    isStackable?: boolean;
   };
   outOfAreaFee?: number;
 }
@@ -179,7 +180,10 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   let totalDiscount = 0;
 
   // Frequency discount
-  const frequencyDiscountPercent = frequencyDiscounts[request.frequency] ?? 0;
+  let frequencyDiscountPercent = frequencyDiscounts[request.frequency] ?? 0;
+  if (request.appliedPromo && request.appliedPromo.isStackable === false) {
+    frequencyDiscountPercent = 0;
+  }
   if (frequencyDiscountPercent > 0) {
     const frequencyDiscountAmount = (subtotal * frequencyDiscountPercent) / 100;
     discounts.frequency = {
