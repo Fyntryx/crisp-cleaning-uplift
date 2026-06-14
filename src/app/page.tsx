@@ -159,7 +159,7 @@ export default async function LandingPage() {
                     "name": "How do you ensure security of my property?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "We take your security very seriously. Our team members undergo thorough background checks, a and we have stringent protocols in place to safeguard your property. Your home is always locked and secured upon completion of the clean."
+                      "text": "We take your security very seriously. Our team members undergo thorough background checks, and we have stringent protocols in place to safeguard your property. Your home is always locked and secured upon completion of the clean"
                     }
                   }
                 ]

@@ -26,7 +26,7 @@ export default function ServiceDifference({ title, subtitle }: ServiceDifference
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#FB8C42]" />,
       title: "Bond-back guarantee",
-      description: "If anything is missed, we come back within 48 hours and fix it free. Your bond is our responsibility."
+      description: "If anything is missed, we come back within 72 hours and fix it free. Your bond is our responsibility."
     },
     {
       icon: <Headset className="w-5 h-5 text-[#FB8C42]" />,
@@ -36,7 +36,7 @@ export default function ServiceDifference({ title, subtitle }: ServiceDifference
     {
       icon: <CalendarDays className="w-5 h-5 text-[#FB8C42]" />,
       title: "Flexible scheduling",
-      description: "We work around your move-out timeline. Book with 48 hours notice and we'll be there exactly when you need us."
+      description: "We work around your move-out timeline. Book with 72 hours notice and we'll be there exactly when you need us."
     }
   ];
 

@@ -67,7 +67,7 @@ const faqs = [
     question: "How much notice do I need to give?",
     answer: (
       <>
-        We require at least 48 hours notice to book. The booking form won't allow same-day or next-day scheduling. Need something urgent? <a href="tel:0451433786" className="font-semibold text-primary hover:underline transition-colors">Call us</a> directly and we'll do our best.
+        We require at least 72 hours notice to book. The booking form won't allow same-day or next-day scheduling. Need something urgent? <a href="tel:0451433786" className="font-semibold text-primary hover:underline transition-colors">Call us</a> directly and we'll do our best.
       </>
     )
   }

@@ -21,8 +21,8 @@ export default function ServiceHero() {
             <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 md:mt-0" />
             <p>
               <strong>BOND-BACK GUARANTEE — </strong> 
-              Cleaned to rental inspection standard. If your property manager isn't satisfied, we come back <br className="hidden md:block" />
-              and fix it free within 48 hours.
+              Cleaned to rental inspection standard. If your property manager isn't satisfied, we come back
+              and fix it free within 72 hours.
             </p>
           </div>
           <div className="text-white/90 text-[12px] whitespace-nowrap hidden md:flex items-center gap-4">

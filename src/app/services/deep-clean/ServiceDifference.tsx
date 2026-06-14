@@ -35,8 +35,8 @@ export default function ServiceDifference({ title, subtitle }: ServiceDifference
     },
     {
       icon: <Sprout className="w-5 h-5 text-[#FB8C42]" />,
-      title: "48hr re-clean guarantee",
-      description: "Not satisfied? We come back within 48 hours and fix it. Free. No arguments."
+      title: "72hr re-clean guarantee",
+      description: "Not satisfied? We come back within 72 hours and fix it. Free. No arguments."
     }
   ];
 

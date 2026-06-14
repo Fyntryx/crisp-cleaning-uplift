@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+
 
 export default function LeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -117,13 +117,7 @@ export default function LeadPopup() {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[#1E1915]/60 backdrop-blur-sm animate-in fade-in duration-300">
       <div className="bg-white w-full max-w-[420px] rounded-[32px] p-8 md:p-10 relative shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col items-center text-center">
         
-        {/* Close Button */}
-        <button 
-          onClick={() => setIsOpen(false)}
-          className="absolute top-5 right-5 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-500 transition-colors"
-        >
-          <X className="w-4 h-4" />
-        </button>
+
 
         {/* 3D Image (User needs to upload this to public/images/house-popup.png) */}
         <div className="relative w-48 h-48 -mt-16 mb-2">

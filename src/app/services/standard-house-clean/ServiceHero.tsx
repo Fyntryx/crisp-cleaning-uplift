@@ -7,7 +7,7 @@ import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 const trustItems = [
   "Insured & Vetted",
   "Same Cleaner Every Visit",
-  "48hr Re-clean Guarantee",
+  "72hr Re-clean Guarantee",
   "Eco-Friendly Products",
   "4.9 ★ on Google",
 ];

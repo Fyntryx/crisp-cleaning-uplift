@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     question: "How do you ensure security of my property?",
-    answer: "We take your security very seriously. Our team members undergo thorough background checks, a and we have stringent protocols in place to safeguard your property. Your home is always locked and secured upon completion of the clean."
+    answer: "We take your security very seriously. Our team members undergo thorough background checks, and we have stringent protocols in place to safeguard your property. Your home is always locked and secured upon completion of the clean"
   }
 ];
 

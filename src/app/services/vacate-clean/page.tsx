@@ -67,13 +67,13 @@ const faqs = [
     question: "How much notice do I need to give?",
     answer: (
       <>
-        We require at least 48 hours notice to book. The booking form won't allow same-day or next-day scheduling. Need something urgent? <a href="tel:0400000000" className="font-semibold text-primary hover:underline transition-colors">Call us</a> directly and we'll do our best.
+        We require at least 72 hours notice to book. The booking form won't allow same-day or next-day scheduling. Need something urgent? <a href="tel:0400000000" className="font-semibold text-primary hover:underline transition-colors">Call us</a> directly and we'll do our best.
       </>
     )
   },
   {
     question: "Do you guarantee I will get my bond back?",
-    answer: "Yes. Our Vacate Clean is backed by a 48-hour bond-back guarantee. If your property manager flags any cleaning issues on the exit report within 48 hours of our clean, we will return to fix them completely free of charge."
+    answer: "Yes. Our Vacate Clean is backed by a 72-hour bond-back guarantee. If your property manager flags any cleaning issues on the exit report within 72 hours of our clean, we will return to fix them completely free of charge."
   }
 ];
 
