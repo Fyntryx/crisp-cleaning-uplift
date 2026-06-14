@@ -1682,7 +1682,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const currentMonth = viewDate.getMonth();
     const currentYear = viewDate.getFullYear();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+    const firstDayOfMonth = (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7;
     const monthName = new Date(currentYear, currentMonth).toLocaleDateString(
       "en-US",
       { month: "long", year: "numeric" }
