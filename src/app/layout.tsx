@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -58,7 +59,9 @@ fbq('track', 'PageView');`
         }} />
         <Providers>
           <RadiusInitializer />
-          <GTMTracker />
+          <Suspense fallback={null}>
+            <GTMTracker />
+          </Suspense>
           <SchemaMarkup />
           {children}
           <Toaster />
