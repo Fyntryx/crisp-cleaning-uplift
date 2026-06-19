@@ -56,7 +56,7 @@ export default function WhyCrisp() {
                 <div className="w-12 h-12 bg-orange-50 group-hover:bg-[#FB8C42] transition-colors duration-300 rounded-[14px] flex items-center justify-center mb-6">
                   {i === 5 ? (
                     <img
-                      src="/workflow.png?v=2"
+                      src="/cleaning-workflow-melbourne.webp?v=2"
                       alt={feature.title}
                       /* Reduced custom icon size slightly to match Lucide icons */
                       className="w-5 h-5 object-contain transition-all duration-300 group-hover:brightness-0 group-hover:invert"

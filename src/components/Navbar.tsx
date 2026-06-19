@@ -29,25 +29,25 @@ const navLinks = [
       {
         name: "Standard House Clean",
         desc: "Consistent maintenance on your schedule",
-        href: "/services/standard-house-clean",
+        href: "/house-cleaning-melbourne",
         icon: RefreshCw
       },
       {
         name: "Deep Clean",
         desc: "A thorough reset for every room",
-        href: "/services/deep-clean",
+        href: "/deep-cleaning-melbourne",
         icon: Sparkles
       },
       {
         name: "Vacate Clean",
         desc: "Cleaned to inspection standard",
-        href: "/services/vacate-clean",
+        href: "/end-of-lease-cleaning-melbourne",
         icon: Key
       },
     ],
   },
   { name: "About Us", href: "/about" },
-  { name: "Service Areas", href: "/services/standard-house-clean#service-area" },
+  { name: "Service Areas", href: "/house-cleaning-melbourne#service-area" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -104,7 +104,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
           className="flex items-center outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0"
         >
           <img
-            src="/logo.png?v=3"
+            src="/crisp-cleaning-logo.webp?v=3"
             alt="Crisp Cleaning"
             className="h-12 md:h-14 w-auto object-contain"
           />

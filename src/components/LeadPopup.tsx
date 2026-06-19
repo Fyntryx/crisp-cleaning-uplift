@@ -119,10 +119,10 @@ export default function LeadPopup() {
         
 
 
-        {/* 3D Image (User needs to upload this to public/images/house-popup.png) */}
+        {/* 3D Image (User needs to upload this to public/images/crisp-cleaning-house-popup.webp) */}
         <div className="relative w-48 h-48 -mt-16 mb-2">
           <Image 
-            src="/images/house-popup.png" 
+            src="/images/crisp-cleaning-house-popup.webp" 
             alt="Crisp Cleaning House" 
             fill 
             className="object-contain drop-shadow-xl"

@@ -16,16 +16,20 @@ import LeadPopup from "@/components/LeadPopup";
 import { sanityFetch } from "@/sanity/lib/live";
 
 export const metadata = {
+  alternates: {
+    canonical: '/',
+  },
   title: "Crisp Cleaning | Melbourne's most consistent home clean",
   description: "Walk in. Breathe out. Your home is exactly how it should be. Book your consistent, detailed clean today.",
 };
 
 export default async function LandingPage() {
   const { data: siteSettings } = await sanityFetch({
-    query: `*[_type == "siteSettings"][0]{ googleReviewCount }`
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`
   });
   
   const googleReviewCount = siteSettings?.googleReviewCount || 14;
+  const googleRatingValue = siteSettings?.googleRatingValue || 4.9;
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary relative w-full overflow-x-hidden">
@@ -35,75 +39,6 @@ export default async function LandingPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
-              {
-                "@type": "LocalBusiness",
-                "@id": "https://crispcleaning.com.au/#localbusiness",
-                "name": "Crisp Cleaning",
-                "image": "https://crispcleaning.com.au/logo.png",
-                "description": "Professional home and house cleaning service in Melbourne.",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Melbourne",
-                  "addressRegion": "VIC",
-                  "addressCountry": "AU"
-                },
-                "areaServed": {
-                  "@type": "GeoCircle",
-                  "geoMidpoint": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -37.8136,
-                    "longitude": 144.9631
-                  },
-                  "geoRadius": "50000"
-                },
-                "aggregateRating": {
-                  "@type": "AggregateRating",
-                  "ratingValue": "4.9",
-                  "bestRating": "5",
-                  "reviewCount": "250"
-                },
-                "review": [
-                  {
-                    "@type": "Review",
-                    "author": {
-                      "@type": "Person",
-                      "name": "Andre B"
-                    },
-                    "reviewRating": {
-                      "@type": "Rating",
-                      "ratingValue": "5",
-                      "bestRating": "5"
-                    },
-                    "reviewBody": "Honestly felt like a brand new home."
-                  },
-                  {
-                    "@type": "Review",
-                    "author": {
-                      "@type": "Person",
-                      "name": "Natch L"
-                    },
-                    "reviewRating": {
-                      "@type": "Rating",
-                      "ratingValue": "5",
-                      "bestRating": "5"
-                    },
-                    "reviewBody": "Team took great care, really appreciated the communication - the small details dont go unnoticed! keep it up crisp"
-                  },
-                  {
-                    "@type": "Review",
-                    "author": {
-                      "@type": "Person",
-                      "name": "Kaan S"
-                    },
-                    "reviewRating": {
-                      "@type": "Rating",
-                      "ratingValue": "5",
-                      "bestRating": "5"
-                    },
-                    "reviewBody": "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work."
-                  }
-                ]
-              },
               {
                 "@type": "Service",
                 "serviceType": "House Cleaning",
@@ -170,20 +105,20 @@ export default async function LandingPage() {
       />
       <Navbar />
       
-      <Hero />
+      <Hero googleRatingValue={googleRatingValue} />
       <QuoteRequestPanel />
-      <Testimonials googleReviewCount={googleReviewCount} />
+      <Testimonials layout="center" googleReviewCount={googleReviewCount} googleRatingValue={googleRatingValue} />
       <Difference />
       <WhyCrisp />
       <Process />
       <Checklist />
-      <Stats />
+      <Stats googleRatingValue={googleRatingValue} />
       <Guarantee />
       <FAQ />
       <FinalCTA description="Every week without a cleaner is another week of catching up. Crisp has limited weekly slots per cleaner — once they're gone, they're gone." />
       
       <LeadPopup />
-      <Footer />
+      <Footer googleRatingValue={googleRatingValue} />
     </main>
   );
 }

@@ -7,6 +7,9 @@ import { ReviewItem } from "@/components/ReviewsCards";
 import ReviewClient from "@/components/ReviewsClient";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: '/review',
+  },
   title: "Client Reviews | Crisp Cleaning",
   description: "See what our happy customers have to say...",
 };

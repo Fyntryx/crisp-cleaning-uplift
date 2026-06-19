@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 "use client";
 
 import React from "react";
@@ -5,6 +6,13 @@ import Footer from "@/components/Footer";
 import ParallaxBubbles from "@/components/ParallaxBubbles";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/privacy-policy',
+  },
+};
+
 
 export default function PrivacyPolicyPage() {
   return (

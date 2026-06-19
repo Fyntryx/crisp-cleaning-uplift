@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -11,6 +10,13 @@ import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Testimonials from "@/components/lp/Testimonials";
 import { Shield, Star, CheckCircle2 } from "lucide-react";
+import { sanityFetch } from "@/sanity/lib/live";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/commercial-cleaning',
+  },
+};
 
 // --- DATA OBJECT ---
 const commercialCleaningData = {
@@ -18,11 +24,6 @@ const commercialCleaningData = {
     headline: "Professional Commercial Cleaning in Melbourne",
     subheadline: "Reliable cleaners. Instant online quote. Book in 60 seconds.",
   },
-  trustBar: [
-    { text: "4.9 Google Rating", icon: Star },
-    { text: "Fully Insured Cleaners", icon: Shield },
-    { text: "100% Satisfaction Guarantee", icon: CheckCircle2 },
-  ],
   faqs: [
     {
       question: "What is included in commercial cleaning?",
@@ -43,8 +44,21 @@ const commercialCleaningData = {
   ],
 };
 
-export default function CommercialCleaningPage() {
-  const { hero, trustBar, faqs } = commercialCleaningData;
+export default async function CommercialCleaningPage() {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`
+  });
+  
+  const googleReviewCount = siteSettings?.googleReviewCount || 14;
+  const googleRatingValue = siteSettings?.googleRatingValue || 4.9;
+
+  const { hero, faqs } = commercialCleaningData;
+
+  const trustBar = [
+    { text: `${googleRatingValue} Google Rating`, icon: Star },
+    { text: "Fully Insured Cleaners", icon: Shield },
+    { text: "100% Satisfaction Guarantee", icon: CheckCircle2 },
+  ];
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">
@@ -54,34 +68,6 @@ export default function CommercialCleaningPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
-              {
-                "@type": "LocalBusiness",
-                "@id": "https://crispcleaning.com.au/#localbusiness",
-                "name": "Crisp Cleaning",
-                "image": "https://crispcleaning.com.au/logo.png",
-                "description": "Professional office and commercial cleaning service in Melbourne.",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Melbourne",
-                  "addressRegion": "VIC",
-                  "addressCountry": "AU"
-                },
-                "areaServed": {
-                  "@type": "GeoCircle",
-                  "geoMidpoint": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -37.8136,
-                    "longitude": 144.9631
-                  },
-                  "geoRadius": "50000"
-                },
-                "aggregateRating": {
-                  "@type": "AggregateRating",
-                  "ratingValue": "4.9",
-                  "bestRating": "5",
-                  "reviewCount": "250"
-                }
-              },
               {
                 "@type": "Service",
                 "serviceType": "Commercial Cleaning",
@@ -99,6 +85,44 @@ export default function CommercialCleaningPage() {
                     "text": faq.answer
                   }
                 }))
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.crispcleaning.com.au"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Commercial Cleaning",
+                    "item": "https://www.crispcleaning.com.au/commercial-cleaning"
+                  }
+                ]
+              },
+              {
+                "@type": "HowTo",
+                "name": "How to Book a Commercial Clean",
+                "step": [
+                  {
+                    "@type": "HowToStep",
+                    "name": "Get a Quote",
+                    "text": "Fill out our online form to get an instant quote."
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "name": "Schedule Your Clean",
+                    "text": "Choose a date and time that works for you."
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "name": "Relax and Enjoy",
+                    "text": "Our professionals will clean your office to perfection."
+                  }
+                ]
               }
             ]
           })
@@ -148,7 +172,7 @@ export default function CommercialCleaningPage() {
       </section>
 
       {/* 3. Testimonials (Google reviews & Before/After slider) */}
-      <Testimonials />
+      <Testimonials googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
 
       {/* 4. Process Section (How It Works) */}
       <Process />
@@ -221,7 +245,7 @@ export default function CommercialCleaningPage() {
       {/* 9. Final CTA Section */}
       <FinalCTA />
 
-      <Footer />
+      <Footer googleRatingValue={googleRatingValue} />
     </main>
   );
 }

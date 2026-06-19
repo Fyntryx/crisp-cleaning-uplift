@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 
-export default function Hero() {
+interface HeroProps {
+  googleRatingValue?: number;
+}
+
+export default function Hero({ googleRatingValue = 4.9 }: HeroProps) {
   return (
     <section className="w-full relative overflow-hidden bg-[#FB8C42]/5 md:bg-[#1E1915] px-6 md:px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-screen">
 
@@ -69,7 +73,7 @@ export default function Hero() {
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">
             <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google" className="w-4 h-4" />
-            <span className="font-bold">4.9</span> Google
+            <span className="font-bold">{googleRatingValue}</span> Google
           </div>
 
           <div className="flex items-center gap-1.5 px-5 py-2.5 bg-white border border-gray-100 md:bg-white/10 md:border-white/20 rounded-full shadow-sm text-sm font-semibold text-gray-700 md:text-white">

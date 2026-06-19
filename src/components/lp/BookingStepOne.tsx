@@ -73,7 +73,7 @@ export default function BookingStepOne() {
         {/* Wizard Header */}
         <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
           <div className="flex items-center">
-            <img src="/logo.png?v=3" alt="Crisp Cleaning" className="h-8 md:h-10 object-contain" />
+            <img src="/crisp-cleaning-logo.webp?v=3" alt="Crisp Cleaning" className="h-8 md:h-10 object-contain" />
           </div>
           <div className="flex items-center gap-4">
             <span className="text-[9px] font-extrabold tracking-widest text-muted-foreground/50 uppercase">STEP 1 OF 5</span>

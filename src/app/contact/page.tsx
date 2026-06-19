@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 "use client";
 
 import React from "react";
@@ -19,6 +20,13 @@ import useScrollScale from "@/hooks/useScrollScale";
 
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/contact',
+  },
+};
+
 
 const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}>

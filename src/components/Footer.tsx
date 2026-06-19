@@ -1,18 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Star, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/#services" },
-  { name: "— Standard House Clean", href: "/services/standard-house-clean", isSub: true },
-  { name: "— Deep Clean", href: "/services/deep-clean", isSub: true },
-  { name: "— Vacate Clean", href: "/services/vacate-clean", isSub: true },
+  { name: "— Standard House Clean", href: "/house-cleaning-melbourne", isSub: true },
+  { name: "— Deep Clean", href: "/deep-cleaning-melbourne", isSub: true },
+  { name: "— Vacate Clean", href: "/end-of-lease-cleaning-melbourne", isSub: true },
   { name: "Reviews", href: "/#testimonials" },
   { name: "Contact", href: "/contact" },
 ];
 
-const Footer = () => {
+interface FooterProps {
+  googleRatingValue?: number;
+}
+
+const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
   return (
     <footer className="relative w-full rounded-t-[3rem] overflow-hidden border-t border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
 
@@ -33,7 +38,7 @@ const Footer = () => {
                 <Star key={s} className="w-5 h-5 fill-primary text-primary" />
               ))}
             </div>
-            <span className="font-bold text-foreground">4.9/5 Average Rating</span>
+            <span className="font-bold text-foreground">{googleRatingValue}/5 Average Rating</span>
           </div>
           <p className="text-muted-foreground font-medium text-sm md:text-base text-center">
             Trusted by hundreds of homes across Melbourne
@@ -46,9 +51,11 @@ const Footer = () => {
           {/* Logo & About */}
           <div className="md:col-span-5 flex flex-col items-center md:items-start">
             {/* <-- Replaced Text with Logo Image --> */}
-            <img
-              src="/logo.png?v=3"
+            <Image
+              src="/crisp-cleaning-logo.webp?v=3"
               alt="Crisp Cleaning Logo"
+              width={200}
+              height={48}
               // Added md:-ml-3 to pull it left and optically align the logo text with the paragraph
               className="h-12 w-auto mb-6 object-contain md:-ml-3"
             />

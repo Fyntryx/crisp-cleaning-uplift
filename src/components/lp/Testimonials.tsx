@@ -73,9 +73,10 @@ interface TestimonialsProps {
   layout?: "center" | "left";
   reviews?: { text: string; author: string }[];
   googleReviewCount?: number;
+  googleRatingValue?: number;
 }
 
-export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews, googleReviewCount = 14 }: TestimonialsProps) {
+export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews, googleReviewCount = 14, googleRatingValue = 4.9 }: TestimonialsProps) {
   const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ loop: true, align: 'center', watchDrag: false, breakpoints: { '(min-width: 768px)': { active: false } } });
   const [reviewsRef] = useEmblaCarousel({ loop: false, align: 'start', breakpoints: { '(min-width: 768px)': { active: false } } });
   const [isInteracting, setIsInteracting] = React.useState(false);
@@ -127,13 +128,13 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
           >
             <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 touch-pan-y">
               <div className="flex-[0_0_85%] md:flex-none min-w-0">
-                <BeforeAfterSlider beforeImage="/images/KitchenSinkBefore.png" afterImage="/images/KitchenSinkAfter.jpg" title="Kitchen Sink" />
+                <BeforeAfterSlider beforeImage="/images/kitchen-sink-before-cleaning-melbourne.webp" afterImage="/images/kitchen-sink-after-cleaning-melbourne.webp" title="Kitchen Sink" />
               </div>
               <div className="flex-[0_0_85%] md:flex-none min-w-0">
-                <BeforeAfterSlider beforeImage="/images/BathtubeBefore.jpg" afterImage="/images/BathTubeAfter.jpg" title="Bathtub" />
+                <BeforeAfterSlider beforeImage="/images/bathtube-before-cleaning-melbourne.webp" afterImage="/images/bathtube-after-cleaning-melbourne.webp" title="Bathtub" />
               </div>
               <div className="flex-[0_0_85%] md:flex-none min-w-0 pr-6 md:pr-0">
-                <BeforeAfterSlider beforeImage="/images/StoveTopBefore.jpg" afterImage="/images/StoveTopAfter.jpg" title="Stovetop" />
+                <BeforeAfterSlider beforeImage="/images/stove-top-before-cleaning-melbourne.webp" afterImage="/images/stove-top-after-cleaning-melbourne.webp" title="Stovetop" />
               </div>
             </div>
           </div>
@@ -166,7 +167,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
                   <Star key={idx} className="w-5 h-5 fill-[#FB8C42] text-[#FB8C42]" />
                 ))}
               </div>
-              <span className="font-bold text-sm text-gray-900">Rated 4.9 on Google · {googleReviewCount} verified reviews</span>
+              <span className="font-bold text-sm text-gray-900">Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews</span>
             </div>
 
             <a

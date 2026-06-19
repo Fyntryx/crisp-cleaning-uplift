@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Sparkles, MoveHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const IMAGE_BEFORE = "/images/kitchen-before.jpg";
-const IMAGE_AFTER = "/images/kitchen-after.jpg";
+const IMAGE_BEFORE = "/images/dirty-kitchen-before-cleaning.webp";
+const IMAGE_AFTER = "/images/sparkling-clean-kitchen.webp";
 
 export const BeforeAfterSection = () => {
   const [sliderPosition, setSliderPosition] = useState(50);

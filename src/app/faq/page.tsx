@@ -1,5 +1,13 @@
+import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import FAQsClient from "@/components/FAQsClient";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/faq',
+  },
+};
+
 
 const query = `
   *[_type == "faq"] | order(order asc) {

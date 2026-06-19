@@ -54,7 +54,7 @@ export const ReviewsGrid = ({ data }: ReviewsGridProps) => {
       gridItems.push({
         type: "image",
         id: `static-img-${gridIndex}`,
-        data: { imageUrl: mod === 2 ? "/before.png" : "/after.jpg" } as any,
+        data: { imageUrl: mod === 2 ? "/before-house-cleaning-melbourne.webp" : "/after-house-cleaning-melbourne.webp" } as any,
       });
     } else {
       gridItems.push({

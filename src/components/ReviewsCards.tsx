@@ -73,7 +73,7 @@ export const ReviewGridCard = React.memo(
             )}
             style={{ animationDelay: `${(index % 9) * 100}ms` }}>
             <img
-              src={review.imageUrl || "./before.png"}
+              src={review.imageUrl || "./before-house-cleaning-melbourne.webp"}
               alt="Client Story"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />

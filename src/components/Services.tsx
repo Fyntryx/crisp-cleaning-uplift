@@ -577,6 +577,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
   const [discountClaimed, setDiscountClaimed] = useState(false);
 
+  const prevStepRef = useRef(1);
+
+
+
   useEffect(() => {
     const handleUrlBooking = () => {
       if (typeof window !== "undefined") {
@@ -697,6 +701,40 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [pricingConfig, setPricingConfig] = useState<PricingConfig | undefined>(undefined);
   const [isLoadingConfig, setIsLoadingConfig] = useState(true);
   const [outOfAreaFee, setOutOfAreaFee] = useState(0); // $50 if outside standard radius, within service area
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && currentStep > prevStepRef.current) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      
+      const fireEvent = (name: string) => {
+        (window as any).dataLayer.push({
+          event: name,
+          step: prevStepRef.current,
+          service_category: formData.serviceCategory,
+        });
+      };
+
+      if (prevStepRef.current === 1 && currentStep === 2) {
+        fireEvent("service_selected");
+        (window as any).dataLayer.push({
+          event: "begin_checkout",
+          service_type: formData.cleaningType,
+          value: pricingResult?.total || 0
+        });
+      } else if (prevStepRef.current === 2 && currentStep === 3) {
+        fireEvent("customise_complete");
+      } else if (prevStepRef.current === 2 && currentStep === 4) {
+        fireEvent("customise_complete");
+      } else if (prevStepRef.current === 3 && currentStep === 4) {
+        fireEvent("discount_step_complete");
+      } else if (prevStepRef.current === 4 && currentStep === 5) {
+        fireEvent("schedule_complete");
+      } else if (prevStepRef.current === 5 && currentStep === 6) {
+        fireEvent("details_complete");
+      }
+    }
+    prevStepRef.current = currentStep;
+  }, [currentStep, formData.serviceCategory, formData.cleaningType, pricingResult?.total]);
 
   const resetForm = () => {
     setFormData({
@@ -1145,7 +1183,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         if (typeof window !== "undefined") {
           (window as any).dataLayer = (window as any).dataLayer || [];
           (window as any).dataLayer.push({
-            event: "begin_checkout",
+            event: "booking_confirmed",
             service_type: formData.cleaningType,
             value: pricingResult?.total || 0
           });

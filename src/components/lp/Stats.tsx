@@ -8,7 +8,11 @@ const reviews = [
   { text: "They've done an amazing job on our home. Incredibly detailed, didn't miss a single crook.", author: "Abdi S" }
 ];
 
-export default function Stats() {
+interface StatsProps {
+  googleRatingValue?: number;
+}
+
+export default function Stats({ googleRatingValue = 4.9 }: StatsProps = {}) {
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6 md:px-8 max-w-6xl">
@@ -35,7 +39,7 @@ export default function Stats() {
             </div>
             <div>
               <div className="flex items-end gap-1.5 md:gap-2 mb-2">
-                <span className="text-4xl md:text-5xl font-bold text-gray-800 leading-none">4.9</span>
+                <span className="text-4xl md:text-5xl font-bold text-gray-800 leading-none">{googleRatingValue}</span>
                 <Star className="w-5 h-5 md:w-6 md:h-6 fill-[#FB8C42] text-[#FB8C42] mb-1" />
               </div>
               <p className="text-gray-500 text-[11px] md:text-sm font-medium mb-3 md:mb-4 leading-snug">Average rating across all reviews</p>

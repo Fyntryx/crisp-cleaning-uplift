@@ -27,8 +27,8 @@ const CONTENT = {
         </div>
       </>
     ),
-    mainImage: "/images/OurMissionbedroom_2.jpg",
-    secondaryImage: "/images/OurMissionliving_room_4.png",
+    mainImage: "/images/house-cleaning-melbourne-bedroom.webp",
+    secondaryImage: "/images/house-cleaning-melbourne-living-room.webp",
   },
   story: {
     heading: "From a humble vision to a pioneering force in cleaning",
@@ -53,8 +53,8 @@ const CONTENT = {
         </div>
       </>
     ),
-    mainImage: "/images/OurStory.png",
-    secondaryImage: "/images/OurStoryliving_room_7.png",
+    mainImage: "/images/our-story-cleaning-company-melbourne.webp",
+    secondaryImage: "/images/clean-living-room-melbourne.webp",
   },
 };
 
