@@ -1,0 +1,63 @@
+﻿
+> crisp-cleaning@0.0.0 build
+> next build
+
+  Γû▓ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+node.exe : Failed to compile.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Failed to compile.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+./src/hooks/useScrollScale.tsx
+Error: 
+  [31mx[0m You're importing a component that needs useEffect. It only works in a Client Component but none of its 
+parents are marked with "use client", so they're Server Components by default.
+  [31m|[0m Learn more: https://nextjs.org/docs/getting-started/react-essentials
+  [31m|[0m 
+  [31m|[0m 
+   ,-[[36;1;4mC:\Users\hp\Downloads\fyntryx\Projects\crisp-cleaning-uplift\src\hooks\useScrollScale.tsx[0m:1:1]
+ [2m1[0m | import React, { useEffect, useRef, useState } from "react";
+   : [31;1m                ^^^^^^^^^[0m
+ [2m2[0m | 
+ [2m3[0m | interface UseScrollScaleOptions {
+ [2m3[0m |   threshold?: number;
+   `----
+
+  [31mx[0m You're importing a component that needs useRef. It only works in a Client Component but none of its 
+parents are marked with "use client", so they're Server Components by default.
+  [31m|[0m Learn more: https://nextjs.org/docs/getting-started/react-essentials
+  [31m|[0m 
+  [31m|[0m 
+   ,-[[36;1;4mC:\Users\hp\Downloads\fyntryx\Projects\crisp-cleaning-uplift\src\hooks\useScrollScale.tsx[0m:1:1]
+ [2m1[0m | import React, { useEffect, useRef, useState } from "react";
+   : [31;1m                           ^^^^^^[0m
+ [2m2[0m | 
+ [2m3[0m | interface UseScrollScaleOptions {
+ [2m3[0m |   threshold?: number;
+   `----
+
+  [31mx[0m You're importing a component that needs useState. It only works in a Client Component but none of its 
+parents are marked with "use client", so they're Server Components by default.
+  [31m|[0m Learn more: https://nextjs.org/docs/getting-started/react-essentials
+  [31m|[0m 
+  [31m|[0m 
+   ,-[[36;1;4mC:\Users\hp\Downloads\fyntryx\Projects\crisp-cleaning-uplift\src\hooks\useScrollScale.tsx[0m:1:1]
+ [2m1[0m | import React, { useEffect, useRef, useState } from "react";
+   : [31;1m                                   ^^^^^^^^[0m
+ [2m2[0m | 
+ [2m3[0m | interface UseScrollScaleOptions {
+ [2m3[0m |   threshold?: number;
+   `----
+
+Import trace for requested module:
+./src/hooks/useScrollScale.tsx
+./src/app/contact/page.tsx
+
+
+> Build failed because of webpack errors

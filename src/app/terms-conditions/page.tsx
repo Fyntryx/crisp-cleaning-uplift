@@ -1,5 +1,4 @@
-import { Metadata } from "next";
-"use client";
+﻿import { Metadata } from "next";
 
 import React from "react";
 import Footer from "@/components/Footer";

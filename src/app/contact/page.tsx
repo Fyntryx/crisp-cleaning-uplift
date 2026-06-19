@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-"use client";
-
 import React from "react";
 import Footer from "@/components/Footer";
 import ParallaxBubbles from "@/components/ParallaxBubbles";
@@ -16,17 +14,15 @@ import {
   Facebook,
   Linkedin,
 } from "lucide-react";
-import useScrollScale from "@/hooks/useScrollScale";
-
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
+import ContactContent from "./ContactContent";
 
 export const metadata: Metadata = {
   alternates: {
     canonical: '/contact',
   },
 };
-
 
 const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -35,10 +31,6 @@ const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const ContactPage = () => {
-  const { ref: contactContentRef, style: contactContentStyle } = useScrollScale(
-    { threshold: 0.1 }
-  );
-
   return (
     <>
       <div className="min-h-screen bg-background flex flex-col">
@@ -51,10 +43,7 @@ const ContactPage = () => {
         />
 
         <section className="relative py-20 -mt-10 z-20">
-          <div
-            ref={contactContentRef as React.RefObject<HTMLDivElement>}
-            style={contactContentStyle}
-            className="container mx-auto px-6">
+          <ContactContent>
             <div className="grid lg:grid-cols-5 gap-12">
               <div className="lg:col-span-2 space-y-6">
                 <div className="glass-card rounded-2xl p-6 hover-lift">
@@ -122,7 +111,6 @@ const ContactPage = () => {
                       <p className="text-[14px] text-gray-500 font-normal mb-3">
                         Follow us on social media
                       </p>
-
                       <div className="flex items-center gap-3">
                         <a
                           href="https://www.instagram.com/crispcleaningmelbourne/"
@@ -239,7 +227,7 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </ContactContent>
         </section>
 
         <CTASection
