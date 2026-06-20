@@ -18,38 +18,55 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import { RefreshCw, Sparkles, Key } from "lucide-react";
+import { getLiveSuburbs } from "@/lib/suburbs";
+import { RefreshCw, Sparkles, Key, Building2, MapPin } from "lucide-react";
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  {
-    name: "Services",
-    href: "#",
-    subLinks: [
-      {
-        name: "Standard House Clean",
-        desc: "Consistent maintenance on your schedule",
-        href: "/house-cleaning-melbourne",
-        icon: RefreshCw
-      },
-      {
-        name: "Deep Clean",
-        desc: "A thorough reset for every room",
-        href: "/deep-cleaning-melbourne",
-        icon: Sparkles
-      },
-      {
-        name: "Vacate Clean",
-        desc: "Cleaned to inspection standard",
-        href: "/end-of-lease-cleaning-melbourne",
-        icon: Key
-      },
-    ],
-  },
-  { name: "About Us", href: "/about" },
-  { name: "Service Areas", href: "/house-cleaning-melbourne#service-area" },
-  { name: "Contact", href: "/contact" },
-];
+const getNavLinks = () => {
+  const liveSuburbs = getLiveSuburbs();
+  return [
+    {
+      name: "Services",
+      href: "#",
+      subLinks: [
+        {
+          name: "Standard House Clean",
+          desc: "Consistent maintenance on your schedule",
+          href: "/house-cleaning-melbourne",
+          icon: RefreshCw
+        },
+        {
+          name: "Deep Clean",
+          desc: "A thorough reset for every room",
+          href: "/deep-cleaning-melbourne",
+          icon: Sparkles
+        },
+        {
+          name: "Vacate Clean",
+          desc: "Cleaned to inspection standard",
+          href: "/end-of-lease-cleaning-melbourne",
+          icon: Key
+        },
+        {
+          name: "Apartment Clean",
+          desc: "Specialized for units & apartments",
+          href: "/apartment-cleaning-melbourne",
+          icon: Building2
+        },
+      ],
+    },
+    ...(liveSuburbs.length > 0 ? [{
+      name: "Areas",
+      href: "#",
+      subLinks: liveSuburbs.map(s => ({
+        name: s.name,
+        desc: "Local cleaning teams available",
+        href: `/service-areas/${s.slug}`,
+        icon: MapPin
+      }))
+    }] : []),
+    { name: "Reviews", href: "/#testimonials" },
+  ];
+};
 
 export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: string }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -111,7 +128,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 absolute left-[46%] top-1/2 -translate-x-1/2 -translate-y-1/2">
-          {navLinks.map((link) => {
+          {getNavLinks().map((link) => {
             if (link.subLinks) {
               const isSubActive = link.subLinks.some(
                 (sub) => sub.href === pathname,
@@ -204,11 +221,13 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
           </a>
 
           <div className="hidden lg:block">
-            <Link href={bookingLink}>
-              <button className="bg-[#FB8C42] hover:bg-[#ea6309] text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_14px_rgba(249,115,22,0.3)] transition-all hover:-translate-y-0.5">
-                Get an Instant Quote
-              </button>
-            </Link>
+            <Button
+              asChild
+              variant="default"
+              className="rounded-full px-6 py-5 font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all text-[14.5px]"
+            >
+              <Link href={bookingLink}>Get a Quote</Link>
+            </Button>
           </div>
         </div>
 
@@ -238,7 +257,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-150 animate-fade-in max-h-[85vh] overflow-y-auto">
           <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link) => {
+            {getNavLinks().map((link) => {
               if (link.subLinks) {
                 return (
                   <div key={link.name} className="flex flex-col gap-2">
@@ -276,6 +295,9 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
                 <Phone size={16} className="text-[#FB8C42]" /> 0451 433 786
               </a>
               <div className="mt-3 flex flex-col gap-3">
+                <Button asChild className="w-full rounded-full py-6 font-bold shadow-lg shadow-primary/20 text-base mt-2">
+                  <Link href={bookingLink} onClick={() => setIsMobileMenuOpen(false)}>Get a Quote</Link>
+                </Button>
                 <a
                   href="https://app.crispcleaning.com.au/"
                   target="_blank"
@@ -285,11 +307,6 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
                 >
                   Login
                 </a>
-                <Link href={bookingLink} onClick={() => setIsMobileMenuOpen(false)}>
-                  <button className="w-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-6 py-3 rounded-full font-bold text-sm shadow-md transition-all">
-                    Get an Instant Quote
-                  </button>
-                </Link>
               </div>
             </div>
           </nav>

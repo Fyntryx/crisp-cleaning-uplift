@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Star, ArrowRight } from "lucide-react";
 
+import { getLiveSuburbs } from "@/lib/suburbs";
+
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
@@ -9,6 +11,7 @@ const navLinks = [
   { name: "— Standard House Clean", href: "/house-cleaning-melbourne", isSub: true },
   { name: "— Deep Clean", href: "/deep-cleaning-melbourne", isSub: true },
   { name: "— Vacate Clean", href: "/end-of-lease-cleaning-melbourne", isSub: true },
+  { name: "— Apartment Clean", href: "/apartment-cleaning-melbourne", isSub: true },
   { name: "Reviews", href: "/#testimonials" },
   { name: "Contact", href: "/contact" },
 ];
@@ -18,6 +21,8 @@ interface FooterProps {
 }
 
 const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
+  const liveSuburbs = getLiveSuburbs();
+
   return (
     <footer className="relative w-full rounded-t-[3rem] overflow-hidden border-t border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
 
@@ -49,14 +54,12 @@ const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
         <div className="grid md:grid-cols-12 gap-12 md:gap-8 text-center md:text-left">
 
           {/* Logo & About */}
-          <div className="md:col-span-5 flex flex-col items-center md:items-start">
-            {/* <-- Replaced Text with Logo Image --> */}
+          <div className="md:col-span-4 flex flex-col items-center md:items-start">
             <Image
               src="/crisp-cleaning-logo.webp?v=3"
               alt="Crisp Cleaning Logo"
               width={200}
               height={48}
-              // Added md:-ml-3 to pull it left and optically align the logo text with the paragraph
               className="h-12 w-auto mb-6 object-contain md:-ml-3"
             />
             <p className="text-muted-foreground max-w-sm leading-relaxed font-medium mb-8">
@@ -81,16 +84,33 @@ const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
             </nav>
           </div>
 
+          {/* Service Areas */}
+          {liveSuburbs.length > 0 && (
+            <div className="hidden md:flex md:col-span-2 flex-col items-center md:items-start">
+              <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Areas</h4>
+              <nav className="flex flex-col gap-3 w-full items-center md:items-start">
+                {liveSuburbs.map((suburb) => (
+                  <Link
+                    key={suburb.slug}
+                    href={`/service-areas/${suburb.slug}`}
+                    className="text-muted-foreground hover:text-primary transition-all font-medium py-1"
+                  >
+                    {suburb.name}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          )}
+
           {/* Help & Support */}
-          <div className="md:col-span-4 flex flex-col items-center md:items-start md:items-end">
+          <div className={`md:col-span-${liveSuburbs.length > 0 ? '3' : '5'} flex flex-col items-center md:items-start md:items-end`}>
             <div className="flex flex-col items-center md:items-start">
               <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Help & Support</h4>
               <div className="space-y-3 flex flex-col items-center md:items-start">
-                {/* <-- Updated Phone Number --> */}
                 <a href="tel:0451433786" className="text-foreground hover:text-primary transition-colors block text-2xl font-bold mb-2">
                   0451 433 786
                 </a>
-                <a href="mailto:crispcleaningmelbourne@gmail.com" className="text-muted-foreground hover:text-primary transition-colors block font-medium">
+                <a href="mailto:crispcleaningmelbourne@gmail.com" className="text-muted-foreground hover:text-primary transition-colors block font-medium break-all">
                   crispcleaningmelbourne@gmail.com
                 </a>
                 <Link href="/contact" className="text-primary font-bold hover:underline transition-all mt-2 inline-flex items-center gap-2">

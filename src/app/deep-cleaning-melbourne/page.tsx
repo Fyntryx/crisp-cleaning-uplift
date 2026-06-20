@@ -199,6 +199,16 @@ export default async function HouseCleaningPage() {
         availableTabs={["Deep", "Standard"]}
       />
 
+      {/* 4.5. Cross-Sell */}
+      <section className="bg-[#FAF9F6] py-12 border-y border-gray-100">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <p className="text-lg text-gray-700 font-medium">
+            Looking for ongoing maintenance instead? <br className="hidden md:block" />
+            Check out our <a href="/house-cleaning-melbourne" className="text-primary hover:underline font-bold">Standard House Cleaning service</a> to keep your home consistently fresh.
+          </p>
+        </div>
+      </section>
+
       {/* 5. Who It's For (4 Cards) */}
       <WhoItsFor />
 

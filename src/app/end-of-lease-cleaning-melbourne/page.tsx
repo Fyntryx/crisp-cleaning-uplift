@@ -209,6 +209,16 @@ export default async function HouseCleaningPage() {
         availableTabs={["Vacate"]}
       />
 
+      {/* 4.5. Cross-Sell */}
+      <section className="bg-[#FAF9F6] py-12 border-y border-gray-100">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <p className="text-lg text-gray-700 font-medium">
+            Moving into a new place that needs a reset? <br className="hidden md:block" />
+            Check out our <a href="/deep-cleaning-melbourne" className="text-primary hover:underline font-bold">Deep Cleaning service</a> to make your new home move-in ready.
+          </p>
+        </div>
+      </section>
+
       {/* 6. Difference */}
       <ServiceDifference 
         title="Why Melbourne tenants and property managers choose Crisp."
