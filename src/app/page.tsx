@@ -12,7 +12,6 @@ import Guarantee from "@/components/lp/Guarantee";
 import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Footer from "@/components/Footer";
-import OurServicesLinks from "@/components/lp/OurServicesLinks";
 import LeadPopup from "@/components/LeadPopup";
 import { sanityFetch } from "@/sanity/lib/live";
 
@@ -107,7 +106,6 @@ export default async function LandingPage() {
       <Navbar />
       
       <Hero googleRatingValue={googleRatingValue} />
-      <OurServicesLinks />
       <QuoteRequestPanel />
       <Testimonials layout="center" googleReviewCount={googleReviewCount} googleRatingValue={googleRatingValue} />
       <Difference />
