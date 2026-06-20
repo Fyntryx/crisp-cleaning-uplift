@@ -137,7 +137,6 @@ export default async function ApartmentCleaningPage() {
         <div className="container mx-auto px-6 mb-4">
           <Breadcrumbs items={[
             { label: 'Home', href: '/' },
-            { label: 'Services', href: '/#services' },
             { label: 'Apartment Cleaning', href: '/apartment-cleaning-melbourne' }
           ]} />
         </div>

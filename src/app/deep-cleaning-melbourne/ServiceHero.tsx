@@ -27,7 +27,6 @@ export default function ServiceHero({ googleRatingValue = 4.9 }: ServiceHeroProp
           <div className="flex justify-center mb-2">
             <Breadcrumbs items={[
               { label: 'Home', href: '/' },
-              { label: 'Services', href: '/#services' },
               { label: 'Deep Cleaning', href: '/deep-cleaning-melbourne' }
             ]} />
           </div>

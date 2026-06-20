@@ -29,7 +29,6 @@ export default function ServiceHero({ googleRatingValue = 4.9 }: ServiceHeroProp
           <div className="flex-1 max-w-[750px]">
             <Breadcrumbs items={[
               { label: 'Home', href: '/' },
-              { label: 'Services', href: '/#services' },
               { label: 'House Cleaning', href: '/house-cleaning-melbourne' }
             ]} />
             {/* Badge */}
