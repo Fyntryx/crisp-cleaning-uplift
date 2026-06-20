@@ -10,6 +10,7 @@ import FAQ from "@/components/lp/FAQ";
 import FinalCTA from "@/components/lp/FinalCTA";
 import Testimonials from "@/components/lp/Testimonials";
 import ServiceAreas from "@/components/lp/ServiceAreas";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Clock, Shield, MapPin, Star, CheckCircle2 } from "lucide-react";
 import { sanityFetch } from "@/sanity/lib/live";
 
@@ -133,6 +134,13 @@ export default async function ApartmentCleaningPage() {
 
       {/* 1. Hero / Quote Request Section */}
       <div className="pt-24 lg:pt-32">
+        <div className="container mx-auto px-6 mb-4">
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Services', href: '/#services' },
+            { label: 'Apartment Cleaning', href: '/apartment-cleaning-melbourne' }
+          ]} />
+        </div>
         <QuoteRequestPanel
           headline={
             <>
