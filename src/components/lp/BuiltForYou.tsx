@@ -27,7 +27,7 @@ export default function BuiltForYou() {
         <div className="mb-12">
           <span className="text-primary font-bold tracking-widest text-[11px] uppercase mb-4 block">
             Why Crisp
-          </h4>
+          </span>
           <h2 className="text-3xl md:text-[40px] font-bold text-foreground tracking-tight max-w-xl">
             Built for Melbourne households like yours.
           </h2>
