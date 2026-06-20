@@ -21,6 +21,8 @@ import ServiceAreas from "@/components/lp/ServiceAreas";
 import { Sparkles, Clock, Shield, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
+  title: "Deep House Cleaning Melbourne | Top-to-Bottom Reset",
+  description: "Professional deep cleaning across Melbourne. Skirting boards, interior windows, edge vacuuming, and detailed bathroom scrubbing. Instant online quotes.",
   alternates: {
     canonical: '/deep-cleaning-melbourne',
   },

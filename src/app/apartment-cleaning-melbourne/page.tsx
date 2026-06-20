@@ -13,6 +13,8 @@ import { Shield, Star, CheckCircle2 } from "lucide-react";
 import { sanityFetch } from "@/sanity/lib/live";
 
 export const metadata: Metadata = {
+  title: "Apartment Cleaning Melbourne | Vetted Local Cleaners",
+  description: "Specialised apartment cleaning across Melbourne. Flexible scheduling, transparent flat-rate pricing, and a 100% satisfaction guarantee. Get a quote today.",
   alternates: {
     canonical: '/apartment-cleaning-melbourne',
   },

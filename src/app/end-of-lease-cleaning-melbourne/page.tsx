@@ -21,6 +21,8 @@ import ServiceAreas from "@/components/lp/ServiceAreas";
 import { Sparkles, Clock, Shield, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
+  title: "End of Lease Cleaning Melbourne | 100% Bond Back",
+  description: "Melbourne's trusted vacate cleaning service. Real estate approved checklist, free 72hr re-clean guarantee, and instant online booking.",
   alternates: {
     canonical: '/end-of-lease-cleaning-melbourne',
   },

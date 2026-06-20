@@ -21,6 +21,8 @@ import ServiceAreas from "@/components/lp/ServiceAreas";
 import { Sparkles, Clock, Shield, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
+  title: "Regular House Cleaning Melbourne | Weekly & Fortnightly",
+  description: "Consistent, detailed house cleaning across Melbourne. Same cleaner every visit, fully vetted, 72hr re-clean guarantee. Book your regular clean today.",
   alternates: {
     canonical: '/house-cleaning-melbourne',
   },
