@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/end-of-lease-cleaning-melbourne',
   },
+  title: "Vacate Cleaning Melbourne | End of Lease & Bond Clean | Crisp Cleaning",
+  description: "End of lease cleaning across Melbourne, built to real estate inspection standards. Fixed pricing, fast turnaround, instant online quote.",
 };
 
 

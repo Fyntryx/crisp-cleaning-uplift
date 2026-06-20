@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/house-cleaning-melbourne',
   },
+  title: "House Cleaning Melbourne | Same Cleaner Every Visit | Crisp Cleaning",
+  description: "Professional regular house cleaning across Melbourne. Same cleaner continuity, transparent fixed pricing, fast online quotes. Book in minutes.",
 };
 
 

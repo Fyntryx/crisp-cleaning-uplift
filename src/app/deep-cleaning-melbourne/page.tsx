@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/deep-cleaning-melbourne',
   },
+  title: "Deep Cleaning Melbourne | Detailed One-Off & First-Clean Service | Crisp Cleaning",
+  description: "Professional deep cleaning across Melbourne. Thorough first-clean and detail-focused service for build-up other cleans miss. Fixed pricing, instant quotes.",
 };
 
 

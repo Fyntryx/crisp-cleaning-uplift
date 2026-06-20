@@ -25,7 +25,7 @@ export default function BuiltForYou() {
     <section className="py-24 bg-white border-y border-gray-100">
       <div className="container mx-auto px-6 md:px-8 max-w-7xl">
         <div className="mb-12">
-          <h4 className="text-primary font-bold tracking-widest text-[11px] uppercase mb-4">
+          <span className="text-primary font-bold tracking-widest text-[11px] uppercase mb-4 block">
             Why Crisp
           </h4>
           <h2 className="text-3xl md:text-[40px] font-bold text-foreground tracking-tight max-w-xl">

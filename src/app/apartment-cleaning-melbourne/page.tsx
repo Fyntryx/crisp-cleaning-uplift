@@ -187,7 +187,7 @@ export default async function ApartmentCleaningPage() {
       <section className="py-24 bg-white relative z-10 overflow-hidden">
         <div className="container mx-auto px-6 md:px-8 max-w-5xl">
           <div className="text-center mb-12">
-            <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">Service Areas</h4>
+            <span className="text-primary font-bold tracking-widest text-sm uppercase mb-4 block">Service Areas</span>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6">
               Where we clean in Melbourne
             </h2>

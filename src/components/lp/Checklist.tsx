@@ -267,9 +267,9 @@ export default function Checklist({
               </span>
             </div>
           ) : (
-            <h4 className="text-[#FB8C42] font-bold tracking-[0.2em] text-[11px] uppercase mb-4">
+            <span className="text-[#FB8C42] font-bold tracking-[0.2em] text-[11px] uppercase mb-4 block">
               {topTitle !== undefined ? topTitle : "The Checklist"}
-            </h4>
+            </span>
           )}
           <h2 
             style={layout === "left" ? { letterSpacing: "-1.2px", lineHeight: "1.2" } : undefined}

@@ -76,7 +76,7 @@ export default function ServiceAreas() {
       <div className="container mx-auto px-6 md:px-8 max-w-[1400px]">
         {/* Header Section */}
         <div className="mb-10 max-w-3xl">
-          <h4 className="text-primary font-bold tracking-widest text-[11px] uppercase mb-4">
+          <span className="text-primary font-bold tracking-widest text-[11px] uppercase mb-4 block">
             SERVICE AREAS
           </h4>
           <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-foreground tracking-tight mb-6 leading-[1.1]">

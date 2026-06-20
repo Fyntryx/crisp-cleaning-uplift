@@ -3017,7 +3017,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                       </div>
                       <div className="flex items-baseline gap-2">
                          <span className="text-[12px] font-bold text-gray-400 uppercase tracking-widest">Total</span>
-                         <span className="text-xl font-bold text-[#FB8C42]">A${(pricingResult?.total || 0).toFixed(0)}</span>
+                         <span className="text-xl font-bold text-[#FB8C42]">A${(pricingResult?.total || 0).toFixed(2)}</span>
                       </div>
                     </div>
                     
@@ -3111,7 +3111,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   Total
                 </span>
                 <span className="text-lg font-display font-bold text-white leading-tight">
-                  A${pricingResult.total.toFixed(0)}
+                  A${pricingResult.total.toFixed(2)}
                 </span>
               </div>
 
