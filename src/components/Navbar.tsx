@@ -60,7 +60,7 @@ const getNavLinks = () => {
       subLinks: liveSuburbs.map(s => ({
         name: s.name,
         desc: "Local cleaning teams available",
-        href: `/service-areas/${s.slug}`,
+        href: `/house-cleaning-${s.slug}`,
         icon: MapPin
       }))
     }] : []),

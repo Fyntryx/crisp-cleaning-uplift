@@ -27,7 +27,7 @@ export default function ServiceAreas() {
           {liveSuburbs.slice(0, 8).map((suburb) => (
             <Link
               key={suburb.slug}
-              href={`/service-areas/${suburb.slug}`}
+              href={`/house-cleaning-${suburb.slug}`}
               className="group flex items-center justify-between p-4 rounded-2xl bg-[#FAF9F6] border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-3">

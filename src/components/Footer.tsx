@@ -92,7 +92,7 @@ const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
                 {liveSuburbs.map((suburb) => (
                   <Link
                     key={suburb.slug}
-                    href={`/service-areas/${suburb.slug}`}
+                    href={`/house-cleaning-${suburb.slug}`}
                     className="text-muted-foreground hover:text-primary transition-all font-medium py-1"
                   >
                     {suburb.name}
