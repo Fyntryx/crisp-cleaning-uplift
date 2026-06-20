@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Star, ArrowRight } from "lucide-react";
+import { getLiveSuburbs } from "@/lib/suburbs";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -18,6 +19,8 @@ interface FooterProps {
 }
 
 const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
+  const liveSuburbs = getLiveSuburbs();
+  
   return (
     <footer className="relative w-full rounded-t-[3rem] overflow-hidden border-t border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
 
@@ -81,8 +84,26 @@ const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
             </nav>
           </div>
 
+          {/* Service Areas (Dynamic) */}
+          {liveSuburbs.length > 0 && (
+            <div className="hidden lg:flex md:col-span-2 flex-col items-start">
+              <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Service Areas</h4>
+              <nav className="flex flex-col gap-2 w-full items-start">
+                {liveSuburbs.map((suburb) => (
+                  <Link
+                    key={suburb.slug}
+                    href={`/house-cleaning-${suburb.slug}`}
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                  >
+                    {suburb.name}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          )}
+
           {/* Help & Support */}
-          <div className="md:col-span-4 flex flex-col items-center md:items-start md:items-end">
+          <div className={`md:col-span-4 lg:col-span-${liveSuburbs.length > 0 ? '2' : '4'} flex flex-col items-center md:items-start md:items-end`}>
             <div className="flex flex-col items-center md:items-start">
               <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Help & Support</h4>
               <div className="space-y-3 flex flex-col items-center md:items-start">

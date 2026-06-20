@@ -192,12 +192,22 @@ export default async function HouseCleaningPage() {
       {/* 4. Checklist */}
       <Checklist 
         defaultTab="Deep" 
-        title="Nothing is assumed. Everything is covered." 
+        title="We don't just clean around things. We reset the space." 
         topTitle="What's Included"
         layout="left"
-        subtitle="Every Deep Clean follows a defined room-by-room checklist. Not a vibe — a system. Here's exactly what gets done."
+        subtitle="A deep clean is about getting into the corners, the edges, and the spaces that get ignored. Here is the full room-by-room checklist."
         availableTabs={["Deep", "Standard"]}
       />
+
+      {/* 4.5. Cross-Sell */}
+      <section className="bg-[#FAF9F6] py-12 border-y border-gray-100">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <p className="text-lg text-gray-700 font-medium">
+            Looking for ongoing maintenance instead? <br className="hidden md:block" />
+            Check out our <a href="/house-cleaning-melbourne" className="text-primary hover:underline font-bold">Standard House Cleaning service</a> to keep your home consistently fresh.
+          </p>
+        </div>
+      </section>
 
       {/* 5. Who It's For (4 Cards) */}
       <WhoItsFor />
