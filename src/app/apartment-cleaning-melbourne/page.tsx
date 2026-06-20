@@ -11,6 +11,7 @@ import FinalCTA from "@/components/lp/FinalCTA";
 import Testimonials from "@/components/lp/Testimonials";
 import { Shield, Star, CheckCircle2 } from "lucide-react";
 import { sanityFetch } from "@/sanity/lib/live";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Apartment Cleaning Melbourne | Vetted Local Cleaners",
@@ -89,23 +90,6 @@ export default async function ApartmentCleaningPage() {
                 }))
               },
               {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.crispcleaning.com.au"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Apartment Cleaning",
-                    "item": "https://www.crispcleaning.com.au/apartment-cleaning-melbourne"
-                  }
-                ]
-              },
-              {
                 "@type": "HowTo",
                 "name": "How to Book an Apartment Clean",
                 "step": [
@@ -134,6 +118,12 @@ export default async function ApartmentCleaningPage() {
 
       {/* 1. Hero / Quote Request Section */}
       <div className="pt-24 lg:pt-32">
+        <div className="container mx-auto px-6 mb-4 max-w-7xl">
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Apartment Cleaning", href: "/apartment-cleaning-melbourne" }
+          ]} />
+        </div>
         <QuoteRequestPanel
           headline={
             <>
