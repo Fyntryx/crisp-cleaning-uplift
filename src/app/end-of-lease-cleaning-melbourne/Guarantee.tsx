@@ -64,9 +64,9 @@ export default function VacateGuarantee() {
 
               {/* Box 1: What's Covered */}
               <div className="rounded-[24px] border border-white/20 bg-white/5 p-8 backdrop-blur-sm">
-                <h3 className="text-white font-bold text-[13px] uppercase tracking-[0.15em] mb-6 border-b border-white/20 pb-4">
+                <h4 className="text-white font-bold text-[13px] uppercase tracking-[0.15em] mb-6 border-b border-white/20 pb-4">
                   WHAT'S COVERED
-                </h3>
+                </h4>
                 <ul className="flex flex-col gap-4">
                   {coveredItems.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
@@ -79,9 +79,9 @@ export default function VacateGuarantee() {
 
               {/* Box 2: Conditions */}
               <div className="rounded-[24px] border border-white/20 bg-white/5 p-8 backdrop-blur-sm">
-                <h3 className="text-white font-bold text-[13px] uppercase tracking-[0.15em] mb-6 border-b border-white/20 pb-4">
+                <h4 className="text-white font-bold text-[13px] uppercase tracking-[0.15em] mb-6 border-b border-white/20 pb-4">
                   CONDITIONS
-                </h3>
+                </h4>
                 <ul className="flex flex-col gap-4">
                   {conditions.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">

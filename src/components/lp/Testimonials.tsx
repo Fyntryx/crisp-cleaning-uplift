@@ -104,7 +104,7 @@ export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfte
                 </span>
               </div>
             ) : (
-              <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">{topTitle || "Testimonials"}</span>
+              <h4 className="text-primary font-bold tracking-widest text-xs uppercase mb-3 bg-primary/10 inline-block px-2 py-1 rounded">{topTitle || "Testimonials"}</h4>
             )
           )}
           <h2

@@ -24,8 +24,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/deep-cleaning-melbourne',
   },
-  title: "Deep Cleaning Melbourne | Detailed One-Off & First-Clean Service | Crisp Cleaning",
-  description: "Professional deep cleaning across Melbourne. Thorough first-clean and detail-focused service for build-up other cleans miss. Fixed pricing, instant quotes.",
 };
 
 
@@ -135,6 +133,23 @@ export default async function HouseCleaningPage() {
                 }))
               },
               {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.crispcleaning.com.au"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Deep Cleaning",
+                    "item": "https://www.crispcleaning.com.au/deep-cleaning-melbourne"
+                  }
+                ]
+              },
+              {
                 "@type": "HowTo",
                 "name": "How to Book a Deep Clean",
                 "step": [
@@ -181,16 +196,6 @@ export default async function HouseCleaningPage() {
         subtitle="Every Deep Clean follows a defined room-by-room checklist. Not a vibe — a system. Here's exactly what gets done."
         availableTabs={["Deep", "Standard"]}
       />
-
-      {/* 4.5. Cross-Sell */}
-      <section className="bg-[#FAF9F6] py-12 border-y border-gray-100">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
-          <p className="text-lg text-gray-700 font-medium">
-            Looking for ongoing maintenance instead? <br className="hidden md:block" />
-            Check out our <a href="/house-cleaning-melbourne" className="text-primary hover:underline font-bold">Standard House Cleaning service</a> to keep your home consistently fresh.
-          </p>
-        </div>
-      </section>
 
       {/* 5. Who It's For (4 Cards) */}
       <WhoItsFor />

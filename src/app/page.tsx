@@ -19,8 +19,8 @@ export const metadata = {
   alternates: {
     canonical: '/',
   },
-  title: "Home Cleaning Melbourne | Same Cleaner Every Visit | Crisp Cleaning",
-  description: "Professional home cleaning across Melbourne. Same cleaner continuity, transparent pricing and fast online quotes. Book in minutes.",
+  title: "Crisp Cleaning | Melbourne's most consistent home clean",
+  description: "Walk in. Breathe out. Your home is exactly how it should be. Book your consistent, detailed clean today.",
 };
 
 export default async function LandingPage() {

@@ -24,8 +24,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/end-of-lease-cleaning-melbourne',
   },
-  title: "Vacate Cleaning Melbourne | End of Lease & Bond Clean | Crisp Cleaning",
-  description: "End of lease cleaning across Melbourne, built to real estate inspection standards. Fixed pricing, fast turnaround, instant online quote.",
 };
 
 
@@ -144,6 +142,23 @@ export default async function HouseCleaningPage() {
                 }))
               },
               {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.crispcleaning.com.au"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "End of Lease Cleaning",
+                    "item": "https://www.crispcleaning.com.au/end-of-lease-cleaning-melbourne"
+                  }
+                ]
+              },
+              {
                 "@type": "HowTo",
                 "name": "How to Book an End of Lease Clean",
                 "step": [
@@ -191,16 +206,6 @@ export default async function HouseCleaningPage() {
         subtitle="Every Vacate Clean follows a defined room-by-room checklist. Not a vibe — a system. Here's exactly what gets done."
         availableTabs={["Vacate"]}
       />
-
-      {/* 4.5. Cross-Sell */}
-      <section className="bg-[#FAF9F6] py-12 border-y border-gray-100">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
-          <p className="text-lg text-gray-700 font-medium">
-            Moving into a new place that needs a reset? <br className="hidden md:block" />
-            Check out our <a href="/deep-cleaning-melbourne" className="text-primary hover:underline font-bold">Deep Cleaning service</a> to make your new home move-in ready.
-          </p>
-        </div>
-      </section>
 
       {/* 6. Difference */}
       <ServiceDifference 

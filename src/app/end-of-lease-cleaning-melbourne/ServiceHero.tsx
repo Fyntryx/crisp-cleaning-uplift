@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Key, ShieldCheck } from "lucide-react";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 
 
@@ -48,10 +47,6 @@ export default function ServiceHero({ googleRatingValue = 4.9 }: ServiceHeroProp
 
             {/* Left Column — Copy */}
             <div className="flex-1 w-full max-w-[750px]">
-              <Breadcrumbs items={[
-                { label: 'Home', href: '/' },
-                { label: 'Vacate Cleaning', href: '/end-of-lease-cleaning-melbourne' }
-              ]} />
               {/* Badge */}
               <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#FB8C42]/30 text-[#FB8C42] bg-[#FB8C42]/5">
                 <Key className="w-3.5 h-3.5" />

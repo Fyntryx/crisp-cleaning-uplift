@@ -93,7 +93,7 @@ export default function Process({ title, subtitle, layout = "center" }: ProcessP
               </span>
             </div>
           ) : (
-            <span className="text-primary font-bold tracking-widest text-sm uppercase mb-4 block">How It Works</span>
+            <h4 className="text-primary font-bold tracking-widest text-sm uppercase mb-4">How It Works</h4>
           )}
           <h2
             style={layout === "left" ? { letterSpacing: "-1.2px", lineHeight: "48px" } : undefined}

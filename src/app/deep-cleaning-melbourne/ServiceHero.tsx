@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 interface ServiceHeroProps {
   googleRatingValue?: number;
@@ -24,12 +23,6 @@ export default function ServiceHero({ googleRatingValue = 4.9 }: ServiceHeroProp
 
         {/* Main Content */}
         <div className="max-w-[896px] mx-auto text-center mb-12">
-          <div className="flex justify-center mb-2">
-            <Breadcrumbs items={[
-              { label: 'Home', href: '/' },
-              { label: 'Deep Cleaning', href: '/deep-cleaning-melbourne' }
-            ]} />
-          </div>
           {/* Badge */}
           <div className="mb-6">
             <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px]">
