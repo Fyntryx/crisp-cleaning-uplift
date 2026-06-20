@@ -85,6 +85,25 @@ fbq('track', 'PageView');`
             `,
           }}
         />
+
+        {/* Google Analytics 4 — G-MVJR427XZK */}
+        <Script
+          id="ga4-loader"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-MVJR427XZK"
+        />
+        <Script
+          id="ga4-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-MVJR427XZK', { page_path: window.location.pathname });
+            `,
+          }}
+        />
       </body>
     </html>
   );
