@@ -135,23 +135,6 @@ export default async function HouseCleaningPage() {
                 }))
               },
               {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.crispcleaning.com.au"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Deep Cleaning",
-                    "item": "https://www.crispcleaning.com.au/deep-cleaning-melbourne"
-                  }
-                ]
-              },
-              {
                 "@type": "HowTo",
                 "name": "How to Book a Deep Clean",
                 "step": [

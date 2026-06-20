@@ -89,23 +89,6 @@ export default async function ApartmentCleaningPage() {
                 }))
               },
               {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.crispcleaning.com.au"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Apartment Cleaning",
-                    "item": "https://www.crispcleaning.com.au/apartment-cleaning-melbourne"
-                  }
-                ]
-              },
-              {
                 "@type": "HowTo",
                 "name": "How to Book an Apartment Clean",
                 "step": [

@@ -130,23 +130,6 @@ export default async function HouseCleaningPage() {
                 }))
               },
               {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.crispcleaning.com.au"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Standard House Cleaning",
-                    "item": "https://www.crispcleaning.com.au/house-cleaning-melbourne"
-                  }
-                ]
-              },
-              {
                 "@type": "HowTo",
                 "name": "How to Book a House Clean",
                 "step": [
