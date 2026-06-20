@@ -12,6 +12,7 @@ import Testimonials from "@/components/lp/Testimonials";
 import { Shield, Star, CheckCircle2 } from "lucide-react";
 import { sanityFetch } from "@/sanity/lib/live";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ServiceAreas from "@/components/lp/ServiceAreas";
 
 export const metadata: Metadata = {
   title: "Apartment Cleaning Melbourne | Vetted Local Cleaners",
