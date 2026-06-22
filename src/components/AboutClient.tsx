@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Footer from "@/components/Footer";
 import { MissionStorySection } from "@/components/MissionStorySection";
 import { BeforeAfterSection } from "@/components/BeforeAfterSection";
 import { PageHero } from "@/components/PageHero";
@@ -41,20 +40,14 @@ const AboutClient = ({ cta }: AboutClientProps) => {
         {/* Sanity-connected floating images gallery */}
         {cta && <ImageEffect data={cta} />}
 
-        <CTASection
-          heading="Ready to experience the difference?"
-          description="Join hundreds of satisfied customers who have reclaimed their time and space."
-          primaryAction={{
-            text: "Get a Quote",
-            href: "/#services",
-          }}
-          secondaryAction={{
-            text: "Contact Us",
-            href: "/contact",
-          }}
-        />
+        {cta && (
+          <CTASection
+            heading={cta.heading}
+            description={cta.subheading}
+            primaryAction={{ text: cta.buttonText, href: cta.buttonLink }}
+          />
+        )}
       </div>
-      <Footer />
     </>
   );
 };

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import AboutClient from "@/components/AboutClient";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   alternates: {
@@ -31,6 +32,7 @@ export default async function AboutPage() {
   return (
     <main>
       <AboutClient cta={cta} />
+      <Footer />
     </main>
   );
 }

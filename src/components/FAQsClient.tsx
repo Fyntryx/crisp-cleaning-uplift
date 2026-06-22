@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Footer from "@/components/Footer";
 import ParallaxBubbles from "@/components/ParallaxBubbles";
 import {
   Accordion,
@@ -126,8 +125,6 @@ const FAQsClient = ({ data }: FAQsClientProps) => {
           }}
         />
       </div>
-
-      <Footer />
     </>
   );
 };

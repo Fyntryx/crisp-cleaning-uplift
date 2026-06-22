@@ -2,7 +2,6 @@
 
 import React from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ParallaxBubbles from "@/components/ParallaxBubbles";
 
 import { ReviewsHero } from "@/components/ReviewsHero";
@@ -113,8 +112,6 @@ const ReviewsClient = ({ reviews, cta }: ReviewsClientProps) => {
           }}
         />
       </div>
-
-      <Footer />
     </>
   );
 };
