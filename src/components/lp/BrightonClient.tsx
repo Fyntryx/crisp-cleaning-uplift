@@ -262,6 +262,18 @@ export default function BrightonClient({
           HERO — 2-column layout
       ══════════════════════════════════════════════════════ */}
       <section className="relative bg-[#FDFAF6] overflow-hidden pt-28 pb-0">
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes drawUnderline {
+            0% { width: 0; opacity: 0; }
+            1% { opacity: 1; }
+            100% { width: 100%; opacity: 1; }
+          }
+        `}} />
+        
+        {/* Subtle dot pattern right side */}
+        <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full pointer-events-none opacity-[0.06]" 
+          style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+
         {/* Ambient glow */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle, rgba(251,140,66,0.09) 0%, transparent 65%)" }} />
@@ -297,7 +309,10 @@ export default function BrightonClient({
                 className="text-[40px] md:text-[52px] font-extrabold text-gray-900 leading-[1.06] tracking-[-0.03em] mb-6"
               >
                 House Cleaning{" "}
-                <span className="text-[#FB8C42]">Brighton</span>
+                <span className="text-[#FB8C42] relative inline-block">
+                  Brighton
+                  <span className="absolute bottom-[6px] left-0 h-[2px] bg-[#FB8C42] animate-[drawUnderline_0.8s_ease-out_forwards] opacity-0" style={{ animationDelay: '0.4s' }} />
+                </span>
                 <br />Melbourne
               </motion.h1>
 
@@ -349,7 +364,7 @@ export default function BrightonClient({
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="bg-white border border-gray-100 rounded-2xl px-5 py-4 shadow-sm flex items-center gap-4"
+                  className="bg-white border border-gray-100 border-l-[3px] border-l-[#d97706] rounded-2xl px-5 py-4 shadow-sm flex items-center gap-4"
                 >
                   <div className="text-2xl font-extrabold text-[#FB8C42] w-16 shrink-0 leading-none">
                     {stat.value}
@@ -373,7 +388,7 @@ export default function BrightonClient({
                   transition={{ duration: 0.45, delay: 0.3 + i * 0.07 }}
                   className="py-5 px-6 text-center"
                 >
-                  <div className="text-[22px] font-extrabold text-gray-900 leading-none mb-1">
+                  <div className="text-[28px] font-extrabold text-gray-900 leading-none mb-1">
                     {m.value}
                   </div>
                   <div className="text-[11px] text-gray-400 font-medium">{m.label}</div>
