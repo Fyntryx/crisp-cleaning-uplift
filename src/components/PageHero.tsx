@@ -26,7 +26,7 @@ export const PageHero = ({
       <div className="relative z-10 container mx-auto px-6 pt-40 pb-20 text-center">
         {badge && (
           <div className="mb-4">
-            <span className="text-[#FB8C42] font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px] animate-fade-up">
+            <span className="text-white font-semibold text-[12px] uppercase tracking-[0.22em] leading-[16px] animate-fade-up">
               {badge}
             </span>
           </div>
