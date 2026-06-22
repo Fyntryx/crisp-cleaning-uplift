@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Star, ArrowRight } from "lucide-react";
 import { getLiveSuburbs } from "@/lib/suburbs";
+import { sanityFetch } from "@/sanity/lib/live";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -14,11 +15,11 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
-interface FooterProps {
-  googleRatingValue?: number;
-}
-
-const Footer = ({ googleRatingValue = 5.0 }: FooterProps = {}) => {
+const Footer = async () => {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`
+  });
+  const googleRatingValue = siteSettings?.googleRatingValue ?? 5.0;
   const liveSuburbs = getLiveSuburbs();
   
   return (
