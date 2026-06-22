@@ -106,7 +106,7 @@ export default async function HouseCleaningPage() {
   });
   
   const googleReviewCount = siteSettings?.googleReviewCount || 14;
-  const googleRatingValue = siteSettings?.googleRatingValue || 4.9;
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">

@@ -29,7 +29,7 @@ export default async function LandingPage() {
   });
   
   const googleReviewCount = siteSettings?.googleReviewCount || 14;
-  const googleRatingValue = siteSettings?.googleRatingValue || 4.9;
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary relative w-full overflow-x-hidden">

@@ -50,7 +50,7 @@ export default async function CommercialCleaningPage() {
   });
   
   const googleReviewCount = siteSettings?.googleReviewCount || 14;
-  const googleRatingValue = siteSettings?.googleRatingValue || 4.9;
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
 
   const { hero, faqs } = commercialCleaningData;
 

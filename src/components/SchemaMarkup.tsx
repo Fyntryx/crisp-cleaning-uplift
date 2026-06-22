@@ -7,7 +7,7 @@ export default async function SchemaMarkup() {
   });
 
   const googleReviewCount = siteSettings?.googleReviewCount || 14;
-  const googleRatingValue = siteSettings?.googleRatingValue || 4.9;
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
 
   const schema = {
     "@context": "https://schema.org",
