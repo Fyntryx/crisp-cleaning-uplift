@@ -17,18 +17,19 @@ import {
   Layers,
   TreePine,
   Star,
+  Phone,
+  MapPin,
+  ChevronRight,
 } from "lucide-react";
 import FAQ from "@/components/lp/FAQ";
-import Testimonials from "@/components/lp/Testimonials";
-import Services from "@/components/Services";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
-// ─── Animation Helpers ────────────────────────────────────────────
+// ─── Scroll Reveal Helper ──────────────────────────────────────────
 function ScrollReveal({
   children,
   className = "",
   delay = 0,
-  fromY = 24,
+  fromY = 20,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -42,7 +43,7 @@ function ScrollReveal({
       ref={ref}
       initial={{ opacity: 0, y: fromY }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: fromY }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -50,29 +51,41 @@ function ScrollReveal({
   );
 }
 
-// ─── Heritage Property Cards ───────────────────────────────────────
+// ─── Data ──────────────────────────────────────────────────────────
+const heroStats = [
+  { value: "97%", label: "Same-cleaner, every visit" },
+  { value: "100%", label: "Eco-friendly no heritage surfaces" },
+  { value: "72hr", label: "Re-clean guarantee, every clean" },
+];
+
+const metricStrip = [
+  { value: "4.9 ★", label: "Average rating of homes" },
+  { value: "850+", label: "Homes completed" },
+  { value: "3.2yr", label: "Average tenure Brighton" },
+  { value: "Fixed", label: "Pricing — no hourly estimates" },
+];
+
 const heritageCards = [
   {
     icon: Home,
-    tag: "Golden Mile & Bayside",
-    title: "Victorian & Edwardian Properties",
+    tag: "GOLDEN MILE · BAYSIDE",
+    title: "Victorian & Edwardian properties",
     body: "The streets closest to the bay between Brighton Beach and Middle Brighton station are among Melbourne's most tightly held — heritage homes with polished timber floors, formal living and dining rooms, and multiple bathrooms across multi-storey layouts. Our fixed pricing accounts for the genuine scope of these larger homes; there's no hourly ambiguity when your property has five rooms and two staircases.",
   },
   {
     icon: TreePine,
-    tag: "Tree-Lined Streets",
-    title: "Californian Bungalows & Period Homes",
+    tag: "TREE-LINED STREETS",
+    title: "Californian bungalows & period homes",
     body: "The brick Californian bungalows and 1920s–30s properties on Brighton's quieter residential streets have a different cleaning profile to the bayside mansions — fewer formal rooms, but the same heritage surfaces and original finishes that benefit from consistent, surface-appropriate care. Our eco-friendly product selection accounts for original timber, heritage tiles, and period-era fixings throughout.",
   },
   {
     icon: Sparkles,
-    tag: "Church St & Bay St",
-    title: "Renovated & Contemporary Homes",
+    tag: "CHURCH ST · BAY ST",
+    title: "Renovated & contemporary homes",
     body: "Brighton's main commercial strips anchor a ring of renovated and newly built properties sitting alongside the suburb's heritage stock. Stone benchtops, engineered timber floors, and larger contemporary bathrooms have a different scope to a period home, and our pricing reflects your property's actual requirement — not a uniform Brighton rate applied regardless of home type.",
   },
 ];
 
-// ─── What Every Clean Covers (condensed grid) ─────────────────────
 const cleanCovers = [
   {
     icon: Bath,
@@ -80,8 +93,8 @@ const cleanCovers = [
     h3: "Kitchen Surfaces and Bathroom Detailing",
     body: "Kitchen benchtops, stovetop, rangehood, splashback, sink, and accessible appliance exteriors cleaned every visit. Bathrooms — shower screens, basin, toilet, mirror, taps, and tiled floors — sanitised and polished. Brighton's larger homes with two or three bathrooms all covered within the standard scope.",
     checks: [
-      "Stovetop, rangehood & splashback",
-      "All bathrooms sanitised",
+      "Benchtop, stovetop, rangehood, sink, splashback, appliance exteriors cleaned",
+      "All bathrooms sanitised — all included",
       "Toilet base to cistern",
       "Mirrors & taps polished",
     ],
@@ -90,57 +103,95 @@ const cleanCovers = [
     icon: Layers,
     title: "Floors & Formal Rooms",
     h3: "Timber Floors, Polished Surfaces and Formal Living Areas",
-    body: "Hardwood timber floors swept and mopped with low-moisture products — not steam on original floorboards. Polished surfaces dusted, mirrors wiped, skirting boards and cornices attended to. Formal living and dining rooms get the same attention as everyday spaces — which matters in Brighton's larger heritage homes.",
+    body: "Hardwood timber floors swept and mopped with low-moisture products — not steam on original floorboards. Polished and formal surfaces dusted, mirrors wiped, skirting boards and cornices attended to. Formal living and dining rooms get the same attention as everyday spaces.",
     checks: [
-      "Low-moisture mop on hardwood",
+      "Low-moisture mop on original timber",
       "Skirting boards & cornices",
+      "Mirrors & glass surfaces wiped",
       "Formal dining & living areas",
-      "Mirrors & glass wiped",
     ],
   },
   {
     icon: Home,
     title: "Bedrooms & Laundry",
     h3: "Bedrooms, Additional Rooms and Laundry",
-    body: "All bedrooms vacuumed, surfaces dusted, and furniture-accessible areas addressed. A Brighton home with four or five bedrooms isn't treated identically to a two-bedroom apartment — your room count and layout determine the price and the time your cleaner spends. Laundry included as standard.",
+    body: "All bedrooms vacuumed, surfaces dusted, and furniture-accessible areas addressed. A Brighton home with four or five bedrooms isn't treated identically to a two-bedroom apartment — your room count and layout determine the price and the time your cleaner spends.",
     checks: [
       "All bedrooms vacuumed & dusted",
-      "Room count sets pricing",
-      "Laundry included as standard",
+      "All bedroom surfaces wiped",
+      "Room count attains pricing standard",
       "Furniture-accessible areas done",
     ],
   },
 ];
 
-// ─── Why Choose Crisp ─────────────────────────────────────────────
 const reasonCards = [
   {
     icon: UserCheck,
     stat: "97%",
-    statLabel: "same-cleaner rate",
-    title: "Same Cleaner Every Visit",
-    body: "When your cleaner returns, they already know which bathroom needs extra attention, that the kitchen splashback needs more care after cooking-heavy weeks, and that you prefer the upstairs rooms first. Our 97% same-cleaner continuity rate makes this consistency structurally reliable, not a matter of luck.",
+    statSub: "same-cleaner rate",
+    title: "Same cleaner every shift",
+    body: "When your cleaner returns, they already know which bathroom needs extra attention around the tile grout, that the kitchen splashback requires more care after cooking-heavy weeks, and that you prefer the upstairs rooms addressed first. Continuity makes this structurally reliable, not a matter of luck.",
   },
   {
     icon: DollarSign,
     stat: "Fixed",
-    statLabel: "pricing always",
-    title: "Fixed Pricing for Larger Properties",
-    body: "A five-bedroom heritage home in Brighton requires meaningfully more time than the average Melbourne house clean. Our pricing is set by your actual room count — not a suburb-wide hourly rate — so your cost reflects your home specifically.",
+    statSub: "pricing always",
+    title: "Fixed pricing for larger properties",
+    body: "A five-bedroom heritage home in Brighton requires meaningfully more time than the average Melbourne house clean. Pricing set by your actual room count — not a suburb-wide hourly rate — so your cost reflects your home specifically, not a one-size figure that underdelivers on larger ones.",
   },
   {
     icon: Leaf,
     stat: "100%",
-    statLabel: "eco-friendly",
-    title: "Eco-Friendly on Heritage Surfaces",
+    statSub: "eco-friendly",
+    title: "Eco-friendly on heritage surfaces",
     body: "Brighton's period homes have original timber floors, heritage-era tiles, and leadlight fittings that respond badly to harsh chemicals over time. Our product selection is chosen for effective cleaning without the surface deterioration that commercial-grade chemicals cause on older materials.",
   },
   {
     icon: ShieldCheck,
     stat: "72hr",
-    statLabel: "re-clean guarantee",
-    title: "Satisfaction Guarantee on Every Clean",
-    body: "If anything doesn't meet your standard after a clean, contact us within 72 hours and we'll return to address it at no charge. This guarantee applies from your very first booking and maintains across every subsequent visit.",
+    statSub: "re-clean guarantee",
+    title: "Satisfaction guarantee on every clean",
+    body: "If anything doesn't meet your standard after a clean, contact us within 72 hours and we'll return to address it at no charge. This guarantee applies from your very first booking with Crisp and maintains across every subsequent visit — it doesn't diminish after a year.",
+  },
+];
+
+const brightonStreets = [
+  { name: "The Esplanade & Dendy St", tag: "Bayside beachfront" },
+  { name: "Church St corridor", tag: "66% of residents in period" },
+  { name: "Bay St precinct", tag: "Contemporary & original" },
+  { name: "Nepean Hwy Fringe", tag: "Californian bungalows" },
+  { name: "Golden Mile (New, Middle)", tag: "Prestige along the bay" },
+];
+
+const testimonials = [
+  {
+    stars: 5,
+    quote:
+      "We've been with Crisp for over two years. The fact that the same person comes every fortnight makes such a difference — she knows the house and doesn't need to be told anything.",
+    name: "Sarah G.",
+    suburb: "Dendy Street, Brighton",
+  },
+  {
+    stars: 5,
+    quote:
+      "I finally found a cleaner who knows not to use steam on the floorboards. Heritage home owners will understand — this matters more than it sounds.",
+    name: "James M.",
+    suburb: "The Esplanade, Brighton",
+  },
+  {
+    stars: 5,
+    quote:
+      "Transparent pricing was the first thing that got me — Efficient getting hourly quotes for a 5-bedroom home and dreading the final number. Fixed price, done.",
+    name: "Rachel D.",
+    suburb: "Church Street, Brighton",
+  },
+  {
+    stars: 5,
+    quote:
+      "Used the 72hr guarantee after my first clean and had them back the next day, no questions. That's when I signed up for fortnightly.",
+    name: "Andrew K.",
+    suburb: "Bay Street, Brighton",
   },
 ];
 
@@ -155,7 +206,7 @@ const faqData = [
     ),
   },
   {
-    question: "Are your products safe for original timber floors and period finishes?",
+    question: "Are your products safe for the original timber floors and period finishes?",
     answer: (
       <p>
         Yes. Our product selection is specifically chosen for heritage surfaces
@@ -166,7 +217,7 @@ const faqData = [
     ),
   },
   {
-    question: "How much does house cleaning cost in Brighton?",
+    question: "How is pricing calculated for a large Brighton home?",
     answer: (
       <p>
         Pricing is set by your home's room count and service type. Brighton's
@@ -177,7 +228,7 @@ const faqData = [
     ),
   },
   {
-    question: "Can I book the same cleaner for a fortnightly clean?",
+    question: "Can I book the same cleaner every fortnight?",
     answer: (
       <p>
         Yes. Your cleaner is assigned from your first booking and returns on
@@ -187,17 +238,7 @@ const faqData = [
     ),
   },
   {
-    question: "Do I need to be home when the cleaner arrives?",
-    answer: (
-      <p>
-        No. Most Brighton clients arrange key safe access or leave a key and
-        aren't home during the clean. Access arrangements are confirmed at
-        booking and stored for every subsequent visit.
-      </p>
-    ),
-  },
-  {
-    question: "What if I'm not satisfied with the clean?",
+    question: "What if I'm not satisfied after the clean?",
     answer: (
       <p>
         Contact us within 72 hours and we'll return to address anything that
@@ -216,173 +257,172 @@ export default function BrightonClient({
 }) {
   return (
     <div className="overflow-x-hidden">
-      {/* ══════════════════════════════════════════════════════
-          HERO — Light, warm, airy
-      ══════════════════════════════════════════════════════ */}
-      <section className="relative bg-[#FDFAF6] overflow-hidden">
-        {/* Warm, soft ambient glow — top right */}
-        <div
-          className="absolute top-[-60px] right-[-80px] w-[640px] h-[640px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(251,140,66,0.10) 0%, transparent 65%)",
-          }}
-        />
-        {/* Subtle bottom-left warmth */}
-        <div
-          className="absolute bottom-0 left-[-40px] w-[400px] h-[400px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(251,140,66,0.06) 0%, transparent 70%)",
-          }}
-        />
 
-        <div className="container mx-auto px-6 md:px-8 max-w-[960px] pt-32 md:pt-40 pb-20 text-center relative z-10">
-          <div className="mb-6 flex justify-center">
-            <Breadcrumbs
-              items={[
-                { label: "Home", href: "/" },
-                { label: "House Cleaning Brighton", href: "/house-cleaning-brighton" },
-              ]}
-            />
+      {/* ══════════════════════════════════════════════════════
+          HERO — 2-column layout
+      ══════════════════════════════════════════════════════ */}
+      <section className="relative bg-[#FDFAF6] overflow-hidden pt-28 pb-0">
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(251,140,66,0.09) 0%, transparent 65%)" }} />
+
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          {/* Breadcrumbs */}
+          <div className="mb-8">
+            <Breadcrumbs items={[
+              { label: "Home", href: "/" },
+              { label: "House Cleaning Brighton", href: "/house-cleaning-brighton" },
+            ]} />
           </div>
 
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FB8C42]/10 border border-[#FB8C42]/20 text-[#FB8C42] text-[11px] font-bold tracking-[0.18em] uppercase mb-7"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
-            House Cleaning · Brighton Melbourne
-          </motion.div>
+          {/* Two-column hero */}
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start pb-10">
 
-          {/* H1 */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-[60px] font-extrabold text-gray-900 leading-[1.08] tracking-[-0.03em] mb-6"
-          >
-            House Cleaning Brighton Melbourne
-          </motion.h1>
-
-          {/* Intro */}
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[17px] md:text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto mb-10"
-          >
-            Brighton homes are among Melbourne's most demanding to clean
-            consistently — large Victorian and Edwardian houses on generous
-            blocks, original timber floors, leadlight windows, and the kind of
-            surface detail that reveals the quality of a cleaner quickly. The
-            streets between Church Street and Dendy Street Beach are lined with
-            properties that reward a consistent, familiar cleaner and suffer
-            noticeably when that consistency isn't there. Crisp services
-            Brighton homes with a fixed, scope-defined checklist applied the
-            same way on every visit, by the same cleaner, at transparent
-            pricing set by your home's actual room count.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <a
-              href="/#booking"
-              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[15px] shadow-[0_8px_30px_rgba(251,140,66,0.30)] hover:shadow-[0_12px_40px_rgba(251,140,66,0.40)] hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Get an Instant Quote
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-            <span className="text-gray-400 text-sm font-medium">
-              15% off your first clean
-            </span>
-          </motion.div>
-
-          {/* Trust strips */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.36 }}
-            className="flex flex-wrap items-center justify-center gap-3 mt-10"
-          >
-            {[
-              { label: `${googleRatingValue} ★ on Google` },
-              { label: "97% Same Cleaner" },
-              { label: "Eco-Friendly Products" },
-              { label: "72hr Re-clean Guarantee" },
-            ].map((pill) => (
-              <div
-                key={pill.label}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-gray-100 shadow-sm text-gray-600 text-[13px] font-medium"
+            {/* LEFT — copy */}
+            <div className="flex-1 max-w-[560px]">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FB8C42]/10 text-[#FB8C42] text-[10px] font-bold tracking-[0.18em] uppercase mb-6"
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#FB8C42]" />
-                {pill.label}
-              </div>
-            ))}
-          </motion.div>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
+                House Cleaning · Brighton · Melbourne
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[40px] md:text-[52px] font-extrabold text-gray-900 leading-[1.06] tracking-[-0.03em] mb-6"
+              >
+                House Cleaning{" "}
+                <span className="text-[#FB8C42]">Brighton</span>
+                <br />Melbourne
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[15px] text-gray-500 leading-relaxed mb-8 max-w-[480px]"
+              >
+                Brighton's Victorian and Edwardian homes have a different cleaning profile to the average Melbourne house. The same cleaner, every visit, with a scope built for your actual room count.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-wrap gap-3 mb-5"
+              >
+                <a
+                  href="/#booking"
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[14px] shadow-[0_6px_24px_rgba(251,140,66,0.28)] hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  Get an instant quote
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+                <a
+                  href="#checklist"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 font-semibold text-[14px] hover:border-gray-300 hover:-translate-y-0.5 transition-all duration-300 shadow-sm"
+                >
+                  See what's included
+                </a>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.28 }}
+                className="text-[12px] text-gray-400"
+              >
+                15% off your first clean. Fixed price, no hourly estimates.
+              </motion.p>
+            </div>
+
+            {/* RIGHT — stat boxes */}
+            <div className="w-full lg:w-[300px] shrink-0 flex flex-col gap-3 lg:mt-2">
+              {heroStats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="bg-white border border-gray-100 rounded-2xl px-5 py-4 shadow-sm flex items-center gap-4"
+                >
+                  <div className="text-2xl font-extrabold text-[#FB8C42] w-16 shrink-0 leading-none">
+                    {stat.value}
+                  </div>
+                  <div className="text-[13px] text-gray-500 leading-snug">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Scroll cue */}
-        <motion.div
-          className="flex justify-center pb-8 text-gray-300"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown className="w-5 h-5" />
-        </motion.div>
+        {/* Metric strip */}
+        <div className="border-t border-gray-100 bg-white">
+          <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100">
+              {metricStrip.map((m, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: 0.3 + i * 0.07 }}
+                  className="py-5 px-6 text-center"
+                >
+                  <div className="text-[22px] font-extrabold text-gray-900 leading-none mb-1">
+                    {m.value}
+                  </div>
+                  <div className="text-[11px] text-gray-400 font-medium">{m.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 1 — Heritage Homes Bento Grid
+          HERITAGE HOMES
       ══════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <ScrollReveal className="text-center mb-14">
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-3">
+      <section className="py-20 bg-[#FAFAF8]">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-12">
+            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
               Brighton's Housing Stock
             </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-              Cleaning Brighton's Heritage Homes the Right Way
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight mb-4">
+              Cleaning Brighton's heritage homes the right way
             </h2>
-            <p className="mt-4 text-[16px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Brighton's housing stock is predominantly period — Victorian
-              mansions, Edwardian family homes, and Californian bungalows on
-              the streets between the bay and the Nepean Highway. Getting a
-              consistently high standard requires a cleaner who knows your
-              home, not a different person starting from scratch every fortnight.
+            <p className="text-[15px] text-gray-500 max-w-2xl leading-relaxed">
+              Brighton's housing stock is predominantly period — Victorian mansions, Edwardian family homes, and Californian bungalows on the streets between the bay and the Nepean Highway define the suburb's residential character. Getting a consistently high standard across these properties requires a cleaner who knows your home.
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {heritageCards.map((card, i) => {
               const Icon = card.icon;
               return (
-                <ScrollReveal key={i} delay={i * 0.1}>
+                <ScrollReveal key={i} delay={i * 0.09}>
                   <motion.div
-                    whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(0,0,0,0.08)" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                    className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full"
+                    whileHover={{ y: -4, boxShadow: "0 12px 36px rgba(0,0,0,0.07)" }}
+                    transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                    className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-full"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#FB8C42]/10 flex items-center justify-center mb-5">
-                      <Icon className="w-4.5 h-4.5 text-[#FB8C42]" style={{ width: 18, height: 18 }} />
+                    <div className="flex items-center gap-2.5 mb-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#FB8C42]/10 flex items-center justify-center shrink-0">
+                        <Icon className="text-[#FB8C42]" style={{ width: 15, height: 15 }} />
+                      </div>
+                      <span className="text-[9px] font-black uppercase tracking-[0.18em] text-[#FB8C42]">
+                        {card.tag}
+                      </span>
                     </div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#FB8C42] mb-2">
-                      {card.tag}
-                    </p>
-                    <h3 className="text-[16px] font-bold text-gray-900 mb-3 leading-snug">
+                    <h3 className="text-[15px] font-bold text-gray-900 mb-3 leading-snug">
                       {card.title}
                     </h3>
-                    <p className="text-[13px] text-gray-500 leading-relaxed">
-                      {card.body}
-                    </p>
+                    <p className="text-[13px] text-gray-500 leading-relaxed">{card.body}</p>
                   </motion.div>
                 </ScrollReveal>
               );
@@ -392,53 +432,45 @@ export default function BrightonClient({
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 2 — What Every Clean Covers (tight 3-column)
+          WHAT EVERY CLEAN COVERS
       ══════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-[#FAFAF8]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <ScrollReveal className="text-center mb-14">
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-3">
+      <section id="checklist" className="py-20 bg-white">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-12">
+            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
               Scope & Checklist
             </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-              What Every Brighton Clean Covers
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight mb-4">
+              What every Brighton clean covers
             </h2>
-            <p className="mt-4 text-[16px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Every Brighton clean follows a documented checklist covering all
-              main rooms and surfaces within your booking scope. The scope is
-              confirmed before the cleaner arrives — which is what makes a fixed
-              price possible.
+            <p className="text-[15px] text-gray-500 max-w-xl leading-relaxed">
+              Every clean follows a documented checklist confirmed before the cleaner arrives. That's what makes a fixed price possible.
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {cleanCovers.map((item, i) => {
               const Icon = item.icon;
               return (
-                <ScrollReveal key={i} delay={i * 0.1}>
+                <ScrollReveal key={i} delay={i * 0.09}>
                   <motion.div
-                    whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(0,0,0,0.07)" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                    className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full"
+                    whileHover={{ y: -4, boxShadow: "0 12px 36px rgba(0,0,0,0.07)" }}
+                    transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                    className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-full"
                   >
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 rounded-xl bg-[#FB8C42]/10 flex items-center justify-center shrink-0">
-                        <Icon className="text-[#FB8C42]" style={{ width: 18, height: 18 }} />
+                    <div className="flex items-center gap-2.5 mb-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#FB8C42]/10 flex items-center justify-center shrink-0">
+                        <Icon className="text-[#FB8C42]" style={{ width: 15, height: 15 }} />
                       </div>
-                      <h3 className="text-[15px] font-bold text-gray-900 leading-tight">
-                        {item.h3}
+                      <h3 className="text-[14px] font-bold text-gray-900 leading-tight">
+                        {item.title}
                       </h3>
                     </div>
-                    <p className="text-[13px] text-gray-500 leading-relaxed mb-5">
-                      {item.body}
-                    </p>
+                    <p className="text-[13px] text-gray-500 leading-relaxed mb-4">{item.body}</p>
                     <ul className="space-y-2">
                       {item.checks.map((c) => (
-                        <li
-                          key={c}
-                          className="flex items-start gap-2.5 text-[13px] font-medium text-gray-700"
-                        >
-                          <CheckCircle2 className="w-4 h-4 text-[#FB8C42] shrink-0 mt-0.5" />
+                        <li key={c} className="flex items-start gap-2 text-[12px] font-medium text-gray-600">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#FB8C42] shrink-0 mt-0.5" />
                           {c}
                         </li>
                       ))}
@@ -452,53 +484,47 @@ export default function BrightonClient({
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 3 — Why Brighton Homeowners Choose Crisp
+          WHY BRIGHTON HOMEOWNERS CHOOSE CRISP
       ══════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <ScrollReveal className="text-center mb-14">
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-3">
+      <section className="py-20 bg-[#FAFAF8]">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-12">
+            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
               The Crisp Difference
             </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-              Why Brighton Homeowners Choose Crisp
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight mb-3">
+              Why Brighton homeowners choose Crisp
             </h2>
-            <p className="mt-4 text-[16px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Brighton's cleaning market offers plenty of options. Crisp's
-              advantage is specific: the same cleaner, a documented checklist,
-              and pricing calibrated to what your home genuinely requires.
+            <p className="text-[15px] text-gray-500 max-w-xl leading-relaxed">
+              The same cleaner, a documented checklist, and pricing calibrated to what your home actually requires.
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {reasonCards.map((card, i) => {
               const Icon = card.icon;
               return (
                 <ScrollReveal key={i} delay={i * 0.08}>
                   <motion.div
-                    whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(0,0,0,0.08)" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                    className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full"
+                    whileHover={{ y: -4, boxShadow: "0 12px 36px rgba(0,0,0,0.07)" }}
+                    transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                    className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-full"
                   >
-                    <div className="flex items-start justify-between mb-5">
-                      <div className="w-10 h-10 rounded-xl bg-[#FB8C42]/10 flex items-center justify-center">
-                        <Icon className="text-[#FB8C42]" style={{ width: 18, height: 18 }} />
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-9 h-9 rounded-xl bg-[#FB8C42]/10 flex items-center justify-center">
+                        <Icon className="text-[#FB8C42]" style={{ width: 16, height: 16 }} />
                       </div>
                       <div className="text-right">
-                        <div className="text-xl font-black text-[#FB8C42]">
+                        <div className="text-[22px] font-extrabold text-[#FB8C42] leading-none">
                           {card.stat}
                         </div>
-                        <div className="text-[11px] text-gray-400 font-medium">
-                          {card.statLabel}
+                        <div className="text-[10px] text-gray-400 font-medium mt-0.5">
+                          {card.statSub}
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-[16px] font-bold text-gray-900 mb-3 leading-snug">
-                      {card.title}
-                    </h3>
-                    <p className="text-[13px] text-gray-500 leading-relaxed">
-                      {card.body}
-                    </p>
+                    <h3 className="text-[15px] font-bold text-gray-900 mb-2.5">{card.title}</h3>
+                    <p className="text-[13px] text-gray-500 leading-relaxed">{card.body}</p>
                   </motion.div>
                 </ScrollReveal>
               );
@@ -508,100 +534,232 @@ export default function BrightonClient({
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          PRICING
+          WE KNOW BRIGHTON'S STREETS — 2-col layout
       ══════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-[#FAFAF8]">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <ScrollReveal className="text-center mb-12">
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-3">
-              Transparent Pricing
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-12">
+            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
+              Local Knowledge
             </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-              Brighton House Cleaning Prices
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight">
+              We know Brighton's streets
             </h2>
-            <p className="mt-4 text-gray-500 max-w-xl mx-auto text-[15px]">
-              Fixed pricing based on your actual room count. No hourly
-              estimates, no surprise charges.
-            </p>
           </ScrollReveal>
-          <Services hiddenInline />
+
+          <div className="flex flex-col md:flex-row gap-10 md:gap-16">
+            {/* Left — street list */}
+            <ScrollReveal className="md:w-[340px] shrink-0 space-y-3" delay={0.05}>
+              {brightonStreets.map((street, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                  className="flex items-start justify-between gap-4 p-4 rounded-xl bg-[#FAFAF8] border border-gray-100 group cursor-default"
+                >
+                  <div>
+                    <p className="text-[14px] font-semibold text-gray-900">{street.name}</p>
+                    <p className="text-[11px] text-gray-400 mt-0.5">{street.tag}</p>
+                  </div>
+                  <span className="shrink-0 text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#FB8C42]/10 text-[#FB8C42] whitespace-nowrap">
+                    Brighton
+                  </span>
+                </motion.div>
+              ))}
+            </ScrollReveal>
+
+            {/* Right — body text */}
+            <ScrollReveal className="flex-1" delay={0.1}>
+              <p className="text-[15px] text-gray-500 leading-relaxed mb-5">
+                Brighton's period housing doesn't behave like a uniform suburb. A four-bedroom Victorian on the Esplanade and a three-bedroom bungalow near the Nepean Highway have different cleaning profiles — different floor types, different bathroom counts, different formal room layouts.
+              </p>
+              <p className="text-[15px] text-gray-500 leading-relaxed mb-5">
+                Our cleaners who work in Brighton have cleaned enough of these properties to know the difference without being told: LeadLight windows, original floorboard gaps, ornate coving — the kind of detail that matters in Brighton homes and goes missed in a standard clean.
+              </p>
+              <p className="text-[15px] text-gray-500 leading-relaxed">
+                Your cleaner is assigned to your property from the first booking. They build a working knowledge of your home specifically, not just a suburb-level familiarity.
+              </p>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          TESTIMONIALS
+          PRICING — 3-card row
+      ══════════════════════════════════════════════════════ */}
+      <section className="py-20 bg-[#FAFAF8]">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-10">
+            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
+              Transparent Pricing
+            </p>
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight mb-3">
+              Brighton house cleaning prices
+            </h2>
+            <p className="text-[15px] text-gray-500 max-w-xl leading-relaxed">
+              Fixed pricing based on your room count. No hourly estimates, no surprise charges after the clean.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {/* Regular Clean */}
+            <ScrollReveal delay={0}>
+              <div className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Regular Clean</p>
+                <div className="mb-1">
+                  <span className="text-[13px] text-gray-400 font-medium">From </span>
+                  <span className="text-[34px] font-extrabold text-gray-900 leading-none">$180</span>
+                </div>
+                <p className="text-[12px] text-gray-400 mb-4">per visit · Start cleaning</p>
+                <p className="text-[12px] font-semibold text-[#FB8C42]">Weekly & fortnightly</p>
+              </div>
+            </ScrollReveal>
+
+            {/* Deep Clean — featured */}
+            <ScrollReveal delay={0.08}>
+              <div className="bg-gray-900 border border-gray-800 rounded-2xl p-7 shadow-xl h-full relative overflow-hidden">
+                <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-[#FB8C42] text-white text-[9px] font-bold uppercase tracking-widest">
+                  Most popular in Brighton
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Deep Clean</p>
+                <div className="mb-1">
+                  <span className="text-[34px] font-extrabold text-white leading-none">Get a quote</span>
+                </div>
+                <p className="text-[12px] text-gray-400 mb-4">scope-based pricing</p>
+                <a
+                  href="/#booking"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#FB8C42] text-white text-[13px] font-bold hover:bg-[#e07a34] transition-colors"
+                >
+                  Get a quote <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            </ScrollReveal>
+
+            {/* End of Lease */}
+            <ScrollReveal delay={0.16}>
+              <div className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">End of Lease</p>
+                <div className="mb-1">
+                  <span className="text-[34px] font-extrabold text-gray-900 leading-none">Get a quote</span>
+                </div>
+                <p className="text-[12px] text-gray-400 mb-4">scope-based pricing</p>
+                <p className="text-[12px] font-semibold text-[#FB8C42]">Fixed price guaranteed</p>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <ScrollReveal>
+            <p className="text-[12px] text-gray-400 text-center">
+              Exact pricing takes 40 seconds online — enter your room count and get a fixed price immediately.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          TESTIMONIALS — 2×2 grid
       ══════════════════════════════════════════════════════ */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <ScrollReveal className="text-center mb-12">
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-3">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-12">
+            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
               Client Stories
             </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-              What Brighton Homeowners Say
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight">
+              What Brighton homeowners say
             </h2>
           </ScrollReveal>
-          <Testimonials googleRatingValue={googleRatingValue} />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {testimonials.map((t, i) => (
+              <ScrollReveal key={i} delay={i * 0.08}>
+                <motion.div
+                  whileHover={{ y: -3, boxShadow: "0 12px 36px rgba(0,0,0,0.07)" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                  className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-full"
+                >
+                  <div className="flex items-center gap-0.5 mb-4">
+                    {Array.from({ length: t.stars }).map((_, s) => (
+                      <Star key={s} className="w-3.5 h-3.5 fill-[#FB8C42] text-[#FB8C42]" />
+                    ))}
+                  </div>
+                  <p className="text-[14px] text-gray-700 leading-relaxed mb-5 italic">
+                    "{t.quote}"
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#FB8C42]/15 flex items-center justify-center text-[#FB8C42] font-bold text-[12px]">
+                      {t.name[0]}
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-semibold text-gray-900">{t.name}</p>
+                      <p className="text-[11px] text-gray-400">{t.suburb}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
           FAQs
       ══════════════════════════════════════════════════════ */}
-      <FAQ data={faqData} title="Frequently Asked Questions" />
+      <FAQ data={faqData} title="Questions about cleaning in Brighton" />
 
       {/* ══════════════════════════════════════════════════════
-          FINAL CTA — warm, light
+          FINAL CTA — warm dark
       ══════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-[#FDF8F4] relative overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at 60% 40%, rgba(251,140,66,0.08) 0%, transparent 60%)",
-          }}
-        />
-        <div className="container mx-auto px-6 max-w-3xl text-center relative z-10">
+      <section className="py-24 bg-[#1A1209] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(251,140,66,0.12) 0%, transparent 60%)" }} />
+        <div className="container mx-auto px-6 max-w-2xl text-center relative z-10">
           <ScrollReveal>
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[11px] uppercase mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 border border-white/10 text-[#FB8C42] text-[9px] font-bold tracking-[0.2em] uppercase mb-7">
               Ready to Book
-            </p>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-5">
-              Book a Cleaner in Brighton
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+              Book a cleaner in Brighton
             </h2>
-            <p className="text-gray-500 text-[16px] mb-9 max-w-xl mx-auto leading-relaxed">
-              Get an instant, fixed quote for your Brighton home and book online
-              in under a minute.{" "}
-              <span className="text-[#FB8C42] font-semibold">
-                15% off your first clean.
-              </span>
+            <p className="text-[15px] text-white/50 mb-3 leading-relaxed">
+              Get an instant fixed quote for your Brighton home.
             </p>
-            <a
-              href="/#booking"
-              className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[15px] shadow-[0_8px_30px_rgba(251,140,66,0.30)] hover:shadow-[0_14px_40px_rgba(251,140,66,0.40)] hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Get an Instant Quote
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            <p className="text-[13px] text-[#FB8C42] font-semibold mb-9">
+              15% off your first clean.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="/#booking"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[14px] shadow-[0_8px_28px_rgba(251,140,66,0.35)] hover:-translate-y-0.5 transition-all duration-300"
+              >
+                Get an instant quote <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+              <a
+                href="tel:0451433786"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/8 border border-white/15 text-white font-semibold text-[14px] hover:bg-white/12 transition-all duration-300"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                Call us: 0451 433 786
+              </a>
+            </div>
           </ScrollReveal>
 
-          {/* Nearby suburbs */}
+          {/* Suburb links */}
           <ScrollReveal delay={0.15} className="mt-16">
-            <h2 className="text-[16px] font-bold text-gray-400 mb-5 uppercase tracking-widest text-[11px]">
-              Nearby Areas We Also Service
-            </h2>
+            <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 mb-4">
+              Nearby areas we also service
+            </p>
             <div className="flex flex-wrap justify-center gap-2.5">
-              {["Hampton", "Cheltenham", "Albert Park", "Sandringham", "Malvern"].map(
-                (suburb) => (
-                  <Link
-                    key={suburb}
-                    href="#"
-                    className="px-5 py-2 rounded-full bg-white border border-gray-200 text-gray-600 hover:border-[#FB8C42]/40 hover:text-[#FB8C42] text-[13px] font-medium shadow-sm transition-all duration-200"
-                  >
-                    {suburb}
-                  </Link>
-                )
-              )}
+              {["Hampton", "Cheltenham", "Sandringham", "Albert Park", "Malvern"].map((suburb) => (
+                <Link
+                  key={suburb}
+                  href="#"
+                  className="px-4 py-2 rounded-full bg-white/6 border border-white/10 text-white/50 hover:text-[#FB8C42] hover:border-[#FB8C42]/20 text-[12px] font-medium transition-all duration-200"
+                >
+                  {suburb}
+                </Link>
+              ))}
             </div>
           </ScrollReveal>
         </div>
