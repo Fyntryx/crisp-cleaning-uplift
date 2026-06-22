@@ -262,14 +262,6 @@ export default function BrightonClient({
           HERO — 2-column layout
       ══════════════════════════════════════════════════════ */}
       <section className="relative bg-[#FDFAF6] overflow-hidden pt-28 pb-0">
-        <style dangerouslySetInnerHTML={{__html: `
-          @keyframes drawUnderline {
-            0% { width: 0; opacity: 0; }
-            1% { opacity: 1; }
-            100% { width: 100%; opacity: 1; }
-          }
-        `}} />
-        
         {/* Subtle dot pattern right side */}
         <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full pointer-events-none opacity-[0.06]" 
           style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
@@ -309,9 +301,24 @@ export default function BrightonClient({
                 className="text-[40px] md:text-[52px] font-extrabold text-gray-900 leading-[1.06] tracking-[-0.03em] mb-6"
               >
                 House Cleaning{" "}
-                <span className="text-[#FB8C42] relative inline-block">
+                <span className="text-[#FB8C42] relative inline-block z-10">
                   Brighton
-                  <span className="absolute bottom-[6px] left-0 h-[2px] bg-[#FB8C42] animate-[drawUnderline_0.8s_ease-out_forwards] opacity-0" style={{ animationDelay: '0.4s' }} />
+                  <svg 
+                    className="absolute -bottom-1 left-[-2%] w-[104%] h-[16px] pointer-events-none -z-10"
+                    viewBox="0 0 100 20" 
+                    preserveAspectRatio="none"
+                  >
+                    <motion.path 
+                      d="M 2 16 Q 50 4 98 16" 
+                      fill="none" 
+                      stroke="#d97706" 
+                      strokeWidth="4.5" 
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 1 }}
+                      transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+                    />
+                  </svg>
                 </span>
                 <br />Melbourne
               </motion.h1>
