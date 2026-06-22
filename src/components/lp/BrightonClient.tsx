@@ -304,16 +304,23 @@ export default function BrightonClient({
                 <span className="text-[#FB8C42] relative inline-block z-10">
                   Brighton
                   <svg 
-                    className="absolute -bottom-1 left-[-2%] w-[104%] h-[16px] pointer-events-none -z-10"
-                    viewBox="0 0 100 20" 
+                    className="absolute -bottom-1 left-[-4%] w-[108%] h-[24px] pointer-events-none -z-10"
+                    viewBox="0 0 100 24" 
                     preserveAspectRatio="none"
                   >
+                    <defs>
+                      <filter id="marker-roughness" x="-20%" y="-20%" width="140%" height="140%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.15 0.7" numOctaves="2" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+                      </filter>
+                    </defs>
                     <motion.path 
-                      d="M 2 16 Q 50 4 98 16" 
+                      d="M 2 18 C 30 10 70 14 98 16" 
                       fill="none" 
                       stroke="#d97706" 
-                      strokeWidth="4.5" 
+                      strokeWidth="7" 
                       strokeLinecap="round"
+                      filter="url(#marker-roughness)"
                       initial={{ pathLength: 0, opacity: 0 }}
                       animate={{ pathLength: 1, opacity: 1 }}
                       transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
@@ -757,58 +764,82 @@ export default function BrightonClient({
       {/* ══════════════════════════════════════════════════════
           FINAL CTA — warm dark
       ══════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-[#1A1209] relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(251,140,66,0.12) 0%, transparent 60%)" }} />
-        <div className="container mx-auto px-6 max-w-2xl text-center relative z-10">
-          <ScrollReveal>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 border border-white/10 text-[#FB8C42] text-[9px] font-bold tracking-[0.2em] uppercase mb-7">
-              Ready to Book
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-              Book a cleaner in Brighton
-            </h2>
-            <p className="text-[15px] text-white/50 mb-3 leading-relaxed">
-              Get an instant fixed quote for your Brighton home.
-            </p>
-            <p className="text-[13px] text-[#FB8C42] font-semibold mb-9">
-              15% off your first clean.
-            </p>
+      <section className="pt-12 pb-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <div 
+            className="relative rounded-[32px] md:rounded-[40px] bg-[#14120F] text-white p-10 md:p-16 lg:p-20 overflow-hidden shadow-2xl border border-white/5"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px)
+              `,
+              backgroundSize: '36px 36px',
+            }}
+          >
+            {/* Radial Ambient Corner Glows */}
+            <div className="absolute -bottom-36 -right-36 w-[450px] h-[450px] bg-[#FB8C42]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -bottom-36 -left-36 w-[450px] h-[450px] bg-[#FB8C42]/15 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="/#booking"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[14px] shadow-[0_8px_28px_rgba(251,140,66,0.35)] hover:-translate-y-0.5 transition-all duration-300"
-              >
-                Get an instant quote <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </a>
-              <a
-                href="tel:0451433786"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/8 border border-white/15 text-white font-semibold text-[14px] hover:bg-white/12 transition-all duration-300"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                Call us: 0451 433 786
-              </a>
-            </div>
-          </ScrollReveal>
+            <div className="relative z-10 max-w-2xl mx-auto text-center flex flex-col items-center">
+              <ScrollReveal>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#FB8C42] text-[10px] font-bold tracking-[0.2em] uppercase mb-6">
+                  Ready to Book
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight max-w-2xl text-white">
+                  Book a cleaner in <span className="text-[#FB8C42]">Brighton</span>
+                </h2>
+                
+                <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+                  Get an instant fixed quote for your Brighton home based on your room count, not generic hourly estimates.
+                </p>
 
-          {/* Suburb links */}
-          <ScrollReveal delay={0.15} className="mt-16">
-            <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 mb-4">
-              Nearby areas we also service
-            </p>
-            <div className="flex flex-wrap justify-center gap-2.5">
-              {["Hampton", "Cheltenham", "Sandringham", "Albert Park", "Malvern"].map((suburb) => (
-                <Link
-                  key={suburb}
-                  href="#"
-                  className="px-4 py-2 rounded-full bg-white/6 border border-white/10 text-white/50 hover:text-[#FB8C42] hover:border-[#FB8C42]/20 text-[12px] font-medium transition-all duration-200"
-                >
-                  {suburb}
-                </Link>
-              ))}
+                <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl sm:rounded-full px-5 py-2.5 mb-10 text-xs md:text-sm text-white/80">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-[#FB8C42]">15% off your first clean.</span>
+                  </div>
+                  <span className="hidden sm:inline text-white/20">|</span>
+                  <div className="flex items-center gap-2">
+                    <span>No lock-in contracts. Cancel anytime.</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mx-auto mb-10">
+                  <a
+                    href="/#booking"
+                    className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[15px] shadow-[0_0_30px_rgba(251,140,66,0.45)] hover:shadow-[0_0_40px_rgba(251,140,66,0.65)] hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    Get an instant quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </a>
+                  <a
+                    href="tel:0451433786"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300"
+                  >
+                    <Phone className="w-4 h-4" />
+                    0451 433 786
+                  </a>
+                </div>
+              </ScrollReveal>
+
+              {/* Suburb links */}
+              <ScrollReveal delay={0.15} className="mt-4 pt-8 border-t border-white/10 w-full">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+                  Nearby areas we also service
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {["Hampton", "Cheltenham", "Sandringham", "Albert Park", "Malvern"].map((suburb) => (
+                    <Link
+                      key={suburb}
+                      href="#"
+                      className="px-4 py-2 rounded-full bg-white/5 border border-white/5 text-white/50 hover:text-[#FB8C42] hover:border-[#FB8C42]/30 hover:bg-[#FB8C42]/5 text-[13px] font-medium transition-all duration-300"
+                    >
+                      {suburb}
+                    </Link>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
     </div>
