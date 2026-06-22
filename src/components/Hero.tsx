@@ -146,7 +146,7 @@ const Hero = () => {
                     ))}
                   </div>
                   <span className="text-sm drop-shadow-sm">
-                    <strong className="text-white">4.9</strong> Average Rating
+                    <strong className="text-white">5.0</strong> Average Rating
                   </span>
                 </div>
               </div>

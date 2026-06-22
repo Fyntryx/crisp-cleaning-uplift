@@ -76,7 +76,7 @@ interface TestimonialsProps {
   googleRatingValue?: number;
 }
 
-export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews, googleReviewCount = 14, googleRatingValue = 4.9 }: TestimonialsProps) {
+export default function Testimonials({ title, subtitle, topTitle, hideBeforeAfter, hideReviews, layout = "center", reviews = defaultReviews, googleReviewCount = 14, googleRatingValue = 5.0 }: TestimonialsProps) {
   const [beforeAfterRef, beforeAfterApi] = useEmblaCarousel({ loop: true, align: 'center', watchDrag: false, breakpoints: { '(min-width: 768px)': { active: false } } });
   const [reviewsRef] = useEmblaCarousel({ loop: false, align: 'start', breakpoints: { '(min-width: 768px)': { active: false } } });
   const [isInteracting, setIsInteracting] = React.useState(false);

@@ -12,7 +12,7 @@ interface StatsProps {
   googleRatingValue?: number;
 }
 
-export default function Stats({ googleRatingValue = 4.9 }: StatsProps = {}) {
+export default function Stats({ googleRatingValue = 5.0 }: StatsProps = {}) {
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6 md:px-8 max-w-6xl">

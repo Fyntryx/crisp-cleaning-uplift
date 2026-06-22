@@ -9,7 +9,7 @@ interface HeroProps {
   googleRatingValue?: number;
 }
 
-export default function Hero({ googleRatingValue = 4.9 }: HeroProps) {
+export default function Hero({ googleRatingValue = 5.0 }: HeroProps) {
   return (
     <section className="w-full relative overflow-hidden bg-[#FB8C42]/5 md:bg-[#1E1915] px-6 md:px-4 pt-32 pb-20 text-center flex flex-col items-center justify-center min-h-screen">
 

@@ -18,7 +18,7 @@ interface FooterProps {
   googleRatingValue?: number;
 }
 
-const Footer = ({ googleRatingValue = 4.9 }: FooterProps = {}) => {
+const Footer = ({ googleRatingValue = 5.0 }: FooterProps = {}) => {
   const liveSuburbs = getLiveSuburbs();
   
   return (

@@ -9,7 +9,7 @@ interface ServiceHeroProps {
   googleRatingValue?: number;
 }
 
-export default function ServiceHero({ googleRatingValue = 4.9 }: ServiceHeroProps = {}) {
+export default function ServiceHero({ googleRatingValue = 5.0 }: ServiceHeroProps = {}) {
   const trustItems = [
     "Insured & Vetted",
     "Same Cleaner Every Visit",
