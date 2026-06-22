@@ -401,28 +401,53 @@ export default function BrightonClient({
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {heritageCards.map((card, i) => {
               const Icon = card.icon;
+              const isFeatured = i === 0;
+
               return (
-                <ScrollReveal key={i} delay={i * 0.09}>
+                <ScrollReveal key={i} delay={i * 0.09} className={isFeatured ? "md:col-span-2" : ""}>
                   <motion.div
                     whileHover={{ y: -4, boxShadow: "0 12px 36px rgba(0,0,0,0.07)" }}
                     transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                    className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-full"
+                    className={`border border-gray-100 rounded-2xl shadow-sm h-full ${
+                      isFeatured ? "bg-[#fef3c7]/40 p-8 md:p-10" : "bg-white p-6"
+                    }`}
                   >
-                    <div className="flex items-center gap-2.5 mb-4">
-                      <div className="w-8 h-8 rounded-lg bg-[#FB8C42]/10 flex items-center justify-center shrink-0">
-                        <Icon className="text-[#FB8C42]" style={{ width: 15, height: 15 }} />
+                    <div className="flex items-center gap-3 mb-5">
+                      <div
+                        className={`rounded-lg bg-[#FB8C42]/10 flex items-center justify-center shrink-0 ${
+                          isFeatured ? "w-11 h-11" : "w-8 h-8"
+                        }`}
+                      >
+                        <Icon
+                          className="text-[#FB8C42]"
+                          style={{ width: isFeatured ? 20 : 15, height: isFeatured ? 20 : 15 }}
+                        />
                       </div>
-                      <span className="text-[9px] font-black uppercase tracking-[0.18em] text-[#FB8C42]">
+                      <span
+                        className={`font-black uppercase tracking-[0.18em] text-[#FB8C42] ${
+                          isFeatured ? "text-[11px]" : "text-[9px]"
+                        }`}
+                      >
                         {card.tag}
                       </span>
                     </div>
-                    <h3 className="text-[15px] font-bold text-gray-900 mb-3 leading-snug">
+                    <h3
+                      className={`font-bold text-gray-900 leading-snug ${
+                        isFeatured ? "text-[22px] md:text-[24px] mb-4" : "text-[15px] mb-3"
+                      }`}
+                    >
                       {card.title}
                     </h3>
-                    <p className="text-[13px] text-gray-500 leading-relaxed">{card.body}</p>
+                    <p
+                      className={`text-gray-500 leading-relaxed ${
+                        isFeatured ? "text-[15px] max-w-4xl" : "text-[13px]"
+                      }`}
+                    >
+                      {card.body}
+                    </p>
                   </motion.div>
                 </ScrollReveal>
               );
