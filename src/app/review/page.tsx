@@ -10,6 +10,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   alternates: {
     canonical: '/review',
+  },
+  title: "Client Reviews | Crisp Cleaning",
+  description: "See what our happy customers have to say...",
 };
 
 const pageQuery = groq`{
