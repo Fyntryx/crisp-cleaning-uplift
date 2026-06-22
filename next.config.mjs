@@ -38,6 +38,21 @@ const nextConfig = {
         destination: '/apartment-cleaning-melbourne',
         permanent: true,
       },
+      {
+        source: '/vacate-cleaning-melbourne',
+        destination: '/end-of-lease-cleaning-melbourne',
+        permanent: true,
+      },
+      {
+        source: '/standard-house-cleaning-melbourne',
+        destination: '/house-cleaning-melbourne',
+        permanent: true,
+      },
+      {
+        source: '/standard-cleaning-melbourne',
+        destination: '/house-cleaning-melbourne',
+        permanent: true,
+      },
       // ------------------------------------------------------
     ]
   },

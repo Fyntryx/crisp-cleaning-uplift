@@ -11,8 +11,8 @@ function getRoutes(dir: string, basePath: string = ''): string[] {
 
     for (const entry of entries) {
       if (entry.isDirectory()) {
-        // Ignore Next.js specific directories or api/studio routes
-        if (entry.name.startsWith('(') || entry.name.startsWith('_') || entry.name === 'api' || entry.name === 'studio') {
+        const excludedDirs = ['api', 'studio', 'review', 'commercial-cleaning', 'apartment-cleaning-melbourne', 'commercial-agreement'];
+        if (entry.name.startsWith('(') || entry.name.startsWith('_') || excludedDirs.includes(entry.name)) {
           continue;
         }
         const newBasePath = basePath ? `${basePath}/${entry.name}` : `/${entry.name}`;
