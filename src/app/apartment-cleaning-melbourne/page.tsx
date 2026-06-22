@@ -195,7 +195,7 @@ export default async function ApartmentCleaningPage() {
       {/* 9. Final CTA Section */}
       <FinalCTA />
 
-      <Footer googleRatingValue={googleRatingValue} />
+      <Footer />
     </main>
   );
 }

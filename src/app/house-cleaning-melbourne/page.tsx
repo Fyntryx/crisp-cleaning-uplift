@@ -235,7 +235,7 @@ export default async function HouseCleaningPage() {
       </div>
 
       <Services hiddenInline />
-      <Footer googleRatingValue={googleRatingValue} />
+      <Footer />
     </main>
   );
 }

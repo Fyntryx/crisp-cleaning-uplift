@@ -245,7 +245,7 @@ export default async function CommercialCleaningPage() {
       {/* 9. Final CTA Section */}
       <FinalCTA />
 
-      <Footer googleRatingValue={googleRatingValue} />
+      <Footer />
     </main>
   );
 }
