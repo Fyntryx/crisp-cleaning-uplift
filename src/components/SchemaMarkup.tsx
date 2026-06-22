@@ -17,7 +17,7 @@ export default async function SchemaMarkup() {
         "@id": "https://crispcleaning.com.au/#organization",
         "name": "Crisp Cleaning",
         "telephone": "0451433786",
-        "email": "hello@crispcleaning.com.au",
+        "email": "crispcleaningmelbourne@gmail.com",
         "url": "https://www.crispcleaning.com.au",
         "logo": "https://crispcleaning.com.au/crisp-cleaning-logo.webp",
         "image": "https://crispcleaning.com.au/crisp-cleaning-logo.webp",
