@@ -61,11 +61,11 @@ export default function FAQ({ data, title }: FAQProps) {
 
         <Accordion type="single" collapsible className="w-full space-y-4">
           {currentFaqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-orange-50 rounded-2xl px-6 py-2 shadow-sm data-[state=open]:border-primary/30 transition-all">
+            <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-100 border-l-[3px] border-l-transparent rounded-2xl px-6 py-2 shadow-sm data-[state=open]:border-l-[#d97706] data-[state=open]:pl-[12px] transition-all duration-300">
               <AccordionTrigger className="text-left font-bold text-lg hover:no-underline hover:text-primary transition-colors">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base leading-relaxed pt-2 pb-4">
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed pt-2 overflow-hidden data-[state=closed]:max-h-0 data-[state=open]:max-h-[400px] data-[state=closed]:opacity-0 data-[state=open]:opacity-100 data-[state=open]:pb-4 transition-all duration-300 ease-in-out">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
