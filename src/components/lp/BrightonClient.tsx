@@ -3,6 +3,10 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+<<<<<<< Updated upstream
+=======
+import Image from "next/image";
+>>>>>>> Stashed changes
 import {
   Home,
   Leaf,
@@ -370,6 +374,7 @@ export default function BrightonClient({
               </motion.p>
             </div>
 
+<<<<<<< Updated upstream
             {/* RIGHT — stat boxes */}
             <div className="w-full lg:w-[300px] shrink-0 flex flex-col gap-3 lg:mt-2">
               {heroStats.map((stat, i) => (
@@ -386,6 +391,44 @@ export default function BrightonClient({
                   <div className="text-[13px] text-gray-500 leading-snug">{stat.label}</div>
                 </motion.div>
               ))}
+=======
+            {/* RIGHT — arch image and floating stats */}
+            <div className="w-full lg:w-[460px] shrink-0 relative flex flex-col items-center">
+              {/* Arch Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-full aspect-[4/5] max-w-[400px] overflow-hidden shadow-2xl"
+                style={{ borderRadius: "50% 50% 0 0 / 60% 60% 0 0" }}
+              >
+                <Image 
+                  src="/images/house-cleaning-Brighton.jpg" 
+                  alt="Brighton House Cleaning" 
+                  fill 
+                  className="object-cover"
+                  priority
+                />
+              </motion.div>
+
+              {/* Floating Stats */}
+              <div className="w-full max-w-[280px] flex flex-col gap-2.5 -mt-24 relative z-10 lg:ml-[-10%]">
+                {heroStats.map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="bg-white/95 backdrop-blur-md border border-gray-100 border-l-[3px] border-l-[#d97706] rounded-[14px] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.08)] flex items-center gap-3"
+                  >
+                    <div className="text-[20px] font-extrabold text-[#FB8C42] w-12 shrink-0 leading-none">
+                      {stat.value}
+                    </div>
+                    <div className="text-[12px] text-gray-700 font-medium leading-tight">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+>>>>>>> Stashed changes
             </div>
           </div>
         </div>
@@ -711,6 +754,7 @@ export default function BrightonClient({
       </section>
 
       {/* ══════════════════════════════════════════════════════
+<<<<<<< Updated upstream
           TESTIMONIALS — 2×2 grid
       ══════════════════════════════════════════════════════ */}
       <section className="py-20 bg-white">
@@ -750,6 +794,37 @@ export default function BrightonClient({
                     </div>
                   </div>
                 </motion.div>
+=======
+          TESTIMONIALS — Editorial layout (Brighton Bespoke)
+      ══════════════════════════════════════════════════════ */}
+      <section className="py-24 bg-[#FDFCF8]">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-16">
+            <h2 className="text-3xl md:text-[36px] font-medium text-gray-900 tracking-tight text-left">
+              What Brighton Homeowners Say
+            </h2>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16">
+            {testimonials.slice(0, 3).map((t, i) => (
+              <ScrollReveal key={i} delay={i * 0.1}>
+                <div className="flex flex-col h-full">
+                  <span className="text-[80px] leading-none text-[#FB8C42] font-serif block mb-[-20px] select-none">
+                    “
+                  </span>
+                  <p className="text-[17px] text-gray-700 leading-relaxed mb-8 font-serif italic grow">
+                    {t.quote}
+                  </p>
+                  <div className="h-[1px] w-12 bg-[#FB8C42] mb-6"></div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="text-[14px] font-semibold text-gray-900">{t.name}</span>
+                      <span className="text-[12px] text-gray-400">5.0 ★</span>
+                    </div>
+                    <p className="text-[13px] text-gray-500">{t.suburb}</p>
+                  </div>
+                </div>
+>>>>>>> Stashed changes
               </ScrollReveal>
             ))}
           </div>
