@@ -3,10 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-<<<<<<< Updated upstream
-=======
 import Image from "next/image";
->>>>>>> Stashed changes
 import {
   Home,
   Leaf,
@@ -374,24 +371,8 @@ export default function BrightonClient({
               </motion.p>
             </div>
 
-<<<<<<< Updated upstream
-            {/* RIGHT — stat boxes */}
-            <div className="w-full lg:w-[300px] shrink-0 flex flex-col gap-3 lg:mt-2">
-              {heroStats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="bg-white border border-gray-100 border-l-[3px] border-l-[#d97706] rounded-2xl px-5 py-4 shadow-sm flex items-center gap-4"
-                >
-                  <div className="text-2xl font-extrabold text-[#FB8C42] w-16 shrink-0 leading-none">
-                    {stat.value}
-                  </div>
-                  <div className="text-[13px] text-gray-500 leading-snug">{stat.label}</div>
-                </motion.div>
-              ))}
-=======
+
+
             {/* RIGHT — arch image and floating stats */}
             <div className="w-full lg:w-[460px] shrink-0 relative flex flex-col items-center">
               {/* Arch Image */}
@@ -428,7 +409,7 @@ export default function BrightonClient({
                   </motion.div>
                 ))}
               </div>
->>>>>>> Stashed changes
+
             </div>
           </div>
         </div>
@@ -754,47 +735,7 @@ export default function BrightonClient({
       </section>
 
       {/* ══════════════════════════════════════════════════════
-<<<<<<< Updated upstream
-          TESTIMONIALS — 2×2 grid
-      ══════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
-          <ScrollReveal className="mb-12">
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
-              Client Stories
-            </p>
-            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight">
-              What Brighton homeowners say
-            </h2>
-          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {testimonials.map((t, i) => (
-              <ScrollReveal key={i} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -3, boxShadow: "0 12px 36px rgba(0,0,0,0.07)" }}
-                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                  className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-full"
-                >
-                  <div className="flex items-center gap-0.5 mb-4">
-                    {Array.from({ length: t.stars }).map((_, s) => (
-                      <Star key={s} className="w-3.5 h-3.5 fill-[#FB8C42] text-[#FB8C42]" />
-                    ))}
-                  </div>
-                  <p className="text-[14px] text-gray-700 leading-relaxed mb-5 italic">
-                    "{t.quote}"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[#FB8C42]/15 flex items-center justify-center text-[#FB8C42] font-bold text-[12px]">
-                      {t.name[0]}
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-semibold text-gray-900">{t.name}</p>
-                      <p className="text-[11px] text-gray-400">{t.suburb}</p>
-                    </div>
-                  </div>
-                </motion.div>
-=======
           TESTIMONIALS — Editorial layout (Brighton Bespoke)
       ══════════════════════════════════════════════════════ */}
       <section className="py-24 bg-[#FDFCF8]">
@@ -824,7 +765,7 @@ export default function BrightonClient({
                     <p className="text-[13px] text-gray-500">{t.suburb}</p>
                   </div>
                 </div>
->>>>>>> Stashed changes
+
               </ScrollReveal>
             ))}
           </div>
