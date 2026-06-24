@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   description: "Transforming spaces, one clean at a time.",
   verification: {
     google: "e7JFcIzjjtJfxgSxSfDX6GX2Ss22YERkACMyxrf_47k",
+    other: {
+      "facebook-domain-verification": "xy9zujobkcq3kusurwf2ufscv2xkwv",
+    },
   },
 };
 
