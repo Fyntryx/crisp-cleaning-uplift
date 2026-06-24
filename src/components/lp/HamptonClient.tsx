@@ -3,12 +3,8 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-<<<<<<< Updated upstream
-import { ArrowRight, Phone, CheckCircle2 } from "lucide-react";
-=======
 import Image from "next/image";
 import { ArrowRight, Phone, CheckCircle2, Star, ArrowRightLeft } from "lucide-react";
->>>>>>> Stashed changes
 import FAQ from "@/components/lp/FAQ";
 import Testimonials from "@/components/lp/Testimonials";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -69,8 +65,7 @@ const faqData = [
   },
 ];
 
-<<<<<<< Updated upstream
-=======
+
 const HamptonBeforeAfterSlider = () => {
   const [sliderPosition, setSliderPosition] = React.useState(50);
   const [isDragging, setIsDragging] = React.useState(false);
@@ -135,7 +130,7 @@ const HamptonBeforeAfterSlider = () => {
   );
 };
 
->>>>>>> Stashed changes
+
 // ─── Main Component ────────────────────────────────────────────────
 export default function HamptonClient({
   googleRatingValue = 5.0,
@@ -628,11 +623,7 @@ export default function HamptonClient({
       </section>
 
       {/* ══════════════════════════════════════════════════════
-<<<<<<< Updated upstream
-          SECTION 6 — Testimonials
-      ══════════════════════════════════════════════════════ */}
-      <Testimonials title="What Hampton homeowners say" googleRatingValue={googleRatingValue} />
-=======
+
           TESTIMONIALS — Coastal layout (Hampton Bespoke)
       ══════════════════════════════════════════════════════ */}
       <section className="py-24 bg-[#FAF6F0]">
@@ -701,7 +692,7 @@ export default function HamptonClient({
           </div>
         </div>
       </section>
->>>>>>> Stashed changes
+
 
       {/* ══════════════════════════════════════════════════════
           SECTION 7 — FAQ
