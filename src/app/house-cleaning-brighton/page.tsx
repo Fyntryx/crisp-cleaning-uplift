@@ -18,7 +18,7 @@ const faqsForSchema = [
   {
     question: "Do you service homes near Dendy Street Beach and Church Street?",
     answer:
-      "Yes — we cover all of Brighton including the Esplanade, Dendy Street, and the pockets around Church Street and Bay Street.",
+      "Yes — we service all of Brighton, from the streets nearest Dendy Street Beach and the bathing boxes through to the Church Street and Bay Street corridors, and all residential precincts from North Brighton to Brighton Beach station.",
   },
   {
     question:
