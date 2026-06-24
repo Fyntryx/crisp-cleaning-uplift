@@ -3,7 +3,12 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+<<<<<<< Updated upstream
 import { ArrowRight, Phone, CheckCircle2 } from "lucide-react";
+=======
+import Image from "next/image";
+import { ArrowRight, Phone, CheckCircle2, Star, ArrowRightLeft } from "lucide-react";
+>>>>>>> Stashed changes
 import FAQ from "@/components/lp/FAQ";
 import Testimonials from "@/components/lp/Testimonials";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -64,6 +69,73 @@ const faqData = [
   },
 ];
 
+<<<<<<< Updated upstream
+=======
+const HamptonBeforeAfterSlider = () => {
+  const [sliderPosition, setSliderPosition] = React.useState(50);
+  const [isDragging, setIsDragging] = React.useState(false);
+
+  return (
+    <div
+      className="relative w-full h-[400px] md:h-full min-h-[400px] rounded-[24px] overflow-hidden bg-gray-100 shadow-sm border border-gray-200 select-none cursor-ew-resize touch-none"
+      onMouseDown={() => setIsDragging(true)}
+      onMouseUp={() => setIsDragging(false)}
+      onMouseLeave={() => setIsDragging(false)}
+      onTouchStart={() => setIsDragging(true)}
+      onTouchEnd={() => setIsDragging(false)}
+      onMouseMove={(e) => {
+        if (!isDragging) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        setSliderPosition(Math.max(0, Math.min(100, (x / rect.width) * 100)));
+      }}
+      onTouchMove={(e) => {
+        if (!isDragging) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        setSliderPosition(Math.max(0, Math.min(100, (x / rect.width) * 100)));
+      }}
+    >
+      {/* After Image (Background) */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image 
+          src="/images/clean-bathroom-after-service.webp" 
+          alt="After cleaning" 
+          fill 
+          className="object-cover"
+        />
+        <div className="absolute top-4 right-4 bg-[#FB8C42] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+          After
+        </div>
+      </div>
+
+      {/* Before Image (Clipped) */}
+      <div 
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+      >
+        <Image 
+          src="/images/dirty-bathroom-before-service.webp" 
+          alt="Before cleaning" 
+          fill 
+          className="object-cover"
+        />
+        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+          Before
+        </div>
+      </div>
+
+      {/* Orange Divider Line */}
+      <div className="absolute top-0 bottom-0 w-[3px] bg-[#FB8C42] z-20 pointer-events-none transform -translate-x-1/2" style={{ left: `${sliderPosition}%` }}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[#FB8C42] rounded-full flex items-center justify-center shadow-lg transition-transform text-white">
+          <ArrowRightLeft className="w-5 h-5" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+>>>>>>> Stashed changes
 // ─── Main Component ────────────────────────────────────────────────
 export default function HamptonClient({
   googleRatingValue = 5.0,
@@ -556,9 +628,80 @@ export default function HamptonClient({
       </section>
 
       {/* ══════════════════════════════════════════════════════
+<<<<<<< Updated upstream
           SECTION 6 — Testimonials
       ══════════════════════════════════════════════════════ */}
       <Testimonials title="What Hampton homeowners say" googleRatingValue={googleRatingValue} />
+=======
+          TESTIMONIALS — Coastal layout (Hampton Bespoke)
+      ══════════════════════════════════════════════════════ */}
+      <section className="py-24 bg-[#FAF6F0]">
+        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
+          <ScrollReveal className="mb-12">
+            <h2 className="text-3xl md:text-[36px] font-bold text-gray-900 tracking-tight text-left">
+              What Hampton Homeowners Say
+            </h2>
+          </ScrollReveal>
+
+          <div className="flex flex-col gap-6">
+            {/* Top Row: Featured Review */}
+            <ScrollReveal delay={0.1}>
+              <div className="bg-[#F3F7F9] rounded-[24px] p-10 md:p-14 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left">
+                <div className="flex-1">
+                  <div className="flex items-center justify-center md:justify-start gap-1 mb-6">
+                    {[...Array(5)].map((_, s) => (
+                      <Star key={s} className="w-6 h-6 fill-[#FB8C42] text-[#FB8C42]" />
+                    ))}
+                  </div>
+                  <p className="text-[20px] md:text-[24px] text-gray-800 leading-relaxed font-medium mb-6 italic">
+                    "We've tried three different companies in Bayside over the years. Crisp is the only one where the cleaner actually learned the house and maintained the standard past the first month. Incredible service."
+                  </p>
+                  <div>
+                    <p className="text-[16px] font-bold text-gray-900">Emma T.</p>
+                    <p className="text-[14px] text-gray-500">Hampton Street precinct</p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Bottom Row: 2 smaller reviews + Before/After */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Left Column: Stacked Reviews */}
+              <div className="flex flex-col gap-6">
+                <ScrollReveal delay={0.2} className="h-full">
+                  <div className="bg-white rounded-[20px] p-8 shadow-sm h-full flex flex-col">
+                    <p className="text-[16px] text-gray-700 leading-relaxed italic mb-6 grow">
+                      "With kids tracking sand in from the beach all summer, the floors were a nightmare. The team gets them immaculate every fortnight without using harsh chemicals on our older timber boards."
+                    </p>
+                    <div>
+                      <p className="text-[14px] font-bold text-gray-900">David L.</p>
+                      <p className="text-[12px] text-gray-500">Holyrood St, Hampton</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+                <ScrollReveal delay={0.3} className="h-full">
+                  <div className="bg-white rounded-[20px] p-8 shadow-sm h-full flex flex-col">
+                    <p className="text-[16px] text-gray-700 leading-relaxed italic mb-6 grow">
+                      "The instant quoting was so easy, and the fixed pricing is a relief. They didn't blink an eye at the extra bathroom in the new extension."
+                    </p>
+                    <div>
+                      <p className="text-[14px] font-bold text-gray-900">Sophie & Mark</p>
+                      <p className="text-[12px] text-gray-500">Linacre Rd, Hampton</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              </div>
+
+              {/* Right Column: Before/After */}
+              <ScrollReveal delay={0.4} className="h-full min-h-[400px]">
+                <HamptonBeforeAfterSlider />
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+>>>>>>> Stashed changes
 
       {/* ══════════════════════════════════════════════════════
           SECTION 7 — FAQ
