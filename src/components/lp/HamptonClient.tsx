@@ -182,7 +182,7 @@ export default function HamptonClient({
                 transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className="text-[15px] text-gray-500 leading-[1.7] mb-10 max-w-[480px]"
               >
-                Hampton earns its reputation quietly — the Hampton Street village strip, the foreshore reserve, and the beach cottages and period homes between them create a community character distinct from the larger bayside suburbs on either side. The same cleaner, every visit, with a scope built for your actual room count.
+                Hampton earns its reputation quietly — the Hampton Street village strip, the foreshore reserve, and the beach cottages and period homes between them create a community character that's distinct from the larger, more celebrated bayside suburbs on either side. Crisp services Hampton homes with a fixed, scope-defined checklist applied the same way on every visit, by the same cleaner, at transparent pricing set by your home's actual room count rather than a generic hourly estimate.
               </motion.p>
 
               <motion.div
@@ -293,7 +293,7 @@ export default function HamptonClient({
               Cleaning Hampton's Beachside Homes and Cottages Properly
             </h2>
             <p className="text-[16px] text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Hampton's residential stock runs from original beach cottages on the streets closest to the foreshore through to larger family homes on the blocks toward Hampton East. The variety in property type, build era, and surface specification means a generic cleaning approach underserves most of them.
+              Hampton's residential stock runs from original beach cottages on the streets closest to the foreshore through to larger family homes on the blocks toward Hampton East. The variety in property type, build era, and surface specification means a generic cleaning approach underserves most of them. Crisp's fixed, scope-specific model is built around what each Hampton property actually requires.
             </p>
           </ScrollReveal>
 
@@ -392,7 +392,7 @@ export default function HamptonClient({
               What Every Hampton Clean Includes
             </h2>
             <p className="text-[16px] text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Every Hampton clean covers a documented, fixed scope — kitchen, bathrooms, floors, bedrooms, living areas, and laundry. The checklist is confirmed before the cleaner arrives and the price is fixed before you commit.
+              Every Hampton clean covers a documented, fixed scope — kitchen, bathrooms, floors, bedrooms, living areas, and laundry. The checklist is confirmed before the cleaner arrives and the price is fixed before you commit. No ambiguity on the day about what's covered.
             </p>
           </ScrollReveal>
         </div>
@@ -483,7 +483,7 @@ export default function HamptonClient({
               Why Hampton Homeowners Choose Crisp
             </h2>
             <p className="text-[16px] text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Hampton is a tightly held, predominantly owner-occupier suburb whose residents value consistency over price. The zero competition index here means a quality service establishes quickly — and the homeowner demographic makes them stay.
+              The zero competition index for 'house cleaning Hampton' is the market context — there's no entrenched competitor to displace, and the first quality service to establish a genuine local presence here will hold its ground quickly. The homeowner context is equally clear: Hampton is a tightly held, predominantly owner-occupier suburb whose residents value consistency over price.
             </p>
           </ScrollReveal>
 

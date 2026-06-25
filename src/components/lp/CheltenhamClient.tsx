@@ -538,7 +538,7 @@ export default function CheltenhamClient({
               Why Cheltenham Homeowners Choose Crisp
             </h2>
             <p className="text-[16px] text-gray-600 max-w-2xl leading-relaxed">
-              Cheltenham isn't a suburb that attracts the same cleaning-market attention as Brighton or Malvern — which is exactly why the competition here is lower. Crisp provides consistency through three operational commitments.
+              Cheltenham isn't a suburb that attracts the same cleaning-market attention as Brighton or Malvern — which is exactly why the competition here is lower. That creates a genuine opportunity for a consistently quality local service. Crisp provides that consistency through three operational commitments.
             </p>
           </ScrollReveal>
 

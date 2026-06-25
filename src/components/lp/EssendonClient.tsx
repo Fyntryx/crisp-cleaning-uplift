@@ -384,7 +384,7 @@ export default function EssendonClient({
 
           <ScrollReveal delay={0.7}>
             <p className="text-left text-[15px] text-white/90 leading-[1.7] mt-6">
-              Essendon's residential streets are defined by their housing stock — Californian bungalows and Federation homes on generous blocks. These properties show the quality of a cleaner quickly: original timber floors, heritage tiles, and period-era fittings benefit from a cleaner who knows the home rather than encounters it fresh each fortnight. Crisp services Essendon homes with fixed pricing and the same cleaner every visit.
+              Essendon's residential streets are defined by their housing stock — Californian bungalows and Federation homes on generous blocks, particularly in the streets running north and south of the Buckley Street precinct, give the suburb a heritage-rich character maintained by long-tenure, owner-occupier families. These properties show the quality of a cleaner quickly: original timber floors, heritage tiles, and period-era fittings benefit from a cleaner who knows the home rather than encounters it fresh each fortnight. Crisp services Essendon homes with fixed, scope-based pricing, eco-friendly products appropriate for period surfaces, and the same cleaner every visit.
             </p>
           </ScrollReveal>
 

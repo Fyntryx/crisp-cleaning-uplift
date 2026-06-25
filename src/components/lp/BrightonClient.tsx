@@ -450,7 +450,7 @@ export default function BrightonClient({
               Cleaning Brighton's heritage homes the right way
             </h2>
             <p className="text-[15px] text-gray-500 max-w-2xl leading-relaxed">
-              Brighton's housing stock is predominantly period — Victorian mansions, Edwardian family homes, and Californian bungalows on the streets between the bay and the Nepean Highway define the suburb's residential character. Getting a consistently high standard across these properties requires a cleaner who knows your home.
+              Brighton's housing stock is predominantly period — Victorian mansions, Edwardian family homes, and Californian bungalows on the streets between the bay and the Nepean Highway define the suburb's residential character. Getting a consistently high standard across these properties requires a cleaner who knows your home, not a different person starting from scratch every fortnight.
             </p>
           </ScrollReveal>
 
@@ -522,7 +522,7 @@ export default function BrightonClient({
               What every Brighton clean covers
             </h2>
             <p className="text-[15px] text-gray-500 max-w-xl leading-relaxed">
-              Every clean follows a documented checklist confirmed before the cleaner arrives. That's what makes a fixed price possible.
+              Every Brighton clean follows a documented checklist covering all main rooms and surfaces within your booking scope. The scope is confirmed before the cleaner arrives — which is what makes a fixed price possible and what prevents the ambiguity about what was actually cleaned that hourly services routinely produce.
             </p>
           </ScrollReveal>
 
@@ -574,7 +574,7 @@ export default function BrightonClient({
               Why Brighton homeowners choose Crisp
             </h2>
             <p className="text-[15px] text-gray-500 max-w-xl leading-relaxed">
-              The same cleaner, a documented checklist, and pricing calibrated to what your home actually requires.
+              Brighton's cleaning market offers plenty of options. Crisp's operational advantage is specific: the same cleaner, a fixed and documented checklist, and pricing calibrated to what your home genuinely requires. For a large period property near the beach, these three things matter more than any headline discount.
             </p>
           </ScrollReveal>
 
