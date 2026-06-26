@@ -277,29 +277,6 @@ export default function BrightonClient({
                 House Cleaning{" "}
                 <span className="text-[#FB8C42] relative inline-block z-10">
                   Brighton
-                  <svg 
-                    className="absolute -bottom-1 left-[-4%] w-[108%] h-[24px] pointer-events-none -z-10"
-                    viewBox="0 0 100 24" 
-                    preserveAspectRatio="none"
-                  >
-                    <defs>
-                      <filter id="marker-roughness" x="-20%" y="-20%" width="140%" height="140%">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.15 0.7" numOctaves="2" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
-                      </filter>
-                    </defs>
-                    <motion.path 
-                      d="M 2 18 C 30 10 70 14 98 16" 
-                      fill="none" 
-                      stroke="#d97706" 
-                      strokeWidth="7" 
-                      strokeLinecap="round"
-                      filter="url(#marker-roughness)"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={{ pathLength: 1, opacity: 1 }}
-                      transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-                    />
-                  </svg>
                 </span>
                 <br />Melbourne
               </motion.h1>
