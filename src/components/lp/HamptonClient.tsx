@@ -172,7 +172,7 @@ export default function HamptonClient({
                 className="text-[38px] md:text-[56px] font-[800] text-[#1a1a1a] leading-[1.1] tracking-[-0.03em] mb-7"
               >
                 <span className="block">House Cleaning</span>
-                <span className="block text-[#d97706]">Hampton</span>
+                <span className="block text-[#FB8C42]">Hampton</span>
                 <span className="block">Melbourne</span>
               </motion.h1>
 
@@ -225,13 +225,13 @@ export default function HamptonClient({
               >
                 <div 
                   className="text-[180px] font-[800] leading-[0.8] tracking-[-6px]"
-                  style={{ color: '#d97706', opacity: 0.12 }}
+                  style={{ color: '#FB8C42', opacity: 0.12 }}
                   aria-hidden="true"
                 >
                   97%
                 </div>
                 <div className="flex items-start gap-2 mt-2 pl-4">
-                  <ArrowRight className="w-4 h-4 text-[#d97706] shrink-0 mt-0.5" />
+                  <ArrowRight className="w-4 h-4 text-[#FB8C42] shrink-0 mt-0.5" />
                   <p className="text-[14px] text-gray-500 max-w-[200px] leading-snug font-medium text-left">
                     of Hampton clients get<br/>the same cleaner every visit
                   </p>
@@ -260,19 +260,19 @@ export default function HamptonClient({
           >
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200/30 gap-y-6 md:gap-y-0">
               <div className="text-center flex flex-col items-center justify-center">
-                <span className="text-[22px] font-bold text-[#d97706] leading-none">4.9 ★</span>
+                <span className="text-[22px] font-bold text-[#FB8C42] leading-none">4.9 ★</span>
                 <span className="text-[12px] text-gray-500 mt-1.5">Google</span>
               </div>
               <div className="text-center flex flex-col items-center justify-center">
-                <span className="text-[22px] font-bold text-[#d97706] leading-none">97%</span>
+                <span className="text-[22px] font-bold text-[#FB8C42] leading-none">97%</span>
                 <span className="text-[12px] text-gray-500 mt-1.5">Same Cleaner</span>
               </div>
               <div className="text-center flex flex-col items-center justify-center border-t md:border-t-0 border-gray-200/30 pt-6 md:pt-0">
-                <span className="text-[22px] font-bold text-[#d97706] leading-none">100%</span>
+                <span className="text-[22px] font-bold text-[#FB8C42] leading-none">100%</span>
                 <span className="text-[12px] text-gray-500 mt-1.5">Eco-Friendly</span>
               </div>
               <div className="text-center flex flex-col items-center justify-center border-t md:border-t-0 border-gray-200/30 pt-6 md:pt-0">
-                <span className="text-[22px] font-bold text-[#d97706] leading-none">72hr</span>
+                <span className="text-[22px] font-bold text-[#FB8C42] leading-none">72hr</span>
                 <span className="text-[12px] text-gray-500 mt-1.5">Guarantee</span>
               </div>
             </div>
@@ -286,7 +286,7 @@ export default function HamptonClient({
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="text-center mb-16">
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               Hampton's Housing Stock
             </p>
             <h2 className="text-3xl md:text-[40px] font-extrabold text-gray-900 tracking-tight mb-5">
@@ -307,9 +307,9 @@ export default function HamptonClient({
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-[44px] h-[44px] rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm border border-[#bcd4f0]/50">
-                      <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.6 2 5 2 2.3 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.6 2 5 2 2.3 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.6 2 5 2 2.3 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+                      <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.6 2 5 2 2.3 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.6 2 5 2 2.3 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.6 2 5 2 2.3 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
                     </div>
-                    <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#d97706]">
+                    <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#FB8C42]">
                       Hampton Beach · Foreshore
                     </span>
                   </div>
@@ -327,16 +327,16 @@ export default function HamptonClient({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Small Card 2 */}
               <ScrollReveal delay={0.1}>
-                <div className="relative bg-white border border-gray-200 rounded-[24px] p-8 overflow-hidden shadow-sm hover:border-[#d97706]/50 transition-colors group h-full">
+                <div className="relative bg-white border border-gray-200 rounded-[24px] p-8 overflow-hidden shadow-sm hover:border-[#FB8C42]/50 transition-colors group h-full">
                   <div className="absolute -bottom-6 -right-4 text-[120px] font-black text-[#1a1a1a] opacity-10 leading-none select-none pointer-events-none transition-transform duration-500 group-hover:scale-110 z-0">
                     02
                   </div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-5">
                       <div className="w-[44px] h-[44px] rounded-xl bg-[#F7F9FB] flex items-center justify-center shrink-0 border border-gray-100">
-                        <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-3"/><path d="M9 9v.01"/><path d="M9 13v.01"/><path d="M9 17v.01"/></svg>
+                        <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-3"/><path d="M9 9v.01"/><path d="M9 13v.01"/><path d="M9 17v.01"/></svg>
                       </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#d97706]">
+                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#FB8C42]">
                         Hampton Street Village
                       </span>
                     </div>
@@ -352,16 +352,16 @@ export default function HamptonClient({
 
               {/* Small Card 3 */}
               <ScrollReveal delay={0.2}>
-                <div className="relative bg-white border border-gray-200 rounded-[24px] p-8 overflow-hidden shadow-sm hover:border-[#d97706]/50 transition-colors group h-full">
+                <div className="relative bg-white border border-gray-200 rounded-[24px] p-8 overflow-hidden shadow-sm hover:border-[#FB8C42]/50 transition-colors group h-full">
                   <div className="absolute -bottom-6 -right-4 text-[120px] font-black text-[#1a1a1a] opacity-10 leading-none select-none pointer-events-none transition-transform duration-500 group-hover:scale-110 z-0">
                     03
                   </div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-5">
                       <div className="w-[44px] h-[44px] rounded-xl bg-[#F7F9FB] flex items-center justify-center shrink-0 border border-gray-100">
-                        <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 9.5 12 4l9.5 5.5"/><path d="M12 20v-5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v5"/><path d="M22 20H2"/><path d="M12 20v-9"/><path d="M12 11h9v9"/></svg>
+                        <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 9.5 12 4l9.5 5.5"/><path d="M12 20v-5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v5"/><path d="M22 20H2"/><path d="M12 20v-9"/><path d="M12 11h9v9"/></svg>
                       </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#d97706]">
+                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#FB8C42]">
                         Between Beach & Station
                       </span>
                     </div>
@@ -385,7 +385,7 @@ export default function HamptonClient({
       <section id="checklist" className="py-20 bg-white">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl mb-16 text-center">
           <ScrollReveal>
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               Scope & Checklist
             </p>
             <h2 className="text-3xl md:text-[40px] font-extrabold text-gray-900 tracking-tight mb-5">
@@ -403,7 +403,7 @@ export default function HamptonClient({
             <ScrollReveal className="flex flex-col md:flex-row gap-[48px] items-center justify-between">
               <div className="w-full md:w-[55%]">
                 <div className="flex items-center gap-3 mb-5">
-                  <svg className="w-7 h-7 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>
+                  <svg className="w-7 h-7 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>
                   <h3 className="text-[22px] font-bold text-gray-900">Kitchen Surfaces and Bathroom Detailing</h3>
                 </div>
                 <p className="text-[15px] text-gray-600 leading-relaxed">
@@ -427,7 +427,7 @@ export default function HamptonClient({
             <ScrollReveal className="flex flex-col md:flex-row gap-[48px] items-center justify-between">
               <div className="w-full md:w-[55%]">
                 <div className="flex items-center gap-3 mb-5">
-                  <svg className="w-7 h-7 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4-4-4"/><path d="M3.5 9h11.2"/><path d="m12 22-4-4 4-4"/><path d="M20.5 18H9.3"/></svg>
+                  <svg className="w-7 h-7 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4-4-4"/><path d="M3.5 9h11.2"/><path d="m12 22-4-4 4-4"/><path d="M20.5 18H9.3"/></svg>
                   <h3 className="text-[22px] font-bold text-gray-900">Timber Floors, Hard Surfaces and Living Areas</h3>
                 </div>
                 <p className="text-[15px] text-gray-600 leading-relaxed">
@@ -451,7 +451,7 @@ export default function HamptonClient({
             <ScrollReveal className="flex flex-col md:flex-row gap-[48px] items-center justify-between">
               <div className="w-full md:w-[55%]">
                 <div className="flex items-center gap-3 mb-5">
-                  <svg className="w-7 h-7 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
+                  <svg className="w-7 h-7 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
                   <h3 className="text-[22px] font-bold text-gray-900">Bedrooms and Laundry Spaces</h3>
                 </div>
                 <p className="text-[15px] text-gray-600 leading-relaxed">
@@ -476,7 +476,7 @@ export default function HamptonClient({
       <section className="py-24 bg-[#F7F9FB]">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="text-center mb-20">
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               The Crisp Difference
             </p>
             <h2 className="text-3xl md:text-[40px] font-extrabold text-gray-900 tracking-tight mb-5">
@@ -515,13 +515,13 @@ export default function HamptonClient({
               }
             ].map((card, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="relative bg-white border border-gray-200 rounded-[16px] px-8 pb-8 shadow-sm hover:border-[#d97706] transition-colors duration-200 group h-full">
+                <div className="relative bg-white border border-gray-200 rounded-[16px] px-8 pb-8 shadow-sm hover:border-[#FB8C42] transition-colors duration-200 group h-full">
                   <div className="absolute top-0 left-8 flex items-baseline gap-2 bg-[#F7F9FB] px-2" style={{ marginTop: '-24px' }}>
-                    <span className="text-[28px] font-extrabold text-[#d97706] leading-none">{card.stat}</span>
+                    <span className="text-[28px] font-extrabold text-[#FB8C42] leading-none">{card.stat}</span>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 leading-none">{card.label}</span>
                   </div>
                   <div className="flex items-center gap-4 mb-4 mt-6">
-                    <div className="w-10 h-10 rounded-xl bg-[#F0F7FF] flex items-center justify-center shrink-0 text-[#d97706]">
+                    <div className="w-10 h-10 rounded-xl bg-[#F0F7FF] flex items-center justify-center shrink-0 text-[#FB8C42]">
                       {card.icon}
                     </div>
                     <h3 className="text-[17px] font-bold text-gray-900 leading-snug">
@@ -544,7 +544,7 @@ export default function HamptonClient({
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="text-center mb-16">
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               Transparent Pricing
             </p>
             <h2 className="text-3xl md:text-[40px] font-extrabold text-gray-900 tracking-tight mb-4">
@@ -565,9 +565,9 @@ export default function HamptonClient({
                   <span className="text-[40px] font-extrabold text-gray-900 leading-none">$180</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Up to 3 bed</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All bathrooms</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Eco products included</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -594,11 +594,11 @@ export default function HamptonClient({
                   <span className="text-[40px] font-extrabold text-white leading-none">$320</span>
                 </div>
                 <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Full property scope</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Oven & inside cabinets</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Grout & hard-to-reach areas</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-bold text-[14px] flex items-center justify-center gap-2 transition-colors">
+                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[14px] flex items-center justify-center gap-2 transition-colors">
                   Get a quote <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -612,9 +612,9 @@ export default function HamptonClient({
                   <span className="text-[32px] font-extrabold text-gray-900 leading-tight block">Fixed quote</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Bond-back standard</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All rooms & surfaces</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Inspection ready</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -714,17 +714,17 @@ export default function HamptonClient({
               backgroundSize: '36px 36px',
             }}
           >
-            <div className="absolute -bottom-36 -right-36 w-[450px] h-[450px] bg-[#d97706]/15 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute -bottom-36 -left-36 w-[450px] h-[450px] bg-[#d97706]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -bottom-36 -right-36 w-[450px] h-[450px] bg-[#FB8C42]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -bottom-36 -left-36 w-[450px] h-[450px] bg-[#FB8C42]/15 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="relative z-10 max-w-2xl mx-auto text-center flex flex-col items-center">
               <ScrollReveal>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#d97706] text-[10px] font-bold tracking-[0.2em] uppercase mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#FB8C42] text-[10px] font-bold tracking-[0.2em] uppercase mb-6">
                   Ready to Book
                 </div>
                 
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight max-w-2xl text-white">
-                  Book a cleaner in <span className="text-[#d97706]">Hampton</span>
+                  Book a cleaner in <span className="text-[#FB8C42]">Hampton</span>
                 </h2>
                 
                 <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -733,14 +733,14 @@ export default function HamptonClient({
 
                 <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl sm:rounded-full px-5 py-2.5 mb-10 text-xs md:text-sm text-white/80">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-[#d97706]">15% off your first clean.</span>
+                    <span className="font-semibold text-[#FB8C42]">15% off your first clean.</span>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mx-auto mb-10">
                   <a
                     href="/#booking"
-                    className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-bold text-[15px] shadow-[0_0_30px_rgba(217,119,6,0.45)] hover:shadow-[0_0_40px_rgba(217,119,6,0.65)] hover:-translate-y-0.5 transition-all duration-300"
+                    className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[15px] shadow-[0_0_30px_rgba(217,119,6,0.45)] hover:shadow-[0_0_40px_rgba(217,119,6,0.65)] hover:-translate-y-0.5 transition-all duration-300"
                   >
                     Get an instant quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
@@ -763,7 +763,7 @@ export default function HamptonClient({
                     <Link
                       key={suburb}
                       href="#"
-                      className="group px-4 py-2 rounded-full bg-white/5 border border-white/5 text-white/50 hover:text-[#d97706] hover:border-[#d97706]/30 hover:bg-[#d97706]/5 text-[13px] font-medium transition-all duration-300 flex items-center gap-1"
+                      className="group px-4 py-2 rounded-full bg-white/5 border border-white/5 text-white/50 hover:text-[#FB8C42] hover:border-[#FB8C42]/30 hover:bg-[#FB8C42]/5 text-[13px] font-medium transition-all duration-300 flex items-center gap-1"
                     >
                       {suburb}
                       <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150" />

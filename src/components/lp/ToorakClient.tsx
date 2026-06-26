@@ -108,7 +108,7 @@ export default function ToorakClient() {
           <div className="lg:col-span-7 flex flex-col justify-center px-[40px] md:px-[80px] py-[80px] lg:border-r border-[#e5e7eb] relative">
             
             {/* The Deliberate Orange Moment */}
-            <div className="w-[12px] h-[12px] bg-[#d97706] mb-[40px]" />
+            <div className="w-[12px] h-[12px] bg-[#FB8C42] mb-[40px]" />
 
             <h1 className="text-[64px] md:text-[96px] lg:text-[110px] font-[800] text-[#1a1a1a] leading-[0.9] tracking-[-0.04em] mb-[40px]">
               <span className="block text-[#9ca3af] text-[16px] md:text-[20px] tracking-[0.3em] font-[500] uppercase mb-[24px] ml-[4px]">
@@ -122,12 +122,12 @@ export default function ToorakClient() {
             </p>
             
             <div className="flex flex-col sm:flex-row sm:items-center gap-[32px]">
-              <a href="/#booking" className="group relative bg-[#1a1a1a] text-[#ffffff] px-[40px] py-[18px] text-[13px] font-[600] tracking-[0.1em] uppercase overflow-hidden hover:bg-[#d97706] transition-colors duration-500 inline-flex items-center justify-center">
+              <a href="/#booking" className="group relative bg-[#1a1a1a] text-[#ffffff] px-[40px] py-[18px] text-[13px] font-[600] tracking-[0.1em] uppercase overflow-hidden hover:bg-[#FB8C42] transition-colors duration-500 inline-flex items-center justify-center">
                 <span className="relative z-10 flex items-center gap-3">
                   Exact Quote <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </a>
-              <a href="#included" className="text-[13px] text-[#1a1a1a] font-[600] tracking-[0.1em] uppercase border-b border-[#1a1a1a] pb-1 hover:text-[#d97706] hover:border-[#d97706] transition-colors inline-block w-fit">
+              <a href="#included" className="text-[13px] text-[#1a1a1a] font-[600] tracking-[0.1em] uppercase border-b border-[#1a1a1a] pb-1 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors inline-block w-fit">
                 View Scope
               </a>
             </div>
@@ -147,11 +147,11 @@ export default function ToorakClient() {
             {/* Stats Box (Bottom right) */}
             <div className="grid grid-cols-2 bg-[#1a1a1a] text-[#ffffff] border-t border-[#333]">
               <div className="p-[32px] md:p-[48px] border-r border-[#333]">
-                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">97<span className="text-[20px] text-[#d97706]">%</span></div>
+                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">97<span className="text-[20px] text-[#FB8C42]">%</span></div>
                 <div className="text-[11px] text-[rgba(255,255,255,0.5)] tracking-[0.1em] uppercase">Same Cleaner</div>
               </div>
               <div className="p-[32px] md:p-[48px]">
-                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">72<span className="text-[20px] text-[#d97706]">h</span></div>
+                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">72<span className="text-[20px] text-[#FB8C42]">h</span></div>
                 <div className="text-[11px] text-[rgba(255,255,255,0.5)] tracking-[0.1em] uppercase">Guarantee</div>
               </div>
             </div>
@@ -556,7 +556,7 @@ export default function ToorakClient() {
               </div>
               <div className="flex gap-[4px] mb-[32px]">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-[16px] h-[16px] fill-[#d97706] text-[#d97706]" />
+                  <Star key={i} className="w-[16px] h-[16px] fill-[#FB8C42] text-[#FB8C42]" />
                 ))}
               </div>
               
@@ -580,7 +580,7 @@ export default function ToorakClient() {
               <div className="flex items-center justify-center gap-[8px] text-[14px] text-[#6b7280]">
                 <div className="flex gap-[2px]">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-[14px] h-[14px] fill-[#d97706] text-[#d97706]" />
+                    <Star key={i} className="w-[14px] h-[14px] fill-[#FB8C42] text-[#FB8C42]" />
                   ))}
                 </div>
                 Rated 4.9 on Google
@@ -598,7 +598,7 @@ export default function ToorakClient() {
       {/* SECTION 9 — FINAL CTA */}
       <section className="bg-[#1a1a1a] py-[100px] px-[32px] text-center text-[#ffffff]">
         <div className="container mx-auto max-w-[800px]">
-          <div className="text-[11px] font-[600] text-[#d97706] tracking-[0.2em] uppercase mb-[24px]">
+          <div className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.2em] uppercase mb-[24px]">
             READY TO BOOK
           </div>
           <h2 className="text-[40px] md:text-[56px] font-[800] text-[#ffffff] leading-[1.05] mb-[16px]">
@@ -608,12 +608,12 @@ export default function ToorakClient() {
             Book a Toorak house cleaner — same professional every visit, fixed pricing 
             for your home's actual scope, 72-hour guarantee on every clean.
           </p>
-          <div className="text-[#d97706] font-[600] mb-[36px]">
+          <div className="text-[#FB8C42] font-[600] mb-[36px]">
             15% off your first clean.
           </div>
           
           <div className="flex flex-col md:flex-row justify-center gap-[12px]">
-            <a href="/#booking" className="bg-[#d97706] text-[#ffffff] rounded-full px-[36px] py-[15px] text-[15px] font-[600] shadow-[0_8px_28px_rgba(217,119,6,0.20)] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+            <a href="/#booking" className="bg-[#FB8C42] text-[#ffffff] rounded-full px-[36px] py-[15px] text-[15px] font-[600] shadow-[0_8px_28px_rgba(217,119,6,0.20)] hover:bg-[#ea6309] hover:-translate-y-[1px] transition-all duration-200">
               Get an Instant Quote
             </a>
             <a href="tel:0451423786" className="border border-[rgba(255,255,255,0.2)] text-[#ffffff] bg-transparent rounded-full px-[36px] py-[15px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
@@ -621,7 +621,7 @@ export default function ToorakClient() {
             </a>
           </div>
 
-          <div className="w-[40px] h-[1px] bg-[#d97706] mx-auto mt-[48px] mb-[28px]" />
+          <div className="w-[40px] h-[1px] bg-[#FB8C42] mx-auto mt-[48px] mb-[28px]" />
 
           <div className="text-[11px] text-[rgba(255,255,255,0.3)] tracking-[0.15em] mb-[14px]">
             NEARBY AREAS WE ALSO SERVICE
@@ -631,7 +631,7 @@ export default function ToorakClient() {
               <a 
                 key={suburb} 
                 href={`/house-cleaning-${suburb.toLowerCase().replace(' ', '-')}`}
-                className="group relative px-[16px] py-[6px] text-[12px] font-[500] text-[rgba(255,255,255,0.6)] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-full hover:border-[#d97706] hover:text-[#d97706] transition-colors flex items-center overflow-hidden"
+                className="group relative px-[16px] py-[6px] text-[12px] font-[500] text-[rgba(255,255,255,0.6)] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-full hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors flex items-center overflow-hidden"
               >
                 <span className="transition-transform duration-200 group-hover:-translate-x-1">{suburb}</span>
                 <ArrowRight className="w-3 h-3 absolute right-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />

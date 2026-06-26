@@ -150,16 +150,16 @@ const DragCarousel = () => {
         {testimonials.map((review, idx) => (
           <div 
             key={idx} 
-            className="bg-[#ffffff] border border-[#e5e7eb] rounded-[16px] p-[28px] border-t-[3px] border-t-[#d97706] min-w-[340px] flex-shrink-0 shadow-sm"
+            className="bg-[#ffffff] border border-[#e5e7eb] rounded-[16px] p-[28px] border-t-[3px] border-t-[#FB8C42] min-w-[340px] flex-shrink-0 shadow-sm"
           >
-            <div className="text-[48px] text-[#d97706] opacity-20 font-serif leading-none h-[30px]">"</div>
+            <div className="text-[48px] text-[#FB8C42] opacity-20 font-serif leading-none h-[30px]">"</div>
             <p className="text-justify text-[15px] text-[#374151] line-height-[1.7] italic mb-6">
               {review.text}
             </p>
             <div className="mt-auto">
               <div className="flex gap-1 mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#d97706] text-[#d97706]" />
+                  <Star key={i} className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" />
                 ))}
               </div>
               <p className="text-justify text-[14px] font-[600] text-[#1a1a1a]">{review.author}</p>
@@ -225,14 +225,14 @@ export default function MaribyrnongClient() {
                 Home › House Cleaning Maribyrnong
               </div>
 
-              <div className="inline-block bg-[#fff7ed] border border-[#fed7aa] text-[#d97706] text-[11px] font-[600] tracking-[0.12em] uppercase rounded-full px-4 py-1.5 mb-[20px]">
+              <div className="inline-block bg-[#fff7ed] border border-[#fed7aa] text-[#FB8C42] text-[11px] font-[600] tracking-[0.12em] uppercase rounded-full px-4 py-1.5 mb-[20px]">
                 ● House Cleaning · Maribyrnong · Melbourne's West
               </div>
 
               <h1 className="text-[38px] md:text-[56px] font-[800] text-[#1a1a1a] leading-[1.05] tracking-[-0.03em] flex flex-col">
                 <span className="hero-line line-1"><span>Professional House</span></span>
                 <span className="hero-line line-2"><span>Cleaning in</span></span>
-                <span className="hero-line line-3"><span className="text-[#d97706]">Maribyrnong</span></span>
+                <span className="hero-line line-3"><span className="text-[#FB8C42]">Maribyrnong</span></span>
               </h1>
 
               <p className="text-justify text-[16px] text-[#6b7280] leading-[1.7] mt-[24px] max-w-[540px]">
@@ -242,18 +242,18 @@ export default function MaribyrnongClient() {
               <div className="mt-[24px] flex flex-wrap gap-[8px]">
                 {["⭐ 4.9 on Google", "97% Same Cleaner", "Eco-Friendly Products", "72hr Re-clean Guarantee"].map((pill, i) => (
                   <div key={i} className="bg-[#ffffff] border border-[#e5e7eb] rounded-full px-[14px] py-[6px] text-[12px] text-[#374151] shadow-[0_1px_4px_rgba(0,0,0,0.04)] flex items-center gap-1.5">
-                    {i > 0 && <CheckCircle2 className="w-3.5 h-3.5 text-[#d97706]" />}
+                    {i > 0 && <CheckCircle2 className="w-3.5 h-3.5 text-[#FB8C42]" />}
                     {pill}
                   </div>
                 ))}
               </div>
 
               <div className="mt-[28px] flex flex-col sm:flex-row items-start sm:items-center gap-[12px]">
-                <a href="/#booking" className="group bg-[#d97706] text-white rounded-full px-[28px] py-[14px] text-[15px] font-[600] shadow-[0_8px_24px_rgba(217,119,6,0.25)] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200 flex items-center gap-2">
+                <a href="/#booking" className="group bg-[#FB8C42] text-white rounded-full px-[28px] py-[14px] text-[15px] font-[600] shadow-[0_8px_24px_rgba(217,119,6,0.25)] hover:bg-[#ea6309] hover:-translate-y-[1px] transition-all duration-200 flex items-center gap-2">
                   Get an Instant Quote 
                   <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
                 </a>
-                <a href="#included" className="border-[1.5px] border-[#e5e7eb] text-[#374151] rounded-full px-[24px] py-[14px] text-[15px] hover:border-[#d97706] hover:text-[#d97706] transition-colors">
+                <a href="#included" className="border-[1.5px] border-[#e5e7eb] text-[#374151] rounded-full px-[24px] py-[14px] text-[15px] hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors">
                   See what's included
                 </a>
               </div>
@@ -275,7 +275,7 @@ export default function MaribyrnongClient() {
                 
                 <div className="absolute bottom-[-20px] left-[-20px] bg-[#ffffff] rounded-[16px] p-[16px_20px] shadow-[0_8px_32px_rgba(0,0,0,0.10)] flex items-center gap-[12px] z-10">
                   <div className="w-[40px] h-[40px] rounded-full bg-[#fff7ed] flex items-center justify-center flex-shrink-0">
-                    <UserCheck className="w-5 h-5 text-[#d97706]" />
+                    <UserCheck className="w-5 h-5 text-[#FB8C42]" />
                   </div>
                   <div>
                     <div className="text-[20px] font-[800] text-[#1a1a1a] leading-none mb-1">97%</div>
@@ -288,7 +288,7 @@ export default function MaribyrnongClient() {
         </div>
 
         {/* Bottom divider line */}
-        <div className="absolute bottom-0 left-0 w-full h-[3px]" style={{ background: 'linear-gradient(90deg, transparent, #d97706, transparent)' }}></div>
+        <div className="absolute bottom-0 left-0 w-full h-[3px]" style={{ background: 'linear-gradient(90deg, transparent, #FB8C42, transparent)' }}></div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
@@ -300,22 +300,22 @@ export default function MaribyrnongClient() {
             <div className="text-center px-4">
               <div className="text-[32px] font-[800] text-[#1a1a1a] leading-none mb-1">4.9 ★</div>
               <div className="text-[12px] text-[#6b7280]">Google rating</div>
-              <div className="text-[11px] text-[#d97706] font-[600] mt-1">Maribyrnong</div>
+              <div className="text-[11px] text-[#FB8C42] font-[600] mt-1">Maribyrnong</div>
             </div>
             <div className="text-center px-4">
               <div className="text-[32px] font-[800] text-[#1a1a1a] leading-none mb-1">97%</div>
               <div className="text-[12px] text-[#6b7280]">Same cleaner</div>
-              <div className="text-[11px] text-[#d97706] font-[600] mt-1">every visit</div>
+              <div className="text-[11px] text-[#FB8C42] font-[600] mt-1">every visit</div>
             </div>
             <div className="text-center px-4">
               <div className="text-[32px] font-[800] text-[#1a1a1a] leading-none mb-1">100%</div>
               <div className="text-[12px] text-[#6b7280]">Eco-friendly</div>
-              <div className="text-[11px] text-[#d97706] font-[600] mt-1">products</div>
+              <div className="text-[11px] text-[#FB8C42] font-[600] mt-1">products</div>
             </div>
             <div className="text-center px-4">
               <div className="text-[32px] font-[800] text-[#1a1a1a] leading-none mb-1">Fixed</div>
               <div className="text-[12px] text-[#6b7280]">Pricing</div>
-              <div className="text-[11px] text-[#d97706] font-[600] mt-1">always</div>
+              <div className="text-[11px] text-[#FB8C42] font-[600] mt-1">always</div>
             </div>
           </div>
         </div>
@@ -327,7 +327,7 @@ export default function MaribyrnongClient() {
       <section className="bg-[#fafafa] py-[80px] overflow-hidden">
         <div className="container mx-auto px-6 max-w-[1100px]">
           <ScrollReveal>
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
               Maribyrnong's Housing Stock
             </span>
             <h2 className="text-[36px] font-[700] text-[#1a1a1a] mb-[24px]">
@@ -407,7 +407,7 @@ export default function MaribyrnongClient() {
                       style={{ animation: activePin === pin.id ? 'pulse 1s infinite' : 'pulse 2s infinite' }}
                       fill="rgba(217,119,6,0.2)"
                     />
-                    <circle cx={pin.cx} cy={pin.cy} r="8" fill="#d97706"/>
+                    <circle cx={pin.cx} cy={pin.cy} r="8" fill="#FB8C42"/>
                     <g transform={`translate(${pin.cx - 30}, ${pin.cy - 25})`}>
                       <rect width="60" height="16" rx="8" fill="white" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.1))"/>
                       <text x="30" y="11" fontSize="8" fontWeight="600" fill="#1a1a1a" textAnchor="middle">{pin.label}</text>
@@ -428,7 +428,7 @@ export default function MaribyrnongClient() {
                   key={pin.id}
                   onClick={() => setActivePin(pin.id)}
                   className={`flex-shrink-0 px-4 py-2 rounded-full text-[13px] font-[600] snap-center transition-colors ${
-                    activePin === pin.id ? 'bg-[#d97706] text-white' : 'bg-white border border-[#e5e7eb] text-[#374151]'
+                    activePin === pin.id ? 'bg-[#FB8C42] text-white' : 'bg-white border border-[#e5e7eb] text-[#374151]'
                   }`}
                 >
                   {pin.label}
@@ -466,7 +466,7 @@ export default function MaribyrnongClient() {
                     `}
                   </style>
                   <div>
-                    <div className="inline-block bg-[#fff7ed] text-[#d97706] rounded-full px-[12px] py-[4px] text-[11px] font-[600] mb-[12px]">
+                    <div className="inline-block bg-[#fff7ed] text-[#FB8C42] rounded-full px-[12px] py-[4px] text-[11px] font-[600] mb-[12px]">
                       {mapContentData[activePin as keyof typeof mapContentData].tag}
                     </div>
                     <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[16px] leading-[1.3]">
@@ -492,7 +492,7 @@ export default function MaribyrnongClient() {
                   <button 
                     key={dot}
                     onClick={() => setActivePin(dot)}
-                    className={`w-[8px] h-[8px] rounded-full transition-colors ${activePin === dot ? 'bg-[#d97706]' : 'bg-[#e5e7eb]'}`}
+                    className={`w-[8px] h-[8px] rounded-full transition-colors ${activePin === dot ? 'bg-[#FB8C42]' : 'bg-[#e5e7eb]'}`}
                     aria-label={`View location ${dot}`}
                   />
                 ))}
@@ -509,7 +509,7 @@ export default function MaribyrnongClient() {
       <section id="included" className="bg-[#ffffff] py-[80px]">
         <div className="container mx-auto px-6 max-w-5xl">
           <ScrollReveal>
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
               Scope & Checklist
             </span>
             <h2 className="text-[36px] font-[700] text-[#1a1a1a] mb-6">
@@ -524,7 +524,7 @@ export default function MaribyrnongClient() {
             {/* Card 1 */}
             <ScrollReveal delay={0.1}>
               <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[32px] h-full">
-                <UtensilsCrossed className="w-[32px] h-[32px] text-[#d97706] mb-6" />
+                <UtensilsCrossed className="w-[32px] h-[32px] text-[#FB8C42] mb-6" />
                 <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-4 leading-[1.2]">
                   Kitchen Sanitisation and Appliance Surfaces
                 </h3>
@@ -542,7 +542,7 @@ export default function MaribyrnongClient() {
             {/* Card 2 */}
             <ScrollReveal delay={0.2}>
               <div className="bg-[#1a1a1a] rounded-[16px] p-[32px] h-full text-white">
-                <Bath className="w-[32px] h-[32px] text-[#d97706] mb-6" />
+                <Bath className="w-[32px] h-[32px] text-[#FB8C42] mb-6" />
                 <h3 className="text-[20px] font-[700] text-white mb-4 leading-[1.2]">
                   Bathroom Cleaning and Fixture Polishing
                 </h3>
@@ -560,7 +560,7 @@ export default function MaribyrnongClient() {
             {/* Card 3 */}
             <ScrollReveal delay={0.3}>
               <div className="bg-[#0c4a6e] rounded-[16px] p-[32px] h-full text-white">
-                <Layers className="w-[32px] h-[32px] text-[#d97706] mb-6" />
+                <Layers className="w-[32px] h-[32px] text-[#FB8C42] mb-6" />
                 <h3 className="text-[20px] font-[700] text-white mb-4 leading-[1.2]">
                   Floor Care, Living Areas and Laundry
                 </h3>
@@ -578,7 +578,7 @@ export default function MaribyrnongClient() {
             {/* Card 4 */}
             <ScrollReveal delay={0.4}>
               <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[32px] h-full">
-                <Key className="w-[32px] h-[32px] text-[#d97706] mb-6" />
+                <Key className="w-[32px] h-[32px] text-[#FB8C42] mb-6" />
                 <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-4 leading-[1.2]">
                   Building Access Coordination for Edgewater Apartments
                 </h3>
@@ -604,7 +604,7 @@ export default function MaribyrnongClient() {
           <path d="M0,20 C240,60 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z" fill="#fafafa"/>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="text-[10px] text-[#d97706] tracking-[0.2em] uppercase font-[600]">Maribyrnong River</span>
+          <span className="text-[10px] text-[#FB8C42] tracking-[0.2em] uppercase font-[600]">Maribyrnong River</span>
         </div>
       </section>
 
@@ -614,7 +614,7 @@ export default function MaribyrnongClient() {
       <section className="bg-[#fafafa] py-[80px] overflow-hidden">
         <div className="container mx-auto px-6 max-w-[1200px]">
           <ScrollReveal>
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
               The Crisp Difference
             </span>
             <h2 className="text-[36px] font-[700] text-[#1a1a1a] mb-6">
@@ -627,9 +627,9 @@ export default function MaribyrnongClient() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[16px] mt-[48px]">
             <SlideInCard direction="left" delay={0}>
-              <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[16px] p-[24px] border-t-[3px] border-t-[#d97706] h-full shadow-sm">
+              <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[16px] p-[24px] border-t-[3px] border-t-[#FB8C42] h-full shadow-sm">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-[28px] font-[800] text-[#d97706] leading-none">97%</span>
+                  <span className="text-[28px] font-[800] text-[#FB8C42] leading-none">97%</span>
                   <span className="text-[11px] text-[#9ca3af]">same-cleaner rate</span>
                 </div>
                 <h3 className="text-[14px] font-[700] text-[#1a1a1a] mb-[8px] mt-[12px] leading-[1.4]">
@@ -656,9 +656,9 @@ export default function MaribyrnongClient() {
             </SlideInCard>
 
             <SlideInCard direction="left" delay={0.2}>
-              <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[16px] p-[24px] border-t-[3px] border-t-[#d97706] h-full shadow-sm">
+              <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[16px] p-[24px] border-t-[3px] border-t-[#FB8C42] h-full shadow-sm">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-[28px] font-[800] text-[#d97706] leading-none">Zero</span>
+                  <span className="text-[28px] font-[800] text-[#FB8C42] leading-none">Zero</span>
                   <span className="text-[11px] text-[#9ca3af]">access hassle</span>
                 </div>
                 <h3 className="text-[14px] font-[700] text-[#1a1a1a] mb-[8px] mt-[12px] leading-[1.4]">
@@ -694,7 +694,7 @@ export default function MaribyrnongClient() {
       <section className="bg-[#ffffff] py-[80px]">
         <div className="container mx-auto px-6 max-w-5xl">
           <ScrollReveal className="text-center mb-16">
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
               Transparent Pricing
             </span>
             <h2 className="text-[32px] md:text-[40px] font-[700] text-[#1a1a1a] mb-4 leading-[1.1]">
@@ -715,9 +715,9 @@ export default function MaribyrnongClient() {
                   <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none">$180</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Up to 3 bed</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All bathrooms</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Eco products included</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -733,11 +733,11 @@ export default function MaribyrnongClient() {
                   <span className="text-[40px] font-[800] text-[#ffffff] leading-none">$320</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Full property scope</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Oven & inside cabinets</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Grout & hard-to-reach areas</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center mt-8 bg-[#d97706] text-white rounded-full py-3 text-[14px] font-[600] hover:bg-[#b45309] transition-colors">
+                <a href="/#booking" className="block w-full text-center mt-8 bg-[#FB8C42] text-white rounded-full py-3 text-[14px] font-[600] hover:bg-[#ea6309] transition-colors">
                   Get quote
                 </a>
               </div>
@@ -750,9 +750,9 @@ export default function MaribyrnongClient() {
                   <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none text-[28px] mt-1 block">Fixed quote</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Bond-back standard</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All rooms & surfaces</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Inspection ready</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -771,7 +771,7 @@ export default function MaribyrnongClient() {
             {/* Sticky Left Column */}
             <div className="w-full md:w-[40%] md:sticky md:top-[120px]">
               <ScrollReveal>
-                <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.2em] uppercase block mb-4">
+                <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.2em] uppercase block mb-4">
                   Client Stories
                 </span>
                 <h2 className="text-[40px] md:text-[48px] font-[800] text-[#ffffff] mb-8 leading-[1.1] tracking-[-0.02em]">
@@ -783,7 +783,7 @@ export default function MaribyrnongClient() {
                 <div className="flex items-center gap-4">
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-[#d97706] text-[#d97706]" />
+                      <Star key={i} className="w-5 h-5 fill-[#FB8C42] text-[#FB8C42]" />
                     ))}
                   </div>
                   <div className="text-[14px] font-[600] text-[#ffffff]">
@@ -819,14 +819,14 @@ export default function MaribyrnongClient() {
                   <div className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[24px] p-[40px] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
                     <div className="flex gap-1 mb-6">
                       {[...Array(5)].map((_, j) => (
-                        <Star key={j} className="w-4 h-4 fill-[#d97706] text-[#d97706]" />
+                        <Star key={j} className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" />
                       ))}
                     </div>
                     <p className="text-[18px] md:text-[20px] text-[rgba(255,255,255,0.9)] leading-[1.6] font-[500] mb-8 text-justify">
                       "{review.text}"
                     </p>
                     <div className="flex items-center gap-4">
-                      <div className="w-[48px] h-[48px] rounded-full bg-[rgba(217,119,6,0.2)] flex items-center justify-center text-[#d97706] font-[700] text-[18px]">
+                      <div className="w-[48px] h-[48px] rounded-full bg-[rgba(217,119,6,0.2)] flex items-center justify-center text-[#FB8C42] font-[700] text-[18px]">
                         {review.author.charAt(0)}
                       </div>
                       <div>
@@ -855,24 +855,24 @@ export default function MaribyrnongClient() {
       ══════════════════════════════════════════════════════ */}
       <section className="bg-[#1a1a1a] p-[80px_32px] w-full flex flex-col items-center text-center">
         <ScrollReveal className="flex flex-col items-center w-full">
-          <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase mb-[16px] block">
+          <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase mb-[16px] block">
             Ready to Book
           </span>
           
           <h2 className="text-[48px] font-[800] text-[#ffffff] leading-[1.1] mb-[16px]">
-            Book a Cleaner in <span className="text-[#d97706]">Maribyrnong</span>
+            Book a Cleaner in <span className="text-[#FB8C42]">Maribyrnong</span>
           </h2>
 
           <p className="text-justify text-[16px] text-[rgba(255,255,255,0.6)] max-w-[480px] mx-auto mb-[8px] text-center leading-[1.6]">
             Get an instant fixed quote for your Maribyrnong home or apartment — period home, Edgewater estate, or anything in between. Book online in under a minute.
           </p>
 
-          <span className="text-[#d97706] font-[600] text-[14px] block mb-[28px]">
+          <span className="text-[#FB8C42] font-[600] text-[14px] block mb-[28px]">
             15% off your first clean.
           </span>
 
           <div className="flex flex-col sm:flex-row gap-[12px] justify-center">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-full px-[28px] py-[14px] text-[14px] font-[600] hover:bg-[#b45309] transition-colors inline-block">
+            <a href="/#booking" className="bg-[#FB8C42] text-white rounded-full px-[28px] py-[14px] text-[14px] font-[600] hover:bg-[#ea6309] transition-colors inline-block">
               Get an Instant Quote
             </a>
             <a href="tel:0451433786" className="border border-[rgba(255,255,255,0.2)] text-white rounded-full px-[28px] py-[14px] text-[14px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors inline-block">
@@ -880,7 +880,7 @@ export default function MaribyrnongClient() {
             </a>
           </div>
 
-          <div className="w-[40px] h-[1px] bg-[#d97706] mx-auto mt-[40px] mb-[24px]"></div>
+          <div className="w-[40px] h-[1px] bg-[#FB8C42] mx-auto mt-[40px] mb-[24px]"></div>
 
           <span className="text-[11px] text-[rgba(255,255,255,0.3)] tracking-[0.15em] uppercase mb-[14px] block">
             Nearby Areas We Also Service
@@ -891,7 +891,7 @@ export default function MaribyrnongClient() {
               <a 
                 key={suburb} 
                 href={`/house-cleaning-${suburb.toLowerCase().replace(' ', '-')}`}
-                className="group relative px-[16px] py-[6px] text-[13px] font-[500] text-[rgba(255,255,255,0.6)] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-full hover:border-[#d97706] hover:text-[#d97706] transition-colors flex items-center overflow-hidden"
+                className="group relative px-[16px] py-[6px] text-[13px] font-[500] text-[rgba(255,255,255,0.6)] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-full hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors flex items-center overflow-hidden"
               >
                 <span className="transition-transform duration-200 group-hover:-translate-x-2">{suburb}</span>
                 <ArrowRight className="w-3 h-3 absolute right-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />

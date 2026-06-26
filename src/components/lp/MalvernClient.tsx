@@ -80,7 +80,7 @@ function TestimonialSlider() {
 
   return (
     <div className="max-w-[800px] mx-auto mt-12 text-center">
-      <span className="text-[120px] text-[#d97706] opacity-15 leading-[0.8] block mb-6 font-serif">"</span>
+      <span className="text-[120px] text-[#FB8C42] opacity-15 leading-[0.8] block mb-6 font-serif">"</span>
       
       <div className="relative h-[180px] md:h-[140px]">
         {reviews.map((review, idx) => (
@@ -101,7 +101,7 @@ function TestimonialSlider() {
               <p className="text-[13px] text-[#9ca3af] mt-0.5">{review.suburb}</p>
               <div className="flex gap-1 mt-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-[#d97706] text-[#d97706]" />
+                  <Star key={i} className="w-3.5 h-3.5 fill-[#FB8C42] text-[#FB8C42]" />
                 ))}
               </div>
             </div>
@@ -114,7 +114,7 @@ function TestimonialSlider() {
         <div className="flex items-center gap-3">
           <button 
             onClick={handlePrev}
-            className="w-11 h-11 rounded-full border border-[#e5e7eb] text-[#6b7280] flex items-center justify-center hover:border-[#d97706] hover:text-[#d97706] transition-colors"
+            className="w-11 h-11 rounded-full border border-[#e5e7eb] text-[#6b7280] flex items-center justify-center hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
@@ -123,14 +123,14 @@ function TestimonialSlider() {
               <div 
                 key={idx}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? "bg-[#d97706] w-6" : "bg-[#e5e7eb] w-2"
+                  idx === currentIndex ? "bg-[#FB8C42] w-6" : "bg-[#e5e7eb] w-2"
                 }`}
               />
             ))}
           </div>
           <button 
             onClick={handleNext}
-            className="w-11 h-11 rounded-full border border-[#e5e7eb] text-[#6b7280] flex items-center justify-center hover:border-[#d97706] hover:text-[#d97706] transition-colors"
+            className="w-11 h-11 rounded-full border border-[#e5e7eb] text-[#6b7280] flex items-center justify-center hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors"
           >
             <ArrowRight className="w-5 h-5" />
           </button>
@@ -207,15 +207,15 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             <div className="w-full lg:w-[45%] flex flex-col items-start z-10">
               <ScrollReveal>
                 <div className="inline-flex items-center bg-[rgba(217,119,6,0.1)] border border-[rgba(217,119,6,0.2)] rounded-full px-[14px] py-[6px] mb-8">
-                  <span className="w-2 h-2 rounded-full bg-[#d97706] mr-2"></span>
-                  <span className="text-[12px] font-[600] text-[#d97706] tracking-[0.1em] uppercase">
+                  <span className="w-2 h-2 rounded-full bg-[#FB8C42] mr-2"></span>
+                  <span className="text-[12px] font-[600] text-[#FB8C42] tracking-[0.1em] uppercase">
                     Serving Malvern
                   </span>
                 </div>
 
                 <h1 className="flex flex-col mb-6 text-[72px] font-[800] leading-[1.05] tracking-[-0.03em]">
                   <span className="text-[#1a1a1a]">House Cleaning</span>
-                  <span className="text-[#d97706]">Malvern</span>
+                  <span className="text-[#FB8C42]">Malvern</span>
                   <span className="text-[#1a1a1a]">Melbourne</span>
                 </h1>
 
@@ -224,7 +224,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                  <a href="/#booking" className="w-full sm:w-auto bg-[#d97706] text-white rounded-full px-[36px] py-[16px] text-[15px] font-[600] hover:bg-[#b45309] transition-colors duration-300 text-center shadow-lg">
+                  <a href="/#booking" className="w-full sm:w-auto bg-[#FB8C42] text-white rounded-full px-[36px] py-[16px] text-[15px] font-[600] hover:bg-[#ea6309] transition-colors duration-300 text-center shadow-lg">
                     Get an Instant Quote
                   </a>
                   <a href="#included" className="w-full sm:w-auto border border-[#d1d5db] text-[#1a1a1a] rounded-full px-[36px] py-[16px] text-[15px] font-[600] hover:bg-white transition-colors duration-300 text-center bg-[rgba(255,255,255,0.5)]">
@@ -281,7 +281,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
           
           <ScrollReveal>
             <div className="mb-8">
-              <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+              <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
                 Malvern's Housing Stock
               </span>
               <h2 className="text-[32px] md:text-[40px] font-[700] text-[#1a1a1a] max-w-[600px] leading-[1.1] mb-4">
@@ -303,7 +303,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                   <div className="absolute bottom-[-20px] right-[10px] text-[120px] font-[900] text-[rgba(255,255,255,0.04)] leading-none select-none">
                     01
                   </div>
-                  <span className="inline-block bg-[rgba(217,119,6,0.2)] text-[#d97706] rounded-full px-[12px] py-[4px] text-[11px] mb-3 relative z-10 font-[600]">
+                  <span className="inline-block bg-[rgba(217,119,6,0.2)] text-[#FB8C42] rounded-full px-[12px] py-[4px] text-[11px] mb-3 relative z-10 font-[600]">
                     Glenferrie Road · High Street
                   </span>
                   <h3 className="text-[#ffffff] text-[18px] font-[700] leading-tight relative z-10 max-w-[280px]">
@@ -332,7 +332,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                   <div className="absolute bottom-[-20px] right-[10px] text-[120px] font-[900] text-[rgba(255,255,255,0.04)] leading-none select-none">
                     02
                   </div>
-                  <span className="inline-block bg-[rgba(217,119,6,0.2)] text-[#d97706] rounded-full px-[12px] py-[4px] text-[11px] mb-3 relative z-10 font-[600]">
+                  <span className="inline-block bg-[rgba(217,119,6,0.2)] text-[#FB8C42] rounded-full px-[12px] py-[4px] text-[11px] mb-3 relative z-10 font-[600]">
                     Tree-Lined Residential Streets
                   </span>
                   <h3 className="text-[#ffffff] text-[18px] font-[700] leading-tight relative z-10 max-w-[280px]">
@@ -357,7 +357,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             {/* Card 3 */}
             <ScrollReveal delay={0.3}>
               <div className="h-full bg-white border border-[#e5e7eb] rounded-[20px] overflow-hidden flex flex-col shadow-sm">
-                <div className="bg-[#d97706] p-[32px] h-[200px] relative">
+                <div className="bg-[#FB8C42] p-[32px] h-[200px] relative">
                   <div className="absolute bottom-[-20px] right-[10px] text-[120px] font-[900] text-[rgba(255,255,255,0.2)] leading-none select-none">
                     03
                   </div>
@@ -394,7 +394,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
       <section id="included" className="bg-[#ffffff] py-[80px]">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="mb-16">
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
               Scope & Checklist
             </span>
             <h2 className="text-[32px] md:text-[40px] font-[700] text-[#1a1a1a] max-w-[600px] leading-[1.1] mb-4">
@@ -415,7 +415,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
               <ScrollReveal delay={0.1}>
                 <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[20px] p-[32px]">
                   <div className="w-[40px] h-[40px] rounded-lg bg-orange-50 flex items-center justify-center mb-6">
-                    <UtensilsCrossed className="w-5 h-5 text-[#d97706]" />
+                    <UtensilsCrossed className="w-5 h-5 text-[#FB8C42]" />
                   </div>
                   <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-4">
                     Kitchen and Bathroom Detailing
@@ -437,7 +437,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
               <ScrollReveal delay={0.2}>
                 <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[20px] p-[32px]">
                   <div className="w-[40px] h-[40px] rounded-lg bg-orange-50 flex items-center justify-center mb-6">
-                    <Bed className="w-5 h-5 text-[#d97706]" />
+                    <Bed className="w-5 h-5 text-[#FB8C42]" />
                   </div>
                   <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-4">
                     Bedrooms, Formal Dining Rooms and Additional Spaces
@@ -463,7 +463,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
               <ScrollReveal delay={0.3}>
                 <div className="bg-[#0f172a] rounded-[20px] p-[32px]">
                   <div className="w-[40px] h-[40px] rounded-lg bg-[rgba(217,119,6,0.15)] flex items-center justify-center mb-6">
-                    <Layers className="w-5 h-5 text-[#d97706]" />
+                    <Layers className="w-5 h-5 text-[#FB8C42]" />
                   </div>
                   <h3 className="text-[20px] font-[700] text-[#ffffff] mb-4">
                     Original Timber Floors, Polished Surfaces and Formal Living Areas
@@ -495,27 +495,27 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
       <section className="bg-[#0f172a] py-[80px] px-[32px]">
         <div className="container mx-auto max-w-5xl text-center">
           <ScrollReveal>
-            <div className="w-[40px] h-[2px] bg-[#d97706] mx-auto mb-[32px]" />
+            <div className="w-[40px] h-[2px] bg-[#FB8C42] mx-auto mb-[32px]" />
             <p className="text-[24px] md:text-[28px] font-[500] text-[#ffffff] leading-[1.6] italic max-w-[760px] mx-auto">
               "Malvern's homeowner demographic values quality and consistency. The medium competition index here reflects a market where established trust matters and a new provider needs to demonstrate quality before winning recurring clients. Crisp's model — same cleaner, fixed scope, heritage-appropriate products — is specifically suited to earning and keeping that trust."
             </p>
             
             <div className="mt-[48px] flex flex-col md:flex-row justify-center gap-[32px] md:gap-[64px]">
               <div>
-                <div className="text-[40px] font-[800] text-[#d97706] leading-none mb-1">97%</div>
+                <div className="text-[40px] font-[800] text-[#FB8C42] leading-none mb-1">97%</div>
                 <div className="text-[12px] text-[rgba(255,255,255,0.5)] leading-tight">Same cleaner<br/>every visit</div>
               </div>
               <div>
-                <div className="text-[40px] font-[800] text-[#d97706] leading-none mb-1">100%</div>
+                <div className="text-[40px] font-[800] text-[#FB8C42] leading-none mb-1">100%</div>
                 <div className="text-[12px] text-[rgba(255,255,255,0.5)] leading-tight">Eco-friendly<br/>products</div>
               </div>
               <div>
-                <div className="text-[40px] font-[800] text-[#d97706] leading-none mb-1">72hr</div>
+                <div className="text-[40px] font-[800] text-[#FB8C42] leading-none mb-1">72hr</div>
                 <div className="text-[12px] text-[rgba(255,255,255,0.5)] leading-tight">Re-clean<br/>guarantee</div>
               </div>
             </div>
             
-            <div className="w-[40px] h-[2px] bg-[#d97706] mx-auto mt-[48px]" />
+            <div className="w-[40px] h-[2px] bg-[#FB8C42] mx-auto mt-[48px]" />
           </ScrollReveal>
         </div>
       </section>
@@ -526,7 +526,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
       <section className="bg-[#ffffff] py-[80px]">
         <div className="container mx-auto px-6 md:px-10 max-w-4xl">
           <ScrollReveal>
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3 text-center">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3 text-center">
               The Crisp Difference
             </span>
             <h2 className="text-[32px] md:text-[40px] font-[700] text-[#1a1a1a] leading-[1.1] mb-6 text-center">
@@ -540,8 +540,8 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
           {/* 2x2 Grid of Explanations */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px] mt-[48px]">
             {/* Block 1 */}
-            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#d97706] transition-colors duration-200">
-              <CheckCircle2 className="w-[20px] h-[20px] text-[#d97706] mb-[12px]" />
+            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#FB8C42] transition-colors duration-200">
+              <CheckCircle2 className="w-[20px] h-[20px] text-[#FB8C42] mb-[12px]" />
               <h3 className="text-[16px] font-[700] text-[#1a1a1a] mb-[12px]">
                 Same Cleaner — Familiar With Your Home From the Second Visit Onward
               </h3>
@@ -554,8 +554,8 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             </div>
 
             {/* Block 2 */}
-            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#d97706] transition-colors duration-200">
-              <CheckCircle2 className="w-[20px] h-[20px] text-[#d97706] mb-[12px]" />
+            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#FB8C42] transition-colors duration-200">
+              <CheckCircle2 className="w-[20px] h-[20px] text-[#FB8C42] mb-[12px]" />
               <h3 className="text-[16px] font-[700] text-[#1a1a1a] mb-[12px]">
                 Fixed Pricing Based on What Your Home Actually Requires
               </h3>
@@ -568,8 +568,8 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             </div>
 
             {/* Block 3 */}
-            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#d97706] transition-colors duration-200">
-              <CheckCircle2 className="w-[20px] h-[20px] text-[#d97706] mb-[12px]" />
+            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#FB8C42] transition-colors duration-200">
+              <CheckCircle2 className="w-[20px] h-[20px] text-[#FB8C42] mb-[12px]" />
               <h3 className="text-[16px] font-[700] text-[#1a1a1a] mb-[12px]">
                 Products Selected for Heritage Surfaces and Original Finishes
               </h3>
@@ -582,8 +582,8 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             </div>
 
             {/* Block 4 */}
-            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#d97706] transition-colors duration-200">
-              <CheckCircle2 className="w-[20px] h-[20px] text-[#d97706] mb-[12px]" />
+            <div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[16px] p-[28px] hover:border-[#FB8C42] transition-colors duration-200">
+              <CheckCircle2 className="w-[20px] h-[20px] text-[#FB8C42] mb-[12px]" />
               <h3 className="text-[16px] font-[700] text-[#1a1a1a] mb-[12px]">
                 Satisfaction Guaranteed on Every Clean
               </h3>
@@ -605,7 +605,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
       <section className="bg-[#fafafa] py-[80px]">
         <div className="container mx-auto px-6 md:px-10">
           <ScrollReveal className="text-center">
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
               Client Stories
             </span>
             <h2 className="text-[32px] md:text-[40px] font-[700] text-[#1a1a1a] leading-[1.1]">
@@ -618,7 +618,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             <div className="text-center mt-[48px] text-[14px] text-[#6b7280] flex items-center justify-center gap-2">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#d97706] text-[#d97706]" />
+                  <Star key={i} className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" />
                 ))}
               </div>
               <span>Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews</span>
@@ -633,7 +633,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
       <section className="bg-[#ffffff] py-[80px]">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="text-center mb-16">
-            <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-3">
+            <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-3">
               Transparent Pricing
             </span>
             <h2 className="text-[32px] md:text-[40px] font-[700] text-[#1a1a1a] mb-4 leading-[1.1]">
@@ -654,9 +654,9 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                   <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none">$180</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Up to 3 bed</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All bathrooms</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Eco products included</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -672,11 +672,11 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                   <span className="text-[40px] font-[800] text-[#ffffff] leading-none">$320</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Full property scope</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Oven & inside cabinets</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Grout & hard-to-reach areas</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center mt-8 bg-[#d97706] text-white rounded-full py-3 text-[14px] font-[600] hover:bg-[#b45309] transition-colors">
+                <a href="/#booking" className="block w-full text-center mt-8 bg-[#FB8C42] text-white rounded-full py-3 text-[14px] font-[600] hover:bg-[#ea6309] transition-colors">
                   Get quote
                 </a>
               </div>
@@ -689,9 +689,9 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                   <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none text-[28px] mt-1 block">Fixed quote</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Bond-back standard</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All rooms & surfaces</li>
-                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Inspection ready</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
+                  <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -712,7 +712,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
       ══════════════════════════════════════════════════════ */}
       <section className="bg-[#ffffff] py-[100px] px-[32px] flex flex-col items-center text-center overflow-hidden">
         <ScrollReveal>
-          <span className="text-[11px] font-[600] text-[#d97706] tracking-[0.15em] uppercase block mb-[24px]">
+          <span className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.15em] uppercase block mb-[24px]">
             Ready to Book
           </span>
           
@@ -731,18 +731,18 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             </span>
           </h2>
 
-          <div className="w-[1px] h-[48px] bg-[#d97706] mx-auto my-[24px]" />
+          <div className="w-[1px] h-[48px] bg-[#FB8C42] mx-auto my-[24px]" />
 
           <p className="text-[16px] text-[#6b7280] max-w-[440px] mx-auto mb-[16px] leading-[1.6]">
             Get an instant fixed quote for your Malvern home — period property or contemporary renovation. Book online in under a minute, same cleaner every visit.
           </p>
 
-          <span className="text-[#d97706] font-[600] block mb-[32px]">
+          <span className="text-[#FB8C42] font-[600] block mb-[32px]">
             15% off your first clean.
           </span>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/#booking" className="bg-[#1a1a1a] text-white rounded-full px-[32px] py-[13px] text-[14px] font-[600] hover:bg-[#d97706] transition-colors">
+            <a href="/#booking" className="bg-[#1a1a1a] text-white rounded-full px-[32px] py-[13px] text-[14px] font-[600] hover:bg-[#FB8C42] transition-colors">
               Get an Instant Quote
             </a>
             <a href="tel:0451433786" className="border border-[#e5e7eb] text-[#6b7280] rounded-full px-[32px] py-[13px] text-[14px] font-[600] hover:bg-[#f9fafb] transition-colors">
@@ -757,7 +757,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
               <a 
                 key={suburb} 
                 href={`/house-cleaning-${suburb.toLowerCase().replace(' ', '-')}`}
-                className="group relative px-[16px] py-[6px] text-[12px] font-[500] text-[#6b7280] border border-[#e5e7eb] rounded-full hover:border-[#d97706] hover:text-[#d97706] transition-colors flex items-center overflow-hidden"
+                className="group relative px-[16px] py-[6px] text-[12px] font-[500] text-[#6b7280] border border-[#e5e7eb] rounded-full hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors flex items-center overflow-hidden"
               >
                 <span className="transition-transform duration-200 group-hover:-translate-x-1">{suburb}</span>
                 <ArrowRight className="w-3 h-3 absolute right-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />

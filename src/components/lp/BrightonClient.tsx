@@ -350,7 +350,7 @@ export default function BrightonClient({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    className="bg-white/95 backdrop-blur-md border border-gray-100 border-l-[3px] border-l-[#d97706] rounded-[14px] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.08)] flex items-center gap-3"
+                    className="bg-white/95 backdrop-blur-md border border-gray-100 border-l-[3px] border-l-[#FB8C42] rounded-[14px] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.08)] flex items-center gap-3"
                   >
                     <div className="text-[20px] font-extrabold text-[#FB8C42] w-12 shrink-0 leading-none">
                       {stat.value}

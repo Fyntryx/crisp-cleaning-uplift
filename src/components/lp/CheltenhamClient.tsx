@@ -96,7 +96,7 @@ const CheltenhamBeforeAfterSlider = () => {
           fill 
           className="object-cover"
         />
-        <div className="absolute top-4 right-4 bg-[#d97706] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+        <div className="absolute top-4 right-4 bg-[#FB8C42] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
           After
         </div>
       </div>
@@ -118,8 +118,8 @@ const CheltenhamBeforeAfterSlider = () => {
       </div>
 
       {/* Orange Divider Line */}
-      <div className="absolute top-0 bottom-0 w-[3px] bg-[#d97706] z-20 pointer-events-none transform -translate-x-1/2" style={{ left: `${sliderPosition}%` }}>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[#d97706] rounded-full flex items-center justify-center shadow-lg transition-transform text-white">
+      <div className="absolute top-0 bottom-0 w-[3px] bg-[#FB8C42] z-20 pointer-events-none transform -translate-x-1/2" style={{ left: `${sliderPosition}%` }}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[#FB8C42] rounded-full flex items-center justify-center shadow-lg transition-transform text-white">
           <ArrowRightLeft className="w-5 h-5" />
         </div>
       </div>
@@ -208,7 +208,7 @@ export default function CheltenhamClient({
             style={{ 
               writingMode: 'vertical-rl', 
               fontSize: 'min(160px, 15vw)',
-              WebkitTextStroke: '2px #d97706',
+              WebkitTextStroke: '2px #FB8C42',
               color: 'transparent'
             }}
           >
@@ -223,9 +223,9 @@ export default function CheltenhamClient({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#d97706]/15 border border-[#d97706]/30 text-[#d97706] text-[10px] font-bold tracking-[0.18em] uppercase mb-8 max-w-fit"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FB8C42]/15 border border-[#FB8C42]/30 text-[#FB8C42] text-[10px] font-bold tracking-[0.18em] uppercase mb-8 max-w-fit"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               House Cleaning · Cheltenham · Sandbelt
             </motion.div>
 
@@ -236,7 +236,7 @@ export default function CheltenhamClient({
               className="text-[44px] md:text-[64px] font-[800] text-white leading-[1.05] tracking-[-0.03em]"
             >
               <span className="block">House Cleaning</span>
-              <span className="relative inline-block text-[#d97706] z-10">
+              <span className="relative inline-block text-[#FB8C42] z-10">
                 Cheltenham
               </span>
               <span className="block mt-2">Melbourne</span>
@@ -259,7 +259,7 @@ export default function CheltenhamClient({
             >
               <a
                 href="/#booking"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-[28px] py-[12px] rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-bold text-[15px] transition-all duration-300"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-[28px] py-[12px] rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[15px] transition-all duration-300"
               >
                 Get an Instant Quote
               </a>
@@ -296,7 +296,7 @@ export default function CheltenhamClient({
                   part.trim() ? (
                     <React.Fragment key={j}>
                       {part}
-                      <span className="text-[#d97706] mx-3">·</span>
+                      <span className="text-[#FB8C42] mx-3">·</span>
                     </React.Fragment>
                   ) : null
                 ))}
@@ -313,19 +313,19 @@ export default function CheltenhamClient({
         <div className="container mx-auto px-6 md:px-10 max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200/50 gap-y-6 md:gap-y-0">
             <div className="text-center flex flex-col items-center justify-center">
-              <span className="text-[24px] font-[700] text-[#d97706] leading-none mb-1.5">4.9 ★</span>
+              <span className="text-[24px] font-[700] text-[#FB8C42] leading-none mb-1.5">4.9 ★</span>
               <span className="text-[12px] text-gray-500">Google</span>
             </div>
             <div className="text-center flex flex-col items-center justify-center">
-              <span className="text-[24px] font-[700] text-[#d97706] leading-none mb-1.5">97%</span>
+              <span className="text-[24px] font-[700] text-[#FB8C42] leading-none mb-1.5">97%</span>
               <span className="text-[12px] text-gray-500">Same Cleaner</span>
             </div>
             <div className="text-center flex flex-col items-center justify-center border-t md:border-t-0 border-gray-200/50 pt-6 md:pt-0">
-              <span className="text-[24px] font-[700] text-[#d97706] leading-none mb-1.5">100%</span>
+              <span className="text-[24px] font-[700] text-[#FB8C42] leading-none mb-1.5">100%</span>
               <span className="text-[12px] text-gray-500">Eco-Friendly</span>
             </div>
             <div className="text-center flex flex-col items-center justify-center border-t md:border-t-0 border-gray-200/50 pt-6 md:pt-0">
-              <span className="text-[24px] font-[700] text-[#d97706] leading-none mb-1.5">72hr</span>
+              <span className="text-[24px] font-[700] text-[#FB8C42] leading-none mb-1.5">72hr</span>
               <span className="text-[12px] text-gray-500">Guarantee</span>
             </div>
           </div>
@@ -338,7 +338,7 @@ export default function CheltenhamClient({
       <section className="py-[80px] bg-white">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="text-center mb-16">
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               Cheltenham's Housing Stock
             </p>
             <h2 className="text-[36px] font-[700] text-gray-900 tracking-tight mb-5 max-w-[600px] mx-auto leading-tight">
@@ -353,16 +353,16 @@ export default function CheltenhamClient({
             {/* Row 1: Large Featured Card */}
             <ScrollReveal>
               <div className="relative w-full rounded-[24px] p-8 md:p-12 overflow-hidden bg-[#1a1a1a]">
-                <div className="absolute top-0 left-0 w-[3px] h-full bg-[#d97706] rounded-[2px]" />
+                <div className="absolute top-0 left-0 w-[3px] h-full bg-[#FB8C42] rounded-[2px]" />
                 <div className="absolute -bottom-6 -right-4 text-[140px] font-black text-white opacity-5 leading-none select-none pointer-events-none z-0">
                   01
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-[44px] h-[44px] rounded-xl bg-[#d97706]/15 flex items-center justify-center shrink-0">
-                      <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <div className="w-[44px] h-[44px] rounded-xl bg-[#FB8C42]/15 flex items-center justify-center shrink-0">
+                      <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                     </div>
-                    <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#d97706]">
+                    <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#FB8C42]">
                       Cheltenham Residential · Post-War
                     </span>
                   </div>
@@ -435,7 +435,7 @@ export default function CheltenhamClient({
       {/* ══════════════════════════════════════════════════════
           SECTION 5 — PULL QUOTE
       ══════════════════════════════════════════════════════ */}
-      <section className="bg-[#d97706] w-full py-[64px] px-[32px] text-center">
+      <section className="bg-[#FB8C42] w-full py-[64px] px-[32px] text-center">
         <ScrollReveal>
           <p className="text-[24px] md:text-[32px] font-[700] text-white max-w-[800px] mx-auto leading-[1.4] italic tracking-tight">
             "Cheltenham's owner-occupier families value reliable cleaning over cheap cleaning. The same cleaner, every fortnight, who knows your home — that's what Crisp delivers."
@@ -456,7 +456,7 @@ export default function CheltenhamClient({
       <section id="checklist" className="py-[80px] bg-[#fafaf8]">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="mb-12">
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               Scope & Checklist
             </p>
             <h2 className="text-[32px] md:text-[40px] font-extrabold text-gray-900 tracking-tight mb-4">
@@ -471,7 +471,7 @@ export default function CheltenhamClient({
             {/* Cell 1: Kitchen (Large) */}
             <ScrollReveal delay={0} className="bento-large-1 h-full">
               <div className="bg-white border border-gray-200/60 rounded-[16px] p-8 h-full flex flex-col">
-                <svg className="w-7 h-7 text-[#d97706] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>
+                <svg className="w-7 h-7 text-[#FB8C42] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>
                 <h3 className="text-[20px] font-bold text-gray-900 mb-3">Kitchen Surfaces and Bathroom Sanitisation</h3>
                 <p className="text-[15px] text-gray-600 leading-relaxed flex-grow">
                   Benchtops, stovetop, rangehood, splashback, sink, and accessible appliance exteriors are cleaned to a consistent standard on every visit. All bathrooms are sanitised — shower or bath recess, toilet, basin, mirror, taps, and tiled floor scrubbed and polished. For Cheltenham's larger family homes with two bathrooms, both are included in the standard scope without an additional charge.
@@ -487,7 +487,7 @@ export default function CheltenhamClient({
             {/* Cell 2: Floors (Small) */}
             <ScrollReveal delay={0.1} className="bento-small-1 h-full">
               <div className="bg-[#1a1a1a] rounded-[16px] p-8 h-full flex flex-col">
-                <svg className="w-7 h-7 text-[#d97706] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12A10 10 0 0 0 12 2v10z"/><path d="M12 22A10 10 0 1 0 12 2v10z"/></svg>
+                <svg className="w-7 h-7 text-[#FB8C42] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12A10 10 0 0 0 12 2v10z"/><path d="M12 22A10 10 0 1 0 12 2v10z"/></svg>
                 <h3 className="text-[18px] font-bold text-white mb-3">Vacuum, Mop and Floor Care Throughout</h3>
                 <p className="text-[14px] text-white/65 leading-relaxed">
                   All carpeted rooms are vacuumed including under accessible furniture. Hard floors — tiles, timber, and vinyl — are swept and mopped with appropriate products. Cheltenham's older homes often have a mix of carpet in bedrooms and hard floors through living areas and kitchen; our scope handles both floor types within the standard clean.
@@ -509,7 +509,7 @@ export default function CheltenhamClient({
             {/* Cell 4: Bedrooms & Laundry (Large) */}
             <ScrollReveal delay={0.3} className="bento-large-2 h-full">
               <div className="bg-white border border-gray-200/60 rounded-[16px] p-8 h-full flex flex-col">
-                <svg className="w-7 h-7 text-[#d97706] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
+                <svg className="w-7 h-7 text-[#FB8C42] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
                 <h3 className="text-[20px] font-bold text-gray-900 mb-3">Bedrooms, Living Areas and Laundry</h3>
                 <p className="text-[15px] text-gray-600 leading-relaxed flex-grow">
                   Every bedroom in scope is vacuumed, surfaces dusted, and the room left to a presented standard. Living and dining areas receive the same treatment. The laundry is included as standard: surfaces wiped, appliance exteriors cleaned, floor swept or mopped. Studies or rumpus rooms are scoped and priced at booking.
@@ -531,7 +531,7 @@ export default function CheltenhamClient({
       <section className="py-[80px] bg-white">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="mb-12">
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               The Crisp Difference
             </p>
             <h2 className="text-[32px] md:text-[40px] font-extrabold text-gray-900 tracking-tight mb-4">
@@ -571,7 +571,7 @@ export default function CheltenhamClient({
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div className="group flex flex-col md:flex-row items-start md:items-center w-full py-[32px] border-t border-gray-200/60">
-                  <div className="w-full md:w-[15%] text-[80px] font-[800] text-[#d97706] opacity-20 group-hover:opacity-60 transition-opacity duration-200 leading-none pb-4 md:pb-0">
+                  <div className="w-full md:w-[15%] text-[80px] font-[800] text-[#FB8C42] opacity-20 group-hover:opacity-60 transition-opacity duration-200 leading-none pb-4 md:pb-0">
                     {item.num}
                   </div>
                   <div className="w-full md:w-[55%] pr-0 md:pr-8">
@@ -597,7 +597,7 @@ export default function CheltenhamClient({
       <section className="py-[80px] bg-[#fafaf8]">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="text-center mb-16">
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-3">
               Transparent Pricing
             </p>
             <h2 className="text-[32px] md:text-[40px] font-extrabold text-gray-900 tracking-tight mb-4">
@@ -618,9 +618,9 @@ export default function CheltenhamClient({
                   <span className="text-[40px] font-extrabold text-gray-900 leading-none">$180</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Up to 3 bed</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All bathrooms</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Eco products included</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -647,11 +647,11 @@ export default function CheltenhamClient({
                   <span className="text-[40px] font-extrabold text-white leading-none">$320</span>
                 </div>
                 <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Full property scope</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Oven & inside cabinets</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Grout & hard-to-reach areas</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-bold text-[14px] flex items-center justify-center gap-2 transition-colors">
+                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[14px] flex items-center justify-center gap-2 transition-colors">
                   Get a quote <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -665,9 +665,9 @@ export default function CheltenhamClient({
                   <span className="text-[32px] font-extrabold text-gray-900 leading-tight block">Fixed quote</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Bond-back standard</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All rooms & surfaces</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Inspection ready</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -705,7 +705,7 @@ export default function CheltenhamClient({
                   <div className="bg-[#fafaf8] border border-gray-200/60 rounded-[20px] p-8 shadow-sm">
                     <div className="flex items-center gap-1 mb-4">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-[#d97706] text-[#d97706]" />
+                        <Star key={i} className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" />
                       ))}
                     </div>
                     <p className="text-[16px] text-gray-700 leading-relaxed font-medium italic mb-6">
@@ -734,24 +734,24 @@ export default function CheltenhamClient({
       <section className="bg-[#1a1a1a] py-[80px] px-[32px] text-center text-white">
         <div className="container mx-auto max-w-4xl">
           <ScrollReveal>
-            <p className="text-[#d97706] font-bold tracking-[0.15em] text-[11px] uppercase mb-4">
+            <p className="text-[#FB8C42] font-bold tracking-[0.15em] text-[11px] uppercase mb-4">
               Ready to Book
             </p>
             <h2 className="text-[48px] font-[800] leading-tight mb-6">
               Book a Cleaner in <br />
-              <span className="text-[#d97706]">Cheltenham</span>
+              <span className="text-[#FB8C42]">Cheltenham</span>
             </h2>
             <p className="text-[15px] text-white/65 max-w-xl mx-auto mb-6">
               Get an instant fixed quote for your Cheltenham home and book online in under a minute. Same cleaner every visit.
             </p>
-            <p className="text-[15px] font-[600] text-[#d97706] mb-10">
+            <p className="text-[15px] font-[600] text-[#FB8C42] mb-10">
               15% off your first clean.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mx-auto mb-16">
               <a
                 href="/#booking"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-[28px] py-[14px] rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-bold text-[15px] transition-all duration-300"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-[28px] py-[14px] rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[15px] transition-all duration-300"
               >
                 Get an Instant Quote
               </a>
@@ -771,7 +771,7 @@ export default function CheltenhamClient({
                 <Link
                   key={suburb}
                   href={`/house-cleaning-${suburb.toLowerCase().replace(' ', '-')}`}
-                  className="nearby-pill group px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 hover:text-[#d97706] hover:border-[#d97706] hover:bg-white/10 text-[13px] font-medium transition-all duration-300 flex items-center gap-1"
+                  className="nearby-pill group px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 hover:text-[#FB8C42] hover:border-[#FB8C42] hover:bg-white/10 text-[13px] font-medium transition-all duration-300 flex items-center gap-1"
                 >
                   {suburb}
                   <ArrowRight className="arrow w-3 h-3" />

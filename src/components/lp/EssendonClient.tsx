@@ -228,7 +228,7 @@ function BeforeAfterCard({
           className="absolute top-0 bottom-0 w-[3px] bg-[#ffffff] pointer-events-none z-30"
           style={{ left: `${position}%` }}
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[44px] h-[44px] md:w-[36px] md:h-[36px] rounded-full bg-[#d97706] flex items-center justify-center">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[44px] h-[44px] md:w-[36px] md:h-[36px] rounded-full bg-[#FB8C42] flex items-center justify-center">
             <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 12 4-4v8z"/><path d="m21 12-4-4v8z"/><path d="M7 12h10"/></svg>
           </div>
         </div>
@@ -236,8 +236,8 @@ function BeforeAfterCard({
 
       {/* Testimonial Content */}
       <div className="p-6 grow flex flex-col">
-        <div className="text-[#d97706] text-[14px] mb-3 tracking-widest">★★★★★</div>
-        <div className="text-[#d97706] text-[48px] leading-[0] opacity-30 mb-2 font-serif block">"</div>
+        <div className="text-[#FB8C42] text-[14px] mb-3 tracking-widest">★★★★★</div>
+        <div className="text-[#FB8C42] text-[48px] leading-[0] opacity-30 mb-2 font-serif block">"</div>
         <p className="text-[14px] text-[#374151] leading-[1.7] italic mb-4 grow">
           {quote}
         </p>
@@ -323,7 +323,7 @@ export default function EssendonClient({
 
         {/* Frosted Glass Card on Left */}
         <div 
-          className="relative z-10 hidden md:flex flex-col w-[480px] rounded-[20px] p-[40px_40px] ml-[40px] lg:ml-[80px] selection:bg-[#d97706]/30 selection:text-white"
+          className="relative z-10 hidden md:flex flex-col w-[480px] rounded-[20px] p-[40px_40px] ml-[40px] lg:ml-[80px] selection:bg-[#FB8C42]/30 selection:text-white"
           style={{
             background: "rgba(15, 15, 15, 0.55)",
             backdropFilter: "blur(20px)",
@@ -332,7 +332,7 @@ export default function EssendonClient({
           }}
         >
           {/* Orange vertical accent line */}
-          <div className="absolute left-[-1px] top-[40px] w-[3px] h-[48px] bg-[#d97706] rounded-[2px]" />
+          <div className="absolute left-[-1px] top-[40px] w-[3px] h-[48px] bg-[#FB8C42] rounded-[2px]" />
 
           <ScrollReveal delay={0}>
             <div 
@@ -340,7 +340,7 @@ export default function EssendonClient({
               style={{
                 background: "rgba(217, 119, 6, 0.2)",
                 border: "1px solid rgba(217, 119, 6, 0.4)",
-                color: "#d97706"
+                color: "#FB8C42"
               }}
             >
               ● House Cleaning · Essendon · Period Homes
@@ -352,7 +352,7 @@ export default function EssendonClient({
               <span className="block" style={{ animation: "revealUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards", animationDelay: "0s", transform: "translateY(110%)" }}>House Cleaning</span>
             </span>
             <span className="hero-line block overflow-hidden pb-1">
-              <span className="block text-[#d97706]" style={{ 
+              <span className="block text-[#FB8C42]" style={{ 
                 animation: "revealUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards", 
                 animationDelay: "0.12s", 
                 transform: "translateY(110%)"
@@ -366,17 +366,17 @@ export default function EssendonClient({
           <ScrollReveal delay={0.6}>
             <div className="flex items-start gap-6 mt-8 pb-6 border-b border-white/20">
               <div className="text-left">
-                <div className="text-[32px] font-extrabold text-[#d97706] leading-none mb-2">97%</div>
+                <div className="text-[32px] font-extrabold text-[#FB8C42] leading-none mb-2">97%</div>
                 <div className="text-[12px] text-white leading-[1.5]">Same cleaner<br/>every visit</div>
               </div>
               <div className="w-[1px] h-12 bg-white/20 mt-2"></div>
               <div className="text-left">
-                <div className="text-[32px] font-extrabold text-[#d97706] leading-none mb-2">100%</div>
+                <div className="text-[32px] font-extrabold text-[#FB8C42] leading-none mb-2">100%</div>
                 <div className="text-[12px] text-white leading-[1.5]">Eco-friendly<br/>surfaces</div>
               </div>
               <div className="w-[1px] h-12 bg-white/20 mt-2"></div>
               <div className="text-left">
-                <div className="text-[32px] font-extrabold text-[#d97706] leading-none mb-2">72hr</div>
+                <div className="text-[32px] font-extrabold text-[#FB8C42] leading-none mb-2">72hr</div>
                 <div className="text-[12px] text-white leading-[1.5]">Re-clean<br/>guarantee</div>
               </div>
             </div>
@@ -392,7 +392,7 @@ export default function EssendonClient({
             <div className="flex flex-col sm:flex-row gap-4 mb-3 w-full">
               <a
                 href="/#booking"
-                className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-semibold text-[15px] transition-colors"
+                className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-semibold text-[15px] transition-colors"
               >
                 Get an Instant Quote
               </a>
@@ -410,17 +410,17 @@ export default function EssendonClient({
         </div>
 
         {/* Mobile version (fallback so it isn't broken on small screens) */}
-        <div className="relative z-10 md:hidden w-full px-6 pt-[120px] pb-[80px] bg-black/50 backdrop-blur-md min-h-[90vh] flex flex-col justify-center selection:bg-[#d97706]/30 selection:text-white">
+        <div className="relative z-10 md:hidden w-full px-6 pt-[120px] pb-[80px] bg-black/50 backdrop-blur-md min-h-[90vh] flex flex-col justify-center selection:bg-[#FB8C42]/30 selection:text-white">
           <ScrollReveal delay={0}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-[11px] font-semibold tracking-[0.12em] uppercase mb-8">
               House Cleaning · Essendon
             </div>
           </ScrollReveal>
           <h1 className="text-[48px] font-extrabold text-white leading-[1.0] tracking-[-0.04em] text-left mb-8">
-            House Cleaning <br/><span className="text-[#d97706]">Essendon</span> <br/>Melbourne
+            House Cleaning <br/><span className="text-[#FB8C42]">Essendon</span> <br/>Melbourne
           </h1>
           <div className="flex flex-col gap-4">
-            <a href="/#booking" className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#d97706] text-white font-semibold text-[15px]">Get an Instant Quote</a>
+            <a href="/#booking" className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#FB8C42] text-white font-semibold text-[15px]">Get an Instant Quote</a>
           </div>
         </div>
       </section>
@@ -437,23 +437,23 @@ export default function EssendonClient({
           {[...Array(3)].map((_, i) => (
             <React.Fragment key={i}>
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Same Cleaner Every Visit</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Fixed Pricing</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Eco-Friendly Products</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">72hr Guarantee</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Californian Bungalows</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Federation Homes</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Buckley Street</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Period Surfaces</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">Book in 60 Seconds</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FB8C42]" />
             </React.Fragment>
           ))}
         </motion.div>
@@ -491,10 +491,10 @@ export default function EssendonClient({
                       Tag: Buckley Street Precinct
                     </span>
                     <ul className="space-y-4">
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Original timber floors — low moisture products only</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Heritage tiles — no abrasive or high-pH products</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Leadlight windows — surface-appropriate care</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Red brick facades — eco-friendly throughout</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Original timber floors — low moisture products only</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Heritage tiles — no abrasive or high-pH products</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Leadlight windows — surface-appropriate care</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Red brick facades — eco-friendly throughout</span></li>
                     </ul>
                   </div>
                 </div>
@@ -515,10 +515,10 @@ export default function EssendonClient({
                       Tag: Keilor Road Corridor
                     </span>
                     <ul className="space-y-4">
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Multiple formal living rooms in scope</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">4–5 bedrooms priced accurately</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Generous bathrooms — all included</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Fixed pricing — no blanket rate</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Multiple formal living rooms in scope</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">4–5 bedrooms priced accurately</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Generous bathrooms — all included</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Fixed pricing — no blanket rate</span></li>
                     </ul>
                   </div>
                 </div>
@@ -539,10 +539,10 @@ export default function EssendonClient({
                       Tag: Transport Corridors · New Builds
                     </span>
                     <ul className="space-y-4">
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Stone benchtops — appropriate products</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Engineered floors — correct methods</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Open-plan living — full scope</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#d97706] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Same fixed-pricing framework</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Stone benchtops — appropriate products</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Engineered floors — correct methods</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Open-plan living — full scope</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" /><span className="text-[14px] text-gray-700">Same fixed-pricing framework</span></li>
                     </ul>
                   </div>
                 </div>
@@ -558,7 +558,7 @@ export default function EssendonClient({
       <section id="checklist" className="py-20 bg-[#1a1a1a]">
         <div className="container mx-auto px-6 md:px-10 max-w-6xl">
           <ScrollReveal>
-            <p className="text-[#d97706] font-medium tracking-[0.1em] text-[12px] uppercase mb-4">
+            <p className="text-[#FB8C42] font-medium tracking-[0.1em] text-[12px] uppercase mb-4">
               Scope & Checklist
             </p>
             <h2 className="text-[32px] md:text-[40px] font-bold text-[#ffffff] leading-[1.1] mb-6 max-w-[600px]">
@@ -572,9 +572,9 @@ export default function EssendonClient({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Card 1 */}
             <ScrollReveal delay={0.1}>
-              <div className="group bg-[#222222] border border-[#333333] hover:border-[#d97706] transition-colors duration-200 rounded-[16px] p-8 h-full">
-                <div className="w-10 h-10 rounded-lg bg-[#d97706]/15 flex items-center justify-center mb-6">
-                  <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21V11"/><path d="M8 21v-5"/><path d="M16 21v-5"/><path d="M12 4v4"/><path d="M8 4v4"/><path d="M16 4v4"/></svg>
+              <div className="group bg-[#222222] border border-[#333333] hover:border-[#FB8C42] transition-colors duration-200 rounded-[16px] p-8 h-full">
+                <div className="w-10 h-10 rounded-lg bg-[#FB8C42]/15 flex items-center justify-center mb-6">
+                  <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21V11"/><path d="M8 21v-5"/><path d="M16 21v-5"/><path d="M12 4v4"/><path d="M8 4v4"/><path d="M16 4v4"/></svg>
                 </div>
                 <h3 className="text-[18px] font-bold text-white mb-4">Kitchen Degreasing and Appliance Surface Care</h3>
                 <p className="text-[14px] text-white/60 leading-[1.7] mb-6">
@@ -582,7 +582,7 @@ export default function EssendonClient({
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["Benchtops & splashback", "Stovetop & rangehood", "Heritage kitchens", "Appliance exteriors"].map(pill => (
-                    <span key={pill} className="px-3 py-1 rounded-full bg-[#d97706]/10 border border-[#d97706]/20 text-[#fbbf24] text-[12px]">
+                    <span key={pill} className="px-3 py-1 rounded-full bg-[#FB8C42]/10 border border-[#FB8C42]/20 text-[#fbbf24] text-[12px]">
                       {pill}
                     </span>
                   ))}
@@ -592,9 +592,9 @@ export default function EssendonClient({
 
             {/* Card 2 */}
             <ScrollReveal delay={0.2}>
-              <div className="group bg-[#222222] border border-[#333333] hover:border-[#d97706] transition-colors duration-200 rounded-[16px] p-8 h-full">
-                <div className="w-10 h-10 rounded-lg bg-[#d97706]/15 flex items-center justify-center mb-6">
-                  <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>
+              <div className="group bg-[#222222] border border-[#333333] hover:border-[#FB8C42] transition-colors duration-200 rounded-[16px] p-8 h-full">
+                <div className="w-10 h-10 rounded-lg bg-[#FB8C42]/15 flex items-center justify-center mb-6">
+                  <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>
                 </div>
                 <h3 className="text-[18px] font-bold text-white mb-4">Bathroom Sanitisation and Tile Scrubbing</h3>
                 <p className="text-[14px] text-white/60 leading-[1.7] mb-6">
@@ -602,7 +602,7 @@ export default function EssendonClient({
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["All bathrooms sanitised", "Tessellated tiles", "Toilet base to cistern", "Tapware polished"].map(pill => (
-                    <span key={pill} className="px-3 py-1 rounded-full bg-[#d97706]/10 border border-[#d97706]/20 text-[#fbbf24] text-[12px]">
+                    <span key={pill} className="px-3 py-1 rounded-full bg-[#FB8C42]/10 border border-[#FB8C42]/20 text-[#fbbf24] text-[12px]">
                       {pill}
                     </span>
                   ))}
@@ -612,9 +612,9 @@ export default function EssendonClient({
 
             {/* Card 3 */}
             <ScrollReveal delay={0.3}>
-              <div className="group bg-[#222222] border border-[#333333] hover:border-[#d97706] transition-colors duration-200 rounded-[16px] p-8 h-full">
-                <div className="w-10 h-10 rounded-lg bg-[#d97706]/15 flex items-center justify-center mb-6">
-                  <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4-4-4"/><path d="M3.5 9h11.2"/><path d="m12 22-4-4 4-4"/><path d="M20.5 18H9.3"/></svg>
+              <div className="group bg-[#222222] border border-[#333333] hover:border-[#FB8C42] transition-colors duration-200 rounded-[16px] p-8 h-full">
+                <div className="w-10 h-10 rounded-lg bg-[#FB8C42]/15 flex items-center justify-center mb-6">
+                  <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4-4-4"/><path d="M3.5 9h11.2"/><path d="m12 22-4-4 4-4"/><path d="M20.5 18H9.3"/></svg>
                 </div>
                 <h3 className="text-[18px] font-bold text-white mb-4">Timber Floors, Polished Surfaces and Formal Living Rooms</h3>
                 <p className="text-[14px] text-white/60 leading-[1.7] mb-6">
@@ -622,7 +622,7 @@ export default function EssendonClient({
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["Low-moisture on timber", "No steam on boards", "Formal living areas", "Mirrors & glass"].map(pill => (
-                    <span key={pill} className="px-3 py-1 rounded-full bg-[#d97706]/10 border border-[#d97706]/20 text-[#fbbf24] text-[12px]">
+                    <span key={pill} className="px-3 py-1 rounded-full bg-[#FB8C42]/10 border border-[#FB8C42]/20 text-[#fbbf24] text-[12px]">
                       {pill}
                     </span>
                   ))}
@@ -632,9 +632,9 @@ export default function EssendonClient({
 
             {/* Card 4 */}
             <ScrollReveal delay={0.4}>
-              <div className="group bg-[#222222] border border-[#333333] hover:border-[#d97706] transition-colors duration-200 rounded-[16px] p-8 h-full">
-                <div className="w-10 h-10 rounded-lg bg-[#d97706]/15 flex items-center justify-center mb-6">
-                  <svg className="w-5 h-5 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
+              <div className="group bg-[#222222] border border-[#333333] hover:border-[#FB8C42] transition-colors duration-200 rounded-[16px] p-8 h-full">
+                <div className="w-10 h-10 rounded-lg bg-[#FB8C42]/15 flex items-center justify-center mb-6">
+                  <svg className="w-5 h-5 text-[#FB8C42]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
                 </div>
                 <h3 className="text-[18px] font-bold text-white mb-4">Bedrooms, Laundry and Secondary Living Areas</h3>
                 <p className="text-[14px] text-white/60 leading-[1.7] mb-6">
@@ -642,7 +642,7 @@ export default function EssendonClient({
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["All bedrooms vacuumed", "Laundry included", "Sunrooms scoped", "Studies included"].map(pill => (
-                    <span key={pill} className="px-3 py-1 rounded-full bg-[#d97706]/10 border border-[#d97706]/20 text-[#fbbf24] text-[12px]">
+                    <span key={pill} className="px-3 py-1 rounded-full bg-[#FB8C42]/10 border border-[#FB8C42]/20 text-[#fbbf24] text-[12px]">
                       {pill}
                     </span>
                   ))}
@@ -695,7 +695,7 @@ export default function EssendonClient({
       <section className="py-20 bg-[#1a1a1a]">
         <div className="container mx-auto px-6 md:px-10 max-w-6xl">
           <ScrollReveal>
-            <p className="text-[#d97706] font-medium tracking-[0.1em] text-[12px] uppercase mb-4">
+            <p className="text-[#FB8C42] font-medium tracking-[0.1em] text-[12px] uppercase mb-4">
               The Crisp Difference
             </p>
             <h2 className="text-[32px] md:text-[40px] font-bold text-[#ffffff] leading-[1.1] mb-6 max-w-[600px]">
@@ -712,7 +712,7 @@ export default function EssendonClient({
             <div className="relative z-10 grid grid-cols-4">
               {[0, 1, 2, 3].map((i) => (
                 <div key={i} className="flex justify-center">
-                  <div className="w-3 h-3 rounded-full bg-[#d97706] hover:scale-150 transition-transform duration-200 cursor-pointer"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#FB8C42] hover:scale-150 transition-transform duration-200 cursor-pointer"></div>
                 </div>
               ))}
             </div>
@@ -722,52 +722,52 @@ export default function EssendonClient({
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 mt-8 md:mt-0">
             <ScrollReveal delay={0.3}>
               <div className="flex flex-col">
-                <span className="text-[11px] font-bold text-[#d97706] tracking-[0.1em] mb-3">01</span>
+                <span className="text-[11px] font-bold text-[#FB8C42] tracking-[0.1em] mb-3">01</span>
                 <h3 className="text-[16px] font-bold text-white mb-3">Same Cleaner Every Visit — Your Home's Specifics Are Remembered</h3>
                 <p className="text-[13px] text-white/55 leading-[1.7] mb-5 grow">
                   Your Essendon cleaner is assigned from the first booking and returns every time. By the second visit, they know where the original timber needs careful treatment, which bathroom has the older tile grout that requires extra attention, and how your home's formal layout flows. That accumulated knowledge is why 97% of Crisp's recurring clients see the same face every fortnight.
                 </p>
                 <div>
-                  <span className="inline-block px-3 py-1 rounded-full bg-[#d97706]/15 text-[#fbbf24] text-[12px] font-bold">97%</span>
+                  <span className="inline-block px-3 py-1 rounded-full bg-[#FB8C42]/15 text-[#fbbf24] text-[12px] font-bold">97%</span>
                 </div>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.4}>
               <div className="flex flex-col">
-                <span className="text-[11px] font-bold text-[#d97706] tracking-[0.1em] mb-3">02</span>
+                <span className="text-[11px] font-bold text-[#FB8C42] tracking-[0.1em] mb-3">02</span>
                 <h3 className="text-[16px] font-bold text-white mb-3">Fixed Pricing That Accounts for Larger Period-Home Floorplans</h3>
                 <p className="text-[13px] text-white/55 leading-[1.7] mb-5 grow">
                   Essendon's Californian bungalows and Federation homes are larger than Melbourne's average residential footprint. Pricing is set by your actual room count and layout — not a flat Essendon rate applied regardless of whether your home has three rooms or seven. Larger homes are quoted proportionally; you're not undercharged on scope that can't be delivered.
                 </p>
                 <div>
-                  <span className="inline-block px-3 py-1 rounded-full bg-[#d97706]/15 text-[#fbbf24] text-[12px] font-bold">Fixed</span>
+                  <span className="inline-block px-3 py-1 rounded-full bg-[#FB8C42]/15 text-[#fbbf24] text-[12px] font-bold">Fixed</span>
                 </div>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.5}>
               <div className="flex flex-col">
-                <span className="text-[11px] font-bold text-[#d97706] tracking-[0.1em] mb-3">03</span>
+                <span className="text-[11px] font-bold text-[#FB8C42] tracking-[0.1em] mb-3">03</span>
                 <h3 className="text-[16px] font-bold text-white mb-3">Products Safe for Heritage Surfaces, Timber Floors and Original Finishes</h3>
                 <p className="text-[13px] text-white/55 leading-[1.7] mb-5 grow">
                   Harsh chemical products damage original timber finishes, strip heritage tile glazing, and discolour period-era fittings over time. Our eco-friendly product selection is chosen with surface compatibility in mind — effective cleaning without the cumulative deterioration that the wrong products cause on Essendon's period homes.
                 </p>
                 <div>
-                  <span className="inline-block px-3 py-1 rounded-full bg-[#d97706]/15 text-[#fbbf24] text-[12px] font-bold">100%</span>
+                  <span className="inline-block px-3 py-1 rounded-full bg-[#FB8C42]/15 text-[#fbbf24] text-[12px] font-bold">100%</span>
                 </div>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.6}>
               <div className="flex flex-col">
-                <span className="text-[11px] font-bold text-[#d97706] tracking-[0.1em] mb-3">04</span>
+                <span className="text-[11px] font-bold text-[#FB8C42] tracking-[0.1em] mb-3">04</span>
                 <h3 className="text-[16px] font-bold text-white mb-3">Loyalty Rewards for Regular Customers</h3>
                 <p className="text-[13px] text-white/55 leading-[1.7] mb-5 grow">
                   Regular Crisp clients accumulate loyalty rewards from their second month of bookings — discounts that grow the longer you stay with the service. Weekly and fortnightly clients receive the most meaningful ongoing savings, reflecting the operational value that consistent recurring bookings provide to both sides.
                 </p>
                 <div>
-                  <span className="inline-block px-3 py-1 rounded-full bg-[#d97706]/15 text-[#fbbf24] text-[12px] font-bold">From month 2</span>
+                  <span className="inline-block px-3 py-1 rounded-full bg-[#FB8C42]/15 text-[#fbbf24] text-[12px] font-bold">From month 2</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -781,7 +781,7 @@ export default function EssendonClient({
       <section className="py-20 bg-[#ffffff]">
         <div className="container mx-auto px-6 md:px-10 max-w-5xl">
           <ScrollReveal className="text-center mb-16">
-            <p className="text-[#d97706] font-medium tracking-[0.1em] text-[12px] uppercase mb-3">
+            <p className="text-[#FB8C42] font-medium tracking-[0.1em] text-[12px] uppercase mb-3">
               Transparent Pricing
             </p>
             <h2 className="text-[32px] md:text-[40px] font-bold text-[#1a1a1a] leading-[1.1] mb-4">
@@ -802,9 +802,9 @@ export default function EssendonClient({
                   <span className="text-[40px] font-extrabold text-[#1a1a1a] leading-none">$180</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Up to 3 bed</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All bathrooms</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Eco products included</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -824,11 +824,11 @@ export default function EssendonClient({
                   <span className="text-[40px] font-extrabold text-white leading-none">$320</span>
                 </div>
                 <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Full property scope</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Oven & inside cabinets</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Grout & hard-to-reach areas</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-bold text-[14px] flex items-center justify-center transition-colors">
+                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[14px] flex items-center justify-center transition-colors">
                   Get a quote
                 </a>
               </div>
@@ -842,9 +842,9 @@ export default function EssendonClient({
                   <span className="text-[32px] font-extrabold text-[#1a1a1a] leading-tight block">Fixed quote</span>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Bond-back standard</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> All rooms & surfaces</li>
-                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#d97706]" /> Inspection ready</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
+                  <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
               </div>
             </ScrollReveal>
@@ -858,7 +858,7 @@ export default function EssendonClient({
       <div className="bg-[#fafafa] py-[80px]">
         <div className="container mx-auto px-6 max-w-7xl">
           <ScrollReveal className="text-center mb-12">
-            <p className="text-[#d97706] font-medium tracking-[0.1em] text-[12px] uppercase mb-4">
+            <p className="text-[#FB8C42] font-medium tracking-[0.1em] text-[12px] uppercase mb-4">
               The Crisp Effect
             </p>
             <h2 className="text-[40px] font-[800] text-[#1a1a1a] leading-[1.1] mb-2">
@@ -879,11 +879,11 @@ export default function EssendonClient({
 
           <ScrollReveal delay={0.4} className="text-center mt-[40px]">
             <div className="inline-flex items-center gap-3">
-              <span className="text-[#d97706] text-[14px] tracking-widest">★★★★★</span>
+              <span className="text-[#FB8C42] text-[14px] tracking-widest">★★★★★</span>
               <span className="text-[14px] text-[#6b7280]">
                 Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews
               </span>
-              <Link href="/reviews" className="text-[#d97706] text-[14px] font-medium hover:underline ml-1">
+              <Link href="/reviews" className="text-[#FB8C42] text-[14px] font-medium hover:underline ml-1">
                 View all reviews →
               </Link>
             </div>
@@ -904,7 +904,7 @@ export default function EssendonClient({
       <section className="bg-[#ffffff] pt-[100px] pb-[100px] px-8 text-center">
         <div className="container mx-auto max-w-4xl">
           <ScrollReveal>
-            <p className="text-[11px] font-semibold text-[#d97706] tracking-[0.15em] uppercase mb-4">
+            <p className="text-[11px] font-semibold text-[#FB8C42] tracking-[0.15em] uppercase mb-4">
               Ready to Book
             </p>
             <h2 className="text-[48px] md:text-[64px] font-extrabold text-[#1a1a1a] leading-[1.05] tracking-[-0.03em] mb-4">
@@ -916,14 +916,14 @@ export default function EssendonClient({
             <p className="text-[16px] text-[#6b7280] max-w-[480px] mx-auto mt-4 mb-8 leading-[1.6]">
               Get an instant fixed quote for your Essendon home — period property or modern build. Book online in under a minute, same cleaner every visit.
             </p>
-            <span className="text-[#d97706] font-semibold text-[15px] block mb-8">
+            <span className="text-[#FB8C42] font-semibold text-[15px] block mb-8">
               15% off your first clean.
             </span>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
               <a
                 href="/#booking"
-                className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#d97706] hover:bg-[#b45309] text-white font-semibold text-[15px] transition-colors"
+                className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-semibold text-[15px] transition-colors"
               >
                 Get an Instant Quote
               </a>
@@ -935,7 +935,7 @@ export default function EssendonClient({
               </a>
             </div>
 
-            <div className="w-full h-[1px] my-8" style={{ background: "linear-gradient(90deg, transparent, #d97706, transparent)" }} />
+            <div className="w-full h-[1px] my-8" style={{ background: "linear-gradient(90deg, transparent, #FB8C42, transparent)" }} />
 
             <p className="text-[11px] font-semibold text-[#9ca3af] tracking-[0.15em] uppercase mb-4">
               Nearby Areas We Also Service
@@ -945,7 +945,7 @@ export default function EssendonClient({
                 <Link
                   key={suburb}
                   href={`/house-cleaning-${suburb.toLowerCase().replace(" ", "-")}`}
-                  className="group px-4 py-1.5 rounded-full bg-[#f9fafb] border border-[#e5e7eb] text-[#374151] hover:text-[#d97706] hover:border-[#d97706] text-[13px] transition-all duration-200 flex items-center gap-1"
+                  className="group px-4 py-1.5 rounded-full bg-[#f9fafb] border border-[#e5e7eb] text-[#374151] hover:text-[#FB8C42] hover:border-[#FB8C42] text-[13px] transition-all duration-200 flex items-center gap-1"
                 >
                   {suburb}
                   <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
