@@ -218,7 +218,7 @@ export default function SouthYarraClient() {
 
         .sy-hero-address {
           position: absolute;
-          right: -20px;
+          right: 20px;
           top: 50%;
           transform: translateY(-50%);
           text-align: right;
