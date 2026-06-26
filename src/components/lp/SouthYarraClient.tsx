@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { ChevronDown, ArrowRight, Star, CheckCircle2, Building2, Home, MapPin, Key, UserCheck, ClipboardCheck } from "lucide-react";
+import { ChevronDown, ArrowRight, Star, CheckCircle2, Building2, Home, MapPin, Key, UserCheck, ClipboardCheck, Building, Bath, Layers, CheckCircle } from "lucide-react";
 import FAQ from "@/components/lp/FAQ";
 
 const defaultReviews = [
@@ -46,6 +46,7 @@ export default function SouthYarraClient() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [activeIncluded, setActiveIncluded] = useState<number | null>(0);
 
   // Intersection Observer for the numbered rows
   useEffect(() => {
@@ -127,6 +128,50 @@ export default function SouthYarraClient() {
           }
         }
 
+        .sy-hero-address {
+          position: absolute;
+          right: -20px;
+          top: 50%;
+          transform: translateY(-50%);
+          text-align: right;
+          line-height: 0.9;
+          pointer-events: none;
+          user-select: none;
+          z-index: 0;
+        }
+        .sy-hero-accent-line {
+          position: absolute;
+          left: 48px;
+          top: 15%;
+          bottom: 15%;
+          width: 3px;
+          background: linear-gradient(
+            180deg,
+            transparent 0%,
+            #d97706 20%,
+            #d97706 80%,
+            transparent 100%
+          );
+          border-radius: 2px;
+        }
+        @media (max-width: 768px) {
+          .sy-hero-address { display: none; }
+          .sy-hero-accent-line { display: none; }
+        }
+
+        .item-body {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transition: 
+            max-height 0.4s cubic-bezier(0.22,1,0.36,1),
+            opacity 0.3s ease;
+        }
+        .item.open .item-body {
+          max-height: 400px;
+          opacity: 1;
+        }
+
         .numbered-row {
           opacity: 0;
           transform: translateY(16px);
@@ -166,61 +211,65 @@ export default function SouthYarraClient() {
       `}} />
 
       {/* SECTION 1 — HERO */}
-      <section className="sy-hero-pattern bg-[#FDFAF6] min-h-[92vh] flex items-center relative overflow-hidden">
-        <div className="w-full max-w-[820px] mx-auto pt-[120px] px-[48px] pb-[80px] text-center z-10">
+      <section className="bg-[#111111] min-h-[92vh] relative overflow-hidden flex items-center">
+        
+        {/* Address watermark */}
+        <div className="sy-hero-address text-[clamp(60px,9vw,110px)] font-[900] text-[#ffffff] opacity-[0.05] tracking-[-0.03em]" aria-hidden="true">
+          <div>CHAPEL ST</div>
+          <div>SOUTH YARRA</div>
+          <div>VIC 3141</div>
+        </div>
+
+        {/* Thin vertical orange line */}
+        <div className="sy-hero-accent-line" />
+
+        {/* Content block */}
+        <div className="relative z-10 pt-[120px] pb-[80px] px-[32px] md:pl-[96px] md:pr-[80px] max-w-[640px]">
           
-          <div className="text-[12px] text-[#9ca3af] mb-[28px]">
+          <div className="text-[12px] text-[rgba(255,255,255,0.3)] mb-[32px]">
             Home › House Cleaning South Yarra
           </div>
           
-          <div className="inline-block bg-[#fff7ed] border border-[#fed7aa] text-[#d97706] text-[11px] font-[600] tracking-[0.12em] uppercase rounded-[99px] px-[16px] py-[6px] mb-[32px]">
+          <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] text-[11px] font-[600] tracking-[0.12em] uppercase rounded-[99px] px-[16px] py-[6px] mb-[24px]">
             ● Apartments & Heritage Homes · South Yarra
           </div>
           
-          <h1 className="flex flex-col items-center justify-center">
-            <span className="text-[20px] font-[400] text-[#9ca3af] tracking-[0.3em] uppercase mb-[4px]">
-              House Cleaning
-            </span>
-            <div className="text-[56px] md:text-[88px] font-[900] leading-[0.95] tracking-[-0.04em] flex flex-wrap justify-center gap-x-4">
-              <span className="sy-split-text-solid">South</span>
-              <span className="sy-split-text-outline">Yarra</span>
-            </div>
-            <span className="text-[20px] font-[400] text-[#9ca3af] tracking-[0.3em] uppercase mt-[4px]">
-              Melbourne
-            </span>
+          <h1 className="text-[42px] md:text-[64px] font-[800] text-[#ffffff] leading-[1.0] tracking-[-0.03em] flex flex-col">
+            <span>House Cleaning</span>
+            <span className="text-[#d97706]">South Yarra</span>
+            <span>Melbourne</span>
           </h1>
           
-          <div className="w-[48px] h-[2px] bg-[#d97706] mx-auto my-[28px]" />
-          
-          <p className="text-[16px] text-[#6b7280] leading-[1.7] max-w-[520px] mx-auto">
-            Apartments near Chapel Street. Heritage homes near the Yarra.<br className="hidden sm:block" />
-            One service. Same cleaner. Fixed pricing.
+          <p className="mt-[20px] text-[16px] text-[rgba(255,255,255,0.5)] leading-[1.7] max-w-[420px]">
+            Apartments near Chapel Street. <br />
+            Period homes near the Yarra.<br />
+            Same cleaner. Fixed pricing.
           </p>
           
-          <div className="mt-[28px] flex justify-center flex-wrap gap-[10px]">
-            {['⭐ 4.9 Google', '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map(pill => (
-              <span key={pill} className="bg-[#ffffff] border border-[#e5e7eb] rounded-[99px] px-[16px] py-[6px] text-[12px] text-[#374151] shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+          <div className="mt-[28px] flex flex-wrap gap-[8px]">
+            {['4.9 ★ Google', '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map(pill => (
+              <span key={pill} className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.12)] rounded-[99px] px-[14px] py-[6px] text-[12px] text-[rgba(255,255,255,0.6)]">
                 {pill}
               </span>
             ))}
           </div>
           
-          <div className="mt-[32px] flex justify-center gap-[12px] flex-wrap">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] shadow-[0_8px_24px_rgba(217,119,6,0.2)] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all">
-              Get an Instant Quote &rarr;
+          <div className="mt-[32px] flex gap-[12px] flex-wrap">
+            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[28px] py-[14px] font-[600] transition-all hover:bg-[#b45309]">
+              Get an Instant Quote
             </a>
-            <a href="#included" className="border-[1.5px] border-[#e5e7eb] text-[#374151] rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:border-[#d97706] hover:text-[#d97706] transition-colors">
+            <a href="#included" className="border border-[rgba(255,255,255,0.2)] text-white rounded-[99px] px-[28px] py-[14px] transition-colors hover:border-[#d97706] hover:text-[#d97706]">
               See what's included
             </a>
           </div>
           
-          <div className="text-[12px] text-[#9ca3af] mt-[10px]">
+          <div className="text-[12px] text-[rgba(255,255,255,0.25)] mt-[10px]">
             15% off your first clean. Fixed price, no hourly surprises.
           </div>
         </div>
 
         {/* Bottom edge thin orange line */}
-        <div className="absolute bottom-0 w-full h-[2px]" style={{ background: 'linear-gradient(90deg, transparent, #d97706, transparent)' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#d97706]" />
       </section>
 
       {/* SECTION 2 — PAGE INTRO */}
@@ -364,73 +413,133 @@ export default function SouthYarraClient() {
 
       {/* SECTION 4 — WHAT'S INCLUDED */}
       <section className="bg-[#ffffff] py-[100px]">
-        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px]">
-          <div className="text-[11px] text-[#d97706] font-[600] tracking-[0.2em] uppercase mb-[16px]">Scope & Checklist</div>
-          <h2 className="text-[40px] font-[700] text-[#1a1a1a] max-w-[580px] mb-[12px] leading-[1.1]">What Every South Yarra Clean Covers</h2>
-          <p className="text-[16px] text-[#6b7280] max-w-[580px] leading-[1.8]">
+        {/* Section header */}
+        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px] pb-[48px]">
+          <div className="text-[11px] font-[600] text-[#d97706] tracking-[0.2em] uppercase mb-[12px]">Scope & Checklist</div>
+          <h2 className="text-[40px] font-[700] text-[#1a1a1a]">What Every South Yarra Clean Covers</h2>
+          <p className="text-[16px] text-[#6b7280] leading-[1.8] max-w-[580px] mt-[12px]">
             Every South Yarra clean follows a fixed, documented scope for your property's room count and type. For apartments, the scope includes building-access coordination. For period properties, product selection is appropriate for the surfaces involved. Both are delivered by the same cleaner on the same schedule.
           </p>
+        </div>
 
-          <div className="mt-[64px]">
-            {/* Row 01 */}
-            <div className="numbered-row grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-[24px] md:gap-[48px] py-[32px] md:py-[48px] border-b border-[#f3f4f6] items-start">
-              <div className="text-[72px] md:text-[96px] font-[900] text-[#f3f4f6] leading-[1] tracking-[-4px]">
-                01
+        {/* Expandable menu */}
+        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px]">
+          <div className="border border-[#e5e7eb] rounded-[20px] overflow-hidden">
+            
+            {/* Item 1 */}
+            <div className={`item group border-b border-[#f3f4f6] bg-[#ffffff] transition-colors hover:bg-[#fafafa] ${activeIncluded === 0 ? 'open border-l-[3px] border-l-[#d97706]' : ''}`}>
+              <div 
+                className="grid grid-cols-[64px_1fr_44px] items-center px-[24px] md:px-[32px] py-[28px] cursor-pointer"
+                onClick={() => setActiveIncluded(activeIncluded === 0 ? null : 0)}
+              >
+                <div className="w-[44px] h-[44px] rounded-[12px] bg-[#fff7ed] flex items-center justify-center">
+                  <Building className="text-[#d97706] w-[20px] h-[20px]" />
+                </div>
+                <h3 className="text-[17px] font-[600] text-[#1a1a1a]">Apartment Interiors, Balcony Surfaces and Outdoor Areas</h3>
+                <ChevronDown className={`text-[#9ca3af] w-[18px] h-[18px] transition-transform duration-300 ${activeIncluded === 0 ? 'rotate-180 text-[#d97706]' : ''}`} />
               </div>
-              <div>
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[10px]">Apartment Interiors, Balcony Surfaces and Outdoor Areas</h3>
-                <p className="text-[14px] text-[#6b7280] leading-[1.75] max-w-[540px]">
+              <div className="item-body px-[24px] md:px-[32px] pb-[28px] pl-[88px] md:pl-[96px]">
+                <p className="text-[14px] text-[#6b7280] leading-[1.8] max-w-[640px]">
                   Apartment interiors - kitchen, bathrooms, living areas, bedrooms, and laundry where present - are cleaned to the standard scope on every visit. Balcony wipe-downs are available as an add-on for South Yarra apartments where strata restrictions permit external cleaning; limitations are confirmed and flagged at booking.
                 </p>
-              </div>
-              <div className="flex flex-row md:flex-col flex-wrap gap-[8px] md:items-end mt-4 md:mt-0">
-                {['Balcony add-on', 'Strata compliant', 'Laundry included', 'All rooms'].map(pill => (
-                  <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[14px] py-[6px] text-[12px] text-[#92400e] whitespace-nowrap">
-                    {pill}
-                  </span>
-                ))}
+                <div className="mt-[16px] flex flex-wrap gap-[8px]">
+                  {['Balcony add-on available', 'Strata compliant', 'Laundry included', 'All rooms in scope'].map(pill => (
+                    <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[14px] py-[5px] text-[12px] text-[#92400e]">
+                      {pill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Row 02 */}
-            <div className="numbered-row grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-[24px] md:gap-[48px] py-[32px] md:py-[48px] border-b border-[#f3f4f6] items-start">
-              <div className="text-[72px] md:text-[96px] font-[900] text-[#f3f4f6] leading-[1] tracking-[-4px]">
-                02
+            {/* Item 2 */}
+            <div className={`item group border-b border-[#f3f4f6] bg-[#fafafa] transition-colors hover:bg-[#fafafa] ${activeIncluded === 1 ? 'open border-l-[3px] border-l-[#d97706]' : ''}`}>
+              <div 
+                className="grid grid-cols-[64px_1fr_44px] items-center px-[24px] md:px-[32px] py-[28px] cursor-pointer"
+                onClick={() => setActiveIncluded(activeIncluded === 1 ? null : 1)}
+              >
+                <div className="w-[44px] h-[44px] rounded-[12px] bg-[#fff7ed] flex items-center justify-center">
+                  <Bath className="text-[#d97706] w-[20px] h-[20px]" />
+                </div>
+                <h3 className="text-[17px] font-[600] text-[#1a1a1a]">Kitchen Sanitisation and Bathroom Polishing</h3>
+                <ChevronDown className={`text-[#9ca3af] w-[18px] h-[18px] transition-transform duration-300 ${activeIncluded === 1 ? 'rotate-180 text-[#d97706]' : ''}`} />
               </div>
-              <div>
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[10px]">Kitchen Sanitisation and Bathroom Polishing</h3>
-                <p className="text-[14px] text-[#6b7280] leading-[1.75] max-w-[540px]">
+              <div className="item-body px-[24px] md:px-[32px] pb-[28px] pl-[88px] md:pl-[96px]">
+                <p className="text-[14px] text-[#6b7280] leading-[1.8] max-w-[640px]">
                   Kitchen benchtops, stovetop, rangehood, sink, splashback, and accessible appliance exteriors are cleaned on every visit. Bathrooms - shower screens and recess, toilet, basin, mirror, tapware, and tiled floors - are sanitised, scrubbed, and polished. South Yarra's newer apartment bathrooms with floor-to-ceiling tiles and frameless screens are held to the same standard as the period bathrooms in the suburb's heritage properties.
                 </p>
-              </div>
-              <div className="flex flex-row md:flex-col flex-wrap gap-[8px] md:items-end mt-4 md:mt-0">
-                {['Frameless screens', 'Floor-to-ceiling tiles', 'Period bathrooms', 'Tapware polished'].map(pill => (
-                  <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[14px] py-[6px] text-[12px] text-[#92400e] whitespace-nowrap">
-                    {pill}
-                  </span>
-                ))}
+                <div className="mt-[16px] flex flex-wrap gap-[8px]">
+                  {['Frameless screens', 'Floor-to-ceiling tiles', 'Period bathrooms', 'Tapware polished'].map(pill => (
+                    <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[14px] py-[5px] text-[12px] text-[#92400e]">
+                      {pill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Row 03 */}
-            <div className="numbered-row grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-[24px] md:gap-[48px] py-[32px] md:py-[48px] border-b border-[#f3f4f6] items-start">
-              <div className="text-[72px] md:text-[96px] font-[900] text-[#f3f4f6] leading-[1] tracking-[-4px]">
-                03
+            {/* Item 3 */}
+            <div className={`item group border-b border-[#f3f4f6] bg-[#ffffff] transition-colors hover:bg-[#fafafa] ${activeIncluded === 2 ? 'open border-l-[3px] border-l-[#d97706]' : ''}`}>
+              <div 
+                className="grid grid-cols-[64px_1fr_44px] items-center px-[24px] md:px-[32px] py-[28px] cursor-pointer"
+                onClick={() => setActiveIncluded(activeIncluded === 2 ? null : 2)}
+              >
+                <div className="w-[44px] h-[44px] rounded-[12px] bg-[#fff7ed] flex items-center justify-center">
+                  <Layers className="text-[#d97706] w-[20px] h-[20px]" />
+                </div>
+                <h3 className="text-[17px] font-[600] text-[#1a1a1a]">Floors, Surfaces and Living Areas</h3>
+                <ChevronDown className={`text-[#9ca3af] w-[18px] h-[18px] transition-transform duration-300 ${activeIncluded === 2 ? 'rotate-180 text-[#d97706]' : ''}`} />
               </div>
-              <div>
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[10px]">Floors, Surfaces and Living Areas</h3>
-                <p className="text-[14px] text-[#6b7280] leading-[1.75] max-w-[540px]">
+              <div className="item-body px-[24px] md:px-[32px] pb-[28px] pl-[88px] md:pl-[96px]">
+                <p className="text-[14px] text-[#6b7280] leading-[1.8] max-w-[640px]">
                   All hard floors are swept and mopped; carpeted areas vacuumed. Surfaces, skirting boards, door handles, and accessible shelf areas are dusted and wiped throughout. Living and dining areas are left to a consistent, presented standard. For South Yarra's heritage terrace properties with original timber floors, low-moisture products are used to avoid warping or surface damage over time.
                 </p>
-              </div>
-              <div className="flex flex-row md:flex-col flex-wrap gap-[8px] md:items-end mt-4 md:mt-0">
-                {['Low-moisture on timber', 'Hard floors mopped', 'Skirting boards', 'Living areas'].map(pill => (
-                  <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[14px] py-[6px] text-[12px] text-[#92400e] whitespace-nowrap">
-                    {pill}
-                  </span>
-                ))}
+                <div className="mt-[16px] flex flex-wrap gap-[8px]">
+                  {['Low-moisture on timber', 'Hard floors mopped', 'Skirting boards', 'Living & dining'].map(pill => (
+                    <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[14px] py-[5px] text-[12px] text-[#92400e]">
+                      {pill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
+
+            {/* Item 4 */}
+            <div className={`item group bg-[#fafafa] transition-colors hover:bg-[#fafafa] ${activeIncluded === 3 ? 'open border-l-[3px] border-l-[#d97706]' : ''}`}>
+              <div 
+                className="grid grid-cols-[64px_1fr_44px] items-center px-[24px] md:px-[32px] py-[28px] cursor-pointer"
+                onClick={() => setActiveIncluded(activeIncluded === 3 ? null : 3)}
+              >
+                <div className="w-[44px] h-[44px] rounded-[12px] bg-[#fff7ed] flex items-center justify-center">
+                  <Key className="text-[#d97706] w-[20px] h-[20px]" />
+                </div>
+                <h3 className="text-[17px] font-[600] text-[#1a1a1a]">Building Access Coordination for South Yarra Apartments</h3>
+                <ChevronDown className={`text-[#9ca3af] w-[18px] h-[18px] transition-transform duration-300 ${activeIncluded === 3 ? 'rotate-180 text-[#d97706]' : ''}`} />
+              </div>
+              <div className="item-body px-[24px] md:px-[32px] pb-[28px] pl-[88px] md:pl-[96px]">
+                <p className="text-[14px] text-[#6b7280] leading-[1.8] max-w-[640px]">
+                  Building access requirements - concierge sign-in, fob or intercom codes, lift booking windows, visitor parking - are collected at the initial booking and managed by Crisp for every subsequent visit. Residents don't coordinate access before each clean; the same cleaner follows the same documented process automatically on the scheduled date.
+                </p>
+                <div className="mt-[16px] flex flex-wrap gap-[8px]">
+                  {['Concierge sign-in', 'Fob & intercom stored', 'Lift bookings', 'Zero day-of coordination'].map(pill => (
+                    <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[14px] py-[5px] text-[12px] text-[#92400e]">
+                      {pill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Amber Strip Bottom */}
+            <div className="bg-[#fff7ed] border-t border-[#fed7aa] px-[24px] md:px-[32px] py-[20px] flex flex-col sm:flex-row items-center justify-between gap-[12px]">
+              <div className="flex items-center gap-[8px] text-[14px] font-[600] text-[#92400e]">
+                <CheckCircle className="w-[18px] h-[18px] text-[#d97706]" /> Every item above is included in your fixed quote.
+              </div>
+              <a href="/#booking" className="text-[13px] text-[#d97706] font-[600] hover:underline whitespace-nowrap">
+                Get an Instant Quote &rarr;
+              </a>
+            </div>
+
           </div>
         </div>
       </section>
