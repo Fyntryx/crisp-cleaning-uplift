@@ -476,25 +476,9 @@ export default function EssendonClient({
             </p>
           </ScrollReveal>
 
-          <div className="mb-8 border-b border-[#e5e7eb] flex overflow-x-auto scrollbar-hide">
-            {["Californian Bungalows", "Federation Properties", "Modern Townhouses"].map((tab, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveTab(idx)}
-                className={`whitespace-nowrap px-6 py-3 text-[14px] font-medium transition-colors ${
-                  activeTab === idx 
-                    ? "text-[#d97706] border-b-2 border-[#d97706] -mb-[1px]" 
-                    : "text-[#6b7280] hover:text-[#1a1a1a]"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          <div className="min-h-[300px]">
-            {activeTab === 0 && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col md:flex-row gap-12 items-start">
+          <div className="flex flex-col gap-16">
+            <ScrollReveal>
+              <div className="flex flex-col md:flex-row gap-12 items-start">
                 <div className="w-full md:w-1/2">
                   <h3 className="text-[20px] font-bold text-[#1a1a1a] mb-4">Californian Bungalows and Federation Properties on Generous Blocks</h3>
                   <p className="text-[15px] text-[#6b7280] leading-[1.8]">
@@ -514,11 +498,11 @@ export default function EssendonClient({
                     </ul>
                   </div>
                 </div>
-              </motion.div>
-            )}
+              </div>
+            </ScrollReveal>
 
-            {activeTab === 1 && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col md:flex-row gap-12 items-start">
+            <ScrollReveal delay={0.1}>
+              <div className="flex flex-col md:flex-row gap-12 items-start">
                 <div className="w-full md:w-1/2">
                   <h3 className="text-[20px] font-bold text-[#1a1a1a] mb-4">Larger Heritage Homes Near the Buckley Street Precinct</h3>
                   <p className="text-[15px] text-[#6b7280] leading-[1.8]">
@@ -538,11 +522,11 @@ export default function EssendonClient({
                     </ul>
                   </div>
                 </div>
-              </motion.div>
-            )}
+              </div>
+            </ScrollReveal>
 
-            {activeTab === 2 && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col md:flex-row gap-12 items-start">
+            <ScrollReveal delay={0.2}>
+              <div className="flex flex-col md:flex-row gap-12 items-start">
                 <div className="w-full md:w-1/2">
                   <h3 className="text-[20px] font-bold text-[#1a1a1a] mb-4">Newer Townhouses and Dual-Occupancy Builds Across the Suburb</h3>
                   <p className="text-[15px] text-[#6b7280] leading-[1.8]">
@@ -562,8 +546,8 @@ export default function EssendonClient({
                     </ul>
                   </div>
                 </div>
-              </motion.div>
-            )}
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
