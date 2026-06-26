@@ -469,7 +469,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                     Original Timber Floors, Polished Surfaces and Formal Living Areas
                   </h3>
                   <p className="text-[15px] text-[rgba(255,255,255,0.65)] leading-[1.7] mb-6">
-                    Timber floors are swept and mopped with low-moisture, eco-friendly products appropriate for both original and refinished boards — not steam methods that risk warping original floorboards over time. Formal reception rooms, sitting rooms, and libraries receive the same level of attention as everyday living spaces — surfaces dusted, mirrors and glass polished, accessible shelf areas addressed. Feature surfaces, including polished concrete and premium natural stone, are cleaned with material-appropriate products.
+                    Timber floors throughout the home are swept and mopped with low-moisture, eco-friendly products appropriate for both original and refinished boards — not steam methods that risk warping original floorboards over time. Formal living and dining rooms — often the defining spaces in Malvern's Victorian and Edwardian homes — are given the same attention as everyday areas. Polished surfaces, mirrors, glass, and accessible shelf areas are dusted and wiped on every visit.
                   </p>
                   <div className="flex flex-wrap gap-[8px]">
                     {["Low-moisture on timber", "No steam on boards", "Formal reception rooms", "Feature surfaces"].map(tag => (
@@ -481,27 +481,7 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                 </div>
               </ScrollReveal>
 
-              {/* Item 4 */}
-              <ScrollReveal delay={0.4}>
-                <div className="bg-[#0f172a] rounded-[20px] p-[32px]">
-                  <div className="w-[40px] h-[40px] rounded-lg bg-[rgba(217,119,6,0.15)] flex items-center justify-center mb-6">
-                    <Shirt className="w-5 h-5 text-[#d97706]" />
-                  </div>
-                  <h3 className="text-[20px] font-[700] text-[#ffffff] mb-4">
-                    Bedrooms, Dressing Rooms and Secondary Living Spaces
-                  </h3>
-                  <p className="text-[15px] text-[rgba(255,255,255,0.65)] leading-[1.7] mb-6">
-                    Every bedroom in scope is vacuumed or mopped, surfaces dusted, and the room presented. Dressing rooms — standard in many Malvern homes — are included within the agreed scope as a defined room. Secondary living spaces, home offices, media rooms, and any additional rooms in the booking are treated with the same systematic attention as primary rooms throughout.
-                  </p>
-                  <div className="flex flex-wrap gap-[8px]">
-                    {["Dressing rooms included", "Home offices", "Media rooms", "All secondary spaces"].map(tag => (
-                      <span key={tag} className="bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.2)] text-[#fbbf24] rounded-full px-[12px] py-[4px] text-[12px] font-[500]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
+
 
             </div>
 
