@@ -32,6 +32,15 @@ const faqData = [
   }
 ];
 
+const defaultReviews = [
+  { text: "Honestly felt like a brand new home.", author: "Andre B" },
+  { text: "Team took great care, really appreciated the communication - the small details dont go unnoticed! keep it up crisp", author: "Natch L" },
+  { text: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.", author: "Kaan S" },
+  { text: "One of the best decisions we've made. Coming home to a clean house every week has made life much easier.", author: "Aiden A" },
+  { text: "Honestly the best cleaning service we've used. The house looked and smelled amazing when we got home.", author: "Ardi T" },
+  { text: "Super impressed. Our place looked like a display home afterwards.", author: "Ben A" }
+];
+
 // Simple Transparent Header for Toorak
 const ToorakHeader = () => (
   <header className="absolute top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center text-white bg-transparent">
@@ -55,6 +64,38 @@ const ToorakHeader = () => (
 
 export default function ToorakClient() {
   const [activePanel, setActivePanel] = useState(0);
+  const [currentReview, setCurrentReview] = useState(0);
+  const [isHoveringReview, setIsHoveringReview] = useState(false);
+  const [fadeReview, setFadeReview] = useState(false);
+
+  // Auto-rotate testimonials
+  useEffect(() => {
+    if (isHoveringReview) return;
+    const interval = setInterval(() => {
+      setFadeReview(true);
+      setTimeout(() => {
+        setCurrentReview((prev) => (prev + 1) % defaultReviews.length);
+        setFadeReview(false);
+      }, 400); // 400ms fade transition
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isHoveringReview]);
+
+  const nextReview = () => {
+    setFadeReview(true);
+    setTimeout(() => {
+      setCurrentReview((prev) => (prev + 1) % defaultReviews.length);
+      setFadeReview(false);
+    }, 400);
+  };
+
+  const prevReview = () => {
+    setFadeReview(true);
+    setTimeout(() => {
+      setCurrentReview((prev) => (prev - 1 + defaultReviews.length) % defaultReviews.length);
+      setFadeReview(false);
+    }, 400);
+  };
 
   // Intersection Observer for Timeline
   useEffect(() => {
@@ -562,25 +603,35 @@ export default function ToorakClient() {
 
       {/* SECTION 7 — TESTIMONIALS */}
       <section className="bg-[#ffffff] py-[100px]">
-        <div className="max-w-[800px] mx-auto px-[24px] md:px-[48px] text-center">
+        <div 
+          className="max-w-[800px] mx-auto px-[24px] md:px-[48px] text-center"
+          onMouseEnter={() => setIsHoveringReview(true)}
+          onMouseLeave={() => setIsHoveringReview(false)}
+        >
           <span className="text-[140px] text-[#B8973E] opacity-[0.15] leading-[0.7] block mb-[32px] font-serif" style={{ fontFamily: 'Georgia, serif' }}>"</span>
-          <p className="text-[28px] font-[400] text-[#0A0A0A] leading-[1.6] italic">
-            "We have a large Edwardian home in Toorak and finding a cleaner who understands how to treat the original floorboards and leadlight windows was difficult. Crisp has been fantastic. Same cleaner every week, highly professional, and they take genuine care of the property."
+          <p className={`text-[24px] md:text-[28px] font-[400] text-[#0A0A0A] leading-[1.6] italic transition-opacity duration-400 ease-in-out ${fadeReview ? 'opacity-0' : 'opacity-100'}`}>
+            "{defaultReviews[currentReview].text}"
           </p>
-          <div className="flex flex-col items-center mt-[40px]">
+          <div className={`flex flex-col items-center mt-[40px] transition-opacity duration-400 ease-in-out ${fadeReview ? 'opacity-0' : 'opacity-100'}`}>
             <div className="w-[48px] h-[48px] bg-[#fef3c7] text-[#92400e] rounded-full flex items-center justify-center font-bold text-[18px] mb-4">
-              EM
+              {defaultReviews[currentReview].author.substring(0, 2).toUpperCase()}
             </div>
-            <div className="text-[15px] font-[600] text-[#0A0A0A]">Eleanor M.</div>
+            <div className="text-[15px] font-[600] text-[#0A0A0A]">{defaultReviews[currentReview].author}</div>
             <div className="text-[13px] text-[#9ca3af] mb-2">Toorak</div>
             <div className="text-[#B8973E] tracking-widest text-[14px]">★★★★★</div>
           </div>
           
           <div className="flex justify-center gap-4 mt-8">
-            <button className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors">
+            <button 
+              onClick={prevReview}
+              className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors"
+            >
               &larr;
             </button>
-            <button className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors">
+            <button 
+              onClick={nextReview}
+              className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors"
+            >
               &rarr;
             </button>
           </div>
