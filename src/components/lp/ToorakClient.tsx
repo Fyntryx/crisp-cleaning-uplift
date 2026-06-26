@@ -41,26 +41,6 @@ const defaultReviews = [
   { text: "Super impressed. Our place looked like a display home afterwards.", author: "Ben A" }
 ];
 
-// Simple Transparent Header for Toorak
-const ToorakHeader = () => (
-  <header className="absolute top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center text-white bg-transparent">
-    <div className="font-bold text-2xl tracking-tighter flex items-center gap-2">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 22H22L12 2Z" fill="#B8973E"/>
-      </svg>
-      crisp.
-    </div>
-    <nav className="hidden md:flex gap-8 text-[13px] font-[600] tracking-[0.1em] uppercase">
-      <a href="/" className="hover:text-[#B8973E] transition-colors">Home</a>
-      <a href="#services" className="hover:text-[#B8973E] transition-colors">Services</a>
-      <a href="/#about" className="hover:text-[#B8973E] transition-colors">About Us</a>
-      <a href="/#contact" className="hover:text-[#B8973E] transition-colors">Contact</a>
-    </nav>
-    <a href="/#booking" className="bg-[#B8973E] text-[#0A0A0A] px-6 py-2 rounded-full text-[13px] font-bold uppercase tracking-[0.05em] hover:bg-white transition-colors">
-      Login
-    </a>
-  </header>
-);
 
 export default function ToorakClient() {
   const [activePanel, setActivePanel] = useState(0);
@@ -245,8 +225,6 @@ export default function ToorakClient() {
 
       {/* SECTION 1 — HERO */}
       <section className="toorak-noise relative w-full flex flex-col items-center justify-center bg-[#0A0A0A] overflow-hidden" style={{ minHeight: '100vh' }}>
-        <ToorakHeader />
-        
         <div className="relative z-10 w-full max-w-[900px] px-[32px] text-center flex flex-col items-center justify-center pt-20">
           
           {/* Step 1: Reveal line */}
