@@ -344,7 +344,7 @@ export default function HamptonClient({
                       Properties Along the Hampton Street Village Strip
                     </h3>
                     <p className="text-[15px] text-gray-600 leading-relaxed">
-                      The Hampton Street commercial strip runs from the railway station to the foreshore and defines the suburb's community character. The residential streets on either side contain a mix of original homes and renovations that reflect the suburb's evolution over decades.
+                      The Hampton Street commercial strip runs from the railway station to the foreshore and defines the suburb's community character. The residential streets on either side — close to the cafes, boutiques, and the Hampton station — contain a mix of original homes and renovations that reflect the suburb's evolution over decades. Our coverage includes all streets in the Hampton Street corridor and the residential blocks directly adjoining it.
                     </p>
                   </div>
                 </div>
@@ -431,7 +431,7 @@ export default function HamptonClient({
                   <h3 className="text-[22px] font-bold text-gray-900">Timber Floors, Hard Surfaces and Living Areas</h3>
                 </div>
                 <p className="text-[15px] text-gray-600 leading-relaxed">
-                  Original timber floors common in Hampton's period homes are swept and mopped with low-moisture products appropriate for older boards. Tiled and all other hard floors throughout are swept and mopped separately. Living and dining areas are left to a consistent, presented standard after every visit.
+                  Original timber floors common in Hampton's period homes are swept and mopped with low-moisture products appropriate for older boards. Tiled and all other hard floors throughout are swept and mopped separately. Surfaces, skirting boards, and accessible shelf areas are dusted and wiped. Living and dining areas are left to a consistent, presented standard after every visit.
                 </p>
               </div>
               <div className="w-full md:w-[45%] flex flex-wrap gap-3">
@@ -455,7 +455,7 @@ export default function HamptonClient({
                   <h3 className="text-[22px] font-bold text-gray-900">Bedrooms and Laundry Spaces</h3>
                 </div>
                 <p className="text-[15px] text-gray-600 leading-relaxed">
-                  Every bedroom in scope is vacuumed or mopped, surfaces dusted, and the room left presented. The laundry is included as standard across all Hampton property types — standalone laundry room or compact beach cottage combined arrangement.
+                  Every bedroom in scope is vacuumed or mopped, surfaces dusted, and the room left presented. The laundry is included as standard across all Hampton property types: surfaces wiped, appliance exteriors cleaned, floor swept or mopped. For Hampton's compact beach cottages with combined laundry arrangements, the same scope applies regardless of the space's configuration.
                 </p>
               </div>
               <div className="w-full md:w-[45%] flex flex-wrap gap-3">
@@ -493,7 +493,7 @@ export default function HamptonClient({
                 stat: "97%", label: "same-cleaner rate",
                 icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>,
                 title: "Same Cleaner Every Single Visit — No Re-Explaining Your Home",
-                body: "Your Hampton cleaner is matched to your property from the first booking and returns on every visit. By the second clean, they know your home's access arrangement, which floor type needs which product, and how your rooms are configured — without you managing that briefing again."
+                body: "Your Hampton cleaner is matched to your property from the first booking and returns on every visit. By the second clean, they know your home's access arrangement, which floor type needs which product, and how your rooms are configured — without you managing that briefing again. Our 97% same-cleaner continuity rate underpins this consistency operationally."
               },
               {
                 stat: "Fixed", label: "pricing always",
@@ -505,13 +505,13 @@ export default function HamptonClient({
                 stat: "100%", label: "eco-friendly",
                 icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>,
                 title: "Eco-Friendly Products Safe on Period Home Surfaces",
-                body: "Hampton's coastal character means some properties have period-era internal finishes that benefit from gentler product choices. All Crisp products are eco-friendly and surface-appropriate — chosen for effective cleaning without the cumulative damage that harsher products cause on older materials."
+                body: "Hampton's coastal character means some properties have period-era internal finishes that benefit from gentler product choices. All Crisp products are eco-friendly and surface-appropriate — chosen for effective cleaning without the cumulative damage that harsher products cause on older materials common in the suburb's beach cottage and period-home stock."
               },
               {
                 stat: "72hr", label: "re-clean guarantee",
                 icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 12 2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
                 title: "Satisfaction Guaranteed on Every Clean",
-                body: "Contact us within 72 hours of any clean if anything didn't meet your expectation and we'll return to address it at no additional charge. Applies from the very first visit and holds for the full duration of your Crisp bookings."
+                body: "Contact us within 72 hours of any clean if anything didn't meet your expectation and we'll return to address it at no additional charge. This guarantee applies from the very first visit and holds for the full duration of your Crisp bookings — it doesn't reduce after a period of regular service."
               }
             ].map((card, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
