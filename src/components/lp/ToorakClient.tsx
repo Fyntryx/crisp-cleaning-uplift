@@ -617,7 +617,9 @@ export default function ToorakClient() {
               {defaultReviews[currentReview].author.substring(0, 2).toUpperCase()}
             </div>
             <div className="text-[15px] font-[600] text-[#0A0A0A]">{defaultReviews[currentReview].author}</div>
-            <div className="text-[13px] text-[#9ca3af] mb-2">Toorak</div>
+            <div className="text-[13px] text-[#9ca3af] mb-2 flex items-center gap-1 justify-center">
+              <Star className="w-3 h-3 fill-current" /> Google Review
+            </div>
             <div className="text-[#B8973E] tracking-widest text-[14px]">★★★★★</div>
           </div>
           
