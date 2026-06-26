@@ -213,7 +213,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
         </div>
 
         {/* --- MOBILE CTA & TOGGLE --- */}
-        <div className="flex md:hidden items-center gap-3">
+        <div className="flex md:hidden items-center gap-3 ml-auto">
           <Link
             href={bookingLink}
             className="px-4 py-2 bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white text-[13px] font-bold rounded-full shadow-[0_4px_14px_rgba(251,140,66,0.35)] transition-colors"
