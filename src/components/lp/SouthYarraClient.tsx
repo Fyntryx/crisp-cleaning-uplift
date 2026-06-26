@@ -40,6 +40,93 @@ const faqData = [
   }
 ];
 
+const ScrambleText = ({ text, color = "#ffffff" }: { text: string, color?: string }) => {
+  const elRef = useRef<HTMLDivElement>(null);
+  const [hasScrambled, setHasScrambled] = useState(false);
+  
+  useEffect(() => {
+    const el = elRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasScrambled) {
+          setHasScrambled(true);
+          const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+          const steps = 12;
+          const duration = 600;
+          const stepDuration = duration / steps;
+          let step = 0;
+          
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (prefersReducedMotion) {
+            el.textContent = text;
+            return;
+          }
+
+          const interval = setInterval(() => {
+            if (step >= steps) {
+              el.textContent = text;
+              clearInterval(interval);
+              return;
+            }
+            el.textContent = text
+              .split('')
+              .map((char, i) => 
+                i < (step / steps) * text.length 
+                  ? char 
+                  : chars[Math.floor(Math.random() * chars.length)]
+              )
+              .join('');
+            step++;
+          }, stepDuration);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [text, hasScrambled]);
+
+  return (
+    <div ref={elRef} style={{ color, fontFamily: "'JetBrains Mono', 'Courier New', monospace", fontSize: '13px', fontWeight: 600, letterSpacing: '0.05em' }}>
+      {text}
+    </div>
+  );
+}
+
+const AnimatedRatingBar = ({ percentage, label, delay = 0 }: { percentage: number, label: string, delay?: number }) => {
+  const elRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  
+  useEffect(() => {
+    const el = elRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            setInView(true);
+          }, delay);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div ref={elRef} className="w-full">
+      <div className="rating-bar">
+        <div className="rating-fill" style={{ width: inView ? `${percentage}%` : '0%' }} />
+      </div>
+      <div style={{ fontSize: '12px', fontWeight: 700, color: '#d97706' }}>{label}</div>
+    </div>
+  );
+}
+
 export default function SouthYarraClient() {
   const [activePropertyState, setActivePropertyState] = useState(1);
   const [isDragging, setIsDragging] = useState(false);
@@ -47,6 +134,7 @@ export default function SouthYarraClient() {
   const [scrollLeft, setScrollLeft] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [activeIncluded, setActiveIncluded] = useState<number | null>(0);
+  const [activeBoardRow, setActiveBoardRow] = useState<number | null>(null);
 
   // Intersection Observer for the numbered rows
   useEffect(() => {
@@ -157,6 +245,66 @@ export default function SouthYarraClient() {
         @media (max-width: 768px) {
           .sy-hero-address { display: none; }
           .sy-hero-accent-line { display: none; }
+        }
+
+        .board-headers {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 180px;
+          gap: 24px;
+          padding: 12px 32px;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          margin-bottom: 0;
+        }
+        @media (max-width: 640px) {
+          .board-headers { display: none; }
+        }
+        .row-header {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 44px;
+          gap: 24px;
+          padding: 28px 32px;
+          align-items: center;
+        }
+        @media (max-width: 640px) {
+          .row-header {
+            grid-template-columns: 1fr 44px;
+            padding: 24px;
+          }
+          .hide-on-mobile { display: none; }
+        }
+        .rating-bar {
+          height: 4px;
+          background: rgba(255,255,255,0.08);
+          border-radius: 99px;
+          overflow: hidden;
+          margin-bottom: 6px;
+        }
+        .rating-fill {
+          height: 100%;
+          background: #d97706;
+          border-radius: 99px;
+          width: 0%;
+          transition: width 0.8s cubic-bezier(0.22,1,0.36,1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .rating-fill { transition: none; }
+        }
+        .row-body {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transition: 
+            max-height 0.5s cubic-bezier(0.22,1,0.36,1),
+            opacity 0.3s ease 0.1s;
+        }
+        .board-row.open .row-body {
+          max-height: 300px;
+          opacity: 1;
+        }
+        @media (max-width: 640px) {
+          .board-row.open .row-body {
+            max-height: 500px;
+          }
         }
 
         .item-body {
@@ -545,79 +693,145 @@ export default function SouthYarraClient() {
       </section>
 
       {/* SECTION 5 — WHY CRISP */}
-      <section className="bg-[#fafafa] py-[100px]">
-        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px]">
-          <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase mb-[12px] font-bold">The Crisp Difference</div>
-          <h2 className="text-[40px] font-[700] text-[#1a1a1a] mb-[12px] leading-[1.1]">Why South Yarra Residents Choose Crisp</h2>
-          <p className="text-[16px] text-[#6b7280] leading-[1.8] max-w-[560px] mb-[48px]">
+      <section className="bg-[#111111] py-[100px]">
+        {/* Section header */}
+        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px] pb-[56px]">
+          <div className="text-[11px] font-[600] text-[#d97706] tracking-[0.2em] uppercase mb-[12px]">The Crisp Difference</div>
+          <h2 className="text-[40px] font-[700] text-[#ffffff]">Why South Yarra Residents Choose Crisp</h2>
+          <p className="text-[16px] text-[rgba(255,255,255,0.45)] leading-[1.8] max-w-[560px] mt-[12px]">
             South Yarra carries both a high competition index and a high renter proportion - the combination that makes consistent service hardest to find and most valued when it exists. Crisp's three operational commitments are the direct response to what this market requires.
           </p>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-[16px]">
-            {/* Left Column (2 large cards) */}
-            <div className="flex flex-col gap-[16px]">
-              {/* Featured Card */}
-              <div className="bg-[#111111] border-l-[4px] border-[#d97706] rounded-[20px] p-[32px] md:p-[44px] text-white">
-                <div className="bg-[rgba(217,119,6,0.15)] rounded-[12px] p-[12px] w-[56px] h-[56px] flex items-center justify-center mb-[16px]">
-                  <Key className="text-[#d97706] w-8 h-8" />
-                </div>
-                <h3 className="text-[20px] font-[700] text-[#ffffff] mb-[10px]">
-                  Building Access Coordinated Before Every Visit - No Day-of Surprises
-                </h3>
-                <p className="text-[14px] text-[rgba(255,255,255,0.6)] leading-[1.75]">
-                  Building access requirements - concierge sign-in, fob or intercom codes, lift booking windows, visitor parking - are collected at the initial booking and managed by Crisp for every subsequent visit. Residents don't coordinate access before each clean; the same cleaner follows the same documented process automatically on the scheduled date.
-                </p>
-                <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] font-[700] mt-[20px]">
-                  Zero day-of coordination
-                </div>
+        {/* Board Headers */}
+        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px]">
+          <div className="board-headers">
+            <div className="text-[10px] font-[700] text-[rgba(255,255,255,0.25)] tracking-[0.2em] uppercase">COMMITMENT</div>
+            <div className="text-[10px] font-[700] text-[rgba(255,255,255,0.25)] tracking-[0.2em] uppercase">STATUS</div>
+            <div className="text-[10px] font-[700] text-[rgba(255,255,255,0.25)] tracking-[0.2em] uppercase">RATING</div>
+            <div></div>
+          </div>
+        </div>
+
+        {/* Board Rows */}
+        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px]">
+          
+          {/* Row 1 */}
+          <div className={`board-row group border-b border-[rgba(255,255,255,0.06)] cursor-pointer transition-colors hover:bg-[rgba(255,255,255,0.02)] ${activeBoardRow === 0 ? 'open bg-[rgba(255,255,255,0.03)] border-l-[3px] border-l-[#d97706]' : ''}`}>
+            <div className="row-header" onClick={() => setActiveBoardRow(activeBoardRow === 0 ? null : 0)}>
+              <div>
+                <div className="text-[18px] font-[700] text-[#ffffff]">Building Access</div>
+                <div className="text-[11px] text-[rgba(255,255,255,0.35)] mt-[4px]">Chapel Street · Edgewater · All buildings</div>
               </div>
-
-              {/* Standard Large Card */}
-              <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[20px] p-[32px] md:p-[44px] hover:border-[#d97706] transition-colors duration-200">
-                <UserCheck className="text-[#d97706] w-8 h-8 mb-[16px]" />
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[10px]">
-                  Same Cleaner - Already Familiar With Your Apartment's Layout
-                </h3>
-                <p className="text-[14px] text-[#6b7280] leading-[1.75] mb-[20px]">
-                  Your cleaner is assigned to your South Yarra property from the first booking. By the second visit, they know your apartment's layout, your building's access procedure, and any preferences specific to your property. Our 97% same-cleaner continuity rate means this assignment is operationally stable - you're not receiving a different person each month with a new briefing required.
-                </p>
-                <div className="inline-block bg-[#fff7ed] border border-[#fed7aa] text-[#92400e] rounded-[99px] px-[16px] py-[6px] text-[12px] font-[700]">
-                  97% same-cleaner rate
-                </div>
+              <div className="hide-on-mobile">
+                <ScrambleText text="COORDINATED" color="#4ade80" />
+              </div>
+              <div className="hide-on-mobile pr-[24px]">
+                <AnimatedRatingBar percentage={100} label="100% managed" delay={0} />
+              </div>
+              <div className="flex justify-end pr-[8px]">
+                <ChevronDown className={`text-[rgba(255,255,255,0.3)] w-[16px] h-[16px] transition-transform duration-300 group-hover:text-white ${activeBoardRow === 0 ? 'rotate-180 text-[#d97706]' : ''}`} />
               </div>
             </div>
-
-            {/* Right Column (2 smaller cards) */}
-            <div className="flex flex-col gap-[16px]">
-              {/* Small Card 3 */}
-              <div className="bg-[#fff7ed] border border-[#fed7aa] rounded-[20px] p-[24px] md:p-[32px]">
-                <div className="w-8 h-8 rounded-full border-2 border-[#92400e] flex items-center justify-center font-bold text-[#92400e] mb-[16px]">$</div>
-                <h3 className="text-[16px] font-[700] text-[#1a1a1a] mb-[10px]">
-                  Fixed Pricing Whether You're in a Studio or a Full-Floor Apartment
-                </h3>
-                <p className="text-[13px] text-[#6b7280] leading-[1.7] mb-[20px]">
-                  A studio apartment in a Chapel Street high-rise and a three-bedroom penthouse are priced differently - they have different scopes and that difference should be reflected in the cost. Pricing is set by your actual room count, confirmed online before any cleaner visits. No surprise billing for a clean that took longer than a competitor estimated.
+            <div className="row-body">
+              <div className="px-[24px] md:px-[32px] pb-[32px]">
+                <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.8] max-w-[640px]">
+                  Building access requirements - concierge sign-in, fob or intercom codes, lift booking windows, visitor parking - are collected at the initial booking and managed by Crisp for every subsequent visit. Residents don't coordinate access before each clean; the same cleaner follows the same documented process automatically on the scheduled date.
                 </p>
-                <div className="inline-block bg-[#ffffff] border border-[#e5e7eb] text-[#374151] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600]">
-                  Fixed / confirmed online
-                </div>
-              </div>
-
-              {/* Small Card 4 */}
-              <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[20px] p-[24px] md:p-[32px] hover:border-[#d97706] transition-colors duration-200">
-                <ClipboardCheck className="text-[#d97706] w-8 h-8 mb-[16px]" />
-                <h3 className="text-[16px] font-[700] text-[#1a1a1a] mb-[10px]">
-                  End-of-Lease Vacate Cleaning Available Across South Yarra
-                </h3>
-                <p className="text-[13px] text-[#6b7280] leading-[1.7] mb-[20px]">
-                  South Yarra's high renter proportion makes it one of the portfolio's clearest opportunities for cross-promoting the vacate cleaning service. End-of-lease cleaning is available for all South Yarra property types - apartments and period homes - with an inspection-ready standard and a bond-back guarantee. Get a separate vacate quote online.
-                </p>
-                <div className="inline-block bg-[#f3f4f6] border border-[#e5e7eb] text-[#374151] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600]">
-                  Bond-back guarantee
+                <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] font-[700] mt-[16px]">
+                  Zero day-of coordination
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Row 2 */}
+          <div className={`board-row group border-b border-[rgba(255,255,255,0.06)] cursor-pointer transition-colors hover:bg-[rgba(255,255,255,0.02)] ${activeBoardRow === 1 ? 'open bg-[rgba(255,255,255,0.03)] border-l-[3px] border-l-[#d97706]' : ''}`}>
+            <div className="row-header" onClick={() => setActiveBoardRow(activeBoardRow === 1 ? null : 1)}>
+              <div>
+                <div className="text-[18px] font-[700] text-[#ffffff]">Same Cleaner</div>
+                <div className="text-[11px] text-[rgba(255,255,255,0.35)] mt-[4px]">Assigned from first booking</div>
+              </div>
+              <div className="hide-on-mobile">
+                <ScrambleText text="ASSIGNED" color="#d97706" />
+              </div>
+              <div className="hide-on-mobile pr-[24px]">
+                <AnimatedRatingBar percentage={97} label="97% continuity rate" delay={100} />
+              </div>
+              <div className="flex justify-end pr-[8px]">
+                <ChevronDown className={`text-[rgba(255,255,255,0.3)] w-[16px] h-[16px] transition-transform duration-300 group-hover:text-white ${activeBoardRow === 1 ? 'rotate-180 text-[#d97706]' : ''}`} />
+              </div>
+            </div>
+            <div className="row-body">
+              <div className="px-[24px] md:px-[32px] pb-[32px]">
+                <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.8] max-w-[640px]">
+                  Your cleaner is assigned to your South Yarra property from the first booking. By the second visit, they know your apartment's layout, your building's access procedure, and any preferences specific to your property. Our 97% same-cleaner continuity rate means this assignment is operationally stable - you're not receiving a different person each month with a new briefing required.
+                </p>
+                <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] font-[700] mt-[16px]">
+                  97% same-cleaner rate
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 3 */}
+          <div className={`board-row group border-b border-[rgba(255,255,255,0.06)] cursor-pointer transition-colors hover:bg-[rgba(255,255,255,0.02)] ${activeBoardRow === 2 ? 'open bg-[rgba(255,255,255,0.03)] border-l-[3px] border-l-[#d97706]' : ''}`}>
+            <div className="row-header" onClick={() => setActiveBoardRow(activeBoardRow === 2 ? null : 2)}>
+              <div>
+                <div className="text-[18px] font-[700] text-[#ffffff]">Fixed Pricing</div>
+                <div className="text-[11px] text-[rgba(255,255,255,0.35)] mt-[4px]">Studio to full-floor — priced accurately</div>
+              </div>
+              <div className="hide-on-mobile">
+                <ScrambleText text="CONFIRMED" color="#d97706" />
+              </div>
+              <div className="hide-on-mobile pr-[24px]">
+                <AnimatedRatingBar percentage={100} label="Always pre-confirmed" delay={200} />
+              </div>
+              <div className="flex justify-end pr-[8px]">
+                <ChevronDown className={`text-[rgba(255,255,255,0.3)] w-[16px] h-[16px] transition-transform duration-300 group-hover:text-white ${activeBoardRow === 2 ? 'rotate-180 text-[#d97706]' : ''}`} />
+              </div>
+            </div>
+            <div className="row-body">
+              <div className="px-[24px] md:px-[32px] pb-[32px]">
+                <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.8] max-w-[640px]">
+                  A studio apartment in a Chapel Street high-rise and a three-bedroom penthouse are priced differently - they have different scopes and that difference should be reflected in the cost. Pricing is set by your actual room count, confirmed online before any cleaner visits. No surprise billing for a clean that took longer than a competitor estimated.
+                </p>
+                <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] font-[700] mt-[16px]">
+                  Fixed / confirmed online
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 4 */}
+          <div className={`board-row group border-b border-[rgba(255,255,255,0.06)] cursor-pointer transition-colors hover:bg-[rgba(255,255,255,0.02)] ${activeBoardRow === 3 ? 'open bg-[rgba(255,255,255,0.03)] border-l-[3px] border-l-[#d97706]' : ''}`}>
+            <div className="row-header" onClick={() => setActiveBoardRow(activeBoardRow === 3 ? null : 3)}>
+              <div>
+                <div className="text-[18px] font-[700] text-[#ffffff]">End of Lease</div>
+                <div className="text-[11px] text-[rgba(255,255,255,0.35)] mt-[4px]">All South Yarra property types</div>
+              </div>
+              <div className="hide-on-mobile">
+                <ScrambleText text="AVAILABLE" color="rgba(255,255,255,0.6)" />
+              </div>
+              <div className="hide-on-mobile pr-[24px]">
+                <AnimatedRatingBar percentage={100} label="Bond-back guarantee" delay={300} />
+              </div>
+              <div className="flex justify-end pr-[8px]">
+                <ChevronDown className={`text-[rgba(255,255,255,0.3)] w-[16px] h-[16px] transition-transform duration-300 group-hover:text-white ${activeBoardRow === 3 ? 'rotate-180 text-[#d97706]' : ''}`} />
+              </div>
+            </div>
+            <div className="row-body">
+              <div className="px-[24px] md:px-[32px] pb-[32px]">
+                <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.8] max-w-[640px]">
+                  South Yarra's high renter proportion makes it one of the portfolio's clearest opportunities for cross-promoting the vacate cleaning service. End-of-lease cleaning is available for all South Yarra property types - apartments and period homes - with an inspection-ready standard and a bond-back guarantee. Get a separate vacate quote online.
+                </p>
+                <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] font-[700] mt-[16px]">
+                  Inspection-ready standard
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
