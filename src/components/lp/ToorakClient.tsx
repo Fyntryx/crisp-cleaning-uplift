@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, CheckCircle2 } from "lucide-react";
 import FAQ from "@/components/lp/FAQ";
 
 // Example FAQ Data
@@ -87,75 +87,78 @@ export default function ToorakClient() {
 
   return (
     <>
-      {/* SECTION 1 — HERO (Architectural Grid V2) */}
-      <section className="bg-[#ffffff] min-h-[90vh] flex flex-col border-b border-[#e5e7eb]">
-        {/* Top Bar - Very subtle */}
-        <div className="w-full border-b border-[#e5e7eb] px-[40px] md:px-[80px] py-[16px] flex justify-between items-center bg-[#fafafa]">
-          <div className="text-[11px] text-[#6b7280] tracking-[0.2em] uppercase font-[500] hidden sm:block">
-            Melbourne / Premium Service
-          </div>
-          <div className="text-[11px] text-[#6b7280] tracking-[0.2em] uppercase font-[500] flex items-center justify-center sm:justify-end gap-4 w-full sm:w-auto">
-            <span>4.9 ★ Google</span>
-            <span className="w-[1px] h-[10px] bg-[#d1d5db]"></span>
-            <span>97% Retention</span>
-          </div>
-        </div>
-
-        {/* Main Grid Area */}
-        <div className="flex-1 w-full grid grid-cols-1 lg:grid-cols-12 relative">
+      {/* SECTION 1 — HERO (Premium Concierge Collage V3) */}
+      <section className="bg-[#FAF9F6] min-h-[90vh] flex flex-col relative overflow-hidden border-b border-[#e5e7eb]">
+        {/* Main Container */}
+        <div className="flex-1 container mx-auto px-6 max-w-[1300px] flex flex-col lg:flex-row items-center py-[60px] lg:py-0">
           
-          {/* Left Column (Text) - 7 cols */}
-          <div className="lg:col-span-7 flex flex-col justify-center px-[40px] md:px-[80px] py-[80px] lg:border-r border-[#e5e7eb] relative">
+          {/* Left Column (Text) */}
+          <div className="w-full lg:w-[45%] flex flex-col justify-center pr-0 lg:pr-[60px] z-20 relative">
             
-            {/* The Deliberate Orange Moment */}
-            <div className="w-[12px] h-[12px] bg-[#FB8C42] mb-[40px]" />
+            {/* Service Badge */}
+            <div className="inline-flex items-center gap-2 bg-[#ffffff] border border-[#e5e7eb] px-[16px] py-[8px] rounded-full mb-[32px] w-fit shadow-sm">
+              <span className="w-[8px] h-[8px] rounded-full bg-[#FB8C42]"></span>
+              <span className="text-[12px] font-[700] text-[#4b5563] tracking-[0.1em] uppercase">Premium House Cleaning</span>
+            </div>
 
-            <h1 className="text-[64px] md:text-[96px] lg:text-[110px] font-[800] text-[#1a1a1a] leading-[0.9] tracking-[-0.04em] mb-[40px]">
-              <span className="block text-[#9ca3af] text-[16px] md:text-[20px] tracking-[0.3em] font-[500] uppercase mb-[24px] ml-[4px]">
-                House Cleaning
-              </span>
-              TOORAK
+            <h1 className="text-[52px] md:text-[68px] lg:text-[76px] font-[800] text-[#1a1a1a] leading-[1.05] tracking-[-0.03em] mb-[32px]">
+              Premium Cleaning for <span className="text-[#FB8C42]">Toorak</span> Homes.
             </h1>
             
-            <p className="text-[16px] text-[#4b5563] leading-[1.9] max-w-[500px] mb-[48px] font-[400]">
+            <p className="text-[17px] text-[#4b5563] leading-[1.8] max-w-[540px] mb-[48px] font-[500]">
               Toorak's residential streets represent Melbourne's most demanding cleaning market. Silent luxury, absolute precision, and the exact same cleaner every single visit.
             </p>
             
-            <div className="flex flex-col sm:flex-row sm:items-center gap-[32px]">
-              <a href="/#booking" className="group relative bg-[#FB8C42] text-[#ffffff] px-[40px] py-[18px] text-[13px] font-[600] tracking-[0.1em] uppercase overflow-hidden hover:bg-[#ea6309] transition-colors duration-500 inline-flex items-center justify-center">
-                <span className="relative z-10 flex items-center gap-3">
-                  Exact Quote <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <div className="flex flex-col sm:flex-row sm:items-center gap-[24px]">
+              <a href="/#booking" className="group relative bg-[#FB8C42] text-[#ffffff] px-[36px] py-[16px] text-[14px] font-[700] tracking-[0.05em] uppercase rounded-full overflow-hidden hover:bg-[#ea6309] shadow-[0_8px_24px_rgba(251,140,66,0.25)] hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center">
+                <span className="relative z-10 flex items-center gap-2">
+                  Get an Exact Quote <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </a>
-              <a href="#included" className="text-[13px] text-[#1a1a1a] font-[600] tracking-[0.1em] uppercase border-b border-[#1a1a1a] pb-1 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors inline-block w-fit">
-                View Scope
-              </a>
+              <div className="flex items-center gap-4 text-[13px] text-[#4b5563] font-[600] pl-2 mt-4 sm:mt-0">
+                <span className="flex items-center gap-1.5"><Star className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" /> 4.9 Google</span>
+              </div>
             </div>
           </div>
 
-          {/* Right Column (Image + Stats) - 5 cols */}
-          <div className="lg:col-span-5 flex flex-col relative min-h-[500px] lg:h-auto">
-            {/* Image Box */}
-            <div className="flex-1 relative overflow-hidden group">
+          {/* Right Column (Collage) */}
+          <div className="w-full lg:w-[55%] mt-[60px] lg:mt-0 relative h-[500px] lg:h-[700px] flex items-center justify-center">
+            
+            {/* Main Background Image */}
+            <div className="absolute right-0 top-[50%] -translate-y-[50%] w-[90%] h-[80%] rounded-[24px] overflow-hidden shadow-2xl">
               <div 
-                className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-100 transition-transform duration-[2s]"
+                className="absolute inset-0 bg-cover bg-center hover:scale-105 transition-transform duration-[2s]"
                 style={{ backgroundImage: "url('/images/toorak_premium_hero.png')" }}
               />
+              {/* Soft overlay to make floating elements pop */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[rgba(0,0,0,0.2)] to-transparent pointer-events-none" />
             </div>
-            
-            {/* Stats Box (Bottom right) */}
-            <div className="grid grid-cols-2 bg-[#fafafa] text-[#1a1a1a] border-t border-[#e5e7eb]">
-              <div className="p-[32px] md:p-[48px] border-r border-[#e5e7eb]">
-                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">97<span className="text-[20px] text-[#FB8C42]">%</span></div>
-                <div className="text-[11px] text-[#6b7280] tracking-[0.1em] uppercase">Same Cleaner</div>
-              </div>
-              <div className="p-[32px] md:p-[48px]">
-                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">72<span className="text-[20px] text-[#FB8C42]">h</span></div>
-                <div className="text-[11px] text-[#6b7280] tracking-[0.1em] uppercase">Guarantee</div>
-              </div>
-            </div>
-          </div>
 
+            {/* Overlapping Detail Image (The "Cleaning" aspect) */}
+            <div className="absolute left-[5%] bottom-[15%] w-[220px] h-[280px] rounded-[20px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] border-[6px] border-[#FAF9F6] z-10 hidden md:block">
+              <div 
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/sparkling-clean-kitchen.webp')" }}
+              />
+            </div>
+
+            {/* Floating Trust Card */}
+            <div className="absolute left-[15%] lg:left-[0%] top-[25%] bg-white/95 backdrop-blur-md border border-white/50 p-[28px] rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.08)] z-20 w-[280px] hidden sm:block">
+              <div className="text-[11px] font-[800] text-[#FB8C42] tracking-[0.15em] uppercase mb-[20px]">Toorak Service Level</div>
+              <ul className="flex flex-col gap-4">
+                <li className="flex items-center gap-3 text-[14px] text-[#1a1a1a] font-[700]">
+                  <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" /> Marble & Stone Safe
+                </li>
+                <li className="flex items-center gap-3 text-[14px] text-[#1a1a1a] font-[700]">
+                  <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" /> Exact Same Cleaner
+                </li>
+                <li className="flex items-center gap-3 text-[14px] text-[#1a1a1a] font-[700]">
+                  <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" /> 72-Hour Guarantee
+                </li>
+              </ul>
+            </div>
+
+          </div>
         </div>
       </section>
 
