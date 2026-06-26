@@ -122,7 +122,7 @@ export default function ToorakClient() {
             </p>
             
             <div className="flex flex-col sm:flex-row sm:items-center gap-[32px]">
-              <a href="/#booking" className="group relative bg-[#1a1a1a] text-[#ffffff] px-[40px] py-[18px] text-[13px] font-[600] tracking-[0.1em] uppercase overflow-hidden hover:bg-[#FB8C42] transition-colors duration-500 inline-flex items-center justify-center">
+              <a href="/#booking" className="group relative bg-[#FB8C42] text-[#ffffff] px-[40px] py-[18px] text-[13px] font-[600] tracking-[0.1em] uppercase overflow-hidden hover:bg-[#ea6309] transition-colors duration-500 inline-flex items-center justify-center">
                 <span className="relative z-10 flex items-center gap-3">
                   Exact Quote <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </span>
@@ -136,23 +136,22 @@ export default function ToorakClient() {
           {/* Right Column (Image + Stats) - 5 cols */}
           <div className="lg:col-span-5 flex flex-col relative min-h-[500px] lg:h-auto">
             {/* Image Box */}
-            <div className="flex-1 relative bg-[#f3f4f6] overflow-hidden group">
+            <div className="flex-1 relative overflow-hidden group">
               <div 
-                className="absolute inset-0 bg-cover bg-center grayscale mix-blend-multiply opacity-80 scale-105 group-hover:scale-100 transition-transform duration-[2s]"
-                style={{ backgroundImage: "url('/images/housecleaning-Toorak.jpg')" }}
+                className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-100 transition-transform duration-[2s]"
+                style={{ backgroundImage: "url('/images/toorak_premium_hero.png')" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,26,0.2)] to-transparent" />
             </div>
             
             {/* Stats Box (Bottom right) */}
-            <div className="grid grid-cols-2 bg-[#1a1a1a] text-[#ffffff] border-t border-[#333]">
-              <div className="p-[32px] md:p-[48px] border-r border-[#333]">
+            <div className="grid grid-cols-2 bg-[#fafafa] text-[#1a1a1a] border-t border-[#e5e7eb]">
+              <div className="p-[32px] md:p-[48px] border-r border-[#e5e7eb]">
                 <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">97<span className="text-[20px] text-[#FB8C42]">%</span></div>
-                <div className="text-[11px] text-[rgba(255,255,255,0.5)] tracking-[0.1em] uppercase">Same Cleaner</div>
+                <div className="text-[11px] text-[#6b7280] tracking-[0.1em] uppercase">Same Cleaner</div>
               </div>
               <div className="p-[32px] md:p-[48px]">
                 <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">72<span className="text-[20px] text-[#FB8C42]">h</span></div>
-                <div className="text-[11px] text-[rgba(255,255,255,0.5)] tracking-[0.1em] uppercase">Guarantee</div>
+                <div className="text-[11px] text-[#6b7280] tracking-[0.1em] uppercase">Guarantee</div>
               </div>
             </div>
           </div>
