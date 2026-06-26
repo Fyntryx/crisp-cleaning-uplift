@@ -20,6 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/house-cleaning-hampton',
     '/house-cleaning-malvern',
     '/house-cleaning-maribyrnong',
+    '/house-cleaning-toorak',
   ];
 
   return routes.map((route) => ({

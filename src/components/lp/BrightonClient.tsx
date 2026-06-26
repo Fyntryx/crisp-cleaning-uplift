@@ -70,19 +70,19 @@ const heritageCards = [
   {
     icon: Home,
     tag: "GOLDEN MILE · BAYSIDE",
-    title: "Victorian & Edwardian properties",
+    title: "Victorian and Edwardian Properties Near the Golden Mile",
     body: "The streets closest to the bay between Brighton Beach and Middle Brighton station are among Melbourne's most tightly held — heritage homes with polished timber floors, formal living and dining rooms, and multiple bathrooms across multi-storey layouts. Our fixed pricing accounts for the genuine scope of these larger homes; there's no hourly ambiguity when your property has five rooms and two staircases.",
   },
   {
     icon: TreePine,
     tag: "TREE-LINED STREETS",
-    title: "Californian bungalows & period homes",
+    title: "Californian Bungalows and Period Homes on Tree-Lined Streets",
     body: "The brick Californian bungalows and 1920s–30s properties on Brighton's quieter residential streets have a different cleaning profile to the bayside mansions — fewer formal rooms, but the same heritage surfaces and original finishes that benefit from consistent, surface-appropriate care. Our eco-friendly product selection accounts for original timber, heritage tiles, and period-era fixings throughout.",
   },
   {
     icon: Sparkles,
     tag: "CHURCH ST · BAY ST",
-    title: "Renovated & contemporary homes",
+    title: "Renovated and Contemporary Homes Near Church Street and Bay Street",
     body: "Brighton's main commercial strips anchor a ring of renovated and newly built properties sitting alongside the suburb's heritage stock. Stone benchtops, engineered timber floors, and larger contemporary bathrooms have a different scope to a period home, and our pricing reflects your property's actual requirement — not a uniform Brighton rate applied regardless of home type.",
   },
 ];
@@ -90,9 +90,9 @@ const heritageCards = [
 const cleanCovers = [
   {
     icon: Bath,
-    title: "Kitchen & Bathrooms",
+    title: "Kitchen Surfaces and Bathroom Detailing",
     h3: "Kitchen Surfaces and Bathroom Detailing",
-    body: "Kitchen benchtops, stovetop, rangehood, splashback, sink, and accessible appliance exteriors cleaned every visit. Bathrooms — shower screens, basin, toilet, mirror, taps, and tiled floors — sanitised and polished. Brighton's larger homes with two or three bathrooms all covered within the standard scope.",
+    body: "Kitchen benchtops, stovetop, rangehood, splashback, sink, and accessible appliance exteriors are cleaned and wiped on every visit. Bathrooms — shower screens, tub or shower recess, basin, toilet including base, mirror, taps, and tiled floor — are sanitised and polished throughout. Brighton's larger homes with two or three bathrooms have all covered within the standard scope.",
     checks: [
       "Benchtop, stovetop, rangehood, sink, splashback, appliance exteriors cleaned",
       "All bathrooms sanitised — all included",
@@ -102,9 +102,9 @@ const cleanCovers = [
   },
   {
     icon: Layers,
-    title: "Floors & Formal Rooms",
+    title: "Timber Floors, Polished Surfaces and Formal Living Areas",
     h3: "Timber Floors, Polished Surfaces and Formal Living Areas",
-    body: "Hardwood timber floors swept and mopped with low-moisture products — not steam on original floorboards. Polished and formal surfaces dusted, mirrors wiped, skirting boards and cornices attended to. Formal living and dining rooms get the same attention as everyday spaces.",
+    body: "Hardwood timber floors are swept and mopped with appropriate, low-moisture products — not steam or excess water on original floorboards. Polished and formal surfaces are dusted, mirrors and glass wiped, skirting boards and cornices attended to. Formal living and dining rooms receive the same level of attention as everyday living spaces, which matters significantly in Brighton's larger heritage homes.",
     checks: [
       "Low-moisture mop on original timber",
       "Skirting boards & cornices",
@@ -114,9 +114,9 @@ const cleanCovers = [
   },
   {
     icon: Home,
-    title: "Bedrooms & Laundry",
+    title: "Bedrooms, Additional Rooms and Laundry",
     h3: "Bedrooms, Additional Rooms and Laundry",
-    body: "All bedrooms vacuumed, surfaces dusted, and furniture-accessible areas addressed. A Brighton home with four or five bedrooms isn't treated identically to a two-bedroom apartment — your room count and layout determine the price and the time your cleaner spends.",
+    body: "All bedrooms are vacuumed, surfaces dusted, and furniture-accessible areas addressed. A Brighton home with four or five bedrooms isn't treated identically to a two-bedroom apartment — your room count and layout determine the price and the time your cleaner spends. The laundry is included as standard: surfaces wiped, appliance exteriors cleaned, floor swept or mopped.",
     checks: [
       "All bedrooms vacuumed & dusted",
       "All bedroom surfaces wiped",
@@ -131,29 +131,29 @@ const reasonCards = [
     icon: UserCheck,
     stat: "97%",
     statSub: "same-cleaner rate",
-    title: "Same cleaner every shift",
-    body: "When your cleaner returns, they already know which bathroom needs extra attention around the tile grout, that the kitchen splashback requires more care after cooking-heavy weeks, and that you prefer the upstairs rooms addressed first. Continuity makes this structurally reliable, not a matter of luck.",
+    title: "Same Cleaner Every Visit — Your Home's Details Are Never Reset",
+    body: "When your cleaner returns, they already know which bathroom needs extra attention around the tile grout, that the kitchen splashback requires more care after cooking-heavy weeks, and that you prefer the upstairs rooms addressed first. That accumulated knowledge doesn't transfer to a rotating cleaner. Our 97% same-cleaner continuity rate makes this consistency structurally reliable, not a matter of luck.",
   },
   {
     icon: DollarSign,
     stat: "Fixed",
     statSub: "pricing always",
-    title: "Fixed pricing for larger properties",
-    body: "A five-bedroom heritage home in Brighton requires meaningfully more time than the average Melbourne house clean. Pricing set by your actual room count — not a suburb-wide hourly rate — so your cost reflects your home specifically, not a one-size figure that underdelivers on larger ones.",
+    title: "Fixed Pricing That Accounts for Larger Brighton Properties",
+    body: "A five-bedroom heritage home in Brighton requires meaningfully more time and effort than the average Melbourne house clean. Our pricing — set by your actual room count and scope rather than a suburb-wide hourly rate — means your cost reflects your home specifically, not a one-size figure that undercharges compact properties and underdelivers on larger ones.",
   },
   {
     icon: Leaf,
     stat: "100%",
     statSub: "eco-friendly",
-    title: "Eco-friendly on heritage surfaces",
-    body: "Brighton's period homes have original timber floors, heritage-era tiles, and leadlight fittings that respond badly to harsh chemicals over time. Our product selection is chosen for effective cleaning without the surface deterioration that commercial-grade chemicals cause on older materials.",
+    title: "Eco-Friendly Products Safe on Heritage Surfaces and Original Finishes",
+    body: "Brighton's period homes have original timber floors, heritage-era tiles, and leadlight or glass fittings that respond badly to harsh chemical cleaning products over time. Our eco-friendly product selection is chosen for effective cleaning without the surface deterioration that commercial-grade chemicals cause on older materials — important in a suburb where original finishes are a significant part of the property's value.",
   },
   {
     icon: ShieldCheck,
     stat: "72hr",
     statSub: "re-clean guarantee",
-    title: "Satisfaction guarantee on every clean",
-    body: "If anything doesn't meet your standard after a clean, contact us within 72 hours and we'll return to address it at no charge. This guarantee applies from your very first booking with Crisp and maintains across every subsequent visit — it doesn't diminish after a year.",
+    title: "Satisfaction Guarantee on Every Clean",
+    body: "If anything doesn't meet your standard after a clean, contact us within 72 hours and we'll return to address it at no charge. This guarantee applies from your very first booking with Crisp and maintains across every subsequent visit — it doesn't diminish after a year of regular service.",
   },
 ];
 
@@ -199,54 +199,27 @@ const testimonials = [
 const faqData = [
   {
     question: "Do you service homes near Dendy Street Beach and Church Street?",
-    answer: (
-      <p>
-        Yes — we cover all of Brighton including the Esplanade, Dendy Street,
-        and the pockets around Church Street and Bay Street.
-      </p>
-    ),
+    answer: "Yes — we service all of Brighton, from the streets nearest Dendy Street Beach and the bathing boxes through to the Church Street and Bay Street corridors, and all residential precincts from North Brighton to Brighton Beach station.",
   },
   {
-    question: "Are your products safe for the original timber floors and period finishes?",
-    answer: (
-      <p>
-        Yes. Our product selection is specifically chosen for heritage surfaces
-        including original hardwood floors, polished finishes, and period-era
-        fittings. We don't use steam or high-moisture methods on original
-        floorboards.
-      </p>
-    ),
+    question: "Are your products safe for original timber floors and period finishes?",
+    answer: "Yes. Our product selection is specifically chosen for heritage surfaces including original hardwood floors, polished finishes, and period-era fittings. We don't use steam or high-moisture methods on original floorboards.",
   },
   {
-    question: "How is pricing calculated for a large Brighton home?",
-    answer: (
-      <p>
-        Pricing is set by your home's room count and service type. Brighton's
-        larger period homes are quoted accurately for their actual scope, not at
-        a generic rate applied across the suburb. Get an exact price online in
-        under a minute.
-      </p>
-    ),
+    question: "How much does house cleaning cost in Brighton?",
+    answer: "Pricing is set by your home's room count and service type. Brighton's larger period homes are quoted accurately for their actual scope, not at a generic rate applied across the suburb. Get an exact price online in under a minute.",
   },
   {
-    question: "Can I book the same cleaner every fortnight?",
-    answer: (
-      <p>
-        Yes. Your cleaner is assigned from your first booking and returns on
-        your chosen schedule — weekly, fortnightly, or monthly. 97% of
-        recurring clients receive the same cleaner every visit.
-      </p>
-    ),
+    question: "Can I book the same cleaner for a fortnightly clean?",
+    answer: "Yes. Your cleaner is assigned from your first booking and returns on your chosen schedule — weekly, fortnightly, or monthly. 97% of recurring clients receive the same cleaner every visit.",
   },
   {
-    question: "What if I'm not satisfied after the clean?",
-    answer: (
-      <p>
-        Contact us within 72 hours and we'll return to address anything that
-        fell short — at no charge. The re-clean guarantee applies from your very
-        first booking.
-      </p>
-    ),
+    question: "Do I need to be home when the cleaner arrives?",
+    answer: "No. Most Brighton clients arrange key safe access or leave a key and aren't home during the clean. Access arrangements are confirmed at booking and stored for every subsequent visit without you resending instructions.",
+  },
+  {
+    question: "What if I'm not satisfied with the clean?",
+    answer: "Contact us within 72 hours and we'll return to address anything that fell short — at no charge. The re-clean guarantee applies from your very first booking.",
   },
 ];
 
@@ -337,7 +310,7 @@ export default function BrightonClient({
                 transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className="text-[15px] text-gray-500 leading-relaxed mb-8 max-w-[480px]"
               >
-                Brighton's Victorian and Edwardian homes have a different cleaning profile to the average Melbourne house. The same cleaner, every visit, with a scope built for your actual room count.
+                Brighton homes are among Melbourne's most demanding to clean consistently — large Victorian and Edwardian houses on generous blocks, original timber floors, leadlight windows, and the kind of surface detail that reveals the quality of a cleaner quickly. The streets between Church Street and Dendy Street Beach are lined with properties that reward a consistent, familiar cleaner and suffer noticeably when that consistency isn't there. Crisp services Brighton homes with a fixed, scope-defined checklist applied the same way on every visit, by the same cleaner, at transparent pricing set by your home's actual room count rather than a generic hourly estimate.
               </motion.p>
 
               <motion.div
@@ -447,7 +420,7 @@ export default function BrightonClient({
               Brighton's Housing Stock
             </p>
             <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight mb-4">
-              Cleaning Brighton's heritage homes the right way
+              Cleaning Brighton's Heritage Homes the Right Way
             </h2>
             <p className="text-[15px] text-gray-500 max-w-2xl leading-relaxed">
               Brighton's housing stock is predominantly period — Victorian mansions, Edwardian family homes, and Californian bungalows on the streets between the bay and the Nepean Highway define the suburb's residential character. Getting a consistently high standard across these properties requires a cleaner who knows your home, not a different person starting from scratch every fortnight.
@@ -519,7 +492,7 @@ export default function BrightonClient({
               Scope & Checklist
             </p>
             <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight mb-4">
-              What every Brighton clean covers
+              What Every Brighton Clean Covers
             </h2>
             <p className="text-[15px] text-gray-500 max-w-xl leading-relaxed">
               Every Brighton clean follows a documented checklist covering all main rooms and surfaces within your booking scope. The scope is confirmed before the cleaner arrives — which is what makes a fixed price possible and what prevents the ambiguity about what was actually cleaned that hourly services routinely produce.
@@ -571,7 +544,7 @@ export default function BrightonClient({
               The Crisp Difference
             </p>
             <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight mb-3">
-              Why Brighton homeowners choose Crisp
+              Why Brighton Homeowners Choose Crisp
             </h2>
             <p className="text-[15px] text-gray-500 max-w-xl leading-relaxed">
               Brighton's cleaning market offers plenty of options. Crisp's operational advantage is specific: the same cleaner, a fixed and documented checklist, and pricing calibrated to what your home genuinely requires. For a large period property near the beach, these three things matter more than any headline discount.
@@ -611,56 +584,6 @@ export default function BrightonClient({
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          WE KNOW BRIGHTON'S STREETS — 2-col layout
-      ══════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 md:px-10 max-w-6xl">
-          <ScrollReveal className="mb-12">
-            <p className="text-[#FB8C42] font-bold tracking-widest text-[10px] uppercase mb-2">
-              Local Knowledge
-            </p>
-            <h2 className="text-3xl md:text-[36px] font-extrabold text-gray-900 tracking-tight">
-              We know Brighton's streets
-            </h2>
-          </ScrollReveal>
-
-          <div className="flex flex-col md:flex-row gap-10 md:gap-16">
-            {/* Left — street list */}
-            <ScrollReveal className="md:w-[340px] shrink-0 space-y-3" delay={0.05}>
-              {brightonStreets.map((street, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                  className="flex items-start justify-between gap-4 p-4 rounded-xl bg-[#FAFAF8] border border-gray-100 group cursor-default"
-                >
-                  <div>
-                    <p className="text-[14px] font-semibold text-gray-900">{street.name}</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">{street.tag}</p>
-                  </div>
-                  <span className="shrink-0 text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#FB8C42]/10 text-[#FB8C42] whitespace-nowrap">
-                    Brighton
-                  </span>
-                </motion.div>
-              ))}
-            </ScrollReveal>
-
-            {/* Right — body text */}
-            <ScrollReveal className="flex-1" delay={0.1}>
-              <p className="text-[15px] text-gray-500 leading-relaxed mb-5">
-                Brighton's period housing doesn't behave like a uniform suburb. A four-bedroom Victorian on the Esplanade and a three-bedroom bungalow near the Nepean Highway have different cleaning profiles — different floor types, different bathroom counts, different formal room layouts.
-              </p>
-              <p className="text-[15px] text-gray-500 leading-relaxed mb-5">
-                Our cleaners who work in Brighton have cleaned enough of these properties to know the difference without being told: LeadLight windows, original floorboard gaps, ornate coving — the kind of detail that matters in Brighton homes and goes missed in a standard clean.
-              </p>
-              <p className="text-[15px] text-gray-500 leading-relaxed">
-                Your cleaner is assigned to your property from the first booking. They build a working knowledge of your home specifically, not just a suburb-level familiarity.
-              </p>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
 
       {/* ══════════════════════════════════════════════════════
           PRICING — 3-card row
