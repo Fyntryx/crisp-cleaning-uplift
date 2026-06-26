@@ -397,7 +397,7 @@ export default function CheltenhamClient({
                       Larger Family Properties Across the Sandbelt Corridor
                     </h3>
                     <p className="text-[15px] text-gray-600 leading-relaxed">
-                      Properties near the Kingston Heath and Victoria Golf Club corridor tend toward larger footprints: four and five-bedroom homes with double garages, separate living zones, and larger kitchens. Crisp's pricing adjusts accurately to these configurations; a larger Cheltenham home is quoted proportionally, not at the same rate as a two-bedroom terrace.
+                      Properties near the Kingston Heath and Victoria Golf Club corridor — the Sandbelt's famous stretch of courses directly west of Cheltenham — tend toward larger footprints: four and five-bedroom homes with double garages, separate living zones, and larger kitchens. Crisp's pricing adjusts accurately to these configurations; a larger Cheltenham home is quoted proportionally, not at the same rate as a two-bedroom terrace.
                     </p>
                   </div>
                 </div>
@@ -422,7 +422,7 @@ export default function CheltenhamClient({
                       Newer Townhouses and Dual-Occupancy Builds Near Charman Road
                     </h3>
                     <p className="text-[15px] text-gray-600 leading-relaxed">
-                      The Charman Road corridor and the streets near Cheltenham Station have seen progressive townhouse and dual-occupancy development. These newer builds with stone benchtops, open-plan living, and engineered floors have a different cleaning profile to the suburb's established brick homes, priced accurately within the same fixed-scope framework.
+                      The Charman Road corridor and the streets near Cheltenham Station have seen progressive townhouse and dual-occupancy development over the past decade — a product of Melbourne's growing inner-suburban infill. These newer builds with stone benchtops, open-plan living, and engineered floors have a different cleaning profile to the suburb's established brick homes, priced accurately within the same fixed-scope framework.
                     </p>
                   </div>
                 </div>
@@ -490,7 +490,7 @@ export default function CheltenhamClient({
                 <svg className="w-7 h-7 text-[#d97706] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12A10 10 0 0 0 12 2v10z"/><path d="M12 22A10 10 0 1 0 12 2v10z"/></svg>
                 <h3 className="text-[18px] font-bold text-white mb-3">Vacuum, Mop and Floor Care Throughout</h3>
                 <p className="text-[14px] text-white/65 leading-relaxed">
-                  All carpeted rooms are vacuumed including under accessible furniture. Hard floors swept and mopped with appropriate products. Cheltenham's older homes often have a mix of carpet in bedrooms and hard floors through living areas; our scope handles both floor types within the standard clean.
+                  All carpeted rooms are vacuumed including under accessible furniture. Hard floors — tiles, timber, and vinyl — are swept and mopped with appropriate products. Cheltenham's older homes often have a mix of carpet in bedrooms and hard floors through living areas and kitchen; our scope handles both floor types within the standard clean.
                 </p>
               </div>
             </ScrollReveal>
@@ -501,7 +501,7 @@ export default function CheltenhamClient({
                 <svg className="w-7 h-7 text-[#92400e] mb-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"/><path d="M2 20h20"/><path d="M14 12v.01"/></svg>
                 <h3 className="text-[18px] font-bold text-[#1a1a1a] mb-3">Outdoor-Transition Spaces and Entry Areas</h3>
                 <p className="text-[14px] text-[#78350f] leading-relaxed">
-                  Entry halls, front porches, and covered transition areas between outside and inside are swept and tidied as part of the standard scope. These spaces accumulate tracked-in material faster in properties with larger blocks and they're the first thing a homeowner notices on returning.
+                  Entry halls, front porches, and covered transition areas between outside and inside are swept and tidied as part of the standard scope for Cheltenham homes. These spaces accumulate tracked-in material faster in properties with larger blocks and they're the first thing a homeowner notices on returning — a clean entry matters.
                 </p>
               </div>
             </ScrollReveal>
@@ -559,7 +559,7 @@ export default function CheltenhamClient({
               {
                 num: "03",
                 title: "Eco-Friendly Products Included as Standard",
-                body: "All cleaning products are eco-friendly and included in the price. No surcharge for product supply, no request to use your own materials. Particularly relevant for families with children or pets — which describes a significant proportion of Cheltenham's demographic.",
+                body: "All cleaning products are eco-friendly and included in the price. No surcharge for product supply, no request to use your own materials, and no harsh chemicals on surfaces that don't warrant them. Particularly relevant for families with children or pets — which describes a significant proportion of Cheltenham's demographic.",
                 stat: "100%", label: "eco-friendly"
               },
               {
