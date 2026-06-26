@@ -87,101 +87,76 @@ export default function ToorakClient() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{__html: `
-        .hero-line { overflow: hidden; }
-        .hero-line span {
-          display: block;
-          animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          transform: translateY(100%);
-        }
-        .line-1 span { animation-delay: 0s; }
-        .line-2 span { animation-delay: 0.14s; }
-        .line-3 span { animation-delay: 0.28s; }
-        @keyframes revealUp {
-          from { transform: translateY(100%); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes scaleDown {
-          from { transform: translateX(-50%) scaleY(0); }
-          to { transform: translateX(-50%) scaleY(1); }
-        }
-        .animate-scaleDown {
-          animation: scaleDown 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .hero-line span { animation: none; transform: translateY(0); opacity: 1; }
-          .animate-scaleDown { animation: none; transform: translateX(-50%) scaleY(1); }
-        }
-      `}} />
-
-      {/* SECTION 1 — HERO (Premium Cinematic) */}
-      <section className="relative w-full h-[100vh] min-h-[700px] bg-[#0a0a0a] flex flex-col items-center justify-center overflow-hidden">
-        
-        {/* Background Image - Desaturated, Darkened */}
-        <div 
-          className="absolute inset-0 z-0 opacity-[0.15] grayscale bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/housecleaning-Toorak.jpg')" }}
-        />
-        
-        {/* The "Deliberate Orange Moment" - Vertical Line */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-[20vh] bg-[#d97706] z-10 origin-top animate-scaleDown" />
-
-        {/* Four-Corner Metadata (Desktop) */}
-        <div className="absolute top-[48px] left-[48px] z-20 hidden md:block">
-          <div className="text-[10px] text-[rgba(255,255,255,0.4)] tracking-[0.2em] uppercase mb-1">Service Level</div>
-          <div className="text-[12px] text-[#ffffff] font-[500] tracking-[0.1em]">Crisp Cleaning — Premium</div>
-        </div>
-
-        <div className="absolute top-[48px] right-[48px] z-20 text-right hidden md:block">
-          <div className="text-[10px] text-[rgba(255,255,255,0.4)] tracking-[0.2em] uppercase mb-1">Reputation</div>
-          <div className="text-[12px] text-[#ffffff] font-[500] tracking-[0.1em]">4.9 ★ Google Rated</div>
-        </div>
-
-        <div className="absolute bottom-[48px] left-[48px] z-20 hidden md:block">
-          <div className="text-[10px] text-[rgba(255,255,255,0.4)] tracking-[0.2em] uppercase mb-1">Location</div>
-          <div className="text-[12px] text-[#ffffff] font-[500] tracking-[0.1em]">Melbourne, AU</div>
-        </div>
-
-        <div className="absolute bottom-[48px] right-[48px] z-20 text-right hidden md:block">
-          <div className="text-[10px] text-[rgba(255,255,255,0.4)] tracking-[0.2em] uppercase mb-1">Explore</div>
-          <div className="text-[12px] text-[#ffffff] font-[500] tracking-[0.1em] flex items-center justify-end gap-2">
-            Scroll to Discover <ArrowRight className="w-3 h-3 rotate-90" />
+      {/* SECTION 1 — HERO (Architectural Grid V2) */}
+      <section className="bg-[#ffffff] min-h-[90vh] flex flex-col border-b border-[#e5e7eb]">
+        {/* Top Bar - Very subtle */}
+        <div className="w-full border-b border-[#e5e7eb] px-[40px] md:px-[80px] py-[16px] flex justify-between items-center bg-[#fafafa]">
+          <div className="text-[11px] text-[#6b7280] tracking-[0.2em] uppercase font-[500] hidden sm:block">
+            Melbourne / Premium Service
+          </div>
+          <div className="text-[11px] text-[#6b7280] tracking-[0.2em] uppercase font-[500] flex items-center justify-center sm:justify-end gap-4 w-full sm:w-auto">
+            <span>4.9 ★ Google</span>
+            <span className="w-[1px] h-[10px] bg-[#d1d5db]"></span>
+            <span>97% Retention</span>
           </div>
         </div>
 
-        {/* Mobile Header (Fallback for 4-corners) */}
-        <div className="absolute top-[32px] left-[32px] right-[32px] z-20 flex justify-between items-center md:hidden">
-           <div className="text-[10px] text-[#ffffff] tracking-[0.15em] uppercase">Crisp Premium</div>
-           <div className="text-[10px] text-[#d97706] tracking-[0.1em] uppercase">Toorak</div>
-        </div>
+        {/* Main Grid Area */}
+        <div className="flex-1 w-full grid grid-cols-1 lg:grid-cols-12 relative">
+          
+          {/* Left Column (Text) - 7 cols */}
+          <div className="lg:col-span-7 flex flex-col justify-center px-[40px] md:px-[80px] py-[80px] lg:border-r border-[#e5e7eb] relative">
+            
+            {/* The Deliberate Orange Moment */}
+            <div className="w-[12px] h-[12px] bg-[#d97706] mb-[40px]" />
 
-        {/* Main Typography */}
-        <div className="relative z-10 flex flex-col items-center mt-[8vh]">
-          <div className="text-[11px] md:text-[13px] text-[#d97706] tracking-[0.6em] md:tracking-[1em] uppercase font-[600] mb-[24px] ml-[0.6em] md:ml-[1em] hero-line line-1">
-            <span>House Cleaning</span>
-          </div>
-          <h1 className="text-[72px] sm:text-[100px] md:text-[160px] lg:text-[220px] font-[900] text-[#ffffff] leading-[0.85] tracking-[-0.04em] text-center select-none hero-line line-2">
-            <span>TOORAK</span>
-          </h1>
-        </div>
-
-        {/* Asymmetrical Content Box */}
-        <div className="absolute bottom-0 md:bottom-[10vh] right-0 md:right-[8vw] lg:right-[12vw] z-20 w-full md:w-[420px] bg-gradient-to-t from-[#0a0a0a] via-[rgba(10,10,10,0.8)] to-transparent md:bg-none p-[40px_32px] md:p-0">
-          <p className="text-[14px] md:text-[15px] text-[rgba(255,255,255,0.7)] leading-[1.8] mb-[32px] font-[400] hero-line line-3">
-            <span>Toorak's residential streets represent Melbourne's most demanding cleaning market. Silent luxury, absolute precision, and the exact same cleaner every single visit.</span>
-          </p>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[24px] hero-line line-3">
-            <span className="w-full sm:w-auto">
-              <a href="/#booking" className="group relative overflow-hidden bg-[#ffffff] text-[#0a0a0a] rounded-full px-[32px] py-[16px] text-[13px] font-[700] tracking-[0.05em] uppercase transition-all duration-500 hover:bg-[#d97706] hover:text-[#ffffff] inline-block text-center w-full sm:w-auto">
-                <span className="relative z-10">Get an Exact Quote</span>
+            <h1 className="text-[64px] md:text-[96px] lg:text-[110px] font-[800] text-[#1a1a1a] leading-[0.9] tracking-[-0.04em] mb-[40px]">
+              <span className="block text-[#9ca3af] text-[16px] md:text-[20px] tracking-[0.3em] font-[500] uppercase mb-[24px] ml-[4px]">
+                House Cleaning
+              </span>
+              TOORAK
+            </h1>
+            
+            <p className="text-[16px] text-[#4b5563] leading-[1.9] max-w-[500px] mb-[48px] font-[400]">
+              Toorak's residential streets represent Melbourne's most demanding cleaning market. Silent luxury, absolute precision, and the exact same cleaner every single visit.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row sm:items-center gap-[32px]">
+              <a href="/#booking" className="group relative bg-[#1a1a1a] text-[#ffffff] px-[40px] py-[18px] text-[13px] font-[600] tracking-[0.1em] uppercase overflow-hidden hover:bg-[#d97706] transition-colors duration-500 inline-flex items-center justify-center">
+                <span className="relative z-10 flex items-center gap-3">
+                  Exact Quote <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </span>
               </a>
-            </span>
-            <span>
-              <a href="#included" className="text-[12px] text-[#ffffff] uppercase tracking-[0.1em] border-b border-[rgba(255,255,255,0.3)] pb-1 hover:border-[#ffffff] transition-colors inline-block mt-[8px] sm:mt-0">
+              <a href="#included" className="text-[13px] text-[#1a1a1a] font-[600] tracking-[0.1em] uppercase border-b border-[#1a1a1a] pb-1 hover:text-[#d97706] hover:border-[#d97706] transition-colors inline-block w-fit">
                 View Scope
               </a>
-            </span>
+            </div>
           </div>
+
+          {/* Right Column (Image + Stats) - 5 cols */}
+          <div className="lg:col-span-5 flex flex-col relative min-h-[500px] lg:h-auto">
+            {/* Image Box */}
+            <div className="flex-1 relative bg-[#f3f4f6] overflow-hidden group">
+              <div 
+                className="absolute inset-0 bg-cover bg-center grayscale mix-blend-multiply opacity-80 scale-105 group-hover:scale-100 transition-transform duration-[2s]"
+                style={{ backgroundImage: "url('/images/housecleaning-Toorak.jpg')" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,26,0.2)] to-transparent" />
+            </div>
+            
+            {/* Stats Box (Bottom right) */}
+            <div className="grid grid-cols-2 bg-[#1a1a1a] text-[#ffffff] border-t border-[#333]">
+              <div className="p-[32px] md:p-[48px] border-r border-[#333]">
+                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">97<span className="text-[20px] text-[#d97706]">%</span></div>
+                <div className="text-[11px] text-[rgba(255,255,255,0.5)] tracking-[0.1em] uppercase">Same Cleaner</div>
+              </div>
+              <div className="p-[32px] md:p-[48px]">
+                <div className="text-[32px] md:text-[48px] font-[400] leading-none mb-2">72<span className="text-[20px] text-[#d97706]">h</span></div>
+                <div className="text-[11px] text-[rgba(255,255,255,0.5)] tracking-[0.1em] uppercase">Guarantee</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
