@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "House Cleaning Hampton │ Bayside Homes, Same Cleaner Every Visit │ Crisp Cleaning",
   description:
     "House cleaning in Hampton. Beach cottages and period homes near Hampton Street village and the foreshore. Same cleaner every visit, fixed pricing. Instant quote.",
+  robots: { index: true, follow: true },
   alternates: {
     canonical: "/house-cleaning-hampton/",
   },

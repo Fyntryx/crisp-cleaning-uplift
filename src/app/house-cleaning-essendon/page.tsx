@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "House Cleaning Essendon │ Period Homes, Same Cleaner Every Visit │ Crisp Cleaning",
   description:
     "House cleaning in Essendon. Californian bungalows and Federation homes on generous blocks near Buckley Street. Same cleaner, fixed pricing. Instant quote.",
+  robots: { index: true, follow: true },
   alternates: {
     canonical: "/house-cleaning-essendon/",
   },

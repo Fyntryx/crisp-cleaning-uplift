@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "House Cleaning Malvern │ Heritage Homes, Same Cleaner Every Visit │ Crisp Cleaning",
   description: "House cleaning in Malvern. Heritage properties near Glenferrie Road cleaned with the right products and same-cleaner consistency. Instant quote.",
+  robots: { index: true, follow: true },
   alternates: {
     canonical: "https://www.crispcleaning.com.au/house-cleaning-malvern",
   },

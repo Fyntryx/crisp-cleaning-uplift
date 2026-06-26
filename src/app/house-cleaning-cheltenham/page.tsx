@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "House Cleaning Cheltenham │ Same Cleaner Every Visit │ Crisp Cleaning",
   description: "House cleaning in Cheltenham. Established family homes across the Sandbelt corridor, same cleaner every visit, fixed pricing. Book instantly online.",
+  robots: { index: true, follow: true },
   alternates: {
     canonical: "https://www.crispcleaning.com.au/house-cleaning-cheltenham",
   },

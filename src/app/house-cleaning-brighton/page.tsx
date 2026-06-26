@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "House Cleaning Brighton | Same Cleaner Every Visit | Crisp Cleaning",
   description:
     "House cleaning in Brighton. Victorian and Edwardian homes near Dendy Street Beach and Church Street, same cleaner every visit, fixed pricing. Instant quote.",
+  robots: { index: true, follow: true },
   alternates: {
     canonical: "/house-cleaning-brighton/",
   },
