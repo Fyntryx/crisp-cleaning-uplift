@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ArrowRight, Star, CheckCircle2 } from "lucide-react";
+import React, { useEffect, useState, useRef } from "react";
+import { ChevronDown, ArrowRight, Star, CheckCircle2 } from "lucide-react";
 import FAQ from "@/components/lp/FAQ";
 
 // Example FAQ Data
 const faqData = [
   {
     question: "Do you clean heritage and contemporary homes in Toorak?",
-    answer: "Yes — both heritage Edwardian and Victorian properties and contemporary architect-designed homes in Toorak are serviced. Product selection is appropriate to each home's specific surface types.",
+    answer: "Yes - both heritage Edwardian and Victorian properties and contemporary architect-designed homes in Toorak are serviced. Product selection is appropriate to each home's specific surface types.",
   },
   {
     question: "How much does house cleaning cost in Toorak?",
-    answer: "Pricing is set by your home's actual room count and scope. Toorak's larger properties are quoted accurately for their genuine requirements — not at a standard rate. Get an exact price online.",
+    answer: "Pricing is set by your home's actual room count and scope. Toorak's larger properties are quoted accurately for their genuine requirements - not at a standard rate. Get an exact price online.",
   },
   {
     question: "Can I request a consistent cleaner familiar with my home?",
@@ -20,7 +20,7 @@ const faqData = [
   },
   {
     question: "How are products selected for premium and heritage surfaces?",
-    answer: "Our product kit is curated for surface compatibility across materials common in Toorak properties — original timber, stone, polished concrete, heritage tiles, and premium fittings. No abrasive or high-pH products on sensitive surfaces.",
+    answer: "Our product kit is curated for surface compatibility across materials common in Toorak properties - original timber, stone, polished concrete, heritage tiles, and premium fittings. No abrasive or high-pH products on sensitive surfaces.",
   },
   {
     question: "What's included in a standard clean for a larger Toorak home?",
@@ -28,615 +28,673 @@ const faqData = [
   },
   {
     question: "Can I start with a deep clean before beginning a regular service?",
-    answer: "Yes — a one-off deep clean is available to establish a high baseline standard before beginning recurring visits. Many new Toorak clients use this approach. Get a separate deep clean quote online.",
+    answer: "Yes - a one-off deep clean is available to establish a high baseline standard before beginning recurring visits. Many new Toorak clients use this approach. Get a separate deep clean quote online.",
   }
 ];
 
-const reviews = [
-  {
-    text: "Crisp's attention to detail is exceptional. They understand how to handle the original timber and marble surfaces in our home without us needing to supervise or explain.",
-    name: "Eleanor W.",
-    suburb: "Toorak"
-  },
-  {
-    text: "Having the same cleaner every fortnight makes a significant difference. They know the property perfectly and the standard has remained consistently high since the first visit.",
-    name: "Michael R.",
-    suburb: "Toorak"
-  },
-  {
-    text: "The fixed room-count pricing is transparent and the cleaning quality is the best we've experienced in Melbourne. Extremely professional service.",
-    name: "Sarah T.",
-    suburb: "Toorak"
-  }
-];
+// Simple Transparent Header for Toorak
+const ToorakHeader = () => (
+  <header className="absolute top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center text-white bg-transparent">
+    <div className="font-bold text-2xl tracking-tighter flex items-center gap-2">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 22H22L12 2Z" fill="#B8973E"/>
+      </svg>
+      crisp.
+    </div>
+    <nav className="hidden md:flex gap-8 text-[13px] font-[600] tracking-[0.1em] uppercase">
+      <a href="/" className="hover:text-[#B8973E] transition-colors">Home</a>
+      <a href="#services" className="hover:text-[#B8973E] transition-colors">Services</a>
+      <a href="/#about" className="hover:text-[#B8973E] transition-colors">About Us</a>
+      <a href="/#contact" className="hover:text-[#B8973E] transition-colors">Contact</a>
+    </nav>
+    <a href="/#booking" className="bg-[#B8973E] text-[#0A0A0A] px-6 py-2 rounded-full text-[13px] font-bold uppercase tracking-[0.05em] hover:bg-white transition-colors">
+      Login
+    </a>
+  </header>
+);
 
-const ScrollReveal = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+export default function ToorakClient() {
+  const [activePanel, setActivePanel] = useState(0);
 
+  // Intersection Observer for Timeline
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
+          entry.target.classList.add('visible');
         }
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-    if (ref.current) observer.observe(ref.current);
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div 
-      ref={ref} 
-      className={`transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
-      style={{ transitionDelay: `${delay}s` }}
-    >
-      {children}
-    </div>
-  );
-};
-
-export default function ToorakClient() {
-  const [activeReview, setActiveReview] = useState(0);
-
-  const nextReview = () => setActiveReview((prev) => (prev + 1) % reviews.length);
-  const prevReview = () => setActiveReview((prev) => (prev - 1 + reviews.length) % reviews.length);
-
-  return (
     <>
-      {/* SECTION 1 — HERO (Premium Concierge Collage V3) */}
-      <section className="bg-[#FAF9F6] min-h-[90vh] flex flex-col relative overflow-hidden border-b border-[#e5e7eb]">
-        {/* Main Container */}
-        <div className="flex-1 container mx-auto px-6 max-w-[1300px] flex flex-col lg:flex-row items-center py-[60px] lg:py-0">
-          
-          {/* Left Column (Text) */}
-          <div className="w-full lg:w-[45%] flex flex-col justify-center pr-0 lg:pr-[60px] z-20 relative">
-            
-            {/* Service Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#ffffff] border border-[#e5e7eb] px-[16px] py-[8px] rounded-full mb-[32px] w-fit shadow-sm">
-              <span className="w-[8px] h-[8px] rounded-full bg-[#FB8C42]"></span>
-              <span className="text-[12px] font-[700] text-[#4b5563] tracking-[0.1em] uppercase">Premium House Cleaning</span>
-            </div>
+      <style dangerouslySetInnerHTML={{__html: `
+        .toorak-noise::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: url('/noise.png'); /* Assuming noise.png exists, otherwise it fails gracefully */
+          opacity: 0.025;
+          pointer-events: none;
+          z-index: 0;
+        }
+        
+        @keyframes wordUp {
+          from { transform: translateY(110%); opacity: 0; }
+          to   { transform: translateY(0);    opacity: 1; }
+        }
+        .word { overflow: hidden; display: inline-block; vertical-align: top; }
+        .word span {
+          display: inline-block;
+          animation: wordUp 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+          opacity: 0;
+        }
+        
+        @keyframes fadeUp {
+          from { transform: translateY(8px); opacity: 0; }
+          to   { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes expandWidth {
+          from { width: 0; }
+          to   { width: 40px; }
+        }
 
-            <h1 className="text-[52px] md:text-[68px] lg:text-[76px] font-[800] text-[#1a1a1a] leading-[1.05] tracking-[-0.03em] mb-[32px]">
-              Premium Cleaning for <span className="text-[#FB8C42]">Toorak</span> Homes.
-            </h1>
-            
-            <p className="text-[17px] text-[#4b5563] leading-[1.8] max-w-[540px] mb-[48px] font-[500]">
-              Toorak's residential streets represent Melbourne's most demanding cleaning market. Silent luxury, absolute precision, and the exact same cleaner every single visit.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row sm:items-center gap-[24px]">
-              <a href="/#booking" className="group relative bg-[#FB8C42] text-[#ffffff] px-[36px] py-[16px] text-[14px] font-[700] tracking-[0.05em] uppercase rounded-full overflow-hidden hover:bg-[#ea6309] shadow-[0_8px_24px_rgba(251,140,66,0.25)] hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center">
-                <span className="relative z-10 flex items-center gap-2">
-                  Get an Exact Quote <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </a>
-              <div className="flex items-center gap-4 text-[13px] text-[#4b5563] font-[600] pl-2 mt-4 sm:mt-0">
-                <span className="flex items-center gap-1.5"><Star className="w-4 h-4 fill-[#FB8C42] text-[#FB8C42]" /> 4.9 Google</span>
-              </div>
+        .accordion-panel {
+          transition: width 0.6s cubic-bezier(0.22,1,0.36,1);
+        }
+        .accordion-panel.active {
+          width: 60%;
+        }
+        .accordion-panel:not(.active) {
+          width: 20%;
+        }
+        @media (max-width: 768px) {
+          .accordion-panel.active, .accordion-panel:not(.active) {
+            width: 100% !important;
+            height: auto;
+          }
+        }
+        
+        .panel-label {
+          position: absolute;
+          bottom: 40px;
+          left: 24px;
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+          font-size: 12px;
+          font-weight: 600;
+          color: rgba(255,255,255,0.35);
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          transition: opacity 0.3s;
+        }
+        .accordion-panel.active .panel-label {
+          opacity: 0;
+        }
+
+        .panel-content {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 48px;
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+          pointer-events: none;
+        }
+        .accordion-panel.active .panel-content {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+        @media (max-width: 768px) {
+          .panel-content {
+            position: relative;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+          }
+          .panel-label { display: none; }
+        }
+
+        .timeline-item {
+          opacity: 0;
+          transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .timeline-item.left-side {
+          transform: translateX(-30px);
+        }
+        .timeline-item.right-side {
+          transform: translateX(30px);
+        }
+        .timeline-item.visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        @keyframes bounce-small {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(6px); }
+        }
+        .animate-bounce-small {
+          animation: bounce-small 1.8s infinite;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation: none !important;
+            transition: none !important;
+          }
+          .word span { opacity: 1; transform: none; }
+          .timeline-item { opacity: 1; transform: none; }
+        }
+        
+        /* Override FAQ active border color for Toorak */
+        .group[open] > summary > div { border-left-color: #B8973E !important; }
+      `}} />
+
+      {/* SECTION 1 — HERO */}
+      <section className="toorak-noise relative w-full flex flex-col items-center justify-center bg-[#0A0A0A] overflow-hidden" style={{ minHeight: '100vh' }}>
+        <ToorakHeader />
+        
+        <div className="relative z-10 w-full max-w-[900px] px-[32px] text-center flex flex-col items-center justify-center pt-20">
+          
+          {/* Step 1: Reveal line */}
+          <div className="text-[15px] font-[400] text-[rgba(255,255,255,0.45)] tracking-[0.15em] uppercase opacity-0 animate-[fadeIn_0.8s_ease_0.2s_forwards]">
+            Melbourne's most demanding homes.
+          </div>
+          
+          {/* Step 2: Gold rule */}
+          <div className="w-0 h-[1px] bg-[#B8973E] my-[28px] mx-auto animate-[expandWidth_0.6s_ease_0.8s_forwards]" style={{ maxWidth: '40px' }} />
+          
+          {/* Step 3: H1 */}
+          <h1 className="text-[48px] md:text-[80px] font-[800] text-[#ffffff] leading-[1.0] tracking-[-0.04em] flex flex-col items-center">
+            <div className="flex gap-4">
+              <span className="word"><span style={{ animationDelay: '1.2s' }}>House</span></span>
+              <span className="word"><span style={{ animationDelay: '1.28s' }}>Cleaning</span></span>
             </div>
+            <div className="flex gap-4">
+              <span className="word"><span style={{ animationDelay: '1.36s', color: '#B8973E' }}>Toorak</span></span>
+            </div>
+            <div className="flex gap-4">
+              <span className="word"><span style={{ animationDelay: '1.44s' }}>Melbourne</span></span>
+            </div>
+          </h1>
+          
+          {/* Step 4: Subheading */}
+          <p className="text-[16px] text-[rgba(255,255,255,0.4)] tracking-[0.08em] mt-[28px] opacity-0 animate-[fadeIn_0.6s_ease_2.2s_forwards]">
+            Fixed pricing. Same cleaner. Heritage-safe products.
+          </p>
+          
+          {/* Step 5: CTA Row */}
+          <div className="mt-[36px] flex flex-wrap justify-center gap-[12px] opacity-0 animate-[fadeUp_0.6s_ease_2.6s_forwards]">
+            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#B8973E] transition-colors">
+              Get an Instant Quote
+            </a>
+            <a href="#included" className="border border-[rgba(255,255,255,0.2)] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
+              See what's included
+            </a>
+          </div>
+          
+          <div className="text-[12px] text-[rgba(255,255,255,0.3)] mt-[10px] opacity-0 animate-[fadeIn_0.6s_ease_2.8s_forwards]">
+            15% off your first clean. Fixed price, no surprises.
+          </div>
+          
+          <div className="flex items-center gap-[8px] sm:gap-[16px] mt-[20px] bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-[99px] px-[16px] py-[6px] text-[10px] sm:text-[12px] text-[rgba(255,255,255,0.55)] opacity-0 animate-[fadeIn_0.6s_ease_3.0s_forwards] flex-wrap justify-center">
+            <span>97% Same Cleaner</span>
+            <span className="text-[#B8973E]">·</span>
+            <span>Eco-Friendly Products</span>
+            <span className="text-[#B8973E]">·</span>
+            <span>72hr Guarantee</span>
           </div>
 
-          {/* Right Column (Collage) */}
-          <div className="w-full lg:w-[55%] mt-[60px] lg:mt-0 relative h-[500px] lg:h-[700px] flex items-center justify-center">
-            
-            {/* Main Background Image */}
-            <div className="absolute right-0 top-[50%] -translate-y-[50%] w-[90%] h-[80%] rounded-[24px] overflow-hidden shadow-2xl">
-              <div 
-                className="absolute inset-0 bg-cover bg-center hover:scale-105 transition-transform duration-[2s]"
-                style={{ backgroundImage: "url('/images/toorak_premium_hero.png')" }}
-              />
-              {/* Soft overlay to make floating elements pop */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[rgba(0,0,0,0.2)] to-transparent pointer-events-none" />
-            </div>
+        </div>
 
-            {/* Overlapping Detail Image (The "Cleaning" aspect) */}
-            <div className="absolute left-[5%] bottom-[15%] w-[220px] h-[280px] rounded-[20px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] border-[6px] border-[#FAF9F6] z-10 hidden md:block">
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/images/sparkling-clean-kitchen.webp')" }}
-              />
-            </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-[32px] left-1/2 -translate-x-1/2 flex flex-col items-center opacity-0 animate-[fadeIn_0.6s_ease_3.5s_forwards]">
+          <span className="text-[10px] tracking-[0.25em] uppercase text-[rgba(255,255,255,0.25)] mb-2">scroll</span>
+          <ChevronDown className="w-5 h-5 text-[#B8973E] animate-bounce-small" />
+        </div>
+      </section>
 
-            {/* Floating Trust Card */}
-            <div className="absolute left-[15%] lg:left-[0%] top-[25%] bg-white/95 backdrop-blur-md border border-white/50 p-[28px] rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.08)] z-20 w-[280px] hidden sm:block">
-              <div className="text-[11px] font-[800] text-[#FB8C42] tracking-[0.15em] uppercase mb-[20px]">Toorak Service Level</div>
-              <ul className="flex flex-col gap-4">
-                <li className="flex items-center gap-3 text-[14px] text-[#1a1a1a] font-[700]">
-                  <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" /> Marble & Stone Safe
-                </li>
-                <li className="flex items-center gap-3 text-[14px] text-[#1a1a1a] font-[700]">
-                  <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" /> Exact Same Cleaner
-                </li>
-                <li className="flex items-center gap-3 text-[14px] text-[#1a1a1a] font-[700]">
-                  <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" /> 72-Hour Guarantee
-                </li>
-              </ul>
-            </div>
-
+      {/* SECTION 2 — PROOF BAR */}
+      <section className="bg-[#B8973E] w-full py-[20px]">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-wrap items-center justify-center gap-[16px] sm:gap-[32px] md:gap-[64px] text-[11px] sm:text-[13px] font-[600] text-[#0A0A0A] text-center uppercase tracking-[0.1em]">
+            <span>4.9 ★ Google</span>
+            <span className="hidden sm:inline">·</span>
+            <span>97% Same Cleaner</span>
+            <span className="hidden sm:inline">·</span>
+            <span>100% Eco-Friendly</span>
+            <span className="hidden sm:inline">·</span>
+            <span>72hr Guarantee</span>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2 — PROPERTY TYPES */}
-      <section className="bg-[#ffffff] py-[100px] border-t border-[#e5e7eb]">
-        <div className="container mx-auto px-6 max-w-[1200px]">
-          <div className="text-[11px] font-[600] text-[#9ca3af] tracking-[0.2em] uppercase text-center mb-[16px]">
-            TOORAK · PROPERTY TYPES
+      {/* SECTION 3 — PAGE INTRO */}
+      <section className="bg-[#ffffff] py-[100px]">
+        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px] grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-[40px] md:gap-[80px]">
+          {/* Left col */}
+          <div className="hidden md:flex justify-end">
+            <div className="text-[72px] font-[900] text-[#f3f4f6] tracking-[-0.03em] leading-[1] select-none pointer-events-none" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }} aria-hidden="true">
+              TOORAK
+            </div>
           </div>
-          <h2 className="text-[44px] font-[700] text-[#1a1a1a] text-center max-w-[600px] mx-auto mb-[16px] leading-[1.1]">
-            Premium Home Cleaning Across Toorak
-          </h2>
-          <p className="text-[16px] text-[#6b7280] leading-[1.8] text-center max-w-[640px] mx-auto mb-[64px]">
-            Toorak's housing market has no direct equivalent in Melbourne — the suburb 
-            contains some of the largest, most ornate, and most meticulously maintained 
-            private residential properties in the country. Cleaning at this level isn't 
-            about speed or price; it's about precision, surface knowledge, and the kind 
-            of cleaner-client relationship that develops when the same professional 
-            returns repeatedly to the same home.
-          </p>
+          {/* Right col */}
+          <div>
+            <div className="text-[11px] font-[600] text-[#B8973E] tracking-[0.2em] uppercase mb-[20px]">
+              Toorak · Melbourne
+            </div>
+            <p className="text-[16px] md:text-[18px] text-[#374151] leading-[1.9] max-w-[620px]">
+              Toorak's residential streets - the private roads running off Toorak Road and Orrong Road, the tree-lined blocks around Toorak Village, and the larger properties on the suburb's eastern fringe near Fawkner Park - represent Melbourne's most demanding residential cleaning market. Large homes with multiple formal rooms, polished timber and heritage floors, premium finishes throughout, and a household demographic that notices detail quickly. Delivering a consistent, high standard across properties like these requires a cleaner who knows your home, uses the right products on the right surfaces, and produces the same result every visit without oversight. Crisp services Toorak properties with fixed, scope-based pricing, eco-friendly products appropriate for premium and heritage surfaces, and the same cleaner assigned from the first booking.
+            </p>
+            <div className="w-[48px] h-[2px] bg-[#B8973E] mt-[32px]" />
+          </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#e5e7eb]">
-            <div className="bg-[#ffffff] p-[48px_36px] hover:bg-[#fafafa] transition-colors duration-200">
-              <div className="text-[11px] font-[700] text-[#9ca3af] tracking-[0.15em] mb-[20px]">01</div>
-              <h3 className="text-[20px] font-[700] text-[#1a1a1a] leading-[1.3] mb-[16px]">
+      {/* SECTION 4 — PROPERTY TYPE HORIZONTAL ACCORDION */}
+      <section className="bg-[#0A0A0A] p-0 w-full">
+        <div className="pt-[64px] px-[24px] md:px-[48px] pb-[48px] max-w-[1200px] mx-auto">
+          <div className="text-[11px] text-[#B8973E] tracking-[0.2em] uppercase mb-[16px]">
+            Premium Home Cleaning Across Toorak
+          </div>
+          <p className="text-[16px] text-[rgba(255,255,255,0.55)] leading-[1.8] max-w-[640px]">
+            Toorak's housing market has no direct equivalent in Melbourne - the suburb contains some of the largest, most ornate, and most meticulously maintained private residential properties in the country. Cleaning at this level isn't about speed or price; it's about precision, surface knowledge, and the kind of cleaner-client relationship that develops when the same professional returns repeatedly to the same home.
+          </p>
+        </div>
+
+        <div className="flex flex-col md:flex-row w-full h-auto md:h-[520px] overflow-hidden border-t border-[rgba(255,255,255,0.06)]">
+          {/* Panel 1 */}
+          <div 
+            className={`accordion-panel relative overflow-hidden cursor-pointer border-b md:border-b-0 md:border-r border-[rgba(255,255,255,0.06)] min-h-[300px] md:min-h-0 bg-[#0f0f0f] hover:bg-[#141414] ${activePanel === 0 ? 'active' : ''}`}
+            onClick={() => setActivePanel(0)}
+          >
+            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#B8973E] font-[700]">01</div>
+            <div className="panel-label">Heritage</div>
+            
+            <div className="panel-content flex flex-col justify-end">
+              <div className="w-[32px] h-[2px] bg-[#B8973E] mb-[20px]" />
+              <div className="inline-block bg-[rgba(184,151,62,0.15)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
+                Toorak Village · Heritage
+              </div>
+              <h3 className="text-[22px] font-[700] text-[#ffffff] leading-[1.3] my-[12px]">
                 Heritage and Edwardian Homes Near Toorak Village
               </h3>
-              <p className="text-[14px] text-[#6b7280] leading-[1.8]">
-                The streets within walking distance of Toorak Village — the suburb's 
-                commercial centre on Toorak Road — contain some of Melbourne's finest 
-                Edwardian and Victorian-era private residences. Multiple formal reception 
-                rooms, original decorative ceilings, polished timber throughout, heritage 
-                fireplaces, and ornamental fittings define these properties. Crisp's 
-                product selection is specifically chosen for compatibility with period 
-                surfaces; damage to original finishes in a Toorak home is unacceptable 
-                and our product kit is built around preventing it.
+              <p className="text-[14px] text-[rgba(255,255,255,0.6)] leading-[1.75] max-w-[480px] mb-6">
+                The streets within walking distance of Toorak Village - the suburb's commercial centre on Toorak Road - contain some of Melbourne's finest Edwardian and Victorian-era private residences. Multiple formal reception rooms, original decorative ceilings, polished timber throughout, heritage fireplaces, and ornamental fittings define these properties. Crisp's product selection is specifically chosen for compatibility with period surfaces; damage to original finishes in a Toorak home is unacceptable and our product kit is built around preventing it.
               </p>
-              <div className="text-[11px] text-[#9ca3af] mt-[24px]">
-                Toorak Village · Heritage Surfaces
+              <div className="flex flex-wrap gap-2">
+                {['Heritage fireplaces', 'Original ceilings', 'Polished timber', 'Period surfaces'].map(tag => (
+                  <span key={tag} className="bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[rgba(255,255,255,0.55)]">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
+          </div>
 
-            <div className="bg-[#ffffff] p-[48px_36px] hover:bg-[#fafafa] transition-colors duration-200">
-              <div className="text-[11px] font-[700] text-[#9ca3af] tracking-[0.15em] mb-[20px]">02</div>
-              <h3 className="text-[20px] font-[700] text-[#1a1a1a] leading-[1.3] mb-[16px]">
+          {/* Panel 2 */}
+          <div 
+            className={`accordion-panel relative overflow-hidden cursor-pointer border-b md:border-b-0 md:border-r border-[rgba(255,255,255,0.06)] min-h-[300px] md:min-h-0 bg-[#0f0f0f] hover:bg-[#141414] ${activePanel === 1 ? 'active' : ''}`}
+            onClick={() => setActivePanel(1)}
+          >
+            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#B8973E] font-[700]">02</div>
+            <div className="panel-label">Contemporary</div>
+            
+            <div className="panel-content flex flex-col justify-end">
+              <div className="w-[32px] h-[2px] bg-[#B8973E] mb-[20px]" />
+              <div className="inline-block bg-[rgba(184,151,62,0.15)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
+                Architect-Designed · Contemporary
+              </div>
+              <h3 className="text-[22px] font-[700] text-[#ffffff] leading-[1.3] my-[12px]">
                 Contemporary and Architect-Designed Properties
               </h3>
-              <p className="text-[14px] text-[#6b7280] leading-[1.8]">
-                Toorak's newer properties — contemporary architect-designed homes and 
-                significant renovations — present a different surface profile to the 
-                suburb's heritage stock. Polished concrete, Italian stone benchtops, 
-                feature-tiled bathrooms, bespoke joinery, and expansive glass require 
-                an approach as precise on modern materials as on period ones. Our scope 
-                and product selection adjusts to the specific surfaces in each property.
+              <p className="text-[14px] text-[rgba(255,255,255,0.6)] leading-[1.75] max-w-[480px] mb-6">
+                Toorak's newer properties - contemporary architect-designed homes and significant renovations - present a different surface profile to the suburb's heritage stock. Polished concrete, Italian stone benchtops, feature-tiled bathrooms, bespoke joinery, and expansive glass require an approach as precise on modern materials as on period ones. Our scope and product selection adjusts to the specific surfaces in each property.
               </p>
-              <div className="text-[11px] text-[#9ca3af] mt-[24px]">
-                Contemporary · Architect-Designed
+              <div className="flex flex-wrap gap-2">
+                {['Italian stone', 'Polished concrete', 'Bespoke joinery', 'Feature tiles'].map(tag => (
+                  <span key={tag} className="bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[rgba(255,255,255,0.55)]">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
+          </div>
 
-            <div className="bg-[#ffffff] p-[48px_36px] hover:bg-[#fafafa] transition-colors duration-200">
-              <div className="text-[11px] font-[700] text-[#9ca3af] tracking-[0.15em] mb-[20px]">03</div>
-              <h3 className="text-[20px] font-[700] text-[#1a1a1a] leading-[1.3] mb-[16px]">
+          {/* Panel 3 */}
+          <div 
+            className={`accordion-panel relative overflow-hidden cursor-pointer bg-[#0f0f0f] hover:bg-[#141414] min-h-[300px] md:min-h-0 ${activePanel === 2 ? 'active' : ''}`}
+            onClick={() => setActivePanel(2)}
+          >
+            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#B8973E] font-[700]">03</div>
+            <div className="panel-label">Multi-Room</div>
+            
+            <div className="panel-content flex flex-col justify-end">
+              <div className="w-[32px] h-[2px] bg-[#B8973E] mb-[20px]" />
+              <div className="inline-block bg-[rgba(184,151,62,0.15)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
+                Private Streets · Multi-Room
+              </div>
+              <h3 className="text-[22px] font-[700] text-[#ffffff] leading-[1.3] my-[12px]">
                 Larger Multi-Room Homes on Toorak's Private Tree-Lined Streets
               </h3>
-              <p className="text-[14px] text-[#6b7280] leading-[1.8]">
-                The largest residential properties in Toorak — often six to nine rooms 
-                across multiple levels, with formal and informal living zones, multiple 
-                bathrooms, and ancillary spaces including home offices and entertaining 
-                rooms — require careful scope management at booking. Pricing is based on 
-                the rooms included in the agreed scope; the cost reflects the actual work 
-                required, not a rough estimate for a home that wasn't properly accounted for.
+              <p className="text-[14px] text-[rgba(255,255,255,0.6)] leading-[1.75] max-w-[480px] mb-6">
+                The largest residential properties in Toorak - often six to nine rooms across multiple levels, with formal and informal living zones, multiple bathrooms, and ancillary spaces including home offices and entertaining rooms - require careful scope management at booking. Pricing is based on the rooms included in the agreed scope; the cost reflects the actual work required, not a rough estimate for a home that wasn't properly accounted for.
               </p>
-              <div className="text-[11px] text-[#9ca3af] mt-[24px]">
-                Orrong Road · Fawkner Park Fringe
+              <div className="flex flex-wrap gap-2">
+                {['6–9 room homes', 'Multiple bathrooms', 'Formal zones', 'Accurate pricing'].map(tag => (
+                  <span key={tag} className="bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[rgba(255,255,255,0.55)]">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3 — WHAT'S INCLUDED */}
-      <section id="included" className="bg-[#f9fafb] py-[100px] border-t border-[#e5e7eb]">
-        <div className="container mx-auto px-6 max-w-[1200px]">
-          <div className="text-[11px] font-[600] text-[#9ca3af] tracking-[0.2em] uppercase text-center mb-[16px]">
-            SCOPE & CHECKLIST
-          </div>
-          <h2 className="text-[44px] font-[700] text-[#1a1a1a] text-center max-w-[560px] mx-auto mb-[16px] leading-[1.1]">
-            What Every Toorak Clean Includes
-          </h2>
-          <p className="text-[16px] text-[#6b7280] leading-[1.8] text-center max-w-[600px] mx-auto mb-[64px]">
-            Every Toorak clean is delivered against a fixed, documented scope. At this 
-            property tier, the checklist isn't a formality — it's the mechanism that 
-            produces a consistent result across a home where inconsistency is 
-            immediately noticeable.
+      {/* SECTION 5 — WHAT'S INCLUDED */}
+      <section className="bg-[#ffffff] py-[100px]">
+        <div className="text-center mb-[72px] px-6">
+          <div className="text-[11px] text-[#B8973E] font-[600] tracking-[0.2em] uppercase mb-[16px]">Scope & Checklist</div>
+          <h2 className="text-[40px] font-[700] text-[#0A0A0A] mb-[16px]">What Every Toorak Clean Includes</h2>
+          <p className="text-[16px] text-[#6b7280] max-w-[560px] mx-auto leading-[1.8]">
+            Every Toorak clean is delivered against a fixed, documented scope. At this property tier, the checklist isn't a formality - it's the mechanism that produces a consistent result across a home where inconsistency is immediately noticeable.
           </p>
+        </div>
 
-          <div className="flex flex-col">
-            {/* Row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] md:gap-[80px] py-[56px] border-b border-[#e5e7eb] max-w-[1100px] mx-auto items-center">
-              <div>
-                <div className="text-[11px] font-[600] text-[#9ca3af] tracking-[0.15em] uppercase mb-[16px]">
-                  Kitchen & Bathroom Detailing
-                </div>
-                <h3 className="text-[24px] font-[700] text-[#1a1a1a] mb-[16px]">
-                  Kitchen and Bathroom Detailing to a Premium Standard
-                </h3>
-                <p className="text-[15px] text-[#6b7280] leading-[1.8]">
-                  Kitchen surfaces — stone benchtops, premium appliance exteriors, rangehood, 
-                  splashback, sink, and cabinetry exteriors — are cleaned and wiped to a 
-                  premium finish on every visit. All bathrooms within scope, including 
-                  ensuites, family bathrooms, and powder rooms, are sanitised, scrubbed, and 
-                  polished. Frameless screens, stone surrounds, and feature tiles are handled 
-                  with products appropriate to their specific material.
-                </p>
-              </div>
-              <div className="border-l border-[#e5e7eb] pl-[40px]">
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Stone benchtops & appliance surfaces</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">All bathrooms including ensuites</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Powder rooms & family bathrooms</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Frameless screens & feature tiles</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Rangehood, splashback & sink</div>
+        <div className="relative max-w-[900px] mx-auto px-[24px] md:px-[48px]">
+          {/* Center Spine */}
+          <div className="absolute left-[24px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px]" style={{ background: 'linear-gradient(180deg, #B8973E 0%, rgba(184,151,62,0.2) 100%)' }} />
+
+          {/* Item 1 - Left */}
+          <div className="timeline-item left-side flex flex-col md:grid md:grid-cols-[1fr_40px_1fr] gap-6 md:gap-0 mb-[64px] items-start relative">
+            <div className="md:text-right pl-[40px] md:pl-0 pr-0 md:pr-[24px]">
+              <h3 className="text-[18px] font-[700] text-[#0A0A0A] mb-[10px]">Kitchen and Bathroom Detailing to a Premium Standard</h3>
+              <p className="text-[14px] text-[#6b7280] leading-[1.75]">
+                Kitchen surfaces - stone benchtops, premium appliance exteriors, rangehood, splashback, sink, and cabinetry exteriors - are cleaned and wiped to a premium finish on every visit. All bathrooms within scope, including ensuites, family bathrooms, and powder rooms, are sanitised, scrubbed, and polished. Frameless screens, stone surrounds, and feature tiles are handled with products appropriate to their specific material.
+              </p>
+              <div className="flex flex-wrap md:justify-end gap-[6px] mt-[14px]">
+                {['Stone benchtops', 'All bathrooms', 'Frameless screens', 'Cabinetry exteriors'].map(pill => (
+                  <span key={pill} className="bg-[#f9fafb] border border-[#e5e7eb] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#374151]">{pill}</span>
+                ))}
               </div>
             </div>
+            {/* Dot */}
+            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] rounded-full bg-[#B8973E] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(184,151,62,0.2)] mx-auto z-10" />
+            <div className="hidden md:block"></div>
+          </div>
 
-            {/* Row 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] md:gap-[80px] py-[56px] border-b border-[#e5e7eb] max-w-[1100px] mx-auto items-center">
-              <div className="order-2 md:order-1 border-l border-[#e5e7eb] pl-[40px]">
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Low-moisture mop on polished timber</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Formal reception rooms & libraries</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Mirrors, glass & accessible shelving</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Polished concrete & natural stone</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Sitting rooms & dining areas</div>
-              </div>
-              <div className="order-1 md:order-2">
-                <h3 className="text-[24px] font-[700] text-[#1a1a1a] mb-[16px]">
-                  Polished Floors, Formal Living Areas and Feature Surfaces
-                </h3>
-                <p className="text-[15px] text-[#6b7280] leading-[1.8]">
-                  Timber floors are swept and mopped with low-moisture products appropriate 
-                  for polished and heritage-grade boards. Formal reception rooms, sitting 
-                  rooms, and libraries receive the same level of attention as everyday living 
-                  spaces — surfaces dusted, mirrors and glass polished, accessible shelf areas 
-                  addressed. Feature surfaces, including polished concrete and premium natural 
-                  stone, are cleaned with material-appropriate products.
-                </p>
-              </div>
-            </div>
-
-            {/* Row 3 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] md:gap-[80px] py-[56px] border-b border-[#e5e7eb] max-w-[1100px] mx-auto items-center">
-              <div>
-                <h3 className="text-[24px] font-[700] text-[#1a1a1a] mb-[16px]">
-                  Bedrooms, Dressing Rooms and Secondary Living Spaces
-                </h3>
-                <p className="text-[15px] text-[#6b7280] leading-[1.8]">
-                  Every bedroom in scope is vacuumed or mopped, surfaces dusted, and the room 
-                  presented. Dressing rooms — standard in many Toorak homes — are included 
-                  within the agreed scope as a defined room. Secondary living spaces, home 
-                  offices, media rooms, and any additional rooms in the booking are treated 
-                  with the same systematic attention as primary rooms throughout.
-                </p>
-              </div>
-              <div className="border-l border-[#e5e7eb] pl-[40px]">
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">All bedrooms vacuumed & presented</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Dressing rooms as defined rooms</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Home offices & media rooms</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Laundry included as standard</div>
-                <div className="text-[15px] text-[#1a1a1a] py-[14px] border-b border-[#f3f4f6] font-[500]">Secondary living spaces</div>
+          {/* Item 2 - Right */}
+          <div className="timeline-item right-side flex flex-col md:grid md:grid-cols-[1fr_40px_1fr] gap-6 md:gap-0 mb-[64px] items-start relative">
+            <div className="hidden md:block"></div>
+            {/* Dot */}
+            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] rounded-full bg-[#B8973E] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(184,151,62,0.2)] mx-auto z-10" />
+            <div className="text-left pl-[40px] md:pl-[24px] pr-0">
+              <h3 className="text-[18px] font-[700] text-[#0A0A0A] mb-[10px]">Polished Floors, Formal Living Areas and Feature Surfaces</h3>
+              <p className="text-[14px] text-[#6b7280] leading-[1.75]">
+                Timber floors are swept and mopped with low-moisture products appropriate for polished and heritage-grade boards. Formal reception rooms, sitting rooms, and libraries receive the same level of attention as everyday living spaces - surfaces dusted, mirrors and glass polished, accessible shelf areas addressed. Feature surfaces, including polished concrete and premium natural stone, are cleaned with material-appropriate products.
+              </p>
+              <div className="flex flex-wrap gap-[6px] mt-[14px]">
+                {['Low-moisture on timber', 'Formal reception rooms', 'Libraries', 'Natural stone'].map(pill => (
+                  <span key={pill} className="bg-[#f9fafb] border border-[#e5e7eb] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#374151]">{pill}</span>
+                ))}
               </div>
             </div>
           </div>
+
+          {/* Item 3 - Left */}
+          <div className="timeline-item left-side flex flex-col md:grid md:grid-cols-[1fr_40px_1fr] gap-6 md:gap-0 mb-0 items-start relative">
+            <div className="md:text-right pl-[40px] md:pl-0 pr-0 md:pr-[24px]">
+              <h3 className="text-[18px] font-[700] text-[#0A0A0A] mb-[10px]">Bedrooms, Dressing Rooms and Secondary Living Spaces</h3>
+              <p className="text-[14px] text-[#6b7280] leading-[1.75]">
+                Every bedroom in scope is vacuumed or mopped, surfaces dusted, and the room presented. Dressing rooms - standard in many Toorak homes - are included within the agreed scope as a defined room. Secondary living spaces, home offices, media rooms, and any additional rooms in the booking are treated with the same systematic attention as primary rooms throughout.
+              </p>
+              <div className="flex flex-wrap md:justify-end gap-[6px] mt-[14px]">
+                {['All bedrooms', 'Dressing rooms', 'Home offices', 'Media rooms'].map(pill => (
+                  <span key={pill} className="bg-[#f9fafb] border border-[#e5e7eb] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#374151]">{pill}</span>
+                ))}
+              </div>
+            </div>
+            {/* Dot */}
+            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] rounded-full bg-[#B8973E] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(184,151,62,0.2)] mx-auto z-10" />
+            <div className="hidden md:block"></div>
+          </div>
+
         </div>
       </section>
 
-      {/* SECTION 4 — LARGE TYPOGRAPHIC STAT ROW */}
-      <section className="bg-[#ffffff] py-[80px] border-t border-b border-[#e5e7eb]">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#e5e7eb]">
-            <div className="p-[48px_32px] flex flex-col items-center justify-center text-center">
-              <div className="text-[56px] font-[900] text-[#1a1a1a] tracking-[-0.03em] leading-none">97%</div>
-              <div className="text-[13px] text-[#6b7280] mt-[8px]">Same cleaner</div>
-              <div className="text-[13px] text-[#9ca3af]">every visit</div>
-            </div>
-            <div className="p-[48px_32px] flex flex-col items-center justify-center text-center">
-              <div className="text-[56px] font-[900] text-[#1a1a1a] tracking-[-0.03em] leading-none">100%</div>
-              <div className="text-[13px] text-[#6b7280] mt-[8px]">Eco-friendly</div>
-              <div className="text-[13px] text-[#9ca3af]">products</div>
-            </div>
-            <div className="p-[48px_32px] flex flex-col items-center justify-center text-center">
-              <div className="text-[56px] font-[900] text-[#1a1a1a] tracking-[-0.03em] leading-none">72hr</div>
-              <div className="text-[13px] text-[#6b7280] mt-[8px]">Re-clean</div>
-              <div className="text-[13px] text-[#9ca3af]">guarantee</div>
-            </div>
-            <div className="p-[48px_32px] flex flex-col items-center justify-center text-center">
-              <div className="text-[56px] font-[900] text-[#1a1a1a] tracking-[-0.03em] leading-none">Fixed</div>
-              <div className="text-[13px] text-[#6b7280] mt-[8px]">Pricing</div>
-              <div className="text-[13px] text-[#9ca3af]">always</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5 — WHY CRISP */}
-      <section className="bg-[#ffffff] py-[100px] border-t border-[#e5e7eb]">
-        <div className="container mx-auto px-6 max-w-[1200px]">
-          <div className="text-[11px] font-[600] text-[#9ca3af] tracking-[0.2em] uppercase mb-[16px]">
-            THE CRISP DIFFERENCE
-          </div>
-          <h2 className="text-[44px] font-[700] text-[#1a1a1a] max-w-[560px] leading-[1.1] mb-[24px]">
-            Why Toorak Homeowners Choose Crisp
-          </h2>
-          <p className="text-[16px] text-[#6b7280] leading-[1.8] max-w-[600px] mb-[64px]">
-            Toorak's cleaning keyword carries a high competition index at a meaningful 
-            search volume. The market is contested and the expected service standard is 
-            the highest of any suburb in the portfolio. Crisp's advantage in Toorak is 
-            operational — not a promotional headline.
+      {/* SECTION 6 — WHY CRISP */}
+      <section className="bg-[#0A0A0A] p-0">
+        <div className="pt-[80px] px-[24px] md:px-[48px] pb-0">
+          <div className="text-[11px] text-[#B8973E] tracking-[0.2em] uppercase mb-[16px]">The Crisp Difference</div>
+          <h2 className="text-[40px] font-[700] text-[#ffffff] mb-[12px]">Why Toorak Homeowners Choose Crisp</h2>
+          <p className="text-[16px] text-[rgba(255,255,255,0.5)] max-w-[560px] leading-[1.8] mb-[64px] mt-[12px]">
+            Toorak's cleaning keyword carries a high competition index at a meaningful search volume. The market is contested and the expected service standard is the highest of any suburb in the portfolio. Crisp's advantage in Toorak is operational - not a promotional headline.
           </p>
-
-          <div className="max-w-[800px] mx-auto flex flex-col">
-            <div className="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-[20px] md:gap-[32px] py-[48px] border-b border-[#e5e7eb]">
-              <div className="text-[48px] md:text-[72px] font-[900] text-[#f3f4f6] leading-none select-none">01</div>
-              <div>
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[12px] leading-[1.3]">
-                  Same Cleaner Every Visit — Discretion and Consistency as Standard
-                </h3>
-                <p className="text-[15px] text-[#6b7280] leading-[1.8]">
-                  Your Toorak cleaner is assigned at the first booking and returns on every 
-                  scheduled visit. At a property level where familiarity with your home's 
-                  specific requirements, access arrangements, and preferences matters 
-                  significantly, the same professional every time isn't optional — it's a 
-                  baseline requirement. Our 97% same-cleaner continuity rate is the 
-                  operational commitment that makes this consistent rather than aspirational.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-[20px] md:gap-[32px] py-[48px] border-b border-[#e5e7eb]">
-              <div className="text-[48px] md:text-[72px] font-[900] text-[#f3f4f6] leading-none select-none">02</div>
-              <div>
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[12px] leading-[1.3]">
-                  Fixed Pricing for Larger, More Complex Home Configurations
-                </h3>
-                <p className="text-[15px] text-[#6b7280] leading-[1.8]">
-                  A six-room Toorak home with three bathrooms and two formal reception rooms 
-                  requires a pricing model that accounts for its genuine scope. Our fixed, 
-                  room-count pricing provides an accurate, confirmed cost before any cleaner 
-                  arrives — not a per-hour estimate that grows as the home turns out to be 
-                  larger or more detailed than assumed.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-[20px] md:gap-[32px] py-[48px] border-b border-[#e5e7eb]">
-              <div className="text-[48px] md:text-[72px] font-[900] text-[#f3f4f6] leading-none select-none">03</div>
-              <div>
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[12px] leading-[1.3]">
-                  Eco-Friendly Products Selected for Premium and Heritage Surfaces
-                </h3>
-                <p className="text-[15px] text-[#6b7280] leading-[1.8]">
-                  Premium and heritage surfaces in Toorak properties — polished concrete, 
-                  Italian stone, original timber, heritage tiles, and bespoke joinery — are 
-                  sensitive to inappropriate product choices. Our eco-friendly product kit is 
-                  curated for surface compatibility across all material types common in this 
-                  suburb, cleaning effectively without compromising the surfaces through 
-                  repeated inappropriate treatment.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-[20px] md:gap-[32px] py-[48px]">
-              <div className="text-[48px] md:text-[72px] font-[900] text-[#f3f4f6] leading-none select-none">04</div>
-              <div>
-                <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[12px] leading-[1.3]">
-                  Satisfaction Guarantee on Every Clean
-                </h3>
-                <p className="text-[15px] text-[#6b7280] leading-[1.8]">
-                  Every Crisp clean carries a 72-hour re-clean guarantee — if anything 
-                  doesn't meet your standard, we return to address it at no additional charge. 
-                  At a premium property level, this guarantee is the minimum expression of 
-                  what the service standard should be. Crisp stands behind it from the first 
-                  visit and across every subsequent booking without exception.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
 
-      {/* SECTION 6 — PRICING */}
-      <section className="bg-[#f9fafb] py-[100px] border-t border-[#e5e7eb]">
-        <div className="container mx-auto px-6 md:px-10 max-w-5xl">
-          <div className="text-center mb-16">
-            <div className="text-[11px] font-[600] text-[#9ca3af] tracking-[0.2em] uppercase block mb-3">
-              TRANSPARENT PRICING
+        <div className="w-full border-t border-[rgba(255,255,255,0.06)] flex flex-col">
+          {/* Block 01 */}
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+              01
             </div>
-            <h2 className="text-[32px] md:text-[44px] font-[700] text-[#1a1a1a] mb-4 leading-[1.1]">
-              Toorak House Cleaning Prices
-            </h2>
-            <p className="text-[16px] text-[#6b7280] max-w-[600px] mx-auto">
-              Fixed pricing based on your home's actual room count. Confirmed before any 
-              cleaner arrives. No hourly estimates, no surprise charges.
-            </p>
+            <div>
+              <h3 className="text-[20px] font-[700] text-[#ffffff] mb-[12px]">Same Cleaner Every Visit - Discretion and Consistency as Standard</h3>
+              <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.75]">
+                Your Toorak cleaner is assigned at the first booking and returns on every scheduled visit. At a property level where familiarity with your home's specific requirements, access arrangements, and preferences matters significantly, the same professional every time isn't optional - it's a baseline requirement. Our 97% same-cleaner continuity rate is the operational commitment that makes this consistent rather than aspirational.
+              </p>
+            </div>
+            <div className="md:text-right md:justify-self-end w-full md:w-auto">
+              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+                97% same-cleaner rate
+              </span>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-            <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[24px] p-8 shadow-sm">
-              <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[#374151] mb-3">Regular clean</p>
-              <div className="mb-6 pb-6 border-b border-[#f3f4f6]">
-                <span className="text-[14px] text-[#6b7280] font-[500]">From </span>
-                <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none">$180</span>
-              </div>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> Up to 3 bed
-                </li>
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> All bathrooms
-                </li>
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> Eco products included
-                </li>
-              </ul>
+          {/* Block 02 */}
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+              02
             </div>
-
-            <div className="bg-[#ffffff] rounded-[24px] p-8 shadow-[0_20px_40px_rgba(0,0,0,0.08)] scale-100 md:scale-[1.04] border border-[#e5e7eb] relative z-10">
-              <div className="absolute top-4 right-4 bg-[#f3f4f6] text-[#374151] text-[10px] font-[800] uppercase tracking-wider px-3 py-1.5 rounded-full">
-                Most popular in Toorak
-              </div>
-              <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[#1a1a1a] mb-3">Deep clean</p>
-              <div className="mb-6 pb-6 border-b border-[#f3f4f6]">
-                <span className="text-[14px] text-[#6b7280] font-[500]">From </span>
-                <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none">$320</span>
-              </div>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> Full property scope
-                </li>
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> Oven & inside cabinets
-                </li>
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> Grout & hard-to-reach areas
-                </li>
-              </ul>
+            <div>
+              <h3 className="text-[20px] font-[700] text-[#ffffff] mb-[12px]">Fixed Pricing for Larger, More Complex Home Configurations</h3>
+              <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.75]">
+                A six-room Toorak home with three bathrooms and two formal reception rooms requires a pricing model that accounts for its genuine scope. Our fixed, room-count pricing provides an accurate, confirmed cost before any cleaner arrives - not a per-hour estimate that grows as the home turns out to be larger or more detailed than assumed.
+              </p>
             </div>
+            <div className="md:text-right md:justify-self-end w-full md:w-auto">
+              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+                Fixed pricing always
+              </span>
+            </div>
+          </div>
 
-            <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[24px] p-8 shadow-sm">
-              <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[#374151] mb-3">End of lease</p>
-              <div className="mb-6 pb-6 border-b border-[#f3f4f6]">
-                <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none text-[28px] mt-1 block">Fixed quote</span>
-              </div>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> Bond-back standard
-                </li>
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> All rooms & surfaces
-                </li>
-                <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]">
-                  <span className="text-[#1a1a1a] font-bold">✓</span> Inspection ready
-                </li>
-              </ul>
+          {/* Block 03 */}
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+              03
+            </div>
+            <div>
+              <h3 className="text-[20px] font-[700] text-[#ffffff] mb-[12px]">Eco-Friendly Products Selected for Premium and Heritage Surfaces</h3>
+              <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.75]">
+                Premium and heritage surfaces in Toorak properties - polished concrete, Italian stone, original timber, heritage tiles, and bespoke joinery - are sensitive to inappropriate product choices. Our eco-friendly product kit is curated for surface compatibility across all material types common in this suburb, cleaning effectively without compromising the surfaces through repeated inappropriate treatment.
+              </p>
+            </div>
+            <div className="md:text-right md:justify-self-end w-full md:w-auto">
+              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+                100% eco-friendly
+              </span>
+            </div>
+          </div>
+
+          {/* Block 04 */}
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+              04
+            </div>
+            <div>
+              <h3 className="text-[20px] font-[700] text-[#ffffff] mb-[12px]">Satisfaction Guarantee on Every Clean</h3>
+              <p className="text-[14px] text-[rgba(255,255,255,0.55)] leading-[1.75]">
+                Every Crisp clean carries a 72-hour re-clean guarantee - if anything doesn't meet your standard, we return to address it at no additional charge. At a premium property level, this guarantee is the minimum expression of what the service standard should be. Crisp stands behind it from the first visit and across every subsequent booking without exception.
+              </p>
+            </div>
+            <div className="md:text-right md:justify-self-end w-full md:w-auto">
+              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+                72hr re-clean
+              </span>
             </div>
           </div>
         </div>
       </section>
 
       {/* SECTION 7 — TESTIMONIALS */}
-      <section className="bg-[#ffffff] py-[100px] border-t border-[#e5e7eb]">
-        <div className="container mx-auto px-6">
-          <div className="text-[11px] font-[600] text-[#9ca3af] tracking-[0.2em] uppercase text-center mb-[16px]">
-            CLIENT STORIES
+      <section className="bg-[#ffffff] py-[100px]">
+        <div className="max-w-[800px] mx-auto px-[24px] md:px-[48px] text-center">
+          <span className="text-[140px] text-[#B8973E] opacity-[0.15] leading-[0.7] block mb-[32px] font-serif" style={{ fontFamily: 'Georgia, serif' }}>"</span>
+          <p className="text-[28px] font-[400] text-[#0A0A0A] leading-[1.6] italic">
+            "We have a large Edwardian home in Toorak and finding a cleaner who understands how to treat the original floorboards and leadlight windows was difficult. Crisp has been fantastic. Same cleaner every week, highly professional, and they take genuine care of the property."
+          </p>
+          <div className="flex flex-col items-center mt-[40px]">
+            <div className="w-[48px] h-[48px] bg-[#fef3c7] text-[#92400e] rounded-full flex items-center justify-center font-bold text-[18px] mb-4">
+              EM
+            </div>
+            <div className="text-[15px] font-[600] text-[#0A0A0A]">Eleanor M.</div>
+            <div className="text-[13px] text-[#9ca3af] mb-2">Toorak</div>
+            <div className="text-[#B8973E] tracking-widest text-[14px]">★★★★★</div>
           </div>
-          <h2 className="text-[44px] font-[700] text-[#1a1a1a] text-center max-w-[600px] mx-auto leading-[1.1]">
-            What Toorak Homeowners Say
-          </h2>
           
-          <div className="max-w-[760px] mx-auto mt-[48px] text-center relative">
-            <div className="text-[100px] text-[#f3f4f6] leading-[0.8] font-serif mb-[24px]">"</div>
-            <div className="h-[200px] md:h-[160px] relative flex justify-center w-full">
-              {reviews.map((review, i) => (
-                <div 
-                  key={i} 
-                  className={`absolute w-full transition-opacity duration-300 ease-in-out ${i === activeReview ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
-                >
-                  <p className="text-[20px] md:text-[22px] font-[400] text-[#1a1a1a] leading-[1.7] italic">
-                    {review.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-            
-            <div className="mt-[16px] flex flex-col items-center">
-              <div className="text-[15px] font-[600] text-[#1a1a1a] mb-[8px]">
-                {reviews[activeReview].name}, {reviews[activeReview].suburb}
-              </div>
-              <div className="flex gap-[4px] mb-[32px]">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-[16px] h-[16px] fill-[#FB8C42] text-[#FB8C42]" />
-                ))}
-              </div>
-              
-              <div className="flex gap-[12px] justify-center mb-[40px]">
-                <button 
-                  onClick={prevReview}
-                  className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#6b7280] hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-colors"
-                  aria-label="Previous review"
-                >
-                  <ArrowRight className="w-[16px] h-[16px] rotate-180" />
-                </button>
-                <button 
-                  onClick={nextReview}
-                  className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#6b7280] hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-colors"
-                  aria-label="Next review"
-                >
-                  <ArrowRight className="w-[16px] h-[16px]" />
-                </button>
-              </div>
+          <div className="flex justify-center gap-4 mt-8">
+            <button className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors">
+              &larr;
+            </button>
+            <button className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors">
+              &rarr;
+            </button>
+          </div>
 
-              <div className="flex items-center justify-center gap-[8px] text-[14px] text-[#6b7280]">
-                <div className="flex gap-[2px]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-[14px] h-[14px] fill-[#FB8C42] text-[#FB8C42]" />
-                  ))}
-                </div>
-                Rated 4.9 on Google
-              </div>
-            </div>
+          <div className="text-[14px] text-[#6b7280] mt-[48px]">
+            ★★★★★ Rated 4.9 on Google
           </div>
         </div>
       </section>
 
-      {/* SECTION 8 — FAQ */}
-      <section className="bg-[#f9fafb] py-[100px] border-t border-[#e5e7eb]">
+      {/* SECTION 8 — PRICING */}
+      <section className="bg-[#fafafa] py-[100px]">
+        <div className="text-center mb-[64px] px-6">
+          <div className="text-[11px] text-[#B8973E] font-[600] tracking-[0.2em] uppercase mb-[16px]">Transparent Pricing</div>
+          <h2 className="text-[40px] font-[700] text-[#0A0A0A] mb-[16px]">Toorak House Cleaning Prices</h2>
+          <p className="text-[16px] text-[#6b7280] max-w-[560px] mx-auto">
+            Fixed pricing based on your room count. No hourly estimates, no surprise charges.
+          </p>
+        </div>
+
+        <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Card 1 */}
+          <div className="bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-sm flex flex-col">
+            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Regular clean</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $180</div>
+            <ul className="space-y-4 mb-8 flex-1">
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Up to 3 bed</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> All bathrooms</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Eco products included</li>
+            </ul>
+            <a href="/#booking" className="block text-center w-full py-3 rounded-full border border-[#0A0A0A] text-[#0A0A0A] font-[600] text-[14px] hover:bg-[#0A0A0A] hover:text-white transition-colors">
+              Book Regular
+            </a>
+          </div>
+
+          {/* Card 2 - Featured */}
+          <div className="bg-white rounded-[24px] p-8 shadow-xl flex flex-col relative border-2 border-[#B8973E] transform scale-100 md:scale-[1.04] z-10">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[rgba(184,151,62,0.1)] text-[#B8973E] border border-[rgba(184,151,62,0.3)] rounded-full px-4 py-1 text-[12px] font-bold uppercase tracking-wider whitespace-nowrap">
+              Most popular in Toorak
+            </div>
+            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2 mt-4">Deep clean</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $320</div>
+            <ul className="space-y-4 mb-8 flex-1">
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Full property scope</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Oven & inside cabinets</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Grout & hard-to-reach areas</li>
+            </ul>
+            <a href="/#booking" className="block text-center w-full py-3 rounded-full bg-[#d97706] text-white font-[600] text-[14px] hover:bg-[#B8973E] transition-colors">
+              Book Deep Clean
+            </a>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-sm flex flex-col">
+            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">End of lease</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">Fixed quote</div>
+            <ul className="space-y-4 mb-8 flex-1">
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Bond-back standard</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> All rooms & surfaces</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Inspection ready</li>
+            </ul>
+            <a href="/#booking" className="block text-center w-full py-3 rounded-full border border-[#0A0A0A] text-[#0A0A0A] font-[600] text-[14px] hover:bg-[#0A0A0A] hover:text-white transition-colors">
+              Get Fixed Quote
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9 — FAQ */}
+      <section className="bg-[#ffffff] py-[100px]">
         <FAQ data={faqData} title="Frequently Asked Questions" />
       </section>
 
-      {/* SECTION 9 — FINAL CTA */}
-      <section className="bg-[#1a1a1a] py-[100px] px-[32px] text-center text-[#ffffff]">
-        <div className="container mx-auto max-w-[800px]">
-          <div className="text-[11px] font-[600] text-[#FB8C42] tracking-[0.2em] uppercase mb-[24px]">
-            READY TO BOOK
-          </div>
-          <h2 className="text-[40px] md:text-[56px] font-[800] text-[#ffffff] leading-[1.05] mb-[16px]">
-            Book a Cleaner in Toorak
-          </h2>
-          <p className="text-[16px] text-[rgba(255,255,255,0.6)] max-w-[460px] mx-auto mb-[12px] leading-[1.6]">
-            Book a Toorak house cleaner — same professional every visit, fixed pricing 
-            for your home's actual scope, 72-hour guarantee on every clean.
-          </p>
-          <div className="text-[#FB8C42] font-[600] mb-[36px]">
-            15% off your first clean.
+      {/* SECTION 10 — FINAL CTA */}
+      <section className="toorak-noise relative bg-[#0A0A0A] py-[100px] px-[32px] text-center overflow-hidden">
+        <div className="relative z-10 max-w-[600px] mx-auto flex flex-col items-center">
+          <div className="w-[40px] h-[1px] bg-[#B8973E] mb-[32px]" />
+          
+          <div className="text-[11px] text-[#B8973E] tracking-[0.2em] uppercase mb-[16px]">
+            Ready to Book
           </div>
           
-          <div className="flex flex-col md:flex-row justify-center gap-[12px]">
-            <a href="/#booking" className="bg-[#FB8C42] text-[#ffffff] rounded-full px-[36px] py-[15px] text-[15px] font-[600] shadow-[0_8px_28px_rgba(217,119,6,0.20)] hover:bg-[#ea6309] hover:-translate-y-[1px] transition-all duration-200">
+          <h2 className="text-[52px] font-[800] text-[#ffffff] leading-[1.1] mb-[16px]">
+            Book a Cleaner in <span className="text-[#B8973E]">Toorak</span>
+          </h2>
+          
+          <p className="text-[16px] text-[rgba(255,255,255,0.55)] max-w-[460px] mx-auto mt-[16px] mb-[8px]">
+            Book a Toorak house cleaner - same professional every visit, fixed pricing for your home's actual scope, 72-hour guarantee on every clean.
+          </p>
+          
+          <span className="text-[#d97706] font-[600] text-[14px] block mb-[32px]">
+            15% off your first clean.
+          </span>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px] mb-[48px]">
+            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#B8973E] transition-colors w-full sm:w-auto">
               Get an Instant Quote
             </a>
-            <a href="tel:0451423786" className="border border-[rgba(255,255,255,0.2)] text-[#ffffff] bg-transparent rounded-full px-[36px] py-[15px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
+            <a href="tel:0451423786" className="border border-[rgba(255,255,255,0.15)] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors w-full sm:w-auto">
               Call us: 0451 423 786
             </a>
           </div>
-
-          <div className="w-[40px] h-[1px] bg-[#FB8C42] mx-auto mt-[48px] mb-[28px]" />
-
-          <div className="text-[11px] text-[rgba(255,255,255,0.3)] tracking-[0.15em] mb-[14px]">
-            NEARBY AREAS WE ALSO SERVICE
+          
+          <div className="w-[40px] h-[1px] bg-[#B8973E] mb-[28px]" />
+          
+          <div className="text-[11px] text-[rgba(255,255,255,0.25)] tracking-[0.15em] uppercase mb-[14px]">
+            Nearby Areas We Also Service
           </div>
-          <div className="flex flex-wrap justify-center gap-[8px]">
-            {['South Yarra', 'Malvern', 'Hawthorn', 'Armadale', 'Glen Iris'].map((suburb) => (
-              <a 
-                key={suburb} 
-                href={`/house-cleaning-${suburb.toLowerCase().replace(' ', '-')}`}
-                className="group relative px-[16px] py-[6px] text-[12px] font-[500] text-[rgba(255,255,255,0.6)] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] rounded-full hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors flex items-center overflow-hidden"
-              >
-                <span className="transition-transform duration-200 group-hover:-translate-x-1">{suburb}</span>
-                <ArrowRight className="w-3 h-3 absolute right-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+          
+          <div className="flex flex-wrap justify-center gap-3">
+            {['South Yarra', 'Malvern', 'Hawthorn', 'Armadale', 'Glen Iris'].map(area => (
+              <a key={area} href={`/house-cleaning-${area.toLowerCase().replace(' ', '-')}`} className="group bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[rgba(255,255,255,0.5)] rounded-[99px] px-[16px] py-[6px] text-[12px] hover:border-[#B8973E] hover:text-[#B8973E] transition-colors flex items-center gap-2">
+                {area}
+                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             ))}
           </div>
