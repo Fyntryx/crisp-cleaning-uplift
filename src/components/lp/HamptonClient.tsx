@@ -221,20 +221,26 @@ export default function HamptonClient({
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col items-start -mr-[40px]"
+                className="w-full relative"
               >
-                <div 
-                  className="text-[180px] font-[800] leading-[0.8] tracking-[-6px]"
-                  style={{ color: '#FB8C42', opacity: 0.12 }}
-                  aria-hidden="true"
-                >
-                  97%
+                <div className="w-full h-[520px] rounded-[24px] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.10)] relative">
+                  <Image 
+                    src="/images/housecleaning-hampton.jpg"
+                    alt="Clean coastal home interior in Hampton Melbourne"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                  />
                 </div>
-                <div className="flex items-start gap-2 mt-2 pl-4">
-                  <ArrowRight className="w-4 h-4 text-[#FB8C42] shrink-0 mt-0.5" />
-                  <p className="text-[14px] text-gray-500 max-w-[200px] leading-snug font-medium text-left">
-                    of Hampton clients get<br/>the same cleaner every visit
-                  </p>
+                
+                <div className="absolute -bottom-[20px] -left-[20px] bg-[#ffffff] rounded-[16px] px-[20px] py-[16px] shadow-[0_8px_32px_rgba(0,0,0,0.10)] flex items-center gap-[12px] z-20">
+                  <div className="w-[40px] h-[40px] rounded-full bg-[#fff7ed] flex items-center justify-center shrink-0">
+                    <svg className="w-[18px] h-[18px] text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-[700] text-[#1a1a1a] leading-none">Hampton Beach</span>
+                    <span className="text-[11px] text-[#9ca3af] mt-[2px] leading-none">Foreshore · Bayside</span>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -515,20 +521,20 @@ export default function HamptonClient({
               }
             ].map((card, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="relative bg-white border border-gray-200 rounded-[16px] px-8 pb-8 shadow-sm hover:border-[#FB8C42] transition-colors duration-200 group h-full">
-                  <div className="absolute top-0 left-8 flex items-baseline gap-2 bg-[#F7F9FB] px-2" style={{ marginTop: '-24px' }}>
-                    <span className="text-[28px] font-extrabold text-[#FB8C42] leading-none">{card.stat}</span>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 leading-none">{card.label}</span>
-                  </div>
-                  <div className="flex items-center gap-4 mb-4 mt-6">
-                    <div className="w-10 h-10 rounded-xl bg-[#F0F7FF] flex items-center justify-center shrink-0 text-[#FB8C42]">
+                <div className="relative bg-white border border-gray-200 rounded-[24px] p-8 shadow-sm hover:border-[#FB8C42]/50 transition-colors duration-200 group h-full flex flex-col">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-[48px] h-[48px] rounded-xl bg-[#F0F7FF] flex items-center justify-center shrink-0 text-[#FB8C42]">
                       {card.icon}
                     </div>
-                    <h3 className="text-[17px] font-bold text-gray-900 leading-snug">
-                      {card.title}
-                    </h3>
+                    <div className="flex items-baseline gap-1.5 bg-[#fff7ed] px-3 py-1.5 rounded-full">
+                      <span className="text-[14px] font-extrabold text-[#d97706] leading-none">{card.stat}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#d97706] leading-none">{card.label}</span>
+                    </div>
                   </div>
-                  <p className="text-[15px] text-gray-600 leading-relaxed">
+                  <h3 className="text-[18px] font-bold text-gray-900 mb-3 leading-snug">
+                    {card.title}
+                  </h3>
+                  <p className="text-[15px] text-gray-600 leading-relaxed flex-grow">
                     {card.body}
                   </p>
                 </div>
@@ -559,16 +565,19 @@ export default function HamptonClient({
             {/* Regular Clean */}
             <ScrollReveal delay={0}>
               <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
-                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">Regular clean</p>
+                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">Standard</p>
                 <div className="mb-6 pb-6 border-b border-gray-100">
                   <span className="text-[14px] text-gray-500 font-medium">From </span>
-                  <span className="text-[40px] font-extrabold text-gray-900 leading-none">$180</span>
+                  <span className="text-[40px] font-extrabold text-gray-900 leading-none">$145</span>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
 
@@ -588,18 +597,18 @@ export default function HamptonClient({
                 >
                   Most popular in Hampton
                 </div>
-                <p className="text-[12px] font-black uppercase tracking-widest text-white/70 mb-3">Deep clean</p>
+                <p className="text-[12px] font-black uppercase tracking-widest text-white/70 mb-3">Deep</p>
                 <div className="mb-6 pb-6 border-b border-white/10">
                   <span className="text-[14px] text-white/60 font-medium">From </span>
-                  <span className="text-[40px] font-extrabold text-white leading-none">$320</span>
+                  <span className="text-[40px] font-extrabold text-white leading-none">$235</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[14px] flex items-center justify-center gap-2 transition-colors">
-                  Get a quote <ArrowRight className="w-4 h-4" />
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
                 </a>
               </div>
             </ScrollReveal>
@@ -607,15 +616,18 @@ export default function HamptonClient({
             {/* End of Lease */}
             <ScrollReveal delay={0.2}>
               <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
-                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">End of lease</p>
+                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">Vacate</p>
                 <div className="mb-6 pb-6 border-b border-gray-100">
-                  <span className="text-[32px] font-extrabold text-gray-900 leading-tight block">Fixed quote</span>
+                  <span className="text-[32px] font-extrabold text-gray-900 leading-tight block">From $380</span>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
           </div>

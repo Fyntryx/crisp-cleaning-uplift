@@ -612,16 +612,19 @@ export default function CheltenhamClient({
             {/* Regular Clean */}
             <ScrollReveal delay={0}>
               <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
-                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">Regular clean</p>
+                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">Standard</p>
                 <div className="mb-6 pb-6 border-b border-gray-100">
                   <span className="text-[14px] text-gray-500 font-medium">From </span>
-                  <span className="text-[40px] font-extrabold text-gray-900 leading-none">$180</span>
+                  <span className="text-[40px] font-extrabold text-gray-900 leading-none">$145</span>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
 
@@ -641,18 +644,18 @@ export default function CheltenhamClient({
                 >
                   Most popular in Cheltenham
                 </div>
-                <p className="text-[12px] font-black uppercase tracking-widest text-white/70 mb-3">Deep clean</p>
+                <p className="text-[12px] font-black uppercase tracking-widest text-white/70 mb-3">Deep</p>
                 <div className="mb-6 pb-6 border-b border-white/10">
                   <span className="text-[14px] text-white/60 font-medium">From </span>
-                  <span className="text-[40px] font-extrabold text-white leading-none">$320</span>
+                  <span className="text-[40px] font-extrabold text-white leading-none">$235</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="w-full py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[14px] flex items-center justify-center gap-2 transition-colors">
-                  Get a quote <ArrowRight className="w-4 h-4" />
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
                 </a>
               </div>
             </ScrollReveal>
@@ -660,15 +663,18 @@ export default function CheltenhamClient({
             {/* End of Lease */}
             <ScrollReveal delay={0.2}>
               <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
-                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">End of lease</p>
+                <p className="text-[12px] font-black uppercase tracking-widest text-gray-800 mb-3">Vacate</p>
                 <div className="mb-6 pb-6 border-b border-gray-100">
-                  <span className="text-[32px] font-extrabold text-gray-900 leading-tight block">Fixed quote</span>
+                  <span className="text-[32px] font-extrabold text-gray-900 leading-tight block">From $380</span>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
           </div>

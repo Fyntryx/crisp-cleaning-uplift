@@ -635,16 +635,16 @@ export default function ToorakClient() {
         <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
           <div className="bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-sm flex flex-col">
-            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Regular clean</h3>
-            <div className="text-[#6b7280] text-[14px] mb-6">From $180</div>
+            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Standard</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $145</div>
             <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Up to 3 bed</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> All bathrooms</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Eco products included</li>
             </ul>
-            <a href="/#booking" className="block text-center w-full py-3 rounded-full border border-[#0A0A0A] text-[#0A0A0A] font-[600] text-[14px] hover:bg-[#0A0A0A] hover:text-white transition-colors">
-              Book Regular
-            </a>
+            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
           </div>
 
           {/* Card 2 - Featured */}
@@ -652,30 +652,30 @@ export default function ToorakClient() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[rgba(184,151,62,0.1)] text-[#B8973E] border border-[rgba(184,151,62,0.3)] rounded-full px-4 py-1 text-[12px] font-bold uppercase tracking-wider whitespace-nowrap">
               Most popular in Toorak
             </div>
-            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2 mt-4">Deep clean</h3>
-            <div className="text-[#6b7280] text-[14px] mb-6">From $320</div>
+            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2 mt-4">Deep</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $235</div>
             <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Full property scope</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Oven & inside cabinets</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Grout & hard-to-reach areas</li>
             </ul>
-            <a href="/#booking" className="block text-center w-full py-3 rounded-full bg-[#d97706] text-white font-[600] text-[14px] hover:bg-[#B8973E] transition-colors">
-              Book Deep Clean
-            </a>
+            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
           </div>
 
           {/* Card 3 */}
           <div className="bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-sm flex flex-col">
-            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">End of lease</h3>
-            <div className="text-[#6b7280] text-[14px] mb-6">Fixed quote</div>
+            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Vacate</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $380</div>
             <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Bond-back standard</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> All rooms & surfaces</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Inspection ready</li>
             </ul>
-            <a href="/#booking" className="block text-center w-full py-3 rounded-full border border-[#0A0A0A] text-[#0A0A0A] font-[600] text-[14px] hover:bg-[#0A0A0A] hover:text-white transition-colors">
-              Get Fixed Quote
-            </a>
+            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
           </div>
         </div>
       </section>

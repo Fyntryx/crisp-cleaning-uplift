@@ -648,16 +648,19 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
             
             <ScrollReveal delay={0.1}>
               <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[24px] p-8 shadow-sm">
-                <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[#374151] mb-3">Regular clean</p>
+                <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[#374151] mb-3">Standard</p>
                 <div className="mb-6 pb-6 border-b border-[#f3f4f6]">
                   <span className="text-[14px] text-[#6b7280] font-[500]">From </span>
-                  <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none">$180</span>
+                  <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none">$145</span>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Up to 3 bed</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
 
@@ -666,33 +669,36 @@ export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCou
                 <div className="absolute top-4 right-4 bg-[#fef3c7] text-[#92400e] text-[10px] font-[800] uppercase tracking-wider px-3 py-1.5 rounded-full">
                   Most popular in Malvern
                 </div>
-                <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[rgba(255,255,255,0.7)] mb-3">Deep clean</p>
+                <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[rgba(255,255,255,0.7)] mb-3">Deep</p>
                 <div className="mb-6 pb-6 border-b border-[rgba(255,255,255,0.1)]">
                   <span className="text-[14px] text-[rgba(255,255,255,0.6)] font-[500]">From </span>
-                  <span className="text-[40px] font-[800] text-[#ffffff] leading-none">$320</span>
+                  <span className="text-[40px] font-[800] text-[#ffffff] leading-none">$235</span>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Full property scope</li>
                   <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
                   <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center mt-8 bg-[#FB8C42] text-white rounded-full py-3 text-[14px] font-[600] hover:bg-[#ea6309] transition-colors">
-                  Get quote
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
                 </a>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
               <div className="bg-[#ffffff] border border-[#e5e7eb] rounded-[24px] p-8 shadow-sm">
-                <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[#374151] mb-3">End of lease</p>
+                <p className="text-[12px] font-[900] uppercase tracking-[0.15em] text-[#374151] mb-3">Vacate</p>
                 <div className="mb-6 pb-6 border-b border-[#f3f4f6]">
-                  <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none text-[28px] mt-1 block">Fixed quote</span>
+                  <span className="text-[40px] font-[800] text-[#1a1a1a] leading-none text-[28px] mt-1 block">From $380</span>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Bond-back standard</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
+                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
 

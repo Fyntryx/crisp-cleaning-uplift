@@ -420,142 +420,119 @@ export default function SouthYarraClient() {
         <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#d97706]" />
       </section>
 
-      {/* SECTION 2 — PAGE INTRO */}
+            {/* MERGED SECTION 2 & 3 — PAGE INTRO & PROPERTY TYPES */}
       <section className="bg-[#ffffff] py-[80px]">
-        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px] grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-[40px] md:gap-[64px] items-start">
-          <div className="hidden md:block text-[140px] font-[900] text-[#f3f4f6] leading-[1] tracking-[-6px]" aria-hidden="true">
-            SY
+        <div className="max-w-[1100px] mx-auto px-[24px] md:px-[48px] pb-[56px]">
+          <div className="text-[11px] font-[600] text-[#d97706] tracking-[0.2em] uppercase mb-[16px]">
+            South Yarra's Housing Stock
           </div>
-          <div>
-            <div className="text-[11px] font-[600] text-[#d97706] tracking-[0.2em] uppercase mb-[16px]">
-              South Yarra · Melbourne
-            </div>
-            <p className="text-[17px] text-[#374151] leading-[1.9] max-w-[600px]">
-              South Yarra's residential profile is defined by two overlapping realities: an exceptionally dense apartment stock near Chapel Street and Toorak Road, and a pocket of period heritage homes on the suburb's quieter streets closer to the Yarra River. The apartment density is significant - many buildings have concierge access, visitor registration requirements, and lift booking windows that need coordinating before a cleaning visit. The heritage homes near Como House have surface requirements entirely different to the modern apartment stock. Crisp services both property types across South Yarra with fixed, scope-based pricing, pre-coordinated building access, and the same cleaner returning every visit.
-            </p>
-            <div className="w-[40px] h-[2px] bg-[#d97706] mt-[28px]" />
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3 — PROPERTY TYPES (Sticky scroll split) */}
-      <section className="bg-[#fafafa] relative min-h-[600px] flex flex-col md:grid md:grid-cols-2">
-        {/* Left panel - sticky */}
-        <div 
-          className="hidden md:flex sticky top-0 h-[100vh] flex-col justify-center px-[48px] py-[64px] transition-colors duration-500 ease-in-out z-10"
-          style={{ backgroundColor: getLeftPanelBackground() }}
-        >
-          {activePropertyState === 1 && (
-            <div className="animate-[fadeInUp_0.4s_ease_forwards]">
-              <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase">Chapel Street · High-Rise</div>
-              <Building2 className="w-[80px] h-[80px] text-[rgba(255,255,255,0.08)] mt-4 mb-2" />
-              <h2 className="text-[48px] font-[800] text-[#ffffff] leading-[1.0]">High-Rise</h2>
-              <div className="text-[14px] text-[rgba(255,255,255,0.4)] tracking-[0.1em] mt-2">Chapel Street · Toorak Road</div>
-              <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] mt-6 font-bold">
-                Building access coordinated
-              </div>
-            </div>
-          )}
-          {activePropertyState === 2 && (
-            <div className="animate-[fadeInUp_0.4s_ease_forwards]">
-              <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase">Domain Road · Yarra River</div>
-              <Home className="w-[80px] h-[80px] text-[rgba(255,255,255,0.08)] mt-4 mb-2" />
-              <h2 className="text-[48px] font-[800] text-[#ffffff] leading-[1.0]">Heritage</h2>
-              <div className="text-[14px] text-[rgba(255,255,255,0.4)] tracking-[0.1em] mt-2">Domain Road · Como House</div>
-              <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] mt-6 font-bold">
-                Period surfaces · Low-moisture
-              </div>
-            </div>
-          )}
-          {activePropertyState === 3 && (
-            <div className="animate-[fadeInUp_0.4s_ease_forwards]">
-              <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase">Commercial Road · Prahran</div>
-              <MapPin className="w-[80px] h-[80px] text-[rgba(255,255,255,0.08)] mt-4 mb-2" />
-              <h2 className="text-[48px] font-[800] text-[#ffffff] leading-[1.0]">Prahran</h2>
-              <div className="text-[14px] text-[rgba(255,255,255,0.4)] tracking-[0.1em] mt-2">Commercial Road · Mixed stock</div>
-              <div className="inline-block bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[16px] py-[6px] text-[12px] mt-6 font-bold">
-                Same scope · Fixed pricing
-              </div>
-            </div>
-          )}
+          <h2 className="text-[32px] md:text-[36px] font-[700] text-[#1a1a1a] mb-[32px] leading-[1.2]">
+            Cleaning Every Property Type in South Yarra
+          </h2>
+          <p className="text-[17px] text-[#374151] leading-[1.9] max-w-[720px]">
+            South Yarra's residential profile is defined by two overlapping realities: an exceptionally dense apartment stock near Chapel Street and Toorak Road, and a pocket of period heritage homes on the suburb's quieter streets closer to the Yarra River. The apartment density is significant - many buildings have concierge access, visitor registration requirements, and lift booking windows that need coordinating before a cleaning visit. The heritage homes near Como House have surface requirements entirely different to the modern apartment stock. Crisp services both property types across South Yarra with fixed, scope-based pricing, pre-coordinated building access, and the same cleaner returning every visit.
+          </p>
+          <div className="w-[40px] h-[2px] bg-[#d97706] mt-[28px]" />
         </div>
 
-        {/* Right panel - scrolls */}
-        <div className="p-[24px] md:p-[48px] flex flex-col gap-[32px] md:py-[20vh]">
-          {/* Mobile Headers (hidden on desktop) */}
-          <div className="md:hidden pt-8 pb-4 property-card" data-state="1">
-            <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase mb-2">Chapel Street · High-Rise</div>
-            <h2 className="text-[32px] font-[800] text-[#1a1a1a] leading-[1.0]">High-Rise</h2>
+        <div className="property-grid grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr] gap-[16px] max-w-[1100px] mx-auto px-[24px] md:px-[48px] mt-[48px]">
+          
+          {/* Card 1 — Chapel Street (LARGE) */}
+          <div className="property-card property-card-dark bg-[#111111] rounded-[20px] p-[32px] md:p-[44px] relative overflow-hidden flex flex-col group transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(217,119,6,0.15)]">
+            <div className="absolute bottom-[-20px] right-[-10px] text-[180px] font-[900] text-[rgba(255,255,255,0.03)] leading-none pointer-events-none select-none">
+              01
+            </div>
+            
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex justify-between items-start mb-[16px]">
+                <div className="bg-[rgba(217,119,6,0.15)] border border-[rgba(217,119,6,0.3)] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] inline-block">
+                  Chapel Street · High-Rise
+                </div>
+                <Building2 className="text-[#d97706] w-[24px] h-[24px]" />
+              </div>
+              
+              <h3 className="text-[22px] font-[700] text-[#ffffff] mb-[12px] leading-[1.3]">
+                High-Rise and Mid-Rise Apartments Near Chapel Street
+              </h3>
+              
+              <p className="text-[14px] text-[rgba(255,255,255,0.6)] leading-[1.75]">
+                The apartment towers along and around Chapel Street and Toorak Road form the dominant residential form in central South Yarra - buildings of 15 to 30-plus storeys with concierge desks, managed access systems, and visitor registration requirements. We coordinate building access details at the initial booking and manage the process for every subsequent visit, so the resident isn't handling access logistics before each clean.
+              </p>
+              
+              <div className="mt-[20px] flex flex-wrap gap-[8px]">
+                {['Concierge managed', 'Fob & intercom', 'Lift bookings', 'Same process every visit'].map(tag => (
+                  <span key={tag} className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.1)] rounded-[99px] px-[12px] py-[5px] text-[12px] text-[rgba(255,255,255,0.55)]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2 — Heritage Homes (small) */}
+          <div className="property-card bg-[#fafafa] border border-[#e5e7eb] rounded-[20px] p-[24px] md:p-[32px] relative overflow-hidden flex flex-col group transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+            <div className="absolute bottom-[-10px] right-[-8px] text-[120px] font-[900] text-[rgba(0,0,0,0.03)] leading-none pointer-events-none select-none">
+              02
+            </div>
+            
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex justify-between items-start mb-[14px]">
+                <div className="bg-[#fff7ed] border border-[#fed7aa] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] inline-block">
+                  Domain Road · Yarra River
+                </div>
+                <Home className="text-[#d97706] w-[20px] h-[20px]" />
+              </div>
+              
+              <h3 className="text-[17px] font-[700] text-[#1a1a1a] mb-[10px] leading-[1.35]">
+                Period Terraces and Heritage Homes Near the Yarra River Corridor
+              </h3>
+              
+              <p className="text-[13px] text-[#6b7280] leading-[1.7] flex-grow">
+                The streets between Domain Road and the Yarra River - including properties near Como House on the suburb's southern edge - contain period terraces, Victorian homes, and established townhouses representing a residential character entirely distinct from the Chapel Street high-rise density. These heritage properties have original surfaces, period fittings, and established gardens that reflect long-tenure ownership rather than high-turnover apartment living.
+              </p>
+              
+              <div className="mt-[20px] flex flex-wrap gap-[8px]">
+                {['Period terraces', 'Victorian homes', 'Original surfaces', 'Low-moisture products'].map(tag => (
+                  <span key={tag} className="bg-[#fff7ed] border border-[#fed7aa] text-[#92400e] rounded-[99px] px-[10px] py-[4px] text-[11px]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3 — Prahran (small) */}
+          <div className="property-card bg-[#fafafa] border border-[#e5e7eb] rounded-[20px] p-[24px] md:p-[32px] relative overflow-hidden flex flex-col group transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+            <div className="absolute bottom-[-10px] right-[-8px] text-[120px] font-[900] text-[rgba(0,0,0,0.03)] leading-none pointer-events-none select-none">
+              03
+            </div>
+            
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex justify-between items-start mb-[14px]">
+                <div className="bg-[#fff7ed] border border-[#fed7aa] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] inline-block">
+                  Commercial Road · Prahran
+                </div>
+                <MapPin className="text-[#d97706] w-[20px] h-[20px]" />
+              </div>
+              
+              <h3 className="text-[17px] font-[700] text-[#1a1a1a] mb-[10px] leading-[1.35]">
+                Properties Near the Prahran Market on Commercial Road
+              </h3>
+              
+              <p className="text-[13px] text-[#6b7280] leading-[1.7] flex-grow">
+                The Prahran Market on Commercial Road sits within South Yarra's suburb boundary - a local landmark that anchors the properties on the suburb's western edge near the Prahran and Windsor residential streets. The mix of apartments and period properties in this precinct reflects South Yarra's broader housing diversity, serviced within the same fixed-scope framework as the rest of the suburb.
+              </p>
+              
+              <div className="mt-[20px] flex flex-wrap gap-[8px]">
+                {['Apartments', 'Period properties', 'Fixed-scope framework', 'Mixed precinct'].map(tag => (
+                  <span key={tag} className="bg-[#fff7ed] border border-[#fed7aa] text-[#92400e] rounded-[99px] px-[10px] py-[4px] text-[11px]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
           
-          <div className="property-card bg-[#ffffff] border border-[#e5e7eb] rounded-[20px] p-[24px] md:p-[36px] scroll-mt-[100px] transition-all duration-300 hover:border-[#d97706] hover:shadow-[0_8px_32px_rgba(217,119,6,0.1)]" data-state="1">
-            <div className="inline-block bg-[#fff7ed] border border-[#fed7aa] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] mb-[20px]">
-              Chapel Street · High-Rise
-            </div>
-            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[16px]">
-              High-Rise and Mid-Rise Apartments Near Chapel Street
-            </h3>
-            <p className="text-[15px] text-[#6b7280] leading-[1.7] mb-[24px]">
-              The apartment towers along and around Chapel Street and Toorak Road form the dominant residential form in central South Yarra - buildings of 15 to 30-plus storeys with concierge desks, managed access systems, and visitor registration requirements. We coordinate building access details at the initial booking and manage the process for every subsequent visit, so the resident isn't handling access logistics before each clean.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['Concierge managed', 'Fob & intercom', 'Lift bookings', 'Same process every visit'].map(tag => (
-                <span key={tag} className="bg-[#f3f4f6] border border-[#e5e7eb] text-[#374151] rounded-[99px] px-[12px] py-[4px] text-[12px]">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Header 2 */}
-          <div className="md:hidden pt-8 pb-4 property-card" data-state="2">
-            <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase mb-2">Domain Road · Yarra River</div>
-            <h2 className="text-[32px] font-[800] text-[#1a1a1a] leading-[1.0]">Heritage</h2>
-          </div>
-
-          <div className="property-card bg-[#ffffff] border border-[#e5e7eb] rounded-[20px] p-[24px] md:p-[36px] scroll-mt-[100px] transition-all duration-300 hover:border-[#d97706] hover:shadow-[0_8px_32px_rgba(217,119,6,0.1)]" data-state="2">
-            <div className="inline-block bg-[#fff7ed] border border-[#fed7aa] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] mb-[20px]">
-              Domain Road · Yarra River
-            </div>
-            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[16px]">
-              Period Terraces and Heritage Homes Near the Yarra River Corridor
-            </h3>
-            <p className="text-[15px] text-[#6b7280] leading-[1.7] mb-[24px]">
-              The streets between Domain Road and the Yarra River - including properties near Como House on the suburb's southern edge - contain period terraces, Victorian homes, and established townhouses representing a residential character entirely distinct from the Chapel Street high-rise density. These heritage properties have original surfaces, period fittings, and established gardens that reflect long-tenure ownership rather than high-turnover apartment living.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['Period terraces', 'Victorian homes', 'Original surfaces', 'Low-moisture products'].map(tag => (
-                <span key={tag} className="bg-[#f3f4f6] border border-[#e5e7eb] text-[#374151] rounded-[99px] px-[12px] py-[4px] text-[12px]">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Header 3 */}
-          <div className="md:hidden pt-8 pb-4 property-card" data-state="3">
-            <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase mb-2">Commercial Road · Prahran</div>
-            <h2 className="text-[32px] font-[800] text-[#1a1a1a] leading-[1.0]">Prahran</h2>
-          </div>
-
-          <div className="property-card bg-[#ffffff] border border-[#e5e7eb] rounded-[20px] p-[24px] md:p-[36px] scroll-mt-[100px] transition-all duration-300 hover:border-[#d97706] hover:shadow-[0_8px_32px_rgba(217,119,6,0.1)]" data-state="3">
-            <div className="inline-block bg-[#fff7ed] border border-[#fed7aa] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] mb-[20px]">
-              Commercial Road · Prahran
-            </div>
-            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-[16px]">
-              Properties Near the Prahran Market on Commercial Road
-            </h3>
-            <p className="text-[15px] text-[#6b7280] leading-[1.7] mb-[24px]">
-              The Prahran Market on Commercial Road sits within South Yarra's suburb boundary - a local landmark that anchors the properties on the suburb's western edge near the Prahran and Windsor residential streets. The mix of apartments and period properties in this precinct reflects South Yarra's broader housing diversity, serviced within the same fixed-scope framework as the rest of the suburb.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['Apartments', 'Period properties', 'Fixed-scope framework', 'Mixed precinct'].map(tag => (
-                <span key={tag} className="bg-[#f3f4f6] border border-[#e5e7eb] text-[#374151] rounded-[99px] px-[12px] py-[4px] text-[12px]">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -891,16 +868,16 @@ export default function SouthYarraClient() {
         <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
           <div className="bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-sm flex flex-col">
-            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-2">Regular clean</h3>
-            <div className="text-[#6b7280] text-[14px] mb-6">From $180</div>
+            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-2">Standard</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $145</div>
             <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Up to 3 bed</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All bathrooms</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Eco products included</li>
             </ul>
-            <a href="/#booking" className="block text-center w-full py-3 rounded-full border border-[#1a1a1a] text-[#1a1a1a] font-[600] text-[14px] hover:bg-[#1a1a1a] hover:text-white transition-colors">
-              Book Regular
-            </a>
+            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
           </div>
 
           {/* Card 2 - Featured */}
@@ -908,30 +885,30 @@ export default function SouthYarraClient() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#fff7ed] text-[#d97706] border border-[#fed7aa] rounded-full px-4 py-1 text-[12px] font-bold uppercase tracking-wider whitespace-nowrap">
               Most popular in South Yarra
             </div>
-            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-2 mt-4">Deep clean</h3>
-            <div className="text-[#6b7280] text-[14px] mb-6">From $320</div>
+            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-2 mt-4">Deep</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $235</div>
             <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center gap-3 text-[14px] text-[#374151] font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Full property scope</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151] font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Oven & inside cabinets</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151] font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Grout & hard-to-reach areas</li>
             </ul>
-            <a href="/#booking" className="block text-center w-full py-3 rounded-full bg-[#d97706] text-white font-[600] text-[14px] hover:bg-[#b45309] transition-colors">
-              Book Deep Clean
-            </a>
+            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
           </div>
 
           {/* Card 3 */}
           <div className="bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-sm flex flex-col">
-            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-2">End of lease</h3>
-            <div className="text-[#6b7280] text-[14px] mb-6">Fixed quote</div>
+            <h3 className="text-[20px] font-[700] text-[#1a1a1a] mb-2">Vacate</h3>
+            <div className="text-[#6b7280] text-[14px] mb-6">From $380</div>
             <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Bond-back standard</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All rooms & surfaces</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Inspection ready</li>
             </ul>
-            <a href="/#booking" className="block text-center w-full py-3 rounded-full border border-[#1a1a1a] text-[#1a1a1a] font-[600] text-[14px] hover:bg-[#1a1a1a] hover:text-white transition-colors">
-              Get Fixed Quote
-            </a>
+            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
           </div>
         </div>
       </section>

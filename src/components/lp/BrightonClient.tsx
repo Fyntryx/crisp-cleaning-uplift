@@ -583,13 +583,19 @@ export default function BrightonClient({
             {/* Regular Clean */}
             <ScrollReveal delay={0}>
               <div className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full">
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Regular Clean</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Standard</p>
                 <div className="mb-1">
                   <span className="text-[13px] text-gray-400 font-medium">From </span>
-                  <span className="text-[34px] font-extrabold text-gray-900 leading-none">$180</span>
+                  <span className="text-[34px] font-extrabold text-gray-900 leading-none">$145</span>
                 </div>
-                <p className="text-[12px] text-gray-400 mb-4">per visit · Start cleaning</p>
-                <p className="text-[12px] font-semibold text-[#FB8C42]">Weekly & fortnightly</p>
+                <ul className="space-y-4 mb-8 flex-1 mt-4">
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Up to 3 bed</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All bathrooms</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Eco products included</li>
+            </ul>
+<a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
 
@@ -599,11 +605,15 @@ export default function BrightonClient({
                 <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-[#FB8C42] text-white text-[9px] font-bold uppercase tracking-widest">
                   Most popular in Brighton
                 </div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Deep Clean</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Deep</p>
                 <div className="mb-1">
-                  <span className="text-[34px] font-extrabold text-white leading-none">Get a quote</span>
+                  <span className="text-[34px] font-extrabold text-white leading-none">From $235</span>
                 </div>
-                <p className="text-[12px] text-gray-400 mb-4">scope-based pricing</p>
+                <ul className="space-y-4 mb-8 flex-1 mt-4">
+              <li className="flex items-center gap-3 text-[14px] text-white font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Full property scope</li>
+              <li className="flex items-center gap-3 text-[14px] text-white font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Oven & inside cabinets</li>
+              <li className="flex items-center gap-3 text-[14px] text-white font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Grout & hard-to-reach areas</li>
+            </ul>
                 <a
                   href="/#booking"
                   className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#FB8C42] text-white text-[13px] font-bold hover:bg-[#e07a34] transition-colors"
@@ -616,12 +626,18 @@ export default function BrightonClient({
             {/* End of Lease */}
             <ScrollReveal delay={0.16}>
               <div className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full">
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">End of Lease</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Vacate</p>
                 <div className="mb-1">
-                  <span className="text-[34px] font-extrabold text-gray-900 leading-none">Get a quote</span>
+                  <span className="text-[34px] font-extrabold text-gray-900 leading-none">From $380</span>
                 </div>
-                <p className="text-[12px] text-gray-400 mb-4">scope-based pricing</p>
-                <p className="text-[12px] font-semibold text-[#FB8C42]">Fixed price guaranteed</p>
+                <ul className="space-y-4 mb-8 flex-1 mt-4">
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Bond-back standard</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All rooms & surfaces</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Inspection ready</li>
+            </ul>
+<a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                  Get an Instant Quote
+                </a>
               </div>
             </ScrollReveal>
           </div>
