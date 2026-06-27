@@ -23,11 +23,11 @@ export const suburbs: Suburb[] = [
   { name: "Melbourne CBD", slug: "melbourne-cbd", live: true, path: "/apartment-cleaning-melbourne-cbd" },
 
   // Tier B - 35 Suburbs
-  { name: "Doncaster", slug: "doncaster", live: true },
+  { name: "Doncaster", slug: "doncaster", live: false },
   { name: "Doncaster East", slug: "doncaster-east", live: false },
   { name: "Mount Waverley", slug: "mount-waverley", live: false },
-  { name: "Kew", slug: "kew", live: true },
-  { name: "Hawthorn", slug: "hawthorn", live: true },
+  { name: "Kew", slug: "kew", live: false },
+  { name: "Hawthorn", slug: "hawthorn", live: false },
   { name: "Camberwell", slug: "camberwell", live: false },
   { name: "Glen Iris", slug: "glen-iris", live: false },
   { name: "Glen Waverley", slug: "glen-waverley", live: false },
