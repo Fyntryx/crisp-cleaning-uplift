@@ -1,4 +1,7 @@
 import { Metadata } from "next";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ServiceAreas from "@/components/lp/ServiceAreas";
 
 export const metadata: Metadata = {
   title: "Service Areas | Crisp Cleaning",
@@ -7,19 +10,19 @@ export const metadata: Metadata = {
     canonical: "/service-areas",
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 };
 
 export default function ServiceAreasPage() {
   return (
-    <div className="min-h-screen pt-40 pb-20 container mx-auto px-6">
-      <h1 className="text-4xl font-bold mb-6 text-center">Our Service Areas</h1>
-      <p className="text-center text-muted-foreground">
-        We provide exceptional cleaning services across Melbourne. 
-        More details about specific suburbs coming soon!
-      </p>
-    </div>
+    <>
+      <Navbar />
+      <div className="pt-24 min-h-screen">
+        <ServiceAreas />
+      </div>
+      <Footer />
+    </>
   );
 }

@@ -1,9 +1,11 @@
 import { MetadataRoute } from 'next';
 
+import { getLiveSuburbs } from '@/lib/suburbs';
+
 const baseUrl = 'https://crispcleaning.com.au';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = [
+  const baseRoutes = [
     '',
     '/about',
     '/contact',
@@ -14,19 +16,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/refund-cancellation',
     '/service-areas',
     '/terms-conditions',
-    '/house-cleaning-brighton',
-    '/house-cleaning-cheltenham',
-    '/house-cleaning-essendon',
-    '/house-cleaning-hampton',
-    '/house-cleaning-malvern',
-    '/house-cleaning-maribyrnong',
-    '/house-cleaning-toorak',
   ];
+
+  const suburbRoutes = getLiveSuburbs().map((sub) => 
+    sub.path ? sub.path : `/house-cleaning-${sub.slug}`
+  );
+
+  const routes = [...baseRoutes, ...suburbRoutes];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : route.includes('house-cleaning') ? 0.9 : 0.8,
+    priority: route === '' ? 1 : route.includes('cleaning') ? 0.9 : 0.8,
   }));
 }

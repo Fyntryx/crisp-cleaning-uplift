@@ -2,24 +2,25 @@ export interface Suburb {
   name: string;
   slug: string;
   live: boolean;
+  path?: string;
 }
 
 export const suburbs: Suburb[] = [
   // Tier A - 14 Suburbs
-  { name: "Brighton", slug: "brighton", live: false },
+  { name: "Brighton", slug: "brighton", live: true },
   { name: "North Melbourne", slug: "north-melbourne", live: false },
-  { name: "Cheltenham", slug: "cheltenham", live: false },
-  { name: "Essendon", slug: "essendon", live: false },
-  { name: "Maribyrnong", slug: "maribyrnong", live: false },
+  { name: "Cheltenham", slug: "cheltenham", live: true },
+  { name: "Essendon", slug: "essendon", live: true },
+  { name: "Maribyrnong", slug: "maribyrnong", live: true },
   { name: "Bundoora", slug: "bundoora", live: false },
-  { name: "Hampton", slug: "hampton", live: false },
-  { name: "Brunswick", slug: "brunswick", live: false },
-  { name: "Malvern", slug: "malvern", live: false },
+  { name: "Hampton", slug: "hampton", live: true },
+  { name: "Brunswick", slug: "brunswick", live: true },
+  { name: "Malvern", slug: "malvern", live: true },
   { name: "Point Cook", slug: "point-cook", live: false },
   { name: "Preston", slug: "preston", live: false },
-  { name: "South Yarra", slug: "south-yarra", live: false },
-  { name: "Toorak", slug: "toorak", live: false },
-  { name: "Melbourne CBD", slug: "melbourne-cbd", live: false },
+  { name: "South Yarra", slug: "south-yarra", live: true },
+  { name: "Toorak", slug: "toorak", live: true },
+  { name: "Melbourne CBD", slug: "melbourne-cbd", live: true, path: "/apartment-cleaning-melbourne-cbd" },
 
   // Tier B - 35 Suburbs
   { name: "Doncaster", slug: "doncaster", live: false },

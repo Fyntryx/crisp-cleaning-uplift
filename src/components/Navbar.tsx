@@ -17,8 +17,8 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-import { RefreshCw, Sparkles, Key } from "lucide-react";
+import { getLiveSuburbs } from "@/lib/suburbs";
+import { RefreshCw, Sparkles, Key, MapPin } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -47,7 +47,16 @@ const navLinks = [
     ],
   },
   { name: "About Us", href: "/about" },
-  { name: "Service Areas", href: "/house-cleaning-melbourne#service-area" },
+  { 
+    name: "Service Areas", 
+    href: "/house-cleaning-melbourne#service-area",
+    subLinks: getLiveSuburbs().map((sub) => ({
+      name: sub.name,
+      desc: sub.path ? "Apartment Cleaning" : "House Cleaning",
+      href: sub.path || `/house-cleaning-${sub.slug}`,
+      icon: MapPin
+    }))
+  },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -129,7 +138,10 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
                     <ChevronDown size={14} className="opacity-70 group-hover:rotate-180 transition-transform duration-300" />
                   </div>
                   {/* Hover Dropdown */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-[340px] bg-white rounded-2xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <div className={cn(
+                    "absolute top-full left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0",
+                    link.name === "Service Areas" ? "w-[500px] grid grid-cols-2 gap-2" : "w-[340px]"
+                  )}>
                     {link.subLinks.map((subLink) => {
                       const Icon = subLink.icon;
                       return (

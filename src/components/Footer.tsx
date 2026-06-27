@@ -93,7 +93,7 @@ const Footer = async () => {
                 {liveSuburbs.map((suburb) => (
                   <Link
                     key={suburb.slug}
-                    href={`/house-cleaning-${suburb.slug}`}
+                    href={suburb.path ? suburb.path : `/house-cleaning-${suburb.slug}`}
                     className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
                   >
                     {suburb.name}

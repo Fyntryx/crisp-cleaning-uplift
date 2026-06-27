@@ -32,7 +32,7 @@ export default function ServiceAreas() {
           {liveSuburbs.map((suburb) => (
             <Link
               key={suburb.slug}
-              href={`/house-cleaning-${suburb.slug}`}
+              href={suburb.path ? suburb.path : `/house-cleaning-${suburb.slug}`}
               className="flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-gray-100 transition-all group"
             >
               <div className="bg-primary/5 p-2 rounded-lg group-hover:bg-primary/10 transition-colors">
