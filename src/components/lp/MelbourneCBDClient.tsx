@@ -105,7 +105,7 @@ function FloorPlan({ activeRoom, setActiveRoom }: { activeRoom: string | null, s
       {/* LIVING & DINING */}
       <g onClick={() => setActiveRoom('LIVING & DINING')} data-room="LIVING & DINING" className={getRoomClass('LIVING & DINING')}>
         <rect x="20" y="20" width="270" height="180" rx="0" fill="#EFF6FF" stroke="#BFDBFE" strokeWidth="1.5" className="room-fill"/>
-        <text x="155" y="95" textAnchor="middle" fontSize="9" fill="#93C5FD" fontWeight="600" letterSpacing="0.12em" textTransform="uppercase">
+        <text x="155" y="95" textAnchor="middle" fontSize="9" fill="#93C5FD" fontWeight="600" letterSpacing="0.12em">
           LIVING & DINING
         </text>
         <rect x="70" y="110" width="80" height="30" rx="4" fill="none" stroke="#BFDBFE" strokeWidth="1"/>
