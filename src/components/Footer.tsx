@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Star, ArrowRight } from "lucide-react";
-import { getLiveSuburbs } from "@/lib/suburbs";
+import { serviceRegions } from "@/lib/regions";
 import { sanityFetch } from "@/sanity/lib/live";
 
 const navLinks = [
@@ -20,8 +20,7 @@ const Footer = async () => {
     query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`
   });
   const googleRatingValue = siteSettings?.googleRatingValue ?? 5.0;
-  const liveSuburbs = getLiveSuburbs();
-  
+  // liveSuburbs replaced by serviceRegions
   return (
     <footer className="relative w-full rounded-t-[3rem] overflow-hidden border-t border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
 
@@ -53,7 +52,7 @@ const Footer = async () => {
         <div className="grid md:grid-cols-12 gap-12 md:gap-8 text-center md:text-left">
 
           {/* Logo & About */}
-          <div className="md:col-span-5 flex flex-col items-center md:items-start">
+          <div className="md:col-span-3 flex flex-col items-center md:items-start">
             {/* <-- Replaced Text with Logo Image --> */}
             <Image
               src="/crisp-cleaning-logo.webp?v=3"
@@ -69,7 +68,7 @@ const Footer = async () => {
           </div>
 
           {/* Sitemap */}
-          <div className="hidden md:flex md:col-span-3 flex-col items-center md:items-start">
+          <div className="hidden md:flex md:col-span-2 flex-col items-center md:items-start">
             <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Sitemap</h4>
             <nav className="flex flex-col gap-3 w-full items-center md:items-start">
               {navLinks.map((link) => (
@@ -85,26 +84,33 @@ const Footer = async () => {
             </nav>
           </div>
 
-          {/* Service Areas (Dynamic) */}
-          {liveSuburbs.length > 0 && (
-            <div className="hidden lg:flex md:col-span-2 flex-col items-start">
-              <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Service Areas</h4>
-              <nav className="flex flex-col gap-2 w-full items-start">
-                {liveSuburbs.map((suburb) => (
-                  <Link
-                    key={suburb.slug}
-                    href={suburb.path ? suburb.path : `/house-cleaning-${suburb.slug}`}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-                  >
-                    {suburb.name}
-                  </Link>
-                ))}
-              </nav>
+          {/* Service Areas (Dynamic Grouped) */}
+          <div className="hidden lg:flex md:col-span-4 flex-col items-start">
+            <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Service Areas</h4>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-6 w-full">
+              {serviceRegions.map((region) => (
+                <div key={region.region} className="flex flex-col gap-2 items-start">
+                  <span className="text-[13px] font-bold text-gray-800 uppercase tracking-wide border-b border-gray-100 pb-1 w-full text-left">
+                    {region.region}
+                  </span>
+                  <div className="flex flex-col gap-1.5 w-full items-start">
+                    {region.suburbs.map((suburb) => (
+                      <Link
+                        key={suburb.slug}
+                        href={suburb.path ? suburb.path : `/house-cleaning-${suburb.slug}`}
+                        className="text-muted-foreground hover:text-primary transition-colors text-[13px] font-medium"
+                      >
+                        {suburb.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
+          </div>
 
           {/* Help & Support */}
-          <div className={`md:col-span-4 lg:col-span-${liveSuburbs.length > 0 ? '2' : '4'} flex flex-col items-center md:items-start md:items-end`}>
+          <div className="md:col-span-4 lg:col-span-3 flex flex-col items-center md:items-start md:items-end">
             <div className="flex flex-col items-center md:items-start">
               <h4 className="font-bold mb-6 text-foreground text-lg tracking-wide">Help & Support</h4>
               <div className="space-y-3 flex flex-col items-center md:items-start">

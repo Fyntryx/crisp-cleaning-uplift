@@ -17,7 +17,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getLiveSuburbs } from "@/lib/suburbs";
+import { serviceRegions } from "@/lib/regions";
 import { RefreshCw, Sparkles, Key, MapPin } from "lucide-react";
 
 const navLinks = [
@@ -50,12 +50,7 @@ const navLinks = [
   { 
     name: "Service Areas", 
     href: "/house-cleaning-melbourne#service-area",
-    subLinks: getLiveSuburbs().map((sub) => ({
-      name: sub.name,
-      desc: sub.path ? "Apartment Cleaning" : "House Cleaning",
-      href: sub.path || `/house-cleaning-${sub.slug}`,
-      icon: MapPin
-    }))
+    isMegaMenu: true,
   },
   { name: "Contact", href: "/contact" },
 ];
@@ -121,6 +116,57 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
 
         <nav className="hidden md:flex items-center gap-8 absolute left-[46%] top-1/2 -translate-x-1/2 -translate-y-1/2">
           {navLinks.map((link) => {
+            if (link.isMegaMenu) {
+              const isSubActive = serviceRegions.some(region => 
+                region.suburbs.some(sub => (sub.path || `/house-cleaning-${sub.slug}`) === pathname)
+              );
+              return (
+                <div key={link.name} className="relative group">
+                  <div
+                    className={cn(
+                      "flex items-center gap-1 text-[14.5px] font-medium transition-colors duration-300 outline-none cursor-pointer py-6",
+                      hoverColorClass,
+                      isSubActive ? "text-[#FB8C42]" : textColorClass
+                    )}
+                  >
+                    {link.name}
+                    <ChevronDown size={14} className="opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                  </div>
+                  {/* Mega Menu Dropdown */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-100 p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 w-[850px]">
+                    <div className="grid grid-cols-5 gap-6">
+                      {serviceRegions.map((region) => {
+                        const Icon = region.icon;
+                        return (
+                          <div key={region.region} className="flex flex-col">
+                            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-100">
+                              <Icon size={20} className={region.iconClass} strokeWidth={2} {...(region.iconProps || {})} />
+                              <h4 className="text-[13px] font-bold text-gray-900 uppercase tracking-wide">{region.region}</h4>
+                            </div>
+                            <div className="flex flex-col gap-2.5">
+                              {region.suburbs.map((subLink) => {
+                                const href = subLink.path || `/house-cleaning-${subLink.slug}`;
+                                return (
+                                  <Link
+                                    key={href}
+                                    href={href}
+                                    onClick={() => handleNavClick(href)}
+                                    className="text-[13px] font-medium text-gray-600 hover:text-[#FB8C42] transition-colors"
+                                  >
+                                    {subLink.name}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             if (link.subLinks) {
               const isSubActive = link.subLinks.some(
                 (sub) => sub.href === pathname,
@@ -140,7 +186,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
                   {/* Hover Dropdown */}
                   <div className={cn(
                     "absolute top-full left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0",
-                    link.name === "Service Areas" ? "w-[500px] grid grid-cols-2 gap-2" : "w-[340px]"
+                    "w-[340px]"
                   )}>
                     {link.subLinks.map((subLink) => {
                       const Icon = subLink.icon;
@@ -152,7 +198,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
                           className="flex items-start gap-4 p-3 rounded-xl hover:bg-orange-50/50 transition-colors group/item"
                         >
                           <div className="bg-[#FFF4ED] text-[#FB8C42] p-2.5 rounded-xl shrink-0 group-hover/item:scale-110 transition-transform duration-300">
-                            {Icon && <Icon size={20} strokeWidth={2.5} />}
+                            {Icon && <Icon size={20} strokeWidth={2.5} /> }
                           </div>
                           <div className="flex flex-col">
                             <span className="text-[15px] font-bold text-gray-900 group-hover/item:text-[#FB8C42] transition-colors">{subLink.name}</span>
@@ -251,6 +297,46 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
         <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-150 animate-fade-in max-h-[85vh] overflow-y-auto">
           <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {navLinks.map((link) => {
+              if (link.isMegaMenu) {
+                return (
+                  <div key={link.name} className="flex flex-col gap-4 mb-2">
+                    <span className="text-xs font-extrabold text-neutral-400 uppercase tracking-widest px-0 py-1">
+                      {link.name}
+                    </span>
+                    <div className="flex flex-col gap-5 pl-4 border-l border-gray-150">
+                      {serviceRegions.map((region) => {
+                        const Icon = region.icon;
+                        return (
+                          <div key={region.region} className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <Icon size={16} className={region.iconClass} strokeWidth={2} {...(region.iconProps || {})} />
+                              <span className="text-[13px] font-bold text-gray-800 uppercase tracking-wide">
+                                {region.region}
+                              </span>
+                            </div>
+                            <div className="flex flex-col gap-2 pl-6">
+                            {region.suburbs.map((subLink) => {
+                              const href = subLink.path || `/house-cleaning-${subLink.slug}`;
+                              return (
+                                <Link
+                                  key={href}
+                                  href={href}
+                                  className="text-[14.5px] font-medium text-gray-600 hover:text-[#FB8C42] transition-colors"
+                                  onClick={() => handleNavClick(href)}
+                                >
+                                  {subLink.name}
+                                </Link>
+                              );
+                            })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+
               if (link.subLinks) {
                 return (
                   <div key={link.name} className="flex flex-col gap-2">
