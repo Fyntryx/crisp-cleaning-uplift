@@ -289,6 +289,12 @@ const BookingSummaryCard = ({
               <span>A${e.price}</span>
             </div>
           ))}
+          {outOfAreaFee > 0 && (
+             <div className="flex justify-between text-[13.5px] font-medium text-amber-600 pt-1">
+               <span>+ Travel Fee (Extended Area)</span>
+               <span>A${outOfAreaFee.toFixed(2)}</span>
+             </div>
+          )}
           {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
             <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
               <span>Large Service Discount</span>
