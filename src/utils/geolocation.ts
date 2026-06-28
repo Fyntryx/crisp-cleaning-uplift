@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 // IMPORTANT: Set this to your main application's URL
-const MAIN_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const MAIN_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
 
 const MELBOURNE_CBD = { lat: -37.8136, lon: 144.9631 };
 let INNER_RADIUS_KM = 40; // Dynamic default for fee threshold
