@@ -11,8 +11,22 @@ export const structure: StructureResolver = (S) =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
         ),
+      S.listItem()
+        .title('Lead Form Settings')
+        .child(
+          S.document()
+            .schemaType('leadFormSettings')
+            .documentId('leadFormSettings')
+        ),
+      S.listItem()
+        .title('Discount Step Form')
+        .child(
+          S.document()
+            .schemaType('discountStepSettings')
+            .documentId('discountStepSettings')
+        ),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (listItem) => !['siteSettings'].includes(listItem.getId() as string)
+        (listItem) => !['siteSettings', 'leadFormSettings', 'discountStepSettings'].includes(listItem.getId() as string)
       ),
     ])

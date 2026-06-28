@@ -2,11 +2,28 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { client } from "@/sanity/lib/client";
 
 
 export default function LeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
+  
+  const [content, setContent] = useState({
+    heading: "15% OFF your first clean!",
+    subheading: "Expires soon! Let's catch it"
+  });
+
+  useEffect(() => {
+    client.fetch(`*[_type == "leadFormSettings"][0]`).then((data) => {
+      if (data) {
+        setContent({
+          heading: data.heading || "15% OFF your first clean!",
+          subheading: data.subheading || "Expires soon! Let's catch it"
+        });
+      }
+    }).catch(console.error);
+  }, []);
   
   const [formData, setFormData] = useState({
     fullName: "",
@@ -146,10 +163,10 @@ export default function LeadPopup() {
         ) : (
           <>
             <h2 className="text-[32px] font-black text-gray-900 leading-none tracking-tight mb-3">
-              15% OFF your first clean!
+              {content.heading}
             </h2>
             <p className="text-gray-600 font-medium text-sm leading-relaxed mb-6 px-2">
-              Expires soon! Let&apos;s catch it
+              {content.subheading}
             </p>
 
             <form onSubmit={handleSubmit} className="w-full space-y-3">

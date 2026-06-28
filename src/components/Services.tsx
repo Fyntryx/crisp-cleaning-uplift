@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
 import { createPortal } from "react-dom";
 import {
   Home,
@@ -582,6 +583,22 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
   const [discountClaimed, setDiscountClaimed] = useState(false);
+  
+  const [discountContent, setDiscountContent] = useState({
+    heading: "Claim 15% OFF your FIRST clean!",
+    subheading: "Enter your details and save!"
+  });
+
+  useEffect(() => {
+    client.fetch(`*[_type == "discountStepSettings"][0]`).then((data) => {
+      if (data) {
+        setDiscountContent({
+          heading: data.heading || "Claim 15% OFF your FIRST clean!",
+          subheading: data.subheading || "Enter your details and save!"
+        });
+      }
+    }).catch(console.error);
+  }, []);
 
   const prevStepRef = useRef(1);
 
@@ -1671,14 +1688,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center text-[#FB8C42] mb-4">
               <Tag className="w-8 h-8" />
             </div>
-            <h2 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-2">Claim 15% OFF your FIRST clean!</h2>
+            <h2 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-2">{discountContent.heading}</h2>
             <CountdownTimer onTimeout={() => {
               setSubmitError(null);
               setSubmitSuccess(null);
               setCurrentStep((prev) => prev + 1);
             }} />
             <p className="text-gray-500 text-sm font-medium max-w-md mx-auto mb-6 mt-4">
-              Enter your details and save!
+              {discountContent.subheading}
             </p>
 
             <div className="w-full max-w-sm space-y-4 text-left">
