@@ -45,9 +45,10 @@ interface FAQItem {
 interface FAQProps {
   data?: FAQItem[];
   title?: string;
+  customTheme?: "default" | "point-cook";
 }
 
-export default function FAQ({ data, title }: FAQProps) {
+export default function FAQ({ data, title, customTheme = "default" }: FAQProps) {
   const currentFaqs = data || faqs;
   return (
     <section id="faqs" className="pt-24 pb-12 bg-[#FAF9F6]">
@@ -61,7 +62,7 @@ export default function FAQ({ data, title }: FAQProps) {
 
         <Accordion type="single" collapsible className="w-full space-y-4">
           {currentFaqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-100 border-l-[3px] border-l-transparent rounded-2xl px-6 py-2 shadow-sm data-[state=open]:border-l-[#d97706] data-[state=open]:pl-[12px] transition-all duration-300">
+            <AccordionItem key={index} value={`item-${index}`} className={`bg-white border border-gray-100 border-l-[3px] border-l-transparent rounded-2xl px-6 py-2 shadow-sm data-[state=open]:pl-[12px] ${customTheme === "point-cook" ? "data-[state=open]:border-l-[#16A34A]" : "data-[state=open]:border-l-[#d97706]"} transition-all duration-300`}>
               <AccordionTrigger className="text-left font-bold text-lg hover:no-underline hover:text-primary transition-colors">
                 {faq.question}
               </AccordionTrigger>
