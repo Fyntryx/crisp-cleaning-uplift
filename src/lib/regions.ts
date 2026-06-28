@@ -41,7 +41,7 @@ export const serviceRegions = [
     icon: DirectionIcon,
     iconProps: { direction: 'E' as const },
     iconClass: "text-[#FB8C42]",
-    suburbs: []
+    suburbs: [] as { name: string, slug: string, path?: string }[]
   },
   {
     region: "West & North-West",
