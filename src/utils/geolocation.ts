@@ -4,7 +4,8 @@
 const MAIN_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const MELBOURNE_CBD = { lat: -37.8136, lon: 144.9631 };
-let MAX_RADIUS_KM = 50; // Dynamic default
+let INNER_RADIUS_KM = 40; // Dynamic default for fee threshold
+let MAX_RADIUS_KM = 55; // Dynamic default for absolute limit (INNER + 15)
 const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEOAPIFY_KEY;
 
 /**
@@ -15,11 +16,12 @@ export async function syncServiceRadius() {
     const response = await fetch(`${MAIN_APP_URL}/api/settings`);
     const data = await response.json();
     if (data.success && data.pricing?.serviceRadiusKm) {
-        MAX_RADIUS_KM = Number(data.pricing.serviceRadiusKm);
-        console.log(`[GEO] Service radius synced: ${MAX_RADIUS_KM}km`);
+        INNER_RADIUS_KM = Number(data.pricing.serviceRadiusKm);
+        MAX_RADIUS_KM = INNER_RADIUS_KM + 15;
+        console.log(`[GEO] Service radius synced: Inner ${INNER_RADIUS_KM}km, Max ${MAX_RADIUS_KM}km`);
     }
   } catch (error) {
-    console.warn("[GEO] Could not sync radius, using fallback 50km:", error);
+    console.warn("[GEO] Could not sync radius, using fallback Inner 40km, Max 55km:", error);
   }
 }
 
@@ -59,7 +61,7 @@ export function checkAddressServiceability(lat: number, lon: number): Serviceabi
   const distance = calculateHaversineDistance(MELBOURNE_CBD.lat, MELBOURNE_CBD.lon, lat, lon);
   
   let outsideAreaFee = 0;
-  if (distance > 40 && distance <= MAX_RADIUS_KM) {
+  if (distance > INNER_RADIUS_KM && distance <= MAX_RADIUS_KM) {
     outsideAreaFee = 50;
   }
   
