@@ -3352,13 +3352,12 @@ const AddressAutocomplete = ({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
     setInputFocused(true);
-    // Clear error when user starts typing again
     if (localError) {
       setLocalError(null);
       if (setExternalError) setExternalError(null);
-      // We don't necessarily set validity to true here, as the new input is unverified,
-      // but blocking them from typing is bad UX. 
     }
+    // Force user to select from autocomplete by invalidating raw typed input
+    if (onValidityChange) onValidityChange(false);
   };
 
   const handleInputFocus = () => {
