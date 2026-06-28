@@ -1259,12 +1259,22 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
     ).replace(/\/$/, "");
 
+    let appliedPromoDetails = { code: 'WELCOME15', type: 'PERCENT_OFF', value: 15, source: 'default' };
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
+      if (!res.ok) throw new Error();
+      appliedPromoDetails = await res.json();
+    } catch {
+      appliedPromoDetails = { code: 'WELCOME15', type: 'PERCENT_OFF', value: 15, source: 'default' };
+    }
+
     const payload = {
       fullName: `${formData.contact.firstName} ${formData.contact.lastName}`.trim(),
       email: formData.contact.email,
       phone: formData.contact.phone,
       source: "Booking Flow Discount Step",
-      offer: "WELCOME15",
+      offer: appliedPromoDetails.code,
       bedrooms: formData.homeDetails.bedrooms || 0,
       bathrooms: formData.homeDetails.bathrooms || 0,
       kitchen: formData.homeDetails.kitchens || 0,
@@ -1285,13 +1295,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         (window as any).dataLayer.push({
           event: "generate_lead",
           lead_source: "Booking Flow Discount Step",
-          offer: "WELCOME15"
+          offer: appliedPromoDetails.code,
+          offer_source: appliedPromoDetails.source
         });
         sessionStorage.setItem("crisp_lead_captured", "true");
       }
 
-      setPromoCode("WELCOME15");
-      setAppliedPromo({ code: "WELCOME15", type: "PERCENT_OFF", value: 15, isStackable: false });
+      setPromoCode(appliedPromoDetails.code);
+      setAppliedPromo({ code: appliedPromoDetails.code, type: appliedPromoDetails.type, value: appliedPromoDetails.value, isStackable: false });
       setDiscountClaimed(true);
       
       setSubmitError(null);
