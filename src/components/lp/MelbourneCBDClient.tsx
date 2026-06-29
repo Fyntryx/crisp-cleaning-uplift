@@ -73,19 +73,25 @@ function ProcessFlow({ steps }: { steps: any[] }) {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative pl-[32px]">
-      <div className="absolute left-[8px] top-[16px] w-[1px]" style={{ 
-        height: 'calc(100% - 32px)', 
-        background: 'linear-gradient(180deg, #3B82F6 0%, rgba(59,130,246,0.15) 100%)' 
-      }}>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[6px] h-[6px] rounded-full bg-[rgba(59,130,246,0.3)]"></div>
-      </div>
+    <div ref={containerRef} className="relative">
       {steps.map((step, i) => (
-        <div key={i} className="process-step relative mb-[40px] last:mb-0" data-index={i}>
-          <div className="node-dot absolute left-[-28px] top-[4px] w-[16px] h-[16px] rounded-full border-[2px] border-[#3B82F6] bg-[#050D1A] transition-all duration-300"></div>
-          <div className="step-num text-[10px] text-[rgba(59,130,246,0.5)] font-[700] tracking-[0.15em] mb-[4px] transition-colors duration-300">STEP {step.num}</div>
-          <div className="step-title text-[15px] font-[700] text-[rgba(255,255,255,0.5)] mb-[4px] transition-colors duration-300">{step.title}</div>
-          <div className="step-body text-[13px] text-[rgba(255,255,255,0.3)] leading-[1.6] transition-colors duration-300">{step.body}</div>
+        <div key={i} className="process-step relative flex mb-[40px] last:mb-0" data-index={i}>
+          {/* Left col: Dot & Line */}
+          <div className="relative w-[32px] shrink-0 flex flex-col items-center">
+            <div className="node-dot w-[16px] h-[16px] shrink-0 rounded-full border-[2px] border-[#3B82F6] bg-[#050D1A] transition-all duration-300 z-10 mt-[2px]"></div>
+            {i !== steps.length - 1 && (
+              <div className="absolute top-[18px] bottom-[-40px] w-[1px]" style={{ 
+                background: 'linear-gradient(180deg, #3B82F6 0%, rgba(59,130,246,0.3) 100%)' 
+              }}></div>
+            )}
+          </div>
+          
+          {/* Right col: Content */}
+          <div className="flex-1 pb-0">
+            <div className="step-num text-[10px] text-[rgba(59,130,246,0.5)] font-[700] tracking-[0.15em] mb-[4px] transition-colors duration-300">STEP {step.num}</div>
+            <div className="step-title text-[15px] font-[700] text-[rgba(255,255,255,0.5)] mb-[4px] transition-colors duration-300">{step.title}</div>
+            <div className="step-body text-[13px] text-[rgba(255,255,255,0.3)] leading-[1.6] transition-colors duration-300">{step.body}</div>
+          </div>
         </div>
       ))}
     </div>
@@ -236,7 +242,7 @@ const faqData = [
 ];
 
 export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
-  const [activeRoom, setActiveRoom] = useState<string | null>(null);
+  const [activeRoom, setActiveRoom] = useState<string>('LIVING & DINING');
 
   return (
     <>
