@@ -1103,15 +1103,6 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     setSubmitError(null);
     setSubmitSuccess(null);
 
-    // Push initiate_checkout event to GTM
-    if (typeof window !== "undefined") {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: "initiate_checkout",
-        service_type: isCommercial ? formData.commercial.cleanType : formData.cleaningType,
-      });
-    }
-
     try {
       // Validate required fields and formats
       if (!formData.contact.firstName || !formData.contact.email || !formData.contact.phone || !formData.contact.address) {
