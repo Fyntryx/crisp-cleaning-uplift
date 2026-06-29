@@ -383,7 +383,7 @@ export default function EssendonClient({
           </ScrollReveal>
 
           <ScrollReveal delay={0.7}>
-            <p className="text-left text-[15px] text-white/90 leading-[1.7] mt-6">
+            <p className="text-justify text-[15px] text-white/90 leading-[1.7] mt-6">
               Essendon's residential streets are defined by their housing stock — Californian bungalows and Federation homes on generous blocks, particularly in the streets running north and south of the Buckley Street precinct, give the suburb a heritage-rich character maintained by long-tenure, owner-occupier families. These properties show the quality of a cleaner quickly: original timber floors, heritage tiles, and period-era fittings benefit from a cleaner who knows the home rather than encounters it fresh each fortnight. Crisp services Essendon homes with fixed, scope-based pricing, eco-friendly products appropriate for period surfaces, and the same cleaner every visit.
             </p>
           </ScrollReveal>
@@ -392,13 +392,13 @@ export default function EssendonClient({
             <div className="flex flex-col sm:flex-row gap-4 mb-3 w-full">
               <a
                 href="/#booking"
-                className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-semibold text-[15px] transition-colors"
+                className="inline-flex justify-center items-center px-6 py-2.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-semibold text-[15px] transition-colors whitespace-nowrap"
               >
                 Get an Instant Quote
               </a>
               <a
                 href="#checklist"
-                className="inline-flex justify-center items-center px-8 py-3.5 rounded-full border-[1.5px] border-white/40 text-white font-semibold text-[15px] hover:bg-white/10 transition-colors"
+                className="inline-flex justify-center items-center px-6 py-2.5 rounded-full border-[1.5px] border-white/40 text-white font-semibold text-[15px] hover:bg-white/10 transition-colors whitespace-nowrap"
               >
                 See what's included
               </a>
