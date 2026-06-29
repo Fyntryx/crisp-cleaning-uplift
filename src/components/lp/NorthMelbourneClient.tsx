@@ -387,7 +387,7 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.9 }}
           >
-            <Link href="/booking" className="cta-btn-primary flex items-center">
+            <Link href="/booking" className="cta-btn-primary flex items-center whitespace-nowrap w-fit">
               Get an Instant Quote <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
             <a href="#whats-included" className="cta-btn-secondary">
