@@ -168,32 +168,22 @@ const brightonStreets = [
 const testimonials = [
   {
     stars: 5,
-    quote:
-      "We've been with Crisp for over two years. The fact that the same person comes every fortnight makes such a difference — she knows the house and doesn't need to be told anything.",
-    name: "Sarah G.",
-    suburb: "Dendy Street, Brighton",
+    quote: "Honestly felt like a brand new home.",
+    name: "Andre B",
+    suburb: "Verified Customer",
   },
   {
     stars: 5,
-    quote:
-      "I finally found a cleaner who knows not to use steam on the floorboards. Heritage home owners will understand — this matters more than it sounds.",
-    name: "James M.",
-    suburb: "The Esplanade, Brighton",
+    quote: "Team took great care, really appreciated the communication - the small details dont go unnoticed! keep it up crisp",
+    name: "Natch L",
+    suburb: "Verified Customer",
   },
   {
     stars: 5,
-    quote:
-      "Transparent pricing was the first thing that got me — Efficient getting hourly quotes for a 5-bedroom home and dreading the final number. Fixed price, done.",
-    name: "Rachel D.",
-    suburb: "Church Street, Brighton",
-  },
-  {
-    stars: 5,
-    quote:
-      "Used the 72hr guarantee after my first clean and had them back the next day, no questions. That's when I signed up for fortnightly.",
-    name: "Andrew K.",
-    suburb: "Bay Street, Brighton",
-  },
+    quote: "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work.",
+    name: "Kaan S",
+    suburb: "Verified Customer",
+  }
 ];
 
 const faqData = [
@@ -286,7 +276,7 @@ export default function BrightonClient({
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[15px] text-gray-500 leading-relaxed mb-8 max-w-[480px]"
+                className="text-[15px] text-gray-500 leading-relaxed mb-8 max-w-[480px] text-justify"
               >
                 Brighton homes are among Melbourne's most demanding to clean consistently — large Victorian and Edwardian houses on generous blocks, original timber floors, leadlight windows, and the kind of surface detail that reveals the quality of a cleaner quickly. The streets between Church Street and Dendy Street Beach are lined with properties that reward a consistent, familiar cleaner and suffer noticeably when that consistency isn't there. Crisp services Brighton homes with a fixed, scope-defined checklist applied the same way on every visit, by the same cleaner, at transparent pricing set by your home's actual room count rather than a generic hourly estimate.
               </motion.p>
@@ -344,14 +334,14 @@ export default function BrightonClient({
               </motion.div>
 
               {/* Floating Stats */}
-              <div className="w-full max-w-[280px] flex flex-col gap-2.5 -mt-24 relative z-10 lg:ml-[-10%]">
+              <div className="w-full max-w-[400px] flex flex-col gap-2.5 -mt-24 relative z-10 items-start">
                 {heroStats.map((stat, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    className="bg-white/95 backdrop-blur-md border border-gray-100 border-l-[3px] border-l-[#FB8C42] rounded-[14px] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.08)] flex items-center gap-3"
+                    className="bg-white/95 backdrop-blur-md border border-gray-100 border-l-[3px] border-l-[#FB8C42] rounded-[14px] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.08)] flex items-center gap-3 w-[280px]"
                   >
                     <div className="text-[20px] font-extrabold text-[#FB8C42] w-12 shrink-0 leading-none">
                       {stat.value}
