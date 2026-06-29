@@ -238,7 +238,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
         <div className="relative z-10 w-full max-w-[900px] px-[32px] text-center flex flex-col items-center justify-center pt-20">
           
           {/* Step 1: Reveal line */}
-          <div className="text-[15px] font-[400] text-[rgba(255,255,255,0.45)] tracking-[0.15em] uppercase opacity-0 animate-[fadeIn_0.8s_ease_0.2s_forwards]">
+          <div className="text-[15px] font-[400] text-[rgba(255,255,255,0.45)] tracking-[0.15em] uppercase opacity-0 animate-[fadeIn_0.8s_ease_0.2s_forwards] mt-[12px]">
             Melbourne's most demanding homes.
           </div>
           
