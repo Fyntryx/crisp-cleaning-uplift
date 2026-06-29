@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-import { getLiveSuburbs } from '@/lib/suburbs';
+import { suburbs } from '@/lib/suburbs';
 
 const baseUrl = 'https://crispcleaning.com.au';
 
@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/terms-conditions',
   ];
 
-  const suburbRoutes = getLiveSuburbs().map((sub) => 
+  const suburbRoutes = suburbs.map((sub) => 
     sub.path ? sub.path : `/house-cleaning-${sub.slug}`
   );
 
