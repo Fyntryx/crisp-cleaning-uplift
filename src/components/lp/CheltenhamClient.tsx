@@ -69,7 +69,7 @@ const CheltenhamBeforeAfterSlider = () => {
 
   return (
     <div
-      className="relative w-full aspect-[4/5] rounded-[24px] overflow-hidden bg-gray-100 shadow-sm border border-gray-200 select-none cursor-ew-resize touch-none"
+      className="relative w-full aspect-[4/5] md:aspect-auto md:h-full rounded-[24px] overflow-hidden bg-gray-100 shadow-sm border border-gray-200 select-none cursor-ew-resize touch-none"
       onMouseDown={() => setIsDragging(true)}
       onMouseUp={() => setIsDragging(false)}
       onMouseLeave={() => setIsDragging(false)}
@@ -247,7 +247,7 @@ export default function CheltenhamClient({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[16px] text-white/65 leading-[1.75] mt-[24px]"
+              className="text-[16px] text-white/65 leading-[1.75] mt-[24px] text-justify"
             >
               Cheltenham sits in Melbourne's Sandbelt corridor — a family suburb of established brick homes, generous blocks, and a quiet residential character built around the railway station and the Charman Road shopping strip. It doesn't generate the headlines that Brighton or Toorak do, but it has a consistent, owner-occupier-heavy demographic that values reliable cleaning over cheap cleaning. Crisp services Cheltenham homes with fixed, scope-based pricing set by your actual room count, the same cleaner returning every visit, and an instant online quote that takes under a minute to generate.
             </motion.p>
@@ -290,8 +290,8 @@ export default function CheltenhamClient({
       <div className="w-full bg-[#111111] border-b border-white/10 py-[16px] overflow-hidden flex items-center">
         <div className="whitespace-nowrap">
           <div className="animate-ticker text-[12px] font-[500] text-gray-400 tracking-[0.08em] uppercase flex items-center">
-            {/* Render exactly 1 copy as requested */}
-            {[...Array(1)].map((_, i) => (
+            {/* Render 3 copies for seamless infinite scroll */}
+            {[...Array(3)].map((_, i) => (
               <span key={i} className="flex items-center">
                 {tickerText.split('·').map((part, j, arr) => (
                   part.trim() ? (
@@ -640,7 +640,7 @@ export default function CheltenhamClient({
                 }}
               >
                 <div 
-                  className="absolute top-5 right-5 px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider"
+                  className="absolute top-0 right-0 px-4 py-2 rounded-tr-[24px] rounded-bl-[16px] text-[10px] font-extrabold uppercase tracking-wider"
                   style={{ backgroundColor: '#fef3c7', color: '#92400e' }}
                 >
                   Most popular in Cheltenham
