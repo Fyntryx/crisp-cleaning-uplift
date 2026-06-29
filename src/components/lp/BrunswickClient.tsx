@@ -81,7 +81,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
         {/* Subtle texture overlay */}
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.04] pointer-events-none z-0 mix-blend-overlay" />
         
-        <div className="relative z-10 w-full max-w-[1200px] mx-auto px-[24px] md:px-[48px] pt-[80px] pb-[60px] flex-grow flex flex-col justify-center">
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto px-[24px] md:px-[48px] pt-[120px] pb-[60px] flex-grow flex flex-col justify-center">
           
           {/* Top row */}
           <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-[48px]">
