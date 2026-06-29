@@ -85,7 +85,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
     <main className="min-h-screen font-sans bg-white selection:bg-[#16A34A]/20 selection:text-[#16A34A] overflow-x-hidden">
 
       {/* SECTION 1 - HERO */}
-      <section className="relative min-h-[92vh] bg-[#111111] overflow-hidden flex items-center pt-24 pb-12">
+      <section className="relative min-h-[92vh] bg-[#111111] overflow-hidden flex items-center pt-24 pb-[120px]">
         {/* Subtle Noise Texture */}
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-0" style={{ backgroundImage: "url('/noise.png')", backgroundRepeat: "repeat" }} />
         
