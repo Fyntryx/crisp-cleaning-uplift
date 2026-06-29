@@ -71,7 +71,7 @@ const faqData = [
   { question: "Is there a minimum booking requirement in Point Cook?", answer: "No minimum recurring commitment is required. Fortnightly or weekly bookings include loyalty pricing that doesn't apply to one-off cleans, but there's no lock-in period." }
 ];
 
-export default function PointCookClient() {
+export default function PointCookClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const [activeEstate, setActiveEstate] = useState<string>("sanctuary");
   const [isMounted, setIsMounted] = useState(false);
 
@@ -131,7 +131,7 @@ export default function PointCookClient() {
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
                 className="flex flex-wrap gap-2 mt-6"
               >
-                {['4.9 ★ Google', '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map((pill, i) => (
+                {[`${googleRatingValue} ★ Google`, '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map((pill, i) => (
                   <span key={i} className="bg-white/5 border border-white/10 rounded-full px-3.5 py-1.5 text-[12px] text-white/60 font-medium whitespace-nowrap">
                     {pill}
                   </span>
@@ -205,7 +205,7 @@ export default function PointCookClient() {
         <div className="container mx-auto px-6 max-w-[1200px]">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 divide-x-0 md:divide-x md:divide-[#e5e7eb]">
             {[
-              { num: "4.9", unit: "★ Google" },
+              { num: `${googleRatingValue}`, unit: "★ Google" },
               { num: "97%", unit: "Same Cleaner" },
               { num: "100%", unit: "Eco-Friendly" },
               { num: "72hr", unit: "Guarantee" }
@@ -712,7 +712,7 @@ export default function PointCookClient() {
       </section>
 
       {/* SECTION 6 - TESTIMONIALS & BEFORE/AFTER */}
-      <Testimonials 
+      <Testimonials googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} 
         topTitle="Client Stories"
         title="What Point Cook Families Say"
         subtitle="Real results and experiences from Point Cook homes."

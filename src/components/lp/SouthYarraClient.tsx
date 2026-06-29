@@ -127,7 +127,7 @@ const AnimatedRatingBar = ({ percentage, label, delay = 0 }: { percentage: numbe
   );
 }
 
-export default function SouthYarraClient() {
+export default function SouthYarraClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const [activePropertyState, setActivePropertyState] = useState(1);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -395,7 +395,7 @@ export default function SouthYarraClient() {
           </p>
           
           <div className="mt-[28px] flex flex-wrap gap-[8px]">
-            {['4.9 ★ Google', '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map(pill => (
+            {[`${googleRatingValue} ★ Google`, '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map(pill => (
               <span key={pill} className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.12)] rounded-[99px] px-[14px] py-[6px] text-[12px] text-[rgba(255,255,255,0.6)]">
                 {pill}
               </span>
@@ -850,7 +850,7 @@ export default function SouthYarraClient() {
           </div>
           
           <div className="text-center mt-[16px] text-[14px] text-[#6b7280]">
-            <span className="text-[#d97706]">★★★★★</span> Rated 4.9 on Google · 47 verified reviews
+            <span className="text-[#d97706]">★★★★★</span> Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews
           </div>
         </div>
       </section>

@@ -34,7 +34,14 @@ const jsonLd = {
   }
 };
 
-export default function SouthYarraPage() {
+export default async function SouthYarraPage() {
+  
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`,
+  });
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
+  const googleReviewCount = siteSettings?.googleReviewCount || 14;
+
   return (
     <main className="min-h-screen bg-[#FDFAF6] overflow-x-hidden font-sans">
       <script
@@ -42,7 +49,7 @@ export default function SouthYarraPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <SouthYarraClient />
+      <SouthYarraClient googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
       <Footer />
     </main>
   );

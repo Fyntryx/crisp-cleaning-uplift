@@ -18,7 +18,7 @@ const faqData = [
   { question: "How do I book a regular fortnightly clean in Bundoora?", answer: "Select fortnightly as your frequency when getting your online quote. The same cleaner is assigned and confirmed at booking. 15% off the first clean." }
 ];
 
-export default function BundooraClient() {
+export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const [isMounted, setIsMounted] = useState(false);
   const [mode, setMode] = useState<AudienceMode>('family');
   const [isStickyVisible, setIsStickyVisible] = useState(false);
@@ -309,7 +309,7 @@ export default function BundooraClient() {
       <section className="bg-[#1C1C1C] py-[22px]">
         <div className="container mx-auto px-6">
           <div className="flex justify-center gap-[48px] flex-wrap text-[13px] text-white/50 tracking-[0.08em]">
-            <div><span className="text-[#d97706] font-bold">4.9★</span> Google</div>
+            <div><span className="text-[#d97706] font-bold">{googleRatingValue} ★</span> Google</div>
             <div><span className="text-[#d97706] font-bold">97%</span> Same Cleaner</div>
             <div><span className="text-[#d97706] font-bold">100%</span> Eco-Friendly</div>
             <div><span className="text-[#d97706] font-bold">72hr</span> Guarantee</div>
@@ -830,7 +830,7 @@ export default function BundooraClient() {
           </div>
           
           <div className="text-center mt-[32px] text-[13px] text-[#6b7280]">
-            ★★★★★ Rated 4.9 on Google · 47 verified reviews
+            ★★★★★ Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews
           </div>
         </div>
       </section>

@@ -42,7 +42,7 @@ const defaultReviews = [
 ];
 
 
-export default function ToorakClient() {
+export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const [activePanel, setActivePanel] = useState(0);
   const [currentReview, setCurrentReview] = useState(0);
   const [isHoveringReview, setIsHoveringReview] = useState(false);
@@ -617,7 +617,7 @@ export default function ToorakClient() {
           </div>
 
           <div className="text-[14px] text-[#6b7280] mt-[48px]">
-            ★★★★★ Rated 4.9 on Google
+            ★★★★★ Rated {googleRatingValue} on Google
           </div>
         </div>
       </section>

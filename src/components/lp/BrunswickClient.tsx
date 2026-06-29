@@ -45,7 +45,7 @@ const faqData = [
   }
 ];
 
-export default function BrunswickClient() {
+export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
@@ -138,7 +138,7 @@ export default function BrunswickClient() {
 
           {/* Trust pills */}
           <div className="mt-[48px] flex justify-center flex-wrap gap-[8px]">
-            {['4.9 ★ Google', '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map(pill => (
+            {[`${googleRatingValue} ★ Google`, '97% Same Cleaner', 'Eco-Friendly', '72hr Guarantee'].map(pill => (
               <span key={pill} className="bg-[rgba(255,255,255,0.7)] border border-[#E0D8CC] rounded-[99px] px-[16px] py-[6px] text-[12px] text-[#374151]">
                 {pill}
               </span>
@@ -154,7 +154,7 @@ export default function BrunswickClient() {
       <section className="bg-[#1C1C1C] py-[20px] px-[24px]">
         <div className="max-w-[1200px] mx-auto flex justify-center gap-[16px] md:gap-[48px] flex-wrap items-center">
           <div className="text-[13px] text-[rgba(255,255,255,0.5)] tracking-[0.08em]">
-            <span className="text-[#d97706] font-[700]">4.9★</span> Google
+            <span className="text-[#d97706] font-[700]">{googleRatingValue} ★</span> Google
           </div>
           <div className="text-[#C17B3E] font-[900]">·</div>
           <div className="text-[13px] text-[rgba(255,255,255,0.5)] tracking-[0.08em]">
@@ -508,7 +508,7 @@ export default function BrunswickClient() {
           </div>
 
           <div className="text-center mt-[32px] text-[14px] text-[#6b7280]">
-            <span className="text-[#d97706]">★★★★★</span> Rated 4.9 on Google · 47 verified reviews
+            <span className="text-[#d97706]">★★★★★</span> Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews
           </div>
         </div>
       </section>

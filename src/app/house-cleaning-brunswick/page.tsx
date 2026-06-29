@@ -34,7 +34,14 @@ const jsonLd = {
   }
 };
 
-export default function BrunswickPage() {
+export default async function BrunswickPage() {
+  
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`,
+  });
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
+  const googleReviewCount = siteSettings?.googleReviewCount || 14;
+
   return (
     <main className="min-h-screen bg-[#F5F0E8] overflow-x-hidden font-sans">
       <script
@@ -42,7 +49,7 @@ export default function BrunswickPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <BrunswickClient />
+      <BrunswickClient googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
       <Footer />
     </main>
   );

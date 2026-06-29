@@ -99,7 +99,7 @@ const jsonLd = {
   ]
 };
 
-export default function PointCookPage() {
+export default async function PointCookPage() {
   return (
     <>
       <script
@@ -107,7 +107,7 @@ export default function PointCookPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <PointCookClient />
+      <PointCookClient googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
       <Footer />
     </>
   );

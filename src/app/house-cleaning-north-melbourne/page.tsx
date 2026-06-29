@@ -67,7 +67,7 @@ const faqData = {
   ]
 };
 
-export default function NorthMelbournePage() {
+export default async function NorthMelbournePage() {
   return (
     <>
       <script
@@ -75,7 +75,7 @@ export default function NorthMelbournePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
       />
       <Navbar />
-      <NorthMelbourneClient />
+      <NorthMelbourneClient googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
       <Footer />
     </>
   );

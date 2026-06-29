@@ -99,7 +99,7 @@ const jsonLd = {
   ]
 };
 
-export default function PrestonPage() {
+export default async function PrestonPage() {
   return (
     <>
       <script
@@ -107,7 +107,7 @@ export default function PrestonPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <PrestonClient />
+      <PrestonClient googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
       <Footer />
     </>
   );

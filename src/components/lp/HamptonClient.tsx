@@ -133,9 +133,10 @@ const HamptonBeforeAfterSlider = () => {
 
 // ─── Main Component ────────────────────────────────────────────────
 export default function HamptonClient({
-  googleRatingValue = 5.0,
+  googleRatingValue = 5.0, googleReviewCount = 14,
 }: {
   googleRatingValue?: number;
+  googleReviewCount?: number;
 }) {
   return (
     <div className="overflow-x-hidden text-gray-900">
@@ -266,7 +267,7 @@ export default function HamptonClient({
           >
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200/30 gap-y-6 md:gap-y-0">
               <div className="text-center flex flex-col items-center justify-center">
-                <span className="text-[22px] font-bold text-[#FB8C42] leading-none">4.9 ★</span>
+                <span className="text-[22px] font-bold text-[#FB8C42] leading-none">{googleRatingValue} ★</span>
                 <span className="text-[12px] text-gray-500 mt-1.5">Google</span>
               </div>
               <div className="text-center flex flex-col items-center justify-center">

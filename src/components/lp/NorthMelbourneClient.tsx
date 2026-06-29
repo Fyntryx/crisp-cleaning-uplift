@@ -237,7 +237,7 @@ function AnimatedStatBlock({ children, delay = 0 }: { children: React.ReactNode,
   );
 }
 
-export default function NorthMelbourneClient() {
+export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const [isMounted, setIsMounted] = useState(false);
   const [splitPercent, setSplitPercent] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
@@ -439,7 +439,7 @@ export default function NorthMelbourneClient() {
       <section className="bg-[#1C1C1C] py-[22px]">
         <div className="container mx-auto px-6">
           <div className="flex justify-center gap-6 md:gap-12 flex-wrap items-center text-[13px] text-white/45 tracking-[0.08em] font-medium text-center">
-            <span><span className="text-[#d97706] font-bold">4.9★</span> Google</span>
+            <span><span className="text-[#d97706] font-bold">{googleRatingValue} ★</span> Google</span>
             <span className="text-[#F59E0B] opacity-50">·</span>
             <span><span className="text-[#d97706] font-bold">97%</span> Same Cleaner</span>
             <span className="text-[#F59E0B] opacity-50">·</span>
@@ -836,7 +836,7 @@ export default function NorthMelbourneClient() {
           </div>
           
           <div className="text-center mt-8 text-[13px] text-[#6b7280]">
-            ★★★★★ Rated 4.9 on Google · 47 verified reviews
+            ★★★★★ Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews
           </div>
         </div>
       </section>

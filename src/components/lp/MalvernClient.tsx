@@ -145,7 +145,7 @@ function TestimonialSlider() {
    4. MAIN PAGE COMPONENT
 ════════════════════════════════════════════════════════════════ */
 
-export default function MalvernClient({ googleRatingValue = 4.9, googleReviewCount = 47 }) {
+export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCount = 14 }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `

@@ -211,7 +211,7 @@ const styles = `
   }
 `;
 
-export default function PrestonClient() {
+export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const handlePropertyClick = (property: string) => {
     setActiveProperty(property as "brick" | "rental" | "townhouse" | "heritage");
     // Handle dimmed class via state/CSS instead of direct DOM manipulation
@@ -313,7 +313,7 @@ export default function PrestonClient() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-6 flex flex-wrap gap-2"
           >
-            {["4.9 ★ Google", "97% Same Cleaner", "Eco-Friendly", "72hr Guarantee"].map((pill, i) => (
+            {[`${googleRatingValue} ★ Google`, "97% Same Cleaner", "Eco-Friendly", "72hr Guarantee"].map((pill, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-full px-3.5 py-1.5 text-[12px] text-white/55">
                 {pill}
               </div>
@@ -394,7 +394,7 @@ export default function PrestonClient() {
       <section className="bg-[#1C1C1C] py-[22px] border-b border-white/5">
         <div className="container mx-auto px-6">
           <div className="flex justify-center gap-6 md:gap-12 flex-wrap items-center text-[13px] text-white/50 tracking-[0.08em] font-medium text-center">
-            <span><span className="text-[#d97706] font-bold">4.9★</span> Google</span>
+            <span><span className="text-[#d97706] font-bold">{googleRatingValue} ★</span> Google</span>
             <span className="text-[#F59E0B]">·</span>
             <span><span className="text-[#d97706] font-bold">97%</span> Same Cleaner</span>
             <span className="text-[#F59E0B]">·</span>
@@ -855,7 +855,7 @@ export default function PrestonClient() {
             </div>
             
             <div className="text-[14px] text-[#6b7280] text-center mt-8 font-medium">
-              <span className="text-[#d97706] mr-1">★★★★★</span> Rated 4.9 on Google · 47 verified reviews
+              <span className="text-[#d97706] mr-1">★★★★★</span> Rated {googleRatingValue} on Google · {googleReviewCount} verified reviews
             </div>
           </div>
         </div>

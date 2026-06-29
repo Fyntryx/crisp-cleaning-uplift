@@ -60,7 +60,7 @@ const heroStats = [
 ];
 
 const metricStrip = [
-  { value: "4.9 ★", label: "Average rating of homes" },
+  { value: `${googleRatingValue} ★`, label: "Average rating of homes" },
   { value: "850+", label: "Homes completed" },
   { value: "3.2yr", label: "Average tenure Brighton" },
   { value: "Fixed", label: "Pricing — no hourly estimates" },
@@ -225,9 +225,10 @@ const faqData = [
 
 // ─── Main Component ────────────────────────────────────────────────
 export default function BrightonClient({
-  googleRatingValue = 5.0,
+  googleRatingValue = 5.0, googleReviewCount = 14,
 }: {
   googleRatingValue?: number;
+  googleReviewCount?: number;
 }) {
   return (
     <div className="overflow-x-hidden">

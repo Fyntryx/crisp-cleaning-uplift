@@ -235,7 +235,7 @@ const faqData = [
   { question: "Do you offer end-of-lease cleaning for CBD apartments?", answer: "Yes - end-of-lease cleaning is available for CBD apartments, including building-access coordination. Get a separate vacate clean quote online; bond-back confidence included as standard." }
 ];
 
-export default function MelbourneCBDClient() {
+export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const [activeRoom, setActiveRoom] = useState<string | null>(null);
 
   return (
@@ -382,7 +382,7 @@ export default function MelbourneCBDClient() {
         <section className="bg-[#0A1628] py-0 border-t border-[rgba(255,255,255,0.06)] border-b">
           <div className="grid grid-cols-2 md:grid-cols-4 w-full">
             {[
-              { stat: "4.9★", label: "Google" },
+              { stat: `${googleRatingValue}★`, label: "Google" },
               { stat: "97%", label: "Same Cleaner" },
               { stat: "100%", label: "Eco-Friendly" },
               { stat: "72hr", label: "Re-clean" }
@@ -609,7 +609,7 @@ export default function MelbourneCBDClient() {
             </div>
             
             <div className="text-center mt-[32px] text-[14px] text-[#6b7280]">
-              ★★★★★ Rated 4.9 on Google · 14+ verified reviews
+              ★★★★★ Rated {googleRatingValue} on Google · {googleReviewCount}+ verified reviews
             </div>
           </div>
         </section>

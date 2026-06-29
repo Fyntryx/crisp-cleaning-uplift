@@ -197,7 +197,7 @@ const mapContentData = {
   }
 };
 
-export default function MaribyrnongClient() {
+export default function MaribyrnongClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
   const [activePin, setActivePin] = useState<number | null>(null);
 
   return (
@@ -240,7 +240,7 @@ export default function MaribyrnongClient() {
               </p>
 
               <div className="mt-[24px] flex flex-wrap gap-[8px]">
-                {["⭐ 4.9 on Google", "97% Same Cleaner", "Eco-Friendly Products", "72hr Re-clean Guarantee"].map((pill, i) => (
+                {[`⭐ ${googleRatingValue} on Google`, "97% Same Cleaner", "Eco-Friendly Products", "72hr Re-clean Guarantee"].map((pill, i) => (
                   <div key={i} className="bg-[#ffffff] border border-[#e5e7eb] rounded-full px-[14px] py-[6px] text-[12px] text-[#374151] shadow-[0_1px_4px_rgba(0,0,0,0.04)] flex items-center gap-1.5">
                     {i > 0 && <CheckCircle2 className="w-3.5 h-3.5 text-[#FB8C42]" />}
                     {pill}
@@ -298,7 +298,7 @@ export default function MaribyrnongClient() {
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e5e7eb]">
             <div className="text-center px-4">
-              <div className="text-[32px] font-[800] text-[#1a1a1a] leading-none mb-1">4.9 ★</div>
+              <div className="text-[32px] font-[800] text-[#1a1a1a] leading-none mb-1">{googleRatingValue} ★</div>
               <div className="text-[12px] text-[#6b7280]">Google rating</div>
               <div className="text-[11px] text-[#FB8C42] font-[600] mt-1">Maribyrnong</div>
             </div>
@@ -793,7 +793,7 @@ export default function MaribyrnongClient() {
                     ))}
                   </div>
                   <div className="text-[14px] font-[600] text-[#ffffff]">
-                    4.9/5 <span className="text-[rgba(255,255,255,0.4)] font-[400] ml-1">Google Reviews</span>
+                    {googleRatingValue}/5 <span className="text-[rgba(255,255,255,0.4)] font-[400] ml-1">Google Reviews</span>
                   </div>
                 </div>
               </ScrollReveal>

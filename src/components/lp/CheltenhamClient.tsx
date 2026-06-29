@@ -128,9 +128,10 @@ const CheltenhamBeforeAfterSlider = () => {
 };
 
 export default function CheltenhamClient({
-  googleRatingValue = 5.0,
+  googleRatingValue = 5.0, googleReviewCount = 14,
 }: {
   googleRatingValue?: number;
+  googleReviewCount?: number;
 }) {
   const tickerText = "Same Cleaner Every Visit · Fixed Pricing · Eco-Friendly Products · 72hr Guarantee · Established Families · Sandbelt Corridor · Cheltenham · No Hourly Surprises · Book in 60 Seconds · ";
 
@@ -313,7 +314,7 @@ export default function CheltenhamClient({
         <div className="container mx-auto px-6 md:px-10 max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200/50 gap-y-6 md:gap-y-0">
             <div className="text-center flex flex-col items-center justify-center">
-              <span className="text-[24px] font-[700] text-[#FB8C42] leading-none mb-1.5">4.9 ★</span>
+              <span className="text-[24px] font-[700] text-[#FB8C42] leading-none mb-1.5">{googleRatingValue} ★</span>
               <span className="text-[12px] text-gray-500">Google</span>
             </div>
             <div className="text-center flex flex-col items-center justify-center">

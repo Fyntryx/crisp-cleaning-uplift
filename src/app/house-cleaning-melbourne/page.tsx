@@ -204,7 +204,7 @@ export default async function HouseCleaningPage() {
       />
 
       {/* 8. Reviews */}
-      <Testimonials 
+      <Testimonials googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} 
         title="What Melbourne homeowners are saying."
         subtitle=""
         topTitle="Testimonials"

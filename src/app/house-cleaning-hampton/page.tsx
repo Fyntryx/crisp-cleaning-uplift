@@ -48,6 +48,7 @@ export default async function HouseCleaningHamptonPage() {
   });
 
   const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
+  const googleReviewCount = siteSettings?.googleReviewCount || 14;
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">

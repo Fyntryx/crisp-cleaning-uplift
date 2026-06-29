@@ -99,7 +99,7 @@ const jsonLd = {
   ]
 };
 
-export default function BundooraPage() {
+export default async function BundooraPage() {
   return (
     <>
       <script
@@ -107,7 +107,7 @@ export default function BundooraPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <BundooraClient />
+      <BundooraClient googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
       <Footer />
     </>
   );

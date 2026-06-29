@@ -8,6 +8,7 @@ import FinalCTA from "@/components/lp/FinalCTA";
 import Testimonials from "@/components/lp/Testimonials";
 import { Shield, Star, CheckCircle2, UserCheck, Droplets, Clock, ArrowRight, MapPin } from "lucide-react";
 import { groq } from "next-sanity";
+import { sanityFetch } from "@/sanity/lib/live";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
@@ -54,6 +55,13 @@ export default async function SuburbTemplatePage() {
   } catch (error) {
     console.warn("Sanity API fetch failed (likely missing credentials). Falling back to CSS placeholder.");
   }
+
+  
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`,
+  });
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
+  const googleReviewCount = siteSettings?.googleReviewCount || 14;
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/20 selection:text-primary overflow-x-hidden font-sans">
@@ -136,7 +144,7 @@ export default async function SuburbTemplatePage() {
                   <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center">
                     <Star className="w-5 h-5 text-[#FB8C42]" fill="currentColor" />
                   </div>
-                  <span className="font-semibold text-gray-800 text-[15px]">4.9 Google Rating</span>
+                  <span className="font-semibold text-gray-800 text-[15px]">{googleRatingValue} Google Rating</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center">
@@ -302,7 +310,7 @@ export default async function SuburbTemplatePage() {
       </section>
 
       {/* 5. What [Suburb] Homeowners Say */}
-      <Testimonials
+      <Testimonials googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount}
         title={<>What <span className="text-[#FB8C42]">Croydon</span> Homeowners Say</>}
         subtitle="Here's what happened when they switched to Crisp."
         hideBeforeAfter={true}
