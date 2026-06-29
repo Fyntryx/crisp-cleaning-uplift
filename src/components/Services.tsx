@@ -1302,7 +1302,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
 
       setPromoCode(appliedPromoDetails.code);
-      setAppliedPromo({ code: appliedPromoDetails.code, type: appliedPromoDetails.type, value: appliedPromoDetails.value, isStackable: false });
+      setAppliedPromo({ code: appliedPromoDetails.code, type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', value: appliedPromoDetails.value, isStackable: false });
       setDiscountClaimed(true);
       
       setSubmitError(null);
