@@ -658,11 +658,11 @@ export default function HamptonClient({
                     ))}
                   </div>
                   <p className="text-[20px] md:text-[24px] text-gray-800 leading-relaxed font-medium mb-6 italic">
-                    "We've tried three different companies in Bayside over the years. Crisp is the only one where the cleaner actually learned the house and maintained the standard past the first month. Incredible service."
+                    "Honestly felt like a brand new home."
                   </p>
                   <div>
-                    <p className="text-[16px] font-bold text-gray-900">Emma T.</p>
-                    <p className="text-[14px] text-gray-500">Hampton Street precinct</p>
+                    <p className="text-[16px] font-bold text-gray-900">Andre B</p>
+                    <p className="text-[14px] text-gray-500">Verified Customer</p>
                   </div>
                 </div>
               </div>
@@ -675,11 +675,11 @@ export default function HamptonClient({
                 <ScrollReveal delay={0.2} className="h-full">
                   <div className="bg-white rounded-[20px] p-8 shadow-sm h-full flex flex-col">
                     <p className="text-[16px] text-gray-700 leading-relaxed italic mb-6 grow">
-                      "With kids tracking sand in from the beach all summer, the floors were a nightmare. The team gets them immaculate every fortnight without using harsh chemicals on our older timber boards."
+                      "Team took great care, really appreciated the communication - the small details dont go unnoticed! keep it up crisp"
                     </p>
                     <div>
-                      <p className="text-[14px] font-bold text-gray-900">David L.</p>
-                      <p className="text-[12px] text-gray-500">Holyrood St, Hampton</p>
+                      <p className="text-[14px] font-bold text-gray-900">Natch L</p>
+                      <p className="text-[12px] text-gray-500">Verified Customer</p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -687,11 +687,11 @@ export default function HamptonClient({
                 <ScrollReveal delay={0.3} className="h-full">
                   <div className="bg-white rounded-[20px] p-8 shadow-sm h-full flex flex-col">
                     <p className="text-[16px] text-gray-700 leading-relaxed italic mb-6 grow">
-                      "The instant quoting was so easy, and the fixed pricing is a relief. They didn't blink an eye at the extra bathroom in the new extension."
+                      "Really impressed with the detail, even the little things like skirting boards were spotless. It's clear the team takes pride in their work."
                     </p>
                     <div>
-                      <p className="text-[14px] font-bold text-gray-900">Sophie & Mark</p>
-                      <p className="text-[12px] text-gray-500">Linacre Rd, Hampton</p>
+                      <p className="text-[14px] font-bold text-gray-900">Kaan S</p>
+                      <p className="text-[12px] text-gray-500">Verified Customer</p>
                     </div>
                   </div>
                 </ScrollReveal>
