@@ -63,7 +63,7 @@ const getMetricStrip = (googleRatingValue: number) => [
   { value: `${googleRatingValue} ★.`, label: "Average rating of homes" },
   { value: "850+", label: "Homes completed" },
   { value: "3.2yr", label: "Average tenure Brighton" },
-  { value: "Fixed", label: "Pricing — no hourly estimates" },
+  { value: "Fixed Pricing", label: "no hourly estimates" },
 ];
 
 const heritageCards = [
