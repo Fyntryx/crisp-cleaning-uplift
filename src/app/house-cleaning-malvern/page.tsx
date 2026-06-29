@@ -50,7 +50,7 @@ export default async function MalvernPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <MalvernClient googleRatingValue={4.9} googleReviewCount={47} />
+      <MalvernClient googleRatingValue={googleRatingValue} googleReviewCount={googleReviewCount} />
       <Footer />
     </main>
   );

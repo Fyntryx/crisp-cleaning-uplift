@@ -219,7 +219,7 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
                   <span className="text-[#1a1a1a]">Melbourne</span>
                 </h1>
 
-                <p className="text-[16px] text-[#4b5563] leading-[1.8] mb-10 max-w-[540px]">
+                <p className="text-[16px] text-[#4b5563] leading-[1.8] mb-10 max-w-[540px] text-justify">
                   Malvern's tree-lined residential streets — running between Glenferrie Road and Wattletree Road — contain some of Melbourne's finest period housing stock. Victorian mansions, Federation-era homes, and Californian bungalows on generous blocks define the suburb's character, maintained by long-tenure families who are exacting about their properties. Getting a consistently high standard across homes like these requires more than a rotating cleaner following a generic checklist. Crisp services Malvern properties with eco-friendly products appropriate for heritage surfaces, fixed pricing calibrated to larger floor plans, and the same cleaner who builds genuine knowledge of your home over time.
                 </p>
 

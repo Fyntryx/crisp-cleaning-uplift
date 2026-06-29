@@ -671,9 +671,9 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
 
           {/* Card 2 - Featured */}
           <div className="bg-white rounded-[24px] p-8 shadow-xl flex flex-col relative border border-[#e5e7eb] border-t-[3px] border-t-[#d97706] transform scale-100 md:scale-[1.04] z-10">
-            <div className="static inline-block mb-[16px] bg-[rgba(217,119,6,0.08)] text-[#d97706] border border-[rgba(217,119,6,0.2)] rounded-[99px] px-[14px] py-[4px] text-[11px] font-[600] uppercase tracking-wider w-max">
-              Most popular in Toorak
-            </div>
+              <div className="absolute top-0 right-0 px-4 py-2 rounded-tr-[24px] rounded-bl-[16px] bg-[rgba(217,119,6,0.08)] text-[#d97706] border border-[rgba(217,119,6,0.2)] text-[10px] font-extrabold uppercase tracking-wider z-10">
+                Most popular in Toorak
+              </div>
             <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Deep</h3>
             <div className="text-[#6b7280] text-[14px] mb-6">From $235</div>
             <ul className="space-y-4 mb-8 flex-1">
