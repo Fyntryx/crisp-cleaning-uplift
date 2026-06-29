@@ -154,13 +154,13 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
 
           <motion.div key={mode} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
             <p className="text-[15px] text-white/50 leading-[1.8] max-w-[480px]">
-              Bundoora occupies a specific position in Melbourne's north - a suburb with a significant La Trobe University presence on its eastern fringe, an established family-residential core across its quieter streets, and a meaningful rental population near both university campuses. This dual character shapes the suburb's cleaning needs clearly: families who want a consistent, familiar cleaner returning every fortnight, and rental or share-house occupants near the universities who need reliable service without complicated setup. Crisp serves both with the same fixed, scope-based pricing and same-cleaner model applied across every property type.
+              {mode === 'family' ? "Bundoora's established residential streets — including the Mt Cooper estate and the quieter pockets away from the main arterial roads — contain larger, multi-bedroom family homes on generous blocks. These properties require a consistent service that handles multiple living areas without an hourly rate overrunning. Crisp's fixed, room-count pricing ensures family homes are quoted accurately based on their actual scope, with the same cleaner returning on every visit to build familiarity with the property." : "Bundoora's proximity to La Trobe University and the RMIT campus makes it a major hub for share houses and student rentals. Our fixed-pricing model works per-property, not per-occupant, avoiding the punitive surcharges traditional cleaners often apply to multi-tenant homes. High-traffic common areas — shared kitchens, bathrooms, and hallways — accumulate usage quickly in student housing and receive systematic, thorough attention within our standard service scope."}
             </p>
           </motion.div>
 
           <div className="flex flex-wrap gap-2 mt-6">
             <span className="bg-white/5 border border-white/10 rounded-full px-[14px] py-[6px] text-[12px] text-white/55">
-              4.9 ★ Google
+              {Number(googleRatingValue).toFixed(1)} ★ Google
             </span>
             <span className="bg-white/5 border border-white/10 rounded-full px-[14px] py-[6px] text-[12px] text-white/55">
               97% Same Cleaner
