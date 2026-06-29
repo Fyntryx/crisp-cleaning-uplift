@@ -57,7 +57,7 @@ const ContactPage = () => {
                         We're here to help
                       </p>
                       <div className="text-gray-900 font-medium space-y-1 text-[15px]">
-                        <p>Mon - Fri: 8:00 AM - 8:00 PM</p>
+                        <p>Mon - Sun: 8:00 AM - 8:00 PM</p>
                       </div>
                     </div>
                   </div>
@@ -90,7 +90,7 @@ const ContactPage = () => {
                     <div>
                       <h3 className="text-[17px] font-semibold text-gray-900 mb-1">Call Us</h3>
                       <p className="text-[14px] text-gray-500 font-normal mb-2">
-                        Mon-Fri from 8am to 8pm
+                        Mon-Sun from 8am to 8pm
                       </p>
                       <a
                         href="tel:+61451433786"
