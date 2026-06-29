@@ -1,3 +1,4 @@
+import { sanityFetch } from "@/sanity/lib/live";
 import { Metadata } from "next";
 import MalvernClient from "@/components/lp/MalvernClient";
 import Navbar from "@/components/Navbar";

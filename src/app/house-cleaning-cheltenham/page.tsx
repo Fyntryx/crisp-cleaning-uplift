@@ -1,3 +1,4 @@
+import { sanityFetch } from "@/sanity/lib/live";
 import { Metadata } from "next";
 import CheltenhamClient from "@/components/lp/CheltenhamClient";
 import Navbar from "@/components/Navbar";

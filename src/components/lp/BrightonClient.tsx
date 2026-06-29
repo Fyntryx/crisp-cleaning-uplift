@@ -59,8 +59,8 @@ const heroStats = [
   { value: "72hr", label: "Re-clean guarantee, every clean" },
 ];
 
-const metricStrip = [
-  { value: `${googleRatingValue} ★`, label: "Average rating of homes" },
+const getMetricStrip = (googleRatingValue: number) => [
+  { value: `${googleRatingValue} ★.`, label: "Average rating of homes" },
   { value: "850+", label: "Homes completed" },
   { value: "3.2yr", label: "Average tenure Brighton" },
   { value: "Fixed", label: "Pricing — no hourly estimates" },
@@ -369,7 +369,7 @@ export default function BrightonClient({
         <div className="border-t border-gray-100 bg-white">
           <div className="container mx-auto px-6 md:px-10 max-w-6xl">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100">
-              {metricStrip.map((m, i) => (
+              {getMetricStrip(googleRatingValue ?? 5.0).map((m, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 10 }}

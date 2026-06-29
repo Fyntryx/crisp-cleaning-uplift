@@ -1,3 +1,4 @@
+import { sanityFetch } from "@/sanity/lib/live";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -100,6 +101,13 @@ const jsonLd = {
 };
 
 export default async function PointCookPage() {
+  
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{ googleReviewCount, googleRatingValue }`,
+  });
+  const googleRatingValue = siteSettings?.googleRatingValue || 5.0;
+  const googleReviewCount = siteSettings?.googleReviewCount || 14;
+
   return (
     <>
       <script

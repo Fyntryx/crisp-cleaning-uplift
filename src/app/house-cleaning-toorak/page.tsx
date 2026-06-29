@@ -1,3 +1,4 @@
+import { sanityFetch } from "@/sanity/lib/live";
 import { Metadata } from "next";
 import ToorakClient from "@/components/lp/ToorakClient";
 import Navbar from "@/components/Navbar";

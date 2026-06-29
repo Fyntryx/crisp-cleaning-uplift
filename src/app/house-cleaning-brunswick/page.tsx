@@ -1,3 +1,4 @@
+import { sanityFetch } from "@/sanity/lib/live";
 import { Metadata } from "next";
 import BrunswickClient from "@/components/lp/BrunswickClient";
 import Navbar from "@/components/Navbar";

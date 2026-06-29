@@ -210,8 +210,6 @@ export default async function HouseCleaningPage() {
         topTitle="Testimonials"
         hideBeforeAfter={true}
         layout="left"
-        googleRatingValue={googleRatingValue}
-        googleReviewCount={googleReviewCount}
       />
 
       {/* 9. Our Promise / Satisfaction Guarantee */}

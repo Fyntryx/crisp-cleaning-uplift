@@ -1,3 +1,4 @@
+import { sanityFetch } from "@/sanity/lib/live";
 import { Metadata } from "next";
 import SouthYarraClient from "@/components/lp/SouthYarraClient";
 import Navbar from "@/components/Navbar";
