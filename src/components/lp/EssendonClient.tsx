@@ -818,7 +818,7 @@ export default function EssendonClient({
                 className="bg-[#1a1a1a] rounded-[24px] p-8 shadow-[0_20px_40px_rgba(0,0,0,0.1)] relative flex flex-col h-full"
                 style={{ transform: "scale(1.04)" }}
               >
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#fef3c7] text-[#92400e] text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap z-10">
+                <div className="absolute top-0 right-0 px-4 py-2 rounded-tr-[24px] rounded-bl-[16px] bg-[#fef3c7] text-[#92400e] text-[10px] font-extrabold uppercase tracking-wider z-10">
                   Most popular in Essendon
                 </div>
                 <p className="text-[12px] font-bold uppercase tracking-[0.1em] text-white/70 mb-3 mt-2">Deep</p>
