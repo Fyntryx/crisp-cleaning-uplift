@@ -132,6 +132,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           transition: width 0.6s cubic-bezier(0.22,1,0.36,1);
         }
         .accordion-panel.active {
+          border-left: 3px solid #d97706;
           width: 60%;
         }
         .accordion-panel:not(.active) {
@@ -197,6 +198,9 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
         .timeline-item.right-side {
           transform: translateX(30px);
         }
+        .timeline-item.visible .timeline-dot {
+          box-shadow: 0 0 0 6px rgba(217,119,6,0.1);
+        }
         .timeline-item.visible {
           opacity: 1;
           transform: translateX(0);
@@ -220,7 +224,13 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
         }
         
         /* Override FAQ active border color for Toorak */
-        .group[open] > summary > div { border-left-color: #B8973E !important; }
+        .group[open] > summary > div { 
+          border-left: 3px solid #d97706 !important; 
+          padding-left: 16px !important;
+          transition: all 0.2s ease;
+        }
+        .group[open] > summary > div > h3 { color: #d97706 !important; }
+        .group[open] > summary svg { color: #d97706 !important; transform: rotate(180deg); }
       `}} />
 
       {/* SECTION 1 — HERO */}
@@ -233,7 +243,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </div>
           
           {/* Step 2: Gold rule */}
-          <div className="w-0 h-[1px] bg-[#B8973E] my-[28px] mx-auto animate-[expandWidth_0.6s_ease_0.8s_forwards]" style={{ maxWidth: '40px' }} />
+          <div className="w-0 h-[1px] bg-[#d97706] my-[28px] mx-auto animate-[expandWidth_0.6s_ease_0.8s_forwards]" style={{ maxWidth: '40px' }} />
           
           {/* Step 3: H1 */}
           <h1 className="text-[48px] md:text-[80px] font-[800] text-[#ffffff] leading-[1.0] tracking-[-0.04em] flex flex-col items-center">
@@ -242,7 +252,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               <span className="word"><span style={{ animationDelay: '1.28s' }}>Cleaning</span></span>
             </div>
             <div className="flex gap-4">
-              <span className="word"><span style={{ animationDelay: '1.36s', color: '#B8973E' }}>Toorak</span></span>
+              <span className="word"><span style={{ animationDelay: '1.36s', color: '#d97706' }}>Toorak</span></span>
             </div>
             <div className="flex gap-4">
               <span className="word"><span style={{ animationDelay: '1.44s' }}>Melbourne</span></span>
@@ -256,7 +266,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           
           {/* Step 5: CTA Row */}
           <div className="mt-[36px] flex flex-wrap justify-center gap-[12px] opacity-0 animate-[fadeUp_0.6s_ease_2.6s_forwards]">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#B8973E] transition-colors">
+            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#d97706] transition-colors">
               Get an Instant Quote
             </a>
             <a href="#included" className="border border-[rgba(255,255,255,0.2)] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
@@ -270,9 +280,9 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           
           <div className="flex items-center gap-[8px] sm:gap-[16px] mt-[20px] bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-[99px] px-[16px] py-[6px] text-[10px] sm:text-[12px] text-[rgba(255,255,255,0.55)] opacity-0 animate-[fadeIn_0.6s_ease_3.0s_forwards] flex-wrap justify-center">
             <span>97% Same Cleaner</span>
-            <span className="text-[#B8973E]">·</span>
+            <span className="text-[#d97706]">·</span>
             <span>Eco-Friendly Products</span>
-            <span className="text-[#B8973E]">·</span>
+            <span className="text-[#d97706]">·</span>
             <span>72hr Guarantee</span>
           </div>
 
@@ -281,20 +291,20 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
         {/* Scroll Indicator */}
         <div className="absolute bottom-[32px] left-1/2 -translate-x-1/2 flex flex-col items-center opacity-0 animate-[fadeIn_0.6s_ease_3.5s_forwards]">
           <span className="text-[10px] tracking-[0.25em] uppercase text-[rgba(255,255,255,0.25)] mb-2">scroll</span>
-          <ChevronDown className="w-5 h-5 text-[#B8973E] animate-bounce-small" />
+          <ChevronDown className="w-5 h-5 text-[#d97706] animate-bounce-small" />
         </div>
       </section>
 
       {/* SECTION 2 — PROOF BAR */}
-      <section className="bg-[#B8973E] w-full py-[20px]">
+      <section className="bg-[#d97706] w-full py-[20px]">
         <div className="container mx-auto px-6">
-          <div className="flex flex-wrap items-center justify-center gap-[16px] sm:gap-[32px] md:gap-[64px] text-[11px] sm:text-[13px] font-[600] text-[#0A0A0A] text-center uppercase tracking-[0.1em]">
+          <div className="flex flex-wrap items-center justify-center gap-[16px] sm:gap-[32px] md:gap-[64px] text-[11px] sm:text-[13px] font-[600] text-[#ffffff] text-center uppercase tracking-[0.1em]">
             <span>4.9 ★ Google</span>
-            <span className="hidden sm:inline">·</span>
+            <span className="hidden sm:inline text-[rgba(255,255,255,0.4)]">·</span>
             <span>97% Same Cleaner</span>
-            <span className="hidden sm:inline">·</span>
+            <span className="hidden sm:inline text-[rgba(255,255,255,0.4)]">·</span>
             <span>100% Eco-Friendly</span>
-            <span className="hidden sm:inline">·</span>
+            <span className="hidden sm:inline text-[rgba(255,255,255,0.4)]">·</span>
             <span>72hr Guarantee</span>
           </div>
         </div>
@@ -311,13 +321,13 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </div>
           {/* Right col */}
           <div>
-            <div className="text-[11px] font-[600] text-[#B8973E] tracking-[0.2em] uppercase mb-[20px]">
+            <div className="text-[11px] font-[600] text-[#d97706] tracking-[0.2em] uppercase mb-[20px]">
               Toorak · Melbourne
             </div>
             <p className="text-[16px] md:text-[18px] text-[#374151] leading-[1.9] max-w-[620px]">
               Toorak's residential streets - the private roads running off Toorak Road and Orrong Road, the tree-lined blocks around Toorak Village, and the larger properties on the suburb's eastern fringe near Fawkner Park - represent Melbourne's most demanding residential cleaning market. Large homes with multiple formal rooms, polished timber and heritage floors, premium finishes throughout, and a household demographic that notices detail quickly. Delivering a consistent, high standard across properties like these requires a cleaner who knows your home, uses the right products on the right surfaces, and produces the same result every visit without oversight. Crisp services Toorak properties with fixed, scope-based pricing, eco-friendly products appropriate for premium and heritage surfaces, and the same cleaner assigned from the first booking.
             </p>
-            <div className="w-[48px] h-[2px] bg-[#B8973E] mt-[32px]" />
+            <div className="w-[48px] h-[2px] bg-[#d97706] mt-[32px]" />
           </div>
         </div>
       </section>
@@ -325,7 +335,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
       {/* SECTION 4 — PROPERTY TYPE HORIZONTAL ACCORDION */}
       <section className="bg-[#0A0A0A] p-0 w-full">
         <div className="pt-[64px] px-[24px] md:px-[48px] pb-[48px] max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#B8973E] tracking-[0.2em] uppercase mb-[16px]">
+          <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase mb-[16px]">
             Premium Home Cleaning Across Toorak
           </div>
           <p className="text-[16px] text-[rgba(255,255,255,0.55)] leading-[1.8] max-w-[640px]">
@@ -339,12 +349,12 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
             className={`accordion-panel relative overflow-hidden cursor-pointer border-b md:border-b-0 md:border-r border-[rgba(255,255,255,0.06)] min-h-[300px] md:min-h-0 bg-[#0f0f0f] hover:bg-[#141414] ${activePanel === 0 ? 'active' : ''}`}
             onClick={() => setActivePanel(0)}
           >
-            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#B8973E] font-[700]">01</div>
+            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#d97706] font-[700]">01</div>
             <div className="panel-label">Heritage</div>
             
             <div className="panel-content flex flex-col justify-end">
-              <div className="w-[32px] h-[2px] bg-[#B8973E] mb-[20px]" />
-              <div className="inline-block bg-[rgba(184,151,62,0.15)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
+              <div className="w-[32px] h-[2px] bg-[#d97706] mb-[20px]" />
+              <div className="inline-block bg-[rgba(217,119,6,0.12)] border border-[rgba(217,119,6,0.25)] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
                 Toorak Village · Heritage
               </div>
               <h3 className="text-[22px] font-[700] text-[#ffffff] leading-[1.3] my-[12px]">
@@ -368,12 +378,12 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
             className={`accordion-panel relative overflow-hidden cursor-pointer border-b md:border-b-0 md:border-r border-[rgba(255,255,255,0.06)] min-h-[300px] md:min-h-0 bg-[#0f0f0f] hover:bg-[#141414] ${activePanel === 1 ? 'active' : ''}`}
             onClick={() => setActivePanel(1)}
           >
-            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#B8973E] font-[700]">02</div>
+            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#d97706] font-[700]">02</div>
             <div className="panel-label">Contemporary</div>
             
             <div className="panel-content flex flex-col justify-end">
-              <div className="w-[32px] h-[2px] bg-[#B8973E] mb-[20px]" />
-              <div className="inline-block bg-[rgba(184,151,62,0.15)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
+              <div className="w-[32px] h-[2px] bg-[#d97706] mb-[20px]" />
+              <div className="inline-block bg-[rgba(217,119,6,0.12)] border border-[rgba(217,119,6,0.25)] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
                 Architect-Designed · Contemporary
               </div>
               <h3 className="text-[22px] font-[700] text-[#ffffff] leading-[1.3] my-[12px]">
@@ -397,12 +407,12 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
             className={`accordion-panel relative overflow-hidden cursor-pointer bg-[#0f0f0f] hover:bg-[#141414] min-h-[300px] md:min-h-0 ${activePanel === 2 ? 'active' : ''}`}
             onClick={() => setActivePanel(2)}
           >
-            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#B8973E] font-[700]">03</div>
+            <div className="absolute top-[32px] left-[24px] text-[11px] text-[#d97706] font-[700]">03</div>
             <div className="panel-label">Multi-Room</div>
             
             <div className="panel-content flex flex-col justify-end">
-              <div className="w-[32px] h-[2px] bg-[#B8973E] mb-[20px]" />
-              <div className="inline-block bg-[rgba(184,151,62,0.15)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
+              <div className="w-[32px] h-[2px] bg-[#d97706] mb-[20px]" />
+              <div className="inline-block bg-[rgba(217,119,6,0.12)] border border-[rgba(217,119,6,0.25)] text-[#d97706] rounded-[99px] px-[12px] py-[4px] text-[11px] font-[600] w-fit mb-3">
                 Private Streets · Multi-Room
               </div>
               <h3 className="text-[22px] font-[700] text-[#ffffff] leading-[1.3] my-[12px]">
@@ -426,7 +436,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
       {/* SECTION 5 — WHAT'S INCLUDED */}
       <section className="bg-[#ffffff] py-[100px]">
         <div className="text-center mb-[72px] px-6">
-          <div className="text-[11px] text-[#B8973E] font-[600] tracking-[0.2em] uppercase mb-[16px]">Scope & Checklist</div>
+          <div className="text-[11px] text-[#d97706] font-[600] tracking-[0.2em] uppercase mb-[16px]">Scope & Checklist</div>
           <h2 className="text-[40px] font-[700] text-[#0A0A0A] mb-[16px]">What Every Toorak Clean Includes</h2>
           <p className="text-[16px] text-[#6b7280] max-w-[560px] mx-auto leading-[1.8]">
             Every Toorak clean is delivered against a fixed, documented scope. At this property tier, the checklist isn't a formality - it's the mechanism that produces a consistent result across a home where inconsistency is immediately noticeable.
@@ -435,7 +445,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
 
         <div className="relative max-w-[900px] mx-auto px-[24px] md:px-[48px]">
           {/* Center Spine */}
-          <div className="absolute left-[24px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px]" style={{ background: 'linear-gradient(180deg, #B8973E 0%, rgba(184,151,62,0.2) 100%)' }} />
+          <div className="absolute left-[24px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px]" style={{ background: 'linear-gradient(180deg, #d97706 0%, rgba(217,119,6,0.2) 100%)' }} />
 
           {/* Item 1 - Left */}
           <div className="timeline-item left-side flex flex-col md:grid md:grid-cols-[1fr_40px_1fr] gap-6 md:gap-0 mb-[64px] items-start relative">
@@ -446,12 +456,12 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               </p>
               <div className="flex flex-wrap md:justify-end gap-[6px] mt-[14px]">
                 {['Stone benchtops', 'All bathrooms', 'Frameless screens', 'Cabinetry exteriors'].map(pill => (
-                  <span key={pill} className="bg-[#f9fafb] border border-[#e5e7eb] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#374151]">{pill}</span>
+                  <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#92400e]">{pill}</span>
                 ))}
               </div>
             </div>
             {/* Dot */}
-            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] rounded-full bg-[#B8973E] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(184,151,62,0.2)] mx-auto z-10" />
+            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] timeline-dot rounded-full bg-[#d97706] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(217,119,6,0.2)] transition-shadow duration-500 mx-auto z-10" />
             <div className="hidden md:block"></div>
           </div>
 
@@ -459,7 +469,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           <div className="timeline-item right-side flex flex-col md:grid md:grid-cols-[1fr_40px_1fr] gap-6 md:gap-0 mb-[64px] items-start relative">
             <div className="hidden md:block"></div>
             {/* Dot */}
-            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] rounded-full bg-[#B8973E] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(184,151,62,0.2)] mx-auto z-10" />
+            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] timeline-dot rounded-full bg-[#d97706] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(217,119,6,0.2)] transition-shadow duration-500 mx-auto z-10" />
             <div className="text-left pl-[40px] md:pl-[24px] pr-0">
               <h3 className="text-[18px] font-[700] text-[#0A0A0A] mb-[10px]">Polished Floors, Formal Living Areas and Feature Surfaces</h3>
               <p className="text-[14px] text-[#6b7280] leading-[1.75]">
@@ -467,7 +477,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               </p>
               <div className="flex flex-wrap gap-[6px] mt-[14px]">
                 {['Low-moisture on timber', 'Formal reception rooms', 'Libraries', 'Natural stone'].map(pill => (
-                  <span key={pill} className="bg-[#f9fafb] border border-[#e5e7eb] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#374151]">{pill}</span>
+                  <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#92400e]">{pill}</span>
                 ))}
               </div>
             </div>
@@ -482,12 +492,12 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               </p>
               <div className="flex flex-wrap md:justify-end gap-[6px] mt-[14px]">
                 {['All bedrooms', 'Dressing rooms', 'Home offices', 'Media rooms'].map(pill => (
-                  <span key={pill} className="bg-[#f9fafb] border border-[#e5e7eb] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#374151]">{pill}</span>
+                  <span key={pill} className="bg-[#fff7ed] border border-[#fed7aa] rounded-[99px] px-[12px] py-[4px] text-[12px] text-[#92400e]">{pill}</span>
                 ))}
               </div>
             </div>
             {/* Dot */}
-            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] rounded-full bg-[#B8973E] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(184,151,62,0.2)] mx-auto z-10" />
+            <div className="absolute md:relative left-[18px] md:left-auto top-[6px] md:top-0 w-[12px] h-[12px] timeline-dot rounded-full bg-[#d97706] border-[3px] border-[#ffffff] shadow-[0_0_0_3px_rgba(217,119,6,0.2)] transition-shadow duration-500 mx-auto z-10" />
             <div className="hidden md:block"></div>
           </div>
 
@@ -497,7 +507,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
       {/* SECTION 6 — WHY CRISP */}
       <section className="bg-[#0A0A0A] p-0">
         <div className="pt-[80px] px-[24px] md:px-[48px] pb-0">
-          <div className="text-[11px] text-[#B8973E] tracking-[0.2em] uppercase mb-[16px]">The Crisp Difference</div>
+          <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase mb-[16px]">The Crisp Difference</div>
           <h2 className="text-[40px] font-[700] text-[#ffffff] mb-[12px]">Why Toorak Homeowners Choose Crisp</h2>
           <p className="text-[16px] text-[rgba(255,255,255,0.5)] max-w-[560px] leading-[1.8] mb-[64px] mt-[12px]">
             Toorak's cleaning keyword carries a high competition index at a meaningful search volume. The market is contested and the expected service standard is the highest of any suburb in the portfolio. Crisp's advantage in Toorak is operational - not a promotional headline.
@@ -506,8 +516,8 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
 
         <div className="w-full border-t border-[rgba(255,255,255,0.06)] flex flex-col">
           {/* Block 01 */}
-          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
-            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] hover:border-l-[2px] hover:border-l-[rgba(217,119,6,0.4)] transition-all duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#d97706] group-hover:opacity-60 transition-all duration-200">
               01
             </div>
             <div>
@@ -517,15 +527,15 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               </p>
             </div>
             <div className="md:text-right md:justify-self-end w-full md:w-auto">
-              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+              <span className="inline-block bg-[rgba(217,119,6,0.12)] border border-[rgba(217,119,6,0.25)] text-[#d97706] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
                 97% same-cleaner rate
               </span>
             </div>
           </div>
 
           {/* Block 02 */}
-          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
-            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] hover:border-l-[2px] hover:border-l-[rgba(217,119,6,0.4)] transition-all duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#d97706] group-hover:opacity-60 transition-all duration-200">
               02
             </div>
             <div>
@@ -535,15 +545,15 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               </p>
             </div>
             <div className="md:text-right md:justify-self-end w-full md:w-auto">
-              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+              <span className="inline-block bg-[rgba(217,119,6,0.12)] border border-[rgba(217,119,6,0.25)] text-[#d97706] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
                 Fixed pricing always
               </span>
             </div>
           </div>
 
           {/* Block 03 */}
-          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
-            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] hover:border-l-[2px] hover:border-l-[rgba(217,119,6,0.4)] transition-all duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#d97706] group-hover:opacity-60 transition-all duration-200">
               03
             </div>
             <div>
@@ -553,15 +563,15 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               </p>
             </div>
             <div className="md:text-right md:justify-self-end w-full md:w-auto">
-              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+              <span className="inline-block bg-[rgba(217,119,6,0.12)] border border-[rgba(217,119,6,0.25)] text-[#d97706] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
                 100% eco-friendly
               </span>
             </div>
           </div>
 
           {/* Block 04 */}
-          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-200">
-            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#B8973E] group-hover:opacity-60 transition-all duration-200">
+          <div className="group grid grid-cols-1 md:grid-cols-[80px_1fr_280px] gap-6 md:gap-[48px] p-[24px] md:p-[48px] items-start border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.02)] hover:border-l-[2px] hover:border-l-[rgba(217,119,6,0.4)] transition-all duration-200">
+            <div className="text-[64px] md:text-[80px] font-[900] text-[rgba(255,255,255,0.06)] leading-[1] group-hover:text-[#d97706] group-hover:opacity-60 transition-all duration-200">
               04
             </div>
             <div>
@@ -571,7 +581,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               </p>
             </div>
             <div className="md:text-right md:justify-self-end w-full md:w-auto">
-              <span className="inline-block bg-[rgba(184,151,62,0.1)] border border-[rgba(184,151,62,0.3)] text-[#B8973E] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
+              <span className="inline-block bg-[rgba(217,119,6,0.12)] border border-[rgba(217,119,6,0.25)] text-[#d97706] rounded-[99px] px-[20px] py-[8px] text-[14px] font-[700] whitespace-nowrap">
                 72hr re-clean
               </span>
             </div>
@@ -586,7 +596,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           onMouseEnter={() => setIsHoveringReview(true)}
           onMouseLeave={() => setIsHoveringReview(false)}
         >
-          <span className="text-[140px] text-[#B8973E] opacity-[0.15] leading-[0.7] block mb-[32px] font-serif" style={{ fontFamily: 'Georgia, serif' }}>"</span>
+          <span className="text-[140px] text-[#d97706] opacity-[0.12] leading-[0.7] block mb-[32px] font-serif" style={{ fontFamily: 'Georgia, serif' }}>"</span>
           <p className={`text-[24px] md:text-[28px] font-[400] text-[#0A0A0A] leading-[1.6] italic transition-opacity duration-400 ease-in-out ${fadeReview ? 'opacity-0' : 'opacity-100'}`}>
             "{defaultReviews[currentReview].text}"
           </p>
@@ -598,23 +608,35 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
             <div className="text-[13px] text-[#9ca3af] mb-2 flex items-center gap-1 justify-center">
               <Star className="w-3 h-3 fill-current" /> Google Review
             </div>
-            <div className="text-[#B8973E] tracking-widest text-[14px]">★★★★★</div>
+            <div className="text-[#d97706] tracking-widest text-[14px]">★★★★★</div>
           </div>
           
-          <div className="flex justify-center gap-4 mt-8">
+          
+          <div className="flex justify-center gap-4 mt-8 items-center">
             <button 
               onClick={prevReview}
-              className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors"
+              className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#d97706] hover:text-[#d97706] transition-colors"
             >
               &larr;
             </button>
+            <div className="flex gap-2 mx-4">
+              {defaultReviews.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentReview(idx)}
+                  className={`h-[8px] rounded-full transition-all duration-300 ${idx === currentReview ? 'w-[24px] bg-[#d97706]' : 'w-[8px] bg-[#e5e7eb]'}`}
+                  aria-label={`Go to review ${idx + 1}`}
+                />
+              ))}
+            </div>
             <button 
               onClick={nextReview}
-              className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#B8973E] hover:text-[#B8973E] transition-colors"
+              className="w-[44px] h-[44px] rounded-full border border-[#e5e7eb] text-[#9ca3af] flex items-center justify-center hover:border-[#d97706] hover:text-[#d97706] transition-colors"
             >
               &rarr;
             </button>
           </div>
+
 
           <div className="text-[14px] text-[#6b7280] mt-[48px]">
             ★★★★★ Rated {googleRatingValue} on Google
@@ -625,7 +647,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
       {/* SECTION 8 — PRICING */}
       <section className="bg-[#fafafa] py-[100px]">
         <div className="text-center mb-[64px] px-6">
-          <div className="text-[11px] text-[#B8973E] font-[600] tracking-[0.2em] uppercase mb-[16px]">Transparent Pricing</div>
+          <div className="text-[11px] text-[#d97706] font-[600] tracking-[0.2em] uppercase mb-[16px]">Transparent Pricing</div>
           <h2 className="text-[40px] font-[700] text-[#0A0A0A] mb-[16px]">Toorak House Cleaning Prices</h2>
           <p className="text-[16px] text-[#6b7280] max-w-[560px] mx-auto">
             Fixed pricing based on your room count. No hourly estimates, no surprise charges.
@@ -638,9 +660,9 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
             <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Standard</h3>
             <div className="text-[#6b7280] text-[14px] mb-6">From $145</div>
             <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Up to 3 bed</li>
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> All bathrooms</li>
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Eco products included</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Up to 3 bed</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All bathrooms</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Eco products included</li>
             </ul>
             <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
@@ -648,16 +670,16 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </div>
 
           {/* Card 2 - Featured */}
-          <div className="bg-white rounded-[24px] p-8 shadow-xl flex flex-col relative border-2 border-[#B8973E] transform scale-100 md:scale-[1.04] z-10">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[rgba(184,151,62,0.1)] text-[#B8973E] border border-[rgba(184,151,62,0.3)] rounded-full px-4 py-1 text-[12px] font-bold uppercase tracking-wider whitespace-nowrap">
+          <div className="bg-white rounded-[24px] p-8 shadow-xl flex flex-col relative border border-[#e5e7eb] border-t-[3px] border-t-[#d97706] transform scale-100 md:scale-[1.04] z-10">
+            <div className="static inline-block mb-[16px] bg-[rgba(217,119,6,0.08)] text-[#d97706] border border-[rgba(217,119,6,0.2)] rounded-[99px] px-[14px] py-[4px] text-[11px] font-[600] uppercase tracking-wider w-max">
               Most popular in Toorak
             </div>
-            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2 mt-4">Deep</h3>
+            <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Deep</h3>
             <div className="text-[#6b7280] text-[14px] mb-6">From $235</div>
             <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Full property scope</li>
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Oven & inside cabinets</li>
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Grout & hard-to-reach areas</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Full property scope</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Oven & inside cabinets</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Grout & hard-to-reach areas</li>
             </ul>
             <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
@@ -669,9 +691,9 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
             <h3 className="text-[20px] font-[700] text-[#0A0A0A] mb-2">Vacate</h3>
             <div className="text-[#6b7280] text-[14px] mb-6">From $380</div>
             <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Bond-back standard</li>
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> All rooms & surfaces</li>
-              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#B8973E]" /> Inspection ready</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Bond-back standard</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All rooms & surfaces</li>
+              <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Inspection ready</li>
             </ul>
             <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
@@ -688,14 +710,14 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
       {/* SECTION 10 — FINAL CTA */}
       <section className="toorak-noise relative bg-[#0A0A0A] py-[100px] px-[32px] text-center overflow-hidden">
         <div className="relative z-10 max-w-[600px] mx-auto flex flex-col items-center">
-          <div className="w-[40px] h-[1px] bg-[#B8973E] mb-[32px]" />
+          <div className="w-[40px] h-[1px] bg-[#d97706] mb-[32px]" />
           
-          <div className="text-[11px] text-[#B8973E] tracking-[0.2em] uppercase mb-[16px]">
+          <div className="text-[11px] text-[#d97706] tracking-[0.2em] uppercase mb-[16px]">
             Ready to Book
           </div>
           
           <h2 className="text-[52px] font-[800] text-[#ffffff] leading-[1.1] mb-[16px]">
-            Book a Cleaner in <span className="text-[#B8973E]">Toorak</span>
+            Book a Cleaner in <span className="text-[#d97706]">Toorak</span>
           </h2>
           
           <p className="text-[16px] text-[rgba(255,255,255,0.55)] max-w-[460px] mx-auto mt-[16px] mb-[8px]">
@@ -707,7 +729,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </span>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px] mb-[48px]">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#B8973E] transition-colors w-full sm:w-auto">
+            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#d97706] transition-colors w-full sm:w-auto">
               Get an Instant Quote
             </a>
             <a href="tel:0451423786" className="border border-[rgba(255,255,255,0.15)] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors w-full sm:w-auto">
@@ -715,7 +737,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
             </a>
           </div>
           
-          <div className="w-[40px] h-[1px] bg-[#B8973E] mb-[28px]" />
+          <div className="w-[40px] h-[1px] bg-[#d97706] mb-[28px]" />
           
           <div className="text-[11px] text-[rgba(255,255,255,0.25)] tracking-[0.15em] uppercase mb-[14px]">
             Nearby Areas We Also Service
@@ -723,9 +745,9 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           
           <div className="flex flex-wrap justify-center gap-3">
             {['South Yarra', 'Malvern', 'Hawthorn', 'Armadale', 'Glen Iris'].map(area => (
-              <a key={area} href={`/house-cleaning-${area.toLowerCase().replace(' ', '-')}`} className="group bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[rgba(255,255,255,0.5)] rounded-[99px] px-[16px] py-[6px] text-[12px] hover:border-[#B8973E] hover:text-[#B8973E] transition-colors flex items-center gap-2">
+              <a key={area} href={`/house-cleaning-${area.toLowerCase().replace(' ', '-')}`} className="group bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[rgba(255,255,255,0.5)] rounded-[99px] px-[16px] py-[6px] text-[12px] hover:border-[#d97706] hover:text-[#d97706] transition-colors flex items-center gap-2">
                 {area}
-                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-150" />
               </a>
             ))}
           </div>
