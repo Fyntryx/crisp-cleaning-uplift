@@ -99,11 +99,11 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
           </div>
 
           {/* Row 1 */}
-          <div className="flex flex-col md:flex-row md:justify-between items-baseline mb-[-8px] gap-1 md:gap-0">
-            <div className="text-[18px] font-[400] text-[#9ca3af] tracking-[0.2em] uppercase">
+          <div className="flex flex-row md:justify-between items-baseline mb-4 md:mb-[-8px] gap-2 md:gap-0">
+            <div className="text-[13px] sm:text-[14px] md:text-[18px] font-[400] text-[#9ca3af] tracking-[0.2em] uppercase whitespace-nowrap">
               House Cleaning
             </div>
-            <div className="text-[18px] font-[400] text-[#9ca3af] tracking-[0.2em] uppercase text-left md:text-right">
+            <div className="text-[13px] sm:text-[14px] md:text-[18px] font-[400] text-[#9ca3af] tracking-[0.2em] uppercase text-left md:text-right whitespace-nowrap">
               Melbourne
             </div>
           </div>
@@ -624,12 +624,17 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
           </div>
           
           <div className="flex flex-wrap justify-center gap-[8px]">
-            {['Coburg', 'Preston', 'North Melbourne', 'Moonee Ponds', 'Carlton'].map(suburb => (
-              <a key={suburb} href={`/house-cleaning-${suburb.toLowerCase().replace(/ /g, '-')}`} className="bg-[rgba(255,255,255,0.15)] border border-[rgba(255,255,255,0.2)] text-[#ffffff] rounded-[99px] px-[16px] py-[6px] text-[12px] hover:bg-[rgba(255,255,255,0.25)] transition-colors group flex items-center gap-[4px]">
+            { [{ name: 'Coburg', isBuilt: true }, { name: 'Preston', isBuilt: true }, { name: 'North Melbourne', isBuilt: true }, { name: 'Moonee Ponds', isBuilt: true }, { name: 'Carlton', isBuilt: false }].map(({ name: suburb, isBuilt }) => (
+              isBuilt 
+                ? <a key={suburb} href={`/house-cleaning-${suburb.toLowerCase().replace(/ /g, '-')}`} className="bg-[rgba(255,255,255,0.15)] border border-[rgba(255,255,255,0.2)] text-[#ffffff] rounded-[99px] px-[16px] py-[6px] text-[12px] hover:bg-[rgba(255,255,255,0.25)] transition-colors group flex items-center gap-[4px]">
                 {suburb}
                 <ArrowRight className="w-[12px] h-[12px] opacity-0 -ml-[4px] group-hover:opacity-100 group-hover:ml-0 transition-all duration-200" />
               </a>
-            ))}
+                : <span key={suburb}  className="bg-[rgba(255,255,255,0.15)] border border-[rgba(255,255,255,0.2)] text-[#ffffff] rounded-[99px] px-[16px] py-[6px] text-[12px] (255,255,255,0.25)] transition-colors group flex items-center gap-[4px]">
+                {suburb}
+                
+              </span>
+            )) }
           </div>
         </div>
       </section>

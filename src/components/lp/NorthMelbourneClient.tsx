@@ -159,7 +159,9 @@ const styles = `
     border-radius: 99px;
     padding: 14px 32px;
     transition: all 0.2s;
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 600;
   }
   .cta-btn-primary:hover {
@@ -978,8 +980,9 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
           </span>
 
           <div className="flex flex-wrap justify-center gap-2">
-            {["Brunswick", "Melbourne CBD", "Maribyrnong", "Coburg", "Carlton"].map((area, i) => (
-              <Link 
+            { [{ name: 'Brunswick', isBuilt: true }, { name: 'Melbourne CBD', isBuilt: true }, { name: 'Maribyrnong', isBuilt: true }, { name: 'Coburg', isBuilt: true }, { name: 'Carlton', isBuilt: false }].map(({ name: area, isBuilt }, i) => (
+              isBuilt 
+                ? <Link 
                 key={i} 
                 href={`/house-cleaning-${area.toLowerCase().replace(' ', '-')}`}
                 className="pill-link group"
@@ -987,7 +990,15 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
                 {area}
                 <ArrowRight className="arrow-icon" />
               </Link>
-            ))}
+                : <span 
+                key={i} 
+                
+                className="pill-link group"
+              >
+                {area}
+                
+              </span>
+            )) }
           </div>
         </div>
       </section>

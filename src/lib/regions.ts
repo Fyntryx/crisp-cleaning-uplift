@@ -21,7 +21,6 @@ export const serviceRegions = [
     iconClass: "text-[#FB8C42]",
     suburbs: [
       { name: "Albert Park", slug: "albert-park" },
-      { name: "Armadale", slug: "armadale" },
       { name: "Bentleigh East", slug: "bentleigh-east" },
       { name: "Brighton", slug: "brighton" },
       { name: "Carnegie", slug: "carnegie" },

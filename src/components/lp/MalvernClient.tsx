@@ -213,13 +213,13 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
                   </span>
                 </div>
 
-                <h1 className="flex flex-col mb-6 text-[72px] font-[800] leading-[1.05] tracking-[-0.03em]">
+                <h1 className="flex flex-col mb-6 text-[48px] md:text-[72px] font-[800] leading-[1.05] tracking-[-0.03em]">
                   <span className="text-[#1a1a1a]">House Cleaning</span>
                   <span className="text-[#FB8C42]">Malvern</span>
                   <span className="text-[#1a1a1a]">Melbourne</span>
                 </h1>
 
-                <p className="text-[16px] text-[#4b5563] leading-[1.8] mb-10 max-w-[540px] text-justify">
+                <p className="text-[16px] text-[#4b5563] leading-[1.8] mb-10 max-w-[540px]">
                   Malvern's tree-lined residential streets — running between Glenferrie Road and Wattletree Road — contain some of Melbourne's finest period housing stock. Victorian mansions, Federation-era homes, and Californian bungalows on generous blocks define the suburb's character, maintained by long-tenure families who are exacting about their properties. Getting a consistently high standard across homes like these requires more than a rotating cleaner following a generic checklist. Crisp services Malvern properties with eco-friendly products appropriate for heritage surfaces, fixed pricing calibrated to larger floor plans, and the same cleaner who builds genuine knowledge of your home over time.
                 </p>
 
@@ -759,8 +759,9 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#e5e7eb] to-transparent mt-[48px] mb-[32px]" />
 
           <div className="flex flex-wrap justify-center gap-2 max-w-[800px]">
-            {["Toorak", "Glen Iris", "Armadale", "Hawthorn", "South Yarra"].map(suburb => (
-              <a 
+            { [{ name: 'Toorak', isBuilt: true }, { name: 'Glen Iris', isBuilt: true }, { name: 'Armadale', isBuilt: false }, { name: 'Hawthorn', isBuilt: true }, { name: 'South Yarra', isBuilt: true }].map(({ name: suburb, isBuilt }) => (
+              isBuilt 
+                ? <a 
                 key={suburb} 
                 href={`/house-cleaning-${suburb.toLowerCase().replace(' ', '-')}`}
                 className="group relative px-[16px] py-[6px] text-[12px] font-[500] text-[#6b7280] border border-[#e5e7eb] rounded-full hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors flex items-center overflow-hidden"
@@ -768,7 +769,15 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
                 <span className="transition-transform duration-200 group-hover:-translate-x-1">{suburb}</span>
                 <ArrowRight className="w-3 h-3 absolute right-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
               </a>
-            ))}
+                : <span 
+                key={suburb} 
+                
+                className="group relative px-[16px] py-[6px] text-[12px] font-[500] text-[#6b7280] border border-[#e5e7eb] rounded-full   transition-colors flex items-center overflow-hidden"
+              >
+                <span className="transition-transform duration-200 group-">{suburb}</span>
+                
+              </span>
+            )) }
           </div>
         </ScrollReveal>
       </section>

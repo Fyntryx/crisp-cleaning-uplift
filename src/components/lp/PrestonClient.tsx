@@ -968,8 +968,9 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
           </span>
 
           <div className="flex flex-wrap justify-center gap-2">
-            {["Reservoir", "Brunswick", "Coburg", "Thornbury", "Northcote"].map((area, i) => (
-              <Link 
+            { [{ name: 'Reservoir', isBuilt: true }, { name: 'Brunswick', isBuilt: true }, { name: 'Coburg', isBuilt: true }, { name: 'Thornbury', isBuilt: false }, { name: 'Northcote', isBuilt: false }].map(({ name: area, isBuilt }, i) => (
+              isBuilt 
+                ? <Link 
                 key={i} 
                 href={`/house-cleaning-${area.toLowerCase()}`}
                 className="bg-white/5 border border-white/10 text-white/50 text-[12px] px-4 py-1.5 rounded-full hover:border-[#d97706] hover:text-[#d97706] transition-colors flex items-center group"
@@ -977,7 +978,15 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
                 {area}
                 <ArrowRight className="w-3 h-3 ml-1.5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1.5 transition-all" />
               </Link>
-            ))}
+                : <span 
+                key={i} 
+                
+                className="bg-white/5 border border-white/10 text-white/50 text-[12px] px-4 py-1.5 rounded-full   transition-colors flex items-center group"
+              >
+                {area}
+                
+              </span>
+            )) }
           </div>
         </div>
       </section>

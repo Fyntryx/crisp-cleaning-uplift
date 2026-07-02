@@ -66,7 +66,7 @@ export default function FAQ({ data, title, customTheme = "default" }: FAQProps) 
               <AccordionTrigger className="text-left font-bold text-lg hover:no-underline hover:text-primary transition-colors">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base leading-relaxed pt-2 overflow-hidden data-[state=closed]:max-h-0 data-[state=open]:max-h-[400px] data-[state=closed]:opacity-0 data-[state=open]:opacity-100 data-[state=open]:pb-4 transition-all duration-300 ease-in-out">
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed pt-2 overflow-hidden data-[state=closed]:max-h-0 data-[state=open]:max-h-[1000px] md:data-[state=open]:max-h-[400px] data-[state=closed]:opacity-0 data-[state=open]:opacity-100 data-[state=open]:pb-4 transition-all duration-300 ease-in-out">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

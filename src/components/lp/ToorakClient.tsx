@@ -744,12 +744,17 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </div>
           
           <div className="flex flex-wrap justify-center gap-3">
-            {['South Yarra', 'Malvern', 'Hawthorn', 'Armadale', 'Glen Iris'].map(area => (
-              <a key={area} href={`/house-cleaning-${area.toLowerCase().replace(' ', '-')}`} className="group bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[rgba(255,255,255,0.5)] rounded-[99px] px-[16px] py-[6px] text-[12px] hover:border-[#d97706] hover:text-[#d97706] transition-colors flex items-center gap-2">
+            { [{ name: 'South Yarra', isBuilt: true }, { name: 'Malvern', isBuilt: true }, { name: 'Hawthorn', isBuilt: true }, { name: 'Armadale', isBuilt: false }, { name: 'Glen Iris', isBuilt: true }].map(({ name: area, isBuilt }) => (
+              isBuilt 
+                ? <a key={area} href={`/house-cleaning-${area.toLowerCase().replace(' ', '-')}`} className="group bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[rgba(255,255,255,0.5)] rounded-[99px] px-[16px] py-[6px] text-[12px] hover:border-[#d97706] hover:text-[#d97706] transition-colors flex items-center gap-2">
                 {area}
                 <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-150" />
               </a>
-            ))}
+                : <span key={area}  className="group bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[rgba(255,255,255,0.5)] rounded-[99px] px-[16px] py-[6px] text-[12px]   transition-colors flex items-center gap-2">
+                {area}
+                
+              </span>
+            )) }
           </div>
         </div>
       </section>

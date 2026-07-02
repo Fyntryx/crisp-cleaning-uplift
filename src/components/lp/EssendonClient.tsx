@@ -947,8 +947,9 @@ export default function EssendonClient({
               Nearby Areas We Also Service
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              {["Maribyrnong", "Moonee Ponds", "Strathmore", "Ascot Vale", "Flemington"].map((suburb) => (
-                <Link
+              { [{ name: 'Maribyrnong', isBuilt: true }, { name: 'Moonee Ponds', isBuilt: true }, { name: 'Strathmore', isBuilt: true }, { name: 'Ascot Vale', isBuilt: false }, { name: 'Flemington', isBuilt: false }].map(({ name: suburb, isBuilt }) => (
+              isBuilt 
+                ? <Link
                   key={suburb}
                   href={`/house-cleaning-${suburb.toLowerCase().replace(" ", "-")}`}
                   className="group px-4 py-1.5 rounded-full bg-[#f9fafb] border border-[#e5e7eb] text-[#374151] hover:text-[#FB8C42] hover:border-[#FB8C42] text-[13px] transition-all duration-200 flex items-center gap-1"
@@ -956,7 +957,15 @@ export default function EssendonClient({
                   {suburb}
                   <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                 </Link>
-              ))}
+                : <span
+                  key={suburb}
+                  
+                  className="group px-4 py-1.5 rounded-full bg-[#f9fafb] border border-[#e5e7eb] text-[#374151]   text-[13px] transition-all duration-200 flex items-center gap-1"
+                >
+                  {suburb}
+                  
+                </span>
+            )) }
             </div>
           </ScrollReveal>
         </div>

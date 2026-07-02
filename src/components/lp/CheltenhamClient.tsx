@@ -774,8 +774,9 @@ export default function CheltenhamClient({
 
           <ScrollReveal delay={0.1}>
             <div className="flex flex-wrap justify-center gap-3">
-              {["Brighton", "Hampton", "Sandringham", "Mentone", "Bentleigh East"].map((suburb) => (
-                <Link
+              { [{ name: 'Brighton', isBuilt: true }, { name: 'Hampton', isBuilt: true }, { name: 'Sandringham', isBuilt: true }, { name: 'Mentone', isBuilt: false }, { name: 'Bentleigh East', isBuilt: true }].map(({ name: suburb, isBuilt }) => (
+              isBuilt 
+                ? <Link
                   key={suburb}
                   href={`/house-cleaning-${suburb.toLowerCase().replace(' ', '-')}`}
                   className="nearby-pill group px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 hover:text-[#FB8C42] hover:border-[#FB8C42] hover:bg-white/10 text-[13px] font-medium transition-all duration-300 flex items-center gap-1"
@@ -783,7 +784,15 @@ export default function CheltenhamClient({
                   {suburb}
                   <ArrowRight className="arrow w-3 h-3" />
                 </Link>
-              ))}
+                : <span
+                  key={suburb}
+                  
+                  className="nearby-pill group px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/60   /10 text-[13px] font-medium transition-all duration-300 flex items-center gap-1"
+                >
+                  {suburb}
+                  
+                </span>
+            )) }
             </div>
           </ScrollReveal>
         </div>

@@ -319,6 +319,11 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
           max-height: 400px;
           opacity: 1;
         }
+        @media (max-width: 640px) {
+          .item.open .item-body {
+            max-height: 800px;
+          }
+        }
 
         .numbered-row {
           opacity: 0;

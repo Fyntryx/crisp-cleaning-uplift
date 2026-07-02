@@ -938,15 +938,23 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
           </div>
 
           <div className="flex flex-wrap justify-center gap-2">
-            {["Greensborough", "Reservoir", "Preston", "Mernda", "Mill Park"].map((area, i) => (
-              <Link 
+            { [{ name: 'Greensborough', isBuilt: true }, { name: 'Reservoir', isBuilt: true }, { name: 'Preston', isBuilt: true }, { name: 'Mernda', isBuilt: true }, { name: 'Mill Park', isBuilt: false }].map(({ name: area, isBuilt }, i) => (
+              isBuilt 
+                ? <Link 
                 key={i} 
                 href={`/house-cleaning-${area.toLowerCase().replace(' ', '-')}`}
                 className="bg-white/5 border border-white/10 text-white/45 rounded-full px-[16px] py-[6px] text-[13px] hover:border-[#d97706] hover:text-[#d97706] transition-colors"
               >
                 {area}
               </Link>
-            ))}
+                : <span 
+                key={i} 
+                
+                className="bg-white/5 border border-white/10 text-white/45 rounded-full px-[16px] py-[6px] text-[13px]   transition-colors"
+              >
+                {area}
+              </span>
+            )) }
           </div>
         </div>
       </section>

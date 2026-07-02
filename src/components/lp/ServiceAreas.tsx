@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { MapPin, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { getLiveSuburbs } from "@/lib/suburbs";
@@ -36,8 +36,8 @@ const regions = [
   },
   {
     name: "INNER SOUTH / SOUTH-EAST",
-    count: 7,
-    suburbs: "Armadale · Prahran · Richmond · South Melbourne · South Yarra · Toorak · Windsor",
+    count: 6,
+    suburbs: "Prahran · Richmond · South Melbourne · South Yarra · Toorak · Windsor",
   },
   {
     name: "WEST / INNER WEST",

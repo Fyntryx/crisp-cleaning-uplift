@@ -732,11 +732,15 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
             
             <div className="text-[11px] text-[rgba(255,255,255,0.2)] tracking-[0.15em] mb-[16px]">NEARBY AREAS WE ALSO SERVICE</div>
             <div className="flex flex-wrap justify-center gap-[8px]">
-              {["Southbank", "Docklands", "North Melbourne", "South Yarra", "Richmond"].map((area, i) => (
-                <Link key={i} href={`/house-cleaning-${area.toLowerCase().replace(/ /g, '-')}`} className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.5)] hover:border-[#3B82F6] hover:text-[#3B82F6] rounded-full px-[16px] py-[6px] text-[12px] transition-colors">
+              { [{ name: 'Southbank', isBuilt: false }, { name: 'Docklands', isBuilt: false }, { name: 'North Melbourne', isBuilt: true }, { name: 'South Yarra', isBuilt: true }, { name: 'Richmond', isBuilt: true }].map(({ name: area, isBuilt }, i) => (
+              isBuilt 
+                ? <Link key={i} href={`/house-cleaning-${area.toLowerCase().replace(/ /g, '-')}`} className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.5)] hover:border-[#3B82F6] hover:text-[#3B82F6] rounded-full px-[16px] py-[6px] text-[12px] transition-colors">
                   {area}
                 </Link>
-              ))}
+                : <span key={i}  className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.5)]   rounded-full px-[16px] py-[6px] text-[12px] transition-colors">
+                  {area}
+                </span>
+            )) }
             </div>
           </div>
         </section>
