@@ -2061,7 +2061,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 <option value="" disabled>Select...</option>
                 <option>I will provide parking onsite</option>
                 <option>There is free parking nearby/on the street</option>
-                <option>Other (Please Specify)</option>
+                <option>I will provide paid parking nearby</option>
               </select>
               <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
             </div>
