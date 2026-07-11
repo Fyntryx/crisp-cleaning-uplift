@@ -1271,6 +1271,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       kitchen: formData.homeDetails.kitchens || 0,
       other: formData.homeDetails.other || 0,
       serviceType: formData.cleaningType || formData.serviceCategory,
+      address: formData.contact.address || "",
+      addons: Object.entries(formData.extras)
+        .map(([key, value]) => `${value}x ${key}`)
+        .join(", ") || "None",
+      jobValue: pricingResult?.total || 0,
     };
 
     try {
