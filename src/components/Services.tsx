@@ -1056,6 +1056,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       referralCode: appliedReferral?.code || undefined,
       promoCode: appliedPromo?.code || promoCode || undefined,
       outOfAreaFee: outOfAreaFee || 0,
+      estimatedMinutes: pricingResult?.estimatedMinutes || 0,
     };
   };
 
