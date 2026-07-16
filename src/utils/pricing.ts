@@ -4,6 +4,7 @@ export const CLEANING_TYPE_PRICES = {
   Standard: 45,
   Deep: 135,
   Vacate: 280,
+  Hourly: 0,
 } as const;
 
 export const ROOM_PRICES = {
@@ -11,18 +12,21 @@ export const ROOM_PRICES = {
     Bedroom: 25,
     Bathroom: 50,
     Kitchen: 40,
+    Living: 20,
     Other: 30,
   },
   Deep: {
     Bedroom: 40,
     Bathroom: 80,
     Kitchen: 64,
+    Living: 30,
     Other: 48,
   },
   Vacate: {
     Bedroom: 40,
     Bathroom: 80,
     Kitchen: 64,
+    Living: 35,
     Other: 48,
   },
 } as const;
@@ -60,7 +64,12 @@ export interface PricingRequest {
     bedrooms?: number;
     bathrooms?: number;
     kitchens?: number;
+    livingRooms?: number;
     other?: number;
+  };
+  hourlyDetails?: {
+    hours: number;
+    cleaners: number;
   };
   extras?: Record<string, number>;
   frequency: Frequency;
@@ -72,6 +81,7 @@ export interface PricingRequest {
     isStackable?: boolean;
   };
   outOfAreaFee?: number;
+  condition?: string;
 }
 
 export interface PricingConfig {
@@ -85,12 +95,15 @@ export interface PricingConfig {
     bedroom: number;
     bathroom: number;
     kitchen: number;
+    living: number;
     other: number;
     baseTime: number;
   }>;
+  hourlyRatePerHalfHour?: number;
   systemBlockedDates?: string[];
   systemBlockedTimeSlots?: { date: string, start: string, end: string }[];
   serviceRadiusKm?: number;
+  conditionMultipliers?: { heavyBuildUp: number };
 }
 
 export interface PricingResponse {
@@ -111,6 +124,7 @@ export interface PricingResponse {
       bedrooms?: number;
       bathrooms?: number;
       kitchens?: number;
+      livingRooms?: number;
       other?: number;
       total: number;
     };
@@ -147,6 +161,7 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
     (request.homeDetails.bedrooms || 0) * (currentRoomPrices.Bedroom ?? 25) +
     (request.homeDetails.bathrooms || 0) * (currentRoomPrices.Bathroom ?? 50) +
     (request.homeDetails.kitchens || 0) * (currentRoomPrices.Kitchen ?? 40) +
+    (request.homeDetails.livingRooms || 0) * (currentRoomPrices.Living ?? 20) +
     (request.homeDetails.other || 0) * (currentRoomPrices.Other ?? 30);
 
   // Calculate baseline home details total for threshold check
@@ -155,22 +170,44 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
     (request.homeDetails.bedrooms || 0) * (baselineRoomPrices.Bedroom ?? 25) +
     (request.homeDetails.bathrooms || 0) * (baselineRoomPrices.Bathroom ?? 50) +
     (request.homeDetails.kitchens || 0) * (baselineRoomPrices.Kitchen ?? 40) +
+    (request.homeDetails.livingRooms || 0) * (baselineRoomPrices.Living ?? 20) +
     (request.homeDetails.other || 0) * (baselineRoomPrices.Other ?? 30);
 
-  // Calculate base cleaning type price
-  const cleaningTypePrice = baseRate;
-  
-  // Subtotal for rooms + baseRate (no multipliers anymore)
-  const cleaningAndRoomsTotal = homeDetailsTotal + baseRate;
+  let cleaningAndRoomsTotal = 0;
+  let cleaningTypePrice = baseRate;
+
+  if (request.cleaningType === 'Hourly') {
+    const hours = request.hourlyDetails?.hours || 0;
+    const cleaners = request.hourlyDetails?.cleaners || 1;
+    const ratePerHalfHour = config?.hourlyRatePerHalfHour ?? 47.50;
+    
+    // Formula: (hours / 0.5) * ratePerHalfHour * cleaners
+    cleaningTypePrice = (hours * 2) * ratePerHalfHour * cleaners;
+    cleaningAndRoomsTotal = cleaningTypePrice;
+  } else {
+    cleaningAndRoomsTotal = homeDetailsTotal + baseRate;
+    
+    if (
+      request.condition === 'Heavy Build Up' && 
+      (request.cleaningType === 'Deep' || request.cleaningType === 'Vacate')
+    ) {
+      const multiplier = config?.conditionMultipliers?.heavyBuildUp ?? 1.3;
+      cleaningAndRoomsTotal = Math.round(cleaningAndRoomsTotal * multiplier);
+    }
+  }
 
   // Calculate extras total
-  const extrasItems = Object.entries(request.extras || {}).map(([extra, count]) => ({
-    name: extra,
-    count,
-    price: (extraPrices[extra as keyof typeof extraPrices] ?? 0) * count,
-  }));
-
-  const extrasTotal = extrasItems.reduce((sum, item) => sum + item.price, 0);
+  let extrasItems: Array<{name: string, count: number, price: number}> = [];
+  let extrasTotal = 0;
+  
+  if (request.cleaningType !== 'Hourly') {
+    extrasItems = Object.entries(request.extras || {}).map(([extra, count]) => ({
+      name: extra,
+      count,
+      price: (extraPrices[extra as keyof typeof extraPrices] ?? 0) * count,
+    }));
+    extrasTotal = extrasItems.reduce((sum, item) => sum + item.price, 0);
+  }
 
   // Calculate subtotal
   const subtotal = cleaningAndRoomsTotal + extrasTotal;
@@ -245,7 +282,9 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   const total = Math.max(0, subtotal - totalDiscount) + outOfAreaFee;
 
   let estimatedMinutes: number | undefined = undefined;
-  if (config?.timeConfig) {
+  if (request.cleaningType === 'Hourly') {
+    estimatedMinutes = (request.hourlyDetails?.hours || 0) * 60;
+  } else if (config?.timeConfig) {
     const serviceKey = request.cleaningType === 'Standard' ? 'regular' : request.cleaningType.toLowerCase();
     const tc = config.timeConfig[serviceKey] || config.timeConfig.regular;
     if (tc) {
@@ -253,6 +292,7 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
         ((request.homeDetails.bedrooms || 0) * tc.bedroom) +
         ((request.homeDetails.bathrooms || 0) * tc.bathroom) +
         ((request.homeDetails.kitchens || 0) * tc.kitchen) +
+        ((request.homeDetails.livingRooms || 0) * tc.living) +
         ((request.homeDetails.other || 0) * tc.other);
       
       estimatedMinutes = Math.round(mins);
@@ -273,6 +313,7 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
         bedrooms: request.homeDetails.bedrooms,
         bathrooms: request.homeDetails.bathrooms,
         kitchens: request.homeDetails.kitchens,
+        livingRooms: request.homeDetails.livingRooms,
         other: request.homeDetails.other,
         total: homeDetailsTotal,
       },

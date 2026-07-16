@@ -65,6 +65,7 @@ import {
   checkAddressServiceability,
   type AddressSuggestion
 } from "@/utils/geolocation";
+import { ConditionQuiz } from "./ConditionQuiz";
 
 const servicesList = [
   {
@@ -104,6 +105,13 @@ const cleaningTypesUI = [
     icon: DoorOpen,
     color: "text-blue-500",
     bg: "bg-blue-50",
+  },
+  {
+    id: "Hourly",
+    label: "Hourly Rate",
+    icon: Clock,
+    color: "text-amber-500",
+    bg: "bg-amber-50",
   },
 ];
 
@@ -240,11 +248,17 @@ const BookingSummaryCard = ({
         <div className="space-y-3">
           {pricingResult?.breakdown.cleaningType && (
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
-              <span>{pricingResult.breakdown.cleaningType.name} Clean Base</span>
+              <span>
+                {formData.cleaningType === 'Hourly' 
+                  ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}` 
+                  : `${pricingResult.breakdown.cleaningType.name} Clean Base`}
+              </span>
               <span>A${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
             </div>
           )}
           {(() => {
+            if (formData.cleaningType === 'Hourly') return null;
+
             const mappedCleaningType = formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType;
             const currentRoomPrices = pricingConfig?.roomPrices?.[mappedCleaningType] || pricingConfig?.roomPrices?.Regular || ROOM_PRICES.Regular;
             return (
@@ -270,6 +284,14 @@ const BookingSummaryCard = ({
                     <span>{formData.homeDetails.kitchens}x Kitchen</span>
                     <span>
                       A${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
+                    </span>
+                  </div>
+                )}
+                {(formData.homeDetails.livingRooms || 0) > 0 && (
+                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                    <span>{formData.homeDetails.livingRooms}x Living & Dining</span>
+                    <span>
+                      A${(currentRoomPrices.Living * (formData.homeDetails.livingRooms || 0)).toFixed(2)}
                     </span>
                   </div>
                 )}
@@ -538,8 +560,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [formData, setFormData] = useState({
     serviceCategory: "residential",
     cleaningType: "" as any as CleaningType,
-    homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
+    homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, livingRooms: 0, other: 0 },
+    hourlyDetails: { hours: 2, cleaners: 1 },
     extras: {} as Record<string, number>,
+    condition: "Lived In" as "Lived In" | "Overdue" | "Heavy Build Up",
     frequency: "One time" as Frequency,
     selectedDays: [] as string[],
     selectedDate: undefined as Date | undefined,
@@ -570,13 +594,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   });
 
   const isCommercial = formData.serviceCategory === "commercial";
-  const totalSteps = 6;
+  const totalSteps = 7;
 
   const [currentStep, setCurrentStep] = useState(1);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showQuiz, setShowQuiz] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: 'FIXED_CREDIT' | 'PERCENT_OFF' | 'FREE_CLEAN' | 'REFERRAL'; value: number; isStackable?: boolean; referralType?: 'CLEANER_REFERRAL' | 'CUSTOMER_REFERRAL'; category?: string } | undefined>(undefined);
   const [appliedReferral, setAppliedReferral] = useState<{ code: string; type: 'REFERRAL'; value: number; referralType: 'CLEANER_REFERRAL' | 'CUSTOMER_REFERRAL' } | undefined>(undefined);
@@ -763,7 +788,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     setFormData({
       serviceCategory: "residential",
       cleaningType: "" as any as CleaningType,
-      homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, other: 0 },
+      homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, livingRooms: 0, other: 0 },
       extras: {} as Record<string, number>,
       frequency: "One time" as Frequency,
       selectedDays: [] as string[],
@@ -868,6 +893,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       const result = calculatePricing({
         cleaningType: formData.cleaningType,
         homeDetails: formData.homeDetails,
+        hourlyDetails: formData.hourlyDetails,
         extras: formData.extras,
         frequency: formData.frequency,
         actionTakerDiscount: false,
@@ -881,6 +907,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   }, [
     formData.cleaningType,
     formData.homeDetails,
+    formData.hourlyDetails,
     formData.extras,
     formData.frequency,
     isCommercial,
@@ -928,27 +955,31 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     } else {
       switch (currentStep) {
         case 2:
+          if (formData.cleaningType === 'Hourly') return true;
           return (
             (formData.homeDetails.bedrooms || 0) +
             (formData.homeDetails.bathrooms || 0) +
             (formData.homeDetails.kitchens || 0) +
+            (formData.homeDetails.livingRooms || 0) +
             (formData.homeDetails.other || 0) >
             0
           );
         case 3:
           return !!formData.contact.firstName && !!formData.contact.email && !!formData.contact.phone;
         case 4:
+          return true; // Condition is always valid (it auto-blocks if necessary)
+        case 5:
           return (
             !!formData.selectedDate &&
             !!formData.selectedTime &&
             !!formData.frequency
           );
-        case 5:
+        case 6:
           return (
             !!formData.instructions.entry &&
             !!formData.instructions.parking
           );
-        case 6:
+        case 7:
           return (
             !!formData.contact.firstName &&
             !!formData.contact.email &&
@@ -1047,6 +1078,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       roomsBathrooms: formData.homeDetails.bathrooms || 0,
       roomsKitchens: formData.homeDetails.kitchens || 0,
       roomsOther: formData.homeDetails.other || 0,
+      hourlyHours: formData.hourlyDetails?.hours || 2,
+      hourlyCleaners: formData.hourlyDetails?.cleaners || 1,
+      condition: formData.condition,
       addons: addonsPayload,
       entryInstructions: formData.instructions.entry || "",
       parkingInstructions: formData.instructions.parking || "",
@@ -1320,11 +1354,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     }
 
     if (isStepValid() && currentStep < totalSteps) {
-      setSubmitError(null); // Clear errors when navigating
-      setSubmitSuccess(null); // Clear success message when navigating
-      // If discount was already claimed, skip step 3 when navigating forward from step 2
+      setSubmitError(null); 
+      setSubmitSuccess(null); 
+      
       if (currentStep === 2 && !isCommercial && discountClaimed) {
-        setCurrentStep(4);
+        // Skip step 3 if discount already claimed. Go to step 4 (Condition) unless it's Hourly, then step 5.
+        setCurrentStep(formData.cleaningType === "Hourly" ? 5 : 4);
+      } else if (currentStep === 3 && !isCommercial && formData.cleaningType === "Hourly") {
+        setCurrentStep(5); // Skip Condition step
       } else {
         setCurrentStep((prev) => prev + 1);
       }
@@ -1345,10 +1382,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
   const handlePrev = () => {
     if (currentStep > 1) {
-      setSubmitError(null); // Clear errors when navigating
-      setSubmitSuccess(null); // Clear success message when navigating
-      if (currentStep === 4 && !isCommercial) {
-        setCurrentStep(2); // Skip Step 3 (Discount step) when going back from Step 4
+      setSubmitError(null); 
+      setSubmitSuccess(null); 
+      
+      if (currentStep === 5 && !isCommercial && formData.cleaningType === "Hourly") {
+        setCurrentStep(2); // From Schedule(5), skip Condition(4) and Discount(3) because Discount was already done (or skipped). Actually if they go back from 5, they should see 2.
+      } else if (currentStep === 4 && !isCommercial) {
+        setCurrentStep(2); // Skip Step 3 (Discount step) when going back from Condition
       } else {
         setCurrentStep((prev) => prev - 1);
       }
@@ -1443,10 +1483,17 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         icon: DoorOpen,
         badge: "BOND BACK GUARANTEE",
       },
+      {
+        id: "Hourly",
+        label: "Hourly Rate",
+        desc: "Best for targeted/specific tasks or custom cleaning plans",
+        icon: Clock,
+      },
     ];
 
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto animate-in fade-in duration-500 py-2">
+      <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto animate-in fade-in duration-500 py-2">
         {step1Types.map((type) => {
           const isSelected = formData.cleaningType === type.id;
           const Icon = type.icon;
@@ -1500,6 +1547,27 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           );
         })}
+        </div>
+        {formData.cleaningType === 'Hourly' && (
+          <div className="max-w-5xl mx-auto w-full bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-amber-900 shadow-sm animate-in slide-in-from-bottom-2 duration-300">
+            <div className="flex items-start gap-3">
+              <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <div className="text-sm">
+                <span className="font-semibold block mb-1">Important Notice: Hourly Cleaning</span>
+                <p className="opacity-90">Hourly rate is recommended for specific tasks only (e.g., "just clean the bathrooms and kitchen"). For a full home clean, please select a flat-rate service.</p>
+              </div>
+            </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setFormData(prev => ({ ...prev, cleaningType: 'Standard' }));
+              }}
+              className="whitespace-nowrap px-4 py-2 bg-white border border-amber-200 hover:bg-amber-100 text-amber-700 text-xs font-bold rounded-lg transition-colors shrink-0"
+            >
+              Switch to flat-rate
+            </button>
+          </div>
+        )}
       </div>
     );
   };
@@ -1570,111 +1638,203 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </button>
           </div>
 
-          {/* MIDDLE ROW: 2-Column Grid for Counters */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <RoomCounter
-              label="Bedroom"
-              count={formData.homeDetails.bedrooms || 0}
-              onUpdate={(v) => updateRooms("bedrooms", v)}
-            />
+          {/* MIDDLE ROW: Selectors */}
+          {formData.cleaningType === 'Hourly' ? (
+            <div className="grid grid-cols-1 gap-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-gray-200 transition-all duration-300">
+                <div className="mb-4 md:mb-0">
+                  <span className="block text-sm font-semibold text-gray-800">Hours (Per Cleaner)</span>
+                  <span className="block text-[11px] font-medium text-gray-400 mt-1">Minimum 2 hours per booking</span>
+                </div>
+                <div className="flex items-center gap-3 bg-gray-50/80 p-1.5 rounded-full border border-gray-100 shrink-0 w-fit">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const val = Math.max(2, (formData.hourlyDetails?.hours || 2) - 0.5);
+                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
+                    }}
+                    disabled={(formData.hourlyDetails?.hours || 2) <= 2}
+                    className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 shadow-sm"
+                  >
+                    <Minus strokeWidth={2.5} size={16} />
+                  </button>
+                  <span className="text-lg font-black text-gray-900 w-10 text-center">
+                    {formData.hourlyDetails?.hours || 2}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const val = (formData.hourlyDetails?.hours || 2) + 0.5;
+                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
+                    }}
+                    className="w-10 h-10 rounded-full bg-[#FB8C42] text-white flex items-center justify-center shadow-md hover:bg-orange-500 transition-colors"
+                  >
+                    <Plus strokeWidth={2.5} size={16} />
+                  </button>
+                </div>
+              </div>
 
-            <RoomCounter
-              label="Bathroom"
-              count={formData.homeDetails.bathrooms || 0}
-              onUpdate={(v) => updateRooms("bathrooms", v)}
-            />
-
-            <RoomCounter
-              label="Kitchen"
-              count={formData.homeDetails.kitchens || 0}
-              onUpdate={(v) => updateRooms("kitchens", v)}
-            />
-
-            <div className="relative group w-full">
-              <RoomCounter
-                label="Other Areas"
-                count={formData.homeDetails.other || 0}
-                onUpdate={(v) => updateRooms("other", v)}
-                hasInfo={true}
-              />
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-                Laundry, office, study, theatre, gym, rumpus room, playroom, etc.
-                <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
+              <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-gray-200 transition-all duration-300">
+                <div className="mb-4 md:mb-0">
+                  <span className="block text-sm font-semibold text-gray-800">Number of Cleaners</span>
+                  <span className="block text-[11px] font-medium text-gray-400 mt-1">Recommended: 1 cleaner per 4 hours</span>
+                </div>
+                <div className="flex items-center gap-3 bg-gray-50/80 p-1.5 rounded-full border border-gray-100 shrink-0 w-fit">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const val = Math.max(1, (formData.hourlyDetails?.cleaners || 1) - 1);
+                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
+                    }}
+                    disabled={(formData.hourlyDetails?.cleaners || 1) <= 1}
+                    className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 shadow-sm"
+                  >
+                    <Minus strokeWidth={2.5} size={16} />
+                  </button>
+                  <span className="text-lg font-black text-gray-900 w-10 text-center">
+                    {formData.hourlyDetails?.cleaners || 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const val = (formData.hourlyDetails?.cleaners || 1) + 1;
+                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
+                    }}
+                    className="w-10 h-10 rounded-full bg-[#FB8C42] text-white flex items-center justify-center shadow-md hover:bg-orange-500 transition-colors"
+                  >
+                    <Plus strokeWidth={2.5} size={16} />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <RoomCounter
+                  label="Bedroom"
+                  count={formData.homeDetails.bedrooms || 0}
+                  onUpdate={(v) => updateRooms("bedrooms", v)}
+                />
 
-          {/* BOTTOM ROW: Full-width Add-ons */}
-          <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm">
-            <span className="block text-[11px] font-bold uppercase text-[#FB8C42] tracking-widest mb-4 border-b border-gray-50 pb-2">
-              ADD-ONS
-            </span>
-            <div className="flex flex-wrap gap-2.5">
-              {isLoadingConfig ? (
-                <div className="text-xs text-gray-400 py-2">Loading available add-ons...</div>
-              ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
-                .map((extra) => {
-                  const count = formData.extras?.[extra] || 0;
-                  const isSelected = count > 0;
-                  const isCounterAddon = extra === 'Windows' || extra === 'Walls';
+                <RoomCounter
+                  label="Bathroom"
+                  count={formData.homeDetails.bathrooms || 0}
+                  onUpdate={(v) => updateRooms("bathrooms", v)}
+                />
 
-                  if (isCounterAddon && isSelected) {
-                    return (
-                      <div
-                        key={extra}
-                        className="inline-flex items-center gap-2 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
-                      >
+                <RoomCounter
+                  label="Kitchen"
+                  count={formData.homeDetails.kitchens || 0}
+                  onUpdate={(v) => updateRooms("kitchens", v)}
+                />
+
+                <div className="relative group w-full">
+                  <RoomCounter
+                    label="Other Areas"
+                    count={formData.homeDetails.other || 0}
+                    onUpdate={(v) => updateRooms("other", v)}
+                    hasInfo={true}
+                  />
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
+                    Laundry, office, study, theatre, gym, rumpus room, playroom, etc.
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
+                  </div>
+                </div>
+                
+                {/* Centered Living & Dining Area */}
+                <div className="w-full md:col-span-2 flex justify-center mt-1">
+                  <div className="relative group w-full md:w-[calc(50%-6px)]">
+                    <RoomCounter
+                      label="Living & Dining"
+                      count={formData.homeDetails.livingRooms || 0}
+                      onUpdate={(v: number) => updateRooms("livingRooms", v)}
+                      hasInfo={true}
+                    />
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
+                      Select this if you require your living, dining, or lounge areas to be cleaned.
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* BOTTOM ROW: Full-width Add-ons */}
+              <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm">
+                <span className="block text-[11px] font-bold uppercase text-[#FB8C42] tracking-widest mb-4 border-b border-gray-50 pb-2">
+                  ADD-ONS
+                </span>
+                <div className="flex flex-wrap gap-2.5">
+                  {isLoadingConfig ? (
+                    <div className="text-xs text-gray-400 py-2">Loading available add-ons...</div>
+                  ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
+                    .map((extra) => {
+                      const count = formData.extras?.[extra] || 0;
+                      const isSelected = count > 0;
+                      const isCounterAddon = extra === 'Windows' || extra === 'Walls';
+
+                      if (isCounterAddon && isSelected) {
+                        return (
+                          <div
+                            key={extra}
+                            className="inline-flex items-center gap-2 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
+                          >
+                            <button
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, Math.max(0, count - 1)); }}
+                              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
+                            >
+                              <Minus className="w-3 h-3 text-white" strokeWidth={3} />
+                            </button>
+                            <span className="text-[13px] font-semibold min-w-[20px] text-center px-1">
+                              {count} {extra}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
+                              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
+                            >
+                              <Plus className="w-3 h-3 text-white" strokeWidth={3} />
+                            </button>
+                          </div>
+                        );
+                      }
+
+                      if (isSelected) {
+                        return (
+                          <button
+                            key={extra}
+                            type="button"
+                            onClick={() => toggleExtra(extra)}
+                            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
+                            <span className="text-[13px] font-semibold pr-1">
+                              {extra}
+                            </span>
+                          </button>
+                        );
+                      }
+
+                      return (
                         <button
+                          key={extra}
                           type="button"
-                          onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, Math.max(0, count - 1)); }}
-                          className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
+                          onClick={() => toggleExtra(extra)}
+                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-[13px] font-semibold transition-all duration-200 whitespace-nowrap bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
                         >
-                          <Minus className="w-3 h-3 text-white" strokeWidth={3} />
-                        </button>
-                        <span className="text-[13px] font-semibold min-w-[20px] text-center px-1">
-                          {count} {extra}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
-                          className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
-                        >
-                          <Plus className="w-3 h-3 text-white" strokeWidth={3} />
-                        </button>
-                      </div>
-                    );
-                  }
-
-                  if (isSelected) {
-                    return (
-                      <button
-                        key={extra}
-                        type="button"
-                        onClick={() => toggleExtra(extra)}
-                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
-                        <span className="text-[13px] font-semibold pr-1">
+                          <Plus className="w-3.5 h-3.5 text-gray-400 shrink-0" />
                           {extra}
-                        </span>
-                      </button>
-                    );
-                  }
-
-                  return (
-                    <button
-                      key={extra}
-                      type="button"
-                      onClick={() => toggleExtra(extra)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-[13px] font-semibold transition-all duration-200 whitespace-nowrap bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
-                    >
-                      <Plus className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                      {extra}
-                    </button>
-                  );
-                })}
-            </div>
-          </div>
+                        </button>
+                      );
+                    })}
+                </div>
+              </div>
+            </>
+          )}
 
         </div>
       </div>
@@ -1751,6 +1911,81 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  const renderConditionAssessmentStep = () => {
+    return (
+      <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
+        <div className="mb-2 flex justify-between items-center">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
+            <Info className="w-3 h-3" /> CONDITION ASSESSMENT
+          </span>
+          <button onClick={() => setShowQuiz(true)} className="text-[13px] font-bold text-primary hover:underline bg-orange-50 px-3 py-1.5 rounded-lg transition-colors">Help me decide</button>
+        </div>
+        
+        {showQuiz ? (
+          <ConditionQuiz onComplete={(tier) => {
+             setFormData({ ...formData, condition: tier });
+             setShowQuiz(false);
+          }} />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { 
+                  tier: 'Lived In', 
+                  desc: 'Everyday soil from normal living: dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop, everyday clutter.' 
+                },
+                { 
+                  tier: 'Overdue', 
+                  desc: 'Established build-up: cloudy shower glass, darkening grout with mould spots along the silicone, a greasy stovetop with cooked-on spots and the odd baked patch, tacky cupboard handles, a clear dust track on skirting boards.' 
+                },
+                { 
+                  tier: 'Heavy Build Up', 
+                  desc: 'Widespread heavy build-up across the home: scale you can feel across shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, embedded pet hair, established odour, grime that needs scrapers and repeated dwell-and-scrub cycles.' 
+                }
+              ].map(opt => (
+                <button
+                  key={opt.tier}
+                  onClick={() => setFormData({ ...formData, condition: opt.tier as any })}
+                  className={`text-left p-5 rounded-3xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${formData.condition === opt.tier ? 'border-[#FB8C42] bg-orange-50/50 shadow-md scale-[1.02]' : 'border-gray-100 bg-white shadow-sm hover:border-gray-200'}`}
+                >
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="font-extrabold text-gray-900 text-lg">{opt.tier}</h3>
+                    {formData.condition === opt.tier && <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" />}
+                  </div>
+                  <p className="text-[13px] leading-relaxed text-gray-600 font-medium">{opt.desc}</p>
+                </button>
+              ))}
+            </div>
+
+            {formData.cleaningType === 'Standard' && (formData.condition === 'Overdue' || formData.condition === 'Heavy Build Up') && (
+              <div className="p-6 mt-4 bg-red-50 border border-red-200 rounded-3xl flex flex-col items-center text-center animate-in zoom-in duration-300 shadow-sm">
+                <AlertTriangle className="w-10 h-10 text-red-500 mb-3" />
+                <h4 className="font-bold text-red-900 text-lg mb-1">Upgrade Required</h4>
+                <p className="text-[14px] font-medium text-red-800/90 mb-5 max-w-lg leading-relaxed">
+                  Based on the condition of your home, a Standard Clean will not be sufficient. Please upgrade to a Deep Clean or Vacate Clean to proceed.
+                </p>
+                <div className="flex gap-3">
+                  <button 
+                    onClick={() => setFormData(prev => ({ ...prev, cleaningType: 'Deep' }))}
+                    className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded-xl transition-all shadow-md shadow-red-600/20"
+                  >
+                    Upgrade to Deep Clean
+                  </button>
+                  <button 
+                    onClick={() => setFormData(prev => ({ ...prev, cleaningType: 'Vacate' }))}
+                    className="bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-bold px-6 py-2.5 rounded-xl transition-all shadow-sm"
+                  >
+                    Upgrade to Vacate Clean
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        )}
       </div>
     );
   };
@@ -2739,10 +2974,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         case 3:
           return renderResStepDiscount();
         case 4:
-          return renderResStep3();
+          return renderConditionAssessmentStep();
         case 5:
-          return renderResStep4();
+          return renderResStep3();
         case 6:
+          return renderResStep4();
+        case 7:
           return renderResStep5();
         default:
           return null;
@@ -2779,10 +3016,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       case 3:
         return "Claim Your Discount";
       case 4:
-        return "Schedule Cleaning";
+        return "Condition Assessment";
       case 5:
-        return "Special Instructions";
+        return "Schedule Cleaning";
       case 6:
+        return "Special Instructions";
+      case 7:
         return "Finalise Booking";
       default:
         return "";
@@ -2877,10 +3116,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     { label: "Service", step: 1, icon: Sparkles },
                     { label: "Customise", step: 2, icon: Sliders },
                     { label: "Discount", step: 3, icon: Tag },
-                    { label: "Schedule", step: 4, icon: Calendar },
-                    { label: "Details", step: 5, icon: ClipboardList },
-                    { label: "Confirm", step: 6, icon: CreditCard },
-                  ]).map((item, idx, arr) => {
+                    { label: "Condition", step: 4, icon: Info },
+                    { label: "Schedule", step: 5, icon: Calendar },
+                    { label: "Details", step: 6, icon: ClipboardList },
+                    { label: "Confirm", step: 7, icon: CreditCard },
+                  ]).filter(item => !(item.step === 4 && formData.cleaningType === 'Hourly')).map((item, idx, arr) => {
                     const isCompleted = item.step < currentStep;
                     const isActive = item.step === currentStep;
                     const isStepDisabled = item.step >= currentStep || (!isCommercial && item.step === 3 && currentStep > 3);
@@ -2967,8 +3207,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                       <button
                         onClick={handleNext}
-                        disabled={!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)}
-                        className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)
+                        disabled={!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount) || (currentStep === 4 && !isCommercial && formData.cleaningType === 'Standard' && (formData.condition === 'Overdue' || formData.condition === 'Heavy Build Up'))}
+                        className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount) || (currentStep === 4 && !isCommercial && formData.cleaningType === 'Standard' && (formData.condition === 'Overdue' || formData.condition === 'Heavy Build Up'))
                           ? "bg-gray-150 text-gray-400 cursor-not-allowed"
                           : "bg-[#FB8C42] hover:bg-[#FB8C42]/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.02]"
                           }`}
@@ -3079,8 +3319,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                     <button
                       onClick={handleNext}
-                      disabled={!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)}
-                      className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount)
+                      disabled={!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount) || (currentStep === 4 && !isCommercial && formData.cleaningType === 'Standard' && (formData.condition === 'Overdue' || formData.condition === 'Heavy Build Up'))}
+                      className={`px-8 py-3.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 ${!isStepValid() || (currentStep === 3 && !isCommercial && isSubmittingDiscount) || (currentStep === 4 && !isCommercial && formData.cleaningType === 'Standard' && (formData.condition === 'Overdue' || formData.condition === 'Heavy Build Up'))
                         ? "bg-gray-150 text-gray-400 cursor-not-allowed"
                         : "bg-[#FB8C42] hover:bg-[#FB8C42]/95 text-white shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.02]"
                         }`}
@@ -3176,19 +3416,20 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   );
 };
 
-const RoomCounter = ({ label, count, onUpdate, hasInfo = false }: any) => {
+const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }: any) => {
   const getCounterIcon = (lbl: string) => {
     const lower = lbl.toLowerCase();
     if (lower.includes("bedroom")) return Bed;
     if (lower.includes("bathroom")) return Bath;
     if (lower.includes("kitchen")) return ChefHat;
+    if (lower.includes("living")) return Sofa;
     return Sofa;
   };
 
   const Icon = getCounterIcon(label);
 
   return (
-    <div className={`w-full bg-white py-2.5 pl-3.5 pr-3 rounded-[16px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md gap-3 ${hasInfo ? "group" : ""}`}>
+    <div className={`w-full bg-white py-2.5 pl-3.5 pr-3 rounded-[16px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md gap-3 ${hasInfo ? "group" : ""} ${className}`}>
 
       {/* LEFT SIDE: flex-1 and min-w-0 prevent text from pushing the controls */}
       <div className="flex items-center gap-2.5 flex-1 min-w-0">
