@@ -301,9 +301,10 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   let estimatedMinutes: number | undefined = undefined;
   if (request.cleaningType === 'Hourly') {
     estimatedMinutes = (request.hourlyDetails?.hours || 0) * 60;
-  } else if (config?.timeConfig) {
+  } else {
+    const timeConfigToUse = config?.timeConfig || DEFAULT_TIME_CONFIG;
     const serviceKey = request.cleaningType === 'Standard' ? 'regular' : request.cleaningType.toLowerCase();
-    const tc = config.timeConfig[serviceKey] || config.timeConfig.regular;
+    const tc = timeConfigToUse[serviceKey as keyof typeof timeConfigToUse] || timeConfigToUse.regular;
     if (tc) {
       let mins = tc.baseTime +
         ((request.homeDetails.bedrooms || 0) * tc.bedroom) +
