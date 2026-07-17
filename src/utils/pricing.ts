@@ -53,6 +53,12 @@ export const FREQUENCY_DISCOUNTS = {
 
 export const ACTION_TAKER_DISCOUNT = 30;
 
+export const DEFAULT_TIME_CONFIG = {
+  regular: { bedroom: 15, bathroom: 20, kitchen: 25, living: 15, other: 10, baseTime: 30 },
+  deep: { bedroom: 25, bathroom: 35, kitchen: 40, living: 25, other: 20, baseTime: 45 },
+  vacate: { bedroom: 30, bathroom: 40, kitchen: 50, living: 30, other: 25, baseTime: 60 }
+};
+
 export const DEFAULT_ADDON_TIMES: Record<string, number> = {
   Windows: 20,
   Walls: 30,
