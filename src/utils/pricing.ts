@@ -312,15 +312,16 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
     const serviceKey = request.cleaningType === 'Standard' ? 'regular' : request.cleaningType.toLowerCase();
     const tc = timeConfigToUse[serviceKey as keyof typeof timeConfigToUse] || timeConfigToUse.regular || DEFAULT_TIME_CONFIG.regular;
     if (tc) {
-      let mins = tc.baseTime +
-        ((request.homeDetails.bedrooms || 0) * tc.bedroom) +
-        ((request.homeDetails.bathrooms || 0) * tc.bathroom) +
-        ((request.homeDetails.kitchens || 0) * tc.kitchen) +
-        ((request.homeDetails.livingRooms || 0) * tc.living) +
-        ((request.homeDetails.other || 0) * tc.other) +
+      const defaultTc = DEFAULT_TIME_CONFIG.regular;
+      let mins = (tc.baseTime ?? defaultTc.baseTime) +
+        ((request.homeDetails.bedrooms || 0) * (tc.bedroom ?? defaultTc.bedroom)) +
+        ((request.homeDetails.bathrooms || 0) * (tc.bathroom ?? defaultTc.bathroom)) +
+        ((request.homeDetails.kitchens || 0) * (tc.kitchen ?? defaultTc.kitchen)) +
+        ((request.homeDetails.livingRooms || 0) * (tc.living ?? defaultTc.living)) +
+        ((request.homeDetails.other || 0) * (tc.other ?? defaultTc.other)) +
         addonTimeTotal;
       
-      estimatedMinutes = Math.round(mins);
+      estimatedMinutes = isNaN(mins) ? undefined : Math.round(mins);
     }
   }
 
