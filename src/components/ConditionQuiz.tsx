@@ -73,7 +73,7 @@ export const ConditionQuiz = ({ onComplete }: { onComplete: (tier: 'Lived In' | 
       
       setTimeout(() => {
         onComplete(tier as any);
-      }, 2000);
+      }, 4000);
     }
   };
 
@@ -84,7 +84,7 @@ export const ConditionQuiz = ({ onComplete }: { onComplete: (tier: 'Lived In' | 
       <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 shadow-sm text-center animate-in fade-in zoom-in duration-300">
         <h4 className="text-xl font-bold text-emerald-800 mb-2">Assessment Complete!</h4>
         <p className="text-sm font-medium text-emerald-700 mb-4">
-          Based on your answers (Score: {score}), we recommend:
+          Based on your answers, we recommend:
         </p>
         <div className="inline-block px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl shadow-md">
           {resultTier}

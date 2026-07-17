@@ -901,6 +901,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         actionTakerDiscount: false,
         appliedPromo,
         outOfAreaFee,
+        condition: formData.condition,
       }, pricingConfig);
       setPricingResult(result);
     } catch (e) {
@@ -912,6 +913,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     formData.hourlyDetails,
     formData.extras,
     formData.frequency,
+    formData.condition,
     isCommercial,
     appliedPromo,
     pricingConfig,
@@ -1551,12 +1553,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         })}
         </div>
         {formData.cleaningType === 'Hourly' && (
-          <div className="max-w-5xl mx-auto w-full bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-amber-900 shadow-sm animate-in slide-in-from-bottom-2 duration-300">
+          <div className="max-w-5xl mx-auto w-full bg-amber-50 border border-amber-200 rounded-2xl p-5 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-amber-900 shadow-sm animate-in slide-in-from-bottom-2 duration-300">
             <div className="flex items-start gap-3">
-              <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <Info className="w-5 h-5 text-amber-600 shrink-0 mt-1" />
               <div className="text-sm">
-                <span className="font-semibold block mb-1">Important Notice: Hourly Cleaning</span>
-                <p className="opacity-90">Hourly rate is recommended for specific tasks only (e.g., "just clean the bathrooms and kitchen"). For a full home clean, please select a flat-rate service.</p>
+                <span className="font-semibold block mb-1">Important: Hourly is built for specific tasks or targeted areas</span>
+                <p className="opacity-80 leading-relaxed">The best option if you&apos;re only after cleaning here and there. You set the priorities and we&apos;ll make the most of each minute! If you&apos;re looking to get entire rooms or the whole house treated, flat-rate is the most cost-effective option — pay for the result, not the time.</p>
               </div>
             </div>
             <button
@@ -1564,7 +1566,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 e.preventDefault();
                 setFormData(prev => ({ ...prev, cleaningType: 'Standard' }));
               }}
-              className="whitespace-nowrap px-4 py-2 bg-white border border-amber-200 hover:bg-amber-100 text-amber-700 text-xs font-bold rounded-lg transition-colors shrink-0"
+              className="whitespace-nowrap px-4 py-2.5 bg-white border border-amber-200 hover:bg-amber-100 text-amber-700 text-xs font-bold rounded-xl transition-colors shrink-0"
             >
               Switch to flat-rate
             </button>
@@ -1582,6 +1584,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
       if (formData.cleaningType === "Vacate") {
         return "Cleaned to rental inspection standards. End of lease specialized service with bond-back assurance checklist.";
+      }
+      if (formData.cleaningType === "Hourly") {
+        return "Built for specific tasks or targeted areas — you set the priorities and we'll make the most of each minute!";
       }
       return "Maintenance clean on your schedule — same cleaner every visit. Defined room-by-room checklist covering general areas, floors, bedrooms, bathroom and kitchen.";
     };
@@ -1626,23 +1631,51 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               {getPlanDescription()}
             </p>
 
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setIsModalOpen(false);
-                setTimeout(() => {
-                  document.getElementById("checklist")?.scrollIntoView({ behavior: "smooth" });
-                }, 100);
-              }}
-              className="text-xs font-bold text-[#FB8C42] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
-            >
-              {"What's included \u2192"}
-            </button>
+            {formData.cleaningType !== 'Hourly' && (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowQuiz(true);
+                  setCurrentStep(4);
+                }}
+                className="text-xs font-bold text-[#FB8C42] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
+              >
+                Help me decide &rarr;
+              </button>
+            )}
           </div>
 
           {/* MIDDLE ROW: Selectors */}
           {formData.cleaningType === 'Hourly' ? (
             <div className="grid grid-cols-1 gap-4">
+              {/* Hourly vs Flat-rate explainer */}
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-5">
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-8 h-8 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center shrink-0">
+                    <Clock className="w-4 h-4 text-amber-600" />
+                  </div>
+                  <div>
+                    <span className="block text-sm font-bold text-amber-900 mb-1">Hourly is built for specific tasks or targeted areas</span>
+                    <p className="text-[12.5px] text-amber-800 leading-relaxed opacity-90">
+                      The best option if you&apos;re only after cleaning here and there. You set the priorities and we&apos;ll make sure to make the most of each minute!
+                    </p>
+                  </div>
+                </div>
+                <div className="border-t border-amber-200/60 pt-4">
+                  <p className="text-[12.5px] text-amber-800 leading-relaxed opacity-90 mb-3">
+                    However, if you&apos;re looking to get entire rooms, or the entire house treated, flat rate is the most cost-effective option. Simply choose which rooms, and we&apos;ll follow an extremely detailed checklist — with no time limit — to guarantee a spotless result! Instead of paying for our time, flat-rate allows you to pay for the result.
+                  </p>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setFormData(prev => ({ ...prev, cleaningType: 'Standard' }));
+                    }}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-amber-900 underline underline-offset-2 transition-colors"
+                  >
+                    Switch to flat-rate <ArrowRight className="w-3 h-3" />
+                  </button>
+                </div>
+              </div>
               <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-gray-200 transition-all duration-300">
                 <div className="mb-4 md:mb-0">
                   <span className="block text-sm font-semibold text-gray-800">Hours (Per Cleaner)</span>
@@ -1924,43 +1957,93 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
             <Info className="w-3 h-3" /> CONDITION ASSESSMENT
           </span>
-          <button onClick={() => setShowQuiz(true)} className="text-[13px] font-bold text-primary hover:underline bg-orange-50 px-3 py-1.5 rounded-lg transition-colors">Help me decide</button>
+          {!showQuiz && (
+            <button onClick={() => setShowQuiz(true)} className="text-[13px] font-bold text-primary hover:underline bg-orange-50 px-3 py-1.5 rounded-lg transition-colors">Help me decide</button>
+          )}
         </div>
-        
+
+        {/* Your part in a Great Result info box */}
+        {!showQuiz && (
+          <div className="w-full bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center shrink-0 mt-0.5">
+                <Info className="w-4 h-4 text-[#FB8C42]" />
+              </div>
+              <div>
+                <span className="block text-sm font-bold text-gray-900 mb-1">Your Part in a Great Result</span>
+                <p className="text-[13px] text-gray-500 leading-relaxed">
+                  To help us deliver the best possible result, please accurately select the overall condition of the property. Our cleaners will do an assessment prior to the clean &mdash; where the condition is beyond the scope of the chosen service, we will discuss an uplift or recommend a better suited service before we begin.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {showQuiz ? (
-          <ConditionQuiz onComplete={(tier) => {
-             setFormData({ ...formData, condition: tier });
-             setShowQuiz(false);
-          }} />
+          <div className="flex flex-col gap-4">
+            <button
+              onClick={() => setShowQuiz(false)}
+              className="self-start inline-flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-lg transition-colors"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" /> Back to options
+            </button>
+            <ConditionQuiz onComplete={(tier) => {
+               setFormData({ ...formData, condition: tier });
+               setShowQuiz(false);
+            }} />
+          </div>
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 { 
                   tier: 'Lived In', 
-                  desc: 'Everyday soil from normal living: dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop, everyday clutter.' 
+                  desc: 'Everyday soil from normal living: dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop, everyday clutter.',
+                  selectedBorder: 'border-emerald-500',
+                  selectedBg: 'bg-emerald-50/60',
+                  checkColor: 'text-emerald-500',
+                  pillSelected: 'bg-emerald-100 text-emerald-700',
                 },
                 { 
                   tier: 'Overdue', 
-                  desc: 'Established build-up: cloudy shower glass, darkening grout with mould spots along the silicone, a greasy stovetop with cooked-on spots and the odd baked patch, tacky cupboard handles, a clear dust track on skirting boards.' 
+                  desc: 'Established build-up: cloudy shower glass, darkening grout with mould spots along the silicone, a greasy stovetop with cooked-on spots and the odd baked patch, tacky cupboard handles, a clear dust track on skirting boards.',
+                  selectedBorder: 'border-orange-400',
+                  selectedBg: 'bg-orange-50/60',
+                  checkColor: 'text-orange-500',
+                  pillSelected: 'bg-orange-100 text-orange-700',
                 },
                 { 
                   tier: 'Heavy Build Up', 
-                  desc: 'Widespread heavy build-up across the home: scale you can feel across shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, embedded pet hair, established odour, grime that needs scrapers and repeated dwell-and-scrub cycles.' 
+                  desc: 'Widespread heavy build-up across the home: scale you can feel across shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, embedded pet hair, established odour, grime that needs scrapers and repeated dwell-and-scrub cycles.',
+                  selectedBorder: 'border-red-500',
+                  selectedBg: 'bg-red-50/60',
+                  checkColor: 'text-red-500',
+                  pillSelected: 'bg-red-100 text-red-700',
                 }
-              ].map(opt => (
-                <button
-                  key={opt.tier}
-                  onClick={() => setFormData({ ...formData, condition: opt.tier as any })}
-                  className={`text-left p-5 rounded-3xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${formData.condition === opt.tier ? 'border-[#FB8C42] bg-orange-50/50 shadow-md scale-[1.02]' : 'border-gray-100 bg-white shadow-sm hover:border-gray-200'}`}
-                >
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="font-extrabold text-gray-900 text-lg">{opt.tier}</h3>
-                    {formData.condition === opt.tier && <CheckCircle2 className="w-5 h-5 text-[#FB8C42]" />}
-                  </div>
-                  <p className="text-[13px] leading-relaxed text-gray-600 font-medium">{opt.desc}</p>
-                </button>
-              ))}
+              ].map(opt => {
+                const isSelected = formData.condition === opt.tier;
+                return (
+                  <button
+                    key={opt.tier}
+                    onClick={() => setFormData({ ...formData, condition: opt.tier as any })}
+                    className={`text-left p-5 rounded-3xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                      isSelected
+                        ? `${opt.selectedBorder} ${opt.selectedBg} shadow-md scale-[1.02]`
+                        : 'border-gray-100 bg-white shadow-sm hover:border-gray-200'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center mb-3">
+                      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all ${
+                        isSelected ? opt.pillSelected : 'bg-gray-100 text-gray-500'
+                      }`}>
+                        {opt.tier}
+                      </span>
+                      {isSelected && <CheckCircle2 className={`w-5 h-5 ${opt.checkColor}`} />}
+                    </div>
+                    <p className="text-[13px] leading-relaxed text-gray-600 font-medium">{opt.desc}</p>
+                  </button>
+                );
+              })}
             </div>
 
             {formData.cleaningType === 'Standard' && (formData.condition === 'Overdue' || formData.condition === 'Heavy Build Up') && (
