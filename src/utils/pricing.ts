@@ -308,9 +308,9 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   if (request.cleaningType === 'Hourly') {
     estimatedMinutes = (request.hourlyDetails?.hours || 0) * 60;
   } else {
-    const timeConfigToUse = config?.timeConfig || DEFAULT_TIME_CONFIG;
+    const timeConfigToUse = (config?.timeConfig && Object.keys(config.timeConfig).length > 0) ? config.timeConfig : DEFAULT_TIME_CONFIG;
     const serviceKey = request.cleaningType === 'Standard' ? 'regular' : request.cleaningType.toLowerCase();
-    const tc = timeConfigToUse[serviceKey as keyof typeof timeConfigToUse] || timeConfigToUse.regular;
+    const tc = timeConfigToUse[serviceKey as keyof typeof timeConfigToUse] || timeConfigToUse.regular || DEFAULT_TIME_CONFIG.regular;
     if (tc) {
       let mins = tc.baseTime +
         ((request.homeDetails.bedrooms || 0) * tc.bedroom) +
