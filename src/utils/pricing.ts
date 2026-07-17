@@ -53,6 +53,19 @@ export const FREQUENCY_DISCOUNTS = {
 
 export const ACTION_TAKER_DISCOUNT = 30;
 
+export const DEFAULT_ADDON_TIMES: Record<string, number> = {
+  Windows: 20,
+  Walls: 30,
+  Cabinets: 20,
+  Organisation: 40,
+  Blinds: 20,
+  'Oven/Stovetops': 30,
+  Fridge: 20,
+  Dishwasher: 15,
+  Garage: 20,
+  Microwave: 10,
+};
+
 // Type definitions
 export type CleaningType = keyof typeof CLEANING_TYPE_PRICES;
 export type Extra = keyof typeof EXTRA_PRICES;
