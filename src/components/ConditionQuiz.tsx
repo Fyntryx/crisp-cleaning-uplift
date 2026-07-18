@@ -2,51 +2,67 @@ import React, { useState } from 'react';
 
 const QUIZ_QUESTIONS = [
   {
-    question: "Shower glass",
+    question: "Q1. Last thorough clean — When did the home last get a top-to-bottom clean (professional or your own)",
     options: [
-      { text: "See-through with light water spots", points: 1 },
-      { text: "A bit cloudy", points: 2 },
-      { text: "Visible crust or soap scum", points: 3 }
+      { text: "Within the last month", points: 1 },
+      { text: "1–6 months ago", points: 2 },
+      { text: "6+ months — or honestly can't remember", points: 3 }
     ]
   },
   {
-    question: "Grout & silicone",
+    question: "Q2. Run a finger over your shower glass — how does it feel?",
     options: [
-      { text: "Original colour", points: 1 },
-      { text: "Darkening or a few spots", points: 2 },
-      { text: "Widespread dark and mouldy", points: 3 }
+      { text: "Clear glass — maybe a few water spots", points: 1 },
+      { text: "Cloudy or filmy, but smooth to the touch", points: 2 },
+      { text: "Rough or crusty — you can feel the build-up", points: 3 }
     ]
   },
   {
-    question: "Stovetop",
+    question: "Q3. The grout and silicone in your shower:",
     options: [
-      { text: "Wipes clean easily", points: 1 },
-      { text: "Greasy film with the odd cooked-on spot", points: 2 },
-      { text: "Hard black build-up", points: 3 }
+      { text: "Close to original colour", points: 1 },
+      { text: "A few dark spots, mostly along the silicone edges", points: 2 },
+      { text: "Dark or black lines across most of the grout — you can see it from afar", points: 3 }
     ]
   },
   {
-    question: "Oven door",
+    question: "Q4. Toilet — Under the rim and at the waterline:",
     options: [
-      { text: "Splatter marks", points: 1 },
-      { text: "Brown film", points: 2 },
-      { text: "Carbon crust / opaque", points: 3 }
+      { text: "Clean, or light marks", points: 1 },
+      { text: "A visible ring or light scale", points: 2 },
+      { text: "Staining or scale that brushing doesn't remove", points: 3 }
     ]
   },
   {
-    question: "Pet hair",
+    question: "Q5. Your stovetop:",
     options: [
-      { text: "No pet hair", points: 1 },
-      { text: "Light pet hair throughout", points: 2 },
-      { text: "Build up on edges and furniture", points: 3 }
+      { text: "Wipes clean with a damp cloth", points: 1 },
+      { text: "Greasy film or cooked-on spots that need a proper scrub", points: 2 },
+      { text: "Hard, burnt-on black build-up that a scrub won't shift", points: 3 }
     ]
   },
   {
-    question: "Walls & switches",
+    question: "Q6. Look under your rangehood — the filters:",
     options: [
-      { text: "Mostly clean", points: 1 },
-      { text: "Marks around the switches and handles", points: 2 },
-      { text: "Widespread", points: 3 }
+      { text: "Look clean", points: 1 },
+      { text: "Have a greasy film", points: 2 },
+      { text: "Are dripping, saturated, or have never been cleaned that you know of", points: 3 }
+    ]
+  },
+  {
+    question: "Q7. How clear are the floors, benches and surfaces?",
+    options: [
+      { text: "Mostly clear", points: 1 },
+      { text: "Some items to work around", points: 2 },
+      { text: "Quite full — lots of items on floors and surfaces", points: 3 }
+    ]
+  },
+  {
+    question: "Q8. Do any of these apply: mould on walls or ceilings, bodily-fluid stains, pest issues, animal waste build-up, post-construction dust?",
+    options: [
+      { text: "None", points: 1 },
+      { text: "One of these", points: 2 },
+      { text: "More than one of these", points: 3 }
     ]
   }
 ];
@@ -64,8 +80,8 @@ export const ConditionQuiz = ({ onComplete }: { onComplete: (tier: 'Lived In' | 
       setCurrentQ(currentQ + 1);
     } else {
       let tier = 'Lived In';
-      if (newScore >= 9 && newScore <= 13) tier = 'Overdue';
-      if (newScore >= 14) tier = 'Heavy Build Up';
+      if (newScore >= 13 && newScore <= 18) tier = 'Overdue';
+      if (newScore >= 19) tier = 'Heavy Build Up';
       
       setScore(newScore);
       setResultTier(tier);

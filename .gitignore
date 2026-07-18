@@ -30,3 +30,7 @@ build
 
 # env files
 .env*
+scripts/
+old_pricing.ts
+refactor.py
+scripts/rewrite_booking.py

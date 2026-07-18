@@ -16,11 +16,7 @@ const nextConfig = {
   async redirects() {
     return [
       // existing custom redirects
-      {
-        source: '/book',
-        destination: '/#booking',
-        permanent: false,
-      },
+
       // --- SEO REDIRECT MAP (To be populated in Prompt 3) ---
       {
         source: '/services/standard-house-clean',
@@ -64,7 +60,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3000/api/:path*', // Proxy to Backend
+        destination: 'http://localhost:3001/api/:path*', // Proxy to Backend
       },
     ]
   },
