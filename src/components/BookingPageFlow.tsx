@@ -948,10 +948,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     outOfAreaFee,
   ]);
 
-  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
 
-      const isStepValid = () => {
+  const isStepValid = () => {
     if (isCommercial) {
       switch (currentStep) {
         case 1: return formData.commercial?.businessName && formData.commercial?.businessSize && formData.commercial?.environment;
@@ -964,13 +964,26 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
     } else {
       switch (currentStep) {
-        case 1: return formData.contact.firstName && formData.contact.lastName && formData.contact.email && formData.contact.phone && formData.contact.address;
+        case 1: 
+          return !!(
+            formData.contact.firstName && 
+            formData.contact.email && isValidEmail(formData.contact.email) &&
+            formData.contact.phone && isValidPhone(formData.contact.phone)
+          );
         case 2: return !!formData.cleaningType;
-        case 3: return !!formData.cleaningType && !!formData.condition;
-        case 4: return formData.cleaningType === "Hourly" ? (formData.hourlyDetails?.hours > 0) : (formData.homeDetails.bedrooms > 0 && formData.homeDetails.bathrooms > 0);
-        case 5: return formData.selectedDate && formData.selectedTime;
+        case 3:
+          if (formData.cleaningType === "Hourly") return (formData.hourlyDetails?.hours || 0) > 0;
+          return (
+            (formData.homeDetails.bedrooms || 0) +
+            (formData.homeDetails.bathrooms || 0) +
+            (formData.homeDetails.kitchens || 0) +
+            (formData.homeDetails.livingRooms || 0) +
+            (formData.homeDetails.other || 0) > 0
+          );
+        case 4: return !!formData.cleaningType && !!formData.condition;
+        case 5: return !!formData.selectedDate && !!formData.selectedTime;
         case 6: return true;
-        case 7: return true;
+        case 7: return !!formData.contact.address;
         default: return false;
       }
     }
@@ -980,7 +993,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     setIsSubmittingDiscount(true);
     setDiscountError(null);
 
-    const isValidEmail = (email: string) => /^[^s@]+@[^s@]+\.[^s@]+$/.test(email);
+    const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
     const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
 
     if (!isValidEmail(formData.contact.email)) {
@@ -1018,7 +1031,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       bedrooms: formData.homeDetails.bedrooms || 0,
       bathrooms: formData.homeDetails.bathrooms || 0,
       kitchen: formData.homeDetails.kitchens || 0,
-      other: formData.homeDetails.other || 0,
+      other: (formData.homeDetails.other || 0) + (formData.homeDetails.livingRooms || 0),
       serviceType: formData.cleaningType || formData.serviceCategory,
       address: formData.contact.address || "",
       addons: Object.entries(formData.extras)
@@ -1033,7 +1046,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+    } catch (err) {
+      console.error("Failed to submit lead (non-blocking)", err);
+    }
 
+    try {
       // Push to GTM dataLayer
       if (typeof window !== "undefined") {
         (window as any).dataLayer = (window as any).dataLayer || [];
@@ -1054,7 +1071,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       setSubmitSuccess(null);
       setCurrentStep(2);
     } catch (err) {
-      console.error("Failed to submit lead", err);
+      console.error("Failed to process discount", err);
       setDiscountError("Failed to claim discount. Please try again.");
     } finally {
       setIsSubmittingDiscount(false);
@@ -1240,10 +1257,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       roomsBedrooms: formData.homeDetails.bedrooms || 0,
       roomsBathrooms: formData.homeDetails.bathrooms || 0,
       roomsKitchens: formData.homeDetails.kitchens || 0,
-      roomsOther: formData.homeDetails.other || 0,
+      roomsOther: (formData.homeDetails.other || 0) + (formData.homeDetails.livingRooms || 0),
       hourlyHours: formData.hourlyDetails?.hours || 2,
       hourlyCleaners: formData.hourlyDetails?.cleaners || 1,
-      condition: formData.condition,
+      condition: formData.condition === "Overdue" ? "Lived In" : formData.condition,
       addons: addonsPayload,
       entryInstructions: formData.instructions.entry || "",
       parkingInstructions: formData.instructions.parking || "",
@@ -1309,7 +1326,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         return;
       }
       
-      const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
       const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
 
       if (!isValidEmail(formData.contact.email)) {

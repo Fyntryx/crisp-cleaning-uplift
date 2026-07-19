@@ -207,10 +207,12 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   } else {
     cleaningAndRoomsTotal = homeDetailsTotal + baseRate;
     
-    if (
-      request.condition === 'Heavy Build Up' && 
-      (request.cleaningType === 'Deep' || request.cleaningType === 'Vacate')
-    ) {
+    if (request.condition === 'Overdue') {
+      // Overdue applies a +15% multiplier
+      const multiplier = 1.15;
+      cleaningAndRoomsTotal = Math.round(cleaningAndRoomsTotal * multiplier);
+    } else if (request.condition === 'Heavy Build Up') {
+      // Heavy build up applies a +30% multiplier (or custom config)
       const multiplier = config?.conditionMultipliers?.heavyBuildUp ?? 1.3;
       cleaningAndRoomsTotal = Math.round(cleaningAndRoomsTotal * multiplier);
     }

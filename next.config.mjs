@@ -60,7 +60,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3001/api/:path*', // Proxy to Backend
+        destination: 'https://crisp-cleaning-app-seven.vercel.app/api/:path*', // Proxy to Backend
       },
     ]
   },
