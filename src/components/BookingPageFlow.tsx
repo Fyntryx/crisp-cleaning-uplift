@@ -3168,7 +3168,7 @@ const renderResStep2 = () => {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-stretch bg-white border border-[#e5e5e5] rounded-[24px] shadow-sm divide-y lg:divide-y-0 lg:divide-x divide-[#e5e5e5] overflow-hidden mx-[30px]">
+        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
           {/* LEFT COLUMN - STEPPER */}
           <div className="w-full lg:w-64 shrink-0 bg-transparent p-6 lg:p-8 lg:sticky lg:top-24 self-start">
              <div className="flex flex-col gap-6">
@@ -3250,7 +3250,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY */}
-          <div className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px]">
+          <div className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px] rounded-3xl overflow-hidden border border-[#e5e5e5]">
              <BookingSummaryCard
                 formData={formData}
                 pricingConfig={pricingConfig}
