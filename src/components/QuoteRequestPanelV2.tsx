@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import ServicesV2 from "./ServicesV2";
 import { client } from "@/sanity/lib/client";
 
@@ -103,10 +103,10 @@ export default function QuoteRequestPanelV2() {
         sessionStorage.setItem("crisp_lead_email", formData.email);
         sessionStorage.setItem("crisp_lead_phone", formData.phone);
         
-        // Show success state briefly before opening modal
+        // Show success state briefly before redirecting to booking page step 2
         setIsSuccess(true);
         setTimeout(() => {
-          window.location.hash = "booking";
+          window.location.href = "/book?service=Standard";
           setIsSubmitting(false);
         }, 1500);
         return; // Return early to prevent setIsSubmitting(false) from finally block
@@ -126,7 +126,7 @@ export default function QuoteRequestPanelV2() {
       
       setIsSuccess(true);
       setTimeout(() => {
-        window.location.hash = "booking";
+        window.location.href = "/book?service=Standard";
         setIsSubmitting(false);
       }, 1500);
       return;
@@ -137,61 +137,56 @@ export default function QuoteRequestPanelV2() {
   return (
     <>
       <section className="relative z-20 -mt-12 md:-mt-16 container mx-auto px-4 md:px-6 mb-12">
-        <div className="bg-white rounded-[24px] md:rounded-[32px] shadow-2xl py-4 md:py-5 px-5 md:px-6 border border-gray-100 animate-in fade-in slide-in-from-bottom duration-700 max-w-7xl mx-auto flex flex-col xl:flex-row items-center gap-4 xl:gap-8">
+        <div className="relative bg-white rounded-[24px] md:rounded-[32px] shadow-2xl pt-8 pb-5 px-5 md:px-6 border border-gray-100 animate-in fade-in slide-in-from-bottom duration-700 max-w-5xl mx-auto flex flex-col items-center gap-4">
           
-          {/* Left Content */}
-          <div className="flex-1 flex flex-col justify-center items-center text-center w-full min-w-[300px]">
-            <div className="inline-flex items-center justify-center px-4 py-1 mb-1.5 rounded-full bg-[#FB8C42] text-white text-[10px] md:text-[11px] font-bold tracking-[0.08em] uppercase shadow-sm">
-              First Clean — 5% Off
-            </div>
-            <h2 className="text-[20px] md:text-[24px] font-extrabold text-gray-900 tracking-tight leading-tight">
-              {discountContent.heading} <ArrowRight className="inline-block w-4 h-4 ml-0.5 text-[#FB8C42]" />
-            </h2>
+          {/* Top Pill */}
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#FB8C42] text-white text-[10px] md:text-[11px] font-bold tracking-[0.08em] uppercase shadow-sm whitespace-nowrap">
+            First Clean — 5% Off
           </div>
 
-          {/* Right Form */}
-          <div className="flex-[2] w-full flex flex-col items-center">
-            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-3">
-              <div className="w-full flex flex-col md:flex-row gap-2.5 items-center justify-center">
-                <div className="flex flex-col space-y-0.5 w-full flex-1">
-                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center">Full Name</label>
+          {/* Form */}
+          <div className="w-full flex flex-col items-center">
+            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-4">
+              <div className="w-full flex flex-col md:flex-row gap-3 md:gap-4 items-center justify-center">
+                <div className="flex flex-col space-y-1 w-full flex-1">
+                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center md:text-left pl-1">Full Name</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Jane Doe"
-                    className="w-full px-[12px] py-[8px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[13px] shadow-sm transition-all text-center md:text-left"
+                    className="w-full px-[14px] py-[10px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-stone-900 font-normal text-[14px] shadow-sm transition-all text-center md:text-left"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   />
                 </div>
-                <div className="flex flex-col space-y-0.5 w-full flex-1">
-                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center">Email Address</label>
+                <div className="flex flex-col space-y-1 w-full flex-1">
+                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center md:text-left pl-1">Email Address</label>
                   <input
                     type="email"
                     required
                     placeholder="jane@example.com"
-                    className="w-full px-[12px] py-[8px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[13px] shadow-sm transition-all text-center md:text-left"
+                    className="w-full px-[14px] py-[10px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-stone-900 font-normal text-[14px] shadow-sm transition-all text-center md:text-left"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
-                <div className="flex flex-col space-y-0.5 w-full flex-1">
-                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center">Phone Number</label>
+                <div className="flex flex-col space-y-1 w-full flex-1">
+                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center md:text-left pl-1">Phone Number</label>
                   <input
                     type="tel"
                     required
                     placeholder="0400 000 000"
-                    className="w-full px-[12px] py-[8px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[13px] shadow-sm transition-all text-center md:text-left"
+                    className="w-full px-[14px] py-[10px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-stone-900 font-normal text-[14px] shadow-sm transition-all text-center md:text-left"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
                 </div>
               </div>
-              <div className="w-full flex justify-center">
+              <div className="w-full flex flex-col items-center mt-2">
                 <button
                   type="submit"
                   disabled={isSubmitting || isSuccess}
-                  className={`w-full md:w-auto min-w-[220px] whitespace-nowrap text-white text-[14px] font-bold rounded-[10px] px-6 py-2 md:py-2.5 transition-all shadow-[0_8px_25px_rgba(249,115,22,0.3)] flex justify-center items-center gap-2 ${
+                  className={`w-full md:w-auto min-w-[240px] whitespace-nowrap text-white text-[15px] font-bold rounded-[10px] px-8 py-3 transition-all shadow-[0_8px_25px_rgba(249,115,22,0.3)] flex justify-center items-center gap-2 ${
                     isSuccess 
                       ? "bg-emerald-500 hover:bg-emerald-600 shadow-[0_8px_25px_rgba(16,185,129,0.3)]" 
                       : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 hover:shadow-[0_12px_30px_rgba(249,115,22,0.4)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
@@ -200,16 +195,16 @@ export default function QuoteRequestPanelV2() {
                   {isSuccess ? (
                     "Discount Claimed! ✨"
                   ) : isSubmitting ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
                     "Get My Instant Quote →"
                   )}
                 </button>
+                <p className="text-gray-400 text-[11px] mt-2 font-medium text-center">
+                  {discountContent.subheading}
+                </p>
               </div>
             </form>
-            <p className="text-gray-400 text-[10px] mt-2 font-medium text-center">
-              {discountContent.subheading}
-            </p>
           </div>
         </div>
       </section>

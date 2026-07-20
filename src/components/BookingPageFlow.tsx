@@ -198,7 +198,7 @@ const BookingSummaryCard = ({
   outOfAreaFee?: number;
 }) => (
   <div
-    className={`bg-white text-gray-800 rounded-[28px] p-8 shadow-sm border border-gray-100 relative overflow-visible group hover:border-gray-200 transition-all duration-300 ${className}`}
+    className={`bg-transparent text-gray-800 p-8 relative overflow-visible ${className}`}
   >
     <h3 className="text-xl font-bold tracking-tight text-gray-900 mb-5 relative z-10">
       Booking Summary
@@ -1462,10 +1462,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     return (
       <div className="flex flex-col gap-6 animate-in fade-in duration-500 py-2">
         <div className="mb-2">
-          <h2 className="text-[28px] font-bold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-[25px] font-bold text-gray-900 tracking-tight leading-tight">
             How would you like to be priced?
           </h2>
-          <p className="text-gray-500 text-[15px] mt-1 font-medium">
+          <p className="text-gray-500 text-[10px] mt-1 font-medium">
             Most whole-home cleans choose flat rate.
           </p>
         </div>
@@ -1474,7 +1474,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           {/* Flat Rate Card */}
           <div
             onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
-            className={`relative border-2 rounded-[20px] p-6 cursor-pointer transition-all duration-300 flex flex-col ${
+            className={`relative border-2 rounded-[20px] p-5 cursor-pointer transition-all duration-300 flex flex-col h-full ${
               isFlatRate
                 ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
@@ -1483,22 +1483,22 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <span className="absolute -top-3.5 left-6 bg-[#FB8C42] text-white text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-md z-10">
               MOST POPULAR — BEST VALUE
             </span>
-            <div className="mt-2">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Flat Rate</h3>
-              <p className="text-[14px] text-gray-600 leading-relaxed mb-6">
+            <div className="mt-1">
+              <h3 className="text-[20px] font-bold text-gray-900 mb-1.5">Flat Rate</h3>
+              <p className="text-[10px] text-gray-600 leading-relaxed mb-4">
                 A fixed price for a complete result. Define the size and condition, and we'll stay as long as it takes to leave your space shining.
               </p>
               
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2.5 text-[14px] text-gray-700 font-medium">
+              <ul className="space-y-1.5 mb-5">
+                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Pay for the result, not the time
                 </li>
-                <li className="flex items-start gap-2.5 text-[14px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Full Crisp checklist, satisfaction guaranteed
                 </li>
-                <li className="flex items-start gap-2.5 text-[14px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Best value for whole rooms or the whole house
                 </li>
@@ -1507,7 +1507,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             
             <div className="mt-auto">
               {!isFlatRate && (
-                <button className="w-full py-3 px-4 rounded-full border-2 border-gray-200 text-gray-700 font-bold text-[14px] hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                <button className="w-full py-2 px-4 rounded-full border-2 border-gray-200 text-gray-700 font-bold text-[11px] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Flat Rate
                 </button>
               )}
@@ -1517,7 +1517,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           {/* Hourly Card */}
           <div
             onClick={() => setFormData({ ...formData, cleaningType: 'Hourly' })}
-            className={`relative border-2 rounded-[20px] p-6 cursor-pointer transition-all duration-300 flex flex-col ${
+            className={`relative border-2 rounded-[20px] p-5 cursor-pointer transition-all duration-300 flex flex-col h-full ${
               isHourly
                   ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
                   : "border-gray-200 bg-[#FFF8F3] hover:border-[#FB8C42]/50 hover:shadow-md"
@@ -1528,22 +1528,22 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 SELECTED
               </span>
             )}
-            <div className="mt-2">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Hourly</h3>
-              <p className="text-[14px] text-gray-600 leading-relaxed mb-6">
+            <div className="mt-1">
+              <h3 className="text-[20px] font-bold text-gray-900 mb-1.5">Hourly</h3>
+              <p className="text-[10px] text-gray-600 leading-relaxed mb-4">
                 For specific tasks or targeted areas. You set the priorities and we'll make sure to make the most of each minute!
               </p>
               
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2.5 text-[14px] text-gray-700 font-medium">
+              <ul className="space-y-1.5 mb-5">
+                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   You cap the budget in hours
                 </li>
-                <li className="flex items-start gap-2.5 text-[14px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   We work your priority list top-down
                 </li>
-                <li className="flex items-start gap-2.5 text-[14px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <span className="w-5 h-5 flex items-center justify-center shrink-0">
                     <span className="w-3.5 h-0.5 bg-gray-400 rounded-full"></span>
                   </span>
@@ -1559,7 +1559,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     e.stopPropagation();
                     handleNext();
                   }}
-                  className="w-full py-3 px-4 rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-bold text-[14px] shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-2 px-4 rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-bold text-[11px] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
                 >
                   Continue with Hourly <ArrowRight className="w-4 h-4" />
                 </button>
@@ -1569,11 +1569,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {isHourly && (
-          <div className="max-w-4xl w-full bg-[#FFF9E5] border border-[#FFE58F] rounded-2xl p-5 flex flex-col gap-3 text-[#8A6D3B] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
-            <div className="flex items-start gap-3.5">
-              <AlertTriangle className="w-6 h-6 text-[#F5B041] shrink-0 mt-0.5" strokeWidth={2.5} />
-              <div className="text-[14px] leading-[1.6]">
-                Hourly is built for specific tasks or targeted areas — the best option if you're only after cleaning here and there. You set the priorities and we'll make the most of each minute! If you're looking to get entire rooms or the whole house treated, <span className="font-bold">flat rate is the most cost-effective option — pay for the result, not the time.</span>
+          <div className="max-w-4xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-[#E6A800] shrink-0 mt-0.5" strokeWidth={2.5} />
+              <div className="text-[11px] leading-[1.5]">
+                Hourly is built for specific tasks or targeted areas — the best option if you're only after cleaning here and there. You set the priorities and we'll make the most of each minute! If you're looking to get entire rooms or the whole house treated, <span className="font-bold text-[#997300]">flat rate is the most cost-effective option — pay for the result, not the time.</span>
               </div>
             </div>
           </div>
@@ -1969,30 +1969,45 @@ const renderResStep2 = () => {
         </div>
 
         {/* Top section: Service Types */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 bg-white border border-gray-200 rounded-[12px] divide-y md:divide-y-0 md:divide-x divide-gray-200 mb-10">
           {[
             { id: 'Standard', label: 'Standard', desc: 'Maintain cleanliness, remove visible dirt, restore order, and leave the home fresh.' },
             { id: 'Deep', label: 'Deep', desc: 'High-detail clean to remove all dirt, grime, and build-up, with added attention to less frequently maintained areas.', badge: 'MOST BOOKED FIRST VISIT' },
             { id: 'Vacate', label: 'Vacate', desc: 'A full-scope, maximum-detail clean — built to meet rental inspection standards.', badge: 'BOND BACK GUARANTEE' }
-          ].map((type) => {
+          ].map((type, index) => {
             const isSelected = formData.cleaningType === type.id;
+            let roundedClass = "";
+            if (index === 0) roundedClass = "rounded-t-[12px] md:rounded-t-none md:rounded-l-[12px]";
+            else if (index === 2) roundedClass = "rounded-b-[12px] md:rounded-b-none md:rounded-r-[12px]";
+
             return (
               <div 
                 key={type.id}
-                onClick={() => setFormData({ ...formData, cleaningType: type.id as any })}
-                className={`relative cursor-pointer rounded-2xl border-2 p-5 transition-all duration-200 flex flex-col ${
+                onClick={() => {
+                  let newCondition = formData.condition;
+                  if (type.id === 'Standard' && (newCondition === 'Overdue' || newCondition === 'Heavy Build Up')) {
+                    newCondition = 'Lived In';
+                  }
+                  setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
+                }}
+                className={`relative cursor-pointer p-4 md:p-5 transition-all duration-200 flex flex-col ${roundedClass} ${
                   isSelected 
-                    ? 'border-[#FB8C42] bg-white shadow-md' 
-                    : 'border-gray-200 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30'
+                    ? 'bg-[#FB8C42]/5 shadow-[inset_0_0_0_1.5px_#FB8C42] z-10' 
+                    : 'bg-white hover:bg-gray-50/50 z-0'
                 }`}
               >
                 {type.badge && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[10px] font-bold tracking-wider px-3 py-1 rounded-full whitespace-nowrap shadow-sm">
+                  <div className="absolute top-0 right-0 bg-[#FB8C42] text-white text-[9px] font-bold tracking-wider px-2 py-1 rounded-bl-lg">
                     {type.badge}
                   </div>
                 )}
-                <h3 className="font-bold text-lg text-gray-900 mb-2">{type.label}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{type.desc}</p>
+                <div className="flex items-center gap-2 mt-1 md:mt-0">
+                  <div className={`w-4 h-4 flex-shrink-0 rounded-full border-[1.5px] flex items-center justify-center transition-colors ${isSelected ? 'border-[#FB8C42]' : 'border-gray-300'}`}>
+                    {isSelected && <div className="w-2 h-2 bg-[#FB8C42] rounded-full" />}
+                  </div>
+                  <h3 className={`font-bold text-[14px] ${isSelected ? 'text-gray-900' : 'text-gray-900'}`}>{type.label}</h3>
+                </div>
+                <p className="text-[10px] text-gray-500 leading-relaxed mt-3">{type.desc}</p>
               </div>
             );
           })}
@@ -2007,18 +2022,26 @@ const renderResStep2 = () => {
             <div className="flex flex-col gap-4">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
-                { id: 'Overdue', label: 'Overdue', badge: '+15%', desc: 'A few months since a proper clean' },
+                { id: 'Overdue', label: 'Overdue', desc: 'A few months since a proper clean' },
                 { id: 'Heavy Build Up', label: 'Heavy build-up', badge: 'custom', desc: 'Long-neglected or post-reno' }
               ].map((cond) => {
                 const isSelected = formData.condition === cond.id;
+                const isDisabled = formData.cleaningType === 'Standard' && (cond.id === 'Overdue' || cond.id === 'Heavy Build Up');
+                
                 return (
                   <div 
                     key={cond.id}
-                    onClick={() => setFormData({ ...formData, condition: cond.id as any })}
+                    onClick={() => {
+                      if (!isDisabled) {
+                        setFormData({ ...formData, condition: cond.id as any });
+                      }
+                    }}
                     className={`cursor-pointer rounded-2xl border-2 p-4 transition-all duration-200 flex flex-col ${
-                      isSelected 
-                        ? 'border-[#FB8C42] bg-white shadow-sm' 
-                        : 'border-gray-200 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30'
+                      isDisabled 
+                        ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
+                        : isSelected 
+                          ? 'border-[#FB8C42] bg-white shadow-sm' 
+                          : 'border-gray-200 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30'
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
@@ -2038,29 +2061,44 @@ const renderResStep2 = () => {
 
           {/* Right Column: Explainer Box */}
           <div>
-             <div className="bg-[#FAF9F6] border border-gray-100 rounded-2xl p-6 h-full flex flex-col">
-                <h3 className="text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">
-                  WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
-                </h3>
-                
-                <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
-                  {formData.condition === 'Lived In' 
-                    ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
-                    : formData.condition === 'Heavy Build Up'
-                    ? "Heavy build-up — Widespread heavy build-up across multiple rooms — grime that needs scrapers or repeated dwell-and-scrub cycles. Scale you can feel on the shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, pet hair worked into fabric and edges — often accompanied by lingering odour."
-                    : "Overdue — Established build-up in the usual hotspots — needs product dwell time and proper scrubbing, but comes up within a single treatment. Cloudy (but smooth) shower glass, dark spots along the silicone, a greasy stovetop with cooked-on spots, tacky cupboard handles, a visible dust layer on ledges and skirting, scattered pet hair."
-                  }
-                </p>
+             {showConditionQuiz ? (
+               <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden">
+                 <button 
+                   onClick={() => setShowConditionQuiz(false)} 
+                   className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600"
+                 >
+                   <X className="w-4 h-4" />
+                 </button>
+                 <ConditionQuiz onComplete={(tier) => { 
+                   setFormData({ ...formData, condition: tier });
+                   setShowConditionQuiz(false);
+                 }} />
+               </div>
+             ) : (
+               <div className="bg-[#FAF9F6] border border-gray-100 rounded-2xl p-6 h-full flex flex-col">
+                  <h3 className="text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">
+                    WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
+                  </h3>
+                  
+                  <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
+                    {formData.condition === 'Lived In' 
+                      ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
+                      : formData.condition === 'Heavy Build Up'
+                      ? "Heavy build-up — Widespread heavy build-up across multiple rooms — grime that needs scrapers or repeated dwell-and-scrub cycles. Scale you can feel on the shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, pet hair worked into fabric and edges — often accompanied by lingering odour."
+                      : "Overdue — Established build-up in the usual hotspots — needs product dwell time and proper scrubbing, but comes up within a single treatment. Cloudy (but smooth) shower glass, dark spots along the silicone, a greasy stovetop with cooked-on spots, tacky cupboard handles, a visible dust layer on ledges and skirting, scattered pet hair."
+                    }
+                  </p>
 
-                <div className="border-t border-gray-200 pt-5 mt-auto">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-sm text-gray-500 flex-1">
-                      <span className="font-bold">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
-                    </p>
-                    <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-sm font-bold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap">Take the condition check →</button>
+                  <div className="border-t border-gray-200 pt-5 mt-auto">
+                    <div className="flex flex-col items-start gap-4">
+                      <p className="text-sm text-gray-500 w-full text-justify">
+                        <span className="font-bold">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
+                      </p>
+                      <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-sm font-bold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
+                    </div>
                   </div>
-                </div>
-             </div>
+               </div>
+             )}
           </div>
         </div>
 
@@ -2071,21 +2109,7 @@ const renderResStep2 = () => {
           </p>
         </div>
 
-      {showConditionQuiz && (
-        <div className="fixed inset-0 z-[100] bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in duration-300">
-            <button type="button" onClick={() => setShowConditionQuiz(false)} className="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors z-10">
-              <X className="w-5 h-5 text-gray-600" />
-            </button>
-            <div className="p-2">
-              <ConditionQuiz onComplete={(tier) => { 
-                setFormData({ ...formData, condition: tier });
-                setShowConditionQuiz(false);
-              }} />
-            </div>
-          </div>
-        </div>
-      )}
+
 
       </div>
     );
@@ -3138,15 +3162,15 @@ const renderResStep2 = () => {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-gray-500 text-sm font-medium">Questions?</span>
-            <a href="tel:0451433786" className="inline-flex items-center justify-center px-6 py-2.5 rounded-full border-2 border-gray-200 text-gray-800 font-bold hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors whitespace-nowrap shadow-sm">
-              0451 433 786
+            <a href="tel:0451433786" className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-bold transition-all whitespace-nowrap shadow-md gap-2">
+              <Phone className="w-4 h-4 fill-current" /> 0451 433 786
             </a>
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
+        <div className="flex flex-col lg:flex-row items-stretch bg-white border border-[#e5e5e5] rounded-[24px] shadow-sm divide-y lg:divide-y-0 lg:divide-x divide-[#e5e5e5] overflow-hidden mx-[30px]">
           {/* LEFT COLUMN - STEPPER */}
-          <div className="w-full lg:w-64 shrink-0 bg-white rounded-3xl p-6 shadow-sm border border-gray-100 lg:sticky lg:top-24">
+          <div className="w-full lg:w-64 shrink-0 bg-transparent p-6 lg:p-8 lg:sticky lg:top-24 self-start">
              <div className="flex flex-col gap-6">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
@@ -3194,7 +3218,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className="flex-1 w-full bg-white rounded-[32px] p-6 md:p-10 shadow-sm border border-gray-100 overflow-hidden relative">
+          <div className="flex-1 w-full bg-transparent p-5 relative">
              <div className="min-h-[400px] flex flex-col">
                {renderContent()}
                
@@ -3226,7 +3250,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY */}
-          <div className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-24">
+          <div className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px]">
              <BookingSummaryCard
                 formData={formData}
                 pricingConfig={pricingConfig}

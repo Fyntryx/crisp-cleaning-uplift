@@ -208,9 +208,8 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
     cleaningAndRoomsTotal = homeDetailsTotal + baseRate;
     
     if (request.condition === 'Overdue') {
-      // Overdue applies a +15% multiplier
-      const multiplier = 1.15;
-      cleaningAndRoomsTotal = Math.round(cleaningAndRoomsTotal * multiplier);
+      // No multiplier for Overdue
+      cleaningAndRoomsTotal = cleaningAndRoomsTotal;
     } else if (request.condition === 'Heavy Build Up') {
       // Heavy build up applies a +30% multiplier (or custom config)
       const multiplier = config?.conditionMultipliers?.heavyBuildUp ?? 1.3;
