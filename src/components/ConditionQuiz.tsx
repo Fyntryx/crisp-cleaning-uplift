@@ -111,23 +111,23 @@ export const ConditionQuiz = ({ onComplete }: { onComplete: (tier: 'Lived In' | 
   }
 
   return (
-    <div className="bg-gray-50/50 p-6 rounded-2xl border border-gray-200 shadow-sm animate-in fade-in duration-300 relative overflow-hidden">
+    <div className="animate-in fade-in duration-300 h-full flex flex-col">
       <div className="absolute top-0 left-0 h-1.5 bg-[#FB8C42] transition-all duration-300" style={{ width: `${((currentQ) / QUIZ_QUESTIONS.length) * 100}%` }} />
       
-      <div className="flex justify-between items-center mb-5 text-xs font-bold text-gray-400 uppercase tracking-widest mt-2">
+      <div className="flex justify-between items-center mb-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
         <span>Question {currentQ + 1} of {QUIZ_QUESTIONS.length}</span>
       </div>
       
-      <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-5">{q.question}</h4>
+      <h4 className="text-sm md:text-base font-bold text-gray-900 mb-4">{q.question}</h4>
       
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         {q.options.map((opt, i) => (
           <button 
             key={i}
             onClick={() => handleAnswer(opt.points)}
-            className="text-left px-5 py-4 rounded-xl border-2 border-gray-100 bg-white hover:border-[#FB8C42] hover:shadow-md hover:-translate-y-0.5 transition-all font-medium text-gray-700 text-sm md:text-base group"
+            className="text-left px-3.5 py-3 rounded-xl border-2 border-gray-100 bg-white hover:border-[#FB8C42] hover:shadow-md hover:-translate-y-0.5 transition-all font-medium text-gray-700 text-xs md:text-sm group"
           >
-            <span className="inline-block w-6 h-6 rounded-full bg-gray-50 border border-gray-200 text-center text-xs leading-5 mr-3 group-hover:bg-[#FB8C42] group-hover:text-white group-hover:border-[#FB8C42] transition-colors">{String.fromCharCode(65 + i)}</span>
+            <span className="inline-block w-5 h-5 rounded-full bg-gray-50 border border-gray-200 text-center text-[10px] leading-[18px] mr-2.5 group-hover:bg-[#FB8C42] group-hover:text-white group-hover:border-[#FB8C42] transition-colors">{String.fromCharCode(65 + i)}</span>
             {opt.text}
           </button>
         ))}

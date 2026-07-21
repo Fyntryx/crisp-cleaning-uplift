@@ -433,9 +433,9 @@ const BookingSummaryCard = ({
         </div>
       )}
 
-      <div className="flex justify-between items-end pt-3">
-        <span className="text-base font-semibold text-gray-800 leading-[24px]">Total</span>
-        <span className="text-2xl font-bold text-[#FB8C42] tracking-tight leading-[32px]">
+      <div className="flex justify-between items-end pt-4">
+        <span className="text-lg font-bold text-gray-800 mb-1">Total</span>
+        <span className="text-3xl md:text-[34px] font-black text-[#FB8C42] tracking-tight leading-none">
           A${(pricingResult?.total || 0).toFixed(2)}
         </span>
       </div>
@@ -1480,7 +1480,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
-            <span className="absolute -top-3.5 left-6 bg-[#FB8C42] text-white text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-md z-10">
+            <span className="absolute -top-2.5 left-6 bg-[#FB8C42] text-white text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10">
               MOST POPULAR — BEST VALUE
             </span>
             <div className="mt-1">
@@ -1524,7 +1524,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             }`}
           >
             {isHourly && (
-              <span className="absolute -top-3.5 left-6 bg-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-sm z-10 border border-orange-200">
+              <span className="absolute -top-2.5 left-6 bg-orange-100 text-[#FB8C42] text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10 border border-orange-200">
                 SELECTED
               </span>
             )}
@@ -1754,122 +1754,152 @@ const renderResStep2 = () => {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <RoomCounter
-                  label="Bedroom"
-                  count={formData.homeDetails.bedrooms || 0}
-                  onUpdate={(v) => updateRooms("bedrooms", v)}
-                />
-
-                <RoomCounter
-                  label="Bathroom"
-                  count={formData.homeDetails.bathrooms || 0}
-                  onUpdate={(v) => updateRooms("bathrooms", v)}
-                />
-
-                <RoomCounter
-                  label="Kitchen"
-                  count={formData.homeDetails.kitchens || 0}
-                  onUpdate={(v) => updateRooms("kitchens", v)}
-                />
-
-                <div className="relative group w-full">
-                  <RoomCounter
-                    label="Other Areas"
-                    count={formData.homeDetails.other || 0}
-                    onUpdate={(v) => updateRooms("other", v)}
-                    hasInfo={true}
-                  />
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-                    Laundry, office, study, theatre, gym, rumpus room, playroom, etc.
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
-                  </div>
-                </div>
-                
-                {/* Centered Living & Dining Area */}
-                <div className="w-full md:col-span-2 flex justify-center mt-1">
-                  <div className="relative group w-full md:w-[calc(50%-6px)]">
+              <div className="mb-6">
+                <h3 className="text-[22px] font-bold text-gray-900 mb-1">Tell us about your home</h3>
+                <p className="text-[13px] text-gray-500 mb-4">Count every room we should clean.</p>
+                <div className="bg-white rounded-[20px] border border-gray-100 flex flex-col shadow-sm">
+                  
+                  {/* 1. Living Areas */}
+                  <div className="relative group w-full border-b border-gray-100 last:border-0">
                     <RoomCounter
-                      label="Living & Dining"
+                      label="Living areas"
                       count={formData.homeDetails.livingRooms || 0}
                       onUpdate={(v: number) => updateRooms("livingRooms", v)}
                       hasInfo={true}
                     />
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-                      Select this if you require your living, dining, or lounge areas to be cleaned.
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-80 p-3 bg-gray-900 text-white text-[11px] leading-snug rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
+                      Only select more than one for truly distinct living areas — open plan living/dining counts as one, and all other general areas are included (hallways, staircases, etc). A separate sitting room or den would be classed as 'Other'.
                       <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
                     </div>
                   </div>
+
+                  {/* 2. Bedrooms */}
+                  <div className="border-b border-gray-100 last:border-0">
+                    <RoomCounter
+                      label="Bedrooms"
+                      count={formData.homeDetails.bedrooms || 0}
+                      onUpdate={(v) => updateRooms("bedrooms", v)}
+                    />
+                  </div>
+
+                  {/* 3. Bathrooms */}
+                  <div className="border-b border-gray-100 last:border-0">
+                    <RoomCounter
+                      label="Bathrooms"
+                      count={formData.homeDetails.bathrooms || 0}
+                      onUpdate={(v) => updateRooms("bathrooms", v)}
+                    />
+                  </div>
+
+                  {/* 4. Kitchens */}
+                  <div className="border-b border-gray-100 last:border-0">
+                    <RoomCounter
+                      label="Kitchens"
+                      count={formData.homeDetails.kitchens || 0}
+                      onUpdate={(v) => updateRooms("kitchens", v)}
+                    />
+                  </div>
+
+                  {/* 5. Other */}
+                  <div className="border-b border-gray-100 last:border-0">
+                    <RoomCounter
+                      label={
+                        <span>
+                          Other <span className="text-gray-400 font-normal ml-1">(study, laundry, office...)</span>
+                        </span>
+                      }
+                      count={formData.homeDetails.other || 0}
+                      onUpdate={(v) => updateRooms("other", v)}
+                    />
+                  </div>
+
                 </div>
               </div>
 
               {/* BOTTOM ROW: Full-width Add-ons */}
-              <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm">
+              <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm mt-4">
                 <span className="block text-[11px] font-bold uppercase text-[#FB8C42] tracking-widest mb-4 border-b border-gray-50 pb-2">
                   ADD-ONS
                 </span>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {isLoadingConfig ? (
-                    <div className="text-xs text-gray-400 py-2">Loading available add-ons...</div>
+                    <div className="text-xs text-gray-400 py-2 col-span-3">Loading available add-ons...</div>
                   ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
                     .map((extra) => {
                       const count = formData.extras?.[extra] || 0;
                       const isSelected = count > 0;
                       const isCounterAddon = extra === 'Windows' || extra === 'Walls';
-
-                      if (isCounterAddon && isSelected) {
-                        return (
-                          <div
-                            key={extra}
-                            className="inline-flex items-center gap-2 px-1.5 py-1.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
-                          >
-                            <button
-                              type="button"
-                              onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, Math.max(0, count - 1)); }}
-                              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
-                            >
-                              <Minus className="w-3 h-3 text-white" strokeWidth={3} />
-                            </button>
-                            <span className="text-[13px] font-semibold min-w-[20px] text-center px-1">
-                              {count} {extra}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
-                              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
-                            >
-                              <Plus className="w-3 h-3 text-white" strokeWidth={3} />
-                            </button>
-                          </div>
-                        );
-                      }
-
-                      if (isSelected) {
-                        return (
-                          <button
-                            key={extra}
-                            type="button"
-                            onClick={() => toggleExtra(extra)}
-                            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 transition-all duration-200 whitespace-nowrap"
-                          >
-                            <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
-                            <span className="text-[13px] font-semibold pr-1">
-                              {extra}
-                            </span>
-                          </button>
-                        );
-                      }
+                      const price = (pricingConfig?.extraPrices || EXTRA_PRICES)[extra] || 0;
 
                       return (
-                        <button
+                        <div
                           key={extra}
-                          type="button"
-                          onClick={() => toggleExtra(extra)}
-                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-[13px] font-semibold transition-all duration-200 whitespace-nowrap bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:shadow-sm"
+                          onClick={() => {
+                            if (!isCounterAddon) toggleExtra(extra);
+                          }}
+                          className={`relative flex flex-col justify-between p-3 rounded-2xl border-2 transition-all ${
+                            !isCounterAddon ? 'cursor-pointer' : ''
+                          } ${
+                            isSelected 
+                              ? "border-[#FB8C42] bg-[#FFF8F3]" 
+                              : "border-gray-100 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
+                          }`}
                         >
-                          <Plus className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                          {extra}
-                        </button>
+                          <div className="flex items-start justify-between mb-3">
+                             <span className={`text-[13px] font-semibold leading-tight pr-2 ${isSelected ? "text-[#FB8C42]" : "text-gray-700"}`}>
+                               {extra}
+                             </span>
+                             {/* Checkmark for non-counter add-ons */}
+                             {!isCounterAddon && (
+                               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${isSelected ? "border-[#FB8C42] bg-[#FB8C42]" : "border-gray-200 bg-white"}`}>
+                                 {isSelected && <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={3} />}
+                               </div>
+                             )}
+                             {/* Plus button for unselected counter add-ons */}
+                             {isCounterAddon && !isSelected && (
+                               <button
+                                 type="button"
+                                 onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, 1); }}
+                                 className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#FB8C42] hover:text-white transition-colors shrink-0"
+                               >
+                                 <Plus className="w-4 h-4" strokeWidth={2.5} />
+                               </button>
+                             )}
+                             {/* Small check icon for selected counter add-ons (moved counter to bottom) */}
+                             {isCounterAddon && isSelected && (
+                               <div className="w-5 h-5 rounded-full border-2 border-[#FB8C42] bg-[#FB8C42] flex items-center justify-center shrink-0">
+                                 <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={3} />
+                               </div>
+                             )}
+                          </div>
+                          
+                          <div className="flex items-center justify-between mt-auto">
+                            <span className={`text-xs font-medium ${isSelected ? "text-[#FB8C42]/80" : "text-gray-500"}`}>
+                              +${price} {isCounterAddon ? 'each' : ''}
+                            </span>
+                            
+                            {/* Counter Controls moved here to fit better */}
+                            {isCounterAddon && isSelected && (
+                               <div className="flex items-center gap-1 bg-white rounded-full px-1.5 py-1 shadow-sm border border-[#FB8C42]/30">
+                                 <button
+                                   type="button"
+                                   onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, Math.max(0, count - 1)); }}
+                                   className="w-5 h-5 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-[#FB8C42] hover:text-white transition-colors"
+                                 >
+                                   <Minus className="w-3 h-3" strokeWidth={2.5} />
+                                 </button>
+                                 <span className="text-xs font-bold w-3 text-center">{count}</span>
+                                 <button
+                                   type="button"
+                                   onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
+                                   className="w-5 h-5 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-[#FB8C42] hover:text-white transition-colors"
+                                 >
+                                   <Plus className="w-3 h-3" strokeWidth={2.5} />
+                                 </button>
+                               </div>
+                             )}
+                          </div>
+                        </div>
                       );
                     })}
                 </div>
@@ -2014,12 +2044,12 @@ const renderResStep2 = () => {
         </div>
 
         {/* Bottom section: Condition */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-[43%_57%] gap-6 mb-8">
           
           {/* Left Column: Condition Options */}
           <div>
             <h3 className="text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">OVERALL CONDITION</h3>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
                 { id: 'Overdue', label: 'Overdue', desc: 'A few months since a proper clean' },
@@ -2036,7 +2066,7 @@ const renderResStep2 = () => {
                         setFormData({ ...formData, condition: cond.id as any });
                       }
                     }}
-                    className={`cursor-pointer rounded-2xl border-2 p-4 transition-all duration-200 flex flex-col ${
+                    className={`cursor-pointer rounded-2xl border-2 p-3 transition-all duration-200 flex flex-col ${
                       isDisabled 
                         ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
                         : isSelected 
@@ -2075,7 +2105,7 @@ const renderResStep2 = () => {
                  }} />
                </div>
              ) : (
-               <div className="bg-[#FAF9F6] border border-gray-100 rounded-2xl p-6 h-full flex flex-col">
+               <div className="bg-[#FAF9F6] border border-gray-100 rounded-2xl p-4 lg:p-5 h-full flex flex-col">
                   <h3 className="text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">
                     WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
                   </h3>
@@ -2184,70 +2214,71 @@ const renderResStep2 = () => {
     ];
 
     return (
-      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-6 py-2">
-        {/* Step Identifier Tag */}
+      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
+        
+        {/* New Header */}
         <div className="mb-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
-            <Calendar className="w-3 h-3" /> SCHEDULE
+          <h2 className="text-[26px] md:text-[32px] font-bold text-gray-900 leading-tight tracking-tight mb-2">When should we come?</h2>
+          <p className="text-sm md:text-base text-gray-500">Regular cleans get a dedicated cleaner — and a lifetime discount.</p>
+        </div>
+
+        {/* Frequency */}
+        <div className="mb-2">
+          <span className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">
+            FREQUENCY
           </span>
+          <div className="relative inline-flex flex-col md:flex-row items-center justify-between bg-gray-50/50 border border-gray-100 rounded-[24px] md:rounded-full p-1.5 max-w-3xl w-full gap-2 md:gap-0">
+            {frequencies.map((freq) => {
+              const isSelected = formData.frequency === freq.id;
+              return (
+                <div key={freq.id} className="relative flex-1 text-center w-full md:w-auto">
+                  {/* Floating Orange SAVE Badge */}
+                  {freq.save && (
+                    <span className="bg-[#FB8C42] text-white text-[9px] font-semibold font-sans px-2.5 py-0.5 rounded-full absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap z-10 pointer-events-none border-2 border-white tracking-wider shadow-sm">
+                      {freq.save}
+                    </span>
+                  )}
+                  <button
+                    onClick={() => {
+                      const newFreq = freq.id;
+                      if (appliedPromo && appliedPromo.isStackable === false && newFreq !== "One time") {
+                        setAppliedPromo(undefined);
+                        setPromoCode("");
+                        alert("Your promo code has been removed because it cannot be combined with frequency discounts.");
+                      }
+                      setFormData({ ...formData, frequency: newFreq as any });
+                    }}
+                    className={`w-full py-2.5 md:py-3 rounded-full text-[13px] md:text-[14px] font-semibold transition-all border ${isSelected
+                      ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20"
+                      : "bg-white border-gray-200 text-gray-600 hover:text-gray-900 hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
+                      }`}
+                  >
+                    {freq.label}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div className="relative inline-flex items-center justify-between bg-gray-50/50 border border-gray-100 rounded-full p-2 max-w-xl w-full mb-4">
-          {frequencies.map((freq) => {
-            const isSelected = formData.frequency === freq.id;
-            return (
-              <div key={freq.id} className="relative flex-1 text-center">
-
-                {/* Floating Orange SAVE Badge */}
-                {freq.save && (
-                  <span className="bg-[#FB8C42] text-white text-[9px] font-semibold font-sans px-2.5 py-0.5 rounded-full absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap z-10 pointer-events-none border-2 border-white tracking-wider shadow-sm">
-                    {freq.save}
-                  </span>
-                )}
-
-                <button
-                  onClick={() => {
-                    const newFreq = freq.id;
-                    if (appliedPromo && appliedPromo.isStackable === false && newFreq !== "One time") {
-                      setAppliedPromo(undefined);
-                      setPromoCode("");
-                      alert("Your promo code has been removed because it cannot be combined with frequency discounts.");
-                    }
-                    setFormData({ ...formData, frequency: newFreq as any });
-                  }}
-                  className={`w-full py-3 rounded-full text-[14px] font-semibold transition-all ${isSelected
-                    ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
-                    : "text-gray-500 hover:text-gray-950 hover:bg-gray-100/50"
-                    }`}
-                >
-                  {freq.label}
-                </button>
-              </div>
-            );
-          })}
-        </div>
-
-
 
         {/* Grid: Calendar Left & Time Slots Right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
-          <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col">
-            <div className="flex items-center justify-between mb-6 border-b border-gray-55 pb-4">
-              <span className="text-base font-semibold text-gray-900 leading-[24px]">
+          <div className="bg-white border border-gray-100 rounded-[24px] p-5 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col">
+            <div className="flex items-center justify-between mb-4 border-b border-gray-50 pb-3">
+              <span className="text-lg font-bold text-gray-900 leading-[24px]">
                 {monthName}
               </span>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevMonth}
-                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100"
-                >
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100">
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleNextMonth}
-                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100"
-                >
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100">
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
@@ -2263,7 +2294,7 @@ const renderResStep2 = () => {
             {/* Days Grid */}
             <div className="grid grid-cols-7 gap-1.5">
               {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-                <div key={`empty-${i}`} className="h-9 w-full" />
+                <div key={`empty-${i}`} className="h-8 w-full" />
               ))}
               {Array.from({ length: daysInMonth }).map((_, i) => {
                 const day = i + 1;
@@ -2277,7 +2308,7 @@ const renderResStep2 = () => {
                     key={day}
                     onClick={() => !disabled && handleDateSelect(day)}
                     disabled={disabled}
-                    className={`h-9 w-full rounded-xl flex flex-col items-center justify-center text-xs font-medium transition-all relative ${selected
+                    className={`h-8 w-full rounded-xl flex flex-col items-center justify-center text-xs font-medium transition-all relative ${selected
                       ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
                       : ""
                       } ${disabled
@@ -2302,12 +2333,12 @@ const renderResStep2 = () => {
           </div>
 
           {/* Available time slots Card */}
-          <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full">
-            <span className="flex items-center gap-2 font-semibold text-sm text-gray-800 mb-6 border-b border-gray-50 pb-4">
-              <Clock className="w-4 h-4 text-[#FB8C42]" /> Available time slots
+          <div className="bg-white border border-gray-100 rounded-[24px] p-5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full">
+            <span className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4 border-b border-gray-50 pb-3">
+              ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ''}
             </span>
 
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2.5">
               {(() => {
                 let availableTimes = timeSlots;
                 if (formData.selectedDate && pricingConfig?.systemBlockedTimeSlots) {
@@ -2348,9 +2379,9 @@ const renderResStep2 = () => {
                       onClick={() =>
                         setFormData((prev) => ({ ...prev, selectedTime: time }))
                       }
-                      className={`py-3.5 rounded-xl border text-center text-xs font-medium transition-all ${isSelected
-                        ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10 hover:scale-105"
-                        : "bg-white border-gray-100 text-gray-700 hover:border-gray-200 hover:shadow-sm"
+                      className={`w-full py-2.5 rounded-xl border text-center text-xs font-semibold transition-all ${isSelected
+                        ? "border-[#FB8C42] bg-orange-50 text-[#FB8C42] shadow-sm scale-[1.02]"
+                        : "border-gray-100 bg-white text-gray-700 hover:border-[#FB8C42]/30 hover:bg-orange-50/20"
                         }`}
                     >
                       {time}
@@ -3152,10 +3183,10 @@ const renderResStep2 = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] py-12 md:py-20 font-sans text-gray-900">
+    <div className="min-h-screen bg-[#FAF9F6] py-6 md:py-10 font-sans text-gray-900">
       <div className="container mx-auto px-4 max-w-[1400px]">
         {/* Header Title */}
-        <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 md:p-6 rounded-[24px] shadow-sm border border-gray-100">
+        <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 md:p-6 rounded-[24px] shadow-sm border border-gray-100">
           <div>
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Book Your Clean</h1>
             <p className="text-gray-500 mt-2 font-medium">Complete the steps below to secure your booking.</p>
@@ -3242,7 +3273,7 @@ const renderResStep2 = () => {
                          : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
                      }`}
                    >
-                     {currentStep === 3 ? "Claim" : "Continue"} <ArrowRight className="w-4 h-4" />
+                     Continue <ArrowRight className="w-4 h-4" />
                    </button>
                  </div>
                )}
@@ -3275,52 +3306,36 @@ const renderResStep2 = () => {
 };;
 
 const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }: any) => {
-  const getCounterIcon = (lbl: string) => {
-    const lower = lbl.toLowerCase();
-    if (lower.includes("bedroom")) return Bed;
-    if (lower.includes("bathroom")) return Bath;
-    if (lower.includes("kitchen")) return ChefHat;
-    if (lower.includes("living")) return Sofa;
-    return Sofa;
-  };
-
-  const Icon = getCounterIcon(label);
-
   return (
-    <div className={`w-full bg-white py-2.5 pl-3.5 pr-3 rounded-[16px] border border-gray-100 flex items-center justify-between shadow-sm transition-all duration-300 hover:border-gray-200 hover:shadow-md gap-3 ${hasInfo ? "group" : ""} ${className}`}>
-
-      {/* LEFT SIDE: flex-1 and min-w-0 prevent text from pushing the controls */}
-      <div className="flex items-center gap-2.5 flex-1 min-w-0">
-        <div className="w-9 h-9 rounded-xl bg-orange-50/70 border border-orange-100 flex items-center justify-center shadow-sm shrink-0">
-          <Icon className="w-4 h-4 text-[#FB8C42]" />
+    <div className={`w-full py-4 px-5 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
+      {/* LEFT SIDE */}
+      <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+        <div className="font-semibold text-gray-800 text-[14.5px] whitespace-nowrap flex items-center">
+          {label}
         </div>
-        <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-          <span className="capitalize font-semibold text-gray-800 text-sm whitespace-normal leading-tight break-words">
-            {label}
-          </span>
-          {hasInfo && (
-            <Info className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary transition-colors cursor-help shrink-0" />
-          )}
-        </div>
+        {hasInfo && (
+          <div className="w-5 h-5 rounded-full border-2 border-red-500/80 text-red-500/80 flex items-center justify-center ml-1 opacity-80 group-hover:opacity-100 transition-opacity cursor-help shrink-0">
+            <span className="text-[12px] font-bold leading-none -mt-0.5">i</span>
+          </div>
+        )}
       </div>
 
-      {/* RIGHT SIDE: shrink-0 ensures identical width across all cards for perfect vertical alignment */}
-      <div className="flex items-center gap-2 shrink-0">
+      {/* RIGHT SIDE */}
+      <div className="flex items-center gap-4 shrink-0">
         <button
           onClick={() => onUpdate(-1)}
-          className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors border border-gray-100 shrink-0"
+          className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 shrink-0"
         >
-          <Minus className="w-3.5 h-3.5" />
+          <Minus className="w-3.5 h-3.5" strokeWidth={2} />
         </button>
-        <span className="w-5 text-center font-bold text-sm text-gray-800 shrink-0">{count}</span>
+        <span className="w-4 text-center font-bold text-[15px] text-gray-900 shrink-0">{count}</span>
         <button
           onClick={() => onUpdate(1)}
-          className="w-8 h-8 rounded-full bg-[#FB8C42] flex items-center justify-center text-white hover:bg-[#FB8C42]/95 transition-all shadow-md shadow-[#FB8C42]/10 hover:shadow-[#FB8C42]/20 hover:scale-105 shrink-0"
+          className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-all border border-[#FB8C42]/50 shrink-0"
         >
-          <Plus className="w-3.5 h-3.5" />
+          <Plus className="w-3.5 h-3.5" strokeWidth={2} />
         </button>
       </div>
-
     </div>
   );
 };
