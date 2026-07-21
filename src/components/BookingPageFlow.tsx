@@ -198,9 +198,9 @@ const BookingSummaryCard = ({
   outOfAreaFee?: number;
 }) => (
   <div
-    className={`bg-transparent text-gray-800 p-8 relative overflow-visible ${className}`}
+    className={`bg-cream px-6 py-[26px] gap-2.5 text-[12.5px] relative overflow-visible border-l border-tan-soft ${className}`}
   >
-    <h3 className="text-xl font-bold tracking-tight text-gray-900 mb-5 relative z-10">
+    <h3 className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 relative z-10">
       Booking Summary
     </h3>
 
@@ -219,7 +219,7 @@ const BookingSummaryCard = ({
         <span className="font-medium text-gray-800">{formData.cleaningType || "Standard"} Clean</span>
       </div>
 
-      <div className="border-t border-gray-100"></div>
+      <div className="h-px bg-tan-soft border-0"></div>
 
       {formData.selectedDate && formData.selectedTime && (
         <>
@@ -229,7 +229,7 @@ const BookingSummaryCard = ({
               {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
             </span>
           </div>
-          <div className="border-t border-gray-100"></div>
+          <div className="h-px bg-tan-soft border-0"></div>
         </>
       )}
 
@@ -238,7 +238,7 @@ const BookingSummaryCard = ({
         <span className="font-medium text-gray-800">{formData.frequency || "One time"}</span>
       </div>
 
-      <div className="border-t border-gray-100 mb-5"></div>
+      <div className="h-px bg-tan-soft border-0 mb-5"></div>
 
       <div className="pt-1">
         <span className="block mb-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">
@@ -319,13 +319,13 @@ const BookingSummaryCard = ({
              </div>
           )}
           {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
-            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
               <span>Large Service Discount</span>
               <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
             </div>
           )}
           {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && appliedPromo && (
-            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 border-t border-gray-100">
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
               <span className="flex items-center gap-1.5">
                 {pricingResult?.breakdown?.discount?.name}
                 <button onClick={() => setAppliedPromo(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove promo code">✕</button>
@@ -342,7 +342,7 @@ const BookingSummaryCard = ({
 
           {/* Referral Applied Confirmation */}
           {appliedReferral && (
-            <div className="flex flex-col gap-0.5 pt-2 border-t border-gray-100">
+            <div className="flex flex-col gap-0.5 pt-2 h-px bg-tan-soft border-0">
               <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42]">
                 <span className="flex items-center gap-1.5">
                   ✓ {appliedReferral.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
@@ -434,8 +434,8 @@ const BookingSummaryCard = ({
       )}
 
       <div className="flex justify-between items-end pt-4">
-        <span className="text-lg font-bold text-gray-800 mb-1">Total</span>
-        <span className="text-3xl md:text-[34px] font-black text-[#FB8C42] tracking-tight leading-none">
+        <span className="font-semibold text-ink mb-1">Total</span>
+        <span className="text-[19px] font-bold text-ink tracking-tight leading-none">
           A${(pricingResult?.total || 0).toFixed(2)}
         </span>
       </div>
@@ -2048,7 +2048,7 @@ const renderResStep2 = () => {
           
           {/* Left Column: Condition Options */}
           <div>
-            <h3 className="text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">OVERALL CONDITION</h3>
+            <h3 className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">OVERALL CONDITION</h3>
             <div className="flex flex-col gap-3">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
@@ -2106,7 +2106,7 @@ const renderResStep2 = () => {
                </div>
              ) : (
                <div className="bg-[#FAF9F6] border border-gray-100 rounded-2xl p-4 lg:p-5 h-full flex flex-col">
-                  <h3 className="text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">
+                  <h3 className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
                     WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
                   </h3>
                   
@@ -2218,26 +2218,21 @@ const renderResStep2 = () => {
         
         {/* New Header */}
         <div className="mb-2">
-          <h2 className="text-[26px] md:text-[32px] font-bold text-gray-900 leading-tight tracking-tight mb-2">When should we come?</h2>
-          <p className="text-sm md:text-base text-gray-500">Regular cleans get a dedicated cleaner — and a lifetime discount.</p>
+          <h2 className="text-[22px] font-semibold text-ink leading-[1.12] tracking-[-0.01em] mb-2">When should we come?</h2>
+          <p className="text-[13px] leading-[1.55] text-ink-muted">Regular cleans get a dedicated cleaner — and a lifetime discount.</p>
         </div>
 
         {/* Frequency */}
         <div className="mb-2">
-          <span className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">
+          <span className="block text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
             FREQUENCY
           </span>
-          <div className="relative inline-flex flex-col md:flex-row items-center justify-between bg-gray-50/50 border border-gray-100 rounded-[24px] md:rounded-full p-1.5 max-w-3xl w-full gap-2 md:gap-0">
+          <div className="relative inline-flex flex-col md:flex-row items-center justify-between bg-white border-[1.5px] border-tan rounded-[24px] md:rounded-full p-1 max-w-2xl w-full gap-2 md:gap-0">
             {frequencies.map((freq) => {
               const isSelected = formData.frequency === freq.id;
               return (
                 <div key={freq.id} className="relative flex-1 text-center w-full md:w-auto">
-                  {/* Floating Orange SAVE Badge */}
-                  {freq.save && (
-                    <span className="bg-[#FB8C42] text-white text-[9px] font-semibold font-sans px-2.5 py-0.5 rounded-full absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap z-10 pointer-events-none border-2 border-white tracking-wider shadow-sm">
-                      {freq.save}
-                    </span>
-                  )}
+                  
                   <button
                     onClick={() => {
                       const newFreq = freq.id;
@@ -2248,12 +2243,15 @@ const renderResStep2 = () => {
                       }
                       setFormData({ ...formData, frequency: newFreq as any });
                     }}
-                    className={`w-full py-2.5 md:py-3 rounded-full text-[13px] md:text-[14px] font-semibold transition-all border ${isSelected
-                      ? "bg-[#FB8C42] border-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20"
-                      : "bg-white border-gray-200 text-gray-600 hover:text-gray-900 hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
+                    className={`w-full py-2 md:py-2.5 rounded-full text-[12.5px] font-medium transition-all border-[1.5px] ${isSelected
+                      ? "bg-cream-tag border-brand text-brand-dark font-semibold"
+                      : "border-transparent bg-transparent text-[#5c534b]"
                       }`}
                   >
                     {freq.label}
+                    {freq.save && (
+                      <span className="text-brand-dark ml-1">{freq.save.toLowerCase()}</span>
+                    )}
                   </button>
                 </div>
               );
@@ -2265,7 +2263,7 @@ const renderResStep2 = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
-          <div className="bg-white border border-gray-100 rounded-[24px] p-5 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col">
+          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[18px] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
             <div className="flex items-center justify-between mb-4 border-b border-gray-50 pb-3">
               <span className="text-lg font-bold text-gray-900 leading-[24px]">
                 {monthName}
@@ -2292,7 +2290,7 @@ const renderResStep2 = () => {
             </div>
 
             {/* Days Grid */}
-            <div className="grid grid-cols-7 gap-1.5">
+            <div className="grid grid-cols-7 gap-[2px] justify-items-center">
               {Array.from({ length: firstDayOfMonth }).map((_, i) => (
                 <div key={`empty-${i}`} className="h-8 w-full" />
               ))}
@@ -2308,8 +2306,8 @@ const renderResStep2 = () => {
                     key={day}
                     onClick={() => !disabled && handleDateSelect(day)}
                     disabled={disabled}
-                    className={`h-8 w-full rounded-xl flex flex-col items-center justify-center text-xs font-medium transition-all relative ${selected
-                      ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/10"
+                    className={`h-[34px] w-[34px] rounded-full flex flex-col items-center justify-center text-[12px] font-medium transition-all relative ${selected
+                      ? "bg-brand text-white font-semibold"
                       : ""
                       } ${disabled
                         ? "text-gray-200 cursor-not-allowed bg-transparent"
@@ -2333,8 +2331,8 @@ const renderResStep2 = () => {
           </div>
 
           {/* Available time slots Card */}
-          <div className="bg-white border border-gray-100 rounded-[24px] p-5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full">
-            <span className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4 border-b border-gray-50 pb-3">
+          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[18px] shadow-none hover:shadow-md transition-all duration-300 flex flex-col h-full">
+            <span className="block text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4 border-b border-gray-50 pb-3">
               ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ''}
             </span>
 
@@ -2379,9 +2377,9 @@ const renderResStep2 = () => {
                       onClick={() =>
                         setFormData((prev) => ({ ...prev, selectedTime: time }))
                       }
-                      className={`w-full py-2.5 rounded-xl border text-center text-xs font-semibold transition-all ${isSelected
-                        ? "border-[#FB8C42] bg-orange-50 text-[#FB8C42] shadow-sm scale-[1.02]"
-                        : "border-gray-100 bg-white text-gray-700 hover:border-[#FB8C42]/30 hover:bg-orange-50/20"
+                      className={`w-full py-2 rounded-full border-[1.5px] text-center text-[12.5px] font-medium transition-all ${isSelected
+                        ? "border-brand bg-cream-tag text-brand-dark shadow-sm"
+                        : "border-tan bg-white text-[#5c534b] hover:border-brand/30 hover:bg-cream-tag/20"
                         }`}
                     >
                       {time}
@@ -3070,7 +3068,7 @@ const renderResStep2 = () => {
         )}
 
         {/* Action controls row */}
-        <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col items-center justify-center space-y-4">
+        <div className="mt-8 pt-6 border-t-[1.5px] border-tan-soft flex flex-col items-center justify-center space-y-4">
           <button
             onClick={handleSubmit}
             disabled={isSubmitting || !isAddressValid}
@@ -3185,20 +3183,7 @@ const renderResStep2 = () => {
   return (
     <div className="min-h-screen bg-[#FAF9F6] py-6 md:py-10 font-sans text-gray-900">
       <div className="container mx-auto px-4 max-w-[1400px]">
-        {/* Header Title */}
-        <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 md:p-6 rounded-[24px] shadow-sm border border-gray-100">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Book Your Clean</h1>
-            <p className="text-gray-500 mt-2 font-medium">Complete the steps below to secure your booking.</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="text-gray-500 text-sm font-medium">Questions?</span>
-            <a href="tel:0451433786" className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-bold transition-all whitespace-nowrap shadow-md gap-2">
-              <Phone className="w-4 h-4 fill-current" /> 0451 433 786
-            </a>
-          </div>
-        </div>
-
+        
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
           {/* LEFT COLUMN - STEPPER */}
           <div className="w-full lg:w-64 shrink-0 bg-transparent p-6 lg:p-8 lg:sticky lg:top-24 self-start">
@@ -3255,7 +3240,7 @@ const renderResStep2 = () => {
                
                {/* Inner Step Controls */}
                {currentStep < totalSteps && (
-                 <div className="mt-auto pt-8 flex items-center justify-between border-t border-gray-100">
+                 <div className="mt-auto pt-8 flex items-center justify-between border-t border-tan-soft">
                    {currentStep > 1 ? (
                      <button
                        onClick={handlePrev}
@@ -3281,7 +3266,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY */}
-          <div className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px] rounded-3xl overflow-hidden border border-[#e5e5e5]">
+          <div className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px] border-l border-[#e5e5e5]">
              <BookingSummaryCard
                 formData={formData}
                 pricingConfig={pricingConfig}
@@ -3331,7 +3316,7 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }
         <span className="w-4 text-center font-bold text-[15px] text-gray-900 shrink-0">{count}</span>
         <button
           onClick={() => onUpdate(1)}
-          className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-all border border-[#FB8C42]/50 shrink-0"
+          className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-all border-[1.5px] border-[#FB8C42]/50 shrink-0"
         >
           <Plus className="w-3.5 h-3.5" strokeWidth={2} />
         </button>

@@ -137,10 +137,10 @@ export default function QuoteRequestPanelV2() {
   return (
     <>
       <section className="relative z-20 -mt-12 md:-mt-16 container mx-auto px-4 md:px-6 mb-12">
-        <div className="relative bg-white rounded-[24px] md:rounded-[32px] shadow-2xl pt-8 pb-5 px-5 md:px-6 border border-gray-100 animate-in fade-in slide-in-from-bottom duration-700 max-w-5xl mx-auto flex flex-col items-center gap-4">
+        <div className="relative bg-white rounded-[20px] border-0 px-7 pt-6 pb-[18px] animate-in fade-in slide-in-from-bottom duration-700 max-w-5xl mx-auto flex flex-col md:flex-row items-end gap-4 shadow-[0_14px_44px_rgba(90,55,20,0.16)]">
           
           {/* Top Pill */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#FB8C42] text-white text-[10px] md:text-[11px] font-bold tracking-[0.08em] uppercase shadow-sm whitespace-nowrap">
+          <div className="inline-block px-[11px] py-1 rounded-full bg-brand text-white text-[9.5px] font-bold tracking-[0.08em] uppercase mb-2 shadow-sm whitespace-nowrap">
             First Clean — 5% Off
           </div>
 
@@ -149,34 +149,34 @@ export default function QuoteRequestPanelV2() {
             <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-4">
               <div className="w-full flex flex-col md:flex-row gap-3 md:gap-4 items-center justify-center">
                 <div className="flex flex-col space-y-1 w-full flex-1">
-                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center md:text-left pl-1">Full Name</label>
+                  <label className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 text-center md:text-left pl-1">Full Name</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Jane Doe"
-                    className="w-full px-[14px] py-[10px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-stone-900 font-normal text-[14px] shadow-sm transition-all text-center md:text-left"
+                    className="w-full px-3.5 py-[11px] bg-white border-[1.5px] border-tan rounded-xl outline-none focus:ring-2 focus:ring-brand/10 text-ink font-normal text-[13px] shadow-sm transition-all text-center md:text-left"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   />
                 </div>
                 <div className="flex flex-col space-y-1 w-full flex-1">
-                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center md:text-left pl-1">Email Address</label>
+                  <label className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 text-center md:text-left pl-1">Email Address</label>
                   <input
                     type="email"
                     required
                     placeholder="jane@example.com"
-                    className="w-full px-[14px] py-[10px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-stone-900 font-normal text-[14px] shadow-sm transition-all text-center md:text-left"
+                    className="w-full px-3.5 py-[11px] bg-white border-[1.5px] border-tan rounded-xl outline-none focus:ring-2 focus:ring-brand/10 text-ink font-normal text-[13px] shadow-sm transition-all text-center md:text-left"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
                 <div className="flex flex-col space-y-1 w-full flex-1">
-                  <label className="text-[10px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[14px] text-center md:text-left pl-1">Phone Number</label>
+                  <label className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 text-center md:text-left pl-1">Phone Number</label>
                   <input
                     type="tel"
                     required
                     placeholder="0400 000 000"
-                    className="w-full px-[14px] py-[10px] bg-white border border-gray-200 rounded-[10px] outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-stone-900 font-normal text-[14px] shadow-sm transition-all text-center md:text-left"
+                    className="w-full px-3.5 py-[11px] bg-white border-[1.5px] border-tan rounded-xl outline-none focus:ring-2 focus:ring-brand/10 text-ink font-normal text-[13px] shadow-sm transition-all text-center md:text-left"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
@@ -186,10 +186,10 @@ export default function QuoteRequestPanelV2() {
                 <button
                   type="submit"
                   disabled={isSubmitting || isSuccess}
-                  className={`w-full md:w-auto min-w-[240px] whitespace-nowrap text-white text-[15px] font-bold rounded-[10px] px-8 py-3 transition-all shadow-[0_8px_25px_rgba(249,115,22,0.3)] flex justify-center items-center gap-2 ${
+                  className={`w-full md:w-auto whitespace-nowrap text-white text-[13.5px] font-semibold rounded-full px-6 py-[11px] transition-all shadow-none flex justify-center items-center gap-2 ${
                     isSuccess 
                       ? "bg-emerald-500 hover:bg-emerald-600 shadow-[0_8px_25px_rgba(16,185,129,0.3)]" 
-                      : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 hover:shadow-[0_12px_30px_rgba(249,115,22,0.4)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+                      : "bg-brand hover:bg-brand/90 hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
                   }`}
                 >
                   {isSuccess ? (
