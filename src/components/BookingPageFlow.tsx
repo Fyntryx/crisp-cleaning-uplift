@@ -2917,112 +2917,111 @@ const renderResStep2 = () => {
 
   const renderResStep5 = () => (
     <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
-      {/* Step Identifier Tag */}
-      <div className="mb-2 flex items-center flex-wrap gap-2">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
-          <CheckCircle2 className="w-3 h-3" /> CONFIRM
-        </span>
+      {/* Title & Subtitle */}
+      <div className="mb-2 flex items-start justify-between flex-wrap gap-2">
+        <div>
+          <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
+            Create your account & book
+          </h2>
+          <p className="text-[13px] font-normal text-gray-500 mt-2">
+            Your account gives you booking history, easy rescheduling and loyalty rewards.
+          </p>
+        </div>
         <ReservationTimer />
       </div>
 
       <div className="space-y-6">
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* FIRST NAME */}
+          {/* FULL NAME */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-              <User className="w-4 h-4 text-[#FB8C42]" /> FIRST NAME
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              FULL NAME
             </label>
             <div className="relative flex items-center">
               <input
                 type="text"
+                placeholder="Sarah Mitchell"
                 className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
                 value={formData.contact.firstName}
                 onChange={(e) => updateContact("firstName", e.target.value)}
               />
+              {formData.contact.firstName && <Check className="w-4 h-4 text-[#FB8C42] absolute right-4" />}
             </div>
           </div>
 
-          {/* LAST NAME */}
+          {/* MOBILE */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-              <User className="w-4 h-4 text-[#FB8C42]" /> LAST NAME
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              MOBILE
             </label>
             <div className="relative flex items-center">
               <input
-                type="text"
+                type="tel"
+                placeholder="0412 345 678"
                 className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
-                value={formData.contact.lastName}
-                onChange={(e) => updateContact("lastName", e.target.value)}
+                value={formData.contact.phone}
+                onChange={(e) => updateContact("phone", e.target.value)}
               />
+              {formData.contact.phone && <Check className="w-4 h-4 text-[#FB8C42] absolute right-4" />}
             </div>
           </div>
         </div>
 
-        {/* EMAIL ADDRESS */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-            <Mail className="w-4 h-4 text-[#FB8C42]" /> EMAIL ADDRESS
-          </label>
-          <div className="relative flex items-center">
-            <input
-              type="email"
-              className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
-              value={formData.contact.email}
-              onChange={(e) => updateContact("email", e.target.value)}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* EMAIL */}
+          <div className="flex flex-col space-y-2">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              EMAIL
+            </label>
+            <div className="relative flex items-center">
+              <input
+                type="email"
+                placeholder="sarah@email.com"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
+                value={formData.contact.email}
+                onChange={(e) => updateContact("email", e.target.value)}
+              />
+              {formData.contact.email && <Check className="w-4 h-4 text-[#FB8C42] absolute right-4" />}
+            </div>
           </div>
-        </div>
 
-        {/* PASSWORD */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-            <Key className="w-4 h-4 text-[#FB8C42]" /> PASSWORD
-          </label>
-          <div className="relative flex items-center">
-            <input
-              type={showPassword ? "text" : "password"}
-              className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all pr-12"
-              value={formData.contact.password}
-              onChange={(e) => updateContact("password", e.target.value)}
-            />
-            <button
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              {showPassword ? (
-                <EyeOff className="w-4 h-4" />
-              ) : (
-                <Eye className="w-4 h-4" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* PHONE NUMBER */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-            <Phone className="w-4 h-4 text-[#FB8C42]" /> PHONE NUMBER
-          </label>
-          <div className="relative flex items-center">
-            <input
-              type="tel"
-              className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
-              value={formData.contact.phone}
-              onChange={(e) => updateContact("phone", e.target.value)}
-            />
+          {/* PASSWORD */}
+          <div className="flex flex-col space-y-2">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              PASSWORD
+            </label>
+            <div className="relative flex items-center">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Create a password"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all pr-12"
+                value={formData.contact.password}
+                onChange={(e) => updateContact("password", e.target.value)}
+              />
+              <button
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* SERVICE ADDRESS */}
         <div className="flex flex-col space-y-2">
-          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-[#FB8C42]" /> SERVICE ADDRESS
+          <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            ADDRESS
           </label>
           <AddressAutocomplete
             value={formData.contact.address}
             onChange={(value) => updateContact("address", value)}
-            placeholder=""
+            placeholder="Street address, suburb, postcode"
             showLocationButton={true}
             onLocationClick={handleUseCurrentLocation}
             isLoadingLocation={isLoadingLoc}
@@ -3038,18 +3037,18 @@ const renderResStep2 = () => {
           <input
             type="checkbox"
             id="terms"
-            className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary/20 accent-primary cursor-pointer"
+            className="w-4 h-4 rounded border-orange-300 text-[#FB8C42] focus:ring-[#FB8C42]/20 accent-[#FB8C42] cursor-pointer"
             checked={formData.contact.terms}
             onChange={(e) => updateContact("terms", e.target.checked)}
           />
           <label
             htmlFor="terms"
-            className="text-xs text-gray-500 cursor-pointer select-none font-semibold"
+            className="text-[13px] text-gray-600 font-medium cursor-pointer select-none"
           >
-            I accept the{" "}
+            I agree to the{" "}
             <a
               href="/terms-conditions"
-              className="underline text-gray-500 hover:text-gray-700 transition-colors"
+              className="underline text-[#FB8C42] font-semibold hover:text-[#e0731f] transition-colors"
             >
               Terms & Conditions
             </a>
@@ -3069,26 +3068,31 @@ const renderResStep2 = () => {
         )}
 
         {/* Action controls row */}
-        <div className="mt-8 pt-6 border-t-[1.5px] border-tan-soft flex flex-col items-center justify-center space-y-4">
-          <button
-            onClick={handleSubmit}
-            disabled={isSubmitting || !isAddressValid}
-            className="w-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-5 px-6 rounded-2xl font-semibold text-sm shadow-lg shadow-[#FB8C42]/10 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="w-4.5 h-4.5 animate-spin" />
-                Processing...
-              </>
-            ) : (
-              <>
-                <span>Book Now & Pay</span>
-                <CreditCard className="w-4.5 h-4.5 text-white" />
-              </>
-            )}
-          </button>
+        <div className="mt-8 flex flex-col gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <button
+              onClick={handleSubmit}
+              disabled={isSubmitting || !isAddressValid}
+              className="w-full md:w-auto md:min-w-[240px] bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-3 px-6 rounded-full font-semibold text-[15px] shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4.5 h-4.5 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                <>
+                  <span>Book Now — ${pricingResult?.total || 0}</span>
+                  <ArrowRight className="w-4.5 h-4.5 text-white" />
+                </>
+              )}
+            </button>
+            <div className="flex text-[11px] font-medium text-gray-500 leading-tight whitespace-nowrap">
+              <span>Card saved securely. Charged after the clean.</span>
+            </div>
+          </div>
           
-          <p className="text-center text-xs text-gray-500 font-semibold">
+          <p className="text-left text-xs text-gray-500 font-semibold mt-2">
             Already have an account?{" "}
             <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
               Login
