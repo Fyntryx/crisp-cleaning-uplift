@@ -615,7 +615,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [discountClaimed, setDiscountClaimed] = useState(false);
   
   const [discountContent, setDiscountContent] = useState({
-    heading: "Let's get your instant price",
+    heading: "First time? Claim 5% OFF!",
     subheading: "Takes under a minute. Your full price shows on screen"
   });
 
@@ -623,7 +623,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     client.fetch(`*[_type == "discountStepSettings"][0]`).then((data) => {
       if (data) {
         setDiscountContent({
-          heading: data.heading || "Let's get your instant price",
+          heading: data.heading || "First time? Claim 5% OFF!",
           subheading: data.subheading || "Takes under a minute. Your full price shows on screen"
         });
       }
@@ -1915,12 +1915,6 @@ const renderResStep2 = () => {
   const renderResStepDiscount = () => {
     return (
       <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start -mt-5">
-        {/* Step Identifier Tag */}
-        <div className="mb-3">
-          <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-[#FB8C42] text-white text-[11px] font-bold tracking-wider uppercase shadow-sm">
-            First time? Claim 5% OFF!
-          </span>
-        </div>
 
         <div className="space-y-6">
           <div className="bg-white rounded-[24px] border border-gray-100 p-6 md:p-8 flex flex-col items-center text-center shadow-sm relative overflow-hidden">
