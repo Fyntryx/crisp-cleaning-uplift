@@ -1462,10 +1462,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     return (
       <div className="flex flex-col gap-6 animate-in fade-in duration-500 py-2">
         <div className="mb-2">
-          <h2 className="text-[25px] font-bold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
             How would you like to be priced?
           </h2>
-          <p className="text-gray-500 text-[10px] mt-1 font-medium">
+          <p className="text-gray-500 text-[13px] font-normal mt-1">
             Most whole-home cleans choose flat rate.
           </p>
         </div>
@@ -1480,25 +1480,25 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
-            <span className="absolute -top-2.5 left-6 bg-[#FB8C42] text-white text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10">
+            <span className="absolute -top-2.5 left-6 bg-[#FB8C42] text-white text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10">
               MOST POPULAR — BEST VALUE
             </span>
             <div className="mt-1">
-              <h3 className="text-[20px] font-bold text-gray-900 mb-1.5">Flat Rate</h3>
-              <p className="text-[10px] text-gray-600 leading-relaxed mb-4">
+              <h3 className="text-[17px] font-semibold text-gray-900 mb-1.5">Flat Rate</h3>
+              <p className="text-[13px] font-normal text-gray-600 leading-relaxed mb-4">
                 A fixed price for a complete result. Define the size and condition, and we'll stay as long as it takes to leave your space shining.
               </p>
               
               <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Pay for the result, not the time
                 </li>
-                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   No time limit
                 </li>
-                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Defined checklist so you know exactly what you're paying for
                 </li>
@@ -1507,7 +1507,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             
             <div className="mt-auto">
               {!isFlatRate && (
-                <button className="w-full py-2 px-4 rounded-full border-2 border-gray-200 text-gray-700 font-bold text-[11px] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                <button className="w-full py-2 px-4 rounded-full border-2 border-gray-200 text-gray-700 font-semibold text-[13.5px] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Flat Rate
                 </button>
               )}
@@ -1524,26 +1524,26 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             }`}
           >
             {isHourly && (
-              <span className="absolute -top-2.5 left-6 bg-orange-100 text-[#FB8C42] text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10 border border-orange-200">
+              <span className="absolute -top-2.5 left-6 bg-orange-100 text-[#FB8C42] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10 border border-orange-200">
                 SELECTED
               </span>
             )}
             <div className="mt-1">
-              <h3 className="text-[20px] font-bold text-gray-900 mb-1.5">Hourly</h3>
-              <p className="text-[10px] text-gray-600 leading-relaxed mb-4">
+              <h3 className="text-[17px] font-semibold text-gray-900 mb-1.5">Hourly</h3>
+              <p className="text-[13px] font-normal text-gray-600 leading-relaxed mb-4">
                 For specific tasks or targeted areas. You set the priorities and we'll make sure to make the most of each minute!
               </p>
               
               <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   You cap the budget in hours
                 </li>
-                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   We work your priority list top-down
                 </li>
-                <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <span className="w-5 h-5 flex items-center justify-center shrink-0">
                     <span className="w-3.5 h-0.5 bg-gray-400 rounded-full"></span>
                   </span>
@@ -1559,7 +1559,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     e.stopPropagation();
                     handleNext();
                   }}
-                  className="w-full py-2 px-4 rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-bold text-[11px] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-2 px-4 rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[13.5px] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
                 >
                   Continue with Hourly <ArrowRight className="w-4 h-4" />
                 </button>
@@ -1572,7 +1572,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <div className="max-w-4xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-[#E6A800] shrink-0 mt-0.5" strokeWidth={2.5} />
-              <div className="text-[11px] leading-[1.5]">
+              <div className="text-[12.5px] font-normal leading-[1.5]">
                 Hourly is built for specific tasks or targeted areas — the best option if you're only after cleaning here and there. You set the priorities and we'll make the most of each minute! If you're looking to get entire rooms or the whole house treated, <span className="font-bold text-[#997300]">flat rate is the most cost-effective option — pay for the result, not the time.</span>
               </div>
             </div>
