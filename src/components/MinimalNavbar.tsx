@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function MinimalNavbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100 py-3.5 transition-all duration-300">
-      <div className="container mx-auto px-6 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100 py-0.5 transition-all duration-300">
+      <div className="w-full px-[10px] flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0"
@@ -14,7 +14,7 @@ export default function MinimalNavbar() {
           <img
             src="/crisp-cleaning-logo.webp?v=3"
             alt="Crisp Cleaning"
-            className="h-12 md:h-14 w-auto object-contain"
+            className="h-[46px] md:h-[53px] w-auto object-contain"
           />
         </Link>
 

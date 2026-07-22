@@ -214,18 +214,18 @@ const BookingSummaryCard = ({
 
     <div className="relative z-10 text-[14.5px]">
 
-      <div className="flex justify-between items-center py-3.5">
-        <span className="text-gray-500 font-normal">Service Type</span>
-        <span className="font-medium text-gray-800">{formData.cleaningType || "Standard"} Clean</span>
+      <div className="flex justify-between items-center py-3.5 text-[12.5px] font-medium text-ink">
+        <span>Service Type</span>
+        <span>{formData.cleaningType || "Standard"} Clean</span>
       </div>
 
       <div className="h-px bg-tan-soft border-0"></div>
 
       {formData.selectedDate && formData.selectedTime && (
         <>
-          <div className="flex justify-between items-center py-3.5 gap-4">
-            <span className="text-gray-500 font-normal whitespace-nowrap">Date & Time</span>
-            <span className="font-medium text-gray-800 text-right">
+          <div className="flex justify-between items-center py-3.5 gap-4 text-[12.5px] font-medium text-ink">
+            <span className="whitespace-nowrap">Date & Time</span>
+            <span className="text-right">
               {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
             </span>
           </div>
@@ -233,21 +233,21 @@ const BookingSummaryCard = ({
         </>
       )}
 
-      <div className="flex justify-between items-center py-3.5">
-        <span className="text-gray-500 font-normal">Frequency</span>
-        <span className="font-medium text-gray-800">{formData.frequency || "One time"}</span>
+      <div className="flex justify-between items-center py-3.5 text-[12.5px] font-medium text-ink">
+        <span>Frequency</span>
+        <span>{formData.frequency || "One time"}</span>
       </div>
 
       <div className="h-px bg-tan-soft border-0 mb-5"></div>
 
       <div className="pt-1">
-        <span className="block mb-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+        <span className="block mb-4 text-[11px] font-semibold uppercase tracking-widest text-gray-400">
           BREAKDOWN
         </span>
 
         <div className="space-y-3">
           {pricingResult?.breakdown.cleaningType && (
-            <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+            <div className="flex justify-between text-[12.5px] font-medium text-ink">
               <span>
                 {formData.cleaningType === 'Hourly' 
                   ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}` 
@@ -264,7 +264,7 @@ const BookingSummaryCard = ({
             return (
               <>
                 {(formData.homeDetails.bedrooms || 0) > 0 && (
-                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.bedrooms}x Bedroom</span>
                     <span>
                       A${(currentRoomPrices.Bedroom * (formData.homeDetails.bedrooms || 0)).toFixed(2)}
@@ -272,7 +272,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.bathrooms || 0) > 0 && (
-                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.bathrooms}x Bathroom</span>
                     <span>
                       A${(currentRoomPrices.Bathroom * (formData.homeDetails.bathrooms || 0)).toFixed(2)}
@@ -280,7 +280,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.kitchens || 0) > 0 && (
-                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.kitchens}x Kitchen</span>
                     <span>
                       A${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
@@ -288,7 +288,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.livingRooms || 0) > 0 && (
-                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.livingRooms}x Living & Dining</span>
                     <span>
                       A${(currentRoomPrices.Living * (formData.homeDetails.livingRooms || 0)).toFixed(2)}
@@ -296,7 +296,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.other || 0) > 0 && (
-                  <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.other}x Other Area</span>
                     <span>
                       A${(currentRoomPrices.Other * (formData.homeDetails.other || 0)).toFixed(2)}
@@ -307,7 +307,7 @@ const BookingSummaryCard = ({
             );
           })()}
           {pricingResult?.breakdown.extras.items.map((e: any) => (
-            <div key={e.name} className="flex justify-between text-[13.5px] font-normal text-gray-600">
+            <div key={e.name} className="flex justify-between text-[12.5px] font-medium text-ink">
               <span>+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
               <span>A${e.price}</span>
             </div>
@@ -434,7 +434,7 @@ const BookingSummaryCard = ({
       )}
 
       <div className="flex justify-between items-end pt-4">
-        <span className="font-semibold text-ink mb-1">Total</span>
+        <span className="text-[12.5px] font-semibold text-ink mb-1">Total</span>
         <span className="text-[19px] font-bold text-ink tracking-tight leading-none">
           A${(pricingResult?.total || 0).toFixed(2)}
         </span>
@@ -615,16 +615,16 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [discountClaimed, setDiscountClaimed] = useState(false);
   
   const [discountContent, setDiscountContent] = useState({
-    heading: "Claim 15% OFF your FIRST clean!",
-    subheading: "Enter your details and save!"
+    heading: "Let's get your instant price",
+    subheading: "Takes under a minute. Your full price shows on screen"
   });
 
   useEffect(() => {
     client.fetch(`*[_type == "discountStepSettings"][0]`).then((data) => {
       if (data) {
         setDiscountContent({
-          heading: data.heading || "Claim 15% OFF your FIRST clean!",
-          subheading: data.subheading || "Enter your details and save!"
+          heading: data.heading || "Let's get your instant price",
+          subheading: data.subheading || "Takes under a minute. Your full price shows on screen"
         });
       }
     }).catch(console.error);
@@ -971,7 +971,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             formData.contact.phone && isValidPhone(formData.contact.phone)
           );
         case 2: return !!formData.cleaningType;
-        case 3:
+        case 3: return !!formData.cleaningType && !!formData.condition;
+        case 4:
           if (formData.cleaningType === "Hourly") return (formData.hourlyDetails?.hours || 0) > 0;
           return (
             (formData.homeDetails.bedrooms || 0) +
@@ -980,7 +981,6 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             (formData.homeDetails.livingRooms || 0) +
             (formData.homeDetails.other || 0) > 0
           );
-        case 4: return !!formData.cleaningType && !!formData.condition;
         case 5: return !!formData.selectedDate && !!formData.selectedTime;
         case 6: return true;
         case 7: return !!formData.contact.address;
@@ -1496,11 +1496,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 </li>
                 <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
-                  Full Crisp checklist, satisfaction guaranteed
+                  No time limit
                 </li>
                 <li className="flex items-start gap-2.5 text-[10px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
-                  Best value for whole rooms or the whole house
+                  Defined checklist so you know exactly what you're paying for
                 </li>
               </ul>
             </div>
@@ -1547,7 +1547,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   <span className="w-5 h-5 flex items-center justify-center shrink-0">
                     <span className="w-3.5 h-0.5 bg-gray-400 rounded-full"></span>
                   </span>
-                  No fixed-price guarantee
+                  Result depends on hours booked
                 </li>
               </ul>
             </div>
@@ -1700,7 +1700,7 @@ const renderResStep2 = () => {
                   >
                     <Minus strokeWidth={2.5} size={16} />
                   </button>
-                  <span className="text-lg font-black text-gray-900 w-10 text-center">
+                  <span className="text-[14px] font-semibold text-gray-900 w-10 text-center">
                     {formData.hourlyDetails?.hours || 2}
                   </span>
                   <button
@@ -1735,7 +1735,7 @@ const renderResStep2 = () => {
                   >
                     <Minus strokeWidth={2.5} size={16} />
                   </button>
-                  <span className="text-lg font-black text-gray-900 w-10 text-center">
+                  <span className="text-[14px] font-semibold text-gray-900 w-10 text-center">
                     {formData.hourlyDetails?.cleaners || 1}
                   </span>
                   <button
@@ -1755,8 +1755,8 @@ const renderResStep2 = () => {
           ) : (
             <>
               <div className="mb-6">
-                <h3 className="text-[22px] font-bold text-gray-900 mb-1">Tell us about your home</h3>
-                <p className="text-[13px] text-gray-500 mb-4">Count every room we should clean.</p>
+                <h3 className="text-[22px] font-semibold text-gray-900 mb-1">Tell us about your home</h3>
+                <p className="text-[13px] font-normal text-gray-500 mb-4">Count every room we should clean.</p>
                 <div className="bg-white rounded-[20px] border border-gray-100 flex flex-col shadow-sm">
                   
                   {/* 1. Living Areas */}
@@ -1805,7 +1805,7 @@ const renderResStep2 = () => {
                     <RoomCounter
                       label={
                         <span>
-                          Other <span className="text-gray-400 font-normal ml-1">(study, laundry, office...)</span>
+                          Other <span className="text-gray-400 text-[11.5px] font-normal ml-1">(study, laundry, office...)</span>
                         </span>
                       }
                       count={formData.homeDetails.other || 0}
@@ -1818,7 +1818,7 @@ const renderResStep2 = () => {
 
               {/* BOTTOM ROW: Full-width Add-ons */}
               <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm mt-4">
-                <span className="block text-[11px] font-bold uppercase text-[#FB8C42] tracking-widest mb-4 border-b border-gray-50 pb-2">
+                <span className="block text-[10px] font-semibold uppercase text-ink-soft tracking-widest mb-4 border-b border-gray-50 pb-2">
                   ADD-ONS
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -1846,7 +1846,7 @@ const renderResStep2 = () => {
                           }`}
                         >
                           <div className="flex items-start justify-between mb-3">
-                             <span className={`text-[13px] font-semibold leading-tight pr-2 ${isSelected ? "text-[#FB8C42]" : "text-gray-700"}`}>
+                             <span className={`text-[12.5px] leading-tight pr-2 ${isSelected ? "font-semibold text-brand-dark" : "font-medium text-[#5c534b]"}`}>
                                {extra}
                              </span>
                              {/* Checkmark for non-counter add-ons */}
@@ -1874,7 +1874,7 @@ const renderResStep2 = () => {
                           </div>
                           
                           <div className="flex items-center justify-between mt-auto">
-                            <span className={`text-xs font-medium ${isSelected ? "text-[#FB8C42]/80" : "text-gray-500"}`}>
+                            <span className="text-[12.5px] font-normal text-ink-muted">
                               +${price} {isCounterAddon ? 'each' : ''}
                             </span>
                             
@@ -1888,7 +1888,7 @@ const renderResStep2 = () => {
                                  >
                                    <Minus className="w-3 h-3" strokeWidth={2.5} />
                                  </button>
-                                 <span className="text-xs font-bold w-3 text-center">{count}</span>
+                                 <span className="text-[14px] font-semibold w-3 text-center text-ink">{count}</span>
                                  <button
                                    type="button"
                                    onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
@@ -1914,35 +1914,34 @@ const renderResStep2 = () => {
 
   const renderResStepDiscount = () => {
     return (
-      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
+      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start -mt-5">
         {/* Step Identifier Tag */}
-        <div className="mb-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50 shadow-sm">
-            <Tag className="w-3 h-3" /> DISCOUNT
+        <div className="mb-3">
+          <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-[#FB8C42] text-white text-[11px] font-bold tracking-wider uppercase shadow-sm">
+            First time? Claim 5% OFF!
           </span>
         </div>
 
         <div className="space-y-6">
           <div className="bg-white rounded-[24px] border border-gray-100 p-6 md:p-8 flex flex-col items-center text-center shadow-sm relative overflow-hidden">
-            <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center text-[#FB8C42] mb-4">
-              <Tag className="w-8 h-8" />
+            <div className="mb-4">
+              <CountdownTimer onTimeout={() => {
+                setSubmitError(null);
+                setSubmitSuccess(null);
+                setCurrentStep((prev) => prev + 1);
+              }} />
             </div>
             <h2 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-2">{discountContent.heading}</h2>
-            <CountdownTimer onTimeout={() => {
-              setSubmitError(null);
-              setSubmitSuccess(null);
-              setCurrentStep((prev) => prev + 1);
-            }} />
             <p className="text-gray-500 text-sm font-medium max-w-md mx-auto mb-6 mt-4">
               {discountContent.subheading}
             </p>
 
             <div className="w-full max-w-sm space-y-4 text-left">
               <div className="flex flex-col space-y-2">
-                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">Full Name</label>
+                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">FIRST NAME</label>
                 <input
                   type="text"
-                  placeholder="e.g. Jane Doe"
+                  placeholder="First name"
                   className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
                   value={`${formData.contact.firstName || ""} ${formData.contact.lastName || ""}`.trim()}
                   onChange={(e) => {
@@ -1954,20 +1953,20 @@ const renderResStep2 = () => {
                 />
               </div>
               <div className="flex flex-col space-y-2">
-                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">Email Address</label>
+                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">EMAIL</label>
                 <input
                   type="email"
-                  placeholder="jane@example.com"
+                  placeholder="you@email.com"
                   className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
                   value={formData.contact.email}
                   onChange={(e) => updateContact("email", e.target.value)}
                 />
               </div>
               <div className="flex flex-col space-y-2">
-                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">Phone Number</label>
+                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">MOBILE</label>
                 <input
                   type="tel"
-                  placeholder="0400 000 000"
+                  placeholder="04XX XXX XXX"
                   className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
                   value={formData.contact.phone}
                   onChange={(e) => updateContact("phone", e.target.value)}
@@ -1992,10 +1991,10 @@ const renderResStep2 = () => {
     return (
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-4xl mx-auto">
         <div className="mb-8">
-          <h2 className="text-[28px] md:text-[32px] font-extrabold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
             What type of clean — and how is the home tracking?
           </h2>
-          <p className="text-gray-500 mt-2 text-[16px] font-medium">Both together set your fixed price.</p>
+          <p className="text-gray-500 mt-2 text-[13px] font-normal">Both together set your fixed price.</p>
         </div>
 
         {/* Top section: Service Types */}
@@ -2027,7 +2026,7 @@ const renderResStep2 = () => {
                 }`}
               >
                 {type.badge && (
-                  <div className="absolute top-0 right-0 bg-[#FB8C42] text-white text-[9px] font-bold tracking-wider px-2 py-1 rounded-bl-lg">
+                  <div className="absolute top-0 right-0 bg-[#FB8C42] text-white text-[9.5px] font-bold tracking-wider px-2 py-1 rounded-bl-lg uppercase">
                     {type.badge}
                   </div>
                 )}
@@ -2035,9 +2034,9 @@ const renderResStep2 = () => {
                   <div className={`w-4 h-4 flex-shrink-0 rounded-full border-[1.5px] flex items-center justify-center transition-colors ${isSelected ? 'border-[#FB8C42]' : 'border-gray-300'}`}>
                     {isSelected && <div className="w-2 h-2 bg-[#FB8C42] rounded-full" />}
                   </div>
-                  <h3 className={`font-bold text-[14px] ${isSelected ? 'text-gray-900' : 'text-gray-900'}`}>{type.label}</h3>
+                  <h3 className={`font-semibold text-[15px] ${isSelected ? 'text-gray-900' : 'text-gray-900'}`}>{type.label}</h3>
                 </div>
-                <p className="text-[10px] text-gray-500 leading-relaxed mt-3">{type.desc}</p>
+                <p className="text-[12px] font-normal text-gray-500 leading-relaxed mt-3">{type.desc}</p>
               </div>
             );
           })}
@@ -2075,14 +2074,14 @@ const renderResStep2 = () => {
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="font-bold text-gray-900">{cond.label}</span>
+                      <span className="text-[13.5px] font-semibold text-gray-900">{cond.label}</span>
                       {cond.badge && (
-                        <span className="text-[11px] font-bold text-[#FB8C42] bg-[#FB8C42]/10 px-2 py-0.5 rounded-full">
+                        <span className="text-[11px] font-semibold text-[#FB8C42] bg-[#FB8C42]/10 px-2 py-0.5 rounded-full">
                           {cond.badge}
                         </span>
                       )}
                     </div>
-                    <span className="text-sm text-gray-500">{cond.desc}</span>
+                    <span className="text-[11.5px] font-normal text-gray-500">{cond.desc}</span>
                   </div>
                 );
               })}
@@ -2110,7 +2109,7 @@ const renderResStep2 = () => {
                     WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
                   </h3>
                   
-                  <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
+                  <p className="text-[12.5px] font-normal text-gray-600 leading-relaxed mb-8 flex-1">
                     {formData.condition === 'Lived In' 
                       ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
                       : formData.condition === 'Heavy Build Up'
@@ -2124,7 +2123,7 @@ const renderResStep2 = () => {
                       <p className="text-sm text-gray-500 w-full text-justify">
                         <span className="font-bold">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
                       </p>
-                      <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-sm font-bold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
+                      <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[12.5px] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
                     </div>
                   </div>
                </div>
@@ -2219,7 +2218,7 @@ const renderResStep2 = () => {
         {/* New Header */}
         <div className="mb-2">
           <h2 className="text-[22px] font-semibold text-ink leading-[1.12] tracking-[-0.01em] mb-2">When should we come?</h2>
-          <p className="text-[13px] leading-[1.55] text-ink-muted">Regular cleans get a dedicated cleaner — and a lifetime discount.</p>
+          <p className="text-[13px] font-normal leading-[1.55] text-ink-muted">Regular cleans get a dedicated cleaner — and a lifetime discount.</p>
         </div>
 
         {/* Frequency */}
@@ -2265,7 +2264,7 @@ const renderResStep2 = () => {
           {/* Calendar picker Card */}
           <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[18px] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
             <div className="flex items-center justify-between mb-4 border-b border-gray-50 pb-3">
-              <span className="text-lg font-bold text-gray-900 leading-[24px]">
+              <span className="text-[14px] font-semibold text-gray-900 leading-[24px]">
                 {monthName}
               </span>
               <div className="flex items-center gap-2">
@@ -2311,7 +2310,7 @@ const renderResStep2 = () => {
                       : ""
                       } ${disabled
                         ? "text-gray-200 cursor-not-allowed bg-transparent"
-                        : "hover:bg-gray-50 text-gray-700"
+                        : "hover:bg-gray-50 text-[#4a423b]"
                       } ${todayMark && !selected
                         ? "text-[#FB8C42] bg-orange-50/50"
                         : ""
@@ -2377,9 +2376,9 @@ const renderResStep2 = () => {
                       onClick={() =>
                         setFormData((prev) => ({ ...prev, selectedTime: time }))
                       }
-                      className={`w-full py-2 rounded-full border-[1.5px] text-center text-[12.5px] font-medium transition-all ${isSelected
-                        ? "border-brand bg-cream-tag text-brand-dark shadow-sm"
-                        : "border-tan bg-white text-[#5c534b] hover:border-brand/30 hover:bg-cream-tag/20"
+                      className={`w-full py-2.5 px-1 rounded-full border-[1.5px] text-center text-[12.5px] transition-all ${isSelected
+                        ? "border-brand bg-cream-tag text-brand-dark font-semibold shadow-sm"
+                        : "border-tan bg-white text-[#5c534b] font-medium hover:border-brand/30 hover:bg-cream-tag/20"
                         }`}
                     >
                       {time}
@@ -2396,20 +2395,22 @@ const renderResStep2 = () => {
   };
 
   const renderResStep4 = () => (
-    <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
-      {/* Step Identifier Tag */}
+    <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6">
       <div className="mb-2">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-white shadow-sm">
-          <ClipboardList className="w-3 h-3" /> DETAILS
-        </span>
+        <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
+          Anything we should know?
+        </h2>
+        <p className="text-[13px] font-normal text-gray-500 mt-2">
+          Helps your cleaner arrive prepared — none of this changes your price
+        </p>
       </div>
-      <div className="space-y-6">
+      <div className="space-y-6 mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* Pets Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-              <PawPrint className="w-4 h-4 text-[#FB8C42]" /> DO YOU HAVE ANY PETS?
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              PETS
             </label>
             <div className="relative flex items-center">
               <select
@@ -2436,8 +2437,8 @@ const renderResStep2 = () => {
 
           {/* Parking Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-              <Car className="w-4 h-4 text-[#FB8C42]" /> IS PARKING AVAILABLE?
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              PARKING
             </label>
             <div className="relative flex items-center">
               <select
@@ -2464,8 +2465,8 @@ const renderResStep2 = () => {
 
           {/* Entry Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-              <Key className="w-4 h-4 text-[#FB8C42]" /> HOW WILL WE GET IN?
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              ACCESS
             </label>
             <div className="relative flex items-center">
               <select
@@ -2493,8 +2494,8 @@ const renderResStep2 = () => {
 
           {/* Preferred Chemicals Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-[#FB8C42]" /> PREFERRED CHEMICALS?
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+              CHEMICAL PREFERENCE
             </label>
             <div className="relative flex items-center">
               <select
@@ -2523,12 +2524,12 @@ const renderResStep2 = () => {
 
         {/* Notes Textarea */}
         <div className="flex flex-col space-y-2 pt-2">
-          <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px] flex items-center gap-2">
-            <FileText className="w-4 h-4 text-[#FB8C42]" /> ANYTHING ELSE WE SHOULD KNOW?
+          <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            NOTES FOR YOUR CLEANER
           </label>
           <textarea
             className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none resize-none h-32 text-stone-900 text-[14.5px] font-normal tracking-normal placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-[#FB8C42]/10 shadow-sm transition-all"
-            placeholder="e.g. fragile items, allergies, specific instructions..."
+            placeholder="e.g. please focus on the ensuite shower, gate code is 1234, bin day is Thursday..."
             value={formData.instructions.notes}
             onChange={(e) =>
               setFormData({
@@ -3119,8 +3120,8 @@ const renderResStep2 = () => {
       switch (currentStep) {
         case 1: return renderResStepDiscount();
         case 2: return renderStep1();
-        case 3: return renderResStep2();
-        case 4: return renderConditionAssessmentStep();
+        case 3: return renderConditionAssessmentStep();
+        case 4: return renderResStep2();
         case 5: return renderResStep3();
         case 6: return renderResStep4();
         case 7: return renderResStep5();
@@ -3172,22 +3173,22 @@ const renderResStep2 = () => {
 
   const sidebarSteps = [
     { label: "Details", step: 1, icon: User },
-    { label: "Price Type", step: 2, icon: Tag },
+    { label: "Type", step: 2, icon: Tag },
     { label: "Service & Condition", step: 3, icon: Sparkles },
     { label: "Customise", step: 4, icon: Sliders },
     { label: "Schedule", step: 5, icon: Calendar },
-    { label: "Special Instructions", step: 6, icon: FileText },
+    { label: "Instructions", step: 6, icon: FileText },
     { label: "Checkout", step: 7, icon: CreditCard },
   ];
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] py-6 md:py-10 font-sans text-gray-900">
-      <div className="container mx-auto px-4 max-w-[1400px]">
+    <div className="min-h-screen bg-white py-2 md:py-4 font-sans text-gray-900">
+      <div className="w-full px-[10px]">
         
-        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-start w-full">
           {/* LEFT COLUMN - STEPPER */}
-          <div className="w-full lg:w-64 shrink-0 bg-transparent p-6 lg:p-8 lg:sticky lg:top-24 self-start">
-             <div className="flex flex-col gap-6">
+          <div className="w-full lg:w-[21%] shrink-0 bg-transparent py-6 lg:py-8 pr-6 lg:pr-8 pl-0 lg:sticky lg:top-24 self-start lg:border-r lg:border-[#e5e5e5]">
+             <div className="flex flex-col gap-6 -mt-4">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
                   const isCompleted = item.step < currentStep;
@@ -3222,9 +3223,9 @@ const renderResStep2 = () => {
                         isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
                         "bg-gray-50 text-gray-400 border border-gray-100"
                       }`}>
-                        {isCompleted ? <Check className="w-4 h-4" strokeWidth={3} /> : <span className="text-xs font-bold">{item.step}</span>}
+                        {isCompleted ? <Check className="w-4 h-4" strokeWidth={3} /> : <span className="text-[11px] font-semibold">{item.step}</span>}
                       </div>
-                      <span className={`text-sm font-bold tracking-wide ${isActive ? "text-gray-900" : isCompleted ? "text-gray-700" : "text-gray-400"}`}>
+                      <span className={`text-[12.5px] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
                         {item.label}
                       </span>
                     </div>
@@ -3234,7 +3235,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className="flex-1 w-full bg-transparent p-5 relative">
+          <div className="w-full lg:w-[53%] shrink-0 bg-transparent p-5 lg:p-8 relative">
              <div className="min-h-[400px] flex flex-col">
                {renderContent()}
                
@@ -3244,29 +3245,36 @@ const renderResStep2 = () => {
                    {currentStep > 1 ? (
                      <button
                        onClick={handlePrev}
-                       className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-bold text-sm tracking-wide transition-colors"
+                       className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[13.5px] tracking-wide transition-colors"
                      >
                        <ChevronLeft className="w-4 h-4" /> Back
                      </button>
                    ) : <div />}
-                   <button
-                     onClick={handleNext}
-                     disabled={!isStepValid()}
-                     className={`px-8 py-3.5 rounded-full font-bold text-sm transition-all flex items-center gap-2 ${
-                       !isStepValid()
-                         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                         : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
-                     }`}
-                   >
-                     Continue <ArrowRight className="w-4 h-4" />
-                   </button>
+                   <div className="flex flex-col items-end gap-2">
+                     <button
+                       onClick={handleNext}
+                       disabled={!isStepValid()}
+                       className={`px-8 py-3.5 rounded-full font-semibold text-[13.5px] transition-all flex items-center gap-2 ${
+                         !isStepValid()
+                           ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                           : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
+                       }`}
+                     >
+                       Continue <ArrowRight className="w-4 h-4" />
+                     </button>
+                     {currentStep === 1 && !isCommercial && (
+                       <span className="text-[10px] text-gray-400 font-medium whitespace-nowrap mr-2">
+                         No spam — just your quote and booking updates.
+                       </span>
+                     )}
+                   </div>
                  </div>
                )}
              </div>
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY */}
-          <div className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px] border-l border-[#e5e5e5]">
+          <div className="w-full lg:w-[26%] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px] border-l border-[#e5e5e5]">
              <BookingSummaryCard
                 formData={formData}
                 pricingConfig={pricingConfig}
@@ -3295,7 +3303,7 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }
     <div className={`w-full py-4 px-5 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
       {/* LEFT SIDE */}
       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-        <div className="font-semibold text-gray-800 text-[14.5px] whitespace-nowrap flex items-center">
+        <div className="font-medium text-gray-800 text-[14px] whitespace-nowrap flex items-center">
           {label}
         </div>
         {hasInfo && (
@@ -3313,7 +3321,7 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }
         >
           <Minus className="w-3.5 h-3.5" strokeWidth={2} />
         </button>
-        <span className="w-4 text-center font-bold text-[15px] text-gray-900 shrink-0">{count}</span>
+        <span className="w-4 text-center font-semibold text-[14px] text-gray-900 shrink-0">{count}</span>
         <button
           onClick={() => onUpdate(1)}
           className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-all border-[1.5px] border-[#FB8C42]/50 shrink-0"
