@@ -1470,7 +1470,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl">
           {/* Flat Rate Card */}
           <div
             onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
@@ -1569,7 +1569,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {isHourly && (
-          <div className="max-w-4xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
+          <div className="max-w-3xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-[#E6A800] shrink-0 mt-0.5" strokeWidth={2.5} />
               <div className="text-[12.5px] font-normal leading-[1.5]">
@@ -1606,7 +1606,7 @@ const renderResStep2 = () => {
     const SelectedIcon = getPlanIcon();
 
     return (
-      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
+      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
 
         {/* Step Identifier Tag */}
         <div className="mb-4">
@@ -1982,7 +1982,7 @@ const renderResStep2 = () => {
     const isHourly = formData.cleaningType === 'Hourly';
 
     return (
-      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-4xl mx-auto">
+      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-3xl mx-auto">
         <div className="mb-8">
           <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
             What type of clean — and how is the home tracking?
@@ -2206,7 +2206,7 @@ const renderResStep2 = () => {
     ];
 
     return (
-      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
+      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
         
         {/* New Header */}
         <div className="mb-2">
@@ -2539,7 +2539,7 @@ const renderResStep2 = () => {
   const renderCommStep2 = () => (
     <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           Tell Us About Your Business
         </h3>
         <p className="text-gray-500 text-sm">
@@ -2586,9 +2586,9 @@ const renderResStep2 = () => {
   );
 
   const renderCommStep3 = () => (
-    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
+    <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           What Needs Cleaning
         </h3>
         <p className="text-gray-500 text-sm">
@@ -2654,7 +2654,7 @@ const renderResStep2 = () => {
   const renderCommStep4 = () => (
     <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           How Often & Availability
         </h3>
         <p className="text-gray-500 text-sm">When do you need cleaning services?</p>
@@ -2718,7 +2718,7 @@ const renderResStep2 = () => {
   const renderCommStep5 = () => (
     <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           Insurance & Budget
         </h3>
         <p className="text-gray-500 text-sm">
@@ -2792,7 +2792,7 @@ const renderResStep2 = () => {
   const renderCommStep6 = () => (
     <div className="max-w-xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           Commercial Sign Up
         </h3>
         <p className="text-gray-500 text-sm">
@@ -3179,13 +3179,12 @@ const renderResStep2 = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white py-2 md:py-4 font-sans text-gray-900">
-      <div className="w-full max-w-[1440px] mx-auto px-[10px]">
-        
-        <div className="flex flex-col lg:flex-row items-start w-full">
+    <div className="min-h-[100dvh] flex flex-col bg-white py-2 md:py-4 font-sans text-gray-900">
+      <div className="w-full px-[10px] flex-1 flex flex-col">
+        <div className="flex flex-col lg:flex-row items-stretch w-full flex-1">
           {/* LEFT COLUMN - STEPPER */}
-          <div className="w-full lg:w-[21%] shrink-0 bg-transparent py-6 lg:py-8 pr-6 lg:pr-8 pl-0 lg:sticky lg:top-24 self-start lg:border-r lg:border-[#e5e5e5]">
-             <div className="flex flex-col gap-6 -mt-4">
+          <div className="w-full lg:w-[216px] shrink-0 bg-transparent lg:border-r lg:border-[#e5e5e5]">
+             <div className="flex flex-col gap-6 lg:py-8 pr-6 lg:pr-8 lg:sticky lg:top-24">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
                   const isCompleted = item.step < currentStep;
@@ -3232,8 +3231,8 @@ const renderResStep2 = () => {
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className="w-full lg:w-[53%] shrink-0 bg-transparent p-5 lg:p-8 relative">
-             <div className="min-h-[400px] flex flex-col">
+          <div className="w-full lg:flex-1 shrink-0 bg-transparent p-5 lg:p-8 relative flex flex-col">
+             <div className="flex flex-col flex-1 justify-center">
                {renderContent()}
                
                {/* Inner Step Controls */}
@@ -3291,8 +3290,10 @@ const renderResStep2 = () => {
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY */}
-          <div className="w-full lg:w-[26%] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full border-l border-[#e5e5e5]">
-             <BookingSummaryCard
+          <div className="w-full lg:w-[296px] shrink-0 bg-[#fdf9f3] lg:border-l lg:border-[#e5e5e5]">
+             <div className="lg:sticky lg:top-24">
+               <BookingSummaryCard
+                className="w-full !bg-transparent !border-none"
                 formData={formData}
                 pricingConfig={pricingConfig}
                 pricingResult={pricingResult}
@@ -3306,8 +3307,8 @@ const renderResStep2 = () => {
                 setAppliedReferral={setAppliedReferral}
                 apiBaseUrl={API_BASE_URL}
                 outOfAreaFee={outOfAreaFee}
-                className="w-full"
               />
+             </div>
           </div>
         </div>
       </div>
