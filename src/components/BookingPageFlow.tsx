@@ -2206,7 +2206,7 @@ const renderResStep2 = () => {
     ];
 
     return (
-      <div className="max-w-3xl mx-auto px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
+      <div className="max-w-4xl mx-auto px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
         
         {/* New Header */}
         <div className="mb-2">
@@ -3268,7 +3268,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className="w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(2.125*var(--scale-unit))] py-[calc(1.875*var(--scale-unit))] min-[880px]:py-[calc(3.5*var(--scale-unit))] relative flex flex-col items-center">
+          <div className="w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(1.125*var(--scale-unit))] py-[calc(1.875*var(--scale-unit))] min-[880px]:py-[calc(3.5*var(--scale-unit))] relative flex flex-col items-center">
              <div className="w-full max-w-[calc(48*var(--scale-unit))] flex flex-col flex-1 justify-center min-[880px]:justify-start">
                {renderContent()}
                
