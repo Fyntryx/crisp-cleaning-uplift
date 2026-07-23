@@ -200,9 +200,27 @@ const BookingSummaryCard = ({
   <div
     className={`bg-cream px-6 py-[calc(1.625*var(--scale-unit))] gap-2.5 text-[calc(0.78125*var(--scale-unit))] relative overflow-visible border-l border-tan-soft ${className}`}
   >
-    <h3 className="text-[14px] font-[600] text-[#2b2523] mb-6 relative z-10">
-      {formData.contact?.firstName ? `Hi ${formData.contact.firstName}` : "Hi there"}
-    </h3>
+    <div className="mb-6 relative z-10 flex flex-col items-start gap-2">
+      <h3 className="text-[14px] font-[600] text-[#2b2523]">
+        {formData.contact?.firstName ? `Hi ${formData.contact.firstName}` : "Hi there"}
+      </h3>
+      {(() => {
+        let badgeText = null;
+        if (formData.frequency === "Weekly") badgeText = `${pricingConfig?.frequencyDiscounts?.Weekly ?? 15}% OFF LOCKED IN`;
+        else if (formData.frequency === "Fortnightly") badgeText = `${pricingConfig?.frequencyDiscounts?.Fortnightly ?? 10}% OFF LOCKED IN`;
+        else if (formData.frequency === "Monthly") badgeText = `${pricingConfig?.frequencyDiscounts?.Monthly ?? 5}% OFF LOCKED IN`;
+        else if (formData.cleaningType === "Vacate") badgeText = "BOND BACK GUARANTEE";
+        else if (appliedPromo) badgeText = `${appliedPromo.code} APPLIED`;
+
+        if (!badgeText) return null;
+        
+        return (
+          <div className="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-[#fff4ea] text-[#e0731f] text-[10px] font-bold tracking-wider uppercase border border-[#f6d3b3]/50">
+            {badgeText}
+          </div>
+        );
+      })()}
+    </div>
 
     <div className="relative z-10 text-[calc(0.90625*var(--scale-unit))]">
 
