@@ -200,17 +200,9 @@ const BookingSummaryCard = ({
   <div
     className={`bg-cream px-6 py-[calc(1.625*var(--scale-unit))] gap-2.5 text-[calc(0.78125*var(--scale-unit))] relative overflow-visible border-l border-tan-soft ${className}`}
   >
-    <h3 className="text-[14px] font-[600] text-[#2b2523] mb-1.5 relative z-10">
+    <h3 className="text-[14px] font-[600] text-[#2b2523] mb-6 relative z-10">
       {formData.contact?.firstName ? `Hi ${formData.contact.firstName}` : "Hi there"}
     </h3>
-
-    <div className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-50/50 border border-emerald-100 text-emerald-700 font-semibold text-[calc(0.8125*var(--scale-unit))] mb-6 relative z-10 group/tooltip cursor-pointer">
-      <CheckCircle2 className="w-4 h-4" /> Satisfaction Guaranteed
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-[calc(0.6875*var(--scale-unit))] font-normal leading-relaxed rounded-xl shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all z-50 pointer-events-none text-center">
-        Not Happy? Receive a 100% refund if your concerns are not addressed!
-        <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
-      </div>
-    </div>
 
     <div className="relative z-10 text-[calc(0.90625*var(--scale-unit))]">
 
