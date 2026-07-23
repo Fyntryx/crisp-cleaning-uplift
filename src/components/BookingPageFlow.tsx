@@ -2323,64 +2323,66 @@ const renderResStep2 = () => {
           </div>
 
           {/* Available time slots */}
-          <div className="flex flex-col h-full pt-[calc(0.5*var(--scale-unit))]">
-            <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-[calc(1*var(--scale-unit))]">
-              ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ''}
-            </span>
+          {formData.selectedDate && (
+            <div className="flex flex-col h-full pt-[calc(0.5*var(--scale-unit))] animate-in fade-in slide-in-from-top-4 duration-500">
+              <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-[calc(1*var(--scale-unit))]">
+                ARRIVAL WINDOW - {formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}
+              </span>
 
-            <div className="grid grid-cols-2 gap-[calc(0.5*var(--scale-unit))]">
-              {(() => {
-                let availableTimes = timeSlots;
-                if (formData.selectedDate && pricingConfig?.systemBlockedTimeSlots) {
-                  const mm = String(formData.selectedDate.getMonth() + 1).padStart(2, '0');
-                  const dd = String(formData.selectedDate.getDate()).padStart(2, '0');
-                  const dateStr = `${formData.selectedDate.getFullYear()}-${mm}-${dd}`;
-                  
-                  const toMinutes = (timeStr: string) => {
-                    const [time, modifier] = timeStr.split(' ');
-                    let [hours, minutes] = time.split(':');
-                    if (hours === '12') hours = '0';
-                    if (modifier === 'PM') hours = String(parseInt(hours, 10) + 12);
-                    return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
-                  };
+              <div className="grid grid-cols-2 gap-[calc(0.5*var(--scale-unit))]">
+                {(() => {
+                  let availableTimes = timeSlots;
+                  if (formData.selectedDate && pricingConfig?.systemBlockedTimeSlots) {
+                    const mm = String(formData.selectedDate.getMonth() + 1).padStart(2, '0');
+                    const dd = String(formData.selectedDate.getDate()).padStart(2, '0');
+                    const dateStr = `${formData.selectedDate.getFullYear()}-${mm}-${dd}`;
+                    
+                    const toMinutes = (timeStr: string) => {
+                      const [time, modifier] = timeStr.split(' ');
+                      let [hours, minutes] = time.split(':');
+                      if (hours === '12') hours = '0';
+                      if (modifier === 'PM') hours = String(parseInt(hours, 10) + 12);
+                      return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+                    };
 
-                  const getHoursBetween = (start: string, end: string) => {
-                    const startMins = toMinutes(start);
-                    const endMins = toMinutes(end);
-                    return timeSlots.filter(t => {
-                      const tMins = toMinutes(t);
-                      return tMins >= startMins && tMins < endMins;
-                    });
-                  };
+                    const getHoursBetween = (start: string, end: string) => {
+                      const startMins = toMinutes(start);
+                      const endMins = toMinutes(end);
+                      return timeSlots.filter(t => {
+                        const tMins = toMinutes(t);
+                        return tMins >= startMins && tMins < endMins;
+                      });
+                    };
 
-                  const blockedTimesForDate = pricingConfig.systemBlockedTimeSlots
-                    .filter(slot => slot.date === dateStr)
-                    .flatMap(slot => getHoursBetween(slot.start, slot.end));
+                    const blockedTimesForDate = pricingConfig.systemBlockedTimeSlots
+                      .filter(slot => slot.date === dateStr)
+                      .flatMap(slot => getHoursBetween(slot.start, slot.end));
 
-                  availableTimes = timeSlots.filter(time => !blockedTimesForDate.includes(time));
-                }
+                    availableTimes = timeSlots.filter(time => !blockedTimesForDate.includes(time));
+                  }
 
-                return availableTimes.map((time) => {
-                  const isSelected = formData.selectedTime === time;
+                  return availableTimes.map((time) => {
+                    const isSelected = formData.selectedTime === time;
 
-                  return (
-                    <button
-                      key={time}
-                      onClick={() =>
-                        setFormData((prev) => ({ ...prev, selectedTime: time }))
-                      }
-                      className={`w-full py-[calc(0.625*var(--scale-unit))] px-[calc(1*var(--scale-unit))] rounded-full border-[1.5px] text-center text-[calc(0.78125*var(--scale-unit))] transition-all duration-200 ${isSelected
-                        ? "border-[#FB8C42] bg-[#FFF5EE] text-[#C2580F] font-semibold"
-                        : "border-[#FB8C42]/30 bg-white text-[#9C9289] font-medium hover:border-[#FB8C42]/60 hover:bg-[#FFF5EE]/50 hover:text-[#C2580F]"
-                        }`}
-                    >
-                      {time}
-                    </button>
-                  );
-                });
-              })()}
+                    return (
+                      <button
+                        key={time}
+                        onClick={() =>
+                          setFormData((prev) => ({ ...prev, selectedTime: time }))
+                        }
+                        className={`w-full py-[calc(0.625*var(--scale-unit))] px-[calc(1*var(--scale-unit))] rounded-full border-[1.5px] text-center text-[calc(0.78125*var(--scale-unit))] transition-all duration-200 ${isSelected
+                          ? "border-[#FB8C42] bg-[#FFF5EE] text-[#C2580F] font-semibold"
+                          : "border-[#FB8C42]/30 bg-white text-[#9C9289] font-medium hover:border-[#FB8C42]/60 hover:bg-[#FFF5EE]/50 hover:text-[#C2580F]"
+                          }`}
+                      >
+                        {time}
+                      </button>
+                    );
+                  });
+                })()}
+              </div>
             </div>
-          </div>
+          )}
 
         </div>
       </div>
