@@ -1763,7 +1763,7 @@ const renderResStep2 = () => {
                   <Clock className="w-4 h-4 text-amber-600" />
                 </div>
                 <div className="flex-1 text-[calc(0.75*var(--scale-unit))] text-amber-800 leading-relaxed opacity-90">
-                  For specific tasks or targeted areas. You set the priorities and we&apos;ll make sure to make the most of each minute! Want whole rooms or the whole house? <button onClick={(e) => { e.preventDefault(); setFormData(prev => ({ ...prev, cleaningType: 'Standard' })); }} className="font-bold underline underline-offset-2 hover:text-[#8A6D3B] transition-colors inline">Switch to flat rate</button> — pay for the result not the time.
+                  For specific tasks or targeted areas. You set the priorities and we&apos;ll make sure to make the most of each minute! Want whole rooms or the whole house? <button onClick={(e) => { e.preventDefault(); setFormData(prev => ({ ...prev, cleaningType: 'Standard' })); setCurrentStep(2); }} className="font-bold underline underline-offset-2 hover:text-[#8A6D3B] transition-colors inline">Switch to flat rate</button> — pay for the result not the time.
                 </div>
               </div>
             </div>
