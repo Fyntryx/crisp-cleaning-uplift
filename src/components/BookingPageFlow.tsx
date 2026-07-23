@@ -204,22 +204,31 @@ const BookingSummaryCard = ({
       <h3 className="text-[14px] font-[600] text-[#2b2523]">
         {formData.contact?.firstName ? `Hi ${formData.contact.firstName}` : "Hi there"}
       </h3>
-      {(() => {
-        let badgeText = null;
-        if (formData.frequency === "Weekly") badgeText = `${pricingConfig?.frequencyDiscounts?.Weekly ?? 15}% OFF LOCKED IN`;
-        else if (formData.frequency === "Fortnightly") badgeText = `${pricingConfig?.frequencyDiscounts?.Fortnightly ?? 10}% OFF LOCKED IN`;
-        else if (formData.frequency === "Monthly") badgeText = `${pricingConfig?.frequencyDiscounts?.Monthly ?? 5}% OFF LOCKED IN`;
-        else if (formData.cleaningType === "Vacate") badgeText = "BOND BACK GUARANTEE";
-        else if (appliedPromo) badgeText = `${appliedPromo.code} APPLIED`;
+      <div className="flex flex-wrap gap-2">
+        {(() => {
+          const badges = [];
+          if (formData.frequency === "Weekly") badges.push(`${pricingConfig?.frequencyDiscounts?.Weekly ?? 15}% OFF LOCKED IN`);
+          else if (formData.frequency === "Fortnightly") badges.push(`${pricingConfig?.frequencyDiscounts?.Fortnightly ?? 10}% OFF LOCKED IN`);
+          else if (formData.frequency === "Monthly") badges.push(`${pricingConfig?.frequencyDiscounts?.Monthly ?? 5}% OFF LOCKED IN`);
+          
+          if (formData.cleaningType === "Vacate") badges.push("BOND BACK GUARANTEE");
+          
+          if (appliedPromo) {
+            badges.push(
+              <span key="promo" className="flex items-center gap-1">
+                {appliedPromo.code} APPLIED
+                <button onClick={() => setAppliedPromo(undefined)} className="ml-0.5 text-[#e0731f] hover:text-red-500 font-bold text-[11px]" title="Remove promo code">✕</button>
+              </span>
+            );
+          }
 
-        if (!badgeText) return null;
-        
-        return (
-          <div className="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-[#fff4ea] text-[#e0731f] text-[10px] font-bold tracking-wider uppercase border border-[#f6d3b3]/50">
-            {badgeText}
-          </div>
-        );
-      })()}
+          return badges.map((badge, i) => (
+            <div key={i} className="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-[#fff4ea] text-[#e0731f] text-[10px] font-bold tracking-wider uppercase border border-[#f6d3b3]/50">
+              {badge}
+            </div>
+          ));
+        })()}
+      </div>
     </div>
 
     <div className="relative z-10 text-[calc(0.90625*var(--scale-unit))]">
@@ -334,15 +343,7 @@ const BookingSummaryCard = ({
               <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
             </div>
           )}
-          {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && appliedPromo && (
-            <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
-              <span className="flex items-center gap-1.5">
-                {pricingResult?.breakdown?.discount?.name}
-                <button onClick={() => setAppliedPromo(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove promo code">✕</button>
-              </span>
-              <span>-A${pricingResult?.breakdown?.discount?.amount?.toFixed(2)}</span>
-            </div>
-          )}
+
           {pricingResult?.discounts?.frequency && (
             <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-1">
               <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
@@ -366,6 +367,60 @@ const BookingSummaryCard = ({
         </div>
       </div>
 
+
+
+      {/* --- PROMO CODE SECTION --- */}
+      <div className="py-1">
+        <div className="relative flex items-center">
+          <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Promo Code"
+            className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#FB8C42] focus:ring-1 focus:ring-[#FB8C42]/10 transition-all placeholder:text-gray-400 font-semibold"
+            value={promoCode}
+            onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+          />
+          <button 
+            type="button"
+            disabled={isValidatingPromo || !promoCode.trim()}
+            onClick={async (e) => {
+              e.preventDefault();
+              if (promoCode.trim()) {
+                setIsValidatingPromo(true);
+                try {
+                  const res = await fetch(`${apiBaseUrl}/api/validate-promo`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                      code: promoCode,
+                      frequency: formData.frequency || "One time"
+                    }),
+                  });
+                  const data = await res.json();
+                  if (data.valid) {
+                    if (data.promo.category === 'REFERRAL') {
+                      setAppliedReferral(data.promo);
+                    } else {
+                      setAppliedPromo(data.promo);
+                    }
+                    setPromoCode('');
+                  } else {
+                    alert(data.error || 'Invalid promo code');
+                  }
+                } catch (error) {
+                  console.error('Error validating promo code:', error);
+                  alert('Error validating promo code. Please try again.');
+                } finally {
+                  setIsValidatingPromo(false);
+                }
+              }
+            }}
+            className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[calc(0.625*var(--scale-unit))] font-semibold uppercase tracking-wider rounded-lg transition-all"
+          >
+            {isValidatingPromo ? '...' : 'Apply'}
+          </button>
+        </div>
+      </div>
 
 
 
