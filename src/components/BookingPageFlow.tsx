@@ -2322,13 +2322,13 @@ const renderResStep2 = () => {
             </div>
           </div>
 
-          {/* Available time slots Card */}
-          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 flex flex-col h-full">
-            <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4 border-b border-gray-50 pb-3">
+          {/* Available time slots */}
+          <div className="flex flex-col h-full pt-[calc(0.5*var(--scale-unit))]">
+            <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-[calc(1*var(--scale-unit))]">
               ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ''}
             </span>
 
-            <div className="grid grid-cols-2 gap-[calc(0.75*var(--scale-unit))]">
+            <div className="grid grid-cols-2 gap-[calc(0.5*var(--scale-unit))]">
               {(() => {
                 let availableTimes = timeSlots;
                 if (formData.selectedDate && pricingConfig?.systemBlockedTimeSlots) {
@@ -2369,13 +2369,12 @@ const renderResStep2 = () => {
                       onClick={() =>
                         setFormData((prev) => ({ ...prev, selectedTime: time }))
                       }
-                      className={`w-full py-[calc(0.875*var(--scale-unit))] px-3 rounded-xl border-[1.5px] flex items-center justify-center gap-[calc(0.5*var(--scale-unit))] text-[calc(0.8125*var(--scale-unit))] transition-all duration-200 shadow-sm ${isSelected
-                        ? "border-brand bg-brand/5 text-brand-dark font-semibold ring-1 ring-brand/20"
-                        : "border-gray-200 bg-white text-gray-600 font-medium hover:border-brand/40 hover:bg-brand/5 hover:text-brand-dark hover:shadow-md"
+                      className={`w-full py-[calc(0.625*var(--scale-unit))] px-[calc(1*var(--scale-unit))] rounded-full border-[1.5px] text-center text-[calc(0.78125*var(--scale-unit))] transition-all duration-200 ${isSelected
+                        ? "border-[#FB8C42] bg-[#FFF5EE] text-[#C2580F] font-semibold"
+                        : "border-[#FB8C42]/30 bg-white text-[#9C9289] font-medium hover:border-[#FB8C42]/60 hover:bg-[#FFF5EE]/50 hover:text-[#C2580F]"
                         }`}
                     >
-                      <Clock className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))] opacity-60" />
-                      <span>{time}</span>
+                      {time}
                     </button>
                   );
                 });
