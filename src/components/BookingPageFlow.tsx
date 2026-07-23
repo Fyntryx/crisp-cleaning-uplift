@@ -368,60 +368,6 @@ const BookingSummaryCard = ({
 
 
 
-      {/* --- PROMO CODE SECTION --- */}
-      <div className="py-1">
-        <div className="relative flex items-center">
-          <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Promo Code"
-            className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#FB8C42] focus:ring-1 focus:ring-[#FB8C42]/10 transition-all placeholder:text-gray-400 font-semibold"
-            value={promoCode}
-            onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-          />
-          <button 
-            type="button"
-            disabled={isValidatingPromo || !promoCode.trim()}
-            onClick={async (e) => {
-              e.preventDefault();
-              if (promoCode.trim()) {
-                setIsValidatingPromo(true);
-                try {
-                  const res = await fetch(`${apiBaseUrl}/api/validate-promo`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                      code: promoCode,
-                      frequency: formData.frequency || "One time"
-                    }),
-                  });
-                  const data = await res.json();
-                  if (data.valid) {
-                    if (data.promo.category === 'REFERRAL') {
-                      setAppliedReferral(data.promo);
-                    } else {
-                      setAppliedPromo(data.promo);
-                    }
-                    setPromoCode('');
-                  } else {
-                    alert(data.error || 'Invalid promo code');
-                  }
-                } catch (error) {
-                  console.error('Error validating promo code:', error);
-                  alert('Error validating promo code. Please try again.');
-                } finally {
-                  setIsValidatingPromo(false);
-                }
-              }
-            }}
-            className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[calc(0.625*var(--scale-unit))] font-semibold uppercase tracking-wider rounded-lg transition-all"
-          >
-            {isValidatingPromo ? '...' : 'Apply'}
-          </button>
-        </div>
-      </div>
-
-
 
       {/* Out of Area Fee Banner */}
       {outOfAreaFee > 0 && (
