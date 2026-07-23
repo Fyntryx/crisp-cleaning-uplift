@@ -2009,8 +2009,8 @@ const renderResStep2 = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10 mt-6">
           {[
             { id: 'Standard', label: 'Standard', desc: 'Maintain cleanliness, remove visible dirt, restore order, and leave the home fresh.' },
-            { id: 'Deep', label: 'Deep', desc: 'High-detail clean to remove all dirt, grime, and build-up, with added attention to less frequently maintained areas.', badge: 'MOST BOOKED FIRST VISIT' },
-            { id: 'Vacate', label: 'Vacate', desc: 'A full-scope, maximum-detail clean — built to meet rental inspection standards.', badge: 'BOND BACK GUARANTEE' }
+            { id: 'Deep', label: 'Deep', desc: 'High-detail clean to remove all dirt, grime, and build-up, with added attention to less frequently maintained areas.', badge: 'MOST BOOKED FIRST VISIT', badgeStyle: 'solid' },
+            { id: 'Vacate', label: 'Vacate', desc: 'A full-scope, maximum-detail clean — built to meet rental inspection standards.', badge: 'BOND BACK GUARANTEE', badgeStyle: 'soft' }
           ].map((type, index) => {
             const isSelected = formData.cleaningType === type.id;
 
@@ -2026,17 +2026,20 @@ const renderResStep2 = () => {
                 }}
                 className={`relative cursor-pointer p-[calc(1.25*var(--scale-unit))] transition-all duration-300 flex flex-col rounded-[20px] border-[1.5px] ${
                   isSelected 
-                    ? 'border-[#FB8C42] bg-[#FFF8F3] shadow-md z-10 scale-[1.02]' 
-                    : 'border-tan bg-white hover:border-gray-300 hover:shadow-sm z-0'
+                    ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]' 
+                    : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
                 }`}
               >
                 {type.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[calc(0.5625*var(--scale-unit))] font-bold tracking-widest px-3 py-1 rounded-full uppercase whitespace-nowrap shadow-sm">
+                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 text-[calc(0.5625*var(--scale-unit))] font-bold tracking-widest px-3 py-1 rounded-full uppercase whitespace-nowrap shadow-sm ${
+                    type.badgeStyle === 'solid' ? 'bg-[#FB8C42] text-[#fff]' : 'bg-[#fff4ea] text-[#e0731f]'
+                  }`}>
                     {type.badge}
                   </div>
                 )}
                 <h3 className="font-semibold text-[calc(1.0625*var(--scale-unit))] text-gray-900 mt-2">{type.label}</h3>
-                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 leading-relaxed mt-2">{type.desc}</p>
+                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-[#8d8378] leading-relaxed mt-2">{type.desc}</p>
+                <p className="mt-auto pt-4 text-[calc(0.75*var(--scale-unit))] font-bold text-[#e0731f]">from ${type.id === 'Standard' ? 190 : type.id === 'Deep' ? 299 : 340}</p>
               </div>
             );
           })}
@@ -2065,23 +2068,23 @@ const renderResStep2 = () => {
                         setFormData({ ...formData, condition: cond.id as any });
                       }
                     }}
-                    className={`cursor-pointer rounded-2xl border-2 p-3 transition-all duration-200 flex flex-col ${
+                    className={`cursor-pointer rounded-2xl border-[1.5px] p-3 transition-all duration-200 flex flex-col ${
                       isDisabled 
                         ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
                         : isSelected 
-                          ? 'border-[#FB8C42] bg-white shadow-sm' 
-                          : 'border-gray-200 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30'
+                          ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]' 
+                          : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[calc(0.84375*var(--scale-unit))] font-semibold text-gray-900">{cond.label}</span>
                       {cond.badge && (
-                        <span className="text-[calc(0.6875*var(--scale-unit))] font-semibold text-[#FB8C42] bg-[#FB8C42]/10 px-2 py-0.5 rounded-full">
+                        <span className="text-[calc(0.6875*var(--scale-unit))] font-semibold text-[#e0731f] bg-[#fff4ea] px-2 py-0.5 rounded-full">
                           {cond.badge}
                         </span>
                       )}
                     </div>
-                    <span className="text-[calc(0.71875*var(--scale-unit))] font-normal text-gray-500">{cond.desc}</span>
+                    <span className="text-[calc(0.71875*var(--scale-unit))] font-normal text-[#8d8378]">{cond.desc}</span>
                   </div>
                 );
               })}
@@ -2104,7 +2107,7 @@ const renderResStep2 = () => {
                  }} />
                </div>
              ) : (
-               <div className="bg-[#FAF9F6] border border-gray-100 rounded-2xl p-4 lg:p-5 h-full flex flex-col">
+               <div className="bg-[#fdf9f3] border border-[#eadfce] rounded-2xl p-4 lg:p-5 h-full flex flex-col">
                   <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
                     WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
                   </h3>
@@ -2120,8 +2123,8 @@ const renderResStep2 = () => {
 
                   <div className="border-t border-gray-200 pt-5 mt-8">
                     <div className="flex flex-col items-start gap-4">
-                      <p className="text-sm text-gray-500 w-full text-justify">
-                        <span className="font-bold">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
+                      <p className="text-sm text-[#8d8378] w-full text-justify">
+                        <span className="font-bold text-gray-900">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
                       </p>
                       <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[calc(0.78125*var(--scale-unit))] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
                     </div>
@@ -2132,9 +2135,9 @@ const renderResStep2 = () => {
         </div>
 
         {/* Bottom Disclaimer */}
-        <div className="bg-orange-50/50 border border-orange-100 rounded-2xl p-5 mb-8">
-          <p className="text-sm text-gray-600 leading-relaxed">
-            <span className="font-bold text-gray-900">Your part in a Great Result:</span> To help us deliver the best possible result, please accurately select the overall condition of the property. Our cleaners will do an assessment prior to the clean — where the condition is beyond the scope of the chosen service, we will discuss an uplift or recommend a better suited service before we begin. <a href="#" className="text-[#FB8C42] hover:underline">View full uplift & scope policy here</a>.
+        <div className="bg-[#fff4ea] border border-[#f6d3b3] rounded-2xl p-5 mb-8">
+          <p className="text-sm text-[#6b5a48] leading-relaxed">
+            <span className="font-bold text-gray-900">Your part in a Great Result:</span> To help us deliver the best possible result, please accurately select the overall condition of the property. Our cleaners will do an assessment prior to the clean — where the condition is beyond the scope of the chosen service, we will discuss an uplift or recommend a better suited service before we begin. <a href="#" className="text-[#e0731f] font-semibold hover:underline">View full uplift & scope policy here</a>.
           </p>
         </div>
 
