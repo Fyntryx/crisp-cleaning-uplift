@@ -2024,7 +2024,7 @@ const renderResStep2 = () => {
                   }
                   setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
                 }}
-                className={`relative cursor-pointer p-[calc(1.25*var(--scale-unit))] transition-all duration-300 flex flex-col rounded-[20px] border-[1.5px] ${
+                className={`relative cursor-pointer px-[calc(1.125*var(--scale-unit))] py-[calc(1*var(--scale-unit))] transition-all duration-300 flex flex-col rounded-[20px] border-[1.5px] ${
                   isSelected 
                     ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]' 
                     : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
@@ -2038,8 +2038,7 @@ const renderResStep2 = () => {
                   </div>
                 )}
                 <h3 className="font-semibold text-[calc(1.0625*var(--scale-unit))] text-gray-900 mt-2">{type.label}</h3>
-                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-[#8d8378] leading-relaxed mt-2">{type.desc}</p>
-                <p className="mt-auto pt-4 text-[calc(0.75*var(--scale-unit))] font-bold text-[#e0731f]">from ${type.id === 'Standard' ? 190 : type.id === 'Deep' ? 299 : 340}</p>
+                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-[#8d8378] leading-relaxed mt-1 mb-1">{type.desc}</p>
               </div>
             );
           })}
