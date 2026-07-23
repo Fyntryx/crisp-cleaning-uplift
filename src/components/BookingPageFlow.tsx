@@ -3370,6 +3370,15 @@ const renderResStep2 = () => {
           <div className="flex flex-col">
             <span className="text-[12.5px] font-[600] text-[#2b2523] uppercase tracking-wider">Estimated total</span>
             <span className="text-[19px] font-[700] text-[#2b2523]">${pricingResult?.total || 0}</span>
+            <span className="text-[10.5px] font-[400] text-[#8d8378] mt-1 leading-[1.55]">
+              {formData.cleaningType === 'Hourly' ? (
+                "Billed on time worked — this is your cap."
+              ) : (
+                (pricingResult?.estimatedMinutes ?? 0) > 0 && (
+                  `Est. duration ${formatEta(pricingResult!.estimatedMinutes)} · fixed price once confirmed.`
+                )
+              )}
+            </span>
           </div>
           {currentStep < totalSteps && (
             <button
