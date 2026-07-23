@@ -119,6 +119,7 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: clamp(15px, 0.9vw + 4.5px, 23px);
   }
 
   body {
