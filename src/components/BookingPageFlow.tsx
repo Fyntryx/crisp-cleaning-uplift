@@ -2206,7 +2206,7 @@ const renderResStep2 = () => {
     ];
 
     return (
-      <div className="max-w-3xl mx-auto px-[calc(3.125*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
+      <div className="max-w-3xl mx-auto px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
         
         {/* New Header */}
         <div className="mb-2">
