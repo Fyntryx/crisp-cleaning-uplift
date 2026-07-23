@@ -198,23 +198,23 @@ const BookingSummaryCard = ({
   outOfAreaFee?: number;
 }) => (
   <div
-    className={`bg-cream px-6 py-[1.625rem] gap-2.5 text-[0.78125rem] relative overflow-visible border-l border-tan-soft ${className}`}
+    className={`bg-cream px-6 py-[26px] gap-2.5 text-[12.5px] relative overflow-visible border-l border-tan-soft ${className}`}
   >
-    <h3 className="text-[0.625rem] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 relative z-10">
+    <h3 className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 relative z-10">
       Booking Summary
     </h3>
 
-    <div className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-50/50 border border-emerald-100 text-emerald-700 font-semibold text-[0.8125rem] mb-6 relative z-10 group/tooltip cursor-pointer">
+    <div className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-50/50 border border-emerald-100 text-emerald-700 font-semibold text-[13px] mb-6 relative z-10 group/tooltip cursor-pointer">
       <CheckCircle2 className="w-4 h-4" /> Satisfaction Guaranteed
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-[0.6875rem] font-normal leading-relaxed rounded-xl shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all z-50 pointer-events-none text-center">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-[11px] font-normal leading-relaxed rounded-xl shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all z-50 pointer-events-none text-center">
         Not Happy? Receive a 100% refund if your concerns are not addressed!
         <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
       </div>
     </div>
 
-    <div className="relative z-10 text-[0.90625rem]">
+    <div className="relative z-10 text-[14.5px]">
 
-      <div className="flex justify-between items-center py-3.5 text-[0.78125rem] font-medium text-ink">
+      <div className="flex justify-between items-center py-3.5 text-[12.5px] font-medium text-ink">
         <span>Service Type</span>
         <span>{formData.cleaningType || "Standard"} Clean</span>
       </div>
@@ -223,7 +223,7 @@ const BookingSummaryCard = ({
 
       {formData.selectedDate && formData.selectedTime && (
         <>
-          <div className="flex justify-between items-center py-3.5 gap-4 text-[0.78125rem] font-medium text-ink">
+          <div className="flex justify-between items-center py-3.5 gap-4 text-[12.5px] font-medium text-ink">
             <span className="whitespace-nowrap">Date & Time</span>
             <span className="text-right">
               {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
@@ -233,7 +233,7 @@ const BookingSummaryCard = ({
         </>
       )}
 
-      <div className="flex justify-between items-center py-3.5 text-[0.78125rem] font-medium text-ink">
+      <div className="flex justify-between items-center py-3.5 text-[12.5px] font-medium text-ink">
         <span>Frequency</span>
         <span>{formData.frequency || "One time"}</span>
       </div>
@@ -241,13 +241,13 @@ const BookingSummaryCard = ({
       <div className="h-px bg-tan-soft border-0 mb-5"></div>
 
       <div className="pt-1">
-        <span className="block mb-4 text-[0.6875rem] font-semibold uppercase tracking-widest text-gray-400">
+        <span className="block mb-4 text-[11px] font-semibold uppercase tracking-widest text-gray-400">
           BREAKDOWN
         </span>
 
         <div className="space-y-3">
           {pricingResult?.breakdown.cleaningType && (
-            <div className="flex justify-between text-[0.78125rem] font-medium text-ink">
+            <div className="flex justify-between text-[12.5px] font-medium text-ink">
               <span>
                 {formData.cleaningType === 'Hourly' 
                   ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}` 
@@ -264,7 +264,7 @@ const BookingSummaryCard = ({
             return (
               <>
                 {(formData.homeDetails.bedrooms || 0) > 0 && (
-                  <div className="flex justify-between text-[0.78125rem] font-medium text-ink">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.bedrooms}x Bedroom</span>
                     <span>
                       A${(currentRoomPrices.Bedroom * (formData.homeDetails.bedrooms || 0)).toFixed(2)}
@@ -272,7 +272,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.bathrooms || 0) > 0 && (
-                  <div className="flex justify-between text-[0.78125rem] font-medium text-ink">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.bathrooms}x Bathroom</span>
                     <span>
                       A${(currentRoomPrices.Bathroom * (formData.homeDetails.bathrooms || 0)).toFixed(2)}
@@ -280,7 +280,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.kitchens || 0) > 0 && (
-                  <div className="flex justify-between text-[0.78125rem] font-medium text-ink">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.kitchens}x Kitchen</span>
                     <span>
                       A${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
@@ -288,7 +288,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.livingRooms || 0) > 0 && (
-                  <div className="flex justify-between text-[0.78125rem] font-medium text-ink">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.livingRooms}x Living & Dining</span>
                     <span>
                       A${(currentRoomPrices.Living * (formData.homeDetails.livingRooms || 0)).toFixed(2)}
@@ -296,7 +296,7 @@ const BookingSummaryCard = ({
                   </div>
                 )}
                 {(formData.homeDetails.other || 0) > 0 && (
-                  <div className="flex justify-between text-[0.78125rem] font-medium text-ink">
+                  <div className="flex justify-between text-[12.5px] font-medium text-ink">
                     <span>{formData.homeDetails.other}x Other Area</span>
                     <span>
                       A${(currentRoomPrices.Other * (formData.homeDetails.other || 0)).toFixed(2)}
@@ -307,25 +307,25 @@ const BookingSummaryCard = ({
             );
           })()}
           {pricingResult?.breakdown.extras.items.map((e: any) => (
-            <div key={e.name} className="flex justify-between text-[0.78125rem] font-medium text-ink">
+            <div key={e.name} className="flex justify-between text-[12.5px] font-medium text-ink">
               <span>+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
               <span>A${e.price}</span>
             </div>
           ))}
           {outOfAreaFee > 0 && (
-             <div className="flex justify-between text-[0.84375rem] font-medium text-amber-600 pt-1">
+             <div className="flex justify-between text-[13.5px] font-medium text-amber-600 pt-1">
                <span>+ Travel Fee (Extended Area)</span>
                <span>A${outOfAreaFee.toFixed(2)}</span>
              </div>
           )}
           {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
-            <div className="flex justify-between text-[0.84375rem] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
               <span>Large Service Discount</span>
               <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
             </div>
           )}
           {(pricingResult?.breakdown?.discount?.amount ?? 0) > 0 && appliedPromo && (
-            <div className="flex justify-between text-[0.84375rem] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
               <span className="flex items-center gap-1.5">
                 {pricingResult?.breakdown?.discount?.name}
                 <button onClick={() => setAppliedPromo(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove promo code">✕</button>
@@ -334,7 +334,7 @@ const BookingSummaryCard = ({
             </div>
           )}
           {pricingResult?.discounts?.frequency && (
-            <div className="flex justify-between text-[0.84375rem] font-semibold text-[#FB8C42] pt-1">
+            <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42] pt-1">
               <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
               <span>-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
             </div>
@@ -343,13 +343,13 @@ const BookingSummaryCard = ({
           {/* Referral Applied Confirmation */}
           {appliedReferral && (
             <div className="flex flex-col gap-0.5 pt-2 h-px bg-tan-soft border-0">
-              <div className="flex justify-between text-[0.84375rem] font-semibold text-[#FB8C42]">
+              <div className="flex justify-between text-[13.5px] font-semibold text-[#FB8C42]">
                 <span className="flex items-center gap-1.5">
                   ✓ {appliedReferral.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
                   <button onClick={() => setAppliedReferral(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove referral code">✕</button>
                 </span>
               </div>
-              <p className="text-[0.6875rem] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
+              <p className="text-[11px] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
             </div>
           )}
 
@@ -404,7 +404,7 @@ const BookingSummaryCard = ({
                 }
               }
             }}
-            className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[0.625rem] font-semibold uppercase tracking-wider rounded-lg transition-all"
+            className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[10px] font-semibold uppercase tracking-wider rounded-lg transition-all"
           >
             {isValidatingPromo ? '...' : 'Apply'}
           </button>
@@ -418,8 +418,8 @@ const BookingSummaryCard = ({
         <div className="flex items-start gap-2.5 p-3 bg-amber-50 border border-amber-200 rounded-xl my-2">
           <span className="text-amber-600 text-base mt-0.5">⚠️</span>
           <div>
-            <p className="text-[0.6875rem] font-bold text-amber-800 uppercase tracking-wide">Extended Service Area</p>
-            <p className="text-[0.6875rem] text-amber-700 leading-relaxed mt-0.5">
+            <p className="text-[11px] font-bold text-amber-800 uppercase tracking-wide">Extended Service Area</p>
+            <p className="text-[11px] text-amber-700 leading-relaxed mt-0.5">
               Your address is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
             </p>
           </div>
@@ -434,15 +434,15 @@ const BookingSummaryCard = ({
       )}
 
       <div className="flex justify-between items-end pt-4">
-        <span className="text-[0.78125rem] font-semibold text-ink mb-1">Total</span>
-        <span className="text-[1.1875rem] font-bold text-ink tracking-tight leading-none">
+        <span className="text-[12.5px] font-semibold text-ink mb-1">Total</span>
+        <span className="text-[19px] font-bold text-ink tracking-tight leading-none">
           A${(pricingResult?.total || 0).toFixed(2)}
         </span>
       </div>
 
       {formData.frequency &&
         formData.frequency !== "One time" && (
-          <p className="text-[0.625rem] text-gray-400 mt-2 leading-relaxed font-medium">
+          <p className="text-[10px] text-gray-400 mt-2 leading-relaxed font-medium">
             You&apos;ll be charged this amount every{" "}
             {formData.frequency === "Weekly"
               ? "week"
@@ -552,7 +552,7 @@ const ReservationTimer = () => {
   const secs = timeLeft % 60;
   
   return (
-    <span className="inline-flex items-center gap-1.5 text-red-500 text-[0.6875rem] font-bold tracking-wider uppercase">
+    <span className="inline-flex items-center gap-1.5 text-red-500 text-[11px] font-bold tracking-wider uppercase">
       - Booking reserved for {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
     </span>
   );
@@ -1462,10 +1462,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     return (
       <div className="flex flex-col gap-6 animate-in fade-in duration-500 py-2">
         <div className="mb-2">
-          <h2 className="text-[1.375rem] font-semibold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
             How would you like to be priced?
           </h2>
-          <p className="text-gray-500 text-[0.8125rem] font-normal mt-1">
+          <p className="text-gray-500 text-[13px] font-normal mt-1">
             Most whole-home cleans choose flat rate.
           </p>
         </div>
@@ -1480,25 +1480,25 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
-            <span className="absolute -top-2.5 left-6 bg-[#FB8C42] text-white text-[0.59375rem] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10">
+            <span className="absolute -top-2.5 left-6 bg-[#FB8C42] text-white text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10">
               MOST POPULAR — BEST VALUE
             </span>
             <div className="mt-1">
-              <h3 className="text-[1.0625rem] font-semibold text-gray-900 mb-1.5">Flat Rate</h3>
-              <p className="text-[0.8125rem] font-normal text-gray-600 leading-relaxed mb-4">
+              <h3 className="text-[17px] font-semibold text-gray-900 mb-1.5">Flat Rate</h3>
+              <p className="text-[13px] font-normal text-gray-600 leading-relaxed mb-4">
                 A fixed price for a complete result. Define the size and condition, and we'll stay as long as it takes to leave your space shining.
               </p>
               
               <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[0.78125rem] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Pay for the result, not the time
                 </li>
-                <li className="flex items-start gap-2.5 text-[0.78125rem] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   No time limit
                 </li>
-                <li className="flex items-start gap-2.5 text-[0.78125rem] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Defined checklist so you know exactly what you're paying for
                 </li>
@@ -1507,7 +1507,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             
             <div className="mt-6">
               {!isFlatRate && (
-                <button className="px-[1.5rem] py-[0.6875rem] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[0.84375rem] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                <button className="px-[24px] py-[11px] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[13.5px] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Flat Rate
                 </button>
               )}
@@ -1524,26 +1524,26 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             }`}
           >
             {isHourly && (
-              <span className="absolute -top-2.5 left-6 bg-orange-100 text-[#FB8C42] text-[0.59375rem] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10 border border-orange-200">
+              <span className="absolute -top-2.5 left-6 bg-orange-100 text-[#FB8C42] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10 border border-orange-200">
                 SELECTED
               </span>
             )}
             <div className="mt-1">
-              <h3 className="text-[1.0625rem] font-semibold text-gray-900 mb-1.5">Hourly</h3>
-              <p className="text-[0.8125rem] font-normal text-gray-600 leading-relaxed mb-4">
+              <h3 className="text-[17px] font-semibold text-gray-900 mb-1.5">Hourly</h3>
+              <p className="text-[13px] font-normal text-gray-600 leading-relaxed mb-4">
                 For specific tasks or targeted areas. You set the priorities and we'll make sure to make the most of each minute!
               </p>
               
               <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[0.78125rem] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   You cap the budget in hours
                 </li>
-                <li className="flex items-start gap-2.5 text-[0.78125rem] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
                   We work your priority list top-down
                 </li>
-                <li className="flex items-start gap-2.5 text-[0.78125rem] text-gray-700 font-medium">
+                <li className="flex items-start gap-2.5 text-[12.5px] text-gray-700 font-medium">
                   <span className="w-5 h-5 flex items-center justify-center shrink-0">
                     <span className="w-3.5 h-0.5 bg-gray-400 rounded-full"></span>
                   </span>
@@ -1559,7 +1559,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     e.stopPropagation();
                     handleNext();
                   }}
-                  className="px-[1.5rem] py-[0.6875rem] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[0.84375rem] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
+                  className="px-[24px] py-[11px] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[13.5px] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
                 >
                   Continue with Hourly <ArrowRight className="w-4 h-4" />
                 </button>
@@ -1572,7 +1572,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <div className="max-w-3xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-[#E6A800] shrink-0 mt-0.5" strokeWidth={2.5} />
-              <div className="text-[0.78125rem] font-normal leading-[1.5]">
+              <div className="text-[12.5px] font-normal leading-[1.5]">
                 Hourly is built for specific tasks or targeted areas — the best option if you're only after cleaning here and there. You set the priorities and we'll make the most of each minute! If you're looking to get entire rooms or the whole house treated, <span className="font-bold text-[#997300]">flat rate is the most cost-effective option — pay for the result, not the time.</span>
               </div>
             </div>
@@ -1610,7 +1610,7 @@ const renderResStep2 = () => {
 
         {/* Step Identifier Tag */}
         <div className="mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[0.625rem] font-bold tracking-wider uppercase bg-orange-50/50">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[10px] font-bold tracking-wider uppercase bg-orange-50/50">
             <Sliders className="w-3 h-3" /> CUSTOMISE
           </span>
         </div>
@@ -1624,7 +1624,7 @@ const renderResStep2 = () => {
                 <SelectedIcon className="w-4 h-4 text-[#FB8C42]" />
               </div>
               <div>
-                <span className="block text-[0.6875rem] font-semibold uppercase text-gray-400 tracking-wider">
+                <span className="block text-[11px] font-semibold uppercase text-gray-400 tracking-wider">
                   SELECTED SERVICE
                 </span>
                 <span className="font-semibold text-sm text-gray-800 leading-tight">
@@ -1633,7 +1633,7 @@ const renderResStep2 = () => {
               </div>
             </div>
 
-            <p className="text-[0.84375rem] font-normal leading-relaxed text-gray-500">
+            <p className="text-[13.5px] font-normal leading-relaxed text-gray-500">
               {getPlanDescription()}
             </p>
 
@@ -1662,13 +1662,13 @@ const renderResStep2 = () => {
                   </div>
                   <div>
                     <span className="block text-sm font-bold text-[#8A6D3B] mb-1">Hourly is built for specific tasks or targeted areas</span>
-                    <p className="text-[0.78125rem] text-amber-800 leading-relaxed opacity-90">
+                    <p className="text-[12.5px] text-amber-800 leading-relaxed opacity-90">
                       The best option if you&apos;re only after cleaning here and there. You set the priorities and we&apos;ll make sure to make the most of each minute!
                     </p>
                   </div>
                 </div>
                 <div className="border-t border-amber-200/60 pt-4">
-                  <p className="text-[0.78125rem] text-amber-800 leading-relaxed opacity-90 mb-3">
+                  <p className="text-[12.5px] text-amber-800 leading-relaxed opacity-90 mb-3">
                     However, if you&apos;re looking to get entire rooms, or the entire house treated, flat rate is the most cost-effective option. Simply choose which rooms, and we&apos;ll follow an extremely detailed checklist — with no time limit — to guarantee a spotless result! Instead of paying for our time, flat-rate allows you to pay for the result.
                   </p>
                   <button
@@ -1685,7 +1685,7 @@ const renderResStep2 = () => {
               <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-gray-200 transition-all duration-300">
                 <div className="mb-4 md:mb-0">
                   <span className="block text-sm font-semibold text-gray-800">Hours (Per Cleaner)</span>
-                  <span className="block text-[0.6875rem] font-medium text-gray-400 mt-1">Minimum 2 hours per booking</span>
+                  <span className="block text-[11px] font-medium text-gray-400 mt-1">Minimum 2 hours per booking</span>
                 </div>
                 <div className="flex items-center gap-3 bg-gray-50/80 p-1.5 rounded-full border border-gray-100 shrink-0 w-fit">
                   <button
@@ -1700,7 +1700,7 @@ const renderResStep2 = () => {
                   >
                     <Minus strokeWidth={2.5} size={16} />
                   </button>
-                  <span className="text-[0.875rem] font-semibold text-gray-900 w-10 text-center">
+                  <span className="text-[14px] font-semibold text-gray-900 w-10 text-center">
                     {formData.hourlyDetails?.hours || 2}
                   </span>
                   <button
@@ -1720,7 +1720,7 @@ const renderResStep2 = () => {
               <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-gray-200 transition-all duration-300">
                 <div className="mb-4 md:mb-0">
                   <span className="block text-sm font-semibold text-gray-800">Number of Cleaners</span>
-                  <span className="block text-[0.6875rem] font-medium text-gray-400 mt-1">Recommended: 1 cleaner per 4 hours</span>
+                  <span className="block text-[11px] font-medium text-gray-400 mt-1">Recommended: 1 cleaner per 4 hours</span>
                 </div>
                 <div className="flex items-center gap-3 bg-gray-50/80 p-1.5 rounded-full border border-gray-100 shrink-0 w-fit">
                   <button
@@ -1735,7 +1735,7 @@ const renderResStep2 = () => {
                   >
                     <Minus strokeWidth={2.5} size={16} />
                   </button>
-                  <span className="text-[0.875rem] font-semibold text-gray-900 w-10 text-center">
+                  <span className="text-[14px] font-semibold text-gray-900 w-10 text-center">
                     {formData.hourlyDetails?.cleaners || 1}
                   </span>
                   <button
@@ -1755,8 +1755,8 @@ const renderResStep2 = () => {
           ) : (
             <>
               <div className="mb-6">
-                <h3 className="text-[1.375rem] font-semibold text-gray-900 mb-1">Tell us about your home</h3>
-                <p className="text-[0.8125rem] font-normal text-gray-500 mb-4">Count every room we should clean.</p>
+                <h3 className="text-[22px] font-semibold text-gray-900 mb-1">Tell us about your home</h3>
+                <p className="text-[13px] font-normal text-gray-500 mb-4">Count every room we should clean.</p>
                 <div className="bg-white rounded-[20px] border border-gray-100 flex flex-col shadow-sm">
                   
                   {/* 1. Living Areas */}
@@ -1767,7 +1767,7 @@ const renderResStep2 = () => {
                       onUpdate={(v: number) => updateRooms("livingRooms", v)}
                       hasInfo={true}
                     />
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-80 p-3 bg-gray-900 text-white text-[0.6875rem] leading-snug rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-80 p-3 bg-gray-900 text-white text-[11px] leading-snug rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
                       Only select more than one for truly distinct living areas — open plan living/dining counts as one, and all other general areas are included (hallways, staircases, etc). A separate sitting room or den would be classed as 'Other'.
                       <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
                     </div>
@@ -1805,7 +1805,7 @@ const renderResStep2 = () => {
                     <RoomCounter
                       label={
                         <span>
-                          Other <span className="text-gray-400 text-[0.71875rem] font-normal ml-1">(study, laundry, office...)</span>
+                          Other <span className="text-gray-400 text-[11.5px] font-normal ml-1">(study, laundry, office...)</span>
                         </span>
                       }
                       count={formData.homeDetails.other || 0}
@@ -1818,7 +1818,7 @@ const renderResStep2 = () => {
 
               {/* BOTTOM ROW: Full-width Add-ons */}
               <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm mt-4">
-                <span className="block text-[0.625rem] font-semibold uppercase text-ink-soft tracking-widest mb-4 border-b border-gray-50 pb-2">
+                <span className="block text-[10px] font-semibold uppercase text-ink-soft tracking-widest mb-4 border-b border-gray-50 pb-2">
                   ADD-ONS
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -1846,7 +1846,7 @@ const renderResStep2 = () => {
                           }`}
                         >
                           <div className="flex items-start justify-between mb-3">
-                             <span className={`text-[0.78125rem] leading-tight pr-2 ${isSelected ? "font-semibold text-brand-dark" : "font-medium text-[#5c534b]"}`}>
+                             <span className={`text-[12.5px] leading-tight pr-2 ${isSelected ? "font-semibold text-brand-dark" : "font-medium text-[#5c534b]"}`}>
                                {extra}
                              </span>
                              {/* Checkmark for non-counter add-ons */}
@@ -1874,7 +1874,7 @@ const renderResStep2 = () => {
                           </div>
                           
                           <div className="flex items-center justify-between mt-auto">
-                            <span className="text-[0.78125rem] font-normal text-ink-muted">
+                            <span className="text-[12.5px] font-normal text-ink-muted">
                               +${price} {isCounterAddon ? 'each' : ''}
                             </span>
                             
@@ -1888,7 +1888,7 @@ const renderResStep2 = () => {
                                  >
                                    <Minus className="w-3 h-3" strokeWidth={2.5} />
                                  </button>
-                                 <span className="text-[0.875rem] font-semibold w-3 text-center text-ink">{count}</span>
+                                 <span className="text-[14px] font-semibold w-3 text-center text-ink">{count}</span>
                                  <button
                                    type="button"
                                    onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
@@ -1917,26 +1917,26 @@ const renderResStep2 = () => {
       <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start">
         <div className="flex flex-col items-start text-left space-y-6">
           <div className="flex flex-col items-start gap-3">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#FB8C42] text-white text-[0.625rem] font-bold tracking-wider uppercase">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#FB8C42] text-white text-[10px] font-bold tracking-wider uppercase">
               UNLOCK 5% OFF YOUR FIRST CLEAN
             </span>
             <div>
-              <h2 className="text-[1.375rem] font-semibold text-gray-900 tracking-tight leading-tight mb-2">
+              <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight mb-2">
                 {discountContent.heading}
               </h2>
-              <p className="text-[0.8125rem] font-normal text-gray-500">
+              <p className="text-[13px] font-normal text-gray-500">
                 {discountContent.subheading}
               </p>
             </div>
           </div>
 
-          <div className="w-full max-w-[28.75rem] space-y-5">
+          <div className="w-full max-w-[460px] space-y-5">
             <div className="flex flex-col space-y-2">
-              <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">FIRST NAME</label>
+              <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">FIRST NAME</label>
               <input
                 type="text"
                 placeholder="First name"
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
                 value={`${formData.contact.firstName || ""} ${formData.contact.lastName || ""}`.trim()}
                 onChange={(e) => {
                   const val = e.target.value;
@@ -1947,21 +1947,21 @@ const renderResStep2 = () => {
               />
             </div>
             <div className="flex flex-col space-y-2">
-              <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">MOBILE</label>
+              <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">MOBILE</label>
               <input
                 type="tel"
                 placeholder="04XX XXX XXX"
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
                 value={formData.contact.phone}
                 onChange={(e) => updateContact("phone", e.target.value)}
               />
             </div>
             <div className="flex flex-col space-y-2">
-              <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">EMAIL</label>
+              <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">EMAIL</label>
               <input
                 type="email"
                 placeholder="you@email.com"
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
                 value={formData.contact.email}
                 onChange={(e) => updateContact("email", e.target.value)}
               />
@@ -1984,10 +1984,10 @@ const renderResStep2 = () => {
     return (
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-3xl mx-auto">
         <div className="mb-8">
-          <h2 className="text-[1.375rem] font-semibold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
             What type of clean — and how is the home tracking?
           </h2>
-          <p className="text-gray-500 mt-2 text-[0.8125rem] font-normal">Both together set your fixed price.</p>
+          <p className="text-gray-500 mt-2 text-[13px] font-normal">Both together set your fixed price.</p>
         </div>
 
         {/* Top section: Service Types */}
@@ -2019,7 +2019,7 @@ const renderResStep2 = () => {
                 }`}
               >
                 {type.badge && (
-                  <div className="absolute top-0 right-0 bg-[#FB8C42] text-white text-[0.59375rem] font-bold tracking-wider px-2 py-1 rounded-bl-lg uppercase">
+                  <div className="absolute top-0 right-0 bg-[#FB8C42] text-white text-[9.5px] font-bold tracking-wider px-2 py-1 rounded-bl-lg uppercase">
                     {type.badge}
                   </div>
                 )}
@@ -2027,9 +2027,9 @@ const renderResStep2 = () => {
                   <div className={`w-4 h-4 flex-shrink-0 rounded-full border-[1.5px] flex items-center justify-center transition-colors ${isSelected ? 'border-[#FB8C42]' : 'border-gray-300'}`}>
                     {isSelected && <div className="w-2 h-2 bg-[#FB8C42] rounded-full" />}
                   </div>
-                  <h3 className={`font-semibold text-[0.9375rem] ${isSelected ? 'text-gray-900' : 'text-gray-900'}`}>{type.label}</h3>
+                  <h3 className={`font-semibold text-[15px] ${isSelected ? 'text-gray-900' : 'text-gray-900'}`}>{type.label}</h3>
                 </div>
-                <p className="text-[0.75rem] font-normal text-gray-500 leading-relaxed mt-3">{type.desc}</p>
+                <p className="text-[12px] font-normal text-gray-500 leading-relaxed mt-3">{type.desc}</p>
               </div>
             );
           })}
@@ -2040,7 +2040,7 @@ const renderResStep2 = () => {
           
           {/* Left Column: Condition Options */}
           <div>
-            <h3 className="text-[0.625rem] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">OVERALL CONDITION</h3>
+            <h3 className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">OVERALL CONDITION</h3>
             <div className="flex flex-col gap-3">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
@@ -2067,14 +2067,14 @@ const renderResStep2 = () => {
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[0.84375rem] font-semibold text-gray-900">{cond.label}</span>
+                      <span className="text-[13.5px] font-semibold text-gray-900">{cond.label}</span>
                       {cond.badge && (
-                        <span className="text-[0.6875rem] font-semibold text-[#FB8C42] bg-[#FB8C42]/10 px-2 py-0.5 rounded-full">
+                        <span className="text-[11px] font-semibold text-[#FB8C42] bg-[#FB8C42]/10 px-2 py-0.5 rounded-full">
                           {cond.badge}
                         </span>
                       )}
                     </div>
-                    <span className="text-[0.71875rem] font-normal text-gray-500">{cond.desc}</span>
+                    <span className="text-[11.5px] font-normal text-gray-500">{cond.desc}</span>
                   </div>
                 );
               })}
@@ -2098,11 +2098,11 @@ const renderResStep2 = () => {
                </div>
              ) : (
                <div className="bg-[#FAF9F6] border border-gray-100 rounded-2xl p-4 lg:p-5 h-full flex flex-col">
-                  <h3 className="text-[0.625rem] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
+                  <h3 className="text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
                     WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
                   </h3>
                   
-                  <p className="text-[0.78125rem] font-normal text-gray-600 leading-relaxed mb-8 flex-1">
+                  <p className="text-[12.5px] font-normal text-gray-600 leading-relaxed mb-8 flex-1">
                     {formData.condition === 'Lived In' 
                       ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
                       : formData.condition === 'Heavy Build Up'
@@ -2116,7 +2116,7 @@ const renderResStep2 = () => {
                       <p className="text-sm text-gray-500 w-full text-justify">
                         <span className="font-bold">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
                       </p>
-                      <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[0.78125rem] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
+                      <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[12.5px] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
                     </div>
                   </div>
                </div>
@@ -2210,13 +2210,13 @@ const renderResStep2 = () => {
         
         {/* New Header */}
         <div className="mb-2">
-          <h2 className="text-[1.375rem] font-semibold text-ink leading-[1.12] tracking-[-0.01em] mb-2">When should we come?</h2>
-          <p className="text-[0.8125rem] font-normal leading-[1.55] text-ink-muted">Regular cleans get a dedicated cleaner — and a lifetime discount.</p>
+          <h2 className="text-[22px] font-semibold text-ink leading-[1.12] tracking-[-0.01em] mb-2">When should we come?</h2>
+          <p className="text-[13px] font-normal leading-[1.55] text-ink-muted">Regular cleans get a dedicated cleaner — and a lifetime discount.</p>
         </div>
 
         {/* Frequency */}
         <div className="mb-2">
-          <span className="block text-[0.625rem] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
+          <span className="block text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
             FREQUENCY
           </span>
           <div className="relative inline-flex flex-col md:flex-row items-center justify-between bg-white border-[1.5px] border-tan rounded-[24px] md:rounded-full p-1 max-w-2xl w-full gap-2 md:gap-0">
@@ -2235,7 +2235,7 @@ const renderResStep2 = () => {
                       }
                       setFormData({ ...formData, frequency: newFreq as any });
                     }}
-                    className={`w-full py-2 md:py-2.5 rounded-full text-[0.78125rem] font-medium transition-all border-[1.5px] ${isSelected
+                    className={`w-full py-2 md:py-2.5 rounded-full text-[12.5px] font-medium transition-all border-[1.5px] ${isSelected
                       ? "bg-cream-tag border-brand text-brand-dark font-semibold"
                       : "border-transparent bg-transparent text-[#5c534b]"
                       }`}
@@ -2255,9 +2255,9 @@ const renderResStep2 = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
-          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[1.125rem] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
+          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[18px] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
             <div className="flex items-center justify-between mb-4 border-b border-gray-50 pb-3">
-              <span className="text-[0.875rem] font-semibold text-gray-900 leading-[1.5rem]">
+              <span className="text-[14px] font-semibold text-gray-900 leading-[24px]">
                 {monthName}
               </span>
               <div className="flex items-center gap-2">
@@ -2275,14 +2275,14 @@ const renderResStep2 = () => {
             </div>
 
             {/* Weekdays names */}
-            <div className="grid grid-cols-7 gap-1 text-center text-[0.625rem] mb-3 text-gray-400 font-semibold uppercase tracking-wider">
+            <div className="grid grid-cols-7 gap-1 text-center text-[10px] mb-3 text-gray-400 font-semibold uppercase tracking-wider">
               {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
                 <div key={`${d}-${i}`}>{d}</div>
               ))}
             </div>
 
             {/* Days Grid */}
-            <div className="grid grid-cols-7 gap-[0.125rem] justify-items-center">
+            <div className="grid grid-cols-7 gap-[2px] justify-items-center">
               {Array.from({ length: firstDayOfMonth }).map((_, i) => (
                 <div key={`empty-${i}`} className="h-8 w-full" />
               ))}
@@ -2298,7 +2298,7 @@ const renderResStep2 = () => {
                     key={day}
                     onClick={() => !disabled && handleDateSelect(day)}
                     disabled={disabled}
-                    className={`h-[2.125rem] w-[2.125rem] rounded-full flex flex-col items-center justify-center text-[0.75rem] font-medium transition-all relative ${selected
+                    className={`h-[34px] w-[34px] rounded-full flex flex-col items-center justify-center text-[12px] font-medium transition-all relative ${selected
                       ? "bg-brand text-white font-semibold"
                       : ""
                       } ${disabled
@@ -2323,8 +2323,8 @@ const renderResStep2 = () => {
           </div>
 
           {/* Available time slots Card */}
-          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[1.125rem] shadow-none hover:shadow-md transition-all duration-300 flex flex-col h-full">
-            <span className="block text-[0.625rem] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4 border-b border-gray-50 pb-3">
+          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[18px] shadow-none hover:shadow-md transition-all duration-300 flex flex-col h-full">
+            <span className="block text-[10px] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4 border-b border-gray-50 pb-3">
               ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ''}
             </span>
 
@@ -2369,7 +2369,7 @@ const renderResStep2 = () => {
                       onClick={() =>
                         setFormData((prev) => ({ ...prev, selectedTime: time }))
                       }
-                      className={`w-full py-2.5 px-1 rounded-full border-[1.5px] text-center text-[0.78125rem] transition-all ${isSelected
+                      className={`w-full py-2.5 px-1 rounded-full border-[1.5px] text-center text-[12.5px] transition-all ${isSelected
                         ? "border-brand bg-cream-tag text-brand-dark font-semibold shadow-sm"
                         : "border-tan bg-white text-[#5c534b] font-medium hover:border-brand/30 hover:bg-cream-tag/20"
                         }`}
@@ -2390,10 +2390,10 @@ const renderResStep2 = () => {
   const renderResStep4 = () => (
     <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6">
       <div className="mb-2">
-        <h2 className="text-[1.375rem] font-semibold text-gray-900 tracking-tight leading-tight">
+        <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
           Anything we should know?
         </h2>
-        <p className="text-[0.8125rem] font-normal text-gray-500 mt-2">
+        <p className="text-[13px] font-normal text-gray-500 mt-2">
           Helps your cleaner arrive prepared — none of this changes your price
         </p>
       </div>
@@ -2402,12 +2402,12 @@ const renderResStep2 = () => {
 
           {/* Pets Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               PETS
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.pets}
                 onChange={(e) =>
                   setFormData({
@@ -2430,12 +2430,12 @@ const renderResStep2 = () => {
 
           {/* Parking Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               PARKING
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.parking}
                 onChange={(e) =>
                   setFormData({
@@ -2458,12 +2458,12 @@ const renderResStep2 = () => {
 
           {/* Entry Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               ACCESS
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.entry}
                 onChange={(e) =>
                   setFormData({
@@ -2487,12 +2487,12 @@ const renderResStep2 = () => {
 
           {/* Preferred Chemicals Dropdown */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               CHEMICAL PREFERENCE
             </label>
             <div className="relative flex items-center">
               <select
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal cursor-pointer appearance-none pr-10 shadow-sm transition-all"
                 value={formData.instructions.chemicals}
                 onChange={(e) =>
                   setFormData({
@@ -2517,11 +2517,11 @@ const renderResStep2 = () => {
 
         {/* Notes Textarea */}
         <div className="flex flex-col space-y-2 pt-2">
-          <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+          <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
             NOTES FOR YOUR CLEANER
           </label>
           <textarea
-            className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none resize-none h-32 text-stone-900 text-[0.90625rem] font-normal tracking-normal placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-[#FB8C42]/10 shadow-sm transition-all"
+            className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none resize-none h-32 text-stone-900 text-[14.5px] font-normal tracking-normal placeholder:text-gray-400 leading-relaxed focus:ring-2 focus:ring-[#FB8C42]/10 shadow-sm transition-all"
             placeholder="e.g. please focus on the ensuite shower, gate code is 1234, bin day is Thursday..."
             value={formData.instructions.notes}
             onChange={(e) =>
@@ -2539,7 +2539,7 @@ const renderResStep2 = () => {
   const renderCommStep2 = () => (
     <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-[1.375rem] font-semibold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           Tell Us About Your Business
         </h3>
         <p className="text-gray-500 text-sm">
@@ -2588,7 +2588,7 @@ const renderResStep2 = () => {
   const renderCommStep3 = () => (
     <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-[1.375rem] font-semibold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           What Needs Cleaning
         </h3>
         <p className="text-gray-500 text-sm">
@@ -2654,7 +2654,7 @@ const renderResStep2 = () => {
   const renderCommStep4 = () => (
     <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-[1.375rem] font-semibold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           How Often & Availability
         </h3>
         <p className="text-gray-500 text-sm">When do you need cleaning services?</p>
@@ -2718,7 +2718,7 @@ const renderResStep2 = () => {
   const renderCommStep5 = () => (
     <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-[1.375rem] font-semibold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           Insurance & Budget
         </h3>
         <p className="text-gray-500 text-sm">
@@ -2792,7 +2792,7 @@ const renderResStep2 = () => {
   const renderCommStep6 = () => (
     <div className="max-w-xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
-        <h3 className="text-[1.375rem] font-semibold text-gray-900 mb-2">
+        <h3 className="text-[22px] font-semibold text-gray-900 mb-2">
           Commercial Sign Up
         </h3>
         <p className="text-gray-500 text-sm">
@@ -2804,7 +2804,7 @@ const renderResStep2 = () => {
 
         {/* Contact Name */}
         <div className="space-y-1">
-          <label className="text-[0.625rem] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
+          <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
             Primary Contact <span className="text-red-500">*</span>
           </label>
           <input
@@ -2819,7 +2819,7 @@ const renderResStep2 = () => {
         {/* Contact details Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className="text-[0.625rem] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
+            <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
               Business Email <span className="text-red-500">*</span>
             </label>
             <input
@@ -2831,7 +2831,7 @@ const renderResStep2 = () => {
             />
           </div>
           <div className="space-y-1">
-            <label className="text-[0.625rem] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
+            <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
               Business Phone <span className="text-red-500">*</span>
             </label>
             <input
@@ -2846,7 +2846,7 @@ const renderResStep2 = () => {
 
         {/* Address Autocomplete */}
         <div className="space-y-1">
-          <label className="text-[0.625rem] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
+          <label className="text-[10px] font-extrabold uppercase text-muted-foreground/60 tracking-widest">
             Business Address <span className="text-red-500">*</span>
           </label>
           <AddressAutocomplete
@@ -2913,10 +2913,10 @@ const renderResStep2 = () => {
       {/* Title & Subtitle */}
       <div className="mb-2 flex items-start justify-between flex-wrap gap-2">
         <div>
-          <h2 className="text-[1.375rem] font-semibold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight">
             Create your account & book
           </h2>
-          <p className="text-[0.8125rem] font-normal text-gray-500 mt-2">
+          <p className="text-[13px] font-normal text-gray-500 mt-2">
             Your account gives you booking history, easy rescheduling and loyalty rewards.
           </p>
         </div>
@@ -2928,14 +2928,14 @@ const renderResStep2 = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* FULL NAME */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               FULL NAME
             </label>
             <div className="relative flex items-center">
               <input
                 type="text"
                 placeholder="Sarah Mitchell"
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
                 value={formData.contact.firstName}
                 onChange={(e) => updateContact("firstName", e.target.value)}
               />
@@ -2945,14 +2945,14 @@ const renderResStep2 = () => {
 
           {/* MOBILE */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               MOBILE
             </label>
             <div className="relative flex items-center">
               <input
                 type="tel"
                 placeholder="0412 345 678"
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
                 value={formData.contact.phone}
                 onChange={(e) => updateContact("phone", e.target.value)}
               />
@@ -2964,14 +2964,14 @@ const renderResStep2 = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* EMAIL */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               EMAIL
             </label>
             <div className="relative flex items-center">
               <input
                 type="email"
                 placeholder="sarah@email.com"
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal shadow-sm transition-all"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all"
                 value={formData.contact.email}
                 onChange={(e) => updateContact("email", e.target.value)}
               />
@@ -2981,14 +2981,14 @@ const renderResStep2 = () => {
 
           {/* PASSWORD */}
           <div className="flex flex-col space-y-2">
-            <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+            <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
               PASSWORD
             </label>
             <div className="relative flex items-center">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Create a password"
-                className="w-full px-[0.875rem] py-[0.75rem] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[0.90625rem] tracking-normal shadow-sm transition-all pr-12"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] tracking-normal shadow-sm transition-all pr-12"
                 value={formData.contact.password}
                 onChange={(e) => updateContact("password", e.target.value)}
               />
@@ -3008,7 +3008,7 @@ const renderResStep2 = () => {
 
         {/* SERVICE ADDRESS */}
         <div className="flex flex-col space-y-2">
-          <label className="text-[0.625rem] font-semibold uppercase text-ink-soft tracking-[0.09em]">
+          <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">
             ADDRESS
           </label>
           <AddressAutocomplete
@@ -3036,7 +3036,7 @@ const renderResStep2 = () => {
           />
           <label
             htmlFor="terms"
-            className="text-[0.8125rem] text-gray-600 font-medium cursor-pointer select-none"
+            className="text-[13px] text-gray-600 font-medium cursor-pointer select-none"
           >
             I agree to the{" "}
             <a
@@ -3066,7 +3066,7 @@ const renderResStep2 = () => {
             <button
               onClick={handleSubmit}
               disabled={isSubmitting || !isAddressValid}
-              className="w-full md:w-auto md:min-w-[15rem] bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-3 px-6 rounded-full font-semibold text-[0.9375rem] shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full md:w-auto md:min-w-[240px] bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-3 px-6 rounded-full font-semibold text-[15px] shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
@@ -3080,7 +3080,7 @@ const renderResStep2 = () => {
                 </>
               )}
             </button>
-            <div className="flex text-[0.6875rem] font-medium text-gray-500 leading-tight whitespace-nowrap">
+            <div className="flex text-[11px] font-medium text-gray-500 leading-tight whitespace-nowrap">
               <span>Card saved securely. Charged after the clean.</span>
             </div>
           </div>
@@ -3179,12 +3179,12 @@ const renderResStep2 = () => {
   ];
 
   return (
-    <div className="min-h-[100dvh] flex flex-col bg-white font-sans text-gray-900 pb-[5rem] min-[55rem]:pb-0">
+    <div className="min-h-[100dvh] flex flex-col bg-white font-sans text-gray-900 pb-[80px] min-[880px]:pb-0">
       <div className="w-full flex-1 flex flex-col">
         
         {/* HORIZONTAL STEPPER (Visible < 1180px) */}
-        <div className="block min-[73.75rem]:hidden w-full border-b border-[#e5e5e5] bg-white sticky top-0 z-40">
-          <div className="flex overflow-x-auto no-scrollbar items-center py-4 px-[1.25rem] min-[55rem]:px-[2.125rem] gap-6">
+        <div className="block min-[1180px]:hidden w-full border-b border-[#e5e5e5] bg-white sticky top-0 z-40">
+          <div className="flex overflow-x-auto no-scrollbar items-center py-4 px-[20px] min-[880px]:px-[34px] gap-6">
             {sidebarSteps.map((item, idx) => {
               const isActive = item.step === currentStep;
               const isCompleted = item.step < currentStep;
@@ -3205,9 +3205,9 @@ const renderResStep2 = () => {
                     isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
                     "bg-gray-50 text-gray-400 border border-gray-100"
                   }`}>
-                    {isCompleted ? <Check className="w-3 h-3" strokeWidth={3} /> : <span className="text-[0.625rem] font-semibold">{item.step}</span>}
+                    {isCompleted ? <Check className="w-3 h-3" strokeWidth={3} /> : <span className="text-[10px] font-semibold">{item.step}</span>}
                   </div>
-                  <span className={`text-[0.6875rem] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
+                  <span className={`text-[11px] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
                     {item.label}
                   </span>
                 </div>
@@ -3216,9 +3216,9 @@ const renderResStep2 = () => {
           </div>
         </div>
 
-        <div className="flex flex-col min-[55rem]:flex-row items-stretch w-full flex-1">
+        <div className="flex flex-col min-[880px]:flex-row items-stretch w-full flex-1">
           {/* LEFT COLUMN - STEPPER (Visible >= 1180px) */}
-          <div className="hidden min-[73.75rem]:block w-[13.5rem] shrink-0 bg-transparent border-r border-[#e5e5e5]">
+          <div className="hidden min-[1180px]:block w-[216px] shrink-0 bg-transparent border-r border-[#e5e5e5]">
              <div className="flex flex-col gap-6 lg:py-8 pr-6 lg:pr-8 lg:sticky lg:top-24">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
@@ -3247,16 +3247,16 @@ const renderResStep2 = () => {
                     >
                       {/* Vertical line connector */}
                       {idx < sidebarSteps.length - 1 && (
-                        <div className={`absolute left-[0.9375rem] top-[1.875rem] bottom-[-24px] w-0.5 ${isCompleted ? 'bg-[#FB8C42]' : 'bg-gray-100'}`} />
+                        <div className={`absolute left-[15px] top-[30px] bottom-[-24px] w-0.5 ${isCompleted ? 'bg-[#FB8C42]' : 'bg-gray-100'}`} />
                       )}
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${
                         isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
                         isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
                         "bg-gray-50 text-gray-400 border border-gray-100"
                       }`}>
-                        {isCompleted ? <Check className="w-4 h-4" strokeWidth={3} /> : <span className="text-[0.6875rem] font-semibold">{item.step}</span>}
+                        {isCompleted ? <Check className="w-4 h-4" strokeWidth={3} /> : <span className="text-[11px] font-semibold">{item.step}</span>}
                       </div>
-                      <span className={`text-[0.78125rem] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
+                      <span className={`text-[12.5px] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
                         {item.label}
                       </span>
                     </div>
@@ -3266,13 +3266,13 @@ const renderResStep2 = () => {
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className="w-full min-[55rem]:flex-1 shrink-0 bg-transparent px-[1.25rem] min-[55rem]:px-[2.125rem] py-[1.875rem] min-[55rem]:py-[3.5rem] relative flex flex-col items-center">
-             <div className="w-full max-w-[48rem] flex flex-col flex-1 justify-center min-[55rem]:justify-start">
+          <div className="w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[20px] min-[880px]:px-[34px] py-[30px] min-[880px]:py-[56px] relative flex flex-col items-center">
+             <div className="w-full max-w-[768px] flex flex-col flex-1 justify-center min-[880px]:justify-start">
                {renderContent()}
                
                {/* Inner Step Controls (Hidden on Mobile) */}
                {currentStep < totalSteps && (
-                  <div className={`hidden min-[55rem]:flex mt-8 pt-8 border-t border-tan-soft ${
+                  <div className={`hidden min-[880px]:flex mt-8 pt-8 border-t border-tan-soft ${
                     currentStep === 1 && !isCommercial 
                       ? "flex-col items-center" 
                       : "items-center justify-between"
@@ -3282,7 +3282,7 @@ const renderResStep2 = () => {
                         <button
                           onClick={handleNext}
                           disabled={!isStepValid()}
-                          className={`w-full py-3.5 rounded-full font-semibold text-[0.84375rem] transition-all flex items-center justify-center gap-2 ${
+                          className={`w-full py-3.5 rounded-full font-semibold text-[13.5px] transition-all flex items-center justify-center gap-2 ${
                             !isStepValid()
                               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                               : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
@@ -3290,7 +3290,7 @@ const renderResStep2 = () => {
                         >
                           Continue <ArrowRight className="w-4 h-4" />
                         </button>
-                        <span className="text-[0.6875rem] text-[#A2968A] font-normal text-center mt-1">
+                        <span className="text-[11px] text-[#A2968A] font-normal text-center mt-1">
                           No spam — just your quote and booking updates.
                         </span>
                       </div>
@@ -3299,7 +3299,7 @@ const renderResStep2 = () => {
                         {currentStep > 1 ? (
                           <button
                             onClick={handlePrev}
-                            className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[0.84375rem] tracking-wide transition-colors"
+                            className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[13.5px] tracking-wide transition-colors"
                           >
                             <ChevronLeft className="w-4 h-4" /> Back
                           </button>
@@ -3308,7 +3308,7 @@ const renderResStep2 = () => {
                           <button
                             onClick={handleNext}
                             disabled={!isStepValid()}
-                            className={`px-[1.5rem] py-[0.6875rem] rounded-full font-semibold text-[0.84375rem] transition-all flex items-center gap-2 ${
+                            className={`px-[24px] py-[11px] rounded-full font-semibold text-[13.5px] transition-all flex items-center gap-2 ${
                               !isStepValid()
                                 ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                                 : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
@@ -3325,7 +3325,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY (Visible >= 880px) */}
-          <div className="hidden min-[55rem]:block w-[18.5rem] shrink-0 bg-[#fdf9f3] border-l border-[#e5e5e5]">
+          <div className="hidden min-[880px]:block w-[296px] shrink-0 bg-[#fdf9f3] border-l border-[#e5e5e5]">
              <div className="sticky top-24">
                <BookingSummaryCard
                 className="w-full !bg-transparent !border-none"
@@ -3349,17 +3349,17 @@ const renderResStep2 = () => {
       </div>
 
       {/* MOBILE STICKY SUMMARY (< 880px) */}
-      <div className="block min-[55rem]:hidden fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+      <div className="block min-[880px]:hidden fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
         <div className="flex items-center justify-between gap-4 w-full">
           <div className="flex flex-col">
-            <span className="text-[0.6875rem] font-medium text-gray-500 uppercase tracking-wider">Estimated total</span>
-            <span className="text-[1.125rem] font-bold text-gray-900">${pricingResult?.total || 0}</span>
+            <span className="text-[11px] font-medium text-gray-500 uppercase tracking-wider">Estimated total</span>
+            <span className="text-[18px] font-bold text-gray-900">${pricingResult?.total || 0}</span>
           </div>
           {currentStep < totalSteps && (
             <button
               onClick={handleNext}
               disabled={!isStepValid()}
-              className={`px-6 py-3 rounded-full font-semibold text-[0.84375rem] transition-all flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-full font-semibold text-[13.5px] transition-all flex items-center gap-2 ${
                 !isStepValid()
                   ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                   : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20"
@@ -3379,12 +3379,12 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }
     <div className={`w-full py-4 px-5 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
       {/* LEFT SIDE */}
       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-        <div className="font-medium text-gray-800 text-[0.875rem] whitespace-nowrap flex items-center">
+        <div className="font-medium text-gray-800 text-[14px] whitespace-nowrap flex items-center">
           {label}
         </div>
         {hasInfo && (
           <div className="w-5 h-5 rounded-full border-2 border-red-500/80 text-red-500/80 flex items-center justify-center ml-1 opacity-80 group-hover:opacity-100 transition-opacity cursor-help shrink-0">
-            <span className="text-[0.75rem] font-bold leading-none -mt-0.5">i</span>
+            <span className="text-[12px] font-bold leading-none -mt-0.5">i</span>
           </div>
         )}
       </div>
@@ -3397,7 +3397,7 @@ const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }
         >
           <Minus className="w-3.5 h-3.5" strokeWidth={2} />
         </button>
-        <span className="w-4 text-center font-semibold text-[0.875rem] text-gray-900 shrink-0">{count}</span>
+        <span className="w-4 text-center font-semibold text-[14px] text-gray-900 shrink-0">{count}</span>
         <button
           onClick={() => onUpdate(1)}
           className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-all border-[1.5px] border-[#FB8C42]/50 shrink-0"
@@ -3649,7 +3649,7 @@ const AddressAutocomplete = ({
 
 const InputField = ({ label, icon: Icon, value, onChange, ...props }: any) => (
   <div className="space-y-1 group">
-    <label className="text-[0.625rem] font-semibold text-gray-500 uppercase">
+    <label className="text-[10px] font-semibold text-gray-500 uppercase">
       {label}
     </label>
     <div className="relative">
