@@ -3267,7 +3267,7 @@ const renderResStep2 = () => {
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
           <div className="w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[20px] min-[880px]:px-[34px] py-[30px] min-[880px]:py-[56px] relative flex flex-col items-center">
-             <div className="w-full max-w-[768px] flex flex-col flex-1 justify-center">
+             <div className="w-full max-w-[768px] flex flex-col flex-1 justify-center min-[880px]:justify-start">
                {renderContent()}
                
                {/* Inner Step Controls (Hidden on Mobile) */}
