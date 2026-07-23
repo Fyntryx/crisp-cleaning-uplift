@@ -2006,16 +2006,13 @@ const renderResStep2 = () => {
         </div>
 
         {/* Top section: Service Types */}
-        <div className="grid grid-cols-1 md:grid-cols-3 bg-white border border-gray-200 rounded-[12px] divide-y md:divide-y-0 md:divide-x divide-gray-200 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10 mt-6">
           {[
             { id: 'Standard', label: 'Standard', desc: 'Maintain cleanliness, remove visible dirt, restore order, and leave the home fresh.' },
             { id: 'Deep', label: 'Deep', desc: 'High-detail clean to remove all dirt, grime, and build-up, with added attention to less frequently maintained areas.', badge: 'MOST BOOKED FIRST VISIT' },
             { id: 'Vacate', label: 'Vacate', desc: 'A full-scope, maximum-detail clean — built to meet rental inspection standards.', badge: 'BOND BACK GUARANTEE' }
           ].map((type, index) => {
             const isSelected = formData.cleaningType === type.id;
-            let roundedClass = "";
-            if (index === 0) roundedClass = "rounded-t-[12px] md:rounded-t-none md:rounded-l-[12px]";
-            else if (index === 2) roundedClass = "rounded-b-[12px] md:rounded-b-none md:rounded-r-[12px]";
 
             return (
               <div 
@@ -2027,24 +2024,19 @@ const renderResStep2 = () => {
                   }
                   setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
                 }}
-                className={`relative cursor-pointer p-4 md:p-5 transition-all duration-200 flex flex-col ${roundedClass} ${
+                className={`relative cursor-pointer p-[calc(1.25*var(--scale-unit))] transition-all duration-300 flex flex-col rounded-[20px] border-[1.5px] ${
                   isSelected 
-                    ? 'bg-[#FB8C42]/5 shadow-[inset_0_0_0_1.5px_#FB8C42] z-10' 
-                    : 'bg-white hover:bg-gray-50/50 z-0'
+                    ? 'border-[#FB8C42] bg-[#FFF8F3] shadow-md z-10 scale-[1.02]' 
+                    : 'border-tan bg-white hover:border-gray-300 hover:shadow-sm z-0'
                 }`}
               >
                 {type.badge && (
-                  <div className="absolute top-0 right-0 bg-[#FB8C42] text-white text-[calc(0.59375*var(--scale-unit))] font-bold tracking-wider px-2 py-1 rounded-bl-lg uppercase">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[calc(0.5625*var(--scale-unit))] font-bold tracking-widest px-3 py-1 rounded-full uppercase whitespace-nowrap shadow-sm">
                     {type.badge}
                   </div>
                 )}
-                <div className="flex items-center gap-2 mt-1 md:mt-0">
-                  <div className={`w-4 h-4 flex-shrink-0 rounded-full border-[1.5px] flex items-center justify-center transition-colors ${isSelected ? 'border-[#FB8C42]' : 'border-gray-300'}`}>
-                    {isSelected && <div className="w-2 h-2 bg-[#FB8C42] rounded-full" />}
-                  </div>
-                  <h3 className={`font-semibold text-[calc(0.9375*var(--scale-unit))] ${isSelected ? 'text-gray-900' : 'text-gray-900'}`}>{type.label}</h3>
-                </div>
-                <p className="text-[calc(0.75*var(--scale-unit))] font-normal text-gray-500 leading-relaxed mt-3">{type.desc}</p>
+                <h3 className="font-semibold text-[calc(1.0625*var(--scale-unit))] text-gray-900 mt-2">{type.label}</h3>
+                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 leading-relaxed mt-2">{type.desc}</p>
               </div>
             );
           })}
