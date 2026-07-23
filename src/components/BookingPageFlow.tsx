@@ -2219,7 +2219,7 @@ const renderResStep2 = () => {
           <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
             FREQUENCY
           </span>
-          <div className="flex flex-wrap items-center gap-[calc(0.5*var(--scale-unit))]">
+          <div className="flex flex-wrap md:flex-nowrap items-center gap-[calc(0.5*var(--scale-unit))]">
             {frequencies.map((freq) => {
               const isSelected = formData.frequency === freq.id;
               return (
@@ -2252,7 +2252,7 @@ const renderResStep2 = () => {
         </div>
 
         {/* Grid: Calendar Left & Time Slots Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-5 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
           <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
