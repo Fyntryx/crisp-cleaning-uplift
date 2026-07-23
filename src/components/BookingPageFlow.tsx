@@ -28,6 +28,7 @@ import {
   Check,
   ArrowRight,
   Sliders,
+  Clock,
   Calendar,
   ClipboardList,
   Bath,
@@ -2328,7 +2329,7 @@ const renderResStep2 = () => {
               ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ''}
             </span>
 
-            <div className="grid grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-2 gap-[calc(0.75*var(--scale-unit))]">
               {(() => {
                 let availableTimes = timeSlots;
                 if (formData.selectedDate && pricingConfig?.systemBlockedTimeSlots) {
@@ -2369,12 +2370,13 @@ const renderResStep2 = () => {
                       onClick={() =>
                         setFormData((prev) => ({ ...prev, selectedTime: time }))
                       }
-                      className={`w-full py-2.5 px-1 rounded-full border-[1.5px] text-center text-[calc(0.78125*var(--scale-unit))] transition-all ${isSelected
-                        ? "border-brand bg-cream-tag text-brand-dark font-semibold shadow-sm"
-                        : "border-tan bg-white text-[#5c534b] font-medium hover:border-brand/30 hover:bg-cream-tag/20"
+                      className={`w-full py-[calc(0.875*var(--scale-unit))] px-3 rounded-xl border-[1.5px] flex items-center justify-center gap-[calc(0.5*var(--scale-unit))] text-[calc(0.8125*var(--scale-unit))] transition-all duration-200 shadow-sm ${isSelected
+                        ? "border-brand bg-brand/5 text-brand-dark font-semibold ring-1 ring-brand/20"
+                        : "border-gray-200 bg-white text-gray-600 font-medium hover:border-brand/40 hover:bg-brand/5 hover:text-brand-dark hover:shadow-md"
                         }`}
                     >
-                      {time}
+                      <Clock className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))] opacity-60" />
+                      <span>{time}</span>
                     </button>
                   );
                 });
