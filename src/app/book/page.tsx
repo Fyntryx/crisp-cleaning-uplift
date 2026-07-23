@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function BookPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-[100dvh] bg-white booking-scale-root">
       <MinimalNavbar />
-      <main className="flex-1 mt-[65px]">
+      <main className="flex-1 min-h-0 mt-[calc(4.0625*var(--scale-unit))]">
         <BookingPageFlow hiddenInline={true} />
       </main>
     </div>

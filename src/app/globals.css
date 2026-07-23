@@ -125,6 +125,10 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
+  .booking-scale-root {
+    --scale-unit: clamp(15px, 0.9vw + 4.5px, 23px);
+  }
+
   h1,
   h2,
   h3,
