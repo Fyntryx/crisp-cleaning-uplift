@@ -426,18 +426,23 @@ const BookingSummaryCard = ({
         </div>
       )}
 
-      {(pricingResult?.estimatedMinutes ?? 0) > 0 && (
-        <div className="flex justify-between items-center mt-4 mb-2 bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
-            <span className="text-blue-800/80 font-bold text-sm tracking-tight">Estimated Time</span>
-            <span className="font-black text-blue-900">{formatEta(pricingResult!.estimatedMinutes)}</span>
-        </div>
-      )}
+
 
       <div className="flex justify-between items-end pt-4">
         <span className="text-[12.5px] font-[600] text-[#2b2523] mb-1">Estimated total</span>
         <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
           ${(pricingResult?.total || 0).toFixed(2)}
         </span>
+      </div>
+
+      <div className="mt-2 text-[10.5px] font-[400] text-[#8d8378] leading-[1.55]">
+        {formData.cleaningType === 'Hourly' ? (
+          <p>Billed on time worked &mdash; this is your cap.</p>
+        ) : (
+          (pricingResult?.estimatedMinutes ?? 0) > 0 && (
+            <p>Est. duration {formatEta(pricingResult!.estimatedMinutes)} &middot; fixed price once confirmed.</p>
+          )
+        )}
       </div>
 
       {formData.frequency &&
