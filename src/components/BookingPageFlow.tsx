@@ -1735,7 +1735,7 @@ const renderResStep2 = () => {
                   {/* Rate Bottom Label */}
                   <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-center">
                     <span className="text-[calc(0.75*var(--scale-unit))] font-bold text-[#8A6D3B]">
-                      Rate: ${pricingConfig?.hourlyRate || 55}/hour/cleaner
+                      Rate: ${pricingConfig?.hourlyRatePerHalfHour ? pricingConfig.hourlyRatePerHalfHour * 2 : 55}/hour/cleaner
                     </span>
                   </div>
                 </div>
