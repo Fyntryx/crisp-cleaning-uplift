@@ -200,8 +200,8 @@ const BookingSummaryCard = ({
   <div
     className={`bg-cream px-6 py-[calc(1.625*var(--scale-unit))] gap-2.5 text-[calc(0.78125*var(--scale-unit))] relative overflow-visible border-l border-tan-soft ${className}`}
   >
-    <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 relative z-10">
-      Booking Summary
+    <h3 className="text-[14px] font-[600] text-[#2b2523] mb-1.5 relative z-10">
+      {formData.contact?.firstName ? `Hi ${formData.contact.firstName}` : "Hi there"}
     </h3>
 
     <div className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-50/50 border border-emerald-100 text-emerald-700 font-semibold text-[calc(0.8125*var(--scale-unit))] mb-6 relative z-10 group/tooltip cursor-pointer">
@@ -214,18 +214,18 @@ const BookingSummaryCard = ({
 
     <div className="relative z-10 text-[calc(0.90625*var(--scale-unit))]">
 
-      <div className="flex justify-between items-center py-3.5 text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-        <span>Service Type</span>
-        <span>{formData.cleaningType || "Standard"} Clean</span>
+      <div className="flex justify-between items-center py-3.5">
+        <span className="text-[12.5px] font-medium text-[#8d8378]">Service Type</span>
+        <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.cleaningType || "Standard"} Clean</span>
       </div>
 
       <div className="h-px bg-tan-soft border-0"></div>
 
       {formData.selectedDate && formData.selectedTime && (
         <>
-          <div className="flex justify-between items-center py-3.5 gap-4 text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-            <span className="whitespace-nowrap">Date & Time</span>
-            <span className="text-right">
+          <div className="flex justify-between items-center py-3.5 gap-4">
+            <span className="text-[12.5px] font-medium text-[#8d8378] whitespace-nowrap">Date & Time</span>
+            <span className="text-[12.5px] font-normal text-[#2b2523] text-right">
               {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
             </span>
           </div>
@@ -233,9 +233,9 @@ const BookingSummaryCard = ({
         </>
       )}
 
-      <div className="flex justify-between items-center py-3.5 text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-        <span>Frequency</span>
-        <span>{formData.frequency || "One time"}</span>
+      <div className="flex justify-between items-center py-3.5">
+        <span className="text-[12.5px] font-medium text-[#8d8378]">Frequency</span>
+        <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.frequency || "One time"}</span>
       </div>
 
       <div className="h-px bg-tan-soft border-0 mb-5"></div>
@@ -247,13 +247,13 @@ const BookingSummaryCard = ({
 
         <div className="space-y-3">
           {pricingResult?.breakdown.cleaningType && (
-            <div className="flex justify-between text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-              <span>
+            <div className="flex justify-between">
+              <span className="text-[12.5px] font-medium text-[#8d8378]">
                 {formData.cleaningType === 'Hourly' 
                   ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}` 
                   : `${pricingResult.breakdown.cleaningType.name} Clean Base`}
               </span>
-              <span>A${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
+              <span className="text-[12.5px] font-normal text-[#2b2523]">${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
             </div>
           )}
           {(() => {
@@ -264,42 +264,42 @@ const BookingSummaryCard = ({
             return (
               <>
                 {(formData.homeDetails.bedrooms || 0) > 0 && (
-                  <div className="flex justify-between text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-                    <span>{formData.homeDetails.bedrooms}x Bedroom</span>
-                    <span>
-                      A${(currentRoomPrices.Bedroom * (formData.homeDetails.bedrooms || 0)).toFixed(2)}
+                  <div className="flex justify-between">
+                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.bedrooms}x Bedroom</span>
+                    <span className="text-[12.5px] font-normal text-[#2b2523]">
+                      ${(currentRoomPrices.Bedroom * (formData.homeDetails.bedrooms || 0)).toFixed(2)}
                     </span>
                   </div>
                 )}
                 {(formData.homeDetails.bathrooms || 0) > 0 && (
-                  <div className="flex justify-between text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-                    <span>{formData.homeDetails.bathrooms}x Bathroom</span>
-                    <span>
-                      A${(currentRoomPrices.Bathroom * (formData.homeDetails.bathrooms || 0)).toFixed(2)}
+                  <div className="flex justify-between">
+                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.bathrooms}x Bathroom</span>
+                    <span className="text-[12.5px] font-normal text-[#2b2523]">
+                      ${(currentRoomPrices.Bathroom * (formData.homeDetails.bathrooms || 0)).toFixed(2)}
                     </span>
                   </div>
                 )}
                 {(formData.homeDetails.kitchens || 0) > 0 && (
-                  <div className="flex justify-between text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-                    <span>{formData.homeDetails.kitchens}x Kitchen</span>
-                    <span>
-                      A${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
+                  <div className="flex justify-between">
+                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.kitchens}x Kitchen</span>
+                    <span className="text-[12.5px] font-normal text-[#2b2523]">
+                      ${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
                     </span>
                   </div>
                 )}
                 {(formData.homeDetails.livingRooms || 0) > 0 && (
-                  <div className="flex justify-between text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-                    <span>{formData.homeDetails.livingRooms}x Living & Dining</span>
-                    <span>
-                      A${(currentRoomPrices.Living * (formData.homeDetails.livingRooms || 0)).toFixed(2)}
+                  <div className="flex justify-between">
+                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.livingRooms}x Living & Dining</span>
+                    <span className="text-[12.5px] font-normal text-[#2b2523]">
+                      ${(currentRoomPrices.Living * (formData.homeDetails.livingRooms || 0)).toFixed(2)}
                     </span>
                   </div>
                 )}
                 {(formData.homeDetails.other || 0) > 0 && (
-                  <div className="flex justify-between text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-                    <span>{formData.homeDetails.other}x Other Area</span>
-                    <span>
-                      A${(currentRoomPrices.Other * (formData.homeDetails.other || 0)).toFixed(2)}
+                  <div className="flex justify-between">
+                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.other}x Other Area</span>
+                    <span className="text-[12.5px] font-normal text-[#2b2523]">
+                      ${(currentRoomPrices.Other * (formData.homeDetails.other || 0)).toFixed(2)}
                     </span>
                   </div>
                 )}
@@ -307,9 +307,9 @@ const BookingSummaryCard = ({
             );
           })()}
           {pricingResult?.breakdown.extras.items.map((e: any) => (
-            <div key={e.name} className="flex justify-between text-[calc(0.78125*var(--scale-unit))] font-medium text-ink">
-              <span>+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
-              <span>A${e.price}</span>
+            <div key={e.name} className="flex justify-between">
+              <span className="text-[12.5px] font-medium text-[#8d8378]">+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
+              <span className="text-[12.5px] font-normal text-[#2b2523]">${e.price}</span>
             </div>
           ))}
           {outOfAreaFee > 0 && (
@@ -434,9 +434,9 @@ const BookingSummaryCard = ({
       )}
 
       <div className="flex justify-between items-end pt-4">
-        <span className="text-[calc(0.78125*var(--scale-unit))] font-semibold text-ink mb-1">Total</span>
-        <span className="text-[calc(1.1875*var(--scale-unit))] font-bold text-ink tracking-tight leading-none">
-          A${(pricingResult?.total || 0).toFixed(2)}
+        <span className="text-[12.5px] font-[600] text-[#2b2523] mb-1">Estimated total</span>
+        <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
+          ${(pricingResult?.total || 0).toFixed(2)}
         </span>
       </div>
 
@@ -3363,8 +3363,8 @@ const renderResStep2 = () => {
       <div className="block min-[880px]:hidden fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
         <div className="flex items-center justify-between gap-4 w-full">
           <div className="flex flex-col">
-            <span className="text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-500 uppercase tracking-wider">Estimated total</span>
-            <span className="text-[calc(1.125*var(--scale-unit))] font-bold text-gray-900">${pricingResult?.total || 0}</span>
+            <span className="text-[12.5px] font-[600] text-[#2b2523] uppercase tracking-wider">Estimated total</span>
+            <span className="text-[19px] font-[700] text-[#2b2523]">${pricingResult?.total || 0}</span>
           </div>
           {currentStep < totalSteps && (
             <button
