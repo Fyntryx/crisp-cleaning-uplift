@@ -11,7 +11,7 @@ export default function BookPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <MinimalNavbar />
-      <main className="flex-1 mt-[65px]">
+      <main className="flex-1 mt-[4.0625rem]">
         <BookingPageFlow hiddenInline={true} />
       </main>
     </div>
