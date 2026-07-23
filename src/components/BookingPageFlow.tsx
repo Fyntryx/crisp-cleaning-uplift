@@ -1609,7 +1609,7 @@ const renderResStep2 = () => {
       <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
 
         {formData.cleaningType !== 'Hourly' && (
-          <>
+          <React.Fragment>
             {/* Step Identifier Tag */}
             <div className="mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[calc(0.625*var(--scale-unit))] font-bold tracking-wider uppercase bg-orange-50/50">
@@ -1650,7 +1650,7 @@ const renderResStep2 = () => {
                 </button>
               </div>
             </div>
-          </>
+          </React.Fragment>
         )}
 
           {/* MIDDLE ROW: Selectors */}
