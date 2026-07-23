@@ -1624,49 +1624,6 @@ const renderResStep2 = () => {
     return (
       <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
 
-        {formData.cleaningType !== 'Hourly' && (
-          <div className="mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-orange-100 text-[#FB8C42] text-[calc(0.625*var(--scale-unit))] font-bold tracking-wider uppercase bg-orange-50/50">
-              <Sliders className="w-3 h-3" /> CUSTOMISE
-            </span>
-          </div>
-        )}
-
-        <div className="flex flex-col space-y-4">
-
-          {formData.cleaningType !== 'Hourly' && (
-            <div className="w-full bg-white rounded-3xl border border-gray-100 p-4 md:p-5 flex flex-col items-start space-y-3 shadow-sm relative overflow-hidden group hover:border-gray-200 transition-all duration-300">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-orange-50/70 border border-orange-100 text-primary flex items-center justify-center shadow-sm shrink-0">
-                  <SelectedIcon className="w-4 h-4 text-[#FB8C42]" />
-                </div>
-                <div>
-                  <span className="block text-[calc(0.6875*var(--scale-unit))] font-semibold uppercase text-gray-400 tracking-wider">
-                    SELECTED SERVICE
-                  </span>
-                  <span className="font-semibold text-sm text-gray-800 leading-tight">
-                    {formData.cleaningType} Clean
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-[calc(0.84375*var(--scale-unit))] font-normal leading-relaxed text-gray-500">
-                {getPlanDescription()}
-              </p>
-
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowQuiz(true);
-                  setCurrentStep(4);
-                }}
-                className="text-xs font-bold text-[#FB8C42] hover:underline flex items-center gap-1 mt-2 transition-all cursor-pointer"
-              >
-                Help me decide &rarr;
-              </button>
-            </div>
-          )}
-
           {/* MIDDLE ROW: Selectors */}
           {formData.cleaningType === 'Hourly' ? (
             <div className="flex flex-col gap-6">
