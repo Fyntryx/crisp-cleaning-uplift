@@ -1930,7 +1930,7 @@ const renderResStep2 = () => {
             </div>
           </div>
 
-          <div className="w-full max-w-sm space-y-5">
+          <div className="w-full max-w-[460px] space-y-5">
             <div className="flex flex-col space-y-2">
               <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">FIRST NAME</label>
               <input
@@ -3169,21 +3169,56 @@ const renderResStep2 = () => {
   };
 
   const sidebarSteps = [
-    { label: "Details", step: 1, icon: User },
-    { label: "Type", step: 2, icon: Tag },
-    { label: "Service & Condition", step: 3, icon: Sparkles },
+    { label: "Lead", step: 1, icon: User },
+    { label: "Price type", step: 2, icon: Tag },
+    { label: "Service & condition", step: 3, icon: Sparkles },
     { label: "Customise", step: 4, icon: Sliders },
     { label: "Schedule", step: 5, icon: Calendar },
     { label: "Instructions", step: 6, icon: FileText },
-    { label: "Checkout", step: 7, icon: CreditCard },
+    { label: "Sign up", step: 7, icon: CreditCard },
   ];
 
   return (
-    <div className="min-h-[100dvh] flex flex-col bg-white py-2 md:py-4 font-sans text-gray-900">
-      <div className="w-full px-[10px] flex-1 flex flex-col">
-        <div className="flex flex-col lg:flex-row items-stretch w-full flex-1">
-          {/* LEFT COLUMN - STEPPER */}
-          <div className="w-full lg:w-[216px] shrink-0 bg-transparent lg:border-r lg:border-[#e5e5e5]">
+    <div className="min-h-[100dvh] flex flex-col bg-white font-sans text-gray-900 pb-[80px] min-[880px]:pb-0">
+      <div className="w-full flex-1 flex flex-col">
+        
+        {/* HORIZONTAL STEPPER (Visible < 1180px) */}
+        <div className="block min-[1180px]:hidden w-full border-b border-[#e5e5e5] bg-white sticky top-0 z-40">
+          <div className="flex overflow-x-auto no-scrollbar items-center py-4 px-[20px] min-[880px]:px-[34px] gap-6">
+            {sidebarSteps.map((item, idx) => {
+              const isActive = item.step === currentStep;
+              const isCompleted = item.step < currentStep;
+              return (
+                <div 
+                  key={idx}
+                  onClick={() => {
+                    if (isCompleted) {
+                      setSubmitError(null);
+                      setSubmitSuccess(null);
+                      setCurrentStep(item.step);
+                    }
+                  }}
+                  className={`flex items-center gap-2 whitespace-nowrap shrink-0 ${isCompleted ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
+                >
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${
+                    isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
+                    isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
+                    "bg-gray-50 text-gray-400 border border-gray-100"
+                  }`}>
+                    {isCompleted ? <Check className="w-3 h-3" strokeWidth={3} /> : <span className="text-[10px] font-semibold">{item.step}</span>}
+                  </div>
+                  <span className={`text-[11px] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
+                    {item.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex flex-col min-[880px]:flex-row items-stretch w-full flex-1">
+          {/* LEFT COLUMN - STEPPER (Visible >= 1180px) */}
+          <div className="hidden min-[1180px]:block w-[216px] shrink-0 bg-transparent border-r border-[#e5e5e5]">
              <div className="flex flex-col gap-6 lg:py-8 pr-6 lg:pr-8 lg:sticky lg:top-24">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
@@ -3231,13 +3266,13 @@ const renderResStep2 = () => {
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className="w-full lg:flex-1 shrink-0 bg-transparent p-5 lg:p-8 relative flex flex-col">
-             <div className="flex flex-col flex-1 justify-center">
+          <div className="w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[20px] min-[880px]:px-[34px] py-[30px] min-[880px]:py-[56px] relative flex flex-col items-center">
+             <div className="w-full max-w-[768px] flex flex-col flex-1 justify-center">
                {renderContent()}
                
-               {/* Inner Step Controls */}
+               {/* Inner Step Controls (Hidden on Mobile) */}
                {currentStep < totalSteps && (
-                  <div className={`mt-8 pt-8 flex border-t border-tan-soft ${
+                  <div className={`hidden min-[880px]:flex mt-8 pt-8 border-t border-tan-soft ${
                     currentStep === 1 && !isCommercial 
                       ? "flex-col items-center" 
                       : "items-center justify-between"
@@ -3289,9 +3324,9 @@ const renderResStep2 = () => {
              </div>
           </div>
 
-          {/* RIGHT COLUMN - BOOKING SUMMARY */}
-          <div className="w-full lg:w-[296px] shrink-0 bg-[#fdf9f3] lg:border-l lg:border-[#e5e5e5]">
-             <div className="lg:sticky lg:top-24">
+          {/* RIGHT COLUMN - BOOKING SUMMARY (Visible >= 880px) */}
+          <div className="hidden min-[880px]:block w-[296px] shrink-0 bg-[#fdf9f3] border-l border-[#e5e5e5]">
+             <div className="sticky top-24">
                <BookingSummaryCard
                 className="w-full !bg-transparent !border-none"
                 formData={formData}
@@ -3310,6 +3345,29 @@ const renderResStep2 = () => {
               />
              </div>
           </div>
+        </div>
+      </div>
+
+      {/* MOBILE STICKY SUMMARY (< 880px) */}
+      <div className="block min-[880px]:hidden fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+        <div className="flex items-center justify-between gap-4 w-full">
+          <div className="flex flex-col">
+            <span className="text-[11px] font-medium text-gray-500 uppercase tracking-wider">Estimated total</span>
+            <span className="text-[18px] font-bold text-gray-900">${pricingResult?.total || 0}</span>
+          </div>
+          {currentStep < totalSteps && (
+            <button
+              onClick={handleNext}
+              disabled={!isStepValid()}
+              className={`px-6 py-3 rounded-full font-semibold text-[13.5px] transition-all flex items-center gap-2 ${
+                !isStepValid()
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20"
+              }`}
+            >
+              Continue <ArrowRight className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
     </div>
