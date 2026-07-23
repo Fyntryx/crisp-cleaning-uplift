@@ -2219,11 +2219,11 @@ const renderResStep2 = () => {
           <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
             FREQUENCY
           </span>
-          <div className="relative inline-flex flex-col md:flex-row items-center justify-between bg-white border-[1.5px] border-tan rounded-[24px] md:rounded-full p-1 max-w-2xl w-full gap-2 md:gap-0">
+          <div className="flex flex-wrap items-center gap-[calc(0.5*var(--scale-unit))]">
             {frequencies.map((freq) => {
               const isSelected = formData.frequency === freq.id;
               return (
-                <div key={freq.id} className="relative flex-1 text-center w-full md:w-auto">
+                <div key={freq.id} className="relative flex-1 md:flex-none text-center w-full md:w-auto">
                   
                   <button
                     onClick={() => {
@@ -2235,9 +2235,9 @@ const renderResStep2 = () => {
                       }
                       setFormData({ ...formData, frequency: newFreq as any });
                     }}
-                    className={`w-full py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] ${isSelected
-                      ? "bg-cream-tag border-brand text-brand-dark font-semibold"
-                      : "border-transparent bg-transparent text-[#5c534b]"
+                    className={`w-full md:w-auto px-[calc(1.25*var(--scale-unit))] py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] ${isSelected
+                      ? "bg-cream-tag border-brand text-brand-dark font-semibold shadow-sm"
+                      : "bg-white border-tan text-[#5c534b] hover:border-gray-300 hover:shadow-sm"
                       }`}
                   >
                     {freq.label}
