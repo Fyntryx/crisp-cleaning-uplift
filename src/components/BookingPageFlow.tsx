@@ -28,7 +28,6 @@ import {
   Check,
   ArrowRight,
   Sliders,
-  Clock,
   Calendar,
   ClipboardList,
   Bath,
