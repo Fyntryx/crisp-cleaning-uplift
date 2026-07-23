@@ -1,7 +1,6 @@
 import React from "react";
 import BookingPageFlow from "@/components/BookingPageFlow";
 import MinimalNavbar from "@/components/MinimalNavbar";
-import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Book a Clean | Crisp Cleaning",
@@ -15,7 +14,6 @@ export default function BookPage() {
       <main className="flex-1 mt-[65px]">
         <BookingPageFlow hiddenInline={true} />
       </main>
-      <Footer />
     </div>
   );
 }

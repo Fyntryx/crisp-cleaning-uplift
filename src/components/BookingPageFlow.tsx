@@ -1505,9 +1505,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </ul>
             </div>
             
-            <div className="mt-auto">
+            <div className="mt-6">
               {!isFlatRate && (
-                <button className="w-full py-2 px-4 rounded-full border-2 border-gray-200 text-gray-700 font-semibold text-[13.5px] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                <button className="px-[24px] py-[11px] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[13.5px] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Flat Rate
                 </button>
               )}
@@ -1552,14 +1552,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </ul>
             </div>
 
-            <div className="mt-auto">
+            <div className="mt-6">
               {isHourly && (
                 <button 
                   onClick={(e) => {
                     e.stopPropagation();
                     handleNext();
                   }}
-                  className="w-full py-2 px-4 rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[13.5px] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
+                  className="px-[24px] py-[11px] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[13.5px] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
                 >
                   Continue with Hourly <ArrowRight className="w-4 h-4" />
                 </button>
@@ -1914,65 +1914,64 @@ const renderResStep2 = () => {
 
   const renderResStepDiscount = () => {
     return (
-      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start -mt-5">
-
-        <div className="space-y-6">
-          <div className="bg-white rounded-[24px] border border-gray-100 p-6 md:p-8 flex flex-col items-center text-center shadow-sm relative overflow-hidden">
-            <div className="mb-4">
-              <CountdownTimer onTimeout={() => {
-                setSubmitError(null);
-                setSubmitSuccess(null);
-                setCurrentStep((prev) => prev + 1);
-              }} />
+      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start">
+        <div className="flex flex-col items-start text-left space-y-6">
+          <div className="flex flex-col items-start gap-3">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#FB8C42] text-white text-[10px] font-bold tracking-wider uppercase">
+              UNLOCK 5% OFF YOUR FIRST CLEAN
+            </span>
+            <div>
+              <h2 className="text-[22px] font-semibold text-gray-900 tracking-tight leading-tight mb-2">
+                {discountContent.heading}
+              </h2>
+              <p className="text-[13px] font-normal text-gray-500">
+                {discountContent.subheading}
+              </p>
             </div>
-            <h2 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-2">{discountContent.heading}</h2>
-            <p className="text-gray-500 text-sm font-medium max-w-md mx-auto mb-6 mt-4">
-              {discountContent.subheading}
-            </p>
+          </div>
 
-            <div className="w-full max-w-sm space-y-4 text-left">
-              <div className="flex flex-col space-y-2">
-                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">FIRST NAME</label>
-                <input
-                  type="text"
-                  placeholder="First name"
-                  className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
-                  value={`${formData.contact.firstName || ""} ${formData.contact.lastName || ""}`.trim()}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    const parts = val.trimStart().split(/\s+/);
-                    updateContact("firstName", parts[0] || "");
-                    updateContact("lastName", parts.slice(1).join(" "));
-                  }}
-                />
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">EMAIL</label>
-                <input
-                  type="email"
-                  placeholder="you@email.com"
-                  className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
-                  value={formData.contact.email}
-                  onChange={(e) => updateContact("email", e.target.value)}
-                />
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="text-[12px] font-semibold uppercase text-stone-500 tracking-[0.6px] leading-[18px]">MOBILE</label>
-                <input
-                  type="tel"
-                  placeholder="04XX XXX XXX"
-                  className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
-                  value={formData.contact.phone}
-                  onChange={(e) => updateContact("phone", e.target.value)}
-                />
-              </div>
-
-              {discountError && (
-                <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
-                  {discountError}
-                </div>
-              )}
+          <div className="w-full max-w-sm space-y-5">
+            <div className="flex flex-col space-y-2">
+              <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">FIRST NAME</label>
+              <input
+                type="text"
+                placeholder="First name"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
+                value={`${formData.contact.firstName || ""} ${formData.contact.lastName || ""}`.trim()}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  const parts = val.trimStart().split(/\s+/);
+                  updateContact("firstName", parts[0] || "");
+                  updateContact("lastName", parts.slice(1).join(" "));
+                }}
+              />
             </div>
+            <div className="flex flex-col space-y-2">
+              <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">MOBILE</label>
+              <input
+                type="tel"
+                placeholder="04XX XXX XXX"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
+                value={formData.contact.phone}
+                onChange={(e) => updateContact("phone", e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col space-y-2">
+              <label className="text-[10px] font-semibold uppercase text-ink-soft tracking-[0.09em]">EMAIL</label>
+              <input
+                type="email"
+                placeholder="you@email.com"
+                className="w-full px-[14px] py-[12px] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[14.5px] shadow-sm transition-all"
+                value={formData.contact.email}
+                onChange={(e) => updateContact("email", e.target.value)}
+              />
+            </div>
+
+            {discountError && (
+              <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
+                {discountError}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -2112,7 +2111,7 @@ const renderResStep2 = () => {
                     }
                   </p>
 
-                  <div className="border-t border-gray-200 pt-5 mt-auto">
+                  <div className="border-t border-gray-200 pt-5 mt-8">
                     <div className="flex flex-col items-start gap-4">
                       <p className="text-sm text-gray-500 w-full text-justify">
                         <span className="font-bold">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
@@ -3181,7 +3180,7 @@ const renderResStep2 = () => {
 
   return (
     <div className="min-h-screen bg-white py-2 md:py-4 font-sans text-gray-900">
-      <div className="w-full px-[10px]">
+      <div className="w-full max-w-[1440px] mx-auto px-[10px]">
         
         <div className="flex flex-col lg:flex-row items-start w-full">
           {/* LEFT COLUMN - STEPPER */}
@@ -3239,40 +3238,60 @@ const renderResStep2 = () => {
                
                {/* Inner Step Controls */}
                {currentStep < totalSteps && (
-                 <div className="mt-auto pt-8 flex items-center justify-between border-t border-tan-soft">
-                   {currentStep > 1 ? (
-                     <button
-                       onClick={handlePrev}
-                       className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[13.5px] tracking-wide transition-colors"
-                     >
-                       <ChevronLeft className="w-4 h-4" /> Back
-                     </button>
-                   ) : <div />}
-                   <div className="flex flex-col items-end gap-2">
-                     <button
-                       onClick={handleNext}
-                       disabled={!isStepValid()}
-                       className={`px-8 py-3.5 rounded-full font-semibold text-[13.5px] transition-all flex items-center gap-2 ${
-                         !isStepValid()
-                           ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                           : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
-                       }`}
-                     >
-                       Continue <ArrowRight className="w-4 h-4" />
-                     </button>
-                     {currentStep === 1 && !isCommercial && (
-                       <span className="text-[10px] text-gray-400 font-medium whitespace-nowrap mr-2">
-                         No spam — just your quote and booking updates.
-                       </span>
-                     )}
-                   </div>
-                 </div>
-               )}
+                  <div className={`mt-8 pt-8 flex border-t border-tan-soft ${
+                    currentStep === 1 && !isCommercial 
+                      ? "flex-col items-center" 
+                      : "items-center justify-between"
+                  }`}>
+                    {currentStep === 1 && !isCommercial ? (
+                      <div className="w-full max-w-sm flex flex-col items-center gap-2 mt-2">
+                        <button
+                          onClick={handleNext}
+                          disabled={!isStepValid()}
+                          className={`w-full py-3.5 rounded-full font-semibold text-[13.5px] transition-all flex items-center justify-center gap-2 ${
+                            !isStepValid()
+                              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                              : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
+                          }`}
+                        >
+                          Continue <ArrowRight className="w-4 h-4" />
+                        </button>
+                        <span className="text-[11px] text-[#A2968A] font-normal text-center mt-1">
+                          No spam — just your quote and booking updates.
+                        </span>
+                      </div>
+                    ) : (
+                      <>
+                        {currentStep > 1 ? (
+                          <button
+                            onClick={handlePrev}
+                            className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[13.5px] tracking-wide transition-colors"
+                          >
+                            <ChevronLeft className="w-4 h-4" /> Back
+                          </button>
+                        ) : <div />}
+                        <div className="flex flex-col items-end gap-2">
+                          <button
+                            onClick={handleNext}
+                            disabled={!isStepValid()}
+                            className={`px-[24px] py-[11px] rounded-full font-semibold text-[13.5px] transition-all flex items-center gap-2 ${
+                              !isStepValid()
+                                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
+                            }`}
+                          >
+                            Continue <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
              </div>
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY */}
-          <div className="w-full lg:w-[26%] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full min-h-[500px] border-l border-[#e5e5e5]">
+          <div className="w-full lg:w-[26%] shrink-0 lg:sticky lg:top-24 self-start bg-[#FFF9EA] h-full border-l border-[#e5e5e5]">
              <BookingSummaryCard
                 formData={formData}
                 pricingConfig={pricingConfig}
