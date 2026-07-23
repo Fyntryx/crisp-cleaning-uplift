@@ -3272,7 +3272,7 @@ const renderResStep2 = () => {
                
                {/* Inner Step Controls (Hidden on Mobile) */}
                {currentStep < totalSteps && (
-                  <div className={`hidden min-[880px]:flex mt-8 pt-8 border-t border-tan-soft ${
+                  <div className={`hidden min-[880px]:flex mt-8 pt-4 ${
                     currentStep === 1 && !isCommercial 
                       ? "flex-col items-center" 
                       : "items-center justify-between"
