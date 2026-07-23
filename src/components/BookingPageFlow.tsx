@@ -1520,7 +1520,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             className={`relative border-2 rounded-[20px] p-5 cursor-pointer transition-all duration-300 flex flex-col h-full ${
               isHourly
                   ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
-                  : "border-gray-200 bg-[#FFF8F3] hover:border-[#FB8C42]/50 hover:shadow-md"
+                  : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
             {isHourly && (
