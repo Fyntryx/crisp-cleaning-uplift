@@ -1653,102 +1653,117 @@ const renderResStep2 = () => {
 
           {/* MIDDLE ROW: Selectors */}
           {formData.cleaningType === 'Hourly' ? (
-            <div className="grid grid-cols-1 gap-4">
-              {/* Hourly vs Flat-rate explainer */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-5">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center shrink-0">
-                    <Clock className="w-4 h-4 text-amber-600" />
-                  </div>
-                  <div>
-                    <span className="block text-sm font-bold text-[#8A6D3B] mb-1">Hourly is built for specific tasks or targeted areas</span>
-                    <p className="text-[calc(0.78125*var(--scale-unit))] text-amber-800 leading-relaxed opacity-90">
-                      The best option if you&apos;re only after cleaning here and there. You set the priorities and we&apos;ll make sure to make the most of each minute!
-                    </p>
-                  </div>
-                </div>
-                <div className="border-t border-amber-200/60 pt-4">
-                  <p className="text-[calc(0.78125*var(--scale-unit))] text-amber-800 leading-relaxed opacity-90 mb-3">
-                    However, if you&apos;re looking to get entire rooms, or the entire house treated, flat rate is the most cost-effective option. Simply choose which rooms, and we&apos;ll follow an extremely detailed checklist — with no time limit — to guarantee a spotless result! Instead of paying for our time, flat-rate allows you to pay for the result.
-                  </p>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setFormData(prev => ({ ...prev, cleaningType: 'Standard' }));
-                    }}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-[#8A6D3B] underline underline-offset-2 transition-colors"
-                  >
-                    Switch to flat-rate <ArrowRight className="w-3 h-3" />
-                  </button>
-                </div>
+            <div className="flex flex-col gap-6">
+              {/* Header */}
+              <div>
+                <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-1">Build your hourly booking</h3>
+                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500">We work your priority list top-down and stop at the time cap.</p>
               </div>
-              <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-gray-200 transition-all duration-300">
-                <div className="mb-4 md:mb-0">
-                  <span className="block text-sm font-semibold text-gray-800">Hours (Per Cleaner)</span>
-                  <span className="block text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-400 mt-1">Minimum 2 hours per booking</span>
+
+              {/* 2-Column Grid for Controls and Notes */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+                {/* Left Column: Controls Container */}
+                <div className="border-[1.5px] border-tan rounded-2xl p-[calc(1.125*var(--scale-unit))] flex flex-col justify-between bg-white hover:border-gray-300 transition-all shadow-sm">
+                  <div className="flex flex-col space-y-4">
+                    {/* Hours */}
+                    <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                      <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-800">Hours</span>
+                      <div className="flex items-center gap-3">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const val = Math.max(2, (formData.hourlyDetails?.hours || 2) - 0.5);
+                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
+                          }}
+                          disabled={(formData.hourlyDetails?.hours || 2) <= 2}
+                          className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 bg-white"
+                        >
+                          <Minus strokeWidth={2.5} size={14} />
+                        </button>
+                        <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-900 w-6 text-center">
+                          {formData.hourlyDetails?.hours || 2}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const val = (formData.hourlyDetails?.hours || 2) + 0.5;
+                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
+                          }}
+                          className="w-8 h-8 rounded-full border border-[#FB8C42] flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-colors bg-white"
+                        >
+                          <Plus strokeWidth={2.5} size={14} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Cleaners */}
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-800">Cleaners</span>
+                      <div className="flex items-center gap-3">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const val = Math.max(1, (formData.hourlyDetails?.cleaners || 1) - 1);
+                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
+                          }}
+                          disabled={(formData.hourlyDetails?.cleaners || 1) <= 1}
+                          className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 bg-white"
+                        >
+                          <Minus strokeWidth={2.5} size={14} />
+                        </button>
+                        <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-900 w-6 text-center">
+                          {formData.hourlyDetails?.cleaners || 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const val = (formData.hourlyDetails?.cleaners || 1) + 1;
+                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
+                          }}
+                          className="w-8 h-8 rounded-full border border-[#FB8C42] flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-colors bg-white"
+                        >
+                          <Plus strokeWidth={2.5} size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Rate Bottom Label */}
+                  <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-center">
+                    <span className="text-[calc(0.75*var(--scale-unit))] font-bold text-[#8A6D3B]">
+                      Rate: ${pricingConfig?.hourlyRate || 55}/hour/cleaner
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 bg-gray-50/80 p-1.5 rounded-full border border-gray-100 shrink-0 w-fit">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const val = Math.max(2, (formData.hourlyDetails?.hours || 2) - 0.5);
-                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
-                    }}
-                    disabled={(formData.hourlyDetails?.hours || 2) <= 2}
-                    className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 shadow-sm"
-                  >
-                    <Minus strokeWidth={2.5} size={16} />
-                  </button>
-                  <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-900 w-10 text-center">
-                    {formData.hourlyDetails?.hours || 2}
+
+                {/* Right Column: Priorities Notes */}
+                <div className="flex flex-col h-full">
+                  <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-2">
+                    WHAT SHOULD WE PRIORITISE?
                   </span>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const val = (formData.hourlyDetails?.hours || 2) + 0.5;
-                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
-                    }}
-                    className="w-10 h-10 rounded-full bg-[#FB8C42] text-white flex items-center justify-center shadow-md hover:bg-orange-500 transition-colors"
-                  >
-                    <Plus strokeWidth={2.5} size={16} />
-                  </button>
+                  <textarea
+                    placeholder="e.g. kitchen first, then both bathrooms, then floors throughout..."
+                    value={formData.instructions.notes}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      instructions: { ...formData.instructions, notes: e.target.value }
+                    })}
+                    className="flex-1 w-full bg-white border-[1.5px] border-tan rounded-2xl p-4 text-[calc(0.875*var(--scale-unit))] text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all resize-none min-h-[120px]"
+                  />
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-gray-200 transition-all duration-300">
-                <div className="mb-4 md:mb-0">
-                  <span className="block text-sm font-semibold text-gray-800">Number of Cleaners</span>
-                  <span className="block text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-400 mt-1">Recommended: 1 cleaner per 4 hours</span>
+              {/* Bottom Info Box */}
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-4 flex flex-col md:flex-row items-start md:items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center shrink-0">
+                  <Clock className="w-4 h-4 text-amber-600" />
                 </div>
-                <div className="flex items-center gap-3 bg-gray-50/80 p-1.5 rounded-full border border-gray-100 shrink-0 w-fit">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const val = Math.max(1, (formData.hourlyDetails?.cleaners || 1) - 1);
-                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
-                    }}
-                    disabled={(formData.hourlyDetails?.cleaners || 1) <= 1}
-                    className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 shadow-sm"
-                  >
-                    <Minus strokeWidth={2.5} size={16} />
-                  </button>
-                  <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-900 w-10 text-center">
-                    {formData.hourlyDetails?.cleaners || 1}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const val = (formData.hourlyDetails?.cleaners || 1) + 1;
-                      setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
-                    }}
-                    className="w-10 h-10 rounded-full bg-[#FB8C42] text-white flex items-center justify-center shadow-md hover:bg-orange-500 transition-colors"
-                  >
-                    <Plus strokeWidth={2.5} size={16} />
-                  </button>
+                <div className="flex-1 text-[calc(0.75*var(--scale-unit))] text-amber-800 leading-relaxed opacity-90">
+                  For specific tasks or targeted areas. You set the priorities and we&apos;ll make sure to make the most of each minute! Want whole rooms or the whole house? <button onClick={(e) => { e.preventDefault(); setFormData(prev => ({ ...prev, cleaningType: 'Standard' })); }} className="font-bold underline underline-offset-2 hover:text-[#8A6D3B] transition-colors inline">Switch to flat rate</button> — pay for the result not the time.
                 </div>
               </div>
             </div>
