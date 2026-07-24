@@ -200,7 +200,7 @@ const BookingSummaryCard = ({
   currentStep?: number;
 }) => (
   <div
-    className={`bg-cream px-6 py-[calc(1.625*var(--scale-unit))] gap-2.5 text-[calc(0.78125*var(--scale-unit))] relative overflow-visible border-l border-tan-soft ${className}`}
+    className={`bg-cream px-6 py-[calc(1.625*var(--scale-unit))] gap-2.5 text-[calc(0.78125*var(--scale-unit))] relative overflow-visible border-l border-[#f2eadf] ${className}`}
   >
     <div className="mb-6 relative z-10 flex flex-col items-start gap-2">
       <div className="w-full mb-3">
@@ -3209,7 +3209,7 @@ const renderResStep2 = () => {
 
         <div className="flex flex-col min-[880px]:flex-row items-stretch w-full flex-1">
           {/* LEFT COLUMN - STEPPER (Visible >= 1180px) */}
-          <div className="hidden min-[1180px]:block w-[calc(16*var(--scale-unit))] shrink-0 bg-transparent border-r border-[#e5e5e5]">
+          <div className="hidden min-[1180px]:block w-[calc(16*var(--scale-unit))] shrink-0 bg-transparent border-r border-[#f2eadf]">
              <div className="flex flex-col gap-6 py-[calc(1.625*var(--scale-unit))] px-[calc(1.375*var(--scale-unit))] lg:sticky lg:top-24">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
@@ -3316,7 +3316,7 @@ const renderResStep2 = () => {
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY (Visible >= 880px) */}
-          <div className="hidden min-[880px]:block w-[calc(21*var(--scale-unit))] shrink-0 bg-[#fdf9f3] border-l border-[#e5e5e5]">
+          <div className="hidden min-[880px]:block w-[calc(21*var(--scale-unit))] shrink-0 bg-[#fdf9f3] border-l border-[#f2eadf]">
              <div className="sticky top-24">
                <BookingSummaryCard
                 className="w-full !bg-transparent !border-none"
