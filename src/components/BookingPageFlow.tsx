@@ -1769,17 +1769,12 @@ const renderResStep2 = () => {
                 <div className="bg-white rounded-[20px] border border-gray-100 flex flex-col shadow-sm">
                   
                   {/* 1. Living Areas */}
-                  <div className="relative group w-full border-b border-gray-100 last:border-0">
+                  <div className="w-full border-b border-gray-100 last:border-0">
                     <RoomCounter
                       label="Living areas"
                       count={formData.homeDetails.livingRooms || 0}
                       onUpdate={(v: number) => updateRooms("livingRooms", v)}
-                      hasInfo={true}
                     />
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-80 p-3 bg-gray-900 text-white text-[calc(0.6875*var(--scale-unit))] leading-snug rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-                      Only select more than one for truly distinct living areas — open plan living/dining counts as one, and all other general areas are included (hallways, staircases, etc). A separate sitting room or den would be classed as 'Other'.
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></div>
-                    </div>
                   </div>
 
                   {/* 2. Bedrooms */}
@@ -1846,67 +1841,70 @@ const renderResStep2 = () => {
                           onClick={() => {
                             if (!isCounterAddon) toggleExtra(extra);
                           }}
-                          className={`relative flex flex-col justify-between p-3 rounded-2xl border-2 transition-all ${
+                          className={`relative flex items-center justify-between px-4 py-3 rounded-[12px] border transition-all ${
                             !isCounterAddon ? 'cursor-pointer' : ''
                           } ${
                             isSelected 
                               ? "border-[#FB8C42] bg-[#FFF8F3]" 
-                              : "border-gray-100 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
+                              : "border-gray-200 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
                           }`}
                         >
-                          <div className="flex items-start justify-between mb-3">
-                             <span className={`text-[calc(0.78125*var(--scale-unit))] leading-tight pr-2 ${isSelected ? "font-semibold text-brand-dark" : "font-medium text-[#5c534b]"}`}>
-                               {extra}
-                             </span>
-                             {/* Checkmark for non-counter add-ons */}
-                             {!isCounterAddon && (
-                               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${isSelected ? "border-[#FB8C42] bg-[#FB8C42]" : "border-gray-200 bg-white"}`}>
-                                 {isSelected && <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={3} />}
-                               </div>
-                             )}
-                             {/* Plus button for unselected counter add-ons */}
-                             {isCounterAddon && !isSelected && (
-                               <button
-                                 type="button"
-                                 onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, 1); }}
-                                 className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#FB8C42] hover:text-white transition-colors shrink-0"
-                               >
-                                 <Plus className="w-4 h-4" strokeWidth={2.5} />
-                               </button>
-                             )}
-                             {/* Small check icon for selected counter add-ons (moved counter to bottom) */}
-                             {isCounterAddon && isSelected && (
-                               <div className="w-5 h-5 rounded-full border-2 border-[#FB8C42] bg-[#FB8C42] flex items-center justify-center shrink-0">
-                                 <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={3} />
-                               </div>
-                             )}
-                          </div>
-                          
-                          <div className="flex items-center justify-between mt-auto">
-                            <span className="text-[calc(0.78125*var(--scale-unit))] font-normal text-ink-muted">
-                              +${price} {isCounterAddon ? 'each' : ''}
-                            </span>
+                          <div className="flex items-center gap-2.5">
+                            {/* Checkmark for non-counter add-ons */}
+                            {!isCounterAddon && (
+                              <div className={`w-4 h-4 rounded-[4px] border-[1.5px] flex items-center justify-center shrink-0 transition-colors ${isSelected ? "border-[#FB8C42] bg-[#FB8C42]" : "border-gray-300 bg-white"}`}>
+                                {isSelected && <Check className="w-3 h-3 text-white" strokeWidth={3.5} />}
+                              </div>
+                            )}
                             
-                            {/* Counter Controls moved here to fit better */}
+                            {/* Plus button for unselected counter add-ons */}
+                            {isCounterAddon && !isSelected && (
+                              <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, 1); }}
+                                className="w-4 h-4 rounded-[4px] border-[1.5px] border-gray-300 bg-white flex items-center justify-center text-gray-500 hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors shrink-0"
+                              >
+                                <Plus className="w-3 h-3" strokeWidth={3} />
+                              </button>
+                            )}
+
+                            {/* Small check icon for selected counter add-ons */}
                             {isCounterAddon && isSelected && (
-                               <div className="flex items-center gap-1 bg-white rounded-full px-1.5 py-1 shadow-sm border border-[#FB8C42]/30">
-                                 <button
-                                   type="button"
-                                   onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, Math.max(0, count - 1)); }}
-                                   className="w-5 h-5 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-[#FB8C42] hover:text-white transition-colors"
-                                 >
-                                   <Minus className="w-3 h-3" strokeWidth={2.5} />
-                                 </button>
-                                 <span className="text-[calc(0.875*var(--scale-unit))] font-semibold w-3 text-center text-ink">{count}</span>
-                                 <button
-                                   type="button"
-                                   onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
-                                   className="w-5 h-5 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-[#FB8C42] hover:text-white transition-colors"
-                                 >
-                                   <Plus className="w-3 h-3" strokeWidth={2.5} />
-                                 </button>
-                               </div>
-                             )}
+                              <div className="w-4 h-4 rounded-[4px] border-[1.5px] border-[#FB8C42] bg-[#FB8C42] flex items-center justify-center shrink-0">
+                                <Check className="w-3 h-3 text-white" strokeWidth={3.5} />
+                              </div>
+                            )}
+
+                            <span className={`text-[calc(0.78125*var(--scale-unit))] leading-none mt-[1px] ${isSelected ? "font-semibold text-gray-900" : "font-medium text-gray-700"}`}>
+                              {extra}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-2">
+                            {/* Counter Controls */}
+                            {isCounterAddon && isSelected && (
+                              <div className="flex items-center gap-1 bg-white rounded-[6px] px-1 py-0.5 shadow-sm border border-[#FB8C42]/30">
+                                <button
+                                  type="button"
+                                  onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, Math.max(0, count - 1)); }}
+                                  className="w-4 h-4 rounded bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-[#FB8C42] hover:text-white transition-colors"
+                                >
+                                  <Minus className="w-2.5 h-2.5" strokeWidth={3} />
+                                </button>
+                                <span className="text-[calc(0.75*var(--scale-unit))] font-semibold w-2.5 text-center text-ink">{count}</span>
+                                <button
+                                  type="button"
+                                  onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
+                                  className="w-4 h-4 rounded bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-[#FB8C42] hover:text-white transition-colors"
+                                >
+                                  <Plus className="w-2.5 h-2.5" strokeWidth={3} />
+                                </button>
+                              </div>
+                            )}
+
+                            <span className="text-[calc(0.75*var(--scale-unit))] text-gray-500 font-medium">
+                              {price ? `+$${price}${isCounterAddon ? '/rm' : ''}` : 'Free'}
+                            </span>
                           </div>
                         </div>
                       );
@@ -3395,7 +3393,7 @@ const renderResStep2 = () => {
 
 const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }: any) => {
   return (
-    <div className={`w-full py-4 px-5 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
+    <div className={`w-full py-3 px-4 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
       {/* LEFT SIDE */}
       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
         <div className="font-medium text-gray-800 text-[calc(0.875*var(--scale-unit))] whitespace-nowrap flex items-center">
