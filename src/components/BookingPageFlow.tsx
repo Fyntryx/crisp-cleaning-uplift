@@ -201,6 +201,12 @@ const BookingSummaryCard = ({
     className={`bg-cream px-6 py-[calc(1.625*var(--scale-unit))] gap-2.5 text-[calc(0.78125*var(--scale-unit))] relative overflow-visible border-l border-tan-soft ${className}`}
   >
     <div className="mb-6 relative z-10 flex flex-col items-start gap-2">
+      <div className="w-full mb-3">
+        <h2 className="text-[11px] font-[700] text-[#8d8378] tracking-[0.1em] uppercase mb-4">
+          BOOKING SUMMARY
+        </h2>
+        <div className="h-px w-full bg-[#e5e5e5] border-0"></div>
+      </div>
       <h3 className="text-[14px] font-[600] text-[#2b2523]">
         {formData.contact?.firstName ? `Hi ${formData.contact.firstName}` : "Hi there"}
       </h3>
