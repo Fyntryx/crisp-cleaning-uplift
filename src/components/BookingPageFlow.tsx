@@ -3154,13 +3154,13 @@ const renderResStep2 = () => {
   };
 
   const sidebarSteps = [
-    { label: "Lead", step: 1, icon: User },
+    { label: "Details", step: 1, icon: User },
     { label: "Price type", step: 2, icon: Tag },
     { label: "Service & condition", step: 3, icon: Sparkles },
     { label: "Customise", step: 4, icon: Sliders },
     { label: "Schedule", step: 5, icon: Calendar },
     { label: "Instructions", step: 6, icon: FileText },
-    { label: "Sign up", step: 7, icon: CreditCard },
+    { label: "Checkout", step: 7, icon: CreditCard },
   ];
 
   return (
