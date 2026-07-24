@@ -206,7 +206,7 @@ const BookingSummaryCard = ({
       </h3>
       <div className="flex flex-wrap gap-2">
         {(() => {
-          const badges = [];
+          const badges: any[] = [];
           if (formData.frequency === "Weekly") badges.push(`${pricingConfig?.frequencyDiscounts?.Weekly ?? 15}% OFF LOCKED IN`);
           else if (formData.frequency === "Fortnightly") badges.push(`${pricingConfig?.frequencyDiscounts?.Fortnightly ?? 10}% OFF LOCKED IN`);
           else if (formData.frequency === "Monthly") badges.push(`${pricingConfig?.frequencyDiscounts?.Monthly ?? 5}% OFF LOCKED IN`);
