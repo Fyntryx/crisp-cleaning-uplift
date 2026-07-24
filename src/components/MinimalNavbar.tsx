@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function MinimalNavbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100 h-[calc(4.0625*var(--scale-unit))] flex items-center transition-all duration-300">
-      <div className="w-full px-[calc(0.625*var(--scale-unit))] flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100 py-[calc(0.875*var(--scale-unit))] flex items-center transition-all duration-300">
+      <div className="w-full px-[calc(1.875*var(--scale-unit))] flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0"

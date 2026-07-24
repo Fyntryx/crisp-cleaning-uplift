@@ -96,13 +96,13 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5"
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-[calc(0.875*var(--scale-unit))]"
           : isHomePage
-            ? "bg-white md:bg-transparent py-3.5 md:py-5 border-b border-gray-100 md:border-transparent shadow-sm md:shadow-none"
-            : "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3.5"
+            ? "bg-white md:bg-transparent py-[calc(0.875*var(--scale-unit))] border-b border-gray-100 md:border-transparent shadow-sm md:shadow-none"
+            : "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-[calc(0.875*var(--scale-unit))]"
       )}
     >
-      <div className="container mx-auto px-6 flex items-center relative">
+      <div className="container mx-auto px-[calc(1.875*var(--scale-unit))] flex items-center relative">
         <Link
           href="/"
           className="flex items-center outline-none border-none ring-0 focus:outline-none focus:ring-0 shrink-0"
