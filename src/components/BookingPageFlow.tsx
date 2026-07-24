@@ -1482,7 +1482,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const isHourly = formData.cleaningType === 'Hourly';
 
     return (
-      <div className="flex flex-col gap-6 animate-in fade-in duration-500 py-2">
+      <div className="max-w-3xl mx-auto w-full flex flex-col gap-6 animate-in fade-in duration-500 py-2">
         <div className="mb-2">
           <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
             How would you like to be priced?
