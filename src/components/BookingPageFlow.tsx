@@ -3206,7 +3206,7 @@ const renderResStep2 = () => {
         <div className="flex flex-col min-[880px]:flex-row items-stretch w-full flex-1">
           {/* LEFT COLUMN - STEPPER (Visible >= 1180px) */}
           <div className="hidden min-[1180px]:block w-[calc(16*var(--scale-unit))] shrink-0 bg-transparent border-r border-[#e5e5e5]">
-             <div className="flex flex-col gap-6 lg:py-8 pr-6 lg:pr-8 lg:sticky lg:top-24">
+             <div className="flex flex-col gap-6 py-[calc(1.625*var(--scale-unit))] px-[calc(1.375*var(--scale-unit))] lg:sticky lg:top-24">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
                   const isCompleted = item.step < currentStep;
