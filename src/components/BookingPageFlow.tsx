@@ -2016,9 +2016,9 @@ const renderResStep2 = () => {
 
   const renderResStepDiscount = () => {
     return (
-      <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start">
-        <div className="flex flex-col items-start text-left space-y-6">
-          <div className="flex flex-col items-start gap-3">
+      <div className="w-full max-w-[460px] mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col items-center">
+        <div className="flex flex-col items-center text-center space-y-6 w-full">
+          <div className="flex flex-col items-center gap-3">
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#FB8C42] text-white text-[calc(0.625*var(--scale-unit))] font-bold tracking-wider uppercase">
               UNLOCK 5% OFF YOUR FIRST CLEAN
             </span>
@@ -2032,13 +2032,13 @@ const renderResStep2 = () => {
             </div>
           </div>
 
-          <div className="w-full max-w-[calc(28.75*var(--scale-unit))] space-y-5">
-            <div className="flex flex-col space-y-2">
-              <label className="text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-[0.09em]">FIRST NAME</label>
+          <div className="w-full flex flex-col gap-3">
+            <div className="flex flex-col gap-[6px] w-full text-left">
+              <label className="text-[10px] font-[600] uppercase text-[#a2968a]">First name</label>
               <input
                 type="text"
                 placeholder="First name"
-                className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] shadow-sm transition-all"
+                className="w-full px-[14px] py-[11px] bg-white border-[1.5px] border-[#e9ddcf] rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-[13px] font-[400] text-gray-900 placeholder:text-[#a89c8f] shadow-sm transition-all"
                 value={`${formData.contact.firstName || ""} ${formData.contact.lastName || ""}`.trim()}
                 onChange={(e) => {
                   const val = e.target.value;
@@ -2048,29 +2048,29 @@ const renderResStep2 = () => {
                 }}
               />
             </div>
-            <div className="flex flex-col space-y-2">
-              <label className="text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-[0.09em]">MOBILE</label>
+            <div className="flex flex-col gap-[6px] w-full text-left">
+              <label className="text-[10px] font-[600] uppercase text-[#a2968a]">Mobile</label>
               <input
                 type="tel"
                 placeholder="04XX XXX XXX"
-                className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] shadow-sm transition-all"
+                className="w-full px-[14px] py-[11px] bg-white border-[1.5px] border-[#e9ddcf] rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-[13px] font-[400] text-gray-900 placeholder:text-[#a89c8f] shadow-sm transition-all"
                 value={formData.contact.phone}
                 onChange={(e) => updateContact("phone", e.target.value)}
               />
             </div>
-            <div className="flex flex-col space-y-2">
-              <label className="text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-[0.09em]">EMAIL</label>
+            <div className="flex flex-col gap-[6px] w-full text-left">
+              <label className="text-[10px] font-[600] uppercase text-[#a2968a]">Email</label>
               <input
                 type="email"
                 placeholder="you@email.com"
-                className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] shadow-sm transition-all"
+                className="w-full px-[14px] py-[11px] bg-white border-[1.5px] border-[#e9ddcf] rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-[13px] font-[400] text-gray-900 placeholder:text-[#a89c8f] shadow-sm transition-all"
                 value={formData.contact.email}
                 onChange={(e) => updateContact("email", e.target.value)}
               />
             </div>
 
             {discountError && (
-              <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
+              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-[11px] font-semibold mt-1">
                 {discountError}
               </div>
             )}
@@ -3372,8 +3372,8 @@ const renderResStep2 = () => {
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className="w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(1.125*var(--scale-unit))] pt-[calc(1.875*var(--scale-unit))] pb-[calc(4*var(--scale-unit))] min-[880px]:pt-[calc(3.5*var(--scale-unit))] min-[880px]:pb-[calc(8*var(--scale-unit))] relative flex flex-col items-center">
-             <div className="w-full max-w-[calc(48*var(--scale-unit))] flex flex-col flex-1 justify-center min-[880px]:justify-start">
+          <div className={`w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(1.125*var(--scale-unit))] pt-[calc(1.875*var(--scale-unit))] pb-[calc(4*var(--scale-unit))] min-[880px]:pt-[calc(3.5*var(--scale-unit))] min-[880px]:pb-[calc(8*var(--scale-unit))] relative flex flex-col items-center ${currentStep === 1 && !isCommercial ? 'min-[880px]:!px-[34px] min-[880px]:!py-[56px] min-[880px]:justify-center' : ''}`}>
+             <div className={`w-full max-w-[calc(48*var(--scale-unit))] flex flex-col flex-1 justify-center min-[880px]:justify-start ${currentStep === 1 && !isCommercial ? 'items-center' : ''}`}>
                {renderContent()}
                
                {/* Inner Step Controls (Hidden on Mobile) */}
@@ -3384,11 +3384,11 @@ const renderResStep2 = () => {
                       : "items-center justify-between"
                   }`}>
                     {currentStep === 1 && !isCommercial ? (
-                      <div className="w-full max-w-sm flex flex-col items-center gap-2 mt-2">
+                      <div className="w-full max-w-[460px] flex flex-col items-center mt-[6px]">
                         <button
                           onClick={handleNext}
                           disabled={!isStepValid()}
-                          className={`w-full py-3.5 rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center justify-center gap-2 ${
+                          className={`w-full px-[24px] py-[11px] rounded-full font-[600] text-[13.5px] transition-all flex items-center justify-center gap-2 ${
                             !isStepValid()
                               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                               : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
@@ -3396,7 +3396,7 @@ const renderResStep2 = () => {
                         >
                           Continue <ArrowRight className="w-4 h-4" />
                         </button>
-                        <span className="text-[calc(0.6875*var(--scale-unit))] text-[#A2968A] font-normal text-center mt-1">
+                        <span className="text-[11px] text-[#A2968A] font-normal text-center mt-2">
                           No spam — just your quote and booking updates.
                         </span>
                       </div>
