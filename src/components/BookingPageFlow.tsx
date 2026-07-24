@@ -1821,7 +1821,7 @@ const renderResStep2 = () => {
               </div>
 
               {/* BOTTOM ROW: Full-width Add-ons */}
-              <div className="bg-white rounded-[20px] border border-gray-100 p-4 md:p-5 shadow-sm mt-4">
+              <div className="mt-6">
                 <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-widest mb-4 border-b border-gray-50 pb-2">
                   ADD-ONS
                 </span>
@@ -1839,17 +1839,16 @@ const renderResStep2 = () => {
                         <div
                           key={extra}
                           onClick={() => {
-                            if (!isCounterAddon) toggleExtra(extra);
+                            if (isCounterAddon && !isSelected) updateExtraCount(extra, 1);
+                            else if (!isCounterAddon) toggleExtra(extra);
                           }}
-                          className={`relative flex items-center justify-between px-4 py-3 rounded-[12px] border transition-all ${
-                            !isCounterAddon ? 'cursor-pointer' : ''
-                          } ${
+                          className={`relative flex flex-wrap items-center justify-between gap-y-1 gap-x-1.5 px-3 py-2.5 rounded-[12px] border transition-all cursor-pointer ${
                             isSelected 
                               ? "border-[#FB8C42] bg-[#FFF8F3]" 
                               : "border-gray-200 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
                           }`}
                         >
-                          <div className="flex items-center gap-2.5">
+                          <div className="flex items-center gap-2 min-w-0">
                             {/* Checkmark for non-counter add-ons */}
                             {!isCounterAddon && (
                               <div className={`w-4 h-4 rounded-[4px] border-[1.5px] flex items-center justify-center shrink-0 transition-colors ${isSelected ? "border-[#FB8C42] bg-[#FB8C42]" : "border-gray-300 bg-white"}`}>
@@ -1875,12 +1874,12 @@ const renderResStep2 = () => {
                               </div>
                             )}
 
-                            <span className={`text-[calc(0.78125*var(--scale-unit))] leading-none mt-[1px] ${isSelected ? "font-semibold text-gray-900" : "font-medium text-gray-700"}`}>
+                            <span className={`text-[calc(0.78125*var(--scale-unit))] leading-none mt-[1px] truncate ${isSelected ? "font-semibold text-gray-900" : "font-medium text-gray-700"}`}>
                               {extra}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5 shrink-0">
                             {/* Counter Controls */}
                             {isCounterAddon && isSelected && (
                               <div className="flex items-center gap-1 bg-white rounded-[6px] px-1 py-0.5 shadow-sm border border-[#FB8C42]/30">
