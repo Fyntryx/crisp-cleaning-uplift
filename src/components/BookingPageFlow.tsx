@@ -3072,7 +3072,7 @@ const renderResStep2 = () => {
 
         {/* Action controls row */}
         <div className="mt-8 flex flex-col gap-4">
-          <div className="flex flex-col md:flex-row items-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-3 w-full">
             <button
               onClick={handleSubmit}
               disabled={isSubmitting || !isAddressValid}
@@ -3090,7 +3090,7 @@ const renderResStep2 = () => {
                 </>
               )}
             </button>
-            <div className="flex text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-500 leading-tight whitespace-nowrap">
+            <div className="flex text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-500 leading-tight">
               <span>Card saved securely. Charged after the clean.</span>
             </div>
           </div>
