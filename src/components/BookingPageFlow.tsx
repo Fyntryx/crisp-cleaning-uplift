@@ -2426,7 +2426,9 @@ const renderResStep2 = () => {
                 <option>Dog/Cat</option>
                 <option>Other</option>
               </select>
-              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+              <svg className="absolute right-4 w-3.5 h-3.5 text-[#b4a491] pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z" />
+              </svg>
             </div>
           </div>
 
@@ -2454,7 +2456,9 @@ const renderResStep2 = () => {
                 <option>There is free parking nearby/on the street</option>
                 <option>I will provide paid parking nearby</option>
               </select>
-              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+              <svg className="absolute right-4 w-3.5 h-3.5 text-[#b4a491] pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z" />
+              </svg>
             </div>
           </div>
 
@@ -2483,7 +2487,9 @@ const renderResStep2 = () => {
                 <option>I will provide a lockbox/access key</option>
                 <option>Other (Please Specify)</option>
               </select>
-              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+              <svg className="absolute right-4 w-3.5 h-3.5 text-[#b4a491] pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z" />
+              </svg>
             </div>
           </div>
 
@@ -2511,7 +2517,9 @@ const renderResStep2 = () => {
                 <option>Eco-friendly only</option>
                 <option>Other (please specify below)</option>
               </select>
-              <ChevronDown className="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none" />
+              <svg className="absolute right-4 w-3.5 h-3.5 text-[#b4a491] pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z" />
+              </svg>
             </div>
           </div>
 
