@@ -202,14 +202,15 @@ const BookingSummaryCard = ({
   >
     <div className="mb-6 relative z-10 flex flex-col items-start gap-2">
       <div className="w-full mb-3">
-        <h2 className="text-[11px] font-[700] text-[#8d8378] tracking-[0.1em] uppercase mb-4">
+        <h2 className="text-[11px] font-[700] text-[#8d8378] tracking-[0.1em] uppercase">
           BOOKING SUMMARY
         </h2>
-        <div className="h-px w-full bg-[#e5e5e5] border-0"></div>
       </div>
-      <h3 className="text-[14px] font-[600] text-[#2b2523]">
-        {formData.contact?.firstName ? `Hi ${formData.contact.firstName}` : "Hi there"}
-      </h3>
+      {formData.contact?.firstName && (
+        <h3 className="text-[14px] font-[600] text-[#2b2523]">
+          Hi {formData.contact.firstName}
+        </h3>
+      )}
       <div className="flex flex-wrap gap-2">
         {(() => {
           const badges: any[] = [];
@@ -244,8 +245,6 @@ const BookingSummaryCard = ({
         <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.cleaningType || "Standard"} Clean</span>
       </div>
 
-      <div className="h-px bg-tan-soft border-0"></div>
-
       {formData.selectedDate && formData.selectedTime && (
         <>
           <div className="flex justify-between items-center py-3.5 gap-4">
@@ -254,16 +253,13 @@ const BookingSummaryCard = ({
               {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
             </span>
           </div>
-          <div className="h-px bg-tan-soft border-0"></div>
         </>
       )}
 
-      <div className="flex justify-between items-center py-3.5">
+      <div className="flex justify-between items-center py-3.5 mb-2">
         <span className="text-[12.5px] font-medium text-[#8d8378]">Frequency</span>
         <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.frequency || "One time"}</span>
       </div>
-
-      <div className="h-px bg-tan-soft border-0 mb-5"></div>
 
       <div className="pt-1">
         <span className="block mb-4 text-[calc(0.6875*var(--scale-unit))] font-semibold uppercase tracking-widest text-gray-400">
