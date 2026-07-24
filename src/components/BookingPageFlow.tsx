@@ -1527,9 +1527,19 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </ul>
             </div>
             
-            <div className="mt-6">
-              {!isFlatRate && (
-                <button className="px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+            <div className="mt-auto pt-6">
+              {isFlatRate ? (
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                  className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
+                >
+                  Continue with Flat Rate <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Flat Rate
                 </button>
               )}
@@ -1574,16 +1584,20 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </ul>
             </div>
 
-            <div className="mt-6">
-              {isHourly && (
+            <div className="mt-auto pt-6">
+              {isHourly ? (
                 <button 
                   onClick={(e) => {
                     e.stopPropagation();
                     handleNext();
                   }}
-                  className="px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
+                  className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
                 >
                   Continue with Hourly <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                  Select Hourly
                 </button>
               )}
             </div>
@@ -3295,19 +3309,21 @@ const renderResStep2 = () => {
                             <ChevronLeft className="w-4 h-4" /> Back
                           </button>
                         ) : <div />}
-                        <div className="flex flex-col items-end gap-2">
-                          <button
-                            onClick={handleNext}
-                            disabled={!isStepValid()}
-                            className={`px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${
-                              !isStepValid()
-                                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                                : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
-                            }`}
-                          >
-                            Continue <ArrowRight className="w-4 h-4" />
-                          </button>
-                        </div>
+                        {currentStep !== 2 && (
+                          <div className="flex flex-col items-end gap-2">
+                            <button
+                              onClick={handleNext}
+                              disabled={!isStepValid()}
+                              className={`px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${
+                                !isStepValid()
+                                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                  : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
+                              }`}
+                            >
+                              Continue <ArrowRight className="w-4 h-4" />
+                            </button>
+                          </div>
+                        )}
                       </>
                     )}
                   </div>
@@ -3358,7 +3374,7 @@ const renderResStep2 = () => {
               )}
             </span>
           </div>
-          {currentStep < totalSteps && (
+          {currentStep < totalSteps && currentStep !== 2 && (
             <button
               onClick={handleNext}
               disabled={!isStepValid()}
