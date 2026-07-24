@@ -450,7 +450,7 @@ const BookingSummaryCard = ({
         </span>
       </div>
 
-      <div className="mt-2 text-[10.5px] font-[400] text-[#8d8378] leading-[1.55]">
+      <div className="mt-2 text-[15px] font-[400] text-[#8d8378] leading-[1.55]">
         {currentStep === 1 ? (
           <p>Your price updates live as you build your quote.</p>
         ) : formData.cleaningType === 'Hourly' ? (
@@ -3359,7 +3359,7 @@ const renderResStep2 = () => {
           <div className="flex flex-col">
             <span className="text-[12.5px] font-[600] text-[#2b2523] uppercase tracking-wider">Estimated total</span>
             <span className="text-[19px] font-[700] text-[#2b2523]">${pricingResult?.total || 0}</span>
-            <span className="text-[10.5px] font-[400] text-[#8d8378] mt-1 leading-[1.55]">
+            <span className="text-[15px] font-[400] text-[#8d8378] mt-1 leading-[1.55]">
               {currentStep === 1 ? (
                 "Your price updates live as you build your quote."
               ) : formData.cleaningType === 'Hourly' ? (

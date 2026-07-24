@@ -223,7 +223,7 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
   let addonTimeTotal = 0;
   
   if (request.cleaningType !== 'Hourly') {
-    const addonTimes = config?.addonTimes || DEFAULT_ADDON_TIMES;
+    const addonTimes = (config?.addonTimes && Object.keys(config.addonTimes).length > 0) ? config.addonTimes : DEFAULT_ADDON_TIMES;
     extrasItems = Object.entries(request.extras || {}).map(([extra, count]) => {
       const price = (extraPrices[extra as keyof typeof extraPrices] ?? 0) * count;
       const time = (addonTimes[extra] ?? 0) * count;
