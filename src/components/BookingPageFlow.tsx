@@ -251,7 +251,7 @@ const BookingSummaryCard = ({
           </div>
           
           {(() => {
-            const parts = [];
+            const parts: string[] = [];
             if (formData.homeDetails?.livingRooms) parts.push(`${formData.homeDetails.livingRooms} liv`);
             if (formData.homeDetails?.bedrooms) parts.push(`${formData.homeDetails.bedrooms} bed`);
             if (formData.homeDetails?.bathrooms) parts.push(`${formData.homeDetails.bathrooms} bath`);
