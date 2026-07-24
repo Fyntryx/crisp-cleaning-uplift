@@ -3325,7 +3325,7 @@ const renderResStep2 = () => {
         <div className="flex flex-col min-[880px]:flex-row items-stretch w-full flex-1">
           {/* LEFT COLUMN - STEPPER (Visible >= 1180px) */}
           <div className="hidden min-[1180px]:block w-[calc(16*var(--scale-unit))] shrink-0 bg-transparent border-r border-[#f2eadf]">
-             <div className="flex flex-col gap-6 py-[calc(1.625*var(--scale-unit))] px-[calc(1.375*var(--scale-unit))] lg:sticky lg:top-24">
+             <div className="flex flex-col gap-6 py-[calc(1.625*var(--scale-unit))] px-[calc(1.375*var(--scale-unit))] lg:sticky lg:top-20">
                 {sidebarSteps.map((item, idx) => {
                   const isActive = item.step === currentStep;
                   const isCompleted = item.step < currentStep;
@@ -3434,7 +3434,7 @@ const renderResStep2 = () => {
 
           {/* RIGHT COLUMN - BOOKING SUMMARY (Visible >= 880px) */}
           <div className="hidden min-[880px]:block w-[calc(21*var(--scale-unit))] shrink-0 bg-[#fdf9f3] border-l border-[#f2eadf]">
-             <div className="sticky top-24">
+             <div className="sticky top-20">
                <BookingSummaryCard
                 className="w-full !bg-transparent !border-none"
                 formData={formData}

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function MinimalNavbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#f2eadf] py-[calc(0.875*var(--scale-unit))] flex items-center transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#f2eadf] py-[calc(0.5*var(--scale-unit))] flex items-center transition-all duration-300">
       <div className="w-full px-[calc(1.875*var(--scale-unit))] flex items-center justify-between">
         <Link
           href="/"
@@ -14,20 +14,20 @@ export default function MinimalNavbar() {
           <img
             src="/crisp-cleaning-logo.webp?v=3"
             alt="Crisp Cleaning"
-            className="h-[calc(2.875*var(--scale-unit))] md:h-[calc(3.3125*var(--scale-unit))] w-auto object-contain"
+            className="h-[calc(2.25*var(--scale-unit))] md:h-[calc(2.5*var(--scale-unit))] w-auto object-contain"
           />
         </Link>
 
         <div className="flex items-center gap-4 ml-auto">
           <Link
             href="/#faq"
-            className="text-[calc(0.875*var(--scale-unit))] md:text-[calc(0.9375*var(--scale-unit))] font-medium text-gray-500 hover:text-[#FB8C42] transition-colors duration-300 hidden md:block"
+            className="text-[calc(0.8125*var(--scale-unit))] md:text-[calc(0.875*var(--scale-unit))] font-medium text-gray-500 hover:text-[#FB8C42] transition-colors duration-300 hidden md:block"
           >
             Questions?
           </Link>
           <a
             href="tel:0451433786"
-            className="text-[calc(0.875*var(--scale-unit))] md:text-[calc(0.9375*var(--scale-unit))] font-bold text-gray-900 border border-gray-200 rounded-full px-[calc(0.75*var(--scale-unit))] py-[calc(0.375*var(--scale-unit))] hover:border-[#FB8C42] hover:text-[#FB8C42] transition-all duration-300"
+            className="text-[calc(0.8125*var(--scale-unit))] md:text-[calc(0.875*var(--scale-unit))] font-bold text-gray-900 border border-gray-200 rounded-full px-[calc(0.625*var(--scale-unit))] py-[calc(0.25*var(--scale-unit))] hover:border-[#FB8C42] hover:text-[#FB8C42] transition-all duration-300"
           >
             0451 433 786
           </a>
