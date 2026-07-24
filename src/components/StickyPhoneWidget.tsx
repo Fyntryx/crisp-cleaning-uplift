@@ -1,8 +1,15 @@
 "use client";
 
 import { Phone } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function StickyPhoneWidget() {
+  const pathname = usePathname();
+
+  if (pathname === "/book") {
+    return null;
+  }
+
   const trackPhoneClick = () => {
     // Placeholder for Meta/Google click_call conversion event
     console.log("Phone button clicked! Tracking event...");

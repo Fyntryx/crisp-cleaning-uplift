@@ -27,7 +27,7 @@ export default function MinimalNavbar() {
           </Link>
           <a
             href="tel:0451433786"
-            className="text-[calc(0.9375*var(--scale-unit))] font-bold text-gray-900 hover:text-[#FB8C42] transition-colors duration-300"
+            className="text-[calc(0.875*var(--scale-unit))] md:text-[calc(0.9375*var(--scale-unit))] font-bold text-gray-900 border border-gray-200 rounded-full px-[calc(0.75*var(--scale-unit))] py-[calc(0.375*var(--scale-unit))] hover:border-[#FB8C42] hover:text-[#FB8C42] transition-all duration-300"
           >
             0451 433 786
           </a>
