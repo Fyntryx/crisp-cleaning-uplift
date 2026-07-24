@@ -181,6 +181,7 @@ const BookingSummaryCard = ({
   setAppliedReferral,
   apiBaseUrl,
   outOfAreaFee = 0,
+  currentStep = 1,
 }: {
   className?: string;
   formData: any;
@@ -196,6 +197,7 @@ const BookingSummaryCard = ({
   setAppliedReferral: (val: any) => void;
   apiBaseUrl: string;
   outOfAreaFee?: number;
+  currentStep?: number;
 }) => (
   <div
     className={`bg-cream px-6 py-[calc(1.625*var(--scale-unit))] gap-2.5 text-[calc(0.78125*var(--scale-unit))] relative overflow-visible border-l border-tan-soft ${className}`}
@@ -3331,6 +3333,7 @@ const renderResStep2 = () => {
                 setAppliedReferral={setAppliedReferral}
                 apiBaseUrl={API_BASE_URL}
                 outOfAreaFee={outOfAreaFee}
+                currentStep={currentStep}
               />
              </div>
           </div>
