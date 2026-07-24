@@ -240,6 +240,8 @@ const BookingSummaryCard = ({
       </div>
     </div>
 
+    <div className="w-full h-px bg-[#f2eadf] my-5" />
+
     <div className="relative z-10 text-[calc(0.90625*var(--scale-unit))]">
 {currentStep === 7 ? (
         <div className="space-y-3 mt-1">
@@ -535,9 +537,9 @@ const BookingSummaryCard = ({
         </div>
       )}
 
+      <div className="w-full h-px bg-[#f2eadf] my-5" />
 
-
-      <div className="flex justify-between items-end pt-4">
+      <div className="flex justify-between items-end">
         <span className="text-[12.5px] font-[600] text-[#2b2523] mb-1">Estimated total</span>
         <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
           ${(pricingResult?.total || 0).toFixed(2)}
