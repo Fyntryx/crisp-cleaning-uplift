@@ -1825,7 +1825,7 @@ const renderResStep2 = () => {
                 <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-widest mb-4 border-b border-gray-50 pb-2">
                   ADD-ONS
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-[10px]">
                   {isLoadingConfig ? (
                     <div className="text-xs text-gray-400 py-2 col-span-3">Loading available add-ons...</div>
                   ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
@@ -1842,17 +1842,17 @@ const renderResStep2 = () => {
                             if (isCounterAddon && !isSelected) updateExtraCount(extra, 1);
                             else if (!isCounterAddon) toggleExtra(extra);
                           }}
-                          className={`relative flex flex-wrap items-center justify-between gap-y-1 gap-x-1.5 px-3 py-2.5 rounded-[12px] border transition-all cursor-pointer ${
+                          className={`flex items-center px-[14px] py-[12px] rounded-2xl border-[1.5px] transition-all cursor-pointer ${
                             isSelected 
                               ? "border-[#FB8C42] bg-[#FFF8F3]" 
-                              : "border-gray-200 bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
+                              : "border-[#ece1d3] bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
                           }`}
                         >
-                          <div className="flex items-center gap-2 min-w-0">
+                          <div className="flex items-center min-w-0">
                             {/* Checkmark for non-counter add-ons */}
                             {!isCounterAddon && (
-                              <div className={`w-4 h-4 rounded-[4px] border-[1.5px] flex items-center justify-center shrink-0 transition-colors ${isSelected ? "border-[#FB8C42] bg-[#FB8C42]" : "border-gray-300 bg-white"}`}>
-                                {isSelected && <Check className="w-3 h-3 text-white" strokeWidth={3.5} />}
+                              <div className={`w-[19px] h-[19px] rounded-[6px] border-[1.5px] flex items-center justify-center shrink-0 transition-colors ${isSelected ? "border-[#FB8C42] bg-[#FB8C42]" : "border-[#ddcfbd] bg-white"}`}>
+                                {isSelected && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3.5} />}
                               </div>
                             )}
                             
@@ -1861,7 +1861,7 @@ const renderResStep2 = () => {
                               <button
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, 1); }}
-                                className="w-4 h-4 rounded-[4px] border-[1.5px] border-gray-300 bg-white flex items-center justify-center text-gray-500 hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors shrink-0"
+                                className="w-[19px] h-[19px] rounded-[6px] border-[1.5px] border-[#ddcfbd] bg-white flex items-center justify-center text-gray-500 hover:border-[#FB8C42] hover:text-[#FB8C42] transition-colors shrink-0"
                               >
                                 <Plus className="w-3 h-3" strokeWidth={3} />
                               </button>
@@ -1869,17 +1869,17 @@ const renderResStep2 = () => {
 
                             {/* Small check icon for selected counter add-ons */}
                             {isCounterAddon && isSelected && (
-                              <div className="w-4 h-4 rounded-[4px] border-[1.5px] border-[#FB8C42] bg-[#FB8C42] flex items-center justify-center shrink-0">
-                                <Check className="w-3 h-3 text-white" strokeWidth={3.5} />
+                              <div className="w-[19px] h-[19px] rounded-[6px] border-[1.5px] border-[#FB8C42] bg-[#FB8C42] flex items-center justify-center shrink-0">
+                                <Check className="w-3.5 h-3.5 text-white" strokeWidth={3.5} />
                               </div>
                             )}
 
-                            <span className={`text-[calc(0.78125*var(--scale-unit))] leading-none mt-[1px] truncate ${isSelected ? "font-semibold text-gray-900" : "font-medium text-gray-700"}`}>
+                            <span className={`text-[12.5px] font-[500] leading-none ml-2.5 truncate ${isSelected ? "text-gray-900 font-[600]" : "text-[#4a423b]"}`}>
                               {extra}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 shrink-0">
+                          <div className="flex items-center gap-2 ml-auto shrink-0 pl-2">
                             {/* Counter Controls */}
                             {isCounterAddon && isSelected && (
                               <div className="flex items-center gap-1 bg-white rounded-[6px] px-1 py-0.5 shadow-sm border border-[#FB8C42]/30">
@@ -1890,7 +1890,7 @@ const renderResStep2 = () => {
                                 >
                                   <Minus className="w-2.5 h-2.5" strokeWidth={3} />
                                 </button>
-                                <span className="text-[calc(0.75*var(--scale-unit))] font-semibold w-2.5 text-center text-ink">{count}</span>
+                                <span className="text-[12px] font-semibold w-2.5 text-center text-ink">{count}</span>
                                 <button
                                   type="button"
                                   onClick={(e) => { e.stopPropagation(); updateExtraCount(extra, count + 1); }}
@@ -1901,7 +1901,7 @@ const renderResStep2 = () => {
                               </div>
                             )}
 
-                            <span className="text-[calc(0.75*var(--scale-unit))] text-gray-500 font-medium">
+                            <span className="text-[12.5px] font-[500] text-[#8d8378]">
                               {price ? `+$${price}${isCounterAddon ? '/rm' : ''}` : 'Free'}
                             </span>
                           </div>
