@@ -1590,7 +1590,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[calc(1.25*var(--scale-unit))] max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[calc(1.25*var(--scale-unit))] max-w-[640px]">
           {/* Flat Rate Card */}
           <div
             onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
