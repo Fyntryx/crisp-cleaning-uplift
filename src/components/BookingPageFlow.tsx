@@ -1738,8 +1738,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               {/* 2-Column Grid for Controls and Notes */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
                 {/* Left Column: Controls Container */}
-                <div className="border-[1.5px] border-tan rounded-2xl p-[calc(1.125*var(--scale-unit))] flex flex-col justify-between bg-white hover:border-gray-300 transition-all shadow-sm">
-                  <div className="flex flex-col space-y-4">
+                <div className="flex flex-col h-full">
+                  <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-transparent tracking-[0.09em] uppercase mb-2 select-none" aria-hidden="true">
+                    SPACER
+                  </span>
+                  <div className="flex-1 border-[1.5px] border-tan rounded-2xl p-[calc(1.125*var(--scale-unit))] flex flex-col justify-center bg-white hover:border-gray-300 transition-all shadow-sm">
+                    <div className="flex flex-col space-y-4">
                     {/* Hours */}
                     <div className="flex items-center justify-between border-b border-gray-100 pb-4">
                       <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-800">Hours</span>
@@ -1807,8 +1811,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Right Column: Priorities Notes */}
+              {/* Right Column: Priorities Notes */}
                 <div className="flex flex-col h-full">
                   <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-2">
                     WHAT SHOULD WE PRIORITISE?
