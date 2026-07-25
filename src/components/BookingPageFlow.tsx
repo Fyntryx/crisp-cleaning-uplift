@@ -1842,9 +1842,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           ) : (
             <>
-              <div className="mb-6">
+              <div className="mb-4">
                 <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-1">Tell us about your home</h3>
-                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 mb-4">Count every room we should clean.</p>
+                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 mb-3">Count every room we should clean.</p>
                 <div className="bg-white rounded-[20px] border border-gray-100 flex flex-col shadow-sm">
 
                   {/* 1. Living Areas */}
@@ -1900,11 +1900,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </div>
 
               {/* BOTTOM ROW: Full-width Add-ons */}
-              <div className="mt-6">
-                <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-widest mb-4 border-b border-gray-50 pb-2">
+              <div className="mt-4">
+                <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-widest mb-3 border-b border-gray-50 pb-2">
                   ADD-ONS
                 </span>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-[10px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {isLoadingConfig ? (
                     <div className="text-xs text-gray-400 py-2 col-span-3">Loading available add-ons...</div>
                   ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
@@ -1921,7 +1921,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                             if (isCounterAddon && !isSelected) updateExtraCount(extra, 1);
                             else if (!isCounterAddon) toggleExtra(extra);
                           }}
-                          className={`flex items-center px-[14px] py-[12px] rounded-2xl border-[1.5px] transition-all cursor-pointer ${isSelected
+                          className={`flex items-center px-3 py-2.5 rounded-2xl border-[1.5px] transition-all cursor-pointer ${isSelected
                             ? "border-[#FB8C42] bg-[#FFF8F3]"
                             : "border-[#ece1d3] bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
                             }`}
@@ -2112,12 +2112,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Bottom section: Condition */}
-        <div className="grid grid-cols-1 md:grid-cols-[43%_57%] gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-[43%_57%] gap-5 mb-5 mt-4">
 
           {/* Left Column: Condition Options */}
           <div>
-            <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">OVERALL CONDITION</h3>
-            <div className="flex flex-col gap-3">
+            <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-3">OVERALL CONDITION</h3>
+            <div className="flex flex-col gap-2.5">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
                 { id: 'Overdue', label: 'Overdue', desc: 'A few months since a proper clean' },
@@ -2134,7 +2134,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         setFormData({ ...formData, condition: cond.id as any });
                       }
                     }}
-                    className={`cursor-pointer rounded-2xl border-[1.5px] p-3 transition-all duration-200 flex flex-col ${isDisabled
+                    className={`cursor-pointer rounded-2xl border-[1.5px] p-2.5 transition-all duration-200 flex flex-col ${isDisabled
                       ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
                       : isSelected
                         ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]'
@@ -2172,12 +2172,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 }} />
               </div>
             ) : (
-              <div className="bg-[#fdf9f3] border border-[#eadfce] rounded-2xl p-4 lg:p-5 h-full flex flex-col">
-                <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
+              <div className="bg-[#fdf9f3] border border-[#eadfce] rounded-2xl p-4 h-full flex flex-col">
+                <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-3">
                   WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
                 </h3>
 
-                <p className="text-[calc(0.78125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-8 flex-1">
+                <p className="text-[calc(0.78125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4 flex-1">
                   {formData.condition === 'Lived In'
                     ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
                     : formData.condition === 'Heavy Build Up'
@@ -3472,7 +3472,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
 const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }: any) => {
   return (
-    <div className={`w-full py-3 px-4 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
+    <div className={`w-full py-2.5 px-3.5 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
       {/* LEFT SIDE */}
       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
         <div className="font-medium text-gray-800 text-[calc(0.875*var(--scale-unit))] whitespace-nowrap flex items-center">
