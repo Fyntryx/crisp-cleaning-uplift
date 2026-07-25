@@ -673,7 +673,7 @@ const ReservationTimer = () => {
 
   return (
     <span className="inline-flex items-center gap-1.5 text-red-500 text-[calc(0.6875*var(--scale-unit))] font-bold tracking-wider uppercase">
-      - Booking reserved for {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
+      Booking reserved for {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
     </span>
   );
 };
@@ -3194,14 +3194,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div className="flex text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-500 leading-tight">
               <span>Card saved securely. Charged after the clean.</span>
             </div>
+            
+            <p className="text-center text-xs text-gray-500 font-semibold mt-1">
+              Already have an account?{" "}
+              <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
+                Login
+              </button>
+            </p>
           </div>
-
-          <p className="text-left text-xs text-gray-500 font-semibold mt-2">
-            Already have an account?{" "}
-            <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
-              Login
-            </button>
-          </p>
         </div>
 
       </div>
