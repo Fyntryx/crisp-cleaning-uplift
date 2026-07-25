@@ -2090,7 +2090,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   let newCondition = formData.condition;
                   if (type.id === 'Standard' && (newCondition === 'Overdue' || newCondition === 'Heavy Build Up')) {
                     newCondition = 'Lived In';
+                  } else if (type.id === 'Vacate') {
+                    newCondition = 'Overdue';
+                  } else if (type.id === 'Deep' && newCondition === 'Overdue') {
+                    // if changing to Deep from Vacate/Overdue, we can default back to Heavy Build Up or Lived In
+                    // but keeping it as is or resetting to Heavy Build Up is fine.
                   }
+                  
                   setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
                 }}
                 className={`relative cursor-pointer px-[calc(1*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] transition-all duration-300 flex flex-col h-full rounded-[20px] border-[1.5px] ${isSelected
@@ -2130,7 +2136,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     key={cond.id}
                     onClick={() => {
                       const updates: any = { condition: cond.id as any };
-                      if (formData.cleaningType === 'Standard' && (cond.id === 'Overdue' || cond.id === 'Heavy Build Up')) {
+                      if (cond.id === 'Overdue') {
+                        updates.cleaningType = 'Vacate';
+                      } else if (cond.id === 'Heavy Build Up' && (formData.cleaningType === 'Standard' || formData.cleaningType === 'Vacate')) {
+                        updates.cleaningType = 'Deep';
+                      } else if (cond.id === 'Lived In' && formData.cleaningType === 'Vacate') {
                         updates.cleaningType = 'Deep';
                       }
                       setFormData({ ...formData, ...updates });
@@ -2176,7 +2186,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 </button>
                 <ConditionQuiz onComplete={(tier) => {
                   const updates: any = { condition: tier };
-                  if (formData.cleaningType === 'Standard' && (tier === 'Overdue' || tier === 'Heavy Build Up')) {
+                  if (tier === 'Overdue') {
+                    updates.cleaningType = 'Vacate';
+                  } else if (tier === 'Heavy Build Up' && (formData.cleaningType === 'Standard' || formData.cleaningType === 'Vacate')) {
+                    updates.cleaningType = 'Deep';
+                  } else if (tier === 'Lived In' && formData.cleaningType === 'Vacate') {
                     updates.cleaningType = 'Deep';
                   }
                   setFormData({ ...formData, ...updates });

@@ -96,16 +96,39 @@ export const ConditionQuiz = ({ onComplete }: { onComplete: (tier: 'Lived In' | 
   const q = QUIZ_QUESTIONS[currentQ];
 
   if (quizFinished) {
+    let bgColor = 'bg-emerald-50';
+    let borderColor = 'border-emerald-100';
+    let titleColor = 'text-emerald-800';
+    let subtitleColor = 'text-emerald-700';
+    let badgeBg = 'bg-emerald-600';
+    let loadingText = 'text-emerald-600';
+
+    if (resultTier === 'Overdue') {
+      bgColor = 'bg-amber-50';
+      borderColor = 'border-amber-100';
+      titleColor = 'text-amber-800';
+      subtitleColor = 'text-amber-700';
+      badgeBg = 'bg-amber-500';
+      loadingText = 'text-amber-600';
+    } else if (resultTier === 'Heavy Build Up') {
+      bgColor = 'bg-red-50';
+      borderColor = 'border-red-100';
+      titleColor = 'text-red-800';
+      subtitleColor = 'text-red-700';
+      badgeBg = 'bg-red-500';
+      loadingText = 'text-red-600';
+    }
+
     return (
-      <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 shadow-sm text-center animate-in fade-in zoom-in duration-300">
-        <h4 className="text-xl font-bold text-emerald-800 mb-2">Assessment Complete!</h4>
-        <p className="text-sm font-medium text-emerald-700 mb-4">
+      <div className={`${bgColor} p-6 rounded-2xl border ${borderColor} shadow-sm text-center animate-in fade-in zoom-in duration-300 h-full flex flex-col justify-center items-center`}>
+        <h4 className={`text-xl font-bold ${titleColor} mb-2`}>Assessment Complete!</h4>
+        <p className={`text-sm font-medium ${subtitleColor} mb-4`}>
           Based on your answers, we recommend:
         </p>
-        <div className="inline-block px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl shadow-md">
+        <div className={`inline-block px-4 py-2 ${badgeBg} text-white font-bold rounded-xl shadow-md`}>
           {resultTier}
         </div>
-        <p className="text-xs text-emerald-600 mt-4 opacity-70">Applying recommendation...</p>
+        <p className={`text-xs ${loadingText} mt-4 opacity-70`}>Applying recommendation...</p>
       </div>
     );
   }
@@ -114,20 +137,20 @@ export const ConditionQuiz = ({ onComplete }: { onComplete: (tier: 'Lived In' | 
     <div className="animate-in fade-in duration-300 h-full flex flex-col">
       <div className="absolute top-0 left-0 h-1.5 bg-[#FB8C42] transition-all duration-300" style={{ width: `${((currentQ) / QUIZ_QUESTIONS.length) * 100}%` }} />
       
-      <div className="flex justify-between items-center mb-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+      <div className="flex justify-between items-center mb-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 shrink-0">
         <span>Question {currentQ + 1} of {QUIZ_QUESTIONS.length}</span>
       </div>
       
-      <div className="min-h-[48px] md:min-h-[40px] flex items-start mb-3">
-        <h4 className="text-sm md:text-[15px] font-bold text-gray-900 leading-snug">{q.question}</h4>
+      <div className="h-[60px] md:h-[48px] flex items-start mb-3 shrink-0">
+        <h4 className="text-sm md:text-[14px] font-bold text-gray-900 leading-snug line-clamp-3">{q.question}</h4>
       </div>
       
-      <div className="flex flex-col gap-2 flex-1">
+      <div className="grid grid-rows-3 gap-2 flex-1">
         {q.options.map((opt, i) => (
           <button 
             key={i}
             onClick={() => handleAnswer(opt.points)}
-            className="text-left px-3.5 py-3 rounded-xl border-2 border-gray-100 bg-white hover:border-[#FB8C42] hover:shadow-md hover:-translate-y-0.5 transition-all font-medium text-gray-700 text-xs flex items-center min-h-[56px] group"
+            className="text-left px-3.5 py-2.5 rounded-xl border-2 border-gray-100 bg-white hover:border-[#FB8C42] hover:shadow-md hover:-translate-y-0.5 transition-all font-medium text-gray-700 text-[11px] md:text-[12px] leading-snug flex items-center h-full group"
           >
             <span className="inline-block w-5 h-5 rounded-full bg-gray-50 border border-gray-200 text-center text-[10px] leading-[18px] mr-2.5 group-hover:bg-[#FB8C42] group-hover:text-white group-hover:border-[#FB8C42] transition-colors">{String.fromCharCode(65 + i)}</span>
             {opt.text}
