@@ -3391,7 +3391,7 @@ const renderResStep2 = () => {
                       : "mt-8 pt-4 items-center justify-between"
                   }`}>
                     {currentStep === 1 && !isCommercial ? (
-                      <div className="w-full max-w-[460px] flex flex-col items-center mt-[6px]">
+                      <div className="w-full max-w-[460px] flex flex-col items-center mt-6">
                         <button
                           onClick={handleNext}
                           disabled={!isStepValid()}
