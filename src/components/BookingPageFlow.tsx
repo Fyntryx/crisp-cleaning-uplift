@@ -2115,13 +2115,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         <div className="grid grid-cols-1 md:grid-cols-[43%_57%] gap-5 mb-5 mt-4">
 
           {/* Left Column: Condition Options */}
-          <div>
+          <div className="min-w-0">
             <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-3">OVERALL CONDITION</h3>
             <div className="flex flex-col gap-2.5">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
                 { id: 'Overdue', label: 'Overdue', desc: 'A few months since a proper clean' },
-                { id: 'Heavy Build Up', label: 'Heavy build-up', badge: 'custom', desc: 'Long-neglected or post-reno' }
+                { id: 'Heavy Build Up', label: 'Heavy build-up', badge: '+30%', desc: 'Long-neglected or post-reno' }
               ].map((cond) => {
                 const isSelected = formData.condition === cond.id;
                 const isDisabled = formData.cleaningType === 'Standard' && (cond.id === 'Overdue' || cond.id === 'Heavy Build Up');
@@ -2137,14 +2137,22 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     className={`cursor-pointer rounded-2xl border-[1.5px] p-2.5 transition-all duration-200 flex flex-col ${isDisabled
                       ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
                       : isSelected
-                        ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10'
+                        ? cond.id === 'Lived In'
+                          ? 'border-emerald-500 bg-emerald-50 shadow-[0_0_0_3px_rgba(16,185,129,0.16)] z-10'
+                          : cond.id === 'Overdue'
+                            ? 'border-amber-500 bg-amber-50 shadow-[0_0_0_3px_rgba(245,158,11,0.16)] z-10'
+                            : 'border-red-500 bg-red-50 shadow-[0_0_0_3px_rgba(239,68,68,0.16)] z-10'
                         : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
                       }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[calc(0.84375*var(--scale-unit))] font-semibold text-gray-900">{cond.label}</span>
                       {cond.badge && (
-                        <span className="text-[calc(0.6875*var(--scale-unit))] font-semibold text-[#e0731f] bg-[#fff4ea] px-2 py-0.5 rounded-full">
+                        <span className={`text-[calc(0.6875*var(--scale-unit))] font-semibold px-2 py-0.5 rounded-full ${
+                          isSelected && cond.id === 'Heavy Build Up'
+                            ? 'text-red-700 bg-red-100'
+                            : 'text-[#e0731f] bg-[#fff4ea]'
+                        }`}>
                           {cond.badge}
                         </span>
                       )}
@@ -2157,9 +2165,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </div>
 
           {/* Right Column: Explainer Box */}
-          <div>
+          <div className="min-w-0">
             {showConditionQuiz ? (
-              <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden">
+              <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden min-h-[340px] md:min-h-[300px]">
                 <button
                   onClick={() => setShowConditionQuiz(false)}
                   className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600"
@@ -2172,12 +2180,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 }} />
               </div>
             ) : (
-              <div className="bg-[#fdf9f3] border border-[#eadfce] rounded-2xl p-4 h-full flex flex-col">
-                <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-3">
+              <div className="bg-[#fdf9f3] border border-[#eadfce] rounded-2xl p-4 h-full flex flex-col min-w-0 break-words overflow-hidden">
+                <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-3 break-words">
                   WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
                 </h3>
 
-                <p className="text-[calc(0.78125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4 flex-1">
+                <p className="text-[calc(0.78125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4 flex-1 break-words">
                   {formData.condition === 'Lived In'
                     ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
                     : formData.condition === 'Heavy Build Up'

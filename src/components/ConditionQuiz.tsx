@@ -118,14 +118,16 @@ export const ConditionQuiz = ({ onComplete }: { onComplete: (tier: 'Lived In' | 
         <span>Question {currentQ + 1} of {QUIZ_QUESTIONS.length}</span>
       </div>
       
-      <h4 className="text-sm md:text-base font-bold text-gray-900 mb-4">{q.question}</h4>
+      <div className="min-h-[48px] md:min-h-[40px] flex items-start mb-3">
+        <h4 className="text-sm md:text-[15px] font-bold text-gray-900 leading-snug">{q.question}</h4>
+      </div>
       
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 flex-1">
         {q.options.map((opt, i) => (
           <button 
             key={i}
             onClick={() => handleAnswer(opt.points)}
-            className="text-left px-3.5 py-3 rounded-xl border-2 border-gray-100 bg-white hover:border-[#FB8C42] hover:shadow-md hover:-translate-y-0.5 transition-all font-medium text-gray-700 text-xs md:text-sm group"
+            className="text-left px-3.5 py-3 rounded-xl border-2 border-gray-100 bg-white hover:border-[#FB8C42] hover:shadow-md hover:-translate-y-0.5 transition-all font-medium text-gray-700 text-xs flex items-center min-h-[56px] group"
           >
             <span className="inline-block w-5 h-5 rounded-full bg-gray-50 border border-gray-200 text-center text-[10px] leading-[18px] mr-2.5 group-hover:bg-[#FB8C42] group-hover:text-white group-hover:border-[#FB8C42] transition-colors">{String.fromCharCode(65 + i)}</span>
             {opt.text}
