@@ -2324,7 +2324,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             {frequencies.map((freq) => {
               const isSelected = formData.frequency === freq.id;
               return (
-                <div key={freq.id} className="relative flex-1 md:flex-none text-center w-full md:w-auto">
+                <div key={freq.id} className="relative flex-1 text-center w-full">
 
                   <button
                     onClick={() => {
@@ -2336,14 +2336,16 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                       }
                       setFormData({ ...formData, frequency: newFreq as any });
                     }}
-                    className={`w-full md:w-auto px-[calc(1.25*var(--scale-unit))] py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] flex items-center justify-center ${isSelected
+                    className={`w-full px-[calc(1.25*var(--scale-unit))] py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] flex items-center justify-center ${isSelected
                       ? "bg-cream-tag border-brand text-brand-dark font-semibold shadow-sm"
                       : "bg-white border-tan text-[#5c534b] hover:border-gray-300 hover:shadow-sm"
                       }`}
                   >
                     {freq.label}
                     {freq.save && (
-                      <span className="text-brand ml-1.5 font-bold">{freq.save.toLowerCase()}</span>
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full uppercase whitespace-nowrap bg-[#fff4ea] text-[#e0731f] shadow-sm">
+                        {freq.save}
+                      </span>
                     )}
                   </button>
                 </div>
