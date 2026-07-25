@@ -1580,58 +1580,58 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const isHourly = formData.cleaningType === 'Hourly';
 
     return (
-      <div className="max-w-3xl mx-auto w-full flex flex-col gap-6 animate-in fade-in duration-500 py-2">
+      <div className="max-w-3xl mx-auto w-full flex flex-col gap-[calc(1.5*var(--scale-unit))] animate-in fade-in duration-500 py-2">
         <div className="mb-2">
-          <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-[calc(1.25*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
             How would you like to be priced?
           </h2>
-          <p className="text-gray-500 text-[calc(0.8125*var(--scale-unit))] font-normal mt-1">
+          <p className="text-gray-500 text-[calc(0.75*var(--scale-unit))] font-normal mt-1">
             Most whole-home cleans choose flat rate.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[calc(1.25*var(--scale-unit))] max-w-3xl">
           {/* Flat Rate Card */}
           <div
             onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
-            className={`relative border-2 rounded-[20px] p-5 cursor-pointer transition-all duration-300 flex flex-col h-full ${
+            className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${
               isFlatRate
                 ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
-            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[calc(0.59375*var(--scale-unit))] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10 whitespace-nowrap">
+            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[calc(0.55*var(--scale-unit))] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10 whitespace-nowrap">
               MOST POPULAR — BEST VALUE
             </span>
             <div className="mt-1">
-              <h3 className="text-[calc(1.0625*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Flat Rate</h3>
-              <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
+              <h3 className="text-[calc(0.9375*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Flat Rate</h3>
+              <p className="text-[calc(0.75*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
                 A fixed price for a complete result. Define the size and condition, and we'll stay as long as it takes to leave your space shining.
               </p>
               
               <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[calc(0.78125*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
+                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Pay for the result, not the time
                 </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.78125*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
+                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
                   No time limit
                 </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.78125*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
+                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
                   Defined checklist so you know exactly what you're paying for
                 </li>
               </ul>
             </div>
             
-            <div className="mt-auto pt-6">
+            <div className="mt-auto pt-[calc(1.5*var(--scale-unit))]">
               {isFlatRate ? (
-                <div className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.84375*var(--scale-unit))] flex items-center justify-center gap-2">
-                  <Check className="w-4 h-4" /> Selected
+                <div className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.78*var(--scale-unit))] flex items-center justify-center gap-2">
+                  <Check className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))]" /> Selected
                 </div>
               ) : (
-                <button className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                <button className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.78*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Flat Rate
                 </button>
               )}
@@ -1641,43 +1641,43 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           {/* Hourly Card */}
           <div
             onClick={() => setFormData({ ...formData, cleaningType: 'Hourly' })}
-            className={`relative border-2 rounded-[20px] p-5 cursor-pointer transition-all duration-300 flex flex-col h-full ${
+            className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${
               isHourly
                   ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
                   : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
             <div className="mt-1">
-              <h3 className="text-[calc(1.0625*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Hourly</h3>
-              <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
+              <h3 className="text-[calc(0.9375*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Hourly</h3>
+              <p className="text-[calc(0.75*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
                 For specific tasks or targeted areas. You set the priorities and we'll make sure to make the most of each minute!
               </p>
               
               <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[calc(0.78125*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
+                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
                   You cap the budget in hours
                 </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.78125*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-5 h-5 text-[#FB8C42] shrink-0" strokeWidth={3} />
+                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
                   We work your priority list top-down
                 </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.78125*var(--scale-unit))] text-gray-700 font-medium">
-                  <span className="w-5 h-5 flex items-center justify-center shrink-0">
-                    <span className="w-3.5 h-0.5 bg-gray-400 rounded-full"></span>
+                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                  <span className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] flex items-center justify-center shrink-0">
+                    <span className="w-[calc(0.875*var(--scale-unit))] h-0.5 bg-gray-400 rounded-full"></span>
                   </span>
                   Result depends on hours booked
                 </li>
               </ul>
             </div>
 
-            <div className="mt-auto pt-6">
+            <div className="mt-auto pt-[calc(1.5*var(--scale-unit))]">
               {isHourly ? (
-                <div className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.84375*var(--scale-unit))] flex items-center justify-center gap-2">
-                  <Check className="w-4 h-4" /> Selected
+                <div className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.78*var(--scale-unit))] flex items-center justify-center gap-2">
+                  <Check className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))]" /> Selected
                 </div>
               ) : (
-                <button className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                <button className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.78*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Hourly
                 </button>
               )}
