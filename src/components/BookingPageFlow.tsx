@@ -1600,7 +1600,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
-            <span className="absolute -top-2.5 left-6 bg-[#FB8C42] text-white text-[calc(0.59375*var(--scale-unit))] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10">
+            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[calc(0.59375*var(--scale-unit))] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10 whitespace-nowrap">
               MOST POPULAR — BEST VALUE
             </span>
             <div className="mt-1">
@@ -1627,15 +1627,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             
             <div className="mt-auto pt-6">
               {isFlatRate ? (
-                <button 
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNext();
-                  }}
-                  className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
-                >
-                  Continue with Flat Rate <ArrowRight className="w-4 h-4" />
-                </button>
+                <div className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.84375*var(--scale-unit))] flex items-center justify-center gap-2">
+                  <Check className="w-4 h-4" /> Selected
+                </div>
               ) : (
                 <button className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Flat Rate
@@ -1653,11 +1647,6 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
             }`}
           >
-            {isHourly && (
-              <span className="absolute -top-2.5 left-6 bg-orange-100 text-[#FB8C42] text-[calc(0.59375*var(--scale-unit))] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10 border border-orange-200">
-                SELECTED
-              </span>
-            )}
             <div className="mt-1">
               <h3 className="text-[calc(1.0625*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Hourly</h3>
               <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
@@ -1684,15 +1673,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
             <div className="mt-auto pt-6">
               {isHourly ? (
-                <button 
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNext();
-                  }}
-                  className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap shadow-lg shadow-[#FB8C42]/20 transition-colors flex items-center justify-center gap-2"
-                >
-                  Continue with Hourly <ArrowRight className="w-4 h-4" />
-                </button>
+                <div className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.84375*var(--scale-unit))] flex items-center justify-center gap-2">
+                  <Check className="w-4 h-4" /> Selected
+                </div>
               ) : (
                 <button className="w-full px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.84375*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
                   Select Hourly
@@ -3417,21 +3400,19 @@ const renderResStep2 = () => {
                             <ChevronLeft className="w-4 h-4" /> Back
                           </button>
                         ) : <div />}
-                        {currentStep !== 2 && (
-                          <div className="flex flex-col items-end gap-2">
-                            <button
-                              onClick={handleNext}
-                              disabled={!isStepValid()}
-                              className={`px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${
-                                !isStepValid()
-                                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                                  : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
-                              }`}
-                            >
-                              Continue <ArrowRight className="w-4 h-4" />
-                            </button>
-                          </div>
-                        )}
+                        <div className="flex flex-col items-end gap-2">
+                          <button
+                            onClick={handleNext}
+                            disabled={!isStepValid()}
+                            className={`px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${
+                              !isStepValid()
+                                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
+                            }`}
+                          >
+                            Continue <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
                       </>
                     )}
                   </div>
@@ -3482,7 +3463,7 @@ const renderResStep2 = () => {
               )}
             </span>
           </div>
-          {currentStep < totalSteps && currentStep !== 2 && (
+          {currentStep < totalSteps && (
             <button
               onClick={handleNext}
               disabled={!isStepValid()}
