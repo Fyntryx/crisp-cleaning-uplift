@@ -126,7 +126,7 @@
   }
 
   .booking-scale-root {
-    --scale-unit: clamp(15px, 1.25vw, 16px);
+    --scale-unit: clamp(15px, 1.25vw, 18px);
   }
 
   h1,
