@@ -219,9 +219,9 @@ const BookingSummaryCard = ({
           if (formData.frequency === "Weekly") badges.push(`${pricingConfig?.frequencyDiscounts?.Weekly ?? 15}% OFF LOCKED IN`);
           else if (formData.frequency === "Fortnightly") badges.push(`${pricingConfig?.frequencyDiscounts?.Fortnightly ?? 10}% OFF LOCKED IN`);
           else if (formData.frequency === "Monthly") badges.push(`${pricingConfig?.frequencyDiscounts?.Monthly ?? 5}% OFF LOCKED IN`);
-          
+
           if (formData.cleaningType === "Vacate") badges.push("BOND BACK GUARANTEE");
-          
+
           if (appliedPromo) {
             badges.push(
               <span key="promo" className="flex items-center gap-1">
@@ -243,7 +243,7 @@ const BookingSummaryCard = ({
     <div className="w-full h-px bg-[#f2eadf] my-5" />
 
     <div className="relative z-10 text-[calc(0.90625*var(--scale-unit))]">
-{currentStep === 7 ? (
+      {currentStep === 7 ? (
         <div className="space-y-3 mt-1">
           <div className="flex justify-between items-start gap-4">
             <span className="text-[12.5px] font-medium text-[#8d8378]">Service</span>
@@ -251,7 +251,7 @@ const BookingSummaryCard = ({
               {formData.cleaningType || "Standard"}{formData.condition && formData.condition !== 'Standard' ? ` · ${formData.condition}` : ''}
             </span>
           </div>
-          
+
           {(() => {
             const parts: string[] = [];
             if (formData.homeDetails?.livingRooms) parts.push(`${formData.homeDetails.livingRooms} liv`);
@@ -277,7 +277,7 @@ const BookingSummaryCard = ({
               </div>
             );
           })()}
-          
+
           {formData.selectedDate && formData.selectedTime && (
             <div className="flex justify-between items-start gap-4">
               <span className="text-[12.5px] font-medium text-[#8d8378]">Date</span>
@@ -291,14 +291,14 @@ const BookingSummaryCard = ({
             <span className="text-[12.5px] font-medium text-[#8d8378]">Frequency</span>
             <span className="text-[12.5px] font-normal text-[#2b2523] text-right">{formData.frequency || "One time"}</span>
           </div>
-          
+
           <div className="my-5 border-t border-[#f2eadf]" />
-          
+
           <div className="flex justify-between items-center mb-1.5">
             <span className="text-[12.5px] font-medium text-[#8d8378]">Subtotal</span>
             <span className="text-[12.5px] font-medium text-[#2b2523]">${pricingResult?.subtotal?.toFixed(2) || '0.00'}</span>
           </div>
-          
+
           {/* Discounts */}
           {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
             <div className="flex justify-between items-center mb-1.5">
@@ -318,14 +318,14 @@ const BookingSummaryCard = ({
               <span className="text-[12.5px] font-semibold text-[#FB8C42]">-${(pricingResult?.discounts?.promo?.amount).toFixed(2)}</span>
             </div>
           )}
-          
+
           {outOfAreaFee > 0 && (
-             <div className="flex justify-between items-center mb-1.5">
-               <span className="text-[12.5px] font-semibold text-amber-600">Travel Fee (Extended Area)</span>
-               <span className="text-[12.5px] font-semibold text-amber-600">+${(outOfAreaFee).toFixed(2)}</span>
-             </div>
+            <div className="flex justify-between items-center mb-1.5">
+              <span className="text-[12.5px] font-semibold text-amber-600">Travel Fee (Extended Area)</span>
+              <span className="text-[12.5px] font-semibold text-amber-600">+${(outOfAreaFee).toFixed(2)}</span>
+            </div>
           )}
-          
+
           <div className="my-5 border-t border-[#f2eadf]" />
 
           <div className="flex justify-between items-end">
@@ -337,214 +337,214 @@ const BookingSummaryCard = ({
         </div>
       ) : (
         <>
-          
-      <div className="flex justify-between items-center py-3.5">
-        <span className="text-[12.5px] font-medium text-[#8d8378]">Service Type</span>
-        <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.cleaningType || "Standard"} Clean</span>
-      </div>
 
-      {formData.selectedDate && formData.selectedTime && (
-        <>
-          <div className="flex justify-between items-center py-3.5 gap-4">
-            <span className="text-[12.5px] font-medium text-[#8d8378] whitespace-nowrap">Date & Time</span>
-            <span className="text-[12.5px] font-normal text-[#2b2523] text-right">
-              {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
-            </span>
+          <div className="flex justify-between items-center py-3.5">
+            <span className="text-[12.5px] font-medium text-[#8d8378]">Service Type</span>
+            <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.cleaningType || "Standard"} Clean</span>
           </div>
-        </>
-      )}
 
-      <div className="flex justify-between items-center py-3.5 mb-2">
-        <span className="text-[12.5px] font-medium text-[#8d8378]">Frequency</span>
-        <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.frequency || "One time"}</span>
-      </div>
-
-      <div className="pt-1">
-        <span className="block mb-4 text-[calc(0.6875*var(--scale-unit))] font-semibold uppercase tracking-widest text-gray-400">
-          BREAKDOWN
-        </span>
-
-        <div className="space-y-3">
-          {pricingResult?.breakdown.cleaningType && (
-            <div className="flex justify-between">
-              <span className="text-[12.5px] font-medium text-[#8d8378]">
-                {formData.cleaningType === 'Hourly' 
-                  ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}` 
-                  : `${pricingResult.breakdown.cleaningType.name} Clean Base`}
-              </span>
-              <span className="text-[12.5px] font-normal text-[#2b2523]">${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
-            </div>
-          )}
-          {(() => {
-            if (formData.cleaningType === 'Hourly') return null;
-
-            const mappedCleaningType = formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType;
-            const currentRoomPrices = pricingConfig?.roomPrices?.[mappedCleaningType] || pricingConfig?.roomPrices?.Regular || ROOM_PRICES.Regular;
-            return (
-              <>
-                {(formData.homeDetails.bedrooms || 0) > 0 && (
-                  <div className="flex justify-between">
-                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.bedrooms}x Bedroom</span>
-                    <span className="text-[12.5px] font-normal text-[#2b2523]">
-                      ${(currentRoomPrices.Bedroom * (formData.homeDetails.bedrooms || 0)).toFixed(2)}
-                    </span>
-                  </div>
-                )}
-                {(formData.homeDetails.bathrooms || 0) > 0 && (
-                  <div className="flex justify-between">
-                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.bathrooms}x Bathroom</span>
-                    <span className="text-[12.5px] font-normal text-[#2b2523]">
-                      ${(currentRoomPrices.Bathroom * (formData.homeDetails.bathrooms || 0)).toFixed(2)}
-                    </span>
-                  </div>
-                )}
-                {(formData.homeDetails.kitchens || 0) > 0 && (
-                  <div className="flex justify-between">
-                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.kitchens}x Kitchen</span>
-                    <span className="text-[12.5px] font-normal text-[#2b2523]">
-                      ${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
-                    </span>
-                  </div>
-                )}
-                {(formData.homeDetails.livingRooms || 0) > 0 && (
-                  <div className="flex justify-between">
-                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.livingRooms}x Living & Dining</span>
-                    <span className="text-[12.5px] font-normal text-[#2b2523]">
-                      ${(currentRoomPrices.Living * (formData.homeDetails.livingRooms || 0)).toFixed(2)}
-                    </span>
-                  </div>
-                )}
-                {(formData.homeDetails.other || 0) > 0 && (
-                  <div className="flex justify-between">
-                    <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.other}x Other Area</span>
-                    <span className="text-[12.5px] font-normal text-[#2b2523]">
-                      ${(currentRoomPrices.Other * (formData.homeDetails.other || 0)).toFixed(2)}
-                    </span>
-                  </div>
-                )}
-              </>
-            );
-          })()}
-          {pricingResult?.breakdown.extras.items.map((e: any) => (
-            <div key={e.name} className="flex justify-between">
-              <span className="text-[12.5px] font-medium text-[#8d8378]">+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
-              <span className="text-[12.5px] font-normal text-[#2b2523]">${e.price}</span>
-            </div>
-          ))}
-          {outOfAreaFee > 0 && (
-             <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-medium text-amber-600 pt-1">
-               <span>+ Travel Fee (Extended Area)</span>
-               <span>A${outOfAreaFee.toFixed(2)}</span>
-             </div>
-          )}
-          {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
-            <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
-              <span>Large Service Discount</span>
-              <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
-            </div>
-          )}
-
-          {pricingResult?.discounts?.frequency && (
-            <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-1">
-              <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
-              <span>-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
-            </div>
-          )}
-
-          {/* Referral Applied Confirmation */}
-          {appliedReferral && (
-            <div className="flex flex-col gap-0.5 pt-2 h-px bg-tan-soft border-0">
-              <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42]">
-                <span className="flex items-center gap-1.5">
-                  ✓ {appliedReferral.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
-                  <button onClick={() => setAppliedReferral(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove referral code">✕</button>
+          {formData.selectedDate && formData.selectedTime && (
+            <>
+              <div className="flex justify-between items-center py-3.5 gap-4">
+                <span className="text-[12.5px] font-medium text-[#8d8378] whitespace-nowrap">Date & Time</span>
+                <span className="text-[12.5px] font-normal text-[#2b2523] text-right">
+                  {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
                 </span>
               </div>
-              <p className="text-[calc(0.6875*var(--scale-unit))] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
+            </>
+          )}
+
+          <div className="flex justify-between items-center py-3.5 mb-2">
+            <span className="text-[12.5px] font-medium text-[#8d8378]">Frequency</span>
+            <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.frequency || "One time"}</span>
+          </div>
+
+          <div className="pt-1">
+            <span className="block mb-4 text-[calc(0.6875*var(--scale-unit))] font-semibold uppercase tracking-widest text-gray-400">
+              BREAKDOWN
+            </span>
+
+            <div className="space-y-3">
+              {pricingResult?.breakdown.cleaningType && (
+                <div className="flex justify-between">
+                  <span className="text-[12.5px] font-medium text-[#8d8378]">
+                    {formData.cleaningType === 'Hourly'
+                      ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}`
+                      : `${pricingResult.breakdown.cleaningType.name} Clean Base`}
+                  </span>
+                  <span className="text-[12.5px] font-normal text-[#2b2523]">${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
+                </div>
+              )}
+              {(() => {
+                if (formData.cleaningType === 'Hourly') return null;
+
+                const mappedCleaningType = formData.cleaningType === "Standard" ? "Regular" : formData.cleaningType;
+                const currentRoomPrices = pricingConfig?.roomPrices?.[mappedCleaningType] || pricingConfig?.roomPrices?.Regular || ROOM_PRICES.Regular;
+                return (
+                  <>
+                    {(formData.homeDetails.bedrooms || 0) > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.bedrooms}x Bedroom</span>
+                        <span className="text-[12.5px] font-normal text-[#2b2523]">
+                          ${(currentRoomPrices.Bedroom * (formData.homeDetails.bedrooms || 0)).toFixed(2)}
+                        </span>
+                      </div>
+                    )}
+                    {(formData.homeDetails.bathrooms || 0) > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.bathrooms}x Bathroom</span>
+                        <span className="text-[12.5px] font-normal text-[#2b2523]">
+                          ${(currentRoomPrices.Bathroom * (formData.homeDetails.bathrooms || 0)).toFixed(2)}
+                        </span>
+                      </div>
+                    )}
+                    {(formData.homeDetails.kitchens || 0) > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.kitchens}x Kitchen</span>
+                        <span className="text-[12.5px] font-normal text-[#2b2523]">
+                          ${(currentRoomPrices.Kitchen * (formData.homeDetails.kitchens || 0)).toFixed(2)}
+                        </span>
+                      </div>
+                    )}
+                    {(formData.homeDetails.livingRooms || 0) > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.livingRooms}x Living & Dining</span>
+                        <span className="text-[12.5px] font-normal text-[#2b2523]">
+                          ${(currentRoomPrices.Living * (formData.homeDetails.livingRooms || 0)).toFixed(2)}
+                        </span>
+                      </div>
+                    )}
+                    {(formData.homeDetails.other || 0) > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-[12.5px] font-medium text-[#8d8378]">{formData.homeDetails.other}x Other Area</span>
+                        <span className="text-[12.5px] font-normal text-[#2b2523]">
+                          ${(currentRoomPrices.Other * (formData.homeDetails.other || 0)).toFixed(2)}
+                        </span>
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
+              {pricingResult?.breakdown.extras.items.map((e: any) => (
+                <div key={e.name} className="flex justify-between">
+                  <span className="text-[12.5px] font-medium text-[#8d8378]">+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
+                  <span className="text-[12.5px] font-normal text-[#2b2523]">${e.price}</span>
+                </div>
+              ))}
+              {outOfAreaFee > 0 && (
+                <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-medium text-amber-600 pt-1">
+                  <span>+ Travel Fee (Extended Area)</span>
+                  <span>A${outOfAreaFee.toFixed(2)}</span>
+                </div>
+              )}
+              {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
+                <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
+                  <span>Large Service Discount</span>
+                  <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
+                </div>
+              )}
+
+              {pricingResult?.discounts?.frequency && (
+                <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-1">
+                  <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
+                  <span>-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
+                </div>
+              )}
+
+              {/* Referral Applied Confirmation */}
+              {appliedReferral && (
+                <div className="flex flex-col gap-0.5 pt-2 h-px bg-tan-soft border-0">
+                  <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42]">
+                    <span className="flex items-center gap-1.5">
+                      ✓ {appliedReferral.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
+                      <button onClick={() => setAppliedReferral(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove referral code">✕</button>
+                    </span>
+                  </div>
+                  <p className="text-[calc(0.6875*var(--scale-unit))] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
+                </div>
+              )}
+
+            </div>
+          </div>
+
+
+
+          {/* --- PROMO CODE SECTION --- */}
+          <div className="py-1">
+            <div className="relative flex items-center">
+              <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Promo Code"
+                className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#FB8C42] focus:ring-1 focus:ring-[#FB8C42]/10 transition-all placeholder:text-gray-400 font-semibold"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+              />
+              <button
+                type="button"
+                disabled={isValidatingPromo || !promoCode.trim()}
+                onClick={async (e) => {
+                  e.preventDefault();
+                  if (promoCode.trim()) {
+                    setIsValidatingPromo(true);
+                    try {
+                      const res = await fetch(`${apiBaseUrl}/api/validate-promo`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          code: promoCode,
+                          frequency: formData.frequency || "One time"
+                        }),
+                      });
+                      const data = await res.json();
+                      if (data.valid) {
+                        if (data.promo.category === 'REFERRAL') {
+                          setAppliedReferral(data.promo);
+                        } else {
+                          setAppliedPromo(data.promo);
+                        }
+                        setPromoCode('');
+                      } else {
+                        alert(data.error || 'Invalid promo code');
+                      }
+                    } catch (error) {
+                      console.error('Error validating promo code:', error);
+                      alert('Error validating promo code. Please try again.');
+                    } finally {
+                      setIsValidatingPromo(false);
+                    }
+                  }
+                }}
+                className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[calc(0.625*var(--scale-unit))] font-semibold uppercase tracking-wider rounded-lg transition-all"
+              >
+                {isValidatingPromo ? '...' : 'Apply'}
+              </button>
+            </div>
+          </div>
+
+
+
+          {/* Out of Area Fee Banner */}
+          {outOfAreaFee > 0 && (
+            <div className="flex items-start gap-2.5 p-3 bg-amber-50 border border-amber-200 rounded-xl my-2">
+              <span className="text-amber-600 text-base mt-0.5">⚠️</span>
+              <div>
+                <p className="text-[calc(0.6875*var(--scale-unit))] font-bold text-amber-800 uppercase tracking-wide">Extended Service Area</p>
+                <p className="text-[calc(0.6875*var(--scale-unit))] text-amber-700 leading-relaxed mt-0.5">
+                  Your address is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+                </p>
+              </div>
             </div>
           )}
 
-        </div>
-      </div>
+          <div className="w-full h-px bg-[#f2eadf] my-5" />
 
-
-
-      {/* --- PROMO CODE SECTION --- */}
-      <div className="py-1">
-        <div className="relative flex items-center">
-          <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Promo Code"
-            className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#FB8C42] focus:ring-1 focus:ring-[#FB8C42]/10 transition-all placeholder:text-gray-400 font-semibold"
-            value={promoCode}
-            onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-          />
-          <button 
-            type="button"
-            disabled={isValidatingPromo || !promoCode.trim()}
-            onClick={async (e) => {
-              e.preventDefault();
-              if (promoCode.trim()) {
-                setIsValidatingPromo(true);
-                try {
-                  const res = await fetch(`${apiBaseUrl}/api/validate-promo`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                      code: promoCode,
-                      frequency: formData.frequency || "One time"
-                    }),
-                  });
-                  const data = await res.json();
-                  if (data.valid) {
-                    if (data.promo.category === 'REFERRAL') {
-                      setAppliedReferral(data.promo);
-                    } else {
-                      setAppliedPromo(data.promo);
-                    }
-                    setPromoCode('');
-                  } else {
-                    alert(data.error || 'Invalid promo code');
-                  }
-                } catch (error) {
-                  console.error('Error validating promo code:', error);
-                  alert('Error validating promo code. Please try again.');
-                } finally {
-                  setIsValidatingPromo(false);
-                }
-              }
-            }}
-            className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[calc(0.625*var(--scale-unit))] font-semibold uppercase tracking-wider rounded-lg transition-all"
-          >
-            {isValidatingPromo ? '...' : 'Apply'}
-          </button>
-        </div>
-      </div>
-
-
-
-      {/* Out of Area Fee Banner */}
-      {outOfAreaFee > 0 && (
-        <div className="flex items-start gap-2.5 p-3 bg-amber-50 border border-amber-200 rounded-xl my-2">
-          <span className="text-amber-600 text-base mt-0.5">⚠️</span>
-          <div>
-            <p className="text-[calc(0.6875*var(--scale-unit))] font-bold text-amber-800 uppercase tracking-wide">Extended Service Area</p>
-            <p className="text-[calc(0.6875*var(--scale-unit))] text-amber-700 leading-relaxed mt-0.5">
-              Your address is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
-            </p>
+          <div className="flex justify-between items-end">
+            <span className="text-[12.5px] font-[600] text-[#2b2523] mb-1">Estimated total</span>
+            <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
+              ${(pricingResult?.total || 0).toFixed(2)}
+            </span>
           </div>
-        </div>
-      )}
-
-      <div className="w-full h-px bg-[#f2eadf] my-5" />
-
-      <div className="flex justify-between items-end">
-        <span className="text-[12.5px] font-[600] text-[#2b2523] mb-1">Estimated total</span>
-        <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
-          ${(pricingResult?.total || 0).toFixed(2)}
-        </span>
-      </div>
         </>
       )}
 
@@ -598,7 +598,7 @@ const CountdownTimer = ({ onTimeout }: { onTimeout?: () => void }) => {
 
   useEffect(() => {
     if (timeLeft === null) return;
-    
+
     if (timeLeft <= 0) {
       if (!isInitiallyExpired.current && onTimeout) {
         onTimeout();
@@ -622,7 +622,7 @@ const CountdownTimer = ({ onTimeout }: { onTimeout?: () => void }) => {
 
   const mins = Math.floor(timeLeft / 60);
   const secs = Math.floor(timeLeft % 60);
-  
+
   return (
     <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-600 rounded-full text-xs font-bold tracking-widest mt-2 border border-red-100 shadow-sm uppercase">
       <Clock className="w-3.5 h-3.5" />
@@ -637,11 +637,11 @@ const ReservationTimer = () => {
   useEffect(() => {
     const saved = sessionStorage.getItem("crisp_reservation_endtime");
     let remaining = 0;
-    
+
     if (saved) {
       remaining = Math.floor((parseInt(saved) - Date.now()) / 1000);
     }
-    
+
     // If no timer or timer expired, start a fresh 10 minute timer
     if (!saved || remaining <= 0) {
       const newEndTime = Date.now() + 600 * 1000;
@@ -670,7 +670,7 @@ const ReservationTimer = () => {
 
   const mins = Math.floor(timeLeft / 60);
   const secs = timeLeft % 60;
-  
+
   return (
     <span className="inline-flex items-center gap-1.5 text-red-500 text-[calc(0.6875*var(--scale-unit))] font-bold tracking-wider uppercase">
       - Booking reserved for {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
@@ -733,7 +733,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [isValidatingPromo, setIsValidatingPromo] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
   const [discountClaimed, setDiscountClaimed] = useState(false);
-  
+
   const [discountContent, setDiscountContent] = useState({
     heading: "First time? Claim 5% OFF!",
     subheading: "Takes under a minute. Your full price shows on screen"
@@ -758,7 +758,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         // Ensure appliedPromo isn't overwritten if already set by referral or something else,
         // but for this flow we assume WELCOME5 is applied.
         setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: false });
-        
+
         setFormData(prev => ({
           ...prev,
           contact: {
@@ -782,7 +782,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         const url = new URL(window.location.href);
         const params = url.searchParams;
         let serviceParam = params.get("service");
-        
+
         if (!serviceParam && url.hash.includes("?service=")) {
           const hashParams = new URLSearchParams(url.hash.split("?")[1]);
           serviceParam = hashParams.get("service");
@@ -794,7 +794,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           if (lowerService.includes("deep")) matchedType = "Deep";
           else if (lowerService.includes("vacate")) matchedType = "Vacate";
           else if (lowerService.includes("standard")) matchedType = "Standard";
-          
+
           if (matchedType) {
             setFormData(prev => ({
               ...prev,
@@ -803,7 +803,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             }));
             setCurrentStep(2);
             setIsModalOpen(true);
-            
+
             // Clear hash so it can be triggered again
             if (url.hash) {
               window.history.replaceState(null, "", window.location.pathname + window.location.search);
@@ -834,7 +834,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           // Only intercept if the link is for the current page
           if (url.pathname === window.location.pathname || link.getAttribute('href')?.startsWith('#')) {
             e.preventDefault();
-            
+
             // Extract service param
             let serviceParam = url.searchParams.get("service");
             if (!serviceParam && url.hash.includes("?service=")) {
@@ -848,7 +848,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               if (lowerService.includes("deep")) matchedType = "Deep";
               else if (lowerService.includes("vacate")) matchedType = "Vacate";
               else if (lowerService.includes("standard")) matchedType = "Standard";
-              
+
               if (matchedType) {
                 setFormData(prev => ({
                   ...prev,
@@ -901,7 +901,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   useEffect(() => {
     if (typeof window !== "undefined" && currentStep > prevStepRef.current) {
       (window as any).dataLayer = (window as any).dataLayer || [];
-      
+
       const fireEvent = (name: string) => {
         (window as any).dataLayer.push({
           event: name,
@@ -986,7 +986,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
   useEffect(() => {
     setMounted(true);
-    
+
     // Fetch dynamic pricing config
     const fetchPricingConfig = async () => {
       try {
@@ -1004,7 +1004,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         setIsLoadingConfig(false);
       }
     };
-    
+
     fetchPricingConfig();
   }, [API_BASE_URL]);
 
@@ -1084,9 +1084,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
     } else {
       switch (currentStep) {
-        case 1: 
+        case 1:
           return !!(
-            formData.contact.firstName && 
+            formData.contact.firstName &&
             formData.contact.email && isValidEmail(formData.contact.email) &&
             formData.contact.phone && isValidPhone(formData.contact.phone)
           );
@@ -1186,7 +1186,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       setPromoCode(appliedPromoDetails.code);
       setAppliedPromo({ code: appliedPromoDetails.code, type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', value: appliedPromoDetails.value, isStackable: false });
       setDiscountClaimed(true);
-      
+
       setSubmitError(null);
       setSubmitSuccess(null);
       setCurrentStep(2);
@@ -1205,9 +1205,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     }
 
     if (isStepValid() && currentStep < totalSteps) {
-      setSubmitError(null); 
-      setSubmitSuccess(null); 
-      
+      setSubmitError(null);
+      setSubmitSuccess(null);
+
       if (currentStep === 2 && !isCommercial && formData.cleaningType === "Hourly") {
         setCurrentStep(4); // Skip Step 3 (Service & Condition)
       } else {
@@ -1228,11 +1228,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     }
   };
 
-    const handlePrev = () => {
+  const handlePrev = () => {
     if (currentStep > 1) {
-      setSubmitError(null); 
-      setSubmitSuccess(null); 
-      
+      setSubmitError(null);
+      setSubmitSuccess(null);
+
       if (currentStep === 4 && !isCommercial && formData.cleaningType === "Hourly") {
         setCurrentStep(2); // Skip back over Step 3
       } else {
@@ -1268,8 +1268,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
   const updateExtraCount = (extraKey: Extra, count: number) => {
     if (count < 1) {
-        toggleExtra(extraKey);
-        return;
+      toggleExtra(extraKey);
+      return;
     }
     setFormData((prev) => ({
       ...prev,
@@ -1445,7 +1445,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         setIsSubmitting(false);
         return;
       }
-      
+
       const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
       const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
 
@@ -1575,13 +1575,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     }));
   };
 
-    const renderStep1 = () => {
+  const renderStep1 = () => {
     const isFlatRate = formData.cleaningType !== 'Hourly' && !!formData.cleaningType;
     const isHourly = formData.cleaningType === 'Hourly';
 
     return (
       <div className="max-w-3xl mx-auto w-full flex flex-col py-2">
-        <div className="max-w-[520px] mx-auto w-full flex flex-col gap-[calc(1.5*var(--scale-unit))]">
+        <div className="max-w-[540px] mx-auto w-full flex flex-col gap-[calc(1.5*var(--scale-unit))]">
           <div className="mb-2">
             <h2 className="text-[calc(1.25*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
               How would you like to be priced?
@@ -1592,116 +1592,114 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[calc(1.25*var(--scale-unit))] w-full">
-          {/* Flat Rate Card */}
-          <div
-            onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
-            className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${
-              isFlatRate
+            {/* Flat Rate Card */}
+            <div
+              onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
+              className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${isFlatRate
                 ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
-            }`}
-          >
-            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[calc(0.55*var(--scale-unit))] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10 whitespace-nowrap">
-              MOST POPULAR — BEST VALUE
-            </span>
-            <div className="mt-1">
-              <h3 className="text-[calc(0.9375*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Flat Rate</h3>
-              <p className="text-[calc(0.75*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
-                A fixed price for a complete result. Define the size and condition, and we'll stay as long as it takes to leave your space shining.
-              </p>
-              
-              <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
-                  Pay for the result, not the time
-                </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
-                  No time limit
-                </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
-                  Defined checklist so you know exactly what you're paying for
-                </li>
-              </ul>
-            </div>
-            
-            <div className="mt-auto pt-[calc(1.5*var(--scale-unit))]">
-              {isFlatRate ? (
-                <div className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.78*var(--scale-unit))] flex items-center justify-center gap-2">
-                  <Check className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))]" /> Selected
-                </div>
-              ) : (
-                <button className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.78*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
-                  Select Flat Rate
-                </button>
-              )}
-            </div>
-          </div>
+                }`}
+            >
+              <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#FB8C42] text-white text-[calc(0.55*var(--scale-unit))] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md z-10 whitespace-nowrap">
+                MOST POPULAR — BEST VALUE
+              </span>
+              <div className="mt-1">
+                <h3 className="text-[calc(0.9375*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Flat Rate</h3>
+                <p className="text-[calc(0.75*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
+                  A fixed price for a complete result. Define the size and condition, and we'll stay as long as it takes to leave your space shining.
+                </p>
 
-          {/* Hourly Card */}
-          <div
-            onClick={() => setFormData({ ...formData, cleaningType: 'Hourly' })}
-            className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${
-              isHourly
-                  ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
-                  : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
-            }`}
-          >
-            <div className="mt-1">
-              <h3 className="text-[calc(0.9375*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Hourly</h3>
-              <p className="text-[calc(0.75*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
-                For specific tasks or targeted areas. You set the priorities and we'll make sure to make the most of each minute!
-              </p>
-              
-              <ul className="space-y-1.5 mb-5">
-                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
-                  You cap the budget in hours
-                </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
-                  <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
-                  We work your priority list top-down
-                </li>
-                <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
-                  <span className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] flex items-center justify-center shrink-0">
-                    <span className="w-[calc(0.875*var(--scale-unit))] h-0.5 bg-gray-400 rounded-full"></span>
-                  </span>
-                  Result depends on hours booked
-                </li>
-              </ul>
+                <ul className="space-y-1.5 mb-5">
+                  <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                    <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
+                    Pay for the result, not the time
+                  </li>
+                  <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                    <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
+                    No time limit
+                  </li>
+                  <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                    <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
+                    Defined checklist so you know exactly what you're paying for
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-auto pt-[calc(1.5*var(--scale-unit))]">
+                {isFlatRate ? (
+                  <div className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.78*var(--scale-unit))] flex items-center justify-center gap-2">
+                    <Check className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))]" /> Selected
+                  </div>
+                ) : (
+                  <button className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.78*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                    Select Flat Rate
+                  </button>
+                )}
+              </div>
             </div>
 
-            <div className="mt-auto pt-[calc(1.5*var(--scale-unit))]">
-              {isHourly ? (
-                <div className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.78*var(--scale-unit))] flex items-center justify-center gap-2">
-                  <Check className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))]" /> Selected
-                </div>
-              ) : (
-                <button className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.78*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
-                  Select Hourly
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
+            {/* Hourly Card */}
+            <div
+              onClick={() => setFormData({ ...formData, cleaningType: 'Hourly' })}
+              className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${isHourly
+                ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
+                : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
+                }`}
+            >
+              <div className="mt-1">
+                <h3 className="text-[calc(0.9375*var(--scale-unit))] font-semibold text-gray-900 mb-1.5">Hourly</h3>
+                <p className="text-[calc(0.75*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4">
+                  For specific tasks or targeted areas. You set the priorities and we'll make sure to make the most of each minute!
+                </p>
 
-        {isHourly && (
-          <div className="max-w-3xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-[#E6A800] shrink-0 mt-0.5" strokeWidth={2.5} />
-              <div className="text-[calc(0.78125*var(--scale-unit))] font-normal leading-[1.5]">
-                Hourly is built for specific tasks or targeted areas — the best option if you're only after cleaning here and there. You set the priorities and we'll make the most of each minute! If you're looking to get entire rooms or the whole house treated, <span className="font-bold text-[#997300]">flat rate is the most cost-effective option — pay for the result, not the time.</span>
+                <ul className="space-y-1.5 mb-5">
+                  <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                    <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
+                    You cap the budget in hours
+                  </li>
+                  <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                    <Check className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] text-[#FB8C42] shrink-0" strokeWidth={3} />
+                    We work your priority list top-down
+                  </li>
+                  <li className="flex items-start gap-2.5 text-[calc(0.72*var(--scale-unit))] text-gray-700 font-medium">
+                    <span className="w-[calc(1.25*var(--scale-unit))] h-[calc(1.25*var(--scale-unit))] flex items-center justify-center shrink-0">
+                      <span className="w-[calc(0.875*var(--scale-unit))] h-0.5 bg-gray-400 rounded-full"></span>
+                    </span>
+                    Result depends on hours booked
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-auto pt-[calc(1.5*var(--scale-unit))]">
+                {isHourly ? (
+                  <div className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full bg-[#FB8C42]/10 border-[1.5px] border-[#FB8C42] text-[#FB8C42] font-semibold text-[calc(0.78*var(--scale-unit))] flex items-center justify-center gap-2">
+                    <Check className="w-[calc(1*var(--scale-unit))] h-[calc(1*var(--scale-unit))]" /> Selected
+                  </div>
+                ) : (
+                  <button className="w-full px-[calc(1.25*var(--scale-unit))] py-[calc(0.6*var(--scale-unit))] rounded-full border-[1.5px] border-gray-200 text-gray-700 font-semibold text-[calc(0.78*var(--scale-unit))] whitespace-nowrap hover:border-gray-300 hover:bg-gray-50 transition-colors">
+                    Select Hourly
+                  </button>
+                )}
               </div>
             </div>
           </div>
-        )}
+
+          {isHourly && (
+            <div className="max-w-3xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="w-5 h-5 text-[#E6A800] shrink-0 mt-0.5" strokeWidth={2.5} />
+                <div className="text-[calc(0.78125*var(--scale-unit))] font-normal leading-[1.5]">
+                  Hourly is built for specific tasks or targeted areas — the best option if you're only after cleaning here and there. You set the priorities and we'll make the most of each minute! If you're looking to get entire rooms or the whole house treated, <span className="font-bold text-[#997300]">flat rate is the most cost-effective option — pay for the result, not the time.</span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
   };
 
-const renderResStep2 = () => {
+  const renderResStep2 = () => {
     // Custom description matching selected plan
     const getPlanDescription = () => {
       if (formData.cleaningType === "Deep") {
@@ -1808,7 +1806,7 @@ const renderResStep2 = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Rate Bottom Label */}
                   <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-center">
                     <span className="text-[calc(0.75*var(--scale-unit))] font-bold text-[#8A6D3B]">
@@ -1850,7 +1848,7 @@ const renderResStep2 = () => {
                 <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-1">Tell us about your home</h3>
                 <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 mb-4">Count every room we should clean.</p>
                 <div className="bg-white rounded-[20px] border border-gray-100 flex flex-col shadow-sm">
-                  
+
                   {/* 1. Living Areas */}
                   <div className="w-full border-b border-gray-100 last:border-0">
                     <RoomCounter
@@ -1925,11 +1923,10 @@ const renderResStep2 = () => {
                             if (isCounterAddon && !isSelected) updateExtraCount(extra, 1);
                             else if (!isCounterAddon) toggleExtra(extra);
                           }}
-                          className={`flex items-center px-[14px] py-[12px] rounded-2xl border-[1.5px] transition-all cursor-pointer ${
-                            isSelected 
-                              ? "border-[#FB8C42] bg-[#FFF8F3]" 
-                              : "border-[#ece1d3] bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
-                          }`}
+                          className={`flex items-center px-[14px] py-[12px] rounded-2xl border-[1.5px] transition-all cursor-pointer ${isSelected
+                            ? "border-[#FB8C42] bg-[#FFF8F3]"
+                            : "border-[#ece1d3] bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
+                            }`}
                         >
                           <div className="flex items-center min-w-0">
                             {/* Checkmark for non-counter add-ons */}
@@ -1938,7 +1935,7 @@ const renderResStep2 = () => {
                                 {isSelected && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3.5} />}
                               </div>
                             )}
-                            
+
                             {/* Plus button for unselected counter add-ons */}
                             {isCounterAddon && !isSelected && (
                               <button
@@ -2089,7 +2086,7 @@ const renderResStep2 = () => {
             const isSelected = formData.cleaningType === type.id;
 
             return (
-              <div 
+              <div
                 key={type.id}
                 onClick={() => {
                   let newCondition = formData.condition;
@@ -2098,16 +2095,14 @@ const renderResStep2 = () => {
                   }
                   setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
                 }}
-                className={`relative cursor-pointer px-[calc(1.125*var(--scale-unit))] py-[calc(1*var(--scale-unit))] transition-all duration-300 flex flex-col rounded-[20px] border-[1.5px] ${
-                  isSelected 
-                    ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]' 
-                    : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
-                }`}
+                className={`relative cursor-pointer px-[calc(1.125*var(--scale-unit))] py-[calc(1*var(--scale-unit))] transition-all duration-300 flex flex-col rounded-[20px] border-[1.5px] ${isSelected
+                  ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]'
+                  : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
+                  }`}
               >
                 {type.badge && (
-                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 text-[calc(0.5625*var(--scale-unit))] font-bold tracking-widest px-3 py-1 rounded-full uppercase whitespace-nowrap shadow-sm ${
-                    type.badgeStyle === 'solid' ? 'bg-[#FB8C42] text-[#fff]' : 'bg-[#fff4ea] text-[#e0731f]'
-                  }`}>
+                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 text-[calc(0.5625*var(--scale-unit))] font-bold tracking-widest px-3 py-1 rounded-full uppercase whitespace-nowrap shadow-sm ${type.badgeStyle === 'solid' ? 'bg-[#FB8C42] text-[#fff]' : 'bg-[#fff4ea] text-[#e0731f]'
+                    }`}>
                     {type.badge}
                   </div>
                 )}
@@ -2120,7 +2115,7 @@ const renderResStep2 = () => {
 
         {/* Bottom section: Condition */}
         <div className="grid grid-cols-1 md:grid-cols-[43%_57%] gap-6 mb-8">
-          
+
           {/* Left Column: Condition Options */}
           <div>
             <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">OVERALL CONDITION</h3>
@@ -2132,22 +2127,21 @@ const renderResStep2 = () => {
               ].map((cond) => {
                 const isSelected = formData.condition === cond.id;
                 const isDisabled = formData.cleaningType === 'Standard' && (cond.id === 'Overdue' || cond.id === 'Heavy Build Up');
-                
+
                 return (
-                  <div 
+                  <div
                     key={cond.id}
                     onClick={() => {
                       if (!isDisabled) {
                         setFormData({ ...formData, condition: cond.id as any });
                       }
                     }}
-                    className={`cursor-pointer rounded-2xl border-[1.5px] p-3 transition-all duration-200 flex flex-col ${
-                      isDisabled 
-                        ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
-                        : isSelected 
-                          ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]' 
-                          : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
-                    }`}
+                    className={`cursor-pointer rounded-2xl border-[1.5px] p-3 transition-all duration-200 flex flex-col ${isDisabled
+                      ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
+                      : isSelected
+                        ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]'
+                        : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
+                      }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[calc(0.84375*var(--scale-unit))] font-semibold text-gray-900">{cond.label}</span>
@@ -2166,44 +2160,44 @@ const renderResStep2 = () => {
 
           {/* Right Column: Explainer Box */}
           <div>
-             {showConditionQuiz ? (
-               <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden">
-                 <button 
-                   onClick={() => setShowConditionQuiz(false)} 
-                   className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600"
-                 >
-                   <X className="w-4 h-4" />
-                 </button>
-                 <ConditionQuiz onComplete={(tier) => { 
-                   setFormData({ ...formData, condition: tier });
-                   setShowConditionQuiz(false);
-                 }} />
-               </div>
-             ) : (
-               <div className="bg-[#fdf9f3] border border-[#eadfce] rounded-2xl p-4 lg:p-5 h-full flex flex-col">
-                  <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
-                    WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
-                  </h3>
-                  
-                  <p className="text-[calc(0.78125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-8 flex-1">
-                    {formData.condition === 'Lived In' 
-                      ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
-                      : formData.condition === 'Heavy Build Up'
+            {showConditionQuiz ? (
+              <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden">
+                <button
+                  onClick={() => setShowConditionQuiz(false)}
+                  className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+                <ConditionQuiz onComplete={(tier) => {
+                  setFormData({ ...formData, condition: tier });
+                  setShowConditionQuiz(false);
+                }} />
+              </div>
+            ) : (
+              <div className="bg-[#fdf9f3] border border-[#eadfce] rounded-2xl p-4 lg:p-5 h-full flex flex-col">
+                <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
+                  WHAT '{formData.condition ? formData.condition.toUpperCase() : 'OVERDUE'}' LOOKS LIKE
+                </h3>
+
+                <p className="text-[calc(0.78125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-8 flex-1">
+                  {formData.condition === 'Lived In'
+                    ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
+                    : formData.condition === 'Heavy Build Up'
                       ? "Heavy build-up — Widespread heavy build-up across multiple rooms — grime that needs scrapers or repeated dwell-and-scrub cycles. Scale you can feel on the shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, pet hair worked into fabric and edges — often accompanied by lingering odour."
                       : "Overdue — Established build-up in the usual hotspots — needs product dwell time and proper scrubbing, but comes up within a single treatment. Cloudy (but smooth) shower glass, dark spots along the silicone, a greasy stovetop with cooked-on spots, tacky cupboard handles, a visible dust layer on ledges and skirting, scattered pet hair."
-                    }
-                  </p>
+                  }
+                </p>
 
-                  <div className="border-t border-gray-200 pt-5 mt-8">
-                    <div className="flex flex-col items-start gap-4">
-                      <p className="text-sm text-[#8d8378] w-full text-justify">
-                        <span className="font-bold text-gray-900">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
-                      </p>
-                      <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[calc(0.78125*var(--scale-unit))] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
-                    </div>
+                <div className="border-t border-gray-200 pt-5 mt-8">
+                  <div className="flex flex-col items-start gap-4">
+                    <p className="text-sm text-[#8d8378] w-full text-justify">
+                      <span className="font-bold text-gray-900">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
+                    </p>
+                    <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[calc(0.78125*var(--scale-unit))] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
                   </div>
-               </div>
-             )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -2290,7 +2284,7 @@ const renderResStep2 = () => {
 
     return (
       <div className="max-w-4xl mx-auto px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
-        
+
         {/* New Header */}
         <div className="mb-2">
           <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-ink leading-[1.12] tracking-[-0.01em] mb-2">When should we come?</h2>
@@ -2307,7 +2301,7 @@ const renderResStep2 = () => {
               const isSelected = formData.frequency === freq.id;
               return (
                 <div key={freq.id} className="relative flex-1 md:flex-none text-center w-full md:w-auto">
-                  
+
                   <button
                     onClick={() => {
                       const newFreq = freq.id;
@@ -2419,7 +2413,7 @@ const renderResStep2 = () => {
                     const mm = String(formData.selectedDate.getMonth() + 1).padStart(2, '0');
                     const dd = String(formData.selectedDate.getDate()).padStart(2, '0');
                     const dateStr = `${formData.selectedDate.getFullYear()}-${mm}-${dd}`;
-                    
+
                     const toMinutes = (timeStr: string) => {
                       const [time, modifier] = timeStr.split(' ');
                       let [hours, minutes] = time.split(':');
@@ -3017,7 +3011,7 @@ const renderResStep2 = () => {
       </div>
 
       <div className="space-y-6">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* FULL NAME */}
           <div className="flex flex-col space-y-2">
@@ -3177,7 +3171,7 @@ const renderResStep2 = () => {
               <span>Card saved securely. Charged after the clean.</span>
             </div>
           </div>
-          
+
           <p className="text-left text-xs text-gray-500 font-semibold mt-2">
             Already have an account?{" "}
             <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
@@ -3195,7 +3189,7 @@ const renderResStep2 = () => {
   });
   const validStep = isStepValid();
 
-    const renderContent = () => {
+  const renderContent = () => {
     if (isCommercial) {
       switch (currentStep) {
         case 1: return renderStep1();
@@ -3274,7 +3268,7 @@ const renderResStep2 = () => {
   return (
     <div className="min-h-[100dvh] flex flex-col bg-white font-sans text-gray-900 pb-[calc(5*var(--scale-unit))] min-[880px]:pb-0">
       <div className="w-full flex-1 flex flex-col">
-        
+
         {/* HORIZONTAL STEPPER (Visible < 1180px) */}
         <div className="block min-[1180px]:hidden w-full border-b border-[#e5e5e5] bg-white sticky top-0 z-40">
           <div className="flex overflow-x-auto no-scrollbar items-center py-4 px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(2.125*var(--scale-unit))] gap-6">
@@ -3282,7 +3276,7 @@ const renderResStep2 = () => {
               const isActive = item.step === currentStep;
               const isCompleted = item.step < currentStep;
               return (
-                <div 
+                <div
                   key={idx}
                   onClick={() => {
                     if (isCompleted) {
@@ -3293,11 +3287,10 @@ const renderResStep2 = () => {
                   }}
                   className={`flex items-center gap-2 whitespace-nowrap shrink-0 ${isCompleted ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
                 >
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${
-                    isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
                     isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
-                    "bg-gray-50 text-gray-400 border border-gray-100"
-                  }`}>
+                      "bg-gray-50 text-gray-400 border border-gray-100"
+                    }`}>
                     {isCompleted ? <Check className="w-3 h-3" strokeWidth={3} /> : <span className="text-[calc(0.625*var(--scale-unit))] font-semibold">{item.step}</span>}
                   </div>
                   <span className={`text-[calc(0.6875*var(--scale-unit))] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
@@ -3312,120 +3305,116 @@ const renderResStep2 = () => {
         <div className="flex flex-col min-[880px]:flex-row items-stretch w-full flex-1">
           {/* LEFT COLUMN - STEPPER (Visible >= 1180px) */}
           <div className="hidden min-[1180px]:block w-[calc(16*var(--scale-unit))] shrink-0 bg-transparent border-r border-[#f2eadf]">
-             <div className="flex flex-col gap-6 py-[calc(1.625*var(--scale-unit))] px-[calc(1.375*var(--scale-unit))] lg:sticky lg:top-20">
-                {sidebarSteps.map((item, idx) => {
-                  const isActive = item.step === currentStep;
-                  const isCompleted = item.step < currentStep;
-                  return (
-                    <div 
-                      key={idx} 
-                      onClick={() => {
-                        if (isCompleted) {
-                          setSubmitError(null);
-                          setSubmitSuccess(null);
-                          setCurrentStep(item.step);
-                        }
-                      }}
-                      role={isCompleted ? "button" : "presentation"}
-                      tabIndex={isCompleted ? 0 : -1}
-                      onKeyDown={(e) => {
-                        if (isCompleted && (e.key === "Enter" || e.key === " ")) {
-                          e.preventDefault();
-                          setSubmitError(null);
-                          setSubmitSuccess(null);
-                          setCurrentStep(item.step);
-                        }
-                      }}
-                      className={`flex items-center gap-4 relative w-full text-left ${isCompleted ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
-                    >
-                      {/* Vertical line connector */}
-                      {idx < sidebarSteps.length - 1 && (
-                        <div className={`absolute left-[calc(0.9375*var(--scale-unit))] top-[calc(1.875*var(--scale-unit))] bottom-[-24px] w-0.5 ${isCompleted ? 'bg-[#FB8C42]' : 'bg-gray-100'}`} />
-                      )}
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${
-                        isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
-                        isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
+            <div className="flex flex-col gap-6 py-[calc(1.625*var(--scale-unit))] px-[calc(1.375*var(--scale-unit))] lg:sticky lg:top-20">
+              {sidebarSteps.map((item, idx) => {
+                const isActive = item.step === currentStep;
+                const isCompleted = item.step < currentStep;
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      if (isCompleted) {
+                        setSubmitError(null);
+                        setSubmitSuccess(null);
+                        setCurrentStep(item.step);
+                      }
+                    }}
+                    role={isCompleted ? "button" : "presentation"}
+                    tabIndex={isCompleted ? 0 : -1}
+                    onKeyDown={(e) => {
+                      if (isCompleted && (e.key === "Enter" || e.key === " ")) {
+                        e.preventDefault();
+                        setSubmitError(null);
+                        setSubmitSuccess(null);
+                        setCurrentStep(item.step);
+                      }
+                    }}
+                    className={`flex items-center gap-4 relative w-full text-left ${isCompleted ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
+                  >
+                    {/* Vertical line connector */}
+                    {idx < sidebarSteps.length - 1 && (
+                      <div className={`absolute left-[calc(0.9375*var(--scale-unit))] top-[calc(1.875*var(--scale-unit))] bottom-[-24px] w-0.5 ${isCompleted ? 'bg-[#FB8C42]' : 'bg-gray-100'}`} />
+                    )}
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
+                      isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
                         "bg-gray-50 text-gray-400 border border-gray-100"
                       }`}>
-                        {isCompleted ? <Check className="w-4 h-4" strokeWidth={3} /> : <span className="text-[calc(0.6875*var(--scale-unit))] font-semibold">{item.step}</span>}
-                      </div>
-                      <span className={`text-[calc(0.78125*var(--scale-unit))] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
-                        {item.label}
-                      </span>
+                      {isCompleted ? <Check className="w-4 h-4" strokeWidth={3} /> : <span className="text-[calc(0.6875*var(--scale-unit))] font-semibold">{item.step}</span>}
                     </div>
-                  );
-                })}
+                    <span className={`text-[calc(0.78125*var(--scale-unit))] tracking-wide ${isActive ? "font-semibold text-[#2b2523]" : isCompleted ? "font-medium text-gray-700" : "font-medium text-gray-400"}`}>
+                      {item.label}
+                    </span>
+                  </div>
+                );
+              })}
 
-                <div className="w-full h-px bg-[#e5e5e5] my-2" />
-                <p className="text-[calc(0.75*var(--scale-unit))] font-medium text-gray-400 leading-[1.6] pr-2">
-                  Your quote is saved as you go &mdash; finish any time from the link we send you.
-                </p>
-             </div>
+              <div className="w-full h-px bg-[#e5e5e5] my-2" />
+              <p className="text-[calc(0.75*var(--scale-unit))] font-medium text-gray-400 leading-[1.6] pr-2">
+                Your quote is saved as you go &mdash; finish any time from the link we send you.
+              </p>
+            </div>
           </div>
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
-          <div className={`w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(1.125*var(--scale-unit))] pt-[calc(1.875*var(--scale-unit))] pb-[calc(4*var(--scale-unit))] min-[880px]:pt-[calc(3.5*var(--scale-unit))] min-[880px]:pb-[calc(8*var(--scale-unit))] relative flex flex-col items-center ${currentStep === 1 && !isCommercial ? 'min-[880px]:!px-[34px] min-[880px]:!py-[56px] min-[880px]:justify-center' : ''}`}>
-             <div className={`w-full max-w-[calc(48*var(--scale-unit))] flex flex-col flex-1 justify-center min-[880px]:justify-start ${currentStep === 1 && !isCommercial ? 'items-center' : ''}`}>
-               {renderContent()}
-               
-               {/* Inner Step Controls (Hidden on Mobile) */}
-               {currentStep < totalSteps && (
-                  <div className={`hidden min-[880px]:flex ${
-                    currentStep === 1 && !isCommercial 
-                      ? "w-full flex-col items-center" 
-                      : "mt-8 pt-4 items-center justify-between"
+          <div className={`w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(1.125*var(--scale-unit))] pt-[calc(1.875*var(--scale-unit))] pb-[calc(4*var(--scale-unit))] min-[880px]:pt-[calc(1.5*var(--scale-unit))] min-[880px]:pb-[calc(8*var(--scale-unit))] relative flex flex-col items-center ${currentStep === 1 && !isCommercial ? 'min-[880px]:!px-[34px] min-[880px]:!py-[56px] min-[880px]:justify-center' : ''}`}>
+            <div className={`w-full max-w-[calc(48*var(--scale-unit))] flex flex-col flex-1 justify-center min-[880px]:justify-start ${currentStep === 1 && !isCommercial ? 'items-center' : ''}`}>
+              {renderContent()}
+
+              {/* Inner Step Controls (Hidden on Mobile) */}
+              {currentStep < totalSteps && (
+                <div className={`hidden min-[880px]:flex ${currentStep === 1 && !isCommercial
+                  ? "w-full flex-col items-center"
+                  : "mt-8 pt-4 items-center justify-between"
                   }`}>
-                    {currentStep === 1 && !isCommercial ? (
-                      <div className="w-full max-w-[460px] flex flex-col items-center mt-6">
+                  {currentStep === 1 && !isCommercial ? (
+                    <div className="w-full max-w-[460px] flex flex-col items-center mt-6">
+                      <button
+                        onClick={handleNext}
+                        disabled={!isStepValid()}
+                        className={`w-full px-[24px] py-[11px] rounded-full font-[600] text-[13.5px] transition-all flex items-center justify-center gap-2 ${!isStepValid()
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
+                          }`}
+                      >
+                        Continue <ArrowRight className="w-4 h-4" />
+                      </button>
+                      <span className="text-[11px] text-[#A2968A] font-normal text-center mt-2">
+                        No spam — just your quote and booking updates.
+                      </span>
+                    </div>
+                  ) : (
+                    <>
+                      {currentStep > 1 ? (
+                        <button
+                          onClick={handlePrev}
+                          className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
+                        >
+                          <ChevronLeft className="w-4 h-4" /> Back
+                        </button>
+                      ) : <div />}
+                      <div className="flex flex-col items-end gap-2">
                         <button
                           onClick={handleNext}
                           disabled={!isStepValid()}
-                          className={`w-full px-[24px] py-[11px] rounded-full font-[600] text-[13.5px] transition-all flex items-center justify-center gap-2 ${
-                            !isStepValid()
-                              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                              : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
-                          }`}
+                          className={`px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${!isStepValid()
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
+                            }`}
                         >
                           Continue <ArrowRight className="w-4 h-4" />
                         </button>
-                        <span className="text-[11px] text-[#A2968A] font-normal text-center mt-2">
-                          No spam — just your quote and booking updates.
-                        </span>
                       </div>
-                    ) : (
-                      <>
-                        {currentStep > 1 ? (
-                          <button
-                            onClick={handlePrev}
-                            className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
-                          >
-                            <ChevronLeft className="w-4 h-4" /> Back
-                          </button>
-                        ) : <div />}
-                        <div className="flex flex-col items-end gap-2">
-                          <button
-                            onClick={handleNext}
-                            disabled={!isStepValid()}
-                            className={`px-[calc(1.5*var(--scale-unit))] py-[calc(0.6875*var(--scale-unit))] rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${
-                              !isStepValid()
-                                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                                : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
-                            }`}
-                          >
-                            Continue <ArrowRight className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-             </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* RIGHT COLUMN - BOOKING SUMMARY (Visible >= 880px) */}
           <div className="hidden min-[880px]:block w-[calc(21*var(--scale-unit))] shrink-0 bg-[#fdf9f3] border-l border-[#f2eadf]">
-             <div className="sticky top-20">
-               <BookingSummaryCard
+            <div className="sticky top-20">
+              <BookingSummaryCard
                 className="w-full !bg-transparent !border-none"
                 formData={formData}
                 pricingConfig={pricingConfig}
@@ -3442,7 +3431,7 @@ const renderResStep2 = () => {
                 outOfAreaFee={outOfAreaFee}
                 currentStep={currentStep}
               />
-             </div>
+            </div>
           </div>
         </div>
       </div>
@@ -3469,11 +3458,10 @@ const renderResStep2 = () => {
             <button
               onClick={handleNext}
               disabled={!isStepValid()}
-              className={`px-6 py-3 rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${
-                !isStepValid()
-                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                  : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20"
-              }`}
+              className={`px-6 py-3 rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${!isStepValid()
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20"
+                }`}
             >
               Continue <ArrowRight className="w-4 h-4" />
             </button>
