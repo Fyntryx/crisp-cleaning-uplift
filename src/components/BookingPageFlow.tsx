@@ -1580,7 +1580,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const isHourly = formData.cleaningType === 'Hourly';
 
     return (
-      <div className="max-w-3xl mx-auto w-full flex flex-col gap-[calc(1.5*var(--scale-unit))] animate-in fade-in duration-500 py-2">
+      <div className="max-w-2xl mx-auto w-full flex flex-col gap-[calc(1.5*var(--scale-unit))] animate-in fade-in duration-500 py-2">
         <div className="mb-2">
           <h2 className="text-[calc(1.25*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
             How would you like to be priced?
@@ -1590,7 +1590,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[calc(1.25*var(--scale-unit))] max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[calc(1.25*var(--scale-unit))] max-w-2xl">
           {/* Flat Rate Card */}
           <div
             onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
