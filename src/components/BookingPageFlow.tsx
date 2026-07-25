@@ -688,8 +688,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, livingRooms: 0, other: 0 },
     hourlyDetails: { hours: 2, cleaners: 1 },
     extras: {} as Record<string, number>,
-    condition: "Lived In" as "Lived In" | "Overdue" | "Heavy Build Up",
-    frequency: "One time" as Frequency,
+    condition: "" as any as "Lived In" | "Overdue" | "Heavy Build Up",
+    frequency: "" as any as Frequency,
     selectedDays: [] as string[],
     selectedDate: undefined as Date | undefined,
     selectedTime: "",
@@ -1101,7 +1101,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             (formData.homeDetails.livingRooms || 0) +
             (formData.homeDetails.other || 0) > 0
           );
-        case 5: return !!formData.selectedDate && !!formData.selectedTime;
+        case 5: return !!formData.frequency && !!formData.selectedDate && !!formData.selectedTime;
         case 6: return true;
         case 7: return !!formData.contact.address;
         default: return false;
@@ -2355,7 +2355,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Grid: Calendar Left & Time Slots Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 items-stretch">
+        <div className={`grid grid-cols-1 ${formData.selectedDate ? 'lg:grid-cols-[1.6fr_1fr]' : 'lg:grid-cols-1 max-w-[400px] mx-auto'} gap-5 items-stretch transition-all duration-500`}>
 
           {/* Calendar picker Card */}
           <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
