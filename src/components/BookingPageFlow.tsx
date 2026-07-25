@@ -2165,7 +2165,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </div>
 
           {/* Right Column: Explainer Box */}
-          <div className="min-w-0">
+          <div className="min-w-0 md:-mt-[17px]">
             {showConditionQuiz ? (
               <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden min-h-[340px] md:min-h-[300px]">
                 <button
