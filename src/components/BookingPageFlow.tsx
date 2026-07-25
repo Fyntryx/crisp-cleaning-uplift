@@ -2124,19 +2124,19 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 { id: 'Heavy Build Up', label: 'Heavy build-up', badge: '+30%', desc: 'Long-neglected or post-reno' }
               ].map((cond) => {
                 const isSelected = formData.condition === cond.id;
-                const isDisabled = formData.cleaningType === 'Standard' && (cond.id === 'Overdue' || cond.id === 'Heavy Build Up');
 
                 return (
                   <div
                     key={cond.id}
                     onClick={() => {
-                      if (!isDisabled) {
-                        setFormData({ ...formData, condition: cond.id as any });
+                      const updates: any = { condition: cond.id as any };
+                      if (formData.cleaningType === 'Standard' && (cond.id === 'Overdue' || cond.id === 'Heavy Build Up')) {
+                        updates.cleaningType = 'Deep';
                       }
+                      setFormData({ ...formData, ...updates });
                     }}
-                    className={`cursor-pointer rounded-2xl border-[1.5px] p-2.5 transition-all duration-200 flex flex-col ${isDisabled
-                      ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
-                      : isSelected
+                    className={`cursor-pointer rounded-2xl border-[1.5px] p-2.5 transition-all duration-200 flex flex-col ${
+                      isSelected
                         ? cond.id === 'Lived In'
                           ? 'border-emerald-500 bg-emerald-50 shadow-[0_0_0_3px_rgba(16,185,129,0.16)] z-10'
                           : cond.id === 'Overdue'
@@ -2175,7 +2175,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   <X className="w-4 h-4" />
                 </button>
                 <ConditionQuiz onComplete={(tier) => {
-                  setFormData({ ...formData, condition: tier });
+                  const updates: any = { condition: tier };
+                  if (formData.cleaningType === 'Standard' && (tier === 'Overdue' || tier === 'Heavy Build Up')) {
+                    updates.cleaningType = 'Deep';
+                  }
+                  setFormData({ ...formData, ...updates });
                   setShowConditionQuiz(false);
                 }} />
               </div>
