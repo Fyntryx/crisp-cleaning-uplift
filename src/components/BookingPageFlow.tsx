@@ -2243,7 +2243,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const currentMonth = viewDate.getMonth();
     const currentYear = viewDate.getFullYear();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    const firstDayOfMonth = (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7;
+    const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay(); // Sunday is 0
     const monthName = new Date(currentYear, currentMonth).toLocaleDateString(
       "en-US",
       { month: "long", year: "numeric" }
@@ -2336,14 +2336,16 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                       }
                       setFormData({ ...formData, frequency: newFreq as any });
                     }}
-                    className={`w-full md:w-auto px-[calc(1.25*var(--scale-unit))] py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] ${isSelected
+                    className={`relative w-full md:w-auto px-[calc(1.25*var(--scale-unit))] py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] ${isSelected
                       ? "bg-cream-tag border-brand text-brand-dark font-semibold shadow-sm"
                       : "bg-white border-tan text-[#5c534b] hover:border-gray-300 hover:shadow-sm"
                       }`}
                   >
                     {freq.label}
                     {freq.save && (
-                      <span className="text-brand-dark ml-1">{freq.save.toLowerCase()}</span>
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full uppercase whitespace-nowrap bg-[#fff4ea] text-[#e0731f] shadow-sm">
+                        {freq.save}
+                      </span>
                     )}
                   </button>
                 </div>
@@ -2356,28 +2358,26 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
-          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
-            <div className="flex items-center justify-between mb-4 border-b border-gray-50 pb-3">
-              <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-900 leading-[calc(1.5*var(--scale-unit))]">
+          <div className="bg-white rounded-2xl p-[calc(1.125*var(--scale-unit))] h-full flex flex-col">
+            <div className="flex items-center justify-between mb-6 pb-2 relative">
+              <button
+                onClick={handlePrevMonth}
+                className="w-[30px] h-[30px] rounded-full flex items-center justify-center hover:bg-gray-50 text-gray-500 transition-colors border border-gray-200 absolute left-0">
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+              <span className="text-[calc(0.875*var(--scale-unit))] font-bold text-gray-800 leading-[calc(1.5*var(--scale-unit))] w-full text-center">
                 {monthName}
               </span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handlePrevMonth}
-                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100">
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleNextMonth}
-                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-55 text-gray-600 transition-colors border border-gray-100">
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
+              <button
+                onClick={handleNextMonth}
+                className="w-[30px] h-[30px] rounded-full flex items-center justify-center hover:bg-gray-50 text-gray-500 transition-colors border border-gray-200 absolute right-0">
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Weekdays names */}
-            <div className="grid grid-cols-7 gap-1 text-center text-[calc(0.625*var(--scale-unit))] mb-3 text-gray-400 font-semibold uppercase tracking-wider">
-              {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
+            <div className="grid grid-cols-7 gap-1 text-center text-[calc(0.625*var(--scale-unit))] mb-3 text-gray-500 font-semibold uppercase tracking-wider">
+              {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d, i) => (
                 <div key={`${d}-${i}`}>{d}</div>
               ))}
             </div>
@@ -2425,12 +2425,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
           {/* Available time slots */}
           {formData.selectedDate && (
-            <div className="flex flex-col h-full pt-[calc(0.5*var(--scale-unit))] animate-in fade-in slide-in-from-top-4 duration-500">
+            <div className="flex flex-col h-full pt-0 -mt-1 animate-in fade-in slide-in-from-top-4 duration-500">
               <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-[calc(1*var(--scale-unit))]">
                 ARRIVAL WINDOW - {formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}
               </span>
 
-              <div className="grid grid-cols-2 gap-[calc(0.5*var(--scale-unit))]">
+              <div className="columns-2 gap-[calc(0.5*var(--scale-unit))]">
                 {(() => {
                   let availableTimes = timeSlots;
                   if (formData.selectedDate && pricingConfig?.systemBlockedTimeSlots) {
@@ -2471,7 +2471,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         onClick={() =>
                           setFormData((prev) => ({ ...prev, selectedTime: time }))
                         }
-                        className={`w-full py-[calc(0.625*var(--scale-unit))] px-[calc(1*var(--scale-unit))] rounded-full border-[1.5px] text-center text-[calc(0.78125*var(--scale-unit))] transition-all duration-200 ${isSelected
+                        className={`w-full block mb-[calc(0.5*var(--scale-unit))] break-inside-avoid py-[calc(0.625*var(--scale-unit))] px-[calc(1*var(--scale-unit))] rounded-full border-[1.5px] text-center text-[calc(0.78125*var(--scale-unit))] transition-all duration-200 ${isSelected
                           ? "border-[#FB8C42] bg-[#FFF5EE] text-[#C2580F] font-semibold"
                           : "border-[#FB8C42]/30 bg-white text-[#9C9289] font-medium hover:border-[#FB8C42]/60 hover:bg-[#FFF5EE]/50 hover:text-[#C2580F]"
                           }`}
