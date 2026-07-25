@@ -1959,7 +1959,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                           <div className="flex items-center gap-2 ml-auto shrink-0 pl-2">
                             {/* Counter Controls */}
-                            {isCounterAddon && isSelected && (
+                            {isCounterAddon && isSelected ? (
                               <div className="flex items-center gap-1 bg-white rounded-[6px] px-1 py-0.5 shadow-sm border border-[#FB8C42]/30">
                                 <button
                                   type="button"
@@ -1977,11 +1977,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                                   <Plus className="w-2.5 h-2.5" strokeWidth={3} />
                                 </button>
                               </div>
+                            ) : (
+                              <span className="text-[12.5px] font-[500] text-[#8d8378]">
+                                {price ? `+$${price}${isCounterAddon ? '/rm' : ''}` : 'Free'}
+                              </span>
                             )}
-
-                            <span className="text-[12.5px] font-[500] text-[#8d8378]">
-                              {price ? `+$${price}${isCounterAddon ? '/rm' : ''}` : 'Free'}
-                            </span>
                           </div>
                         </div>
                       );
