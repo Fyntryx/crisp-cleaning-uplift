@@ -2336,16 +2336,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                       }
                       setFormData({ ...formData, frequency: newFreq as any });
                     }}
-                    className={`relative w-full md:w-auto px-[calc(1.25*var(--scale-unit))] py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] ${isSelected
+                    className={`w-full md:w-auto px-[calc(1.25*var(--scale-unit))] py-2 md:py-2.5 rounded-full text-[calc(0.78125*var(--scale-unit))] font-medium transition-all border-[1.5px] flex items-center justify-center ${isSelected
                       ? "bg-cream-tag border-brand text-brand-dark font-semibold shadow-sm"
                       : "bg-white border-tan text-[#5c534b] hover:border-gray-300 hover:shadow-sm"
                       }`}
                   >
                     {freq.label}
                     {freq.save && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full uppercase whitespace-nowrap bg-[#fff4ea] text-[#e0731f] shadow-sm">
-                        {freq.save}
-                      </span>
+                      <span className="text-brand ml-1.5 font-bold">{freq.save.toLowerCase()}</span>
                     )}
                   </button>
                 </div>
@@ -2358,7 +2356,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
-          <div className="bg-white rounded-2xl p-[calc(1.125*var(--scale-unit))] h-full flex flex-col">
+          <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
             <div className="flex items-center justify-between mb-6 pb-2 relative">
               <button
                 onClick={handlePrevMonth}
