@@ -2355,7 +2355,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Grid: Calendar Left & Time Slots Right */}
-        <div className={`grid grid-cols-1 ${formData.selectedDate ? 'lg:grid-cols-[1.6fr_1fr]' : 'lg:grid-cols-1 max-w-[400px] mx-auto'} gap-5 items-stretch transition-all duration-500`}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
           <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
@@ -2424,11 +2424,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </div>
 
           {/* Available time slots */}
-          {formData.selectedDate && (
-            <div className="flex flex-col h-full pt-0 -mt-1 animate-in fade-in slide-in-from-top-4 duration-500">
-              <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-[calc(1*var(--scale-unit))]">
-                ARRIVAL WINDOW - {formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}
-              </span>
+          <div className="flex flex-col h-full pt-0 -mt-1">
+            <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-[calc(1*var(--scale-unit))]">
+              ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ""}
+            </span>
 
               <div className="columns-2 gap-[calc(0.5*var(--scale-unit))]">
                 {(() => {
@@ -2483,7 +2482,6 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 })()}
               </div>
             </div>
-          )}
 
         </div>
       </div>
