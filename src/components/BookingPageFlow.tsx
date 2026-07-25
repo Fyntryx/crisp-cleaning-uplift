@@ -3370,6 +3370,11 @@ const renderResStep2 = () => {
                     </div>
                   );
                 })}
+
+                <div className="w-full h-px bg-[#e5e5e5] my-2" />
+                <p className="text-[calc(0.75*var(--scale-unit))] font-medium text-gray-400 leading-[1.6] pr-2">
+                  Your quote is saved as you go &mdash; finish any time from the link we send you.
+                </p>
              </div>
           </div>
 
