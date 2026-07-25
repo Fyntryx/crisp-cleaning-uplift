@@ -1842,9 +1842,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           ) : (
             <>
-              <div className="mb-4">
+              <div className="mb-6">
                 <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-1">Tell us about your home</h3>
-                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 mb-3">Count every room we should clean.</p>
+                <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 mb-4">Count every room we should clean.</p>
                 <div className="bg-white rounded-[20px] border border-gray-100 flex flex-col shadow-sm">
 
                   {/* 1. Living Areas */}
@@ -1900,11 +1900,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </div>
 
               {/* BOTTOM ROW: Full-width Add-ons */}
-              <div className="mt-4">
-                <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-widest mb-3 border-b border-gray-50 pb-2">
+              <div className="mt-6">
+                <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-widest mb-4 border-b border-gray-50 pb-2">
                   ADD-ONS
                 </span>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-[10px]">
                   {isLoadingConfig ? (
                     <div className="text-xs text-gray-400 py-2 col-span-3">Loading available add-ons...</div>
                   ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
@@ -1921,7 +1921,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                             if (isCounterAddon && !isSelected) updateExtraCount(extra, 1);
                             else if (!isCounterAddon) toggleExtra(extra);
                           }}
-                          className={`flex items-center px-3 py-2.5 rounded-2xl border-[1.5px] transition-all cursor-pointer ${isSelected
+                          className={`flex items-center px-[14px] py-[12px] rounded-2xl border-[1.5px] transition-all cursor-pointer ${isSelected
                             ? "border-[#FB8C42] bg-[#FFF8F3]"
                             : "border-[#ece1d3] bg-white hover:border-[#FB8C42]/50 hover:bg-orange-50/30"
                             }`}
@@ -2067,7 +2067,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
     return (
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-3xl mx-auto">
-        <div className="mb-8">
+        <div className="mb-6">
           <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
             What type of clean — and how is the home tracking?
           </h2>
@@ -2075,7 +2075,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Top section: Service Types */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 mt-4">
           {[
             { id: 'Standard', label: 'Standard', desc: 'Maintain cleanliness, remove visible dirt, restore order, and leave the home fresh.' },
             { id: 'Deep', label: 'Deep', desc: 'High-detail clean to remove all dirt, grime, and build-up, with added attention to less frequently maintained areas.', badge: 'MOST BOOKED FIRST VISIT', badgeStyle: 'solid' },
@@ -2093,8 +2093,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   }
                   setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
                 }}
-                className={`relative cursor-pointer px-[calc(1.125*var(--scale-unit))] py-[calc(1*var(--scale-unit))] transition-all duration-300 flex flex-col rounded-[20px] border-[1.5px] ${isSelected
-                  ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]'
+                className={`relative cursor-pointer px-[calc(1*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] transition-all duration-300 flex flex-col h-full rounded-[20px] border-[1.5px] ${isSelected
+                  ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10'
                   : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
                   }`}
               >
@@ -2116,7 +2116,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
           {/* Left Column: Condition Options */}
           <div>
-            <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-3">OVERALL CONDITION</h3>
+            <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-3">OVERALL CONDITION</h3>
             <div className="flex flex-col gap-2.5">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
@@ -2137,7 +2137,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     className={`cursor-pointer rounded-2xl border-[1.5px] p-2.5 transition-all duration-200 flex flex-col ${isDisabled
                       ? 'opacity-50 cursor-not-allowed border-gray-100 bg-gray-50'
                       : isSelected
-                        ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10 scale-[1.02]'
+                        ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10'
                         : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
                       }`}
                   >
@@ -2186,7 +2186,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   }
                 </p>
 
-                <div className="border-t border-gray-200 pt-5 mt-8">
+                <div className="border-t border-gray-200 pt-4 mt-4">
                   <div className="flex flex-col items-start gap-4">
                     <p className="text-sm text-[#8d8378] w-full text-justify">
                       <span className="font-bold text-gray-900">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
@@ -3472,7 +3472,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
 const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }: any) => {
   return (
-    <div className={`w-full py-2.5 px-3.5 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
+    <div className={`w-full py-3 px-4 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
       {/* LEFT SIDE */}
       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
         <div className="font-medium text-gray-800 text-[calc(0.875*var(--scale-unit))] whitespace-nowrap flex items-center">
