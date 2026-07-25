@@ -2112,7 +2112,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Bottom section: Condition */}
-        <div className="grid grid-cols-1 md:grid-cols-[43%_57%] gap-5 mb-5 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-[4fr_5fr] gap-5 mb-5 mt-4">
 
           {/* Left Column: Condition Options */}
           <div className="min-w-0">
