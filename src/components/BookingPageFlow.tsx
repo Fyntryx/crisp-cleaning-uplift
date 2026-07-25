@@ -1596,7 +1596,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div
               onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
               className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${isFlatRate
-                ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
+                ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)]"
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
                 }`}
             >
@@ -1642,7 +1642,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div
               onClick={() => setFormData({ ...formData, cleaningType: 'Hourly' })}
               className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${isHourly
-                ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)] scale-[1.01]"
+                ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)]"
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
                 }`}
             >
@@ -1805,13 +1805,6 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         </button>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Rate Bottom Label */}
-                  <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-center">
-                    <span className="text-[calc(0.75*var(--scale-unit))] font-bold text-[#8A6D3B]">
-                      Rate: ${pricingConfig?.hourlyRatePerHalfHour ? pricingConfig.hourlyRatePerHalfHour * 2 : 55}/hour/cleaner
-                    </span>
                   </div>
                 </div>
 
@@ -3364,7 +3357,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               {currentStep < totalSteps && (
                 <div className={`hidden min-[880px]:flex ${currentStep === 1 && !isCommercial
                   ? "w-full flex-col items-center"
-                  : "mt-8 pt-4 items-center justify-between"
+                  : "mt-4 items-center justify-between"
                   }`}>
                   {currentStep === 1 && !isCommercial ? (
                     <div className="w-full max-w-[460px] flex flex-col items-center mt-6">
