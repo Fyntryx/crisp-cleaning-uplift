@@ -129,12 +129,6 @@
     --scale-unit: clamp(15px, 1.25vw, 18px);
   }
 
-  @media (min-width: 1920px) {
-    .booking-scale-root {
-      --scale-unit: 20px;
-    }
-  }
-
   h1,
   h2,
   h3,
