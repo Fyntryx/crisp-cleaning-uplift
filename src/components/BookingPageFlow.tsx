@@ -1685,7 +1685,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </div>
 
           {isHourly && (
-            <div className="max-w-3xl w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
+            <div className="w-full bg-[#FFF4CC] border border-[#FFD966] rounded-xl p-3.5 flex flex-col gap-2 text-[#B38600] shadow-sm animate-in slide-in-from-bottom-2 duration-300 mt-2">
               <div className="flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-[#E6A800] shrink-0 mt-0.5" strokeWidth={2.5} />
                 <div className="text-[calc(0.78125*var(--scale-unit))] font-normal leading-[1.5]">
@@ -1998,7 +1998,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
   const renderResStepDiscount = () => {
     return (
-      <div className="w-full max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col items-center">
+      <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col items-center">
         <div className="flex flex-col items-center text-center space-y-6 w-full">
           <div className="flex flex-col items-center gap-3">
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#FB8C42] text-white text-[calc(0.625*var(--scale-unit))] font-bold tracking-wider uppercase">
