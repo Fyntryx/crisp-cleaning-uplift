@@ -3379,7 +3379,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
           {/* MIDDLE COLUMN - MAIN FORM CONTENT */}
           <div className={`w-full min-[880px]:flex-1 shrink-0 bg-transparent px-[calc(1.25*var(--scale-unit))] min-[880px]:px-[calc(1.125*var(--scale-unit))] pt-[calc(1.875*var(--scale-unit))] pb-[calc(4*var(--scale-unit))] min-[880px]:pt-[calc(1.5*var(--scale-unit))] min-[880px]:pb-[calc(8*var(--scale-unit))] relative flex flex-col items-center ${currentStep === 1 && !isCommercial ? 'min-[880px]:!px-[34px] min-[880px]:!py-[56px] min-[880px]:justify-center' : ''}`}>
-            <div className={`w-full max-w-[calc(48*var(--scale-unit))] flex flex-col flex-1 justify-center min-[880px]:justify-start ${currentStep === 1 && !isCommercial ? 'items-center' : ''}`}>
+            <div className={`w-full max-w-[calc(72*var(--scale-unit))] flex flex-col flex-1 justify-center min-[880px]:justify-start ${currentStep === 1 && !isCommercial ? 'items-center' : ''}`}>
               {renderContent()}
 
               {/* Inner Step Controls (Hidden on Mobile) */}
