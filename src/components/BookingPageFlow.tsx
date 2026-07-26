@@ -1580,8 +1580,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const isHourly = formData.cleaningType === 'Hourly';
 
     return (
-      <div className="max-w-5xl mx-auto w-full flex flex-col py-2">
-        <div className="max-w-5xl mx-auto w-full flex flex-col gap-[calc(1.5*var(--scale-unit))]">
+      <div className="max-w-4xl mx-auto w-full flex flex-col py-2">
+        <div className="max-w-4xl mx-auto w-full flex flex-col gap-[calc(1.5*var(--scale-unit))]">
           <div className="mb-2">
             <h2 className="text-[calc(1.25*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
               How would you like to be priced?
@@ -1723,7 +1723,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const SelectedIcon = getPlanIcon();
 
     return (
-      <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
+      <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
         <div className="flex flex-col space-y-4">
 
           {/* MIDDLE ROW: Selectors */}
@@ -2066,7 +2066,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const isHourly = formData.cleaningType === 'Hourly';
 
     return (
-      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-5xl mx-auto">
+      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-4xl mx-auto">
         <div className="mb-6">
           <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
             What type of clean — and how is the home tracking?
@@ -2307,7 +2307,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     ];
 
     return (
-      <div className="max-w-5xl mx-auto px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
+      <div className="max-w-4xl mx-auto px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
 
         {/* New Header */}
         <div className="mb-2">
@@ -2489,7 +2489,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   };
 
   const renderResStep4 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6">
       <div className="mb-2">
         <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
           Anything we should know?
@@ -2646,7 +2646,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   );
 
   const renderCommStep2 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
         <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-2">
           Tell Us About Your Business
@@ -2695,7 +2695,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   );
 
   const renderCommStep3 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
         <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-2">
           What Needs Cleaning
@@ -2761,7 +2761,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   );
 
   const renderCommStep4 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
         <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-2">
           How Often & Availability
@@ -2825,7 +2825,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   );
 
   const renderCommStep5 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
         <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-2">
           Insurance & Budget
@@ -2899,7 +2899,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   );
 
   const renderCommStep6 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 h-full flex flex-col justify-center py-4">
       <div className="text-center mb-8">
         <h3 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 mb-2">
           Commercial Sign Up
@@ -3018,7 +3018,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   );
 
   const renderResStep5 = () => (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
       {/* Title & Subtitle */}
       <div className="mb-2 flex items-start justify-between flex-wrap gap-2">
         <div>
