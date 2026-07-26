@@ -2118,12 +2118,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Bottom section: Condition */}
-        <div className="grid grid-cols-1 md:grid-cols-[4fr_5fr] gap-5 mb-5 mt-4">
+        <div className="flex flex-col gap-4 mb-5 mt-4">
 
-          {/* Left Column: Condition Options */}
-          <div className="min-w-0">
+          {/* Condition Options Row */}
+          <div className="w-full">
             <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-3">OVERALL CONDITION</h3>
-            <div className="flex flex-col gap-2.5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
                 { id: 'Overdue', label: 'Overdue', desc: 'A few months since a proper clean' },
@@ -2174,8 +2174,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           </div>
 
-          {/* Right Column: Explainer Box */}
-          <div className="min-w-0 md:-mt-[17px]">
+          {/* Explainer Box Row */}
+          <div className="w-full">
             {showConditionQuiz ? (
               <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden min-h-[340px] md:min-h-[300px]">
                 <button
