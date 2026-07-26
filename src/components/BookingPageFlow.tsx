@@ -2175,7 +2175,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </div>
 
           {/* Explainer Box Row */}
-          <div className="w-full">
+          {formData.condition && (
+            <div className="w-full animate-in fade-in slide-in-from-top-4 duration-500">
             {showConditionQuiz ? (
               <div className="bg-white border border-[#FB8C42] rounded-2xl p-4 h-full flex flex-col shadow-sm relative overflow-hidden min-h-[340px] md:min-h-[300px]">
                 <button
@@ -2222,7 +2223,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 </div>
               </div>
             )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Bottom Disclaimer */}
@@ -3170,15 +3172,15 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         )}
 
         {/* Action controls row */}
-        <div className="mt-8 flex items-start justify-between w-full">
+        <div className="mt-8 relative w-full flex justify-center">
           <button
             onClick={handlePrev}
-            className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors mt-3"
+            className="absolute left-0 top-3 flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
           >
             <ChevronLeft className="w-4 h-4" /> Back
           </button>
           
-          <div className="flex flex-col items-end gap-3">
+          <div className="flex flex-col items-center gap-3 w-full md:w-auto">
             <button
               onClick={handleSubmit}
               disabled={isSubmitting || !isAddressValid}
@@ -3196,11 +3198,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 </>
               )}
             </button>
-            <div className="flex text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-500 leading-tight">
+            <div className="flex text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-500 leading-tight text-center">
               <span>Card saved securely. Charged after the clean.</span>
             </div>
             
-            <p className="text-right text-xs text-gray-500 font-semibold mt-1">
+            <p className="text-center text-xs text-gray-500 font-semibold mt-1">
               Already have an account?{" "}
               <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
                 Login
