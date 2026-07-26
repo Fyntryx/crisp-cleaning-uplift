@@ -3170,8 +3170,15 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         )}
 
         {/* Action controls row */}
-        <div className="mt-8 flex flex-col gap-4">
-          <div className="flex flex-col items-center justify-center gap-3 w-full">
+        <div className="mt-8 flex items-start justify-between w-full">
+          <button
+            onClick={handlePrev}
+            className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors mt-3"
+          >
+            <ChevronLeft className="w-4 h-4" /> Back
+          </button>
+          
+          <div className="flex flex-col items-end gap-3">
             <button
               onClick={handleSubmit}
               disabled={isSubmitting || !isAddressValid}
@@ -3184,7 +3191,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 </>
               ) : (
                 <>
-                  <span>Book Now — ${pricingResult?.total || 0}</span>
+                  <span>Book Now</span>
                   <ArrowRight className="w-4.5 h-4.5 text-white" />
                 </>
               )}
@@ -3193,7 +3200,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               <span>Card saved securely. Charged after the clean.</span>
             </div>
             
-            <p className="text-center text-xs text-gray-500 font-semibold mt-1">
+            <p className="text-right text-xs text-gray-500 font-semibold mt-1">
               Already have an account?{" "}
               <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
                 Login
