@@ -2315,7 +2315,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     ];
 
     return (
-      <div className="max-w-4xl mx-auto w-full px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
+      <div className="max-w-3xl mx-auto w-full px-[calc(1.875*var(--scale-unit))] animate-in fade-in slide-in-from-right duration-500 flex flex-col gap-8 py-2">
 
         {/* New Header */}
         <div className="mb-2">
