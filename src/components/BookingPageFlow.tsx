@@ -722,6 +722,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const totalSteps = 7;
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [hasClickedService, setHasClickedService] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -2098,6 +2099,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   }
                   
                   setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
+                  setHasClickedService(true);
                 }}
                 className={`relative cursor-pointer px-[calc(1*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] transition-all duration-300 flex flex-col h-full rounded-[20px] border-[1.5px] ${isSelected
                   ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10'
@@ -2118,7 +2120,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Bottom section: Condition */}
-        <div className="flex flex-col gap-4 mb-5 mt-4">
+        {(hasClickedService || !!formData.condition) && (
+        <div className="flex flex-col gap-4 mb-5 mt-4 animate-in fade-in slide-in-from-top-4 duration-500">
 
           {/* Condition Options Row */}
           <div className="w-full">
@@ -2226,13 +2229,16 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           )}
         </div>
+        )}
 
         {/* Bottom Disclaimer */}
-        <div className="bg-[#fff4ea] border border-[#f6d3b3] rounded-2xl p-5 mb-8">
+        {formData.condition && (
+        <div className="bg-[#fff4ea] border border-[#f6d3b3] rounded-2xl p-5 mb-8 animate-in fade-in slide-in-from-top-4 duration-500 delay-150 fill-mode-both">
           <p className="text-sm text-[#6b5a48] leading-relaxed">
             <span className="font-bold text-gray-900">Your part in a Great Result:</span> To help us deliver the best possible result, please accurately select the overall condition of the property. Our cleaners will do an assessment prior to the clean — where the condition is beyond the scope of the chosen service, we will discuss an uplift or recommend a better suited service before we begin. <a href="#" className="text-[#e0731f] font-semibold hover:underline">View full uplift & scope policy here</a>.
           </p>
         </div>
+        )}
 
 
 
