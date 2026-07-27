@@ -345,16 +345,16 @@ const BookingSummaryCard = ({
 
           {formData.selectedDate && formData.selectedTime && (
             <>
-              <div className="flex justify-between items-center py-3.5 gap-4">
+              <div className="flex justify-between items-center py-2 gap-4">
                 <span className="text-[12.5px] font-medium text-[#8d8378] whitespace-nowrap">Date & Time</span>
                 <span className="text-[12.5px] font-normal text-[#2b2523] text-right">
-                  {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at {formData.selectedTime}
+                  {formData.selectedDate.toLocaleDateString("en-AU", { weekday: 'long', day: 'numeric', month: 'long' })} at {formData.selectedTime}
                 </span>
               </div>
             </>
           )}
 
-          <div className="flex justify-between items-center py-3.5 mb-2">
+          <div className="flex justify-between items-center py-2 mb-2">
             <span className="text-[12.5px] font-medium text-[#8d8378]">Frequency</span>
             <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.frequency || "One time"}</span>
           </div>
@@ -1092,7 +1092,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             formData.contact.phone && isValidPhone(formData.contact.phone)
           );
         case 2: return !!formData.cleaningType;
-        case 3: return !!formData.cleaningType && !!formData.condition;
+        case 3: return ['Standard', 'Deep', 'Vacate'].includes(formData.cleaningType) && !!formData.condition;
         case 4:
           if (formData.cleaningType === "Hourly") return (formData.hourlyDetails?.hours || 0) > 0;
           return (
@@ -1103,7 +1103,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             (formData.homeDetails.other || 0) > 0
           );
         case 5: return !!formData.frequency && !!formData.selectedDate && !!formData.selectedTime;
-        case 6: return true;
+        case 6: return !!formData.instructions.entry && !!formData.instructions.parking && !!formData.instructions.pets && !!formData.instructions.chemicals;
         case 7: return !!formData.contact.address;
         default: return false;
       }
@@ -1595,7 +1595,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[calc(1.25*var(--scale-unit))] w-full">
             {/* Flat Rate Card */}
             <div
-              onClick={() => setFormData({ ...formData, cleaningType: 'Standard' })}
+              onClick={() => setFormData({ ...formData, cleaningType: 'FlatRate' as any })}
               className={`relative border-2 rounded-[calc(1.25*var(--scale-unit))] p-[calc(1.25*var(--scale-unit))] cursor-pointer transition-all duration-300 flex flex-col h-full ${isFlatRate
                 ? "border-[#FB8C42] bg-[#FFF8F3] shadow-[0_15px_30px_rgba(249,115,22,0.06)]"
                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
@@ -1837,7 +1837,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   <Clock className="w-4 h-4 text-amber-600" />
                 </div>
                 <div className="flex-1 text-[calc(0.75*var(--scale-unit))] text-amber-800 leading-relaxed opacity-90">
-                  For specific tasks or targeted areas. You set the priorities and we&apos;ll make sure to make the most of each minute! Want whole rooms or the whole house? <button onClick={(e) => { e.preventDefault(); setFormData(prev => ({ ...prev, cleaningType: 'Standard' })); setCurrentStep(2); }} className="font-bold underline underline-offset-2 hover:text-[#8A6D3B] transition-colors inline">Switch to flat rate</button> — pay for the result not the time.
+                  For specific tasks or targeted areas. You set the priorities and we&apos;ll make sure to make the most of each minute! Want whole rooms or the whole house? <button onClick={(e) => { e.preventDefault(); setFormData(prev => ({ ...prev, cleaningType: 'FlatRate' as any })); setCurrentStep(2); }} className="font-bold underline underline-offset-2 hover:text-[#8A6D3B] transition-colors inline">Switch to flat rate</button> — pay for the result not the time.
                 </div>
               </div>
             </div>
@@ -3404,7 +3404,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   : "mt-4 items-center justify-between"
                   }`}>
                   {currentStep === 1 && !isCommercial ? (
-                    <div className="w-full max-w-[460px] flex flex-col items-center mt-6">
+                    <div className="w-full max-w-[460px] flex flex-col items-center mt-10">
                       <button
                         onClick={handleNext}
                         disabled={!isStepValid()}
@@ -3510,11 +3510,26 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 };;
 
 const RoomCounter = ({ label, count, onUpdate, hasInfo = false, className = "" }: any) => {
+  const getCounterIcon = (lbl: any) => {
+    if (typeof lbl !== 'string') return Sofa;
+    const lower = lbl.toLowerCase();
+    if (lower.includes("bedroom")) return Bed;
+    if (lower.includes("bathroom")) return Bath;
+    if (lower.includes("kitchen")) return ChefHat;
+    if (lower.includes("living")) return Sofa;
+    return Sofa;
+  };
+
+  const Icon = getCounterIcon(label);
+
   return (
     <div className={`w-full py-3 px-4 flex items-center justify-between transition-all duration-300 gap-3 ${hasInfo ? "group" : ""} ${className}`}>
       {/* LEFT SIDE */}
-      <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-        <div className="font-medium text-gray-800 text-[calc(0.875*var(--scale-unit))] whitespace-nowrap flex items-center">
+      <div className="flex items-center gap-2.5 flex-wrap min-w-0">
+        <div className="w-9 h-9 rounded-xl bg-orange-50/70 border border-orange-100 flex items-center justify-center shadow-sm shrink-0">
+          <Icon className="w-4 h-4 text-[#FB8C42]" />
+        </div>
+        <div className="font-medium text-gray-800 text-[calc(0.875*var(--scale-unit))] flex items-center flex-wrap">
           {label}
         </div>
         {hasInfo && (
