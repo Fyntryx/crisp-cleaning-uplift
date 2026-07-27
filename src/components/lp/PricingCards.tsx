@@ -35,6 +35,10 @@ export default function PricingCards() {
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" strokeWidth={3} />
+                <span className="text-stone-700 font-medium">No time limit - we follow the full Crisp checklist until it's done</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-[#FB8C42] shrink-0 mt-0.5" strokeWidth={3} />
                 <span className="text-stone-700 font-medium">Satisfaction guarantee included</span>
               </li>
             </ul>
