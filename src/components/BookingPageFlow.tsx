@@ -1038,7 +1038,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
   useEffect(() => {
     if (isCommercial) return;
-    if (!formData.frequency) return;
+    if (!formData.cleaningType) return;
 
     try {
       const result = calculatePricing({
@@ -1046,7 +1046,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         homeDetails: formData.homeDetails,
         hourlyDetails: formData.hourlyDetails,
         extras: formData.extras,
-        frequency: formData.frequency,
+        frequency: formData.frequency || "One time",
         actionTakerDiscount: false,
         appliedPromo,
         outOfAreaFee,
