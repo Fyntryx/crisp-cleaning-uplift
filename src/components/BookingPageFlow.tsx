@@ -2363,7 +2363,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Grid: Calendar Left & Time Slots Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-5 items-stretch">
 
           {/* Calendar picker Card */}
           <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
