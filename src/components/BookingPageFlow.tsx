@@ -1999,7 +1999,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
   const renderResStepDiscount = () => {
     return (
-      <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col items-center">
+      <div className="w-full max-w-2xl 2xl:max-w-[560px] 2xl:scale-[1.05] 2xl:origin-top mx-auto animate-in fade-in slide-in-from-right duration-500 flex flex-col items-center">
         <div className="flex flex-col items-center text-center space-y-6 w-full">
           <div className="flex flex-col items-center gap-3">
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#FB8C42] text-white text-[calc(0.625*var(--scale-unit))] font-bold tracking-wider uppercase">
