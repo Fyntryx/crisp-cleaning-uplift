@@ -2020,6 +2020,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               <label className="text-[10px] font-[600] uppercase text-[#a2968a]">First name</label>
               <input
                 type="text"
+                autoComplete="name"
                 placeholder="First name"
                 className="w-full px-[14px] py-[11px] bg-white border-[1.5px] border-[#e9ddcf] rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-[13px] font-[400] text-gray-900 placeholder:text-[#a89c8f] shadow-sm transition-all"
                 value={`${formData.contact.firstName || ""} ${formData.contact.lastName || ""}`.trim()}
@@ -2035,6 +2036,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               <label className="text-[10px] font-[600] uppercase text-[#a2968a]">Mobile</label>
               <input
                 type="tel"
+                autoComplete="tel"
                 placeholder="04XX XXX XXX"
                 className="w-full px-[14px] py-[11px] bg-white border-[1.5px] border-[#e9ddcf] rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-[13px] font-[400] text-gray-900 placeholder:text-[#a89c8f] shadow-sm transition-all"
                 value={formData.contact.phone}
@@ -2045,6 +2047,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               <label className="text-[10px] font-[600] uppercase text-[#a2968a]">Email</label>
               <input
                 type="email"
+                autoComplete="email"
                 placeholder="you@email.com"
                 className="w-full px-[14px] py-[11px] bg-white border-[1.5px] border-[#e9ddcf] rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/20 focus:border-[#FB8C42] text-[13px] font-[400] text-gray-900 placeholder:text-[#a89c8f] shadow-sm transition-all"
                 value={formData.contact.email}
@@ -2926,6 +2929,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           </label>
           <input
             type="text"
+            autoComplete="name"
             placeholder="Primary contact person name"
             className="w-full p-3 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white text-sm font-semibold text-gray-800 transition-all"
             value={formData.contact.firstName}
@@ -2941,6 +2945,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </label>
             <input
               type="email"
+              autoComplete="email"
               placeholder="business@company.com"
               className="w-full p-3 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white text-sm font-semibold text-gray-800 transition-all"
               value={formData.contact.email}
@@ -2953,6 +2958,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </label>
             <input
               type="tel"
+              autoComplete="tel"
               placeholder="(03) 1234 5678"
               className="w-full p-3 bg-gray-50 border border-transparent rounded-xl outline-none focus:border-primary focus:bg-white text-sm font-semibold text-gray-800 transition-all"
               value={formData.contact.phone}
@@ -3051,6 +3057,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div className="relative flex items-center">
               <input
                 type="text"
+                autoComplete="name"
                 placeholder="Sarah Mitchell"
                 className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] tracking-normal shadow-sm transition-all"
                 value={formData.contact.firstName}
@@ -3068,6 +3075,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div className="relative flex items-center">
               <input
                 type="tel"
+                autoComplete="tel"
                 placeholder="0412 345 678"
                 className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] tracking-normal shadow-sm transition-all"
                 value={formData.contact.phone}
@@ -3087,6 +3095,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div className="relative flex items-center">
               <input
                 type="email"
+                autoComplete="email"
                 placeholder="sarah@email.com"
                 className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] tracking-normal shadow-sm transition-all"
                 value={formData.contact.email}
@@ -3104,6 +3113,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div className="relative flex items-center">
               <input
                 type={showPassword ? "text" : "password"}
+                autoComplete="new-password"
                 placeholder="Create a password"
                 className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] tracking-normal shadow-sm transition-all pr-12"
                 value={formData.contact.password}
@@ -3738,6 +3748,7 @@ const AddressAutocomplete = ({
         <input
           ref={inputRef}
           type="text"
+          autoComplete="street-address"
           className={`w-full pl-10 ${showLocationButton ? 'pr-12' : 'pr-4'} py-2.5 bg-gray-50 rounded-xl outline-none border-2 transition-all text-sm ${inputClassName} ${localError
             ? "border-red-300 focus:border-red-500 text-red-900 placeholder:text-red-300"
             : "border-transparent focus:border-primary focus:bg-white hover:border-gray-200"
