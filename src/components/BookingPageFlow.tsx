@@ -1724,7 +1724,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     const SelectedIcon = getPlanIcon();
 
     return (
-      <div className="max-w-4xl mx-auto w-full animate-in fade-in slide-in-from-right duration-500 min-h-full flex flex-col justify-start py-2">
+      <div className="max-w-4xl mx-auto w-full animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start py-2">
         <div className="flex flex-col space-y-4">
 
           {/* MIDDLE ROW: Selectors */}
