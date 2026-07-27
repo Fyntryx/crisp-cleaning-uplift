@@ -25,7 +25,7 @@ const features = [
   {
     icon: ThumbsUp,
     title: "Satisfaction Guaranteed",
-    description: "Not happy? We'll re-clean within 72 hours, no questions asked. If we can't make it right, you don't pay."
+    description: "Not happy? We'll re-clean within 72 hours, no questions asked."
   },
   {
     icon: Smartphone,

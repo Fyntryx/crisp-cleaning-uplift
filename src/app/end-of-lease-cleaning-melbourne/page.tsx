@@ -69,7 +69,7 @@ const faqs = [
     question: "What if I'm not happy with the result?",
     answer: (
       <>
-        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay. You can view our full terms <a href="/terms-conditions" className="font-semibold text-primary hover:underline transition-colors">here</a>.
+        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. You can view our full terms <a href="/terms-conditions" className="font-semibold text-primary hover:underline transition-colors">here</a>.
       </>
     )
   },
@@ -95,7 +95,7 @@ const faqsForSchema = [
   { question: "How long does a Standard Clean take?", answer: "Depends on your home. A standard 3-bedroom house typically takes around 2–3 hours. You'll get a time estimate when you book." },
   { question: "Do I need to be home during the clean?", answer: "It's entirely up to you. Many of our clients prefer to provide access to their space and continue with their daily activities. Rest assured, our team is professional and trustworthy, and we'll treat your space with the utmost respect and care. You will receive an ETA before arriving and a summary when we're done." },
   { question: "What products do you use?", answer: "Eco-friendly, non-toxic, and kid and pet safe products are the standard. If something stronger is needed for a particular job, your cleaner will assess and ask your permission before using it." },
-  { question: "What if I'm not happy with the result?", answer: "Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay." },
+  { question: "What if I'm not happy with the result?", answer: "Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge." },
   { question: "How much notice do I need to give?", answer: "We require at least 72 hours notice to book. The booking form won't allow same-day or next-day scheduling. Need something urgent? Call us directly and we'll do our best." },
   { question: "Do you guarantee I will get my bond back?", answer: "Yes. Our Vacate Clean is backed by a 72-hour bond-back guarantee. If your property manager flags any cleaning issues on the exit report within 72 hours of our clean, we will return to fix them completely free of charge." }
 ];

@@ -136,8 +136,8 @@ export default function QuoteRequestPanelV2() {
 
   return (
     <>
-      <section className="relative z-20 -mt-4 md:-mt-8 container mx-auto px-4 md:px-6 mb-12">
-        <div className="relative bg-white rounded-[20px] border-0 px-7 pt-8 pb-[18px] animate-in fade-in slide-in-from-bottom duration-700 max-w-5xl mx-auto flex flex-col items-center gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+      <section className="relative z-20 w-full bg-white px-4 md:px-6 pb-12">
+        <div className="relative -mt-12 md:-mt-16 bg-white rounded-[20px] border-0 px-7 pt-8 pb-[18px] animate-in fade-in slide-in-from-bottom duration-700 max-w-5xl mx-auto flex flex-col items-center gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
           
           {/* Top Pill */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-[14px] py-[6px] rounded-full bg-brand text-white text-[10px] font-bold tracking-[0.08em] uppercase shadow-md whitespace-nowrap z-10">

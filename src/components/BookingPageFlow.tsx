@@ -1200,7 +1200,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   };
 
   const handleNext = () => {
-    if (currentStep === 1 && !isCommercial) {
+    if (currentStep === 1 && !isCommercial && !discountClaimed) {
       handleDiscountSubmit();
       return;
     }
@@ -3327,13 +3327,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 <div
                   key={idx}
                   onClick={() => {
-                    if (isCompleted) {
+                    if (isCompleted && item.step !== 1) {
                       setSubmitError(null);
                       setSubmitSuccess(null);
                       setCurrentStep(item.step);
                     }
                   }}
-                  className={`flex items-center gap-2 whitespace-nowrap shrink-0 ${isCompleted ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
+                  className={`flex items-center gap-2 whitespace-nowrap shrink-0 ${isCompleted && item.step !== 1 ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
                 >
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
                     isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
@@ -3361,23 +3361,23 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   <div
                     key={idx}
                     onClick={() => {
-                      if (isCompleted) {
+                      if (isCompleted && item.step !== 1) {
                         setSubmitError(null);
                         setSubmitSuccess(null);
                         setCurrentStep(item.step);
                       }
                     }}
-                    role={isCompleted ? "button" : "presentation"}
-                    tabIndex={isCompleted ? 0 : -1}
+                    role={isCompleted && item.step !== 1 ? "button" : "presentation"}
+                    tabIndex={isCompleted && item.step !== 1 ? 0 : -1}
                     onKeyDown={(e) => {
-                      if (isCompleted && (e.key === "Enter" || e.key === " ")) {
+                      if (isCompleted && item.step !== 1 && (e.key === "Enter" || e.key === " ")) {
                         e.preventDefault();
                         setSubmitError(null);
                         setSubmitSuccess(null);
                         setCurrentStep(item.step);
                       }
                     }}
-                    className={`flex items-center gap-4 relative w-full text-left ${isCompleted ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
+                    className={`flex items-center gap-4 relative w-full text-left ${isCompleted && item.step !== 1 ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
                   >
                     {/* Vertical line connector */}
                     {idx < sidebarSteps.length - 1 && (
@@ -3418,13 +3418,15 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     <div className="w-full max-w-[460px] flex flex-col items-center mt-10">
                       <button
                         onClick={handleNext}
-                        disabled={!isStepValid()}
-                        className={`w-full px-[24px] py-[11px] rounded-full font-[600] text-[13.5px] transition-all flex items-center justify-center gap-2 ${!isStepValid()
+                        disabled={!isStepValid() || isSubmittingDiscount}
+                        className={`w-full px-[24px] py-[11px] rounded-full font-[600] text-[13.5px] transition-all flex items-center justify-center gap-2 ${!isStepValid() || isSubmittingDiscount
                           ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                           : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
                           }`}
                       >
-                        Continue <ArrowRight className="w-4 h-4" />
+                        {isSubmittingDiscount ? "Claiming/Submitting..." : (
+                          <>Continue <ArrowRight className="w-4 h-4" /></>
+                        )}
                       </button>
                       <span className="text-[11px] text-[#A2968A] font-normal text-center mt-2">
                         No spam — just your quote and booking updates.
@@ -3505,13 +3507,15 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           {currentStep < totalSteps && (
             <button
               onClick={handleNext}
-              disabled={!isStepValid()}
-              className={`px-6 py-3 rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${!isStepValid()
+              disabled={!isStepValid() || isSubmittingDiscount}
+              className={`px-6 py-3 rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${!isStepValid() || isSubmittingDiscount
                 ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                 : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20"
                 }`}
             >
-              Continue <ArrowRight className="w-4 h-4" />
+              {isSubmittingDiscount ? "Claiming/Submitting..." : (
+                <>Continue <ArrowRight className="w-4 h-4" /></>
+              )}
             </button>
           )}
         </div>

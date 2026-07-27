@@ -73,7 +73,7 @@ const faqs = [
     question: "What if I'm not happy?",
     answer: (
       <>
-        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay. You can view our full terms <a href="/terms-conditions" className="font-semibold text-primary hover:underline transition-colors">here</a>.
+        Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. You can view our full terms <a href="/terms-conditions" className="font-semibold text-primary hover:underline transition-colors">here</a>.
       </>
     )
   }
@@ -88,7 +88,7 @@ const faqsForSchema = [
   { question: "Will I get the same cleaner every time?", answer: "Yes. We assign you a dedicated cleaner who keeps notes on your home. We hold a 97% same-cleaner consistency across all our bookings. If your cleaner is ever unavailable, you'll hear from us in advance." },
   { question: "Do I need to be home?", answer: "It's entirely up to you. Many of our clients prefer to provide access to their space and continue with their daily activities. Rest assured, our team is professional and trustworthy, and we'll treat your space with the utmost respect and care. You will receive an ETA before arriving and a summary when we're done." },
   { question: "What products do you use?", answer: "Eco-friendly, non-toxic, and kid and pet safe products are the standard. If something stronger is needed for a particular job, your cleaner will assess and ask your permission before using it." },
-  { question: "What if I'm not happy?", answer: "Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay." }
+  { question: "What if I'm not happy?", answer: "Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge." }
 ];
 
 const deepCleanReviews = [

@@ -79,7 +79,7 @@ export default async function LandingPage() {
                     "name": "What if I'm not happy?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge. If we can't make it right, you don't pay."
+                      "text": "Get in touch within 24 hours, send us a photo and video of what wasn't right, and we'll be back within 72 hours to fix it — no charge."
                     }
                   },
                   {

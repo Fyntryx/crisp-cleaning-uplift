@@ -44,7 +44,7 @@ export default function Guarantee({ bookingLink = "/#booking" }: { bookingLink?:
 
               {/* Description */}
               <p className="text-[16px] md:text-[18px] text-white/90 font-normal leading-relaxed md:leading-[28px] max-w-[600px] mb-8">
-                Contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">24 hours</span> of your clean with a photo and a description. We'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">72 hours</span> to fix it — completely free. If we can't make it right, you don't pay.
+                Contact us within <span className="font-bold underline underline-offset-4 decoration-white/50">24 hours</span> of your clean with a photo and a description. We'll be back within <span className="font-bold underline underline-offset-4 decoration-white/50">72 hours</span> to fix it — completely free.
               </p>
 
               {/* CTA Button */}
