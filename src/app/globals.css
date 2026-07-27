@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --scale-unit: 16px;
     /* Warm peachy-orange theme - keeping original Crisp Cleaning colors */
     --background: 30 50% 98%;
     --foreground: 25 30% 15%;
