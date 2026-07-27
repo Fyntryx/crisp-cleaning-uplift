@@ -137,10 +137,10 @@ export default function QuoteRequestPanelV2() {
   return (
     <>
       <section className="relative z-20 -mt-12 md:-mt-16 container mx-auto px-4 md:px-6 mb-12">
-        <div className="relative bg-white rounded-[20px] border-0 px-7 pt-6 pb-[18px] animate-in fade-in slide-in-from-bottom duration-700 max-w-5xl mx-auto flex flex-col md:flex-row items-end gap-4 shadow-[0_14px_44px_rgba(90,55,20,0.16)]">
+        <div className="relative bg-white rounded-[20px] border-0 px-7 pt-8 pb-[18px] animate-in fade-in slide-in-from-bottom duration-700 max-w-5xl mx-auto flex flex-col items-center gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
           
           {/* Top Pill */}
-          <div className="inline-block px-[11px] py-1 rounded-full bg-brand text-white text-[9.5px] font-bold tracking-[0.08em] uppercase mb-2 shadow-sm whitespace-nowrap">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-[14px] py-[6px] rounded-full bg-brand text-white text-[10px] font-bold tracking-[0.08em] uppercase shadow-md whitespace-nowrap z-10">
             First Clean — 5% Off
           </div>
 
