@@ -8,7 +8,7 @@ export default {
       name: 'heading',
       title: 'Form Heading',
       type: 'string',
-      description: 'e.g. "Claim 15% OFF your FIRST clean!"'
+      description: 'e.g. "Claim 5% OFF your FIRST clean!"'
     },
     {
       name: 'subheading',

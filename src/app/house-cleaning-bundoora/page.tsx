@@ -75,7 +75,7 @@ const jsonLd = {
           "name": "How do I book a regular fortnightly clean in Bundoora?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Select fortnightly as your frequency when getting your online quote. The same cleaner is assigned and confirmed at booking. 15% off the first clean."
+            "text": "Select fortnightly as your frequency when getting your online quote. The same cleaner is assigned and confirmed at booking. 5% off the first clean."
           }
         }
       ]

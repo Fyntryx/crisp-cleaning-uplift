@@ -80,7 +80,7 @@ const comparisons = [
     leftHead: "Days wait for a quote callback",
     leftBody: "Phone calls, callbacks, site inspection requests. Three days later you still don't have a confirmed price.",
     rightHead: "Book Instantly Online in Under a Minute",
-    rightBody: "Get an exact quote and complete the booking in under 60 seconds online. The same cleaner is confirmed by return email. 15% off the first clean; loyalty rewards accumulate from the second month of regular bookings.",
+    rightBody: "Get an exact quote and complete the booking in under 60 seconds online. The same cleaner is confirmed by return email. 5% off the first clean; loyalty rewards accumulate from the second month of regular bookings.",
     stat: "60 second booking"
   }
 ];
@@ -339,7 +339,7 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
             transition={{ duration: 0.6, delay: 0.8 }}
             className="text-[12px] text-white/25 mt-2.5"
           >
-            15% off your first clean.
+            5% off your first clean.
           </motion.div>
         </div>
 
@@ -745,7 +745,7 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
 
               {/* Receipt Footer */}
               <div className="px-8 py-4 text-center text-[10px] text-[#9ca3af] tracking-[0.1em] uppercase">
-                Thank you. 15% off your first clean.
+                Thank you. 5% off your first clean.
               </div>
             </div>
           </div>
@@ -945,11 +945,11 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
           </h2>
           
           <p className="text-[16px] text-white/55 max-w-[460px] mx-auto mb-2 leading-[1.6]">
-            Get an instant fixed quote for your Preston home, share house or rental property. Book online in under a minute - 15% off the first clean.
+            Get an instant fixed quote for your Preston home, share house or rental property. Book online in under a minute - 5% off the first clean.
           </p>
           
           <span className="text-[#d97706] font-semibold text-[14px] block mb-8">
-            15% off your first clean.
+            5% off your first clean.
           </span>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

@@ -258,7 +258,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
                 </a>
               </div>
               <div className="text-[12px] text-[#9ca3af] mt-[10px]">
-                15% off your first clean. Fixed price, no hourly surprises.
+                5% off your first clean. Fixed price, no hourly surprises.
               </div>
             </div>
 
@@ -680,7 +680,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
                   Instant Online Booking in Under a Minute
                 </h3>
                 <p className="text-justify text-[13px] text-[#6b7280] leading-[1.6]">
-                  Get an exact quote and complete your booking in under 60 seconds online. Cleaner assignment confirmed by return. 15% off the first clean, and loyalty rewards that accumulate from the second month of regular bookings onward.
+                  Get an exact quote and complete your booking in under 60 seconds online. Cleaner assignment confirmed by return. 5% off the first clean, and loyalty rewards that accumulate from the second month of regular bookings onward.
                 </p>
               </div>
             </SlideInCard>
@@ -874,7 +874,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
           </p>
 
           <span className="text-[#FB8C42] font-[600] text-[14px] block mb-[28px]">
-            15% off your first clean.
+            5% off your first clean.
           </span>
 
           <div className="flex flex-col sm:flex-row gap-[12px] justify-center">

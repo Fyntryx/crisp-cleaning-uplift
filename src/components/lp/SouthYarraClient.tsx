@@ -417,7 +417,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
           </div>
           
           <div className="text-[12px] text-[rgba(255,255,255,0.25)] mt-[10px]">
-            15% off your first clean. Fixed price, no hourly surprises.
+            5% off your first clean. Fixed price, no hourly surprises.
           </div>
         </div>
 
@@ -944,7 +944,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
           </p>
           
           <span className="text-[#d97706] font-[600] text-[14px] block mb-[32px]">
-            15% off your first clean.
+            5% off your first clean.
           </span>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px]">

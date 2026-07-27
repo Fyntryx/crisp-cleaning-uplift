@@ -278,7 +278,7 @@ export default function CheltenhamClient({
               transition={{ duration: 0.5, delay: 0.28 }}
               className="text-[12px] text-white/40 font-medium"
             >
-              15% off your first clean. Fixed price, no hourly surprises.
+              5% off your first clean. Fixed price, no hourly surprises.
             </motion.p>
           </div>
         </div>
@@ -566,7 +566,7 @@ export default function CheltenhamClient({
               {
                 num: "04",
                 title: "Fast Online Booking — No Phone Calls Needed",
-                body: "Quote, schedule, and confirmation happen entirely online in under 60 seconds. No phone call, no email chain, no waiting for an availability response. 15% off the first clean; loyalty rewards accumulate from the second month of regular bookings.",
+                body: "Quote, schedule, and confirmation happen entirely online in under 60 seconds. No phone call, no email chain, no waiting for an availability response. 5% off the first clean; loyalty rewards accumulate from the second month of regular bookings.",
                 stat: "60sec", label: "to book online"
               }
             ].map((item, i) => (
@@ -752,7 +752,7 @@ export default function CheltenhamClient({
               Get an instant fixed quote for your Cheltenham home and book online in under a minute. Same cleaner every visit.
             </p>
             <p className="text-[15px] font-[600] text-[#FB8C42] mb-10">
-              15% off your first clean.
+              5% off your first clean.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mx-auto mb-16">

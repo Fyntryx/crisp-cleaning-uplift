@@ -396,7 +396,7 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
               See what's included
             </a>
             <div className="w-full mt-2">
-              <span className="text-[12px] text-[#9ca3af]">15% off your first clean.</span>
+              <span className="text-[12px] text-[#9ca3af]">5% off your first clean.</span>
             </div>
           </motion.div>
         </div>
@@ -770,10 +770,10 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
                 <div>
                   <h3 className="text-[18px] font-bold text-white mb-2.5">Booking in Under a Minute, Any Time</h3>
                   <p className="text-[14px] text-white/50 leading-[1.75] max-w-[540px]">
-                    The entire process - quote, schedule, cleaner assignment, confirmation - is completed online in under 60 seconds. Your first clean includes 15% off. The same cleaner returns on whichever schedule works for your household.
+                    The entire process - quote, schedule, cleaner assignment, confirmation - is completed online in under 60 seconds. Your first clean includes 5% off. The same cleaner returns on whichever schedule works for your household.
                   </p>
                   <div className="bg-[#d97706]/10 border border-[#d97706]/25 text-[#d97706] rounded-full px-3.5 py-1 text-[11px] font-bold mt-4 inline-block">
-                    15% off first clean
+                    5% off first clean
                   </div>
                 </div>
               </div>
@@ -957,11 +957,11 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
           </h2>
           
           <p className="text-[16px] text-[#6b7280] max-w-[460px] mx-auto mt-4 mb-2 leading-[1.6]">
-            Get an instant fixed quote for your North Melbourne home, share house or apartment. Book online in under a minute - 15% off your first clean.
+            Get an instant fixed quote for your North Melbourne home, share house or apartment. Book online in under a minute - 5% off your first clean.
           </p>
           
           <span className="text-[#d97706] font-semibold text-[14px] block mb-8">
-            15% off your first clean.
+            5% off your first clean.
           </span>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

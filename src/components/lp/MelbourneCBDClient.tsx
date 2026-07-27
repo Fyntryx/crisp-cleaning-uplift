@@ -378,7 +378,7 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
                 </Link>
               </div>
               <div className="text-[12px] text-[rgba(255,255,255,0.25)] mt-[10px]">
-                15% off your first clean. Fixed price, no surprises.
+                5% off your first clean. Fixed price, no surprises.
               </div>
             </div>
           </div>
@@ -717,7 +717,7 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
             <p className="text-[16px] text-[rgba(255,255,255,0.5)] max-w-[460px] mx-auto mt-[16px] mb-[8px]">
               Book your CBD apartment clean online. Get an exact fixed quote based on your apartment's room count - building access details collected at booking, same cleaner every visit.
             </p>
-            <div className="text-[#d97706] font-[600] text-[14px] mb-[32px]">15% off your first clean.</div>
+            <div className="text-[#d97706] font-[600] text-[14px] mb-[32px]">5% off your first clean.</div>
             
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/booking" className="bg-[#d97706] text-white rounded-full px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#b46205] transition-colors">

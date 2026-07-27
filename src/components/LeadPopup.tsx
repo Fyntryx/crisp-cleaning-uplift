@@ -10,7 +10,7 @@ export default function LeadPopup() {
   const [hasTriggered, setHasTriggered] = useState(false);
   
   const [content, setContent] = useState({
-    heading: "15% OFF your first clean!",
+    heading: "5% OFF your first clean!",
     subheading: "Expires soon! Let's catch it"
   });
 
@@ -18,7 +18,7 @@ export default function LeadPopup() {
     client.fetch(`*[_type == "leadFormSettings"][0]`).then((data) => {
       if (data) {
         setContent({
-          heading: data.heading || "15% OFF your first clean!",
+          heading: data.heading || "5% OFF your first clean!",
           subheading: data.subheading || "Expires soon! Let's catch it"
         });
       }
@@ -94,7 +94,7 @@ export default function LeadPopup() {
     const payload = {
       ...formData,
       source: "Popup Lead Form",
-      offer: "15% off expiry"
+      offer: "5% off expiry"
     };
 
     try {
@@ -111,7 +111,7 @@ export default function LeadPopup() {
         (window as any).dataLayer.push({
           event: "generate_lead",
           lead_source: "Popup Lead Form",
-          offer: "15% off expiry"
+          offer: "5% off expiry"
         });
       }
       

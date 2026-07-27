@@ -610,7 +610,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   const [discountClaimed, setDiscountClaimed] = useState(false);
   
   const [discountContent, setDiscountContent] = useState({
-    heading: "Claim 15% OFF your FIRST clean!",
+    heading: "Claim 5% OFF your FIRST clean!",
     subheading: "Enter your details and save!"
   });
 
@@ -618,7 +618,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     client.fetch(`*[_type == "discountStepSettings"][0]`).then((data) => {
       if (data) {
         setDiscountContent({
-          heading: data.heading || "Claim 15% OFF your FIRST clean!",
+          heading: data.heading || "Claim 5% OFF your FIRST clean!",
           subheading: data.subheading || "Enter your details and save!"
         });
       }
@@ -3442,9 +3442,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               <div className="space-y-4 text-gray-600 leading-relaxed text-sm font-medium">
                 <p>
                   Schedule standard cleans with us and instantly save up to{" "}
-                  <span className="font-extrabold text-primary">15% off</span> per
+                  <span className="font-extrabold text-primary">5% off</span> per
                   clean! Also gain access to our loyalty and rewards systems to
-                  earn up to 15% off per clean, for life!
+                  earn up to 5% off per clean, for life!
                 </p>
                 <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 text-xs">
                   <span className="font-extrabold text-orange-600">Note:</span> Weekly

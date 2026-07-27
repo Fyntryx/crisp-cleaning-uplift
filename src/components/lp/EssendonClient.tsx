@@ -404,7 +404,7 @@ export default function EssendonClient({
               </a>
             </div>
             <p className="text-[12px] text-white/70">
-              15% off your first clean. Fixed price, no hourly surprises.
+              5% off your first clean. Fixed price, no hourly surprises.
             </p>
           </ScrollReveal>
         </div>
@@ -923,7 +923,7 @@ export default function EssendonClient({
               Get an instant fixed quote for your Essendon home — period property or modern build. Book online in under a minute, same cleaner every visit.
             </p>
             <span className="text-[#FB8C42] font-semibold text-[15px] block mb-8">
-              15% off your first clean.
+              5% off your first clean.
             </span>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">

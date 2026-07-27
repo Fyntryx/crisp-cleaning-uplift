@@ -150,7 +150,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
                 </Link>
               </motion.div>
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="text-[12px] text-white/30 mt-3 ml-2 font-medium">
-                15% off your first clean.
+                5% off your first clean.
               </motion.p>
 
             </div>
@@ -695,7 +695,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
             {/* Banner 4 */}
             <div className="group grid grid-cols-1 md:grid-cols-[160px_1fr] gap-6 md:gap-12 items-center p-8 md:p-10 bg-[#FFF7ED] border border-[#FED7AA] rounded-[16px] hover:translate-x-1 transition-transform duration-200 shadow-sm">
               <div className="flex flex-col">
-                <span className="text-[42px] md:text-[48px] font-black leading-none tracking-tight text-[#d97706]">15%</span>
+                <span className="text-[42px] md:text-[48px] font-black leading-none tracking-tight text-[#d97706]">5%</span>
                 <span className="text-[10px] text-[#d97706]/70 tracking-[0.2em] font-bold mt-2 uppercase">FIRST CLEAN</span>
               </div>
               <div className="flex flex-col">
@@ -816,7 +816,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
             Get an instant fixed quote for your Point Cook home - any estate, any size. Book online in under a minute, same cleaner every visit.
           </p>
           <p className="text-[15px] text-[#d97706] font-bold mb-10">
-            15% off your first clean.
+            5% off your first clean.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

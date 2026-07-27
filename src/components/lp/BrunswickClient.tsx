@@ -131,7 +131,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
                 See what's included
               </a>
               <div className="text-[12px] text-[#9ca3af] mt-[8px] w-full text-center md:text-right">
-                15% off your first clean.
+                5% off your first clean.
               </div>
             </div>
           </div>
@@ -399,7 +399,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
               <span className="text-[#C17B3E] font-[900]">·</span>
               <span>Instant quote</span>
               <span className="text-[#C17B3E] font-[900]">·</span>
-              <span>15% off first clean</span>
+              <span>5% off first clean</span>
             </div>
           </div>
         </div>
@@ -444,7 +444,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
               <div className="text-[11px] text-[rgba(255,255,255,0.35)] uppercase tracking-[0.1em]">to book online</div>
               <h3 className="text-[15px] font-[700] text-[#ffffff] mt-[12px] mb-[8px]">Instant Quotes Online in Under a Minute</h3>
               <p className="text-[13px] text-[rgba(255,255,255,0.5)] leading-[1.6]">
-                Get an exact price based on your Brunswick property's room count and service type in under 60 seconds. No call-back, no site inspection, no three-day wait for a quote email. The price confirmed in your instant quote is the price in your booking confirmation. 15% off the first clean.
+                Get an exact price based on your Brunswick property's room count and service type in under 60 seconds. No call-back, no site inspection, no three-day wait for a quote email. The price confirmed in your instant quote is the price in your booking confirmation. 5% off the first clean.
               </p>
             </div>
 
@@ -602,10 +602,10 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
             Book a Cleaner in Brunswick
           </h2>
           <p className="text-[16px] text-[rgba(255,255,255,0.75)] max-w-[460px] mx-auto mt-[16px] mb-[8px]">
-            Get an instant fixed quote for your Brunswick terrace, share house or apartment. Book online in under a minute - 15% off your first clean.
+            Get an instant fixed quote for your Brunswick terrace, share house or apartment. Book online in under a minute - 5% off your first clean.
           </p>
           <div className="text-[#ffffff] font-[700] text-[14px] block mb-[32px]">
-            15% off your first clean.
+            5% off your first clean.
           </div>
           
           <div className="flex flex-col sm:flex-row justify-center items-center gap-[16px]">

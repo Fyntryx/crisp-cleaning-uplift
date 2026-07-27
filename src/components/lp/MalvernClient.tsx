@@ -744,7 +744,7 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
           </p>
 
           <span className="text-[#FB8C42] font-[600] block mb-[32px]">
-            15% off your first clean.
+            5% off your first clean.
           </span>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

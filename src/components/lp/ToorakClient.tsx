@@ -275,7 +275,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </div>
           
           <div className="text-[12px] text-[rgba(255,255,255,0.3)] mt-[10px] opacity-0 animate-[fadeIn_0.6s_ease_2.8s_forwards]">
-            15% off your first clean. Fixed price, no surprises.
+            5% off your first clean. Fixed price, no surprises.
           </div>
           
           <div className="flex items-center gap-[8px] sm:gap-[16px] mt-[20px] bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-[99px] px-[16px] py-[6px] text-[10px] sm:text-[12px] text-[rgba(255,255,255,0.55)] opacity-0 animate-[fadeIn_0.6s_ease_3.0s_forwards] flex-wrap justify-center">
@@ -725,7 +725,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </p>
           
           <span className="text-[#d97706] font-[600] text-[14px] block mb-[32px]">
-            15% off your first clean.
+            5% off your first clean.
           </span>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px] mb-[48px]">

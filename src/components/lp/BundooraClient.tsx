@@ -15,7 +15,7 @@ const faqData = [
   { question: "Can landlords and property managers set up recurring cleans?", answer: "Yes - landlords and property managers can book and manage recurring cleans for investment properties. Invoicing and scheduling can be managed from a single account across multiple properties." },
   { question: "Are cleaning supplies included for rental properties?", answer: "Yes - all eco-friendly products are included in every clean. No requirement for tenants or landlords to supply anything." },
   { question: "Do you offer end-of-lease cleaning in Bundoora?", answer: "Yes - vacate and end-of-lease cleaning is available across Bundoora with fixed pricing, inspection-ready standard, and a bond-back guarantee. Get a separate vacate quote online." },
-  { question: "How do I book a regular fortnightly clean in Bundoora?", answer: "Select fortnightly as your frequency when getting your online quote. The same cleaner is assigned and confirmed at booking. 15% off the first clean." }
+  { question: "How do I book a regular fortnightly clean in Bundoora?", answer: "Select fortnightly as your frequency when getting your online quote. The same cleaner is assigned and confirmed at booking. 5% off the first clean." }
 ];
 
 export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCount = 14 }: { googleRatingValue?: number, googleReviewCount?: number }) {
@@ -182,7 +182,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
             </a>
           </div>
           <div className="text-[12px] text-white/25 mt-[10px]">
-            15% off your first clean.
+            5% off your first clean.
           </div>
         </div>
 
@@ -747,7 +747,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
             </h3>
             <p style={{ fontSize: '14px', color: '#374151', lineHeight: '1.75', maxWidth: '420px' }}>
               Get an exact quote and complete your booking in under 60 seconds online. Cleaner 
-              assignment is confirmed by return. 15% off the first clean; loyalty discounts 
+              assignment is confirmed by return. 5% off the first clean; loyalty discounts 
               accumulate from the second month of regular bookings.
             </p>
             <span style={{
@@ -919,7 +919,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
           </p>
           
           <span className="text-[#d97706] font-semibold text-[14px] block mb-[32px]">
-            15% off your first clean.
+            5% off your first clean.
           </span>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

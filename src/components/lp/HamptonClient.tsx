@@ -212,7 +212,7 @@ export default function HamptonClient({
                 transition={{ duration: 0.5, delay: 0.28 }}
                 className="text-[12px] text-gray-500 font-medium text-center sm:text-left"
               >
-                15% off your first clean. Fixed price, no hourly surprises.
+                5% off your first clean. Fixed price, no hourly surprises.
               </motion.p>
             </div>
 
@@ -746,7 +746,7 @@ export default function HamptonClient({
 
                 <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl sm:rounded-full px-5 py-2.5 mb-10 text-xs md:text-sm text-white/80">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-[#FB8C42]">15% off your first clean.</span>
+                    <span className="font-semibold text-[#FB8C42]">5% off your first clean.</span>
                   </div>
                 </div>
 
