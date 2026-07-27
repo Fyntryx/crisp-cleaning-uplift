@@ -370,7 +370,7 @@ const BookingSummaryCard = ({
                   <span className="text-[12.5px] font-medium text-[#8d8378]">
                     {formData.cleaningType === 'Hourly'
                       ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}`
-                      : `${pricingResult.breakdown.cleaningType.name} Clean Base`}
+                      : `Service Fee`}
                   </span>
                   <span className="text-[12.5px] font-normal text-[#2b2523]">${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
                 </div>
@@ -555,7 +555,10 @@ const BookingSummaryCard = ({
           <p>Billed on time worked &mdash; this is your cap.</p>
         ) : (
           (pricingResult?.estimatedMinutes ?? 0) > 0 && (
-            <p>Est. duration {formatEta(pricingResult!.estimatedMinutes)} &middot; fixed price once confirmed.</p>
+            <div className="flex justify-between w-full pt-1">
+              <span className="text-[13px] font-medium text-[#8d8378]">Estimated Time</span>
+              <span className="text-[13px] font-medium text-[#2b2523]">{formatEta(pricingResult!.estimatedMinutes)}</span>
+            </div>
           )
         )}
       </div>
@@ -1753,10 +1756,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                           type="button"
                           onClick={(e) => {
                             e.preventDefault();
-                            const val = Math.max(2, (formData.hourlyDetails?.hours || 2) - 0.5);
+                            const val = Math.max(0.5, (formData.hourlyDetails?.hours || 2) - 0.5);
                             setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
                           }}
-                          disabled={(formData.hourlyDetails?.hours || 2) <= 2}
+                          disabled={(formData.hourlyDetails?.hours || 2) <= 0.5}
                           className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 bg-white"
                         >
                           <Minus strokeWidth={2.5} size={14} />
@@ -1980,7 +1983,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                               </div>
                             ) : (
                               <span className="text-[12.5px] font-[500] text-[#8d8378]">
-                                {price ? `+$${price}${isCounterAddon ? '/rm' : ''}` : 'Free'}
+                                {price ? `+$${price}${isCounterAddon ? '/each' : ''}` : 'Free'}
                               </span>
                             )}
                           </div>
@@ -3499,7 +3502,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 "Billed on time worked — this is your cap."
               ) : (
                 (pricingResult?.estimatedMinutes ?? 0) > 0 && (
-                  `Est. duration ${formatEta(pricingResult!.estimatedMinutes)} · fixed price once confirmed.`
+                  <span className="flex justify-between w-full gap-4 mt-1">
+                    <span className="text-[12px] font-medium text-[#8d8378]">Estimated Time</span>
+                    <span className="text-[12px] font-medium text-[#2b2523]">{formatEta(pricingResult!.estimatedMinutes)}</span>
+                  </span>
                 )
               )}
             </span>
