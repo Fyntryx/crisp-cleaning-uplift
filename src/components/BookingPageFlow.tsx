@@ -2238,7 +2238,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         {formData.condition && (
         <div className="bg-[#fff4ea] border border-[#f6d3b3] rounded-2xl p-5 mb-8 animate-in fade-in slide-in-from-top-4 duration-500 delay-150 fill-mode-both">
           <p className="text-sm text-[#6b5a48] leading-relaxed">
-            <span className="font-bold text-gray-900">Your part in a Great Result:</span> To help us deliver the best possible result, please accurately select the overall condition of the property. Our cleaners will do an assessment prior to the clean — where the condition is beyond the scope of the chosen service, we will discuss an uplift or recommend a better suited service before we begin. <a href="#" className="text-[#e0731f] font-semibold hover:underline">View full uplift & scope policy here</a>.
+            <span className="font-bold text-gray-900">Your part in a Great Result:</span> To help us deliver the best possible result, please accurately select the overall condition of the property. Our cleaners will do an assessment prior to the clean — where the condition is beyond the scope of the chosen service, we will discuss an uplift or recommend a better suited service before we begin. <Link href="/uplift-policy" target="_blank" className="text-[#e0731f] font-semibold hover:underline">View full uplift & scope policy here</Link>.
           </p>
         </div>
         )}
@@ -2993,9 +2993,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             />
             <span className="text-xs text-gray-500 font-medium">
               I accept the{" "}
-              <a href="/commercial-agreement" className="underline text-primary hover:text-primary/80 transition-colors">
+              <Link href="/commercial-agreement" target="_blank" className="underline text-primary hover:text-primary/80 transition-colors">
                 Commercial Service Agreement
-              </a>
+              </Link>
             </span>
           </label>
         </div>
@@ -3166,12 +3166,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             className="text-[calc(0.8125*var(--scale-unit))] text-gray-600 font-medium cursor-pointer select-none"
           >
             I agree to the{" "}
-            <a
+            <Link
               href="/terms-conditions"
+              target="_blank"
               className="underline text-[#FB8C42] font-semibold hover:text-[#e0731f] transition-colors"
             >
               Terms & Conditions
-            </a>
+            </Link>
           </label>
         </div>
 
