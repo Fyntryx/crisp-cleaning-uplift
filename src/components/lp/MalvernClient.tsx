@@ -224,7 +224,7 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                  <a href="/#booking" className="w-full sm:w-auto bg-[#FB8C42] text-white rounded-full px-[36px] py-[16px] text-[15px] font-[600] hover:bg-[#ea6309] transition-colors duration-300 text-center shadow-lg">
+                  <a href="/book" className="w-full sm:w-auto bg-[#FB8C42] text-white rounded-full px-[36px] py-[16px] text-[15px] font-[600] hover:bg-[#ea6309] transition-colors duration-300 text-center shadow-lg">
                     Get an Instant Quote
                   </a>
                   <a href="#included" className="w-full sm:w-auto border border-[#d1d5db] text-[#1a1a1a] rounded-full px-[36px] py-[16px] text-[15px] font-[600] hover:bg-white transition-colors duration-300 text-center bg-[rgba(255,255,255,0.5)]">
@@ -658,7 +658,7 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -679,7 +679,7 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
                   <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
                   <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -696,7 +696,7 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -748,7 +748,7 @@ export default function MalvernClient({ googleRatingValue = 5.0, googleReviewCou
           </span>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/#booking" className="bg-[#1a1a1a] text-white rounded-full px-[32px] py-[13px] text-[14px] font-[600] hover:bg-[#FB8C42] transition-colors">
+            <a href="/book" className="bg-[#1a1a1a] text-white rounded-full px-[32px] py-[13px] text-[14px] font-[600] hover:bg-[#FB8C42] transition-colors">
               Get an Instant Quote
             </a>
             <a href="tel:0451433786" className="border border-[#e5e7eb] text-[#6b7280] rounded-full px-[32px] py-[13px] text-[14px] font-[600] hover:bg-[#f9fafb] transition-colors">

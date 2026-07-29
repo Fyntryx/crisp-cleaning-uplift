@@ -155,7 +155,7 @@ export default async function SuburbTemplatePage() {
               </div>
 
               {/* CTA Button */}
-              <a href="#booking" className="inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-white px-8 py-4 font-bold text-[17px] shadow-[0_10px_35px_rgba(249,115,22,0.3)] hover:-translate-y-1 transition-all duration-300 group">
+              <a href="/book" className="inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-white px-8 py-4 font-bold text-[17px] shadow-[0_10px_35px_rgba(249,115,22,0.3)] hover:-translate-y-1 transition-all duration-300 group">
                 Get Your Instant Quote
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -246,7 +246,7 @@ export default async function SuburbTemplatePage() {
           </div>
 
           <div className="mt-10 md:mt-12 flex justify-center">
-            <a href="#booking" className="inline-flex items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white px-8 py-4 font-bold text-[16px] shadow-[0_10px_35px_rgba(249,115,22,0.3)] hover:-translate-y-1 transition-all duration-300 group">
+            <a href="/book" className="inline-flex items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white px-8 py-4 font-bold text-[16px] shadow-[0_10px_35px_rgba(249,115,22,0.3)] hover:-translate-y-1 transition-all duration-300 group">
               Book with Confidence
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </a>
@@ -311,7 +311,7 @@ export default async function SuburbTemplatePage() {
             </div>
 
             <div className="shrink-0 w-full md:w-auto flex justify-center">
-              <a href="/#booking" className="inline-flex items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white px-8 py-4 font-bold text-[15px] shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1 transition-all duration-300">
+              <a href="/book" className="inline-flex items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white px-8 py-4 font-bold text-[15px] shadow-[0_10px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1 transition-all duration-300">
                 Get Your Instant Quote
               </a>
             </div>

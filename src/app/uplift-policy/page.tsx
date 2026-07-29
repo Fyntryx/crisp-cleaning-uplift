@@ -260,7 +260,7 @@ export default function UpliftPolicyPage() {
         <CTASection 
           heading="Ready to book a service?"
           description="Schedule your next clean in under 60 seconds with Crisp Cleaning."
-          primaryAction={{ text: "Book Now", href: "/#booking" }}
+          primaryAction={{ text: "Book Now", href: "/book" }}
           secondaryAction={{ text: "Contact Us", href: "/contact" }}
         />
       </div>

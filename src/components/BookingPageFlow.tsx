@@ -330,9 +330,23 @@ const BookingSummaryCard = ({
 
           <div className="flex justify-between items-end">
             <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none mb-1">Total</span>
-            <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
-              ${(pricingResult?.total || 0).toFixed(2)}
-            </span>
+            <div className="flex items-center gap-2">
+              {(pricingResult?.totalDiscount ?? 0) > 0 ? (
+                <>
+                  <span className="text-[16px] font-[600] text-gray-400 line-through tracking-tight">
+                    ${((pricingResult?.subtotal || 0) + outOfAreaFee).toFixed(2)}
+                  </span>
+                  <span className="text-[15px] font-bold text-gray-400">→</span>
+                  <span className="text-[19px] font-[700] text-[#FB8C42] tracking-tight leading-none">
+                    ${(pricingResult?.total || 0).toFixed(2)}
+                  </span>
+                </>
+              ) : (
+                <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
+                  ${(pricingResult?.total || 0).toFixed(2)}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       ) : (
@@ -541,9 +555,23 @@ const BookingSummaryCard = ({
 
           <div className="flex justify-between items-end">
             <span className="text-[12.5px] font-[600] text-[#2b2523] mb-1">Estimated total</span>
-            <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
-              ${(pricingResult?.total || 0).toFixed(2)}
-            </span>
+            <div className="flex items-center gap-2">
+              {(pricingResult?.totalDiscount ?? 0) > 0 ? (
+                <>
+                  <span className="text-[16px] font-[600] text-gray-400 line-through tracking-tight">
+                    ${((pricingResult?.subtotal || 0) + outOfAreaFee).toFixed(2)}
+                  </span>
+                  <span className="text-[15px] font-bold text-gray-400">→</span>
+                  <span className="text-[19px] font-[700] text-[#FB8C42] tracking-tight leading-none">
+                    ${(pricingResult?.total || 0).toFixed(2)}
+                  </span>
+                </>
+              ) : (
+                <span className="text-[19px] font-[700] text-[#2b2523] tracking-tight leading-none">
+                  ${(pricingResult?.total || 0).toFixed(2)}
+                </span>
+              )}
+            </div>
           </div>
         </>
       )}
@@ -577,6 +605,22 @@ const BookingSummaryCard = ({
             . Cancel anytime.
           </p>
         )}
+
+      <div className="w-full h-px bg-[#f2eadf] mt-5 mb-4" />
+      
+      <div className="relative group cursor-help w-full">
+        {/* Tooltip */}
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-[260px] bg-[#2b2523] text-white text-[12.5px] font-medium text-center px-4 py-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-xl leading-snug">
+          Not Happy? Receive a 100% refund if your concerns are not addressed!
+          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-solid border-t-[#2b2523] border-t-8 border-x-transparent border-x-8 border-b-0 w-0 h-0" />
+        </div>
+        
+        {/* Pill */}
+        <div className="flex items-center justify-center gap-2 bg-[#fff4ea] border border-[#f6d3b3]/50 py-2.5 px-4 rounded-xl w-full transition-colors group-hover:bg-[#ffe9d6]">
+          <CheckCircle2 className="w-4 h-4 text-[#e0731f]" strokeWidth={2.5} />
+          <span className="text-[13.5px] font-bold text-[#e0731f]">Satisfaction Guaranteed</span>
+        </div>
+      </div>
     </div>
   </div>
 );
@@ -759,9 +803,6 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       const isLeadCaptured = sessionStorage.getItem("crisp_lead_captured");
       if (isLeadCaptured === "true") {
         setDiscountClaimed(true);
-        // Ensure appliedPromo isn't overwritten if already set by referral or something else,
-        // but for this flow we assume WELCOME5 is applied.
-        setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: false });
 
         setFormData(prev => ({
           ...prev,
@@ -828,11 +869,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     // Run on hash change (fallback)
     window.addEventListener("hashchange", handleUrlBooking);
 
-    // Intercept clicks on Next.js Links that point to #booking on the same page
+    // Intercept clicks on Next.js Links that point to /book on the same page
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const link = target.closest('a');
-      if (link && link.href && link.href.includes('#booking')) {
+      if (link && link.href && link.href.includes('/book')) {
         try {
           const url = new URL(link.href, window.location.origin);
           // Only intercept if the link is for the current page
@@ -944,7 +985,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       hourlyDetails: { hours: 2, cleaners: 1 },
       extras: {} as Record<string, number>,
       condition: "Lived In" as "Lived In" | "Overdue" | "Heavy Build Up",
-      frequency: "One time" as Frequency,
+      frequency: "" as any as Frequency,
       selectedDays: [] as string[],
       selectedDate: undefined as Date | undefined,
       selectedTime: "",
@@ -1187,8 +1228,6 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         sessionStorage.setItem("crisp_lead_captured", "true");
       }
 
-      setPromoCode(appliedPromoDetails.code);
-      setAppliedPromo({ code: appliedPromoDetails.code, type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', value: appliedPromoDetails.value, isStackable: false });
       setDiscountClaimed(true);
 
       setSubmitError(null);
@@ -2076,13 +2115,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full w-full max-w-4xl mx-auto">
         <div className="mb-6">
           <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
-            What type of clean — and how is the home tracking?
+            Service & Condition
           </h2>
-          <p className="text-gray-500 mt-2 text-[calc(0.8125*var(--scale-unit))] font-normal">Both together set your fixed price.</p>
         </div>
 
         {/* Top section: Service Types */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 mt-4">
+        <h3 className="text-[calc(1*var(--scale-unit))] font-semibold text-gray-900 mb-3">What type of clean are you looking for?</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {[
             { id: 'Standard', label: 'Standard', desc: 'Maintain cleanliness, remove visible dirt, restore order, and leave the home fresh.' },
             { id: 'Deep', label: 'Deep', desc: 'High-detail clean to remove all dirt, grime, and build-up, with added attention to less frequently maintained areas.', badge: 'MOST BOOKED FIRST VISIT', badgeStyle: 'solid' },
@@ -2131,7 +2170,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
           {/* Condition Options Row */}
           <div className="w-full">
-            <h3 className="text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-3">OVERALL CONDITION</h3>
+            <h3 className="text-[calc(1*var(--scale-unit))] font-semibold text-gray-900 mb-3">What is the overall condition of the property?</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
               {[
                 { id: 'Lived In', label: 'Lived in', desc: 'Cleaned within the last ~6 weeks' },
@@ -2331,9 +2370,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
         {/* Frequency */}
         <div className="mb-2">
-          <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-1.5 mb-4">
-            FREQUENCY
-          </span>
+          <h3 className="text-[calc(1*var(--scale-unit))] font-semibold text-gray-900 mb-3">
+            How often?
+          </h3>
           <div className="flex flex-wrap md:flex-nowrap items-center gap-[calc(0.5*var(--scale-unit))]">
             {frequencies.map((freq) => {
               const isSelected = formData.frequency === freq.id;
@@ -2369,9 +2408,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         </div>
 
         {/* Grid: Calendar Left & Time Slots Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-5 items-stretch">
+        {formData.frequency && (
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-5 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both">
 
-          {/* Calendar picker Card */}
+            {/* Calendar picker Card */}
           <div className="bg-white border-[1.5px] border-tan-card rounded-2xl p-[calc(1.125*var(--scale-unit))] shadow-none hover:shadow-md transition-all duration-300 h-full flex flex-col">
             <div className="flex items-center justify-between mb-6 pb-2 relative">
               <button
@@ -2439,9 +2479,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
           {/* Available time slots */}
           <div className="flex flex-col h-full pt-0 -mt-1">
-            <span className="block text-[calc(0.625*var(--scale-unit))] font-semibold text-ink-soft tracking-[0.09em] uppercase mb-[calc(1*var(--scale-unit))]">
-              ARRIVAL WINDOW {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }).toUpperCase()}` : ""}
-            </span>
+            <h3 className="text-[calc(1*var(--scale-unit))] font-semibold text-gray-900 mb-3">
+              When works best for you? {formData.selectedDate ? `- ${formData.selectedDate.toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" })}` : ""}
+            </h3>
 
               <div className="columns-2 gap-[calc(0.5*var(--scale-unit))]">
                 {(() => {
@@ -2497,7 +2537,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               </div>
             </div>
 
-        </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -3415,7 +3456,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               {currentStep < totalSteps && (
                 <div className={`hidden min-[880px]:flex ${currentStep === 1 && !isCommercial
                   ? "w-full flex-col items-center"
-                  : "mt-4 items-center justify-between"
+                  : "mt-10 items-center justify-center gap-6"
                   }`}>
                   {currentStep === 1 && !isCommercial ? (
                     <div className="w-full max-w-[460px] flex flex-col items-center mt-10">
@@ -3437,14 +3478,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     </div>
                   ) : (
                     <>
-                      {currentStep > 1 ? (
+                      {currentStep > 1 && (
                         <button
                           onClick={handlePrev}
                           className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
                         >
                           <ChevronLeft className="w-4 h-4" /> Back
                         </button>
-                      ) : <div />}
+                      )}
                       <div className="flex flex-col items-end gap-2">
                         <button
                           onClick={handleNext}
@@ -3494,7 +3535,21 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         <div className="flex items-center justify-between gap-4 w-full">
           <div className="flex flex-col">
             <span className="text-[12.5px] font-[600] text-[#2b2523] uppercase tracking-wider">Estimated total</span>
-            <span className="text-[19px] font-[700] text-[#2b2523]">${pricingResult?.total || 0}</span>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              {(pricingResult?.totalDiscount ?? 0) > 0 ? (
+                <>
+                  <span className="text-[16px] font-[600] text-gray-400 line-through">
+                    ${((pricingResult?.subtotal || 0) + outOfAreaFee).toFixed(2)}
+                  </span>
+                  <span className="text-[14px] text-gray-400 font-bold">→</span>
+                  <span className="text-[19px] font-[700] text-[#FB8C42]">
+                    ${(pricingResult?.total || 0).toFixed(2)}
+                  </span>
+                </>
+              ) : (
+                <span className="text-[19px] font-[700] text-[#2b2523]">${(pricingResult?.total || 0).toFixed(2)}</span>
+              )}
+            </div>
             <span className="text-[15px] font-[400] text-[#8d8378] mt-1 leading-[1.55]">
               {currentStep === 1 ? (
                 "Your price updates live as you build your quote."

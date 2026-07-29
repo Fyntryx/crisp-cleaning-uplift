@@ -55,8 +55,8 @@ export default function BookingStepOne() {
 
     // Delay navigation slightly to ensure GTM tag fires before page unloads
     setTimeout(() => {
-      // Update hash to #booking-step-2 so GTM can also use URL/hash trigger
-      window.location.href = `/?plan=${selectedPlan.toLowerCase()}#booking-step-2`;
+      // Update hash to /book-step-2 so GTM can also use URL/hash trigger
+      window.location.href = `/?plan=${selectedPlan.toLowerCase()}/book-step-2`;
     }, 300);
   };
 

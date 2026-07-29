@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ServiceLeadForm from "@/components/ServiceLeadForm";
 
 interface ServiceHeroProps {
   googleRatingValue?: number;
@@ -62,22 +63,19 @@ export default function ServiceHero({ googleRatingValue = 5.0 }: ServiceHeroProp
               <div className="absolute -bottom-20 -right-20 w-[250px] h-[250px] bg-primary/20 rounded-full blur-[70px] pointer-events-none" />
 
               <div className="relative z-10">
-                <span className="text-[12px] font-semibold tracking-[0.22em] uppercase text-[#FB8C42] mb-4 block leading-[16px]">
+                <span className="text-[12px] font-semibold tracking-[0.22em] uppercase text-[#FB8C42] mb-4 block leading-[16px] text-center md:text-left">
                   INSTANT PRICING
                 </span>
 
-                <Link
-                  href="#booking?service=Standard"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-8 py-4 font-bold text-[17px] shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all group mb-5"
-                >
-                  Get an Instant Quote
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                <ServiceLeadForm 
+                  serviceType="Standard" 
+                  theme="dark" 
+                  layout="vertical" 
+                  buttonText="Get an Instant Quote" 
+                />
 
-                <div className="flex items-center justify-center gap-2 text-[13px] text-white/50">
-                  <span>Takes 30 seconds</span>
-                  <span>·</span>
-                  <span>No lock-in contracts</span>
+                <div className="mt-4 flex flex-col items-center justify-center text-[12px] text-white/50 text-center">
+                  <span>Claim 5% OFF your FIRST clean!</span>
                 </div>
               </div>
             </div>

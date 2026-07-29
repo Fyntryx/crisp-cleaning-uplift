@@ -408,7 +408,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
           </div>
           
           <div className="mt-[32px] flex gap-[12px] flex-wrap">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[28px] py-[14px] font-[600] transition-all hover:bg-[#b45309]">
+            <a href="/book" className="bg-[#d97706] text-white rounded-[99px] px-[28px] py-[14px] font-[600] transition-all hover:bg-[#b45309]">
               Get an Instant Quote
             </a>
             <a href="#included" className="border border-[rgba(255,255,255,0.2)] text-white rounded-[99px] px-[28px] py-[14px] transition-colors hover:border-[#d97706] hover:text-[#d97706]">
@@ -665,7 +665,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
               <div className="flex items-center gap-[8px] text-[14px] font-[600] text-[#92400e]">
                 <CheckCircle className="w-[18px] h-[18px] text-[#d97706]" /> Every item above is included in your fixed quote.
               </div>
-              <a href="/#booking" className="text-[13px] text-[#d97706] font-[600] hover:underline whitespace-nowrap">
+              <a href="/book" className="text-[13px] text-[#d97706] font-[600] hover:underline whitespace-nowrap">
                 Get an Instant Quote &rarr;
               </a>
             </div>
@@ -880,7 +880,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All bathrooms</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Eco products included</li>
             </ul>
-            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+            <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
           </div>
@@ -897,7 +897,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
               <li className="flex items-center gap-3 text-[14px] text-[#374151] font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Oven & inside cabinets</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151] font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Grout & hard-to-reach areas</li>
             </ul>
-            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+            <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
           </div>
@@ -911,7 +911,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All rooms & surfaces</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Inspection ready</li>
             </ul>
-            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+            <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
           </div>
@@ -948,7 +948,7 @@ export default function SouthYarraClient({ googleRatingValue = 5.0, googleReview
           </span>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px]">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#b45309] transition-colors w-full sm:w-auto">
+            <a href="/book" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#b45309] transition-colors w-full sm:w-auto">
               Get an Instant Quote
             </a>
             <a href="tel:0451423786" className="border-[1.5px] border-[#d97706] text-[#d97706] rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(217,119,6,0.05)] transition-colors w-full sm:w-auto">

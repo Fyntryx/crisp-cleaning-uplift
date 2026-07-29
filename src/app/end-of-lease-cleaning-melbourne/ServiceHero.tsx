@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Key, ShieldCheck } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ServiceLeadForm from "@/components/ServiceLeadForm";
 
 
 
@@ -91,15 +92,19 @@ export default function ServiceHero({ googleRatingValue = 5.0 }: ServiceHeroProp
             <div className="w-full lg:w-[420px] shrink-0">
               {/* White CTA Card */}
               <div className="bg-white rounded-[24px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 relative">
-                <Link
-                  href="#booking?service=Vacate"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-8 py-4 font-bold text-[16px] shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all group"
-                >
-                  Get an Instant Quote
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <div className="mt-4 flex items-center justify-center text-[12px] text-gray-400">
-                  <span>Takes 30 seconds · No lock-in contracts</span>
+                <div className="text-[12px] font-bold tracking-[0.1em] uppercase text-gray-800 mb-4 block leading-[16px] text-center md:text-left">
+                  INSTANT PRICING
+                </div>
+                
+                <ServiceLeadForm 
+                  serviceType="Vacate" 
+                  theme="light" 
+                  layout="vertical" 
+                  buttonText="Get My Instant Quote" 
+                />
+
+                <div className="mt-4 flex flex-col items-center justify-center text-[12px] text-gray-500 text-center">
+                  <span>Claim 5% OFF your FIRST clean!</span>
                 </div>
               </div>
             </div>

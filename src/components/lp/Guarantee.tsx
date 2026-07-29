@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 
-export default function Guarantee({ bookingLink = "/#booking" }: { bookingLink?: string }) {
+export default function Guarantee({ bookingLink = "/book" }: { bookingLink?: string }) {
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-6 md:px-8 max-w-[1216px]">

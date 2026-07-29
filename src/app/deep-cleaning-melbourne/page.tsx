@@ -159,7 +159,7 @@ export default async function HouseCleaningPage() {
           })
         }}
       />
-      <Navbar bookingLink="#booking?service=Deep" />
+      <Navbar bookingLink="/book?service=Deep" />
 
       {/* 1. Hero */}
       <ServiceHero googleRatingValue={googleRatingValue} />
@@ -221,7 +221,7 @@ export default async function HouseCleaningPage() {
       />
 
       {/* 9. Our Promise / Satisfaction Guarantee */}
-      <Guarantee bookingLink="#booking?service=Deep" />
+      <Guarantee bookingLink="/book?service=Deep" />
 
       {/* 10. Service Areas Section */}
       <ServiceAreas />
@@ -231,7 +231,7 @@ export default async function HouseCleaningPage() {
 
         {/* 12. Final CTA Section */}
         <FinalCTA 
-          bookingLink="#booking?service=Deep" 
+          bookingLink="/book?service=Deep" 
           title={
             <>
               Time for a true reset. <span className="text-primary">Let's make it spotless.</span>

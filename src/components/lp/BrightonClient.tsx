@@ -288,7 +288,7 @@ export default function BrightonClient({
                 className="flex flex-wrap gap-3 mb-5"
               >
                 <a
-                  href="/#booking"
+                  href="/book"
                   className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[14px] shadow-[0_6px_24px_rgba(251,140,66,0.28)] hover:-translate-y-0.5 transition-all duration-300"
                 >
                   Get an instant quote
@@ -584,7 +584,7 @@ export default function BrightonClient({
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All bathrooms</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Eco products included</li>
             </ul>
-<a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+<a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -606,7 +606,7 @@ export default function BrightonClient({
               <li className="flex items-center gap-3 text-[14px] text-white font-[500]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Grout & hard-to-reach areas</li>
             </ul>
                 <a
-                  href="/#booking"
+                  href="/book"
                   className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#FB8C42] text-white text-[13px] font-bold hover:bg-[#e07a34] transition-colors"
                 >
                   Get a quote <ArrowRight className="w-3 h-3" />
@@ -626,7 +626,7 @@ export default function BrightonClient({
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All rooms & surfaces</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Inspection ready</li>
             </ul>
-<a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+<a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -729,7 +729,7 @@ export default function BrightonClient({
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mx-auto mb-10">
                   <a
-                    href="/#booking"
+                    href="/book"
                     className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[15px] shadow-[0_0_30px_rgba(251,140,66,0.45)] hover:shadow-[0_0_40px_rgba(251,140,66,0.65)] hover:-translate-y-0.5 transition-all duration-300"
                   >
                     Get an instant quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

@@ -168,7 +168,7 @@ export default async function HouseCleaningPage() {
           })
         }}
       />
-      <Navbar bookingLink="#booking?service=Vacate" />
+      <Navbar bookingLink="/book?service=Vacate" />
 
       {/* 1. Hero */}
       <ServiceHero googleRatingValue={googleRatingValue} />
@@ -237,7 +237,7 @@ export default async function HouseCleaningPage() {
       <FAQ data={faqs} title="Second thoughts? Let's vacate them" />
 
         {/* 12. Final CTA Section */}
-        <FinalCTA bookingLink="#booking?service=Vacate" title={
+        <FinalCTA bookingLink="/book?service=Vacate" title={
           <>
             Why not leave the place <span className="text-primary">crisp-ier</span> than you found it?
           </>

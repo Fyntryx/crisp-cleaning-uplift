@@ -193,7 +193,7 @@ export default function HamptonClient({
                 className="flex flex-col sm:flex-row items-center sm:justify-start gap-4 mb-4"
               >
                 <a
-                  href="/#booking"
+                  href="/book"
                   className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#e07a34] text-white font-bold text-[15px] shadow-[0_6px_24px_rgba(251,140,66,0.28)] hover:-translate-y-0.5 transition-all duration-300"
                 >
                   Get an instant quote
@@ -576,7 +576,7 @@ export default function HamptonClient({
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -608,7 +608,7 @@ export default function HamptonClient({
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -626,7 +626,7 @@ export default function HamptonClient({
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-gray-600 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -752,7 +752,7 @@ export default function HamptonClient({
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mx-auto mb-10">
                   <a
-                    href="/#booking"
+                    href="/book"
                     className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-bold text-[15px] shadow-[0_0_30px_rgba(217,119,6,0.45)] hover:shadow-[0_0_40px_rgba(217,119,6,0.65)] hover:-translate-y-0.5 transition-all duration-300"
                   >
                     Get an instant quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

@@ -124,7 +124,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
             </div>
             
             <div className="w-full md:w-auto text-left md:text-right flex flex-col items-start md:items-end">
-              <a href="/#booking" className="inline-block bg-[#d97706] text-white rounded-[99px] px-[28px] py-[14px] text-[15px] font-[600] w-full md:w-auto text-center hover:bg-[#b45309] transition-colors">
+              <a href="/book" className="inline-block bg-[#d97706] text-white rounded-[99px] px-[28px] py-[14px] text-[15px] font-[600] w-full md:w-auto text-center hover:bg-[#b45309] transition-colors">
                 Get an Instant Quote →
               </a>
               <a href="#included" className="inline-block border-[1.5px] border-[#E0D8CC] text-[#6b7280] rounded-[99px] px-[28px] py-[14px] text-[15px] font-[600] w-full md:w-auto text-center mt-[8px] hover:bg-white transition-colors">
@@ -542,7 +542,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
                 <li className="flex items-center gap-[12px] text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-[16px] h-[16px] text-[#C17B3E]" /> All bathrooms</li>
                 <li className="flex items-center gap-[12px] text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-[16px] h-[16px] text-[#C17B3E]" /> Eco products included</li>
               </ul>
-              <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[24px] hover:bg-[#b45309] hover:-translate-y-1 transition-all duration-200">
+              <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[24px] hover:bg-[#b45309] hover:-translate-y-1 transition-all duration-200">
                 Get an Instant Quote
               </a>
             </div>
@@ -562,7 +562,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
                 <li className="flex items-center gap-[12px] text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-[16px] h-[16px] text-[#d97706]" /> Oven & inside cabinets</li>
                 <li className="flex items-center gap-[12px] text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-[16px] h-[16px] text-[#d97706]" /> Grout & hard-to-reach areas</li>
               </ul>
-              <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[24px] hover:bg-[#b45309] hover:-translate-y-1 transition-all duration-200">
+              <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[24px] hover:bg-[#b45309] hover:-translate-y-1 transition-all duration-200">
                 Get an Instant Quote
               </a>
             </div>
@@ -578,7 +578,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
                 <li className="flex items-center gap-[12px] text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-[16px] h-[16px] text-[#C17B3E]" /> All rooms & surfaces</li>
                 <li className="flex items-center gap-[12px] text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-[16px] h-[16px] text-[#C17B3E]" /> Inspection ready</li>
               </ul>
-              <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[24px] hover:bg-[#b45309] hover:-translate-y-1 transition-all duration-200">
+              <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[24px] hover:bg-[#b45309] hover:-translate-y-1 transition-all duration-200">
                 Get an Instant Quote
               </a>
             </div>
@@ -609,7 +609,7 @@ export default function BrunswickClient({ googleRatingValue = 5.0, googleReviewC
           </div>
           
           <div className="flex flex-col sm:flex-row justify-center items-center gap-[16px]">
-            <a href="/#booking" className="bg-[#1C1C1C] text-white rounded-[99px] px-[32px] py-[14px] font-[600] w-full sm:w-auto hover:bg-[#d97706] transition-colors">
+            <a href="/book" className="bg-[#1C1C1C] text-white rounded-[99px] px-[32px] py-[14px] font-[600] w-full sm:w-auto hover:bg-[#d97706] transition-colors">
               Get an Instant Quote
             </a>
             <a href="tel:0451423786" className="border border-[rgba(255,255,255,0.3)] text-white rounded-[99px] px-[32px] py-[14px] font-[600] w-full sm:w-auto hover:bg-[rgba(255,255,255,0.1)] transition-colors">

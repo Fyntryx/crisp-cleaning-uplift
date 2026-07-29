@@ -249,7 +249,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
               </div>
 
               <div className="mt-[28px] flex flex-col sm:flex-row items-start sm:items-center gap-[12px]">
-                <a href="/#booking" className="group bg-[#FB8C42] text-white rounded-full px-[28px] py-[14px] text-[15px] font-[600] shadow-[0_8px_24px_rgba(217,119,6,0.25)] hover:bg-[#ea6309] hover:-translate-y-[1px] transition-all duration-200 flex items-center gap-2">
+                <a href="/book" className="group bg-[#FB8C42] text-white rounded-full px-[28px] py-[14px] text-[15px] font-[600] shadow-[0_8px_24px_rgba(217,119,6,0.25)] hover:bg-[#ea6309] hover:-translate-y-[1px] transition-all duration-200 flex items-center gap-2">
                   Get an Instant Quote 
                   <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
                 </a>
@@ -719,7 +719,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -740,7 +740,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
                   <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
                   <li className="flex items-center gap-3 text-[13px] text-[rgba(255,255,255,0.8)] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -757,7 +757,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
                   <li className="flex items-center gap-3 text-[13px] text-[#4b5563] font-[500]"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -878,7 +878,7 @@ export default function MaribyrnongClient({ googleRatingValue = 5.0, googleRevie
           </span>
 
           <div className="flex flex-col sm:flex-row gap-[12px] justify-center">
-            <a href="/#booking" className="bg-[#FB8C42] text-white rounded-full px-[28px] py-[14px] text-[14px] font-[600] hover:bg-[#ea6309] transition-colors inline-block">
+            <a href="/book" className="bg-[#FB8C42] text-white rounded-full px-[28px] py-[14px] text-[14px] font-[600] hover:bg-[#ea6309] transition-colors inline-block">
               Get an Instant Quote
             </a>
             <a href="tel:0451433786" className="border border-[rgba(255,255,255,0.2)] text-white rounded-full px-[28px] py-[14px] text-[14px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors inline-block">

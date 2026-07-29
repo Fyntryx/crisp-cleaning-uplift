@@ -95,7 +95,7 @@ export default async function HouseCleaningBrightonPage() {
         }}
       />
 
-      <Navbar bookingLink="#booking?service=Standard" />
+      <Navbar bookingLink="/book?service=Standard" />
 
       <BrightonClient googleRatingValue={googleRatingValue} />
 

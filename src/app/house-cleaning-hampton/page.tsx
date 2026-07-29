@@ -87,7 +87,7 @@ export default async function HouseCleaningHamptonPage() {
         }}
       />
 
-      <Navbar bookingLink="#booking?service=Standard" />
+      <Navbar bookingLink="/book?service=Standard" />
 
       <HamptonClient googleRatingValue={googleRatingValue} />
 

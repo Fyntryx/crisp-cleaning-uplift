@@ -154,7 +154,7 @@ export default async function HouseCleaningPage() {
           })
         }}
       />
-      <Navbar bookingLink="#booking?service=Standard" />
+      <Navbar bookingLink="/book?service=Standard" />
 
       {/* 1. Hero */}
       <ServiceHero googleRatingValue={googleRatingValue} />
@@ -162,7 +162,7 @@ export default async function HouseCleaningPage() {
       {/* Wrap remaining sections to reduce vertical gap by ~20% */}
       <div className="[&>section]:!py-16 lg:[&>section]:!py-20">
         {/* 2. Frequency Cards */}
-        <FrequencyCards bookingLink="#booking?service=Standard" />
+        <FrequencyCards bookingLink="/book?service=Standard" />
 
       {/* 3. Before/After */}
       <BeforeAfter />
@@ -213,7 +213,7 @@ export default async function HouseCleaningPage() {
       />
 
       {/* 9. Our Promise / Satisfaction Guarantee */}
-      <Guarantee bookingLink="#booking?service=Standard" />
+      <Guarantee bookingLink="/book?service=Standard" />
 
       {/* 10. Service Areas Section */}
       <ServiceAreas />
@@ -223,7 +223,7 @@ export default async function HouseCleaningPage() {
 
         {/* 12. Final CTA Section */}
         <FinalCTA 
-          bookingLink="#booking?service=Standard" 
+          bookingLink="/book?service=Standard" 
           title={
             <>
               Your home won't clean itself. <span className="text-primary">But we will.</span>

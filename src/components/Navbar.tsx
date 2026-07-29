@@ -55,12 +55,13 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
-export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: string }) {
+export default function Navbar({ bookingLink = "/book" }: { bookingLink?: string }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const isHomePage = pathname === "/";
+  // Ensure navbar starts transparent on homepage and v2 (which have dark heroes)
+  const isTransparentTop = pathname === "/" || pathname === "/v2";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,7 +86,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
     }
   };
 
-  const textColorClass = isScrolled || !isHomePage
+  const textColorClass = isScrolled || !isTransparentTop
     ? "text-neutral-700 hover:text-[#FB8C42]"
     : "text-white/90 hover:text-[#FB8C42]";
 
@@ -97,7 +98,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
         isScrolled
           ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#f2eadf] py-[calc(0.875*var(--scale-unit))]"
-          : isHomePage
+          : isTransparentTop
             ? "bg-white md:bg-transparent py-[calc(0.875*var(--scale-unit))] border-b border-[#f2eadf] md:border-transparent shadow-sm md:shadow-none"
             : "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#f2eadf] py-[calc(0.875*var(--scale-unit))]"
       )}
@@ -238,7 +239,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
             href="tel:0451433786"
             className={cn(
               "flex items-center gap-2 text-[15px] font-semibold transition-colors duration-300",
-              isScrolled || !isHomePage
+              isScrolled || !isTransparentTop
                 ? "text-neutral-700 hover:text-[#FB8C42]"
                 : "text-white/90 hover:text-[#FB8C42]"
             )}
@@ -253,7 +254,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
             rel="noopener noreferrer"
             className={cn(
               "text-[14.5px] font-bold px-5 py-2 rounded-full border transition-all duration-200 hover:-translate-y-0.5",
-              isScrolled || !isHomePage
+              isScrolled || !isTransparentTop
                 ? "border-[#FB8C42] text-[#FB8C42] hover:bg-[#FB8C42] hover:text-white"
                 : "border-white/60 text-white/90 hover:bg-white hover:text-[#FB8C42]"
             )}
@@ -281,7 +282,7 @@ export default function Navbar({ bookingLink = "/#booking" }: { bookingLink?: st
           <button
             className={cn(
               "w-9 h-9 flex items-center justify-center transition-colors rounded-full border",
-              isScrolled || !isHomePage
+              isScrolled || !isTransparentTop
                 ? "text-neutral-800 border-gray-200 bg-white shadow-sm"
                 : "text-neutral-800 border-gray-200 bg-white shadow-sm md:text-white md:border-white/20 md:bg-white/10"
             )}

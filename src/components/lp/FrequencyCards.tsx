@@ -33,7 +33,7 @@ const frequencies = [
   }
 ];
 
-export default function FrequencyCards({ bookingLink = "/#booking" }: { bookingLink?: string }) {
+export default function FrequencyCards({ bookingLink = "/book" }: { bookingLink?: string }) {
   return (
     <section className="py-20 md:py-32 bg-[#FDFBF9] relative">
       <div className="container mx-auto px-6 md:px-8 max-w-[1216px]">

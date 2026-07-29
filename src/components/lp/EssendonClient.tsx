@@ -391,7 +391,7 @@ export default function EssendonClient({
           <ScrollReveal delay={0.8} className="mt-8 flex flex-col items-start">
             <div className="flex flex-col sm:flex-row gap-4 mb-3 w-full">
               <a
-                href="/#booking"
+                href="/book"
                 className="inline-flex justify-center items-center px-6 py-2.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-semibold text-[15px] transition-colors whitespace-nowrap"
               >
                 Get an Instant Quote
@@ -420,7 +420,7 @@ export default function EssendonClient({
             House Cleaning <br/><span className="text-[#FB8C42]">Essendon</span> <br/>Melbourne
           </h1>
           <div className="flex flex-col gap-4">
-            <a href="/#booking" className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#FB8C42] text-white font-semibold text-[15px]">Get an Instant Quote</a>
+            <a href="/book" className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#FB8C42] text-white font-semibold text-[15px]">Get an Instant Quote</a>
           </div>
         </div>
       </section>
@@ -806,7 +806,7 @@ export default function EssendonClient({
                   <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All bathrooms</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Eco products included</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -831,7 +831,7 @@ export default function EssendonClient({
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Oven & inside cabinets</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-white/80 font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Grout & hard-to-reach areas</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -849,7 +849,7 @@ export default function EssendonClient({
                   <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> All rooms & surfaces</li>
                   <li className="flex items-center gap-2.5 text-[13px] text-[#4b5563] font-medium"><CheckCircle2 className="w-4 h-4 text-[#FB8C42]" /> Inspection ready</li>
                 </ul>
-                <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+                <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
               </div>
@@ -928,7 +928,7 @@ export default function EssendonClient({
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
               <a
-                href="/#booking"
+                href="/book"
                 className="inline-flex justify-center items-center px-8 py-3.5 rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white font-semibold text-[15px] transition-colors"
               >
                 Get an Instant Quote

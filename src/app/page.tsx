@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/lp/Hero";
-import QuoteRequestPanel from "@/components/QuoteRequestPanel";
+import Hero from "@/components/lp/HeroV2";
+import QuoteRequestPanel from "@/components/QuoteRequestPanelV2";
+import PricingCards from "@/components/lp/PricingCards";
 import Testimonials from "@/components/lp/Testimonials";
 import Difference from "@/components/lp/Difference";
 import WhyCrisp from "@/components/lp/WhyCrisp";
@@ -107,6 +108,7 @@ export default async function LandingPage() {
       
       <Hero googleRatingValue={googleRatingValue} />
       <QuoteRequestPanel />
+      <PricingCards />
       <Testimonials layout="center" googleReviewCount={googleReviewCount} googleRatingValue={googleRatingValue} />
       <Difference />
       <WhyCrisp />

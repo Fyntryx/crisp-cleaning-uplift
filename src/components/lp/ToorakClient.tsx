@@ -266,7 +266,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           
           {/* Step 5: CTA Row */}
           <div className="mt-[36px] flex flex-wrap justify-center gap-[12px] opacity-0 animate-[fadeUp_0.6s_ease_2.6s_forwards]">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#d97706] transition-colors">
+            <a href="/book" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#d97706] transition-colors">
               Get an Instant Quote
             </a>
             <a href="#included" className="border border-[rgba(255,255,255,0.2)] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
@@ -664,7 +664,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All bathrooms</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Eco products included</li>
             </ul>
-            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+            <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
           </div>
@@ -681,7 +681,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Oven & inside cabinets</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Grout & hard-to-reach areas</li>
             </ul>
-            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+            <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
           </div>
@@ -695,7 +695,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All rooms & surfaces</li>
               <li className="flex items-center gap-3 text-[14px] text-[#374151]"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Inspection ready</li>
             </ul>
-            <a href="/#booking" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
+            <a href="/book" className="block w-full text-center bg-[#d97706] text-[#ffffff] rounded-[99px] px-[24px] py-[12px] text-[14px] font-[600] mt-[20px] hover:bg-[#b45309] hover:-translate-y-[1px] transition-all duration-200">
                   Get an Instant Quote
                 </a>
           </div>
@@ -729,7 +729,7 @@ export default function ToorakClient({ googleRatingValue = 5.0, googleReviewCoun
           </span>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px] mb-[48px]">
-            <a href="/#booking" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#d97706] transition-colors w-full sm:w-auto">
+            <a href="/book" className="bg-[#d97706] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#d97706] transition-colors w-full sm:w-auto">
               Get an Instant Quote
             </a>
             <a href="tel:0451423786" className="border border-[rgba(255,255,255,0.15)] text-white rounded-[99px] px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors w-full sm:w-auto">

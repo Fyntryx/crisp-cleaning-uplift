@@ -173,7 +173,7 @@ export default function RefundCancellationPage() {
           heading="Need help with a booking change?"
           description="If you want to reschedule or need a refund, contact our support team and we'll help you through the process."
           primaryAction={{ text: "Contact Us", href: "/contact" }}
-          secondaryAction={{ text: "Book Again", href: "/#booking" }}
+          secondaryAction={{ text: "Book Again", href: "/book" }}
         />
       </div>
       <Footer />

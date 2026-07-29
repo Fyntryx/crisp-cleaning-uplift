@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ServiceLeadForm from "@/components/ServiceLeadForm";
 
 interface ServiceHeroProps {
   googleRatingValue?: number;
@@ -56,34 +57,17 @@ export default function ServiceHero({ googleRatingValue = 5.0 }: ServiceHeroProp
         </div>
 
         {/* CTA Box (Wide White Bar) */}
-        <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mx-auto mb-12">
-
-          {/* Booking Info */}
-          <div className="flex-1 flex flex-col gap-1 w-full text-center md:text-left">
-            <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-1">
-              BOOKING
-            </span>
-            <div className="text-[18px] font-bold text-gray-900">
-              30 seconds · Instant quote
-            </div>
-            <div className="text-[14px] text-gray-500">
-              No lock-in contracts
-            </div>
+        <div className="bg-white rounded-[24px] p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col max-w-5xl mx-auto mb-12 relative overflow-visible">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-[14px] py-[6px] rounded-full bg-[#FB8C42] text-white text-[10px] font-bold tracking-[0.08em] uppercase shadow-md whitespace-nowrap z-10">
+            First Clean — 5% Off
           </div>
 
-          {/* Button Area */}
-          <div className="flex-1 flex flex-col items-center md:items-end w-full">
-            <Link
-              href="#booking?service=Deep"
-              className="inline-flex w-full md:w-auto items-center justify-center rounded-full bg-[#FB8C42] hover:bg-[#ea6309] text-white px-8 py-4 font-bold text-[16px] shadow-[0_0_20px_rgba(249,115,22,0.2)] transition-all group mb-3"
-            >
-              Get an Instant Quote
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <div className="text-[12px] text-gray-400 font-medium">
-              Takes 30 seconds · No lock-in contracts
-            </div>
-          </div>
+          <ServiceLeadForm 
+            serviceType="Deep" 
+            theme="light" 
+            layout="horizontal" 
+            buttonText="Get My Instant Quote" 
+          />
         </div>
 
         {/* Trust Ribbon */}

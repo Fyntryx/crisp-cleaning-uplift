@@ -66,7 +66,7 @@ export default function QuoteRequestPanel({
                 Your quote is calculated instantly based on your home size.
               </p>
 
-              <Link href="/#booking" className="inline-flex w-full items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-white px-8 py-4 font-bold text-lg shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all group relative z-10">
+              <Link href="/book" className="inline-flex w-full items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-white px-8 py-4 font-bold text-lg shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all group relative z-10">
                 Get a quote
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>

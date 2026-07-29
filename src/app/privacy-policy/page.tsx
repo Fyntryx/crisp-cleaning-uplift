@@ -243,7 +243,7 @@ export default function PrivacyPolicyPage() {
           heading="Have questions?"
           description="If you have any questions or concerns about our privacy policy, feel free to reach out to our support team."
           primaryAction={{ text: "Contact Us", href: "/contact" }}
-          secondaryAction={{ text: "Book Now", href: "/#booking" }}
+          secondaryAction={{ text: "Book Now", href: "/book" }}
         />
       </div>
       <Footer />

@@ -699,11 +699,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     // Run on hash change (fallback)
     window.addEventListener("hashchange", handleUrlBooking);
 
-    // Intercept clicks on Next.js Links that point to #booking on the same page
+    // Intercept clicks on Next.js Links that point to /book on the same page
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const link = target.closest('a');
-      if (link && link.href && link.href.includes('#booking')) {
+      if (link && link.href && link.href.includes('/book')) {
         try {
           const url = new URL(link.href, window.location.origin);
           // Only intercept if the link is for the current page
