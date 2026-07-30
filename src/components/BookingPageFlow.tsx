@@ -302,20 +302,20 @@ const BookingSummaryCard = ({
           {/* Discounts */}
           {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[12.5px] font-semibold text-[#FB8C42]">Large Service Discount</span>
-              <span className="text-[12.5px] font-semibold text-[#FB8C42]">-${(pricingResult!.largeServiceDiscountAmount!).toFixed(2)}</span>
+              <span className="text-[12.5px] font-medium text-[#8d8378]">Large Service Discount</span>
+              <span className="text-[12.5px] font-normal text-[#2b2523]">-${(pricingResult!.largeServiceDiscountAmount!).toFixed(2)}</span>
             </div>
           )}
           {pricingResult?.discounts?.frequency && (
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[12.5px] font-semibold text-[#FB8C42]">{pricingResult?.discounts?.frequency?.name} Discount</span>
-              <span className="text-[12.5px] font-semibold text-[#FB8C42]">-${(pricingResult?.discounts?.frequency?.amount).toFixed(2)}</span>
+              <span className="text-[12.5px] font-medium text-[#8d8378]">{pricingResult?.discounts?.frequency?.name} Discount</span>
+              <span className="text-[12.5px] font-normal text-[#2b2523]">-${(pricingResult?.discounts?.frequency?.amount).toFixed(2)}</span>
             </div>
           )}
           {pricingResult?.discounts?.promo && (
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[12.5px] font-semibold text-[#FB8C42]">{pricingResult?.discounts?.promo?.name}</span>
-              <span className="text-[12.5px] font-semibold text-[#FB8C42]">-${(pricingResult?.discounts?.promo?.amount).toFixed(2)}</span>
+              <span className="text-[12.5px] font-medium text-[#8d8378]">{pricingResult?.discounts?.promo?.name}</span>
+              <span className="text-[12.5px] font-normal text-[#2b2523]">-${(pricingResult?.discounts?.promo?.amount).toFixed(2)}</span>
             </div>
           )}
 
@@ -452,29 +452,36 @@ const BookingSummaryCard = ({
                 </div>
               )}
               {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
-                <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-2 h-px bg-tan-soft border-0">
-                  <span>Large Service Discount</span>
-                  <span>-A${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
+                <div className="flex justify-between">
+                  <span className="text-[12.5px] font-medium text-[#8d8378]">Large Service Discount</span>
+                  <span className="text-[12.5px] font-normal text-[#2b2523]">-${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
                 </div>
               )}
 
               {pricingResult?.discounts?.frequency && (
-                <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42] pt-1">
-                  <span>Discount ({pricingResult?.discounts?.frequency?.name})</span>
-                  <span>-A${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
+                <div className="flex justify-between">
+                  <span className="text-[12.5px] font-medium text-[#8d8378]">Discount ({pricingResult?.discounts?.frequency?.name})</span>
+                  <span className="text-[12.5px] font-normal text-[#2b2523]">-${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
+                </div>
+              )}
+
+              {pricingResult?.discounts?.promo && (
+                <div className="flex justify-between">
+                  <span className="text-[12.5px] font-medium text-[#8d8378]">Discount ({pricingResult?.discounts?.promo?.name})</span>
+                  <span className="text-[12.5px] font-normal text-[#2b2523]">-${pricingResult?.discounts?.promo?.amount?.toFixed(2)}</span>
                 </div>
               )}
 
               {/* Referral Applied Confirmation */}
               {appliedReferral && (
-                <div className="flex flex-col gap-0.5 pt-2 h-px bg-tan-soft border-0">
-                  <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-semibold text-[#FB8C42]">
+                <div className="flex flex-col gap-0.5 mt-1">
+                  <div className="flex justify-between text-[12.5px] font-medium text-[#8d8378]">
                     <span className="flex items-center gap-1.5">
                       ✓ {appliedReferral.referralType === 'CLEANER_REFERRAL' ? 'Cleaner Referral Applied' : 'Customer Referral Applied'}
                       <button onClick={() => setAppliedReferral(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove referral code">✕</button>
                     </span>
                   </div>
-                  <p className="text-[calc(0.6875*var(--scale-unit))] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
+                  <p className="text-[11px] text-gray-400 font-medium">$10 credit will be emailed to you after booking</p>
                 </div>
               )}
 
