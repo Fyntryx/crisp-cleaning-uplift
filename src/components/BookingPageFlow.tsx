@@ -302,20 +302,20 @@ const BookingSummaryCard = ({
           {/* Discounts */}
           {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[12.5px] font-medium text-[#8d8378]">Large Service Discount</span>
-              <span className="text-[12.5px] font-normal text-[#2b2523]">-${(pricingResult!.largeServiceDiscountAmount!).toFixed(2)}</span>
+              <span className="text-[12.5px] font-medium text-[#FB8C42]">Large Service Discount</span>
+              <span className="text-[12.5px] font-normal text-[#FB8C42]">-${(pricingResult!.largeServiceDiscountAmount!).toFixed(2)}</span>
             </div>
           )}
           {pricingResult?.discounts?.frequency && (
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[12.5px] font-medium text-[#8d8378]">{pricingResult?.discounts?.frequency?.name} Discount</span>
-              <span className="text-[12.5px] font-normal text-[#2b2523]">-${(pricingResult?.discounts?.frequency?.amount).toFixed(2)}</span>
+              <span className="text-[12.5px] font-medium text-[#FB8C42]">{pricingResult?.discounts?.frequency?.name} Discount</span>
+              <span className="text-[12.5px] font-normal text-[#FB8C42]">-${(pricingResult?.discounts?.frequency?.amount).toFixed(2)}</span>
             </div>
           )}
           {pricingResult?.discounts?.promo && (
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[12.5px] font-medium text-[#8d8378]">{pricingResult?.discounts?.promo?.name}</span>
-              <span className="text-[12.5px] font-normal text-[#2b2523]">-${(pricingResult?.discounts?.promo?.amount).toFixed(2)}</span>
+              <span className="text-[12.5px] font-medium text-[#FB8C42]">{pricingResult?.discounts?.promo?.name}</span>
+              <span className="text-[12.5px] font-normal text-[#FB8C42]">-${(pricingResult?.discounts?.promo?.amount).toFixed(2)}</span>
             </div>
           )}
 
@@ -453,22 +453,22 @@ const BookingSummaryCard = ({
               )}
               {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
                 <div className="flex justify-between">
-                  <span className="text-[12.5px] font-medium text-[#8d8378]">Large Service Discount</span>
-                  <span className="text-[12.5px] font-normal text-[#2b2523]">-${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
+                  <span className="text-[12.5px] font-medium text-[#FB8C42]">Large Service Discount</span>
+                  <span className="text-[12.5px] font-normal text-[#FB8C42]">-${pricingResult!.largeServiceDiscountAmount!.toFixed(2)}</span>
                 </div>
               )}
 
               {pricingResult?.discounts?.frequency && (
                 <div className="flex justify-between">
-                  <span className="text-[12.5px] font-medium text-[#8d8378]">Discount ({pricingResult?.discounts?.frequency?.name})</span>
-                  <span className="text-[12.5px] font-normal text-[#2b2523]">-${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
+                  <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount ({pricingResult?.discounts?.frequency?.name})</span>
+                  <span className="text-[12.5px] font-normal text-[#FB8C42]">-${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
                 </div>
               )}
 
               {pricingResult?.discounts?.promo && (
                 <div className="flex justify-between">
-                  <span className="text-[12.5px] font-medium text-[#8d8378]">Discount ({pricingResult?.discounts?.promo?.name})</span>
-                  <span className="text-[12.5px] font-normal text-[#2b2523]">-${pricingResult?.discounts?.promo?.amount?.toFixed(2)}</span>
+                  <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount ({pricingResult?.discounts?.promo?.name})</span>
+                  <span className="text-[12.5px] font-normal text-[#FB8C42]">-${pricingResult?.discounts?.promo?.amount?.toFixed(2)}</span>
                 </div>
               )}
 
