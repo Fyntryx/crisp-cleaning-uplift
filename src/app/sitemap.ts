@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/refund-cancellation',
     '/service-areas',
     '/terms-conditions',
+    '/uplift-policy',
   ];
 
   const suburbRoutes = suburbs.map((sub) => 

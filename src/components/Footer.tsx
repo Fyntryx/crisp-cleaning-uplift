@@ -13,6 +13,7 @@ const navLinks = [
   { name: "— Vacate Clean", href: "/end-of-lease-cleaning-melbourne", isSub: true },
   { name: "Reviews", href: "/#testimonials" },
   { name: "Contact", href: "/contact" },
+  { name: "Uplift Policy", href: "/uplift-policy" },
 ];
 
 const Footer = async () => {
@@ -138,7 +139,7 @@ const Footer = async () => {
             <Link href="/refund-cancellation" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Refund Policy</Link>
             <Link href="/privacy-policy" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Privacy Policy</Link>
             <Link href="/terms-conditions" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Terms & Conditions</Link>
-            <Link href="/commercial-agreement" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Commercial Service Agreement</Link>
+            <Link href="/uplift-policy" className="text-muted-foreground hover:text-primary text-sm transition-colors font-medium">Uplift Policy</Link>
           </div>
         </div>
       </div>
