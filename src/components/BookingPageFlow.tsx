@@ -2142,27 +2142,27 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             { id: 'Vacate', label: 'Vacate', desc: 'A full-scope, maximum-detail clean — built to meet rental inspection standards.', badge: 'BOND BACK GUARANTEE', badgeStyle: 'soft' }
           ].map((type, index) => {
             const isSelected = formData.cleaningType === type.id;
+            const isDisabled = type.id === 'Standard' && (formData.condition === 'Overdue' || formData.condition === 'Heavy Build Up');
 
             return (
               <div
                 key={type.id}
                 onClick={() => {
+                  if (isDisabled) return;
+                  
                   let newCondition = formData.condition;
                   if (type.id === 'Standard' && (newCondition === 'Overdue' || newCondition === 'Heavy Build Up')) {
-                    newCondition = 'Lived In';
-                  } else if (type.id === 'Vacate') {
-                    newCondition = 'Overdue';
-                  } else if (type.id === 'Deep' && newCondition === 'Overdue') {
-                    // if changing to Deep from Vacate/Overdue, we can default back to Heavy Build Up or Lived In
-                    // but keeping it as is or resetting to Heavy Build Up is fine.
+                    newCondition = 'Lived In'; // fallback if somehow they click it
                   }
                   
                   setFormData({ ...formData, cleaningType: type.id as any, condition: newCondition });
                   setHasClickedService(true);
                 }}
-                className={`relative cursor-pointer px-[calc(1*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] transition-all duration-300 flex flex-col h-full rounded-[20px] border-[1.5px] ${isSelected
-                  ? 'border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10'
-                  : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
+                className={`relative px-[calc(1*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] transition-all duration-300 flex flex-col h-full rounded-[20px] border-[1.5px] ${
+                  isDisabled ? 'opacity-50 cursor-not-allowed border-[#ece1d3] bg-[#f9f9f9] grayscale-[0.5]' :
+                  isSelected
+                    ? 'cursor-pointer border-[#FB8C42] bg-[#fffaf5] shadow-[0_0_0_3px_rgba(251,140,66,0.16)] z-10'
+                    : 'cursor-pointer border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
                   }`}
               >
                 {type.badge && (
@@ -2198,12 +2198,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     key={cond.id}
                     onClick={() => {
                       const updates: any = { condition: cond.id as any };
-                      if (cond.id === 'Overdue') {
-                        updates.cleaningType = 'Vacate';
-                      } else if (cond.id === 'Heavy Build Up' && (formData.cleaningType === 'Standard' || formData.cleaningType === 'Vacate')) {
-                        updates.cleaningType = 'Deep';
-                      } else if (cond.id === 'Lived In' && formData.cleaningType === 'Vacate') {
-                        updates.cleaningType = 'Deep';
+                      if ((cond.id === 'Overdue' || cond.id === 'Heavy Build Up') && formData.cleaningType === 'Standard') {
+                        updates.cleaningType = ''; // clear standard if it's selected
                       }
                       setFormData({ ...formData, ...updates });
                     }}
@@ -2233,6 +2229,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   </div>
                 );
               })}
+            </div>
+            <div className="flex justify-end mt-2">
+              <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[13px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-2 transition-colors">
+                Not sure which fits?
+              </button>
             </div>
           </div>
 
@@ -2268,10 +2269,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
                 <p className="text-[calc(0.78125*var(--scale-unit))] font-normal text-gray-600 leading-relaxed mb-4 flex-1 break-words">
                   {formData.condition === 'Lived In'
-                    ? "Lived-in — Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
+                    ? "Everyday soil from normal living — everything comes up with a standard wipe, vacuum and mop, no scrubbing needed. Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop."
                     : formData.condition === 'Heavy Build Up'
-                      ? "Heavy build-up — Widespread heavy build-up across multiple rooms — grime that needs scrapers or repeated dwell-and-scrub cycles. Scale you can feel on the shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, pet hair worked into fabric and edges — often accompanied by lingering odour."
-                      : "Overdue — Established build-up in the usual hotspots — needs product dwell time and proper scrubbing, but comes up within a single treatment. Cloudy (but smooth) shower glass, dark spots along the silicone, a greasy stovetop with cooked-on spots, tacky cupboard handles, a visible dust layer on ledges and skirting, scattered pet hair."
+                      ? "Widespread heavy build-up across multiple rooms — grime that needs scrapers or repeated dwell-and-scrub cycles. Scale you can feel on the shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, pet hair worked into fabric and edges — often accompanied by lingering odour."
+                      : "Established build-up in the usual hotspots — needs product dwell time and proper scrubbing, but comes up within a single treatment. Cloudy (but smooth) shower glass, dark spots along the silicone, a greasy stovetop with cooked-on spots, tacky cupboard handles, a visible dust layer on ledges and skirting, scattered pet hair."
                   }
                 </p>
 
@@ -2280,7 +2281,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     <p className="text-sm text-[#8d8378] w-full text-justify">
                       <span className="font-bold text-gray-900">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
                     </p>
-                    <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[calc(0.78125*var(--scale-unit))] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap w-full">Take the condition check →</button>
+                    <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[calc(0.78125*var(--scale-unit))] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-6 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap self-start">Take the condition check →</button>
                   </div>
                 </div>
               </div>
@@ -2288,10 +2289,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
           )}
         </div>
+        </div>
         )}
 
         {/* Bottom Disclaimer */}
-        {formData.condition && (
+        {(hasClickedService || !!formData.condition) && (
         <div className="bg-[#fff4ea] border border-[#f6d3b3] rounded-2xl p-5 mb-8 animate-in fade-in slide-in-from-top-4 duration-500 delay-150 fill-mode-both">
           <p className="text-sm text-[#6b5a48] leading-relaxed">
             <span className="font-bold text-gray-900">Your part in a Great Result:</span> To help us deliver the best possible result, please accurately select the overall condition of the property. Our cleaners will do an assessment prior to the clean — where the condition is beyond the scope of the chosen service, we will discuss an uplift or recommend a better suited service before we begin. <Link href="/uplift-policy" target="_blank" className="text-[#e0731f] font-semibold hover:underline">View full uplift & scope policy here</Link>.
