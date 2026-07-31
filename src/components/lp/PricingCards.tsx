@@ -43,7 +43,7 @@ export default function PricingCards() {
               </li>
             </ul>
             <Link 
-              href="/book" 
+              href="/book?service=Standard" 
               className="inline-flex self-start px-8 py-3.5 bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg mt-auto"
             >
               Continue with Flat Rate →
@@ -74,7 +74,7 @@ export default function PricingCards() {
               </li>
             </ul>
             <Link 
-              href="/book" 
+              href="/book?service=Hourly" 
               className="inline-flex self-start px-8 py-3.5 bg-white border border-gray-200 text-gray-900 hover:border-gray-300 hover:bg-gray-50 font-bold rounded-full transition-all mt-auto"
             >
               Continue with Hourly →

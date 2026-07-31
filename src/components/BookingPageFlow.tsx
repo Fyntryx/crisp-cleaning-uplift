@@ -845,7 +845,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           let matchedType: any = null;
           if (lowerService.includes("deep")) matchedType = "Deep";
           else if (lowerService.includes("vacate")) matchedType = "Vacate";
-          else if (lowerService.includes("standard")) matchedType = "Standard";
+          else if (lowerService.includes("standard") || lowerService.includes("flat")) matchedType = "Standard";
+          else if (lowerService.includes("hourly")) matchedType = "Hourly";
 
           if (matchedType) {
             setFormData(prev => ({
@@ -853,7 +854,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               cleaningType: matchedType,
               serviceCategory: "residential"
             }));
-            setCurrentStep(2);
+            setCurrentStep(matchedType === "Hourly" ? 4 : 3);
             setIsModalOpen(true);
 
             // Clear hash so it can be triggered again
