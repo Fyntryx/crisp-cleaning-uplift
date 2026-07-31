@@ -2286,9 +2286,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 </div>
               </div>
             )}
-            </div>
           )}
-        </div>
         </div>
         )}
 
@@ -3484,7 +3482,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                           : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02]"
                           }`}
                       >
-                        {isSubmittingDiscount ? "Claiming/Submitting..." : (
+                        {isSubmittingDiscount ? "Claiming..." : (
                           <>Continue <ArrowRight className="w-4 h-4" /></>
                         )}
                       </button>
@@ -3590,7 +3588,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20"
                 }`}
             >
-              {isSubmittingDiscount ? "Claiming/Submitting..." : (
+              {isSubmittingDiscount ? "Claiming..." : (
                 <>Continue <ArrowRight className="w-4 h-4" /></>
               )}
             </button>
