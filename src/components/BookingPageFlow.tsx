@@ -854,7 +854,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               cleaningType: matchedType,
               serviceCategory: "residential"
             }));
-            setCurrentStep(matchedType === "Hourly" ? 4 : 3);
+            setCurrentStep(1);
             setIsModalOpen(true);
 
             // Clear hash so it can be triggered again
@@ -1240,7 +1240,13 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
       setSubmitError(null);
       setSubmitSuccess(null);
-      setCurrentStep(2);
+      if (formData.cleaningType === "Hourly") {
+        setCurrentStep(4);
+      } else if (formData.cleaningType) {
+        setCurrentStep(3);
+      } else {
+        setCurrentStep(2);
+      }
     } catch (err) {
       console.error("Failed to process discount", err);
       setDiscountError("Failed to claim discount. Please try again.");
