@@ -822,7 +822,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 code: appliedPromoDetails.code, 
                 type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', 
                 value: appliedPromoDetails.value, 
-                source: appliedPromoDetails.source 
+                isStackable: false
               });
             }
           } catch (err) {
