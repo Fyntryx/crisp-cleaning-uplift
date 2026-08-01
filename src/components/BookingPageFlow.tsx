@@ -822,7 +822,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 code: appliedPromoDetails.code, 
                 type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', 
                 value: appliedPromoDetails.value, 
-                isStackable: false
+                isStackable: appliedPromoDetails.isStackable ?? true
               });
             }
           } catch (err) {
@@ -1266,7 +1266,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         code: appliedPromoDetails.code,
         type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL',
         value: appliedPromoDetails.value,
-        isStackable: false
+        isStackable: appliedPromoDetails.isStackable ?? true
       });
 
       setSubmitError(null);
