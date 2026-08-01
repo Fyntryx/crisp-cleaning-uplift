@@ -55,20 +55,13 @@ export default function QuoteRequestPanelV2() {
     };
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/validate-promo`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          code: 'WELCOME5',
-          frequency: "One time"
-        }),
-      });
-      const data = await res.json();
-      if (data.valid) {
-        appliedPromoDetails = data.promo;
+      const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
+      if (res.ok) {
+        const data = await res.json();
+        appliedPromoDetails = data;
       }
     } catch (e) {
-      console.warn("Failed to validate WELCOME5, proceeding with default");
+      console.warn("Failed to fetch default promo, proceeding with default");
     }
 
     const payload = {

@@ -630,10 +630,20 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       const isLeadCaptured = sessionStorage.getItem("crisp_lead_captured");
       if (isLeadCaptured === "true") {
         setDiscountClaimed(true);
-        // Ensure appliedPromo isn't overwritten if already set by referral or something else,
-        // but for this flow we assume WELCOME5 is applied.
-        setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: false });
-        
+        const fetchPromo = async () => {
+          try {
+            const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
+            if (res.ok) {
+              const data = await res.json();
+              setAppliedPromo(prev => prev || { code: data.code, type: data.type, value: data.value, isStackable: false });
+            } else {
+              setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: false });
+            }
+          } catch (e) {
+            setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: false });
+          }
+        };
+        fetchPromo();
         setFormData(prev => ({
           ...prev,
           contact: {

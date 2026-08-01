@@ -1237,6 +1237,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
 
       setDiscountClaimed(true);
+      setAppliedPromo({
+        code: appliedPromoDetails.code,
+        type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL',
+        value: appliedPromoDetails.value,
+        isStackable: false
+      });
 
       setSubmitError(null);
       setSubmitSuccess(null);
