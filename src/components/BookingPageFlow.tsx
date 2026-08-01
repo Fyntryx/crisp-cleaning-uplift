@@ -1207,7 +1207,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
     ).replace(/\/$/, "");
 
-    let appliedPromoDetails = { code: 'WELCOME5', type: 'PERCENT_OFF', value: 5, source: 'default' };
+    let appliedPromoDetails: { code: string; type: string; value: number; source: string; isStackable?: boolean } = { code: 'WELCOME5', type: 'PERCENT_OFF', value: 5, source: 'default', isStackable: true };
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
@@ -2228,11 +2228,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   <div
                     key={cond.id}
                     onClick={() => {
-                      const updates: any = { condition: cond.id as any };
-                      if ((cond.id === 'Overdue' || cond.id === 'Heavy Build Up') && formData.cleaningType === 'Standard') {
-                        updates.cleaningType = ''; // clear standard if it's selected
-                      }
-                      setFormData({ ...formData, ...updates });
+                      // Only update condition — do NOT clear cleaningType. Standard will be greyed out by isDisabled logic above.
+                      setFormData({ ...formData, condition: cond.id as any });
                     }}
                     className={`cursor-pointer rounded-2xl border-[1.5px] p-4 transition-all duration-200 flex flex-col justify-center min-h-[80px] ${
                       isSelected
@@ -2245,7 +2242,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                       }`}
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <span className="text-[calc(0.84375*var(--scale-unit))] font-semibold text-gray-900 leading-snug">{cond.desc}</span>
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-[calc(0.75*var(--scale-unit))] font-bold text-gray-900 leading-snug">{cond.label}</span>
+                        <span className="text-[calc(0.78125*var(--scale-unit))] font-normal text-[#8d8378] leading-snug">{cond.desc}</span>
+                      </div>
                       {cond.badge && (
                         <span className={`shrink-0 text-[calc(0.6875*var(--scale-unit))] font-semibold px-2 py-0.5 rounded-full ${
                           isSelected && cond.id === 'Heavy Build Up'
@@ -2262,7 +2262,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-1">
               <div className="col-span-1 md:col-start-3 flex justify-center md:justify-center">
-                <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-[#f9f8f6] px-3 py-1.5 rounded-lg border border-[#ece1d3] w-full text-center">
+                <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-transparent px-3 py-1.5 rounded-lg w-full text-center">
                   Not sure which fits?
                 </button>
               </div>

@@ -635,12 +635,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
             if (res.ok) {
               const data = await res.json();
-              setAppliedPromo(prev => prev || { code: data.code, type: data.type, value: data.value, isStackable: data?.isStackable ?? true });
+              setAppliedPromo(prev => prev || { code: data.code, type: data.type, value: data.value, isStackable: data.isStackable ?? true });
             } else {
-              setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: data?.isStackable ?? true });
+              setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: true });
             }
           } catch (e) {
-            setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: data?.isStackable ?? true });
+            setAppliedPromo(prev => prev || { code: "WELCOME5", type: "PERCENT_OFF", value: 5, isStackable: true });
           }
         };
         fetchPromo();
@@ -1322,7 +1322,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
     ).replace(/\/$/, "");
 
-    let appliedPromoDetails = { code: 'WELCOME15', type: 'PERCENT_OFF', value: 15, source: 'default' };
+    let appliedPromoDetails: { code: string; type: string; value: number; source: string; isStackable?: boolean } = { code: 'WELCOME15', type: 'PERCENT_OFF', value: 15, source: 'default', isStackable: true };
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
@@ -1370,7 +1370,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
 
       setPromoCode(appliedPromoDetails.code);
-      setAppliedPromo({ code: appliedPromoDetails.code, type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', value: appliedPromoDetails.value, isStackable: data?.isStackable ?? true });
+      setAppliedPromo({ code: appliedPromoDetails.code, type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', value: appliedPromoDetails.value, isStackable: appliedPromoDetails.isStackable ?? true });
       setDiscountClaimed(true);
       
       setSubmitError(null);
@@ -2030,7 +2030,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 { 
-                  tier: 'Lived In', 
+                  tier: 'Lived In',
+                  label: 'Lived in',
                   desc: 'Dust film on ledges and sills, fingerprints and light grease around the kitchen, water spots and light soap film in the bathroom, floors due for a vacuum and mop, everyday clutter.',
                   selectedBorder: 'border-emerald-500',
                   selectedBg: 'bg-emerald-50/60',
@@ -2038,7 +2039,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   pillSelected: 'bg-emerald-100 text-emerald-700',
                 },
                 { 
-                  tier: 'Overdue', 
+                  tier: 'Overdue',
+                  label: 'Overdue',
                   desc: 'Cloudy shower glass, darkening grout with mould spots along the silicone, a greasy stovetop with cooked-on spots and the odd baked patch, tacky cupboard handles, a clear dust track on skirting boards.',
                   selectedBorder: 'border-orange-400',
                   selectedBg: 'bg-orange-50/60',
@@ -2046,7 +2048,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   pillSelected: 'bg-orange-100 text-orange-700',
                 },
                 { 
-                  tier: 'Heavy Build Up', 
+                  tier: 'Heavy Build Up',
+                  label: 'Heavy build-up',
                   desc: 'Scale you can feel across shower glass, black or widely darkened grout, carbon layers on the stovetop, saturated rangehood filters, embedded pet hair, established odour, grime that needs scrapers and repeated dwell-and-scrub cycles.',
                   selectedBorder: 'border-red-500',
                   selectedBg: 'bg-red-50/60',
@@ -2065,11 +2068,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         : 'border-gray-100 bg-white shadow-sm hover:border-gray-200'
                     }`}
                   >
-                    <div className="flex justify-between items-center mb-3">
+                    <div className="flex justify-between items-center mb-2">
                       <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all ${
                         isSelected ? opt.pillSelected : 'bg-gray-100 text-gray-500'
                       }`}>
-                        {opt.tier}
+                        {opt.label}
                       </span>
                       {isSelected && <CheckCircle2 className={`w-5 h-5 ${opt.checkColor}`} />}
                     </div>
@@ -2081,7 +2084,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
               <div className="col-span-1 md:col-start-3 flex justify-center md:justify-center">
-                <button type="button" onClick={() => setShowQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-[#f9f8f6] px-3 py-1.5 rounded-lg border border-[#ece1d3] w-full text-center">
+                <button type="button" onClick={() => setShowQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-transparent px-3 py-1.5 rounded-lg w-full text-center">
                   Not sure which fits?
                 </button>
               </div>
