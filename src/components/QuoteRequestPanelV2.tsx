@@ -13,6 +13,7 @@ export default function QuoteRequestPanelV2() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   const [discountContent, setDiscountContent] = useState({
     heading: "Claim 5% OFF your FIRST clean!",
@@ -32,6 +33,14 @@ export default function QuoteRequestPanelV2() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+    
+    const phoneDigits = formData.phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      setError("Please enter a valid phone number (min 10 digits).");
+      return;
+    }
+    
     setIsSubmitting(true);
 
     const API_BASE_URL = (
@@ -146,6 +155,11 @@ export default function QuoteRequestPanelV2() {
 
           {/* Form */}
           <div className="w-full flex flex-col items-center">
+            {error && (
+              <div className="bg-red-50 text-red-600 text-[12px] font-medium p-2 rounded-lg w-full mb-3 text-center border border-red-100">
+                {error}
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-4">
               <div className="w-full flex flex-col md:flex-row gap-3 md:gap-4 items-center justify-center">
                 <div className="flex flex-col space-y-1 w-full flex-1">

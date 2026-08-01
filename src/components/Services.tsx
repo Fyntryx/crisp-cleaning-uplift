@@ -921,7 +921,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   ]);
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
+  const isValidPhone = (phone: string) => /^\d{10,15}$/.test(phone.replace(/\D/g, ''));
 
   const isStepValid = () => {
     if (currentStep === 1) {
@@ -1151,7 +1151,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       }
       
       const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
+      const isValidPhone = (phone: string) => /^\d{10,15}$/.test(phone.replace(/\D/g, ''));
 
       if (!isValidEmail(formData.contact.email)) {
         setSubmitError("Please enter a valid email address.");
@@ -1271,7 +1271,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     setDiscountError(null);
 
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const isValidPhone = (phone: string) => /^\d{9,15}$/.test(phone.replace(/\D/g, ''));
+    const isValidPhone = (phone: string) => /^\d{10,15}$/.test(phone.replace(/\D/g, ''));
 
     if (!isValidEmail(formData.contact.email)) {
       setDiscountError("Please enter a valid email address.");

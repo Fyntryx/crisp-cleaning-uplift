@@ -24,6 +24,7 @@ export default function ServiceLeadForm({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   const [discountContent, setDiscountContent] = useState({
     subheading: "Takes 30 seconds · No lock-in contracts"
@@ -34,6 +35,14 @@ export default function ServiceLeadForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+    
+    const phoneDigits = formData.phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      setError("Please enter a valid phone number (min 10 digits).");
+      return;
+    }
+    
     setIsSubmitting(true);
 
     const API_BASE_URL = (
@@ -136,7 +145,13 @@ export default function ServiceLeadForm({
   } border`;
 
   return (
-    <form onSubmit={handleSubmit} className={`w-full flex ${layout === "horizontal" ? "flex-col md:flex-row md:items-end gap-4" : "flex-col gap-4"}`}>
+    <div className="w-full">
+      {error && (
+        <div className="bg-red-50 text-red-600 text-[13px] font-medium p-3 rounded-xl w-full mb-3 text-left border border-red-100">
+          {error}
+        </div>
+      )}
+      <form onSubmit={handleSubmit} className={`w-full flex ${layout === "horizontal" ? "flex-col md:flex-row md:items-end gap-4" : "flex-col gap-4"}`}>
       <div className={`w-full flex ${layout === "horizontal" ? "flex-col md:flex-row gap-4 flex-1" : "flex-col gap-3"}`}>
         <div className="flex flex-col flex-1 w-full text-left">
           <label className={labelClass}>Full Name</label>
@@ -193,5 +208,6 @@ export default function ServiceLeadForm({
         </button>
       </div>
     </form>
+    </div>
   );
 }
