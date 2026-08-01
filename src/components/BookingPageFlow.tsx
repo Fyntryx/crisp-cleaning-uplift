@@ -807,10 +807,29 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && isModalOpen) {
+    if (typeof window !== "undefined" && (isModalOpen || hiddenInline)) {
       const isLeadCaptured = sessionStorage.getItem("crisp_lead_captured");
       if (isLeadCaptured === "true") {
         setDiscountClaimed(true);
+        
+        const fetchPromo = async () => {
+          try {
+            const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
+            if (res.ok) {
+              const appliedPromoDetails = await res.json();
+              setPromoCode(appliedPromoDetails.code);
+              setAppliedPromo({ 
+                code: appliedPromoDetails.code, 
+                type: appliedPromoDetails.type as 'PERCENT_OFF' | 'FIXED_CREDIT' | 'FREE_CLEAN' | 'REFERRAL', 
+                value: appliedPromoDetails.value, 
+                source: appliedPromoDetails.source 
+              });
+            }
+          } catch (err) {
+            console.error("Failed to auto-apply promo", err);
+          }
+        };
+        fetchPromo();
 
         setFormData(prev => ({
           ...prev,
@@ -821,9 +840,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             phone: sessionStorage.getItem("crisp_lead_phone") || prev.contact.phone,
           }
         }));
+        setCurrentStep(prev => prev === 1 ? 2 : prev);
       }
     }
-  }, [isModalOpen]);
+  }, [isModalOpen, hiddenInline]);
 
   const prevStepRef = useRef(1);
 
@@ -855,7 +875,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               cleaningType: matchedType,
               serviceCategory: "residential"
             }));
-            setCurrentStep(1);
+            const isLeadCaptured = sessionStorage.getItem("crisp_lead_captured") === "true";
+            setCurrentStep(isLeadCaptured ? 2 : 1);
             setIsModalOpen(true);
 
             // Clear hash so it can be triggered again
@@ -2213,7 +2234,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                       }
                       setFormData({ ...formData, ...updates });
                     }}
-                    className={`cursor-pointer rounded-2xl border-[1.5px] p-2.5 transition-all duration-200 flex flex-col ${
+                    className={`cursor-pointer rounded-2xl border-[1.5px] p-4 transition-all duration-200 flex flex-col justify-center min-h-[80px] ${
                       isSelected
                         ? cond.id === 'Lived In'
                           ? 'border-emerald-500 bg-emerald-50 shadow-[0_0_0_3px_rgba(16,185,129,0.16)] z-10'
@@ -2223,10 +2244,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         : 'border-[#ece1d3] bg-[#fff] hover:border-[#f6d3b3] hover:shadow-sm z-0'
                       }`}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[calc(0.84375*var(--scale-unit))] font-semibold text-gray-900">{cond.label}</span>
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-[calc(0.84375*var(--scale-unit))] font-semibold text-gray-900 leading-snug">{cond.desc}</span>
                       {cond.badge && (
-                        <span className={`text-[calc(0.6875*var(--scale-unit))] font-semibold px-2 py-0.5 rounded-full ${
+                        <span className={`shrink-0 text-[calc(0.6875*var(--scale-unit))] font-semibold px-2 py-0.5 rounded-full ${
                           isSelected && cond.id === 'Heavy Build Up'
                             ? 'text-red-700 bg-red-100'
                             : 'text-[#e0731f] bg-[#fff4ea]'
@@ -2235,15 +2256,16 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                         </span>
                       )}
                     </div>
-                    <span className="text-[calc(0.71875*var(--scale-unit))] font-normal text-[#8d8378]">{cond.desc}</span>
                   </div>
                 );
               })}
             </div>
-            <div className="flex justify-end mt-2">
-              <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[13px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-2 transition-colors">
-                Not sure which fits?
-              </button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-1">
+              <div className="col-span-1 md:col-start-3 flex justify-center md:justify-center">
+                <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-[#f9f8f6] px-3 py-1.5 rounded-lg border border-[#ece1d3] w-full text-center">
+                  Not sure which fits?
+                </button>
+              </div>
             </div>
           </div>
 
@@ -2291,7 +2313,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     <p className="text-sm text-[#8d8378] w-full text-justify">
                       <span className="font-bold text-gray-900">Not sure which fits?</span> Answer 8 quick questions (takes ~60 seconds) so your quote is accurate and there are no surprises on the day.
                     </p>
-                    <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[calc(0.78125*var(--scale-unit))] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-6 py-2 hover:bg-gray-50 transition-colors whitespace-nowrap self-start">Take the condition check →</button>
+                    <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[calc(0.6875*var(--scale-unit))] font-semibold text-gray-900 bg-white border border-gray-200 rounded-full px-4 py-1.5 hover:bg-gray-50 transition-colors whitespace-nowrap self-start">Take condition check →</button>
                   </div>
                 </div>
               </div>
