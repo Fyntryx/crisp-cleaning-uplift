@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import ServicesV2 from "./ServicesV2";
 import { client } from "@/sanity/lib/client";
+import { getTrackingPayload } from "@/lib/trackingUtils";
 
 export default function QuoteRequestPanelV2() {
   const [formData, setFormData] = useState({
@@ -64,11 +65,14 @@ export default function QuoteRequestPanelV2() {
       console.warn("Failed to fetch default promo, proceeding with default");
     }
 
+    const { source, trackingData } = getTrackingPayload("Booking Flow Discount Step");
+
     const payload = {
       fullName: formData.fullName.trim(),
       email: formData.email,
       phone: formData.phone,
-      source: "Booking Flow Discount Step",
+      source,
+      trackingData,
       offer: appliedPromoDetails.code,
       bedrooms: 0,
       bathrooms: 0,

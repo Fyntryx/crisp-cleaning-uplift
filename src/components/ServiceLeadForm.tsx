@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { client } from "@/sanity/lib/client";
+import { getTrackingPayload } from "@/lib/trackingUtils";
 
 interface ServiceLeadFormProps {
   layout?: "vertical" | "horizontal";
@@ -66,11 +67,14 @@ export default function ServiceLeadForm({
       console.warn("Failed to fetch default promo, proceeding with default");
     }
 
+    const { source, trackingData } = getTrackingPayload(`Service Page Hero - ${serviceType}`);
+
     const payload = {
       fullName: formData.fullName.trim(),
       email: formData.email,
       phone: formData.phone,
-      source: `Service Page Hero - ${serviceType}`,
+      source,
+      trackingData,
       offer: appliedPromoDetails.code,
       bedrooms: 0,
       bathrooms: 0,

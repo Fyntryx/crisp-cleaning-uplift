@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import GTMTracker from "@/components/GTMTracker";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import TrackingCapture from "@/components/TrackingCapture";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -73,6 +74,7 @@ fbq('track', 'PageView');`
           <RadiusInitializer />
           <Suspense fallback={null}>
             <GTMTracker />
+            <TrackingCapture />
           </Suspense>
           <SchemaMarkup />
           {children}

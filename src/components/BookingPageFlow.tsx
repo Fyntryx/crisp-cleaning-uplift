@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { createPortal } from "react-dom";
+import { getTrackingPayload } from "@/lib/trackingUtils";
 import {
   Home,
   Building2,
@@ -1195,11 +1196,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       appliedPromoDetails = { code: 'WELCOME5', type: 'PERCENT_OFF', value: 5, source: 'default' };
     }
 
+    const { source, trackingData } = getTrackingPayload("Booking Flow Discount Step");
+
     const payload = {
       fullName: `${formData.contact.firstName} ${formData.contact.lastName}`.trim(),
       email: formData.contact.email,
       phone: formData.contact.phone,
-      source: "Booking Flow Discount Step",
+      source,
+      trackingData,
       offer: appliedPromoDetails.code,
       bedrooms: formData.homeDetails.bedrooms || 0,
       bathrooms: formData.homeDetails.bathrooms || 0,

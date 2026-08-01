@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
+import { getTrackingPayload } from "@/lib/trackingUtils";
 
 
 export default function LeadPopup() {
@@ -100,9 +101,12 @@ export default function LeadPopup() {
       process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
     ).replace(/\/$/, "");
 
+    const { source, trackingData } = getTrackingPayload("Popup Lead Form");
+
     const payload = {
       ...formData,
-      source: "Popup Lead Form",
+      source,
+      trackingData,
       offer: "5% off expiry"
     };
 
