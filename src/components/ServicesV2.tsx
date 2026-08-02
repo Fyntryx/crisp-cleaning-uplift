@@ -1322,14 +1322,14 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
     ).replace(/\/$/, "");
 
-    let appliedPromoDetails: { code: string; type: string; value: number; source: string; isStackable?: boolean } = { code: 'WELCOME15', type: 'PERCENT_OFF', value: 15, source: 'default', isStackable: true };
+    let appliedPromoDetails: { code: string; type: string; value: number; source: string; isStackable?: boolean } = { code: 'WELCOME5', type: 'PERCENT_OFF', value: 5, source: 'default', isStackable: true };
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/public/discount-promo`);
       if (!res.ok) throw new Error();
       appliedPromoDetails = await res.json();
     } catch {
-      appliedPromoDetails = { code: 'WELCOME15', type: 'PERCENT_OFF', value: 15, source: 'default' };
+      appliedPromoDetails = { code: 'WELCOME5', type: 'PERCENT_OFF', value: 5, source: 'default' };
     }
 
     const payload = {
