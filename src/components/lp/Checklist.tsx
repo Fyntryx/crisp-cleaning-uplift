@@ -16,19 +16,35 @@ const tabDescriptions = {
 type ChecklistData = {
   inclusions: Record<string, string[]>;
   exclusions: Record<string, string[]>;
+  addons?: string[];
 };
+
+const standardAddons = [
+  "Windows",
+  "Walls",
+  "Cabinets (interior)",
+  "Blinds (detailed cleanse)",
+  "Organisation",
+  "Fridge (empty + defrosted)",
+  "Oven (interior)",
+  "Dishwasher (interior)",
+  "Microwave (interior)",
+  "Balcony",
+  "Ceiling (incl. fans and vents)"
+];
 
 const checklistData: Record<string, ChecklistData> = {
   Standard: {
+    addons: standardAddons,
     inclusions: {
       "General Areas": [
         "Light organisation / tidy up",
-        "Cobweb removal",
         "Empty bins",
-        "Dust/wipe reachable surfaces",
-        "Dust sills, doors, skirting, and switches",
-        "Mirrors cleaned",
+        "Dust sills, doors, skirting, switches",
         "Blinds (light dust)",
+        "Cobweb removal",
+        "Dust/spot wipe reachable surfaces",
+        "Mirrors cleaned streak-free",
         "Air freshen / deodorise"
       ],
       "Floors": [
@@ -37,201 +53,220 @@ const checklistData: Record<string, ChecklistData> = {
       ],
       "Bedrooms": [
         "Light tidy & bed straighten",
-        "Dust / wipe all surfaces",
+        "Bed made (if linen provided)",
         "Vacuum / mop floors",
-        "Light switches & power points",
-        "Dust Blinds"
+        "Dust blinds",
+        "Dust / wipe all surfaces",
+        "Light switches & powerpoints"
       ],
-      "Bathroom": [
-        "Clean bath, shower, sink, toilet",
-        "Mirrors cleaned",
+      "Bathrooms": [
+        "Descale bath, shower, sink, toilet (no scrubbing)",
         "Benches & surfaces wiped",
-        "Cupboards (exterior)",
-        "Empty bins"
+        "Empty bins",
+        "Mirrors cleaned",
+        "Cupboards (exterior)"
       ],
       "Kitchen": [
         "Benches, splashback, surfaces",
-        "Light stovetop / rangehood wipe",
         "Sink cleaned",
+        "Cupboards (exterior)",
+        "Light stovetop / rangehood wipe",
         "Appliances (exterior)",
-        "Cupboards (exterior)"
+        "Bin emptied"
       ]
     },
     exclusions: {
       "General Areas": [
         "Extensive organisation / declutter",
         "Deep clean of sills, doors, and skirting",
-        "Extensive wall spot cleaning / adhesive removal",
+        "Wall spot cleaning / adhesive removal",
         "Detailed window tracks / sills",
-        "Windows (interior)",
-        "Ceiling fan / top edge dusting"
+        "Windows",
+        "Ceiling fan / top edge dusting",
+        "Excessive build up - mould, grease, soap scum, limescale, pet hair, stains, rust"
       ],
       "Floors": [
-        "Deep floor cleaning and scrubbing (incl. edges)"
+        "Deep floor cleaning and scrubbing (incl. edges)",
+        "Under furniture"
       ],
       "Bedrooms": [
         "Under furniture / bed vacuum",
-        "Door frames & detailed surfaces",
-        "Interior windows"
+        "Door frames & detailed surfaces"
       ],
       "Bathrooms": [
         "Deep scrub (shower, bath, sink, toilet)",
-        "Tapware/chrome polished",
-        "Grout/tile scrubbing (incl. complete mould removal)",
+        "Tapware/chrome polish",
+        "Grout/tile scrubbing (incl. mould removal)",
         "Exhaust fan cleaning"
       ],
       "Kitchen": [
-        "Tapware polished",
-        "Stainless steel polished"
+        "Tapware polish",
+        "Stainless steel polish",
+        "Full degrease and exhaust fans",
+        "Pantry interior",
+        "Cabinet & appliances (interior)",
+        "Dishwashing"
       ]
     }
   },
   Deep: {
+    addons: standardAddons,
     inclusions: {
       "General Areas": [
-        "Move light furniture",
-        "Wall spot cleaning",
-        "Window tracks / sills (detailed)",
-        "Light organisation / tidy up",
-        "Cobweb removal",
-        "Empty bins",
-        "Dust/wipe reachable surfaces",
-        "Dust & wipe sills, doors, skirting, and switches",
-        "Mirrors cleaned",
-        "Blinds (light dust)",
+        "Light tidy / organisation",
+        "Remove all cobwebs",
+        "Empty all accessible bins",
+        "Bin exterior",
+        "Sills, doors, & skirting boards wiped",
+        "Door frames & detailed surfaces",
+        "Light switches & power points",
+        "Mirrors cleaned streak-free",
+        "Blinds - light dust",
         "Air freshen / deodorise"
       ],
       "Floors": [
-        "Vacuum accessible floors (incl. under furniture)",
-        "Mop hard floors",
-        "Deep floor cleaning (incl. edges)"
+        "Vacuum all accessible floors, including under furniture",
+        "Edge vacuuming throughout",
+        "Mop all hard floors & spot scrubbing"
       ],
       "Bedrooms": [
-        "Under-bed / furniture vacuum",
+        "Light tidy and presentation",
+        "Change beds (where linen provided)",
+        "Thorough wipe / dust all reachable surfaces",
         "Door frames & detailed surfaces",
-        "Interior windows / sills",
-        "Light tidy & bed straighten",
-        "Dust / wipe all surfaces",
-        "Vacuum / mop floors",
         "Light switches & power points",
-        "Dust Blinds"
+        "Blinds - light dust",
+        "Under bed vacuum"
       ],
-      "Bathroom": [
-        "Deep scrub (shower, bath, sink)",
-        "Grout / tile scrubbing (incl. mould removal)",
-        "Tapware/Chrome polished",
-        "Mirrors cleaned",
-        "Benches & surfaces wiped",
-        "Cupboards (exterior)",
-        "Empty bins"
+      "Bathrooms": [
+        "Deep scrub - shower, bath, sink",
+        "Full toilet clean and disinfect - seat, bowl, hinges, and base",
+        "Shower screen / glass - soap scum removal",
+        "Grout and tile scrubbing (incl. surface mould treatment)",
+        "Drains cleared (no plumbing)",
+        "Tapware descaled and buffed",
+        "Mirrors cleaned streak free",
+        "Benches and vanity surfaces"
       ],
       "Kitchen": [
-        "Tapware polished",
-        "Stainless steel polished",
-        "Benches, splashback, surfaces",
-        "Light stovetop / rangehood wipe",
-        "Sink cleaned",
-        "Appliances (exterior)",
-        "Cupboards (exterior)"
+        "Light tidy (incl. loading existing dishes into dishwasher)",
+        "Benches and splashback degreased",
+        "Stovetop degreased (trivets/grates lifted)",
+        "Rangehood exterior degreased",
+        "Sink and drain deep cleaned",
+        "Appliance exteriors",
+        "Cupboard and draw fronts",
+        "Bins emptied & exterior wiped"
       ]
     },
     exclusions: {
       "General Areas": [
-        "Detailed interior windows (light wipe down included)",
-        "Ceiling fan / top edge dusting",
-        "Adhesive / tape / scuff removal"
+        "Moving light furniture",
+        "Wall spot cleaning",
+        "Interior windows & detailed blinds (add-on)",
+        "Ceilings, fans, vents, & top edge dusting (add-on)",
+        "Garage"
       ],
-      "Bathroom": [
-        "Exhaust fan cleaning"
+      "Bathrooms": [
+        "Full descale & polish of all chrome/stainless"
+      ],
+      "Kitchen": [
+        "Dishwashing",
+        "Rangehood filter/vents",
+        "Cabinet, cupboard, drawer interior",
+        "Pantry interior",
+        "Appliance interior (oven, fridge, microwave, etc)"
       ]
     }
   },
   Vacate: {
+    addons: [
+      "Windows (discounted)",
+      "Walls",
+      "Blinds (detailed cleanse)",
+      "Fridge (empty + defrosted)",
+      "Oven (interior)",
+      "Dishwasher (interior)",
+      "Microwave (interior)",
+      "Balcony"
+    ],
     inclusions: {
       "General Areas": [
-        "Windows (interior)",
-        "Laundry",
-        "Adhesive/tape/scuff removal",
-        "Ceiling fan / top edge dusting",
-        "Garages - light sweep",
-        "Cobweb removal",
-        "Empty bins",
-        "Dust/wipe reachable surfaces",
-        "Dust & wipe sills, doors, skirting, and switches",
-        "Mirrors cleaned",
-        "Blinds (light dust)",
+        "Light tidy / organisation",
+        "Remove all cobwebs",
+        "Empty all accessible bins",
+        "Bin exterior & emptied",
+        "Sills, doors, & skirting boards wiped",
+        "Door frames & detailed surfaces",
+        "Light switches, power points, and door handles",
+        "Mirrors cleaned streak-free",
+        "Blinds - light dust",
         "Air freshen / deodorise",
-        "Move light furniture",
+        "Full dust / wipe all reachable surfaces",
+        "Light fittings & shades dusted/wiped",
+        "Air vents & return-air grilles",
+        "Ceiling fans, cornices, & top edge dusted",
         "Wall spot cleaning",
-        "Window tracks / sills (detailed)"
+        "Windows and blinds as itemised at booking",
+        "Sliding door tracks",
+        "Move furniture (where safe)",
+        "Front entry presentation"
       ],
       "Floors": [
-        "Vacuum accessible floors (incl. under furniture)",
-        "Mop hard floors",
-        "Deep floor cleaning (incl. edges)"
+        "Vacuum all accessible floors, including under remaining furniture",
+        "Edge vacuuming throughout",
+        "Mop all hard floors thoroughly, grout-line attention & spot scrubbing"
       ],
       "Bedrooms": [
-        "Inside drawers / cabinets / wardrobes",
-        "Under-bed / furniture vacuum",
-        "Door frames & detailed surfaces",
-        "Interior windows / sills",
-        "Dust / wipe all surfaces",
-        "Vacuum / mop floors",
-        "Light switches & power points",
-        "Dust Blinds"
+        "Light tidy and presentation",
+        "Change beds (where linen provided)",
+        "Thorough wipe / dust all reachable surfaces",
+        "Doors, door frames & detailed surfaces",
+        "Door handles, light switches & power points",
+        "Blinds - light dust",
+        "Under bed vacuum",
+        "Wardrobe & interiors"
       ],
-      "Bathroom": [
-        "Exhaust fan cleaning",
-        "Inside drawers / cabinets",
-        "Deep scrub (shower, bath, sink)",
-        "Grout / tile scrubbing (incl. mould removal)",
-        "Tapware/Chrome polished",
-        "Mirrors cleaned",
-        "Benches & surfaces wiped",
-        "Cupboards (exterior)",
-        "Empty bins"
+      "Bathrooms": [
+        "Deep scrub - shower, bath, sink",
+        "Full toilet clean and disinfect - seat, bowl, hinges, and base",
+        "Shower screen / glass - soap scum removal",
+        "Grout and tile scrubbing (incl. surface mould treatment)",
+        "Drains cleared (no plumbing)",
+        "Tapware and chrome - full descale and polish",
+        "Mirrors cleaned streak free",
+        "Benches and vanity surfaces",
+        "Cupboard exteriors full wipe",
+        "Skirting, door, and frame wiped",
+        "Behind & beside toilet - cistern, floor, and reachable wall",
+        "Cabinet & drawer interiors and exterior",
+        "Exhaust fan & air vents"
       ],
       "Kitchen": [
-        "Microwave (interior)",
-        "Inside drawers / cabinets",
-        "Light stovetop / rangehood wipe (incl. vent dusting)",
-        "Tapware polished",
-        "Stainless steel polished",
-        "Benches, splashback, surfaces",
-        "Light stovetop / rangehood wipe",
-        "Sink cleaned",
-        "Appliances (exterior)",
-        "Cupboards (exterior)"
+        "Benches and splashback degreased",
+        "Stovetop degreased (trivets/grates lifted)",
+        "Rangehood exterior degreased (incl. removable filters)",
+        "Sink and drain deep cleaned",
+        "Appliance exteriors",
+        "Cupboard and draw fronts",
+        "Bins emptied & exterior wiped",
+        "Cupboard, drawer, & pantry interior (empty)",
+        "Cupboard tops & kickboards",
+        "Tapware & stainless steel - full descale and polish"
       ]
     },
     exclusions: {
       "General Areas": [
-        "Organisation (home should be empty)",
-        "Deep garage clean (light clean included)"
+        "Organisation, bed-making, or tidying (home should be empty)",
+        "Windows (add-on)",
+        "Full walls (spot cleaning included)",
+        "Ceiling stain removal",
+        "Deep garage clean (light sweep included)"
       ],
-      "Bedrooms": [
-        "Tidy / straighten bed (home should be empty)"
+      "Kitchen": [
+        "Oven, fridge, microwave, dishwasher interior (add-ons)"
       ]
     }
-  },
-  "Add-ons": {
-    inclusions: {
-      "AVAILABLE ADD-ONS": [
-        "Steam Cleaning",
-        "Windows",
-        "Walls",
-        "Cabinets (interior)",
-        "Organisation",
-        "Blinds",
-        "Oven/stovetop",
-        "Fridge",
-        "Dishwasher",
-        "Microwave",
-        "Balcony",
-        "Ceiling (incl. fans)"
-      ]
-    },
-    exclusions: {}
   }
 };
 
@@ -331,23 +366,25 @@ export default function Checklist({
             </div>
 
             {/* Add-ons (Moved from sidebar) */}
-            <div className="mt-12">
-              <div className="inline-block px-4 py-1.5 bg-white border border-gray-200 rounded-lg shadow-sm mb-6">
-                <h3 className="text-[15px] font-bold text-gray-900">
-                  Add-ons
-                </h3>
+            {currentData.addons && currentData.addons.length > 0 && (
+              <div className="mt-12">
+                <div className="inline-block px-4 py-1.5 bg-white border border-gray-200 rounded-lg shadow-sm mb-6">
+                  <h3 className="text-[15px] font-bold text-gray-900">
+                    Add-ons
+                  </h3>
+                </div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-[15px] text-gray-700">
+                  {currentData.addons.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                        <Plus className="w-3 h-3 text-primary" strokeWidth={3} />
+                      </div>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-[15px] text-gray-700">
-                {checklistData["Add-ons"].inclusions["AVAILABLE ADD-ONS"].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <Plus className="w-3 h-3 text-primary" strokeWidth={3} />
-                    </div>
-                    <span className="leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            )}
           </div>
 
           {/* Sidebar Column */}
