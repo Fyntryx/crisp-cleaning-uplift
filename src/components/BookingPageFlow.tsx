@@ -380,12 +380,22 @@ const BookingSummaryCard = ({
             </span>
 
             <div className="space-y-3">
-              {pricingResult?.breakdown.cleaningType && (
+              {pricingResult?.breakdown.cleaningType && (currentStep >= 4 || formData.cleaningType === 'Hourly') && (
                 <div className="flex justify-between">
-                  <span className="text-[12.5px] font-medium text-[#8d8378]">
+                  <span className="text-[12.5px] font-medium text-[#8d8378] flex items-center">
                     {formData.cleaningType === 'Hourly'
-                      ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}`
-                      : `Service Fee`}
+                      ? `${formData.hourlyDetails?.hours || 0} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}`
+                      : <>Service Fee
+                          <div className="relative group ml-1.5 flex items-center">
+                            <div className="w-3.5 h-3.5 rounded-full border border-gray-400 text-gray-400 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity cursor-help">
+                              <span className="text-[9px] font-bold leading-none">i</span>
+                            </div>
+                            <div className="absolute left-0 bottom-[calc(100%+6px)] w-[200px] p-2.5 bg-gray-900 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-[11px] text-white font-medium leading-relaxed pointer-events-none text-left">
+                              This covers travel, supplies, transaction fees, and the on-site condition/chemical assessment.
+                              <div className="absolute top-full left-1 -mt-[1px] border-[5px] border-transparent border-t-gray-900" />
+                            </div>
+                          </div>
+                        </>}
                   </span>
                   <span className="text-[12.5px] font-normal text-[#2b2523]">${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
                 </div>
@@ -461,14 +471,14 @@ const BookingSummaryCard = ({
 
               {pricingResult?.discounts?.frequency && (
                 <div className="flex justify-between">
-                  <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount ({pricingResult?.discounts?.frequency?.name})</span>
+                  <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount {pricingResult?.discounts?.frequency?.name}</span>
                   <span className="text-[12.5px] font-normal text-[#FB8C42]">-${pricingResult?.discounts?.frequency?.amount?.toFixed(2)}</span>
                 </div>
               )}
 
               {pricingResult?.discounts?.promo && (
                 <div className="flex justify-between">
-                  <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount ({pricingResult?.discounts?.promo?.name})</span>
+                  <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount {pricingResult?.discounts?.promo?.name}</span>
                   <span className="text-[12.5px] font-normal text-[#FB8C42]">-${pricingResult?.discounts?.promo?.amount?.toFixed(2)}</span>
                 </div>
               )}
@@ -492,7 +502,7 @@ const BookingSummaryCard = ({
 
 
           {/* --- PROMO CODE SECTION --- */}
-          <div className="py-1">
+          <div className="my-3">
             <div className="relative flex items-center">
               <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
               <input
@@ -741,7 +751,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     serviceCategory: "residential",
     cleaningType: "" as any as CleaningType,
     homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, livingRooms: 0, other: 0 },
-    hourlyDetails: { hours: 2, cleaners: 1 },
+    hourlyDetails: { hours: 0, cleaners: 1 },
     extras: {} as Record<string, number>,
     condition: "" as any as "Lived In" | "Overdue" | "Heavy Build Up",
     frequency: "" as any as Frequency,
@@ -852,6 +862,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
   useEffect(() => {
     const handleUrlBooking = () => {
       if (typeof window !== "undefined") {
+        const isLeadCaptured = sessionStorage.getItem("crisp_lead_captured") === "true";
+        if (isLeadCaptured) {
+          setCurrentStep(2);
+        }
+
         const url = new URL(window.location.href);
         const params = url.searchParams;
         let serviceParam = params.get("service");
@@ -1012,7 +1027,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       serviceCategory: "residential",
       cleaningType: "" as any as CleaningType,
       homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, livingRooms: 0, other: 0 },
-      hourlyDetails: { hours: 2, cleaners: 1 },
+      hourlyDetails: { hours: 0, cleaners: 1 },
       extras: {} as Record<string, number>,
       condition: "Lived In" as "Lived In" | "Overdue" | "Heavy Build Up",
       frequency: "" as any as Frequency,
@@ -1168,7 +1183,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         case 2: return !!formData.cleaningType;
         case 3: return ['Standard', 'Deep', 'Vacate'].includes(formData.cleaningType) && !!formData.condition;
         case 4:
-          if (formData.cleaningType === "Hourly") return (formData.hourlyDetails?.hours || 0) > 0;
+          if (formData.cleaningType === "Hourly") return (formData.hourlyDetails?.hours ?? 0) > 0;
           return (
             (formData.homeDetails.bedrooms || 0) +
             (formData.homeDetails.bathrooms || 0) +
@@ -1190,6 +1205,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
     const isValidPhone = (phone: string) => /^\d{10,15}$/.test(phone.replace(/\D/g, ''));
+
+    if (!formData.contact.firstName) {
+      setDiscountError("Please enter your first name.");
+      setIsSubmittingDiscount(false);
+      return;
+    }
 
     if (!isValidEmail(formData.contact.email)) {
       setDiscountError("Please enter a valid email address.");
@@ -1466,7 +1487,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       roomsBathrooms: formData.homeDetails.bathrooms || 0,
       roomsKitchens: formData.homeDetails.kitchens || 0,
       roomsOther: (formData.homeDetails.other || 0) + (formData.homeDetails.livingRooms || 0),
-      hourlyHours: formData.hourlyDetails?.hours || 2,
+      hourlyHours: formData.hourlyDetails?.hours || 0,
       hourlyCleaners: formData.hourlyDetails?.cleaners || 1,
       condition: formData.condition === "Overdue" ? "Lived In" : formData.condition,
       addons: addonsPayload,
@@ -1536,6 +1557,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
       const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
       const isValidPhone = (phone: string) => /^\d{10,15}$/.test(phone.replace(/\D/g, ''));
+
+      if (!formData.contact.firstName) {
+        setDiscountError("Please enter your first name.");
+        setIsSubmittingDiscount(false);
+        return;
+      }
 
       if (!isValidEmail(formData.contact.email)) {
         setSubmitError("Please enter a valid email address.");
@@ -1840,22 +1867,22 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                           type="button"
                           onClick={(e) => {
                             e.preventDefault();
-                            const val = Math.max(0.5, (formData.hourlyDetails?.hours || 2) - 0.5);
+                            const val = Math.max(0, (formData.hourlyDetails?.hours ?? 0) - 0.5);
                             setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
                           }}
-                          disabled={(formData.hourlyDetails?.hours || 2) <= 0.5}
+                          disabled={(formData.hourlyDetails?.hours ?? 0) <= 0}
                           className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 bg-white"
                         >
                           <Minus strokeWidth={2.5} size={14} />
                         </button>
                         <span className="text-[calc(0.875*var(--scale-unit))] font-semibold text-gray-900 w-6 text-center">
-                          {formData.hourlyDetails?.hours || 2}
+                          {formData.hourlyDetails?.hours || 0}
                         </span>
                         <button
                           type="button"
                           onClick={(e) => {
                             e.preventDefault();
-                            const val = (formData.hourlyDetails?.hours || 2) + 0.5;
+                            const val = (formData.hourlyDetails?.hours ?? 0) + 0.5;
                             setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
                           }}
                           className="w-8 h-8 rounded-full border border-[#FB8C42] flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-colors bg-white"
@@ -1874,7 +1901,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                           onClick={(e) => {
                             e.preventDefault();
                             const val = Math.max(1, (formData.hourlyDetails?.cleaners || 1) - 1);
-                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
+                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 0 } }));
                           }}
                           disabled={(formData.hourlyDetails?.cleaners || 1) <= 1}
                           className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 bg-white"
@@ -1889,7 +1916,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                           onClick={(e) => {
                             e.preventDefault();
                             const val = (formData.hourlyDetails?.cleaners || 1) + 1;
-                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 2 } }));
+                            setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, cleaners: val, hours: prev.hourlyDetails?.hours || 0 } }));
                           }}
                           className="w-8 h-8 rounded-full border border-[#FB8C42] flex items-center justify-center text-[#FB8C42] hover:bg-orange-50 transition-colors bg-white"
                         >
@@ -2114,8 +2141,12 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 onChange={(e) => {
                   const val = e.target.value;
                   const parts = val.trimStart().split(/\s+/);
-                  updateContact("firstName", parts[0] || "");
-                  updateContact("lastName", parts.slice(1).join(" "));
+                  const first = parts[0] || "";
+                  const last = parts.slice(1).join(" ");
+                  setFormData((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, firstName: first, lastName: last },
+                  }));
                 }}
               />
             </div>
@@ -2162,6 +2193,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
             Service & Condition
           </h2>
+          <p className="text-gray-500 mt-2 text-[calc(0.8125*var(--scale-unit))] font-normal">Both together set your fixed price.</p>
         </div>
 
         {/* Top section: Service Types */}
@@ -2231,7 +2263,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                       // Only update condition — do NOT clear cleaningType. Standard will be greyed out by isDisabled logic above.
                       setFormData({ ...formData, condition: cond.id as any });
                     }}
-                    className={`cursor-pointer rounded-2xl border-[1.5px] p-4 transition-all duration-200 flex flex-col justify-center min-h-[80px] ${
+                    className={`cursor-pointer rounded-2xl border-[1.5px] px-4 py-3 transition-all duration-200 flex flex-col justify-center min-h-[72px] ${
                       isSelected
                         ? cond.id === 'Lived In'
                           ? 'border-emerald-500 bg-emerald-50 shadow-[0_0_0_3px_rgba(16,185,129,0.16)] z-10'
@@ -2261,8 +2293,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
               })}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-1">
-              <div className="col-span-1 md:col-start-3 flex justify-center md:justify-center">
-                <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-transparent px-3 py-1.5 rounded-lg w-full text-center">
+              <div className="col-span-1 md:col-start-3 flex justify-end">
+                <button type="button" onClick={() => setShowConditionQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-transparent py-1.5 text-right">
                   Not sure which fits?
                 </button>
               </div>
@@ -2281,15 +2313,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                   <X className="w-4 h-4" />
                 </button>
                 <ConditionQuiz onComplete={(tier) => {
-                  const updates: any = { condition: tier };
-                  if (tier === 'Overdue') {
-                    updates.cleaningType = 'Vacate';
-                  } else if (tier === 'Heavy Build Up' && (formData.cleaningType === 'Standard' || formData.cleaningType === 'Vacate')) {
-                    updates.cleaningType = 'Deep';
-                  } else if (tier === 'Lived In' && formData.cleaningType === 'Vacate') {
-                    updates.cleaningType = 'Deep';
-                  }
-                  setFormData({ ...formData, ...updates });
+                  setFormData({ ...formData, condition: tier });
                   setShowConditionQuiz(false);
                 }} />
               </div>

@@ -250,7 +250,7 @@ const BookingSummaryCard = ({
             <div className="flex justify-between text-[13.5px] font-normal text-gray-600">
               <span>
                 {formData.cleaningType === 'Hourly' 
-                  ? `${formData.hourlyDetails?.hours || 2} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}` 
+                  ? `${formData.hourlyDetails?.hours || 0} Hrs × ${formData.hourlyDetails?.cleaners || 1} Cleaner${(formData.hourlyDetails?.cleaners || 1) > 1 ? 's' : ''}` 
                   : `${pricingResult.breakdown.cleaningType.name} Clean Base`}
               </span>
               <span>A${pricingResult.breakdown.cleaningType.price.toFixed(2)}</span>
@@ -561,7 +561,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     serviceCategory: "residential",
     cleaningType: "" as any as CleaningType,
     homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, livingRooms: 0, other: 0 },
-    hourlyDetails: { hours: 2, cleaners: 1 },
+    hourlyDetails: { hours: 0, cleaners: 1 },
     extras: {} as Record<string, number>,
     condition: "Lived In" as "Lived In" | "Overdue" | "Heavy Build Up",
     frequency: "One time" as Frequency,
@@ -822,7 +822,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       serviceCategory: "residential",
       cleaningType: "" as any as CleaningType,
       homeDetails: { bedrooms: 0, bathrooms: 0, kitchens: 0, livingRooms: 0, other: 0 },
-      hourlyDetails: { hours: 2, cleaners: 1 },
+      hourlyDetails: { hours: 0, cleaners: 1 },
       extras: {} as Record<string, number>,
       condition: "Lived In" as "Lived In" | "Overdue" | "Heavy Build Up",
       frequency: "One time" as Frequency,
@@ -1115,7 +1115,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       roomsBathrooms: formData.homeDetails.bathrooms || 0,
       roomsKitchens: formData.homeDetails.kitchens || 0,
       roomsOther: formData.homeDetails.other || 0,
-      hourlyHours: formData.hourlyDetails?.hours || 2,
+      hourlyHours: formData.hourlyDetails?.hours || 0,
       hourlyCleaners: formData.hourlyDetails?.cleaners || 1,
       condition: formData.condition,
       addons: addonsPayload,
@@ -1719,22 +1719,22 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                     type="button"
                     onClick={(e) => {
                       e.preventDefault();
-                      const val = Math.max(2, (formData.hourlyDetails?.hours || 2) - 0.5);
+                      const val = Math.max(0, (formData.hourlyDetails?.hours || 0) - 0.5);
                       setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
                     }}
-                    disabled={(formData.hourlyDetails?.hours || 2) <= 2}
+                    disabled={(formData.hourlyDetails?.hours || 0) <= 0}
                     className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#FB8C42] hover:border-[#FB8C42] transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-gray-600 shadow-sm"
                   >
                     <Minus strokeWidth={2.5} size={16} />
                   </button>
                   <span className="text-lg font-black text-gray-900 w-10 text-center">
-                    {formData.hourlyDetails?.hours || 2}
+                    {formData.hourlyDetails?.hours || 0}
                   </span>
                   <button
                     type="button"
                     onClick={(e) => {
                       e.preventDefault();
-                      const val = (formData.hourlyDetails?.hours || 2) + 0.5;
+                      const val = (formData.hourlyDetails?.hours || 0) + 0.5;
                       setFormData(prev => ({ ...prev, hourlyDetails: { ...prev.hourlyDetails, hours: val, cleaners: prev.hourlyDetails?.cleaners || 1 } }));
                     }}
                     className="w-10 h-10 rounded-full bg-[#FB8C42] text-white flex items-center justify-center shadow-md hover:bg-orange-500 transition-colors"
@@ -2083,8 +2083,8 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
-              <div className="col-span-1 md:col-start-3 flex justify-center md:justify-center">
-                <button type="button" onClick={() => setShowQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-transparent px-3 py-1.5 rounded-lg w-full text-center">
+              <div className="col-span-1 md:col-start-3 flex justify-end">
+                <button type="button" onClick={() => setShowQuiz(true)} className="text-[12px] text-[#8d8378] hover:text-[#FB8C42] underline decoration-dashed underline-offset-4 transition-colors font-medium bg-transparent py-1.5 text-right">
                   Not sure which fits?
                 </button>
               </div>
