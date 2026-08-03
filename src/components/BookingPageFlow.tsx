@@ -1127,7 +1127,10 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
   useEffect(() => {
     if (isCommercial) return;
-    if (!formData.cleaningType) return;
+    if (!formData.cleaningType || formData.cleaningType === 'FlatRate' as any) {
+      setPricingResult(null);
+      return;
+    }
 
     try {
       const result = calculatePricing({
