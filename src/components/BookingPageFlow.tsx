@@ -1367,6 +1367,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     });
 
     return {
+      name: formData.contact.firstName,  // satisfies Zod refine: name OR (firstName + lastName)
       firstName: formData.contact.firstName,
       lastName: formData.contact.lastName,
       email: formData.contact.email,
