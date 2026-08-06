@@ -1088,7 +1088,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           );
         case 5: return !!formData.frequency && !!formData.selectedDate && !!formData.selectedTime;
         case 6: return !!formData.instructions.entry && !!formData.instructions.parking && !!formData.instructions.pets && !!formData.instructions.chemicals;
-        case 7: return !!formData.contact.address;
+        case 7: return formData.contact.address.trim().length >= 10;
         default: return false;
       }
     }
@@ -1477,9 +1477,9 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
         return;
       }
 
-      // Check address validity before submitting
-      if (!isAddressValid) {
-        setSubmitError("We do not service this location. Please check your address.");
+      // Address minimum length check (lookup is non-compulsory)
+      if (formData.contact.address.trim().length < 10) {
+        setSubmitError("Please enter a valid address (at least 10 characters).");
         setIsSubmitting(false);
         return;
       }
@@ -3210,7 +3210,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <div className="flex flex-col items-center gap-3 w-full md:w-auto">
             <button
               onClick={handleSubmit}
-              disabled={isSubmitting || !isAddressValid}
+              disabled={isSubmitting}
               className="w-full md:w-auto md:min-w-[calc(15*var(--scale-unit))] bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-3 px-6 rounded-full font-semibold text-[calc(0.9375*var(--scale-unit))] shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
@@ -3762,8 +3762,9 @@ const AddressAutocomplete = ({
       setLocalError(null);
       if (setExternalError) setExternalError(null);
     }
-    // Force user to select from autocomplete by invalidating raw typed input
-    if (onValidityChange) onValidityChange(false);
+    // Allow typed input - autocomplete is a helper, not compulsory
+    // Mark as valid as long as there's enough text (10+ chars)
+    if (onValidityChange) onValidityChange(e.target.value.trim().length >= 10);
   };
 
   const handleInputFocus = () => {
