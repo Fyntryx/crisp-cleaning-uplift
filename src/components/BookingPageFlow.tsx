@@ -3211,7 +3211,16 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <div className="flex flex-col items-center gap-3 w-full md:w-auto">
             <button
               onClick={handleSubmit}
-              disabled={isSubmitting}
+              disabled={
+                isSubmitting ||
+                !formData.contact.firstName?.trim() ||
+                !formData.contact.phone?.trim() ||
+                !formData.contact.email?.trim() ||
+                !formData.contact.password?.trim() ||
+                !formData.contact.address?.trim() ||
+                !isAddressValid ||
+                !formData.contact.terms
+              }
               className="w-full md:w-auto md:min-w-[calc(15*var(--scale-unit))] bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-3 px-6 rounded-full font-semibold text-[calc(0.9375*var(--scale-unit))] shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
