@@ -3235,16 +3235,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
                 </>
               )}
             </button>
-            <div className="flex text-[calc(0.6875*var(--scale-unit))] font-medium text-gray-500 leading-tight text-center">
-              <span>Card saved securely. Charged after the clean.</span>
-            </div>
-            
-            <p className="text-center text-xs text-gray-500 font-semibold mt-1">
-              Already have an account?{" "}
-              <button className="font-semibold text-[#FB8C42] hover:underline transition-all">
-                Login
-              </button>
-            </p>
+
           </div>
         </div>
 
