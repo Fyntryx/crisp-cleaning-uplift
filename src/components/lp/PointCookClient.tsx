@@ -142,7 +142,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
                 className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
               >
-                <Link href="/booking" className="w-full sm:w-auto text-center bg-[#d97706] hover:bg-[#d97706]/90 text-white rounded-full px-7 py-3.5 font-semibold text-[15px] transition-colors shadow-lg shadow-[#d97706]/20">
+                <Link href="/book" className="w-full sm:w-auto text-center bg-[#d97706] hover:bg-[#d97706]/90 text-white rounded-full px-7 py-3.5 font-semibold text-[15px] transition-colors shadow-lg shadow-[#d97706]/20">
                   Get an Instant Quote
                 </Link>
                 <Link href="#scope" className="w-full sm:w-auto text-center bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-full px-7 py-3.5 font-semibold text-[15px] transition-colors">
@@ -750,7 +750,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#16A34A]" /> All bathrooms</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#16A34A]" /> Eco products included</li>
               </ul>
-              <Link href="/booking" className="w-full text-center bg-gray-50 hover:bg-gray-100 text-gray-900 border border-gray-200 rounded-full py-3.5 font-bold text-[14px] transition-colors">
+              <Link href="/book" className="w-full text-center bg-gray-50 hover:bg-gray-100 text-gray-900 border border-gray-200 rounded-full py-3.5 font-bold text-[14px] transition-colors">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -770,7 +770,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#16A34A]" /> Oven & inside cabinets</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#16A34A]" /> Grout & hard-to-reach areas</li>
               </ul>
-              <Link href="/booking" className="w-full text-center bg-[#16A34A] hover:bg-[#15803D] text-white rounded-full py-3.5 font-bold text-[14px] transition-colors shadow-lg shadow-[#16A34A]/20">
+              <Link href="/book" className="w-full text-center bg-[#16A34A] hover:bg-[#15803D] text-white rounded-full py-3.5 font-bold text-[14px] transition-colors shadow-lg shadow-[#16A34A]/20">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -787,7 +787,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#16A34A]" /> All rooms & surfaces</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#16A34A]" /> Inspection ready</li>
               </ul>
-              <Link href="/booking" className="w-full text-center bg-gray-50 hover:bg-gray-100 text-gray-900 border border-gray-200 rounded-full py-3.5 font-bold text-[14px] transition-colors">
+              <Link href="/book" className="w-full text-center bg-gray-50 hover:bg-gray-100 text-gray-900 border border-gray-200 rounded-full py-3.5 font-bold text-[14px] transition-colors">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -820,7 +820,7 @@ export default function PointCookClient({ googleRatingValue = 5.0, googleReviewC
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link href="/booking" className="w-full sm:w-auto px-8 py-4 bg-[#d97706] hover:bg-[#d97706]/90 text-white font-bold text-[15px] rounded-full transition-colors shadow-lg shadow-[#d97706]/20">
+            <Link href="/book" className="w-full sm:w-auto px-8 py-4 bg-[#d97706] hover:bg-[#d97706]/90 text-white font-bold text-[15px] rounded-full transition-colors shadow-lg shadow-[#d97706]/20">
               Get an Instant Quote
             </Link>
             <a href="tel:0451423786" className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/5 text-white font-bold text-[15px] rounded-full transition-colors">

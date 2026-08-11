@@ -326,7 +326,7 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-8 flex flex-wrap gap-3"
           >
-            <Link href="/booking" className="bg-[#d97706] text-white rounded-full px-7 py-3.5 font-semibold hover:bg-[#b46205] transition-colors flex items-center">
+            <Link href="/book" className="bg-[#d97706] text-white rounded-full px-7 py-3.5 font-semibold hover:bg-[#b46205] transition-colors flex items-center">
               Get an Instant Quote <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
             <Link href="#pricing" className="border border-white/15 text-white rounded-full px-7 py-3.5 font-medium hover:bg-white/5 transition-colors">
@@ -885,7 +885,7 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
                 <div className="flex items-center gap-3 text-[14px] text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All bathrooms</div>
                 <div className="flex items-center gap-3 text-[14px] text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Eco products included</div>
               </div>
-              <Link href="/booking" className="block text-center w-full bg-gray-50 text-gray-900 border border-gray-200 font-semibold py-3.5 rounded-full hover:bg-gray-100 transition-colors text-[14px]">
+              <Link href="/book" className="block text-center w-full bg-gray-50 text-gray-900 border border-gray-200 font-semibold py-3.5 rounded-full hover:bg-gray-100 transition-colors text-[14px]">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -903,7 +903,7 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
                 <div className="flex items-center gap-3 text-[14px] text-gray-800"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Oven & inside cabinets</div>
                 <div className="flex items-center gap-3 text-[14px] text-gray-800"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Grout & hard-to-reach areas</div>
               </div>
-              <Link href="/booking" className="block text-center w-full bg-[#d97706] text-white font-semibold py-3.5 rounded-full hover:bg-[#b46205] transition-colors text-[14px] shadow-sm">
+              <Link href="/book" className="block text-center w-full bg-[#d97706] text-white font-semibold py-3.5 rounded-full hover:bg-[#b46205] transition-colors text-[14px] shadow-sm">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -918,7 +918,7 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
                 <div className="flex items-center gap-3 text-[14px] text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> All rooms & surfaces</div>
                 <div className="flex items-center gap-3 text-[14px] text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#d97706]" /> Inspection ready</div>
               </div>
-              <Link href="/booking" className="block text-center w-full bg-gray-50 text-gray-900 border border-gray-200 font-semibold py-3.5 rounded-full hover:bg-gray-100 transition-colors text-[14px]">
+              <Link href="/book" className="block text-center w-full bg-gray-50 text-gray-900 border border-gray-200 font-semibold py-3.5 rounded-full hover:bg-gray-100 transition-colors text-[14px]">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -953,7 +953,7 @@ export default function PrestonClient({ googleRatingValue = 5.0, googleReviewCou
           </span>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/booking" className="bg-[#d97706] text-white rounded-full px-8 py-3.5 font-semibold hover:bg-[#b46205] transition-colors w-full sm:w-auto shadow-sm">
+            <Link href="/book" className="bg-[#d97706] text-white rounded-full px-8 py-3.5 font-semibold hover:bg-[#b46205] transition-colors w-full sm:w-auto shadow-sm">
               Get an Instant Quote
             </Link>
             <a href="tel:0451423786" className="border border-white/15 text-white rounded-full px-8 py-3.5 font-medium hover:bg-white/5 transition-colors w-full sm:w-auto">

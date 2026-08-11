@@ -174,7 +174,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href="/booking" className="bg-[#d97706] text-white rounded-full px-[28px] py-[14px] font-semibold hover:bg-[#b46305] transition-colors">
+            <Link href="/book" className="bg-[#d97706] text-white rounded-full px-[28px] py-[14px] font-semibold hover:bg-[#b46305] transition-colors">
               Get an Instant Quote →
             </Link>
             <a href="#whats-included" className="border border-white/15 text-white rounded-full px-[28px] py-[14px] hover:bg-white/5 transition-colors">
@@ -858,7 +858,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
               <div className="text-[36px] font-bold text-[#1C1C1C] mb-8">
                 <span className="text-[16px] text-[#6b7280] font-normal align-top mt-2 inline-block">From</span> $145
               </div>
-              <Link href="/booking" className="w-full text-center border border-[#e5e7eb] text-[#1C1C1C] rounded-full py-3 font-semibold hover:bg-gray-50 transition-colors mt-auto">
+              <Link href="/book" className="w-full text-center border border-[#e5e7eb] text-[#1C1C1C] rounded-full py-3 font-semibold hover:bg-gray-50 transition-colors mt-auto">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -873,7 +873,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
               <div className="text-[36px] font-bold text-[#1C1C1C] mb-8">
                 <span className="text-[16px] text-[#6b7280] font-normal align-top mt-2 inline-block">From</span> $235
               </div>
-              <Link href="/booking" className="w-full text-center bg-[#d97706] text-white rounded-full py-3 font-semibold hover:bg-[#b46305] transition-colors mt-auto shadow-sm">
+              <Link href="/book" className="w-full text-center bg-[#d97706] text-white rounded-full py-3 font-semibold hover:bg-[#b46305] transition-colors mt-auto shadow-sm">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -885,7 +885,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
               <div className="text-[36px] font-bold text-[#1C1C1C] mb-8">
                 <span className="text-[16px] text-[#6b7280] font-normal align-top mt-2 inline-block">From</span> $380
               </div>
-              <Link href="/booking" className="w-full text-center border border-[#e5e7eb] text-[#1C1C1C] rounded-full py-3 font-semibold hover:bg-gray-50 transition-colors mt-auto">
+              <Link href="/book" className="w-full text-center border border-[#e5e7eb] text-[#1C1C1C] rounded-full py-3 font-semibold hover:bg-gray-50 transition-colors mt-auto">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -923,7 +923,7 @@ export default function BundooraClient({ googleRatingValue = 5.0, googleReviewCo
           </span>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/booking" className="bg-[#d97706] text-white rounded-full px-[32px] py-[14px] font-semibold hover:bg-[#b46305] transition-colors w-full sm:w-auto">
+            <Link href="/book" className="bg-[#d97706] text-white rounded-full px-[32px] py-[14px] font-semibold hover:bg-[#b46305] transition-colors w-full sm:w-auto">
               Get an Instant Quote
             </Link>
             <a href="tel:0451423786" className="border border-white/15 text-white rounded-full px-[32px] py-[14px] font-semibold hover:bg-white/5 transition-colors w-full sm:w-auto">

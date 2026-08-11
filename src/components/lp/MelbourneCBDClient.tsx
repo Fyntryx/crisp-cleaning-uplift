@@ -370,7 +370,7 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
 
             <div className="mt-[36px] flex flex-col items-start gap-3">
               <div className="flex flex-wrap gap-4">
-                <Link href="/booking" className="bg-[#d97706] text-white rounded-full px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#b46205] transition-colors">
+                <Link href="/book" className="bg-[#d97706] text-white rounded-full px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#b46205] transition-colors">
                   Get an Instant Quote
                 </Link>
                 <Link href="#included" className="border border-[rgba(255,255,255,0.15)] text-white rounded-full px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
@@ -643,7 +643,7 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
                     </li>
                   ))}
                 </ul>
-                <Link href="/booking" className="block w-full py-4 px-6 bg-[#fff7ed] hover:bg-[#ffedd5] text-[#d97706] text-center font-bold rounded-xl transition-colors">
+                <Link href="/book" className="block w-full py-4 px-6 bg-[#fff7ed] hover:bg-[#ffedd5] text-[#d97706] text-center font-bold rounded-xl transition-colors">
                   Get an Instant Quote
                 </Link>
               </div>
@@ -668,7 +668,7 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
                     </li>
                   ))}
                 </ul>
-                <Link href="/booking" className="block w-full py-4 px-6 bg-[#d97706] hover:bg-[#b46205] text-white text-center font-bold rounded-xl transition-colors">
+                <Link href="/book" className="block w-full py-4 px-6 bg-[#d97706] hover:bg-[#b46205] text-white text-center font-bold rounded-xl transition-colors">
                   Get an Instant Quote
                 </Link>
               </div>
@@ -688,7 +688,7 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
                     </li>
                   ))}
                 </ul>
-                <Link href="/booking" className="block w-full py-4 px-6 bg-[#fff7ed] hover:bg-[#ffedd5] text-[#d97706] text-center font-bold rounded-xl transition-colors">
+                <Link href="/book" className="block w-full py-4 px-6 bg-[#fff7ed] hover:bg-[#ffedd5] text-[#d97706] text-center font-bold rounded-xl transition-colors">
                   Get an Instant Quote
                 </Link>
               </div>
@@ -720,7 +720,7 @@ export default function MelbourneCBDClient({ googleRatingValue = 5.0, googleRevi
             <div className="text-[#d97706] font-[600] text-[14px] mb-[32px]">5% off your first clean.</div>
             
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/booking" className="bg-[#d97706] text-white rounded-full px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#b46205] transition-colors">
+              <Link href="/book" className="bg-[#d97706] text-white rounded-full px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[#b46205] transition-colors">
                 Get an Instant Quote
               </Link>
               <a href="tel:0451423786" className="border border-[rgba(255,255,255,0.15)] text-white rounded-full px-[32px] py-[14px] text-[15px] font-[600] hover:bg-[rgba(255,255,255,0.05)] transition-colors">

@@ -389,7 +389,7 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.9 }}
           >
-            <Link href="/booking" className="cta-btn-primary flex items-center whitespace-nowrap w-fit">
+            <Link href="/book" className="cta-btn-primary flex items-center whitespace-nowrap w-fit">
               Get an Instant Quote <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
             <a href="#whats-included" className="cta-btn-secondary">
@@ -875,7 +875,7 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
                   <span>Eco products included</span>
                 </li>
               </ul>
-              <Link href="/booking" className="w-full py-3.5 bg-white border border-[#e5e7eb] text-[#374151] rounded-full text-center font-semibold hover:border-[#d97706] hover:text-[#d97706] transition-colors">
+              <Link href="/book" className="w-full py-3.5 bg-white border border-[#e5e7eb] text-[#374151] rounded-full text-center font-semibold hover:border-[#d97706] hover:text-[#d97706] transition-colors">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -901,7 +901,7 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
                   <span>Grout & hard-to-reach areas</span>
                 </li>
               </ul>
-              <Link href="/booking" className="w-full py-3.5 bg-[#d97706] text-white rounded-full text-center font-semibold hover:bg-[#b45309] transition-colors">
+              <Link href="/book" className="w-full py-3.5 bg-[#d97706] text-white rounded-full text-center font-semibold hover:bg-[#b45309] transition-colors">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -924,7 +924,7 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
                   <span>Inspection ready</span>
                 </li>
               </ul>
-              <Link href="/booking" className="w-full py-3.5 bg-white border border-[#e5e7eb] text-[#374151] rounded-full text-center font-semibold hover:border-[#d97706] hover:text-[#d97706] transition-colors">
+              <Link href="/book" className="w-full py-3.5 bg-white border border-[#e5e7eb] text-[#374151] rounded-full text-center font-semibold hover:border-[#d97706] hover:text-[#d97706] transition-colors">
                 Get an Instant Quote →
               </Link>
             </div>
@@ -965,7 +965,7 @@ export default function NorthMelbourneClient({ googleRatingValue = 5.0, googleRe
           </span>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/booking" className="cta-btn-primary w-full sm:w-auto shadow-sm">
+            <Link href="/book" className="cta-btn-primary w-full sm:w-auto shadow-sm">
               Get an Instant Quote
             </Link>
             <a href="tel:0451423786" className="cta-btn-secondary w-full sm:w-auto bg-white">
