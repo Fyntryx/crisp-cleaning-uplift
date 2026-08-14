@@ -229,3 +229,72 @@ export async function searchAddresses(
     return [];
   }
 }
+
+/**
+ * Search suburbs using Geoapify Autocomplete
+ * Restricted to Australia (au) and type=city (which covers suburbs)
+ */
+export async function searchSuburbs(
+  query: string,
+  limit: number = 5
+): Promise<AddressSuggestion[]> {
+  if (!query || query.trim().length < 3) {
+    return [];
+  }
+
+  if (!GEOAPIFY_API_KEY) {
+    console.error("Geoapify API key missing");
+    return [];
+  }
+
+  try {
+    const encodedQuery = encodeURIComponent(query.trim());
+    // filter=countrycode:au restricts results to Australia
+    // type=city restricts to cities/suburbs
+    const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodedQuery}&limit=${limit}&type=city&filter=countrycode:au&apiKey=${GEOAPIFY_API_KEY}`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Geoapify API request failed: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    if (!data || !data.features || !Array.isArray(data.features)) {
+      return [];
+    }
+
+    // Use a Set to avoid duplicates (e.g. Richmond VIC vs Richmond TAS, although Geoapify might return distinct entries, we want unique string names if possible, but let's just map it)
+    const suggestions: AddressSuggestion[] = [];
+    const seen = new Set<string>();
+
+    data.features.forEach((feature: any) => {
+      const props = feature.properties;
+      const suburbName = props.city || props.suburb || props.name;
+      
+      if (suburbName) {
+        let displayName = suburbName;
+        if (props.state) displayName += `, ${props.state}`;
+        if (props.postcode) displayName += ` ${props.postcode}`;
+        
+        if (!seen.has(displayName)) {
+          seen.add(displayName);
+          suggestions.push({
+            name: displayName,
+            coordinates: {
+              lat: props.lat,
+              lon: props.lon,
+            },
+            fullDetails: props
+          });
+        }
+      }
+    });
+    
+    return suggestions;
+  } catch (error) {
+    console.error('Error searching suburbs:', error);
+    return [];
+  }
+}

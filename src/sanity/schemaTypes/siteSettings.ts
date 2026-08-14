@@ -20,5 +20,12 @@ export default defineType({
       initialValue: 5.0,
       validation: (rule) => rule.min(1).max(5).precision(1),
     }),
+    defineField({
+      name: 'isBookingFlowActive',
+      title: 'Booking Flow Active',
+      type: 'boolean',
+      description: 'Toggle to enable or disable the /book page flow. When disabled, the page will be archived and users will be redirected.',
+      initialValue: true,
+    }),
   ],
 })
