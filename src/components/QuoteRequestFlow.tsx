@@ -857,11 +857,17 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     };
 
     try {
-      await fetch(`${API_BASE_URL}/api/public/leads`, {
+      const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      const data = await res.json();
+      if (data.success && data.lead?.id) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("crisp_lead_id", data.lead.id);
+        }
+      }
     } catch (err) {
       console.error("Failed to submit lead (non-blocking)", err);
     }
@@ -897,6 +903,53 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     }
   };
 
+  const syncLeadData = async (step: number) => {
+    const leadId = typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null;
+    if (!leadId) return;
+
+    const API_BASE_URL = (
+      process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
+    ).replace(/\/$/, "");
+
+    const { trackingData } = getTrackingPayload("Quote Request Flow");
+
+    const payload = {
+      id: leadId,
+      fullName: `${formData.contact.firstName} ${formData.contact.lastName}`.trim(),
+      email: formData.contact.email,
+      phone: formData.contact.phone,
+      bedrooms: formData.homeDetails.bedrooms || 0,
+      bathrooms: formData.homeDetails.bathrooms || 0,
+      kitchen: formData.homeDetails.kitchens || 0,
+      other: (formData.homeDetails.other || 0) + (formData.homeDetails.livingRooms || 0),
+      serviceType: formData.cleaningType || formData.serviceCategory,
+      address: formData.contact.address || formData.contact.suburb || "",
+      addons: Object.entries(formData.extras)
+        .map(([key, value]) => `${value}x ${key}`)
+        .join(", ") || "None",
+      jobValue: pricingResult?.total || 0,
+      trackingData: {
+        ...trackingData,
+        latestStep: step,
+        condition: formData.condition,
+        frequency: formData.frequency,
+        dateTime: formData.selectedDate && formData.selectedTime 
+           ? `${formData.selectedDate.toLocaleDateString()} ${formData.selectedTime}` 
+           : undefined
+      }
+    };
+
+    try {
+      await fetch(`${API_BASE_URL}/api/public/leads`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("Failed to sync lead data", err);
+    }
+  };
+
   const handleNext = () => {
     if (currentStep === 1 && !isCommercial && !discountClaimed) {
       handleDiscountSubmit();
@@ -906,7 +959,9 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     if (isStepValid() && currentStep < totalSteps) {
       setSubmitError(null);
       setSubmitSuccess(null);
-      setCurrentStep((prev) => prev + 1);
+      const nextStep = currentStep + 1;
+      setCurrentStep(nextStep);
+      syncLeadData(nextStep);
     }
   };
 
