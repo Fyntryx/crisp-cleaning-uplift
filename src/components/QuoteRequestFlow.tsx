@@ -1618,7 +1618,16 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
 
                 <div className="w-full border-b border-gray-100 last:border-0">
                   <RoomCounter
-                    label="Living areas"
+                    label={
+                      <div className="flex items-center gap-1.5 relative group/info">
+                        <span>Living areas</span>
+                        <Info className="w-3.5 h-3.5 text-gray-400 cursor-help" />
+                        <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 bottom-full mb-2 hidden group-hover/info:block w-[280px] p-3 bg-gray-900 text-white text-xs leading-relaxed rounded-lg shadow-xl z-50 whitespace-normal font-normal">
+                          Only select more than one for truly distinct living areas - open plan living/dining count as one and all other general areas are included (hallways, staircases, etc). A separate sitting room or den would be classed as "other".
+                          <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-full w-2 h-2 bg-gray-900 transform rotate-45 -mt-1"></div>
+                        </div>
+                      </div>
+                    }
                     count={formData.homeDetails.livingRooms || 0}
                     onUpdate={(v: number) => updateRooms("livingRooms", v)}
                   />
