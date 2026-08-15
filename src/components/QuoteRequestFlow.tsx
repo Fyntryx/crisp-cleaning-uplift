@@ -2856,6 +2856,15 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                           Continue <ArrowRight className="w-4 h-4" />
                         </button>
                       </div>
+                      <div className="hidden md:flex items-center">
+                        <a
+                          href="tel:0451433786"
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[calc(0.8125*var(--scale-unit))] text-gray-500 hover:text-gray-900 bg-white border border-gray-200 hover:border-[#FB8C42]/50 hover:bg-orange-50/30 transition-all shadow-sm"
+                        >
+                          <Phone className="w-4 h-4 text-gray-400" />
+                          <span>Need help? <span className="font-bold text-gray-700">0451 433 786</span></span>
+                        </a>
+                      </div>
                     </>
                   )}
                 </div>
