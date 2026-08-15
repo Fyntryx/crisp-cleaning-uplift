@@ -1672,10 +1672,17 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                 {isLoadingConfig ? (
                   <div className="text-xs text-gray-400 py-2 col-span-3">Loading available add-ons...</div>
                 ) : (Object.keys(pricingConfig?.extraPrices || EXTRA_PRICES) as Extra[])
+                  .filter(extra => !(formData.cleaningType === 'Vacate' && extra === 'Cabinets'))
                   .map((extra) => {
                     const count = formData.extras?.[extra] || 0;
                     const isSelected = count > 0;
                     const isCounterAddon = extra === 'Windows' || extra === 'Walls';
+                    
+                    let extraLabel = extra as string;
+                    if (formData.cleaningType === 'Vacate') {
+                      if (extra === 'Walls') extraLabel = 'Walls (spot cleaning included)';
+                      if (extra === 'Windows') extraLabel = 'Windows (first 5 free)';
+                    }
 
                     return (
                       <div
@@ -1713,7 +1720,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                           )}
 
                           <span className={`text-[12.5px] font-[500] leading-none ml-2.5 truncate ${isSelected ? "text-gray-900 font-[600]" : "text-[#4a423b]"}`}>
-                            {extra}
+                            {extraLabel}
                           </span>
                         </div>
 
@@ -2231,160 +2238,49 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
         </div>
       </div>
 
-      <div className="space-y-6">
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* FULL NAME */}
-          <div className="flex flex-col space-y-2">
-            <label className="text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-[0.09em]">
-              FULL NAME
-            </label>
-            <div className="relative flex items-center">
-              <input
-                type="text"
-                autoComplete="name"
-                placeholder="Sarah Mitchell"
-                className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] tracking-normal shadow-sm transition-all"
-                value={formData.contact.firstName}
-                onChange={(e) => updateContact("firstName", e.target.value)}
-              />
-              {formData.contact.firstName && <Check className="w-4 h-4 text-[#FB8C42] absolute right-4" />}
-            </div>
-          </div>
-
-          {/* MOBILE */}
-          <div className="flex flex-col space-y-2">
-            <label className="text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-[0.09em]">
-              MOBILE
-            </label>
-            <div className="relative flex items-center">
-              <input
-                type="tel"
-                autoComplete="tel"
-                placeholder="0412 345 678"
-                className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] tracking-normal shadow-sm transition-all"
-                value={formData.contact.phone}
-                onChange={(e) => updateContact("phone", e.target.value)}
-              />
-              {formData.contact.phone && <Check className="w-4 h-4 text-[#FB8C42] absolute right-4" />}
-            </div>
-          </div>
+      {/* Feedback Messages */}
+      {submitError && (
+        <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
+          {submitError}
         </div>
-
-        {/* EMAIL */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-[0.09em]">
-            EMAIL
-          </label>
-          <div className="relative flex items-center">
-            <input
-              type="email"
-              autoComplete="email"
-              placeholder="sarah@email.com"
-              className="w-full px-[calc(0.875*var(--scale-unit))] py-[calc(0.75*var(--scale-unit))] bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#FB8C42]/10 text-stone-900 font-normal text-[calc(0.90625*var(--scale-unit))] tracking-normal shadow-sm transition-all"
-              value={formData.contact.email}
-              onChange={(e) => updateContact("email", e.target.value)}
-            />
-            {formData.contact.email && <Check className="w-4 h-4 text-[#FB8C42] absolute right-4" />}
-          </div>
+      )}
+      {submitSuccess && (
+        <div className="p-3.5 bg-green-50 border border-green-200 rounded-xl text-green-700 text-xs font-semibold">
+          {submitSuccess}
         </div>
+      )}
 
-        {/* SERVICE ADDRESS */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-[calc(0.625*var(--scale-unit))] font-semibold uppercase text-ink-soft tracking-[0.09em]">
-            ADDRESS
-          </label>
-          <AddressAutocomplete
-            value={formData.contact.address}
-            onChange={(value) => updateContact("address", value)}
-            placeholder="Street address, suburb, postcode"
-            showLocationButton={true}
-            onLocationClick={handleUseCurrentLocation}
-            isLoadingLocation={isLoadingLoc}
-            onValidityChange={setIsAddressValid}
-            onOutOfAreaFeeChange={setOutOfAreaFee}
-            inputClassName="!py-3.5 !text-xs !font-semibold !text-gray-700 !bg-white !border !border-gray-200 !shadow-sm focus:!ring-2 focus:!ring-[#FB8C42]/10 !pl-4"
-            className="[&>div>svg:first-child]:hidden"
-          />
-        </div>
+      {/* Action controls row */}
+      <div className="mt-8 relative w-full flex justify-center">
+        <button
+          onClick={handlePrev}
+          className="absolute left-0 top-3 flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" /> Back
+        </button>
 
-        {/* Terms checkbox */}
-        <div className="flex items-center gap-2.5 pt-2">
-          <input
-            type="checkbox"
-            id="quote-terms"
-            className="w-4 h-4 rounded border-orange-300 text-[#FB8C42] focus:ring-[#FB8C42]/20 accent-[#FB8C42] cursor-pointer"
-            checked={formData.contact.terms}
-            onChange={(e) => updateContact("terms", e.target.checked)}
-          />
-          <label
-            htmlFor="quote-terms"
-            className="text-[calc(0.8125*var(--scale-unit))] text-gray-600 font-medium cursor-pointer select-none"
-          >
-            I agree to the{" "}
-            <Link
-              href="/terms-conditions"
-              target="_blank"
-              className="underline text-[#FB8C42] font-semibold hover:text-[#e0731f] transition-colors"
-            >
-              Terms &amp; Conditions
-            </Link>
-          </label>
-        </div>
-
-        {/* Feedback Messages */}
-        {submitError && (
-          <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold">
-            {submitError}
-          </div>
-        )}
-        {submitSuccess && (
-          <div className="p-3.5 bg-green-50 border border-green-200 rounded-xl text-green-700 text-xs font-semibold">
-            {submitSuccess}
-          </div>
-        )}
-
-        {/* Action controls row */}
-        <div className="mt-8 relative w-full flex justify-center">
+        <div className="flex flex-col items-center gap-3 w-full md:w-auto">
           <button
-            onClick={handlePrev}
-            className="absolute left-0 top-3 flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="w-full md:w-auto md:min-w-[calc(15*var(--scale-unit))] bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-3 px-6 rounded-full font-semibold text-[calc(0.9375*var(--scale-unit))] shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <ChevronLeft className="w-4 h-4" /> Back
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-4.5 h-4.5 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              <>
+                <span>Submit Quote Request</span>
+                <ArrowRight className="w-4.5 h-4.5 text-white" />
+              </>
+            )}
           </button>
-
-          <div className="flex flex-col items-center gap-3 w-full md:w-auto">
-            <button
-              onClick={handleSubmit}
-              disabled={
-                isSubmitting ||
-                !formData.contact.firstName?.trim() ||
-                !formData.contact.phone?.trim() ||
-                !formData.contact.email?.trim() ||
-                !formData.contact.address?.trim() ||
-                !isAddressValid ||
-                !formData.contact.terms
-              }
-              className="w-full md:w-auto md:min-w-[calc(15*var(--scale-unit))] bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white py-3 px-6 rounded-full font-semibold text-[calc(0.9375*var(--scale-unit))] shadow-lg shadow-[#FB8C42]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4.5 h-4.5 animate-spin" />
-                  Submitting...
-                </>
-              ) : (
-                <>
-                  <span>Submit Quote Request</span>
-                  <ArrowRight className="w-4.5 h-4.5 text-white" />
-                </>
-              )}
-            </button>
-            <span className="text-[11px] text-[#A2968A] font-normal text-center">
-              We'll be in touch within 2 business hours with your confirmed price.
-            </span>
-          </div>
+          <span className="text-[11px] text-[#A2968A] font-normal text-center">
+            We'll be in touch within 2 business hours with your confirmed price.
+          </span>
         </div>
-
       </div>
       </div>
     );
