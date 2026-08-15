@@ -2140,18 +2140,95 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
   );
 
   // ─── STEP 7: Submit — no password, CTA = "Submit Quote Request" ─────────────
-  const renderResStep5 = () => (
+  const renderResStep5 = () => {
+    const addonsList = Object.entries(formData.extras).filter(([_, count]) => count > 0).map(([key, count]) => `${count}x ${key}`).join(', ');
+    const rooms = [
+      formData.homeDetails.bedrooms ? `${formData.homeDetails.bedrooms} Bed` : null,
+      formData.homeDetails.bathrooms ? `${formData.homeDetails.bathrooms} Bath` : null,
+      formData.homeDetails.livingRooms ? `${formData.homeDetails.livingRooms} Living` : null,
+      formData.homeDetails.kitchens ? `${formData.homeDetails.kitchens} Kitchen` : null,
+      formData.homeDetails.other ? `${formData.homeDetails.other} Other` : null,
+    ].filter(Boolean).join(', ');
+
+    return (
     <div className="max-w-4xl mx-auto w-full animate-in fade-in slide-in-from-right duration-500 flex flex-col justify-start gap-6 pt-4">
       <div className="mb-2 flex items-start justify-between flex-wrap gap-2">
         <div>
           <h2 className="text-[calc(1.375*var(--scale-unit))] font-semibold text-gray-900 tracking-tight leading-tight">
-            Almost done — submit your quote
+            Review your quote details
           </h2>
           <p className="text-[calc(0.8125*var(--scale-unit))] font-normal text-gray-500 mt-2">
-            We'll review your details and get back to you with a confirmed price.
+            Almost done — just confirm your choices and submit your request.
           </p>
         </div>
         <ReservationTimer />
+      </div>
+
+      {/* Beautiful Summary Card */}
+      <div className="bg-[#fffdfb] border border-[#f6d3b3] rounded-[24px] overflow-hidden shadow-sm shadow-orange-50/50 mb-4">
+        <div className="bg-[#fff4ea] px-6 py-4 border-b border-[#f6d3b3]">
+          <h3 className="text-[15px] font-bold text-gray-900 flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-[#FB8C42]" />
+            Quote Summary
+          </h3>
+        </div>
+        
+        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Service & Location</p>
+              <p className="text-sm font-semibold text-gray-900">{formData.cleaningType || "Standard"} Clean in {formData.contact.suburb || "TBD"}</p>
+            </div>
+            
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Property Details</p>
+              <p className="text-sm font-medium text-gray-800">{rooms || "Not specified"}</p>
+              {addonsList && <p className="text-xs text-gray-500 mt-1"><span className="font-semibold text-gray-600">Add-ons:</span> {addonsList}</p>}
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Schedule</p>
+              <p className="text-sm font-medium text-gray-800">
+                {formData.selectedDate ? formData.selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : "Not selected"} 
+                {formData.selectedTime ? ` at ${formData.selectedTime}` : ""}
+              </p>
+              {formData.frequency && <p className="text-xs font-semibold text-[#FB8C42] mt-0.5">{formData.frequency}</p>}
+            </div>
+          </div>
+
+          <div className="space-y-4 md:border-l md:border-gray-100 md:pl-6">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-2">Instructions</p>
+              <ul className="space-y-2 text-xs text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="font-semibold text-gray-800 min-w-[70px]">Entry:</span>
+                  <span>{formData.instructions.entry || "Not specified"}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="font-semibold text-gray-800 min-w-[70px]">Parking:</span>
+                  <span>{formData.instructions.parking || "Not specified"}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="font-semibold text-gray-800 min-w-[70px]">Pets:</span>
+                  <span>{formData.instructions.pets || "None"}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="font-semibold text-gray-800 min-w-[70px]">Chemicals:</span>
+                  <span>{formData.instructions.chemicals || "No preference"}</span>
+                </li>
+              </ul>
+            </div>
+            
+            {formData.instructions.notes && (
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Extra Notes</p>
+                <p className="text-xs text-gray-600 italic line-clamp-2 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                  "{formData.instructions.notes}"
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="space-y-6">
