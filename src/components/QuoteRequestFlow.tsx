@@ -929,7 +929,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
         .join(", ") || "None",
       jobValue: pricingResult?.total || 0,
       trackingData: {
-        ...trackingData,
+        ...(trackingData || {}),
         latestStep: step,
         condition: formData.condition,
         frequency: formData.frequency,
