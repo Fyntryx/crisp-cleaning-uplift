@@ -3133,7 +3133,7 @@ const AddressAutocomplete = ({
         <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
           {suggestions.map((suggestion, index) => (
             <button
-              key={suggestion.id}
+              key={index}
               className={`w-full text-left px-4 py-3 text-sm transition-colors flex items-center gap-3 ${index === selectedIndex
                 ? "bg-orange-50 text-gray-900"
                 : "text-gray-700 hover:bg-gray-50"
