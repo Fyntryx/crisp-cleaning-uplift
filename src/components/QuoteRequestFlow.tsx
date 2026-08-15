@@ -2812,9 +2812,9 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
 
               {/* Inner Step Controls (Hidden on Mobile) */}
               {currentStep < totalSteps && (
-                <div className={`hidden min-[880px]:flex ${currentStep === 1 && !isCommercial
-                  ? "w-full flex-col items-center"
-                  : "mt-10 items-center justify-center gap-6"
+                <div className={`hidden min-[880px]:flex w-full ${currentStep === 1 && !isCommercial
+                  ? "flex-col items-center"
+                  : "mt-10 items-center justify-center gap-6 relative"
                   }`}>
                   {currentStep === 1 && !isCommercial ? (
                     <div className="w-full max-w-[460px] flex flex-col items-center mt-10">
@@ -2856,7 +2856,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                           Continue <ArrowRight className="w-4 h-4" />
                         </button>
                       </div>
-                      <div className="hidden md:flex items-center">
+                      <div className="hidden md:flex items-center absolute right-0">
                         <a
                           href="tel:0451433786"
                           className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[calc(0.8125*var(--scale-unit))] text-gray-500 hover:text-gray-900 bg-white border border-gray-200 hover:border-[#FB8C42]/50 hover:bg-orange-50/30 transition-all shadow-sm"
