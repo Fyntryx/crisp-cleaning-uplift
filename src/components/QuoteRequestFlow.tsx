@@ -2386,8 +2386,9 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
         </div>
 
       </div>
-    </div>
-  );
+      </div>
+    );
+  };
 
   // ─── Commercial steps (unchanged from BookingPageFlow) ───────────────────────
   const renderCommStep2 = () => (
