@@ -2417,9 +2417,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
               </>
             )}
           </button>
-          <span className="text-[11px] text-[#A2968A] font-normal text-center">
-            We'll be in touch within 2 business hours with your confirmed price.
-          </span>
+
         </div>
       </div>
       </div>
