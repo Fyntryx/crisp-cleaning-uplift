@@ -108,7 +108,7 @@ export default async function LandingPage() {
       
       <Hero googleRatingValue={googleRatingValue} />
       <QuoteRequestPanel />
-      <PricingCards />
+      {/* <PricingCards /> */}
       <Testimonials layout="center" googleReviewCount={googleReviewCount} googleRatingValue={googleRatingValue} />
       <Difference />
       <WhyCrisp />
