@@ -297,8 +297,8 @@ const QuoteSummaryCard = ({
                 if ((promoCode || "").trim()) {
                   if (setIsValidatingPromo) setIsValidatingPromo(true);
                   try {
-                    // Re-use API_BASE_URL if it's defined, otherwise default to empty string
-                    const res = await fetch(`${typeof API_BASE_URL !== 'undefined' ? API_BASE_URL : ''}/api/validate-promo`, {
+                    const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app").replace(/\/$/, "");
+                    const res = await fetch(`${API_BASE_URL}/api/validate-promo`, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({
