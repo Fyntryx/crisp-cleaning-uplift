@@ -183,7 +183,7 @@ const QuoteSummaryCard = ({
 
     <div className="relative z-10 text-[calc(0.90625*var(--scale-unit))]">
       <>
-        <div className="flex justify-between items-center py-3.5">
+        <div className="flex justify-between items-center py-2">
           <span className="text-[12.5px] font-medium text-[#8d8378]">Service Type</span>
           <span className="text-[12.5px] font-normal text-[#2b2523]">{formData.cleaningType || "—"} Clean</span>
         </div>
