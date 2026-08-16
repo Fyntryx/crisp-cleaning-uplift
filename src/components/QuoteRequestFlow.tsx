@@ -1022,7 +1022,13 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
         frequency: formData.frequency,
         dateTime: formData.selectedDate && formData.selectedTime 
            ? `${formData.selectedDate.toLocaleDateString()} ${formData.selectedTime}` 
-           : undefined
+           : undefined,
+        livingRooms: formData.homeDetails.livingRooms,
+        entryInstruction: formData.instructions.entry,
+        parkingInstruction: formData.instructions.parking,
+        petsInstruction: formData.instructions.pets,
+        chemicalsInstruction: formData.instructions.chemicals,
+        notesInstruction: formData.instructions.notes
       }
     };
 
