@@ -978,7 +978,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
   };
 
   const handlePrev = () => {
-    if (currentStep > 1) {
+    if (currentStep > 2) {
       setSubmitError(null);
       setSubmitSuccess(null);
       setCurrentStep((prev) => prev - 1);
@@ -2836,7 +2836,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                     </div>
                   ) : (
                     <>
-                      {currentStep > 1 && (
+                      {currentStep > 2 && (
                         <button
                           onClick={handlePrev}
                           className="flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
