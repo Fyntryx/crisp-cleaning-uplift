@@ -2263,68 +2263,112 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       </div>
 
       {/* Beautiful Summary Card */}
-      <div className="bg-[#fffdfb] border border-[#f6d3b3] rounded-[24px] overflow-hidden shadow-sm shadow-orange-50/50 mb-4">
-        <div className="bg-[#fff4ea] px-6 py-4 border-b border-[#f6d3b3]">
-          <h3 className="text-[15px] font-bold text-gray-900 flex items-center gap-2">
+      <div className="bg-[#fffdfb] border border-[#f6d3b3] rounded-[24px] overflow-hidden shadow-sm shadow-orange-50/50 mb-4 max-w-2xl mx-auto w-full">
+        <div className="bg-[#fff4ea] px-6 py-5 border-b border-[#f6d3b3] flex items-center justify-between">
+          <h3 className="text-[16px] font-bold text-gray-900 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-[#FB8C42]" />
-            Quote Summary
+            Your Quote Request
           </h3>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#FB8C42] bg-white px-3 py-1 rounded-full border border-[#f6d3b3]/50">
+            Ready to Submit
+          </span>
         </div>
         
-        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Service & Location</p>
-              <p className="text-sm font-semibold text-gray-900">{formData.cleaningType || "Standard"} Clean in {formData.contact.suburb || "TBD"}</p>
-            </div>
-            
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Property Details</p>
-              <p className="text-sm font-medium text-gray-800">{rooms || "Not specified"}</p>
-              {addonsList && <p className="text-xs text-gray-500 mt-1"><span className="font-semibold text-gray-600">Add-ons:</span> {addonsList}</p>}
-            </div>
-
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Schedule</p>
-              <p className="text-sm font-medium text-gray-800">
-                {formData.selectedDate ? formData.selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : "Not selected"} 
-                {formData.selectedTime ? ` at ${formData.selectedTime}` : ""}
-              </p>
-              {formData.frequency && <p className="text-xs font-semibold text-[#FB8C42] mt-0.5">{formData.frequency}</p>}
+        <div className="flex flex-col">
+          {/* Step 1: Contact Details */}
+          <div className="p-6 border-b border-[#f2eadf]">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#a2968a] mb-4">Contact Details</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Name</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.contact.firstName || "—"} {formData.contact.lastName || ""}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Email</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.contact.email || "—"}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Phone</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.contact.phone || "—"}</span>
+              </div>
             </div>
           </div>
 
-          <div className="space-y-4 md:border-l md:border-gray-100 md:pl-6">
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-2">Instructions</p>
-              <ul className="space-y-2 text-xs text-gray-600">
-                <li className="flex items-start gap-2">
-                  <span className="font-semibold text-gray-800 min-w-[70px]">Entry:</span>
-                  <span>{formData.instructions.entry || "Not specified"}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-semibold text-gray-800 min-w-[70px]">Parking:</span>
-                  <span>{formData.instructions.parking || "Not specified"}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-semibold text-gray-800 min-w-[70px]">Pets:</span>
-                  <span>{formData.instructions.pets || "None"}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-semibold text-gray-800 min-w-[70px]">Chemicals:</span>
-                  <span>{formData.instructions.chemicals || "No preference"}</span>
-                </li>
-              </ul>
-            </div>
-            
-            {formData.instructions.notes && (
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#a2968a] mb-1">Extra Notes</p>
-                <p className="text-xs text-gray-600 italic line-clamp-2 bg-gray-50 p-2 rounded-lg border border-gray-100">
-                  "{formData.instructions.notes}"
-                </p>
+          {/* Step 2: Service & Location */}
+          <div className="p-6 border-b border-[#f2eadf]">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#a2968a] mb-4">Service & Location</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Service Type</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.cleaningType || "Standard"} Clean</span>
               </div>
-            )}
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Location</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.contact.suburb || "TBD"}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 3: Property Details */}
+          <div className="p-6 border-b border-[#f2eadf]">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#a2968a] mb-4">Property Details</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-start">
+                <span className="text-[13px] font-medium text-gray-500">Rooms</span>
+                <span className="text-[13px] font-semibold text-gray-900 text-right max-w-[200px] leading-tight">{rooms || "Not specified"}</span>
+              </div>
+              {addonsList && (
+                <div className="flex justify-between items-start pt-1">
+                  <span className="text-[13px] font-medium text-gray-500">Add-ons</span>
+                  <span className="text-[13px] font-semibold text-gray-900 text-right max-w-[200px] leading-tight">{addonsList}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Step 4: Schedule */}
+          <div className="p-6 border-b border-[#f2eadf] bg-[#faf9f6]">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#a2968a] mb-4">Schedule</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Date & Time</span>
+                <span className="text-[13px] font-semibold text-gray-900 text-right">
+                  {formData.selectedDate ? formData.selectedDate.toLocaleDateString('en-AU', { weekday: 'short', month: 'short', day: 'numeric' }) : "Not selected"} 
+                  {formData.selectedTime ? ` at ${formData.selectedTime}` : ""}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Frequency</span>
+                <span className="text-[13px] font-bold text-[#FB8C42]">{formData.frequency || "One time"}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 5: Instructions */}
+          <div className="p-6">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#a2968a] mb-4">Instructions</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Entry</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.instructions.entry || "Not specified"}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Parking</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.instructions.parking || "Not specified"}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-[13px] font-medium text-gray-500">Pets</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.instructions.pets || "None"}</span>
+              </div>
+              {formData.instructions.notes && (
+                <div className="pt-2">
+                  <span className="text-[13px] font-medium text-gray-500 block mb-2">Extra Notes</span>
+                  <p className="text-[13px] text-gray-700 italic bg-white p-3 rounded-xl border border-gray-100">
+                    "{formData.instructions.notes}"
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
