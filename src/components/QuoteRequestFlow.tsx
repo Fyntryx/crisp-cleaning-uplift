@@ -2914,7 +2914,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                     className={`flex items-center gap-4 relative w-full text-left ${isCompleted && item.step !== 1 ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
                   >
                     {idx < sidebarSteps.length - 1 && (
-                      <div className={`absolute left-[calc(0.9375*var(--scale-unit))] top-[calc(1.875*var(--scale-unit))] bottom-[-24px] w-0.5 ${isCompleted ? 'bg-[#FB8C42]' : 'bg-gray-100'}`} />
+                      <div className={`absolute left-[15px] top-[36px] bottom-[-20px] w-[2px] rounded-full ${isCompleted ? 'bg-[#FB8C42]' : 'bg-gray-100'}`} />
                     )}
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 transition-all ${isActive ? "bg-[#FB8C42] text-white shadow-md shadow-[#FB8C42]/20" :
                       isCompleted ? "bg-[#FB8C42]/10 text-[#FB8C42] border border-[#FB8C42]/20" :
