@@ -129,6 +129,13 @@ export default function LeadPopup() {
       }
       
       // Mark lead as captured
+      const parts = formData.fullName.trim().split(/\s+/);
+      const first = parts[0] || "";
+      const last = parts.slice(1).join(" ");
+      sessionStorage.setItem("crisp_lead_first_name", first);
+      sessionStorage.setItem("crisp_lead_last_name", last);
+      sessionStorage.setItem("crisp_lead_email", formData.email);
+      sessionStorage.setItem("crisp_lead_phone", formData.phone);
       sessionStorage.setItem("crisp_lead_captured", "true");
       
       // We don't block on success since the endpoint might not exist yet

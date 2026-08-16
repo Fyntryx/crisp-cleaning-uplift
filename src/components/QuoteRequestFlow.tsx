@@ -552,6 +552,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
           contact: {
             ...prev.contact,
             firstName: sessionStorage.getItem("crisp_lead_first_name") || prev.contact.firstName,
+            lastName: sessionStorage.getItem("crisp_lead_last_name") || prev.contact.lastName,
             email: sessionStorage.getItem("crisp_lead_email") || prev.contact.email,
             phone: sessionStorage.getItem("crisp_lead_phone") || prev.contact.phone,
           }
@@ -872,7 +873,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
           );
         case 4: return !!formData.frequency && !!formData.selectedDate && !!formData.selectedTime;
         case 5: return !!formData.instructions.entry && !!formData.instructions.parking && !!formData.instructions.pets && !!formData.instructions.chemicals;
-        case 6: return formData.contact.address.trim().length >= 10;
+        case 6: return true;
         default: return false;
       }
     }
@@ -964,6 +965,10 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
           offer_source: appliedPromoDetails.source
         });
         sessionStorage.setItem("crisp_lead_captured", "true");
+        sessionStorage.setItem("crisp_lead_first_name", formData.contact.firstName);
+        sessionStorage.setItem("crisp_lead_last_name", formData.contact.lastName || "");
+        sessionStorage.setItem("crisp_lead_email", formData.contact.email);
+        sessionStorage.setItem("crisp_lead_phone", formData.contact.phone);
       }
 
       setDiscountClaimed(true);
