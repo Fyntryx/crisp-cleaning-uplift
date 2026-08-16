@@ -126,6 +126,14 @@ const QuoteSummaryCard = ({
   formData,
   pricingConfig,
   pricingResult,
+  promoCode,
+  setPromoCode,
+  isValidatingPromo,
+  setIsValidatingPromo,
+  appliedPromo,
+  setAppliedPromo,
+  appliedReferral,
+  setAppliedReferral,
   outOfAreaFee = 0,
   currentStep = 1,
 }: {
@@ -133,6 +141,14 @@ const QuoteSummaryCard = ({
   formData: any;
   pricingConfig: PricingConfig | undefined;
   pricingResult: PricingResponse | null;
+  promoCode?: string;
+  setPromoCode?: (val: string) => void;
+  isValidatingPromo?: boolean;
+  setIsValidatingPromo?: (val: boolean) => void;
+  appliedPromo?: { code: string; type: string; value: number; isStackable?: boolean; referralType?: string; category?: string };
+  setAppliedPromo?: (val: any) => void;
+  appliedReferral?: { code: string; type: string; value: number; referralType?: string; category?: string };
+  setAppliedReferral?: (val: any) => void;
   outOfAreaFee?: number;
   currentStep?: number;
 }) => (
@@ -232,24 +248,90 @@ const QuoteSummaryCard = ({
                 <span className="text-[12.5px] font-medium text-[#8d8378]">+ {e.count > 1 ? `${e.count}x ` : ''}{e.name}</span>
               </div>
             ))}
+            
+            {appliedPromo && setAppliedPromo && (
+              <div className="flex justify-between mt-2">
+                <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount {appliedPromo.code}</span>
+                <button onClick={() => setAppliedPromo(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove promo code">✕</button>
+              </div>
+            )}
+            
+            {appliedReferral && setAppliedReferral && (
+              <div className="flex justify-between mt-2">
+                <span className="text-[12.5px] font-medium text-[#FB8C42]">Referral Applied</span>
+                <button onClick={() => setAppliedReferral(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove referral code">✕</button>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="mt-3 text-[15px] font-[400] text-[#8d8378] leading-[1.55]">
-          {currentStep === 1 ? (
-            <p>Your quote builds as you go.</p>
-          ) : (
-            (pricingResult?.estimatedMinutes ?? 0) > 0 && (
-              <div className="flex justify-between w-full pt-1">
-                <span className="text-[13px] font-medium text-[#8d8378]">Estimated Time</span>
-                <span className="text-[13px] font-medium text-[#2b2523]">{formatEta(pricingResult!.estimatedMinutes)}</span>
-              </div>
-            )
+          {currentStep !== 1 && (pricingResult?.estimatedMinutes ?? 0) > 0 && (
+            <div className="flex justify-between w-full pt-1">
+              <span className="text-[13px] font-medium text-[#8d8378]">Estimated Time</span>
+              <span className="text-[13px] font-medium text-[#2b2523]">{formatEta(pricingResult!.estimatedMinutes)}</span>
+            </div>
           )}
         </div>
       </>
 
       <div className="w-full h-px bg-[#f2eadf] mt-5 mb-4" />
+
+      {/* --- PROMO CODE SECTION --- */}
+      {setPromoCode && (
+        <div className="my-3 w-full">
+          <div className="relative flex items-center">
+            <Tag className="absolute left-3.5 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Promo Code"
+              className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-xl py-3 pl-10 pr-20 focus:outline-none focus:border-[#FB8C42] focus:ring-1 focus:ring-[#FB8C42]/10 transition-all placeholder:text-gray-400 font-semibold"
+              value={promoCode || ""}
+              onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+            />
+            <button
+              type="button"
+              disabled={isValidatingPromo || !(promoCode || "").trim()}
+              onClick={async (e) => {
+                e.preventDefault();
+                if ((promoCode || "").trim()) {
+                  if (setIsValidatingPromo) setIsValidatingPromo(true);
+                  try {
+                    // Re-use API_BASE_URL if it's defined, otherwise default to empty string
+                    const res = await fetch(`${typeof API_BASE_URL !== 'undefined' ? API_BASE_URL : ''}/api/validate-promo`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        code: promoCode,
+                        frequency: formData.frequency || "One time"
+                      }),
+                    });
+                    const data = await res.json();
+                    if (data.valid) {
+                      if (data.promo.category === 'REFERRAL') {
+                        if (setAppliedReferral) setAppliedReferral(data.promo);
+                      } else {
+                        if (setAppliedPromo) setAppliedPromo(data.promo);
+                      }
+                      setPromoCode('');
+                    } else {
+                      alert(data.error || 'Invalid promo code');
+                    }
+                  } catch (error) {
+                    console.error('Error validating promo code:', error);
+                    alert('Error validating promo code. Please try again.');
+                  } finally {
+                    if (setIsValidatingPromo) setIsValidatingPromo(false);
+                  }
+                }
+              }}
+              className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-[#FB8C42]/10 hover:bg-[#FB8C42] hover:text-white disabled:opacity-50 text-[#FB8C42] text-[calc(0.625*var(--scale-unit))] font-semibold uppercase tracking-wider rounded-lg transition-all"
+            >
+              {isValidatingPromo ? '...' : 'Apply'}
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="relative group cursor-help w-full">
         {/* Tooltip */}
@@ -2800,7 +2882,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
 
               <div className="w-full h-px bg-[#e5e5e5] my-2" />
               <p className="text-[calc(0.75*var(--scale-unit))] font-medium text-gray-400 leading-[1.6] pr-2">
-                Your quote is saved as you go &mdash; finish any time from the link we send you.
+                Enter your home details for an accurate quote. No Commitment. We'll be in touch shortly
               </p>
             </div>
           </div>
@@ -2882,6 +2964,14 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                 pricingResult={pricingResult}
                 outOfAreaFee={outOfAreaFee}
                 currentStep={currentStep}
+                promoCode={promoCode}
+                setPromoCode={setPromoCode}
+                isValidatingPromo={isValidatingPromo}
+                setIsValidatingPromo={setIsValidatingPromo}
+                appliedPromo={appliedPromo}
+                setAppliedPromo={setAppliedPromo}
+                appliedReferral={appliedReferral}
+                setAppliedReferral={setAppliedReferral}
               />
             </div>
           </div>
