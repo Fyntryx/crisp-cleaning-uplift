@@ -110,11 +110,18 @@ export default function QuoteRequestPanel({
     };
 
     try {
-      await fetch(`${API_BASE_URL}/api/public/leads`, {
+      const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
+      const data = await res.json();
+      if (data.success && data.lead?.id) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("crisp_lead_id", data.lead.id);
+        }
+      }
 
       if (typeof window !== "undefined") {
         (window as any).dataLayer = (window as any).dataLayer || [];
