@@ -1265,35 +1265,9 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     setSubmitSuccess(null);
 
     try {
-      if (!formData.contact.firstName || !formData.contact.email || !formData.contact.phone || !formData.contact.address) {
-        setSubmitError("Please fill in all required fields.");
-        setIsSubmitting(false);
-        return;
-      }
-
-      const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-      const isValidPhone = (phone: string) => /^\d{10,15}$/.test(phone.replace(/\D/g, ''));
-
-      if (!isValidEmail(formData.contact.email)) {
-        setSubmitError("Please enter a valid email address.");
-        setIsSubmitting(false);
-        return;
-      }
-
-      if (!isValidPhone(formData.contact.phone)) {
-        setSubmitError("Please enter a valid phone number.");
-        setIsSubmitting(false);
-        return;
-      }
-
-      if (!formData.contact.terms) {
-        setSubmitError("Please accept the terms and conditions.");
-        setIsSubmitting(false);
-        return;
-      }
-
-      if (formData.contact.address.trim().length < 10) {
-        setSubmitError("Please enter a valid address (at least 10 characters).");
+      // Basic contact details were collected in Step 1 — just ensure they're present
+      if (!formData.contact.firstName || !formData.contact.email || !formData.contact.phone) {
+        setSubmitError("Please go back and fill in your contact details.");
         setIsSubmitting(false);
         return;
       }
