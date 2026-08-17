@@ -1154,12 +1154,23 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
       jobValue: pricingResult?.total || 0,
     };
 
+    const existingLeadId = typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null;
+    if (existingLeadId) {
+      payload = { ...payload, id: existingLeadId } as any;
+    }
+
     try {
-      await fetch(`${API_BASE_URL}/api/public/leads`, {
-        method: "POST",
+      const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
+        method: existingLeadId ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      const data = await res.json();
+      if (data.success && data.lead?.id) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("crisp_lead_id", data.lead.id);
+        }
+      }
     } catch (err) {
       console.error("Failed to submit lead (non-blocking)", err);
     }
@@ -1202,6 +1213,65 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
     }
   };
 
+  const syncLeadData = async (step: number) => {
+    const leadId = typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null;
+    if (!leadId) return;
+
+    const { trackingData } = getTrackingPayload("Booking Flow");
+
+    const payload = {
+      id: leadId,
+      fullName: `${formData.contact.firstName} ${formData.contact.lastName}`.trim(),
+      email: formData.contact.email,
+      phone: formData.contact.phone,
+      bedrooms: formData.homeDetails.bedrooms || 0,
+      bathrooms: formData.homeDetails.bathrooms || 0,
+      kitchen: formData.homeDetails.kitchens || 0,
+      other: (formData.homeDetails.other || 0) + (formData.homeDetails.livingRooms || 0),
+      serviceType: formData.cleaningType || formData.serviceCategory,
+      address: formData.contact.address || formData.contact.suburb || "",
+      addons: Object.entries(formData.extras)
+        .map(([key, value]) => `${value}x ${key}`)
+        .join(", ") || "None",
+      jobValue: pricingResult?.total || 0,
+      trackingData: {
+        ...(trackingData || {}),
+        latestStep: step,
+        condition: formData.condition,
+        frequency: formData.frequency,
+        dateTime: formData.selectedDate && formData.selectedTime 
+           ? `${formData.selectedDate.toLocaleDateString()} ${formData.selectedTime}` 
+           : undefined,
+        livingRooms: formData.homeDetails.livingRooms,
+        entryInstruction: formData.instructions.entry,
+        parkingInstruction: formData.instructions.parking,
+        petsInstruction: formData.instructions.pets,
+        chemicalsInstruction: formData.instructions.chemicals,
+        notesInstruction: formData.instructions.notes
+      }
+    };
+
+    try {
+      await fetch(`${API_BASE_URL}/api/public/leads`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("Failed to sync lead data", err);
+    }
+  };
+
+  // Auto-sync lead data when form data changes (debounced)
+  useEffect(() => {
+    if (currentStep > 1 && typeof window !== "undefined" && sessionStorage.getItem("crisp_lead_id")) {
+      const timer = setTimeout(() => {
+        syncLeadData(currentStep);
+      }, 1500); // 1.5 second debounce
+      return () => clearTimeout(timer);
+    }
+  }, [formData, currentStep]);
+
   const handleNext = () => {
     if (currentStep === 1 && !isCommercial && !discountClaimed) {
       handleDiscountSubmit();
@@ -1214,8 +1284,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
       if (currentStep === 2 && !isCommercial && formData.cleaningType === "Hourly") {
         setCurrentStep(4); // Skip Step 3 (Service & Condition)
+        syncLeadData(4);
       } else {
-        setCurrentStep((prev) => prev + 1);
+        const nextStep = currentStep + 1;
+        setCurrentStep(nextStep);
+        syncLeadData(nextStep);
       }
     }
   };

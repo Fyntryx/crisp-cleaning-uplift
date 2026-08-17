@@ -1058,6 +1058,17 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     }
   };
 
+  // Auto-sync lead data when form data changes (debounced)
+  useEffect(() => {
+    // Only sync if they've passed step 1 and a lead has been created
+    if (currentStep > 1 && typeof window !== "undefined" && sessionStorage.getItem("crisp_lead_id")) {
+      const timer = setTimeout(() => {
+        syncLeadData(currentStep);
+      }, 1500); // 1.5 second debounce
+      return () => clearTimeout(timer);
+    }
+  }, [formData, currentStep]);
+
   const handleNext = () => {
     if (currentStep === 1 && !isCommercial && !discountClaimed) {
       handleDiscountSubmit();
