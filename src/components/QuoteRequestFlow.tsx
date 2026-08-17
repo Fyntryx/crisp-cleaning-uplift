@@ -679,6 +679,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
   const [pricingConfig, setPricingConfig] = useState<PricingConfig | undefined>(undefined);
   const [isLoadingConfig, setIsLoadingConfig] = useState(true);
   const [outOfAreaFee, setOutOfAreaFee] = useState(0);
+  const [returnToStep, setReturnToStep] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && currentStep > prevStepRef.current) {
@@ -981,7 +982,14 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
 
       setSubmitError(null);
       setSubmitSuccess(null);
-      setCurrentStep(2);
+      
+      if (returnToStep !== null) {
+        const next = returnToStep;
+        setReturnToStep(null);
+        setCurrentStep(next);
+      } else {
+        setCurrentStep(2);
+      }
     } catch (err) {
       console.error("Failed to process step", err);
       setDiscountError("Something went wrong. Please try again.");
@@ -1052,9 +1060,17 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     if (isStepValid() && currentStep < totalSteps) {
       setSubmitError(null);
       setSubmitSuccess(null);
-      const nextStep = currentStep + 1;
-      setCurrentStep(nextStep);
-      syncLeadData(nextStep);
+      
+      if (returnToStep !== null) {
+        const next = returnToStep;
+        setReturnToStep(null);
+        setCurrentStep(next);
+        syncLeadData(next);
+      } else {
+        const nextStep = currentStep + 1;
+        setCurrentStep(nextStep);
+        syncLeadData(nextStep);
+      }
     }
   };
 
@@ -1267,7 +1283,8 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     try {
       // Basic contact details were collected in Step 1 — just ensure they're present
       if (!formData.contact.firstName || !formData.contact.email || !formData.contact.phone) {
-        setSubmitError("Please go back and fill in your contact details.");
+        setReturnToStep(6);
+        setCurrentStep(1);
         setIsSubmitting(false);
         return;
       }
