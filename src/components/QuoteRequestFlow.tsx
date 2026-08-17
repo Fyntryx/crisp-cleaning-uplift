@@ -1272,35 +1272,26 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
         return;
       }
 
-      const payload = isCommercial
-        ? transformCommercialFormDataToAPI()
-        : transformResidentialFormDataToAPI();
-
-      const endpoint = isCommercial
-        ? `${API_BASE_URL}/api/commercial`
-        : `${API_BASE_URL}/api/signup`;
-
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        const errorMessage =
-          result.error ||
-          result.details?.[0]?.message ||
-          "Failed to submit quote request. Please try again.";
-        setSubmitError(errorMessage);
-        setIsSubmitting(false);
-        return;
-      }
-
       if (isCommercial) {
+        const payload = transformCommercialFormDataToAPI();
+        const response = await fetch(`${API_BASE_URL}/api/commercial`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          const errorMessage =
+            result.error ||
+            result.details?.[0]?.message ||
+            "Failed to submit quote request. Please try again.";
+          setSubmitError(errorMessage);
+          setIsSubmitting(false);
+          return;
+        }
+
         if (typeof window !== "undefined") {
           (window as any).dataLayer = (window as any).dataLayer || [];
           (window as any).dataLayer.push({
@@ -1308,14 +1299,48 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
             service_type: formData.commercial.cleanType
           });
         }
-        setSubmitSuccess(
-          "Thank you for your quote request! We'll be in touch within 2 business hours with your confirmed price."
-        );
+        
+        setSubmitSuccess("true");
         setIsSubmitting(false);
         return;
       }
 
       // Residential quote submitted
+      const payload = {
+        id: typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null,
+        fullName: `${formData.contact.firstName} ${formData.contact.lastName || ""}`.trim(),
+        email: formData.contact.email,
+        phone: formData.contact.phone,
+        bedrooms: formData.homeDetails.bedrooms || 0,
+        bathrooms: formData.homeDetails.bathrooms || 0,
+        living: formData.homeDetails.livingRooms || 0,
+        kitchen: formData.homeDetails.kitchens || 0,
+        other: formData.homeDetails.other || 0,
+        serviceType: formData.cleaningType || formData.serviceCategory,
+        address: formData.contact.address || formData.contact.suburb || "",
+        addons: Object.entries(formData.extras)
+          .map(([key, value]) => `${value}x ${key}`)
+          .join(", ") || "None",
+        jobValue: pricingResult?.total || 0,
+      };
+
+      const endpoint = `${API_BASE_URL}/api/public/leads`;
+      const method = payload.id ? "PUT" : "POST";
+
+      const response = await fetch(endpoint, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setSubmitError(result.error || "Failed to submit quote request. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
+
       if (typeof window !== "undefined") {
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({
@@ -1324,9 +1349,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
         });
       }
 
-      setSubmitSuccess(
-        "Quote request submitted! We'll review your details and be in touch within 2 business hours with your confirmed price."
-      );
+      setSubmitSuccess("true");
       setIsSubmitting(false);
 
     } catch (error) {
@@ -2824,6 +2847,34 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
     { label: "Instructions", step: 5, icon: FileText },
     { label: "Submit", step: 6, icon: Check },
   ];
+
+  if (submitSuccess) {
+    return (
+      <div className="min-h-[100dvh] flex flex-col items-center justify-center bg-[#fdf9f3] p-6 text-center relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-100 rounded-full blur-[100px] opacity-60"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-orange-200 rounded-full blur-[80px] opacity-40"></div>
+
+        <div className="relative z-10 max-w-md w-full bg-white rounded-[24px] p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#f6d3b3]/50">
+          <div className="w-20 h-20 bg-[#fff4ea] text-[#FB8C42] rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-[#f6d3b3]">
+            <Check className="w-10 h-10" strokeWidth={3} />
+          </div>
+          
+          <h2 className="text-3xl font-bold text-[#2b2523] mb-4 tracking-tight">Quote Requested!</h2>
+          <p className="text-[#8d8378] text-[15px] leading-relaxed mb-8">
+            Thank you for reaching out. We will review your details and get back to you shortly with your confirmed price.
+          </p>
+
+          <a 
+            href="/" 
+            className="block w-full py-4 bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white rounded-full font-bold text-[15px] shadow-lg shadow-[#FB8C42]/20 hover:shadow-xl hover:shadow-[#FB8C42]/30 hover:-translate-y-0.5 transition-all"
+          >
+            Return to Home
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-white font-sans text-gray-900 pb-[calc(5*var(--scale-unit))] min-[880px]:pb-0">
