@@ -1135,7 +1135,7 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
 
     const { source, trackingData } = getTrackingPayload("Booking Flow Discount Step");
 
-    const payload = {
+    let payload: any = {
       fullName: `${formData.contact.firstName} ${formData.contact.lastName}`.trim(),
       email: formData.contact.email,
       phone: formData.contact.phone,
