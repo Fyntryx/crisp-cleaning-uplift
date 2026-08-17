@@ -103,7 +103,10 @@ export default function LeadPopup() {
 
     const { source, trackingData } = getTrackingPayload("Popup Lead Form");
 
+    const existingLeadId = typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null;
+
     const payload = {
+      ...(existingLeadId ? { id: existingLeadId } : {}),
       ...formData,
       source,
       trackingData,
@@ -113,7 +116,7 @@ export default function LeadPopup() {
     try {
       // Assuming you will create this endpoint in your backend to catch the data
       const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
-        method: "POST",
+        method: existingLeadId ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });

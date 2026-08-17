@@ -925,7 +925,10 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
 
     const { source, trackingData } = getTrackingPayload("Quote Request Flow Details Step");
 
+    const existingLeadId = typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null;
+    
     const payload = {
+      ...(existingLeadId ? { id: existingLeadId } : {}),
       fullName: `${formData.contact.firstName} ${formData.contact.lastName}`.trim(),
       email: formData.contact.email,
       phone: formData.contact.phone,
@@ -946,7 +949,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
-        method: "POST",
+        method: existingLeadId ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
