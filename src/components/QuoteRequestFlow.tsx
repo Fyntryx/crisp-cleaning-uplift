@@ -930,7 +930,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       bedrooms: formData.homeDetails.bedrooms || 0,
       bathrooms: formData.homeDetails.bathrooms || 0,
       kitchen: formData.homeDetails.kitchens || 0,
-      other: (formData.homeDetails.other || 0) + (formData.homeDetails.livingRooms || 0),
+      other: formData.homeDetails.other || 0,
       serviceType: formData.cleaningType || formData.serviceCategory,
       address: formData.contact.address || "",
       addons: Object.entries(formData.extras)
@@ -1008,7 +1008,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       bedrooms: formData.homeDetails.bedrooms || 0,
       bathrooms: formData.homeDetails.bathrooms || 0,
       kitchen: formData.homeDetails.kitchens || 0,
-      other: (formData.homeDetails.other || 0) + (formData.homeDetails.livingRooms || 0),
+      other: formData.homeDetails.other || 0,
       serviceType: formData.cleaningType || formData.serviceCategory,
       address: formData.contact.address || formData.contact.suburb || "",
       addons: Object.entries(formData.extras)
