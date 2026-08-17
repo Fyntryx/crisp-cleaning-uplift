@@ -3368,6 +3368,7 @@ const AddressAutocomplete = ({
           ref={inputRef}
           type="text"
           autoComplete="street-address"
+          maxLength={mode === "suburb" ? 30 : undefined}
           className={`w-full pl-10 ${showLocationButton ? 'pr-12' : 'pr-4'} py-2.5 bg-gray-50 rounded-xl outline-none border-2 transition-all text-sm ${inputClassName} ${localError
             ? "border-red-300 focus:border-red-500 text-red-900 placeholder:text-red-300"
             : "border-transparent focus:border-primary focus:bg-white hover:border-gray-200"
