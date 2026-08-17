@@ -170,6 +170,25 @@ const QuoteSummaryCard = ({
         {(() => {
           const badges: any[] = [];
           if (formData.cleaningType === "Vacate") badges.push("BOND BACK GUARANTEE");
+          
+          if (appliedPromo && setAppliedPromo) {
+            badges.push(
+              <span key="promo" className="flex items-center gap-1">
+                {appliedPromo.code} APPLIED
+                <button onClick={() => setAppliedPromo(undefined)} className="ml-0.5 text-[#e0731f] hover:text-red-500 font-bold text-[11px]" title="Remove promo code">✕</button>
+              </span>
+            );
+          }
+          
+          if (appliedReferral && setAppliedReferral) {
+            badges.push(
+              <span key="referral" className="flex items-center gap-1">
+                REFERRAL APPLIED
+                <button onClick={() => setAppliedReferral(undefined)} className="ml-0.5 text-[#e0731f] hover:text-red-500 font-bold text-[11px]" title="Remove referral code">✕</button>
+              </span>
+            );
+          }
+          
           return badges.map((badge, i) => (
             <div key={i} className="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-[#fff4ea] text-[#e0731f] text-[10px] font-bold tracking-wider uppercase border border-[#f6d3b3]/50">
               {badge}
@@ -253,20 +272,6 @@ const QuoteSummaryCard = ({
               <div className="flex justify-between mt-2 pt-2 border-t border-[#f2eadf]">
                 <span className="text-[12.5px] font-medium text-[#8d8378]">Out of Area Travel Fee</span>
                 <span className="text-[12.5px] font-medium text-[#2b2523]">+ A${outOfAreaFee.toFixed(2)}</span>
-              </div>
-            )}
-            
-            {appliedPromo && setAppliedPromo && (
-              <div className="flex justify-between mt-2">
-                <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount {appliedPromo.code}</span>
-                <button onClick={() => setAppliedPromo(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove promo code">✕</button>
-              </div>
-            )}
-            
-            {appliedReferral && setAppliedReferral && (
-              <div className="flex justify-between mt-2">
-                <span className="text-[12.5px] font-medium text-[#FB8C42]">Referral Applied</span>
-                <button onClick={() => setAppliedReferral(undefined)} className="ml-1 text-gray-400 hover:text-red-500 text-xs" title="Remove referral code">✕</button>
               </div>
             )}
           </div>
