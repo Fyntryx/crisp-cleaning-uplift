@@ -249,6 +249,13 @@ const QuoteSummaryCard = ({
               </div>
             ))}
             
+            {outOfAreaFee > 0 && (
+              <div className="flex justify-between mt-2 pt-2 border-t border-[#f2eadf]">
+                <span className="text-[12.5px] font-medium text-[#8d8378]">Out of Area Travel Fee</span>
+                <span className="text-[12.5px] font-medium text-[#2b2523]">+ A${outOfAreaFee.toFixed(2)}</span>
+              </div>
+            )}
+            
             {appliedPromo && setAppliedPromo && (
               <div className="flex justify-between mt-2">
                 <span className="text-[12.5px] font-medium text-[#FB8C42]">Discount {appliedPromo.code}</span>
@@ -2349,6 +2356,12 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                 <span className="text-[13px] font-medium text-gray-500">Location</span>
                 <span className="text-[13px] font-semibold text-gray-900">{formData.contact.suburb || "TBD"}</span>
               </div>
+              {outOfAreaFee > 0 && (
+                <div className="flex justify-between items-center">
+                  <span className="text-[13px] font-medium text-gray-500">Out of Area Travel Fee</span>
+                  <span className="text-[13px] font-semibold text-[#FB8C42]">+ A${outOfAreaFee.toFixed(2)}</span>
+                </div>
+              )}
             </div>
           </div>
 
