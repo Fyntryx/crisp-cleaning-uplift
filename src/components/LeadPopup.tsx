@@ -112,11 +112,18 @@ export default function LeadPopup() {
 
     try {
       // Assuming you will create this endpoint in your backend to catch the data
-      await fetch(`${API_BASE_URL}/api/public/leads`, {
+      const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
+      const data = await res.json();
+      if (data.success && data.lead?.id) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("crisp_lead_id", data.lead.id);
+        }
+      }
 
       // Push to GTM dataLayer
       if (typeof window !== "undefined") {
@@ -137,8 +144,6 @@ export default function LeadPopup() {
       sessionStorage.setItem("crisp_lead_email", formData.email);
       sessionStorage.setItem("crisp_lead_phone", formData.phone);
       sessionStorage.setItem("crisp_lead_captured", "true");
-      
-      // We don't block on success since the endpoint might not exist yet
     } catch (err) {
       console.error("Failed to submit lead", err);
     } finally {

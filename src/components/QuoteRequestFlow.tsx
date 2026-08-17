@@ -523,7 +523,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && (isModalOpen || hiddenInline)) {
+    if (typeof window !== "undefined") {
       const isLeadCaptured = sessionStorage.getItem("crisp_lead_captured");
       if (isLeadCaptured === "true") {
         setDiscountClaimed(true);
@@ -557,7 +557,11 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
             phone: sessionStorage.getItem("crisp_lead_phone") || prev.contact.phone,
           }
         }));
-        setCurrentStep(prev => prev === 1 ? 2 : prev);
+        
+        // Only automatically advance if we're actually showing the form
+        if (isModalOpen || hiddenInline) {
+          setCurrentStep(prev => prev === 1 ? 2 : prev);
+        }
       }
     }
   }, [isModalOpen, hiddenInline]);
