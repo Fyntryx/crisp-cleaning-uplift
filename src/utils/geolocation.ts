@@ -60,6 +60,14 @@ function calculateHaversineDistance(lat1: number, lon1: number, lat2: number, lo
 export function checkAddressServiceability(lat: number, lon: number): ServiceabilityResult {
   const distance = calculateHaversineDistance(MELBOURNE_CBD.lat, MELBOURNE_CBD.lon, lat, lon);
   
+  if (distance > MAX_RADIUS_KM) {
+    return {
+      serviceable: false,
+      distanceKm: distance,
+      error: `Sorry, we are currently only serving locations within ${MAX_RADIUS_KM}km of Melbourne CBD. You are ${distance.toFixed(1)}km away.`
+    };
+  }
+
   let outsideAreaFee = 0;
   if (distance > INNER_RADIUS_KM) {
     outsideAreaFee = 50;

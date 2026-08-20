@@ -2413,11 +2413,11 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           <h3 className="text-[calc(1*var(--scale-unit))] font-semibold text-gray-900 mb-3">
             How often?
           </h3>
-          <div className="flex flex-wrap md:flex-nowrap items-center gap-[calc(0.5*var(--scale-unit))]">
+          <div className="grid grid-cols-2 gap-y-5 gap-x-2 mt-2 md:mt-0 md:flex md:flex-nowrap items-center md:gap-[calc(0.5*var(--scale-unit))]">
             {frequencies.map((freq) => {
               const isSelected = formData.frequency === freq.id;
               return (
-                <div key={freq.id} className="relative flex-1 text-center w-full">
+                <div key={freq.id} className="relative w-full text-center md:flex-1">
 
                   <button
                     onClick={() => {

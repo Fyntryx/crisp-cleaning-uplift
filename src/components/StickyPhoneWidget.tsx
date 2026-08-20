@@ -17,7 +17,7 @@ export default function StickyPhoneWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className={`fixed bottom-6 right-6 z-50 ${pathname === "/request-quote" ? "hidden md:block" : "block"}`}>
       <a
         href="tel:0451433786"
         onClick={trackPhoneClick}

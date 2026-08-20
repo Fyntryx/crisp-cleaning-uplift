@@ -456,7 +456,7 @@ const ReservationTimer = () => {
 
   return (
     <span className="inline-flex items-center gap-1.5 text-red-500 text-[calc(0.6875*var(--scale-unit))] font-bold tracking-wider uppercase">
-      Quote reserved for {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
+      Booking reserved for {mins.toString().padStart(2, '0')}:{secs.toString().padStart(2, '0')}
     </span>
   );
 };
@@ -956,7 +956,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       addons: Object.entries(formData.extras)
         .map(([key, value]) => `${value}x ${key}`)
         .join(", ") || "None",
-      jobValue: pricingResult?.total || 0,
+      jobValue: (pricingResult?.total || 0) + outOfAreaFee,
     };
 
     try {
@@ -1041,7 +1041,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       addons: Object.entries(formData.extras)
         .map(([key, value]) => `${value}x ${key}`)
         .join(", ") || "None",
-      jobValue: pricingResult?.total || 0,
+      jobValue: (pricingResult?.total || 0) + outOfAreaFee,
       trackingData: {
         ...(trackingData || {}),
         latestStep: step,
@@ -1368,7 +1368,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
         addons: Object.entries(formData.extras)
           .map(([key, value]) => `${value}x ${key}`)
           .join(", ") || "None",
-        jobValue: pricingResult?.total || 0,
+        jobValue: (pricingResult?.total || 0) + outOfAreaFee,
       };
 
       const endpoint = `${API_BASE_URL}/api/public/leads`;
@@ -1528,11 +1528,29 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                 className="w-full"
                 inputClassName="!pl-11 !pr-10 !py-[13px] !bg-white !border-[1.5px] !border-[#e9ddcf] !rounded-xl !text-[13.5px] !font-[400] !text-gray-900 placeholder:!text-[#a89c8f] !shadow-sm focus:!border-[#FB8C42] focus:!ring-2 focus:!ring-[#FB8C42]/20"
                 showLocationButton={false}
+                onValidityChange={setIsAddressValid}
+                onOutOfAreaFeeChange={setOutOfAreaFee}
               />
               {suburbFilled && (
                 <Check className="absolute right-4 w-4 h-4 text-[#FB8C42] pointer-events-none z-10" />
               )}
             </div>
+            {outOfAreaFee > 0 && (
+              <div className="mt-2 p-3 bg-orange-50 border border-orange-200 rounded-xl flex items-start gap-2.5">
+                <AlertTriangle className="w-4 h-4 text-[#FB8C42] shrink-0 mt-0.5" />
+                <p className="text-[12px] font-medium text-gray-700 leading-snug">
+                  Your location is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+                </p>
+              </div>
+            )}
+            {!isAddressValid && (
+              <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2.5">
+                <AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                <p className="text-[12px] font-medium text-red-700 leading-snug">
+                  Sorry, we do not currently service this area. Please enter a closer suburb.
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Service type — revealed after suburb is entered */}
@@ -1982,11 +2000,11 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
           <h3 className="text-[calc(1*var(--scale-unit))] font-semibold text-gray-900 mb-3">
             How often?
           </h3>
-          <div className="flex flex-wrap md:flex-nowrap items-center gap-[calc(0.5*var(--scale-unit))]">
+          <div className="grid grid-cols-2 gap-y-5 gap-x-2 mt-2 md:mt-0 md:flex md:flex-nowrap items-center md:gap-[calc(0.5*var(--scale-unit))]">
             {frequencies.map((freq) => {
               const isSelected = formData.frequency === freq.id;
               return (
-                <div key={freq.id} className="relative flex-1 text-center w-full">
+                <div key={freq.id} className="relative w-full text-center md:flex-1">
                   <button
                     onClick={() => {
                       setFormData({ ...formData, frequency: freq.id as any });
@@ -2321,7 +2339,6 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       <div className="bg-[#fffdfb] border border-[#f6d3b3] rounded-[24px] overflow-hidden shadow-sm shadow-orange-50/50 mb-4 max-w-2xl mx-auto w-full">
         <div className="bg-[#fff4ea] px-6 py-5 border-b border-[#f6d3b3] flex items-center justify-between">
           <h3 className="text-[16px] font-bold text-gray-900 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#FB8C42]" />
             Your Quote Request
           </h3>
           <span className="text-[10px] font-bold uppercase tracking-widest text-[#FB8C42] bg-white px-3 py-1 rounded-full border border-[#f6d3b3]/50">
@@ -2447,15 +2464,15 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       )}
 
       {/* Action controls row */}
-      <div className="mt-8 relative w-full flex justify-center">
+      <div className="mt-8 relative w-full flex flex-col md:flex-row md:justify-center items-center gap-4 md:gap-0">
         <button
           onClick={handlePrev}
-          className="absolute left-0 top-3 flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
+          className="order-2 md:order-none md:absolute left-0 top-3 flex items-center gap-1.5 text-gray-500 hover:text-gray-800 font-medium text-[calc(0.84375*var(--scale-unit))] tracking-wide transition-colors"
         >
           <ChevronLeft className="w-4 h-4" /> Back
         </button>
 
-        <div className="flex flex-col items-center gap-3 w-full md:w-auto">
+        <div className="order-1 md:order-none flex flex-col items-center gap-3 w-full md:w-auto">
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
@@ -2791,6 +2808,22 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
             onValidityChange={setIsAddressValid}
             onOutOfAreaFeeChange={setOutOfAreaFee}
           />
+          {outOfAreaFee > 0 && (
+            <div className="mt-2 p-3 bg-orange-50 border border-orange-200 rounded-xl flex items-start gap-2.5">
+              <AlertTriangle className="w-4 h-4 text-[#FB8C42] shrink-0 mt-0.5" />
+              <p className="text-[12px] font-medium text-gray-700 leading-snug">
+                Your location is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+              </p>
+            </div>
+          )}
+          {!isAddressValid && (
+            <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2.5">
+              <AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+              <p className="text-[12px] font-medium text-red-700 leading-snug">
+                Sorry, we do not currently service this area. Please enter a closer address.
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="pt-2">
@@ -3113,18 +3146,21 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
       {/* MOBILE STICKY FOOTER (< 880px) */}
       <div className="block min-[880px]:hidden fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
         <div className="flex items-center justify-between gap-4 w-full">
-          <div className="flex flex-col">
-            <span className="text-[12.5px] font-[600] text-[#2b2523] uppercase tracking-wider">Quote Summary</span>
-            <span className="text-[13px] font-[400] text-[#8d8378] mt-0.5 leading-[1.55]">
+          <button onClick={() => setIsMobileSummaryOpen(true)} className="flex flex-col text-left active:opacity-70 transition-opacity flex-1 min-w-0">
+            <span className="text-[12.5px] font-[600] text-[#2b2523] uppercase tracking-wider flex items-center gap-1.5">
+              Quote Summary
+              <ChevronDown className="w-3.5 h-3.5 text-[#FB8C42]" />
+            </span>
+            <span className="text-[13px] font-[400] text-[#8d8378] mt-0.5 leading-[1.55] truncate w-full">
               {formData.cleaningType ? `${formData.cleaningType} Clean` : "Build your quote"}
               {formData.contact.suburb ? ` · ${formData.contact.suburb}` : ""}
             </span>
-          </div>
+          </button>
           {currentStep < totalSteps && (
             <button
               onClick={handleNext}
               disabled={!isStepValid() || isSubmittingDiscount}
-              className={`px-6 py-3 rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${!isStepValid() || isSubmittingDiscount
+              className={`px-6 py-3 shrink-0 rounded-full font-semibold text-[calc(0.84375*var(--scale-unit))] transition-all flex items-center gap-2 ${!isStepValid() || isSubmittingDiscount
                 ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                 : "bg-[#FB8C42] hover:bg-[#FB8C42]/90 text-white shadow-lg shadow-[#FB8C42]/20"
                 }`}
@@ -3136,6 +3172,41 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
           )}
         </div>
       </div>
+
+      {/* MOBILE SUMMARY OVERLAY */}
+      {isMobileSummaryOpen && (
+        <div className="fixed inset-0 z-[60] flex flex-col justify-end min-[880px]:hidden">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onClick={() => setIsMobileSummaryOpen(false)} />
+          <div className="relative bg-[#fdf9f3] w-full rounded-t-3xl max-h-[85vh] overflow-y-auto animate-in slide-in-from-bottom-full duration-300">
+            <div className="p-4 flex justify-between items-center border-b border-[#f2eadf] sticky top-0 bg-[#fdf9f3] z-10">
+              <h3 className="font-bold text-gray-900 text-[15px] flex items-center gap-2">
+                Quote Summary
+              </h3>
+              <button onClick={() => setIsMobileSummaryOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-full bg-black/5 hover:bg-black/10 transition-colors">
+                <X className="w-4 h-4 text-gray-600" />
+              </button>
+            </div>
+            <div className="p-6 pb-12">
+              <QuoteSummaryCard
+                className="w-full !bg-transparent !border-none !p-0"
+                formData={formData}
+                pricingConfig={pricingConfig}
+                pricingResult={pricingResult}
+                outOfAreaFee={outOfAreaFee}
+                currentStep={currentStep}
+                promoCode={promoCode}
+                setPromoCode={setPromoCode}
+                isValidatingPromo={isValidatingPromo}
+                setIsValidatingPromo={setIsValidatingPromo}
+                appliedPromo={appliedPromo}
+                setAppliedPromo={setAppliedPromo}
+                appliedReferral={appliedReferral}
+                setAppliedReferral={setAppliedReferral}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };;
