@@ -271,7 +271,7 @@ const QuoteSummaryCard = ({
             {outOfAreaFee > 0 && (
               <div className="flex justify-between mt-2 pt-2 border-t border-[#f2eadf]">
                 <span className="text-[12.5px] font-medium text-[#8d8378]">Out of Area Travel Fee</span>
-                <span className="text-[12.5px] font-medium text-[#2b2523]">+ A${outOfAreaFee.toFixed(2)}</span>
+                <span className="text-[12.5px] font-medium text-[#2b2523]">Applies</span>
               </div>
             )}
           </div>
@@ -1539,7 +1539,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
               <div className="mt-2 p-3 bg-orange-50 border border-orange-200 rounded-xl flex items-start gap-2.5">
                 <AlertTriangle className="w-4 h-4 text-[#FB8C42] shrink-0 mt-0.5" />
                 <p className="text-[12px] font-medium text-gray-700 leading-snug">
-                  Your location is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+                  Your location is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A travel fee may apply.
                 </p>
               </div>
             )}
@@ -2376,12 +2376,12 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-[13px] font-medium text-gray-500">Location</span>
-                <span className="text-[13px] font-semibold text-gray-900">{formData.contact.suburb || "TBD"}</span>
+                <span className="text-[13px] font-semibold text-gray-900">{formData.contact.suburb || "Area not confirmed"}</span>
               </div>
               {outOfAreaFee > 0 && (
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mt-2.5">
                   <span className="text-[13px] font-medium text-gray-500">Out of Area Travel Fee</span>
-                  <span className="text-[13px] font-semibold text-[#FB8C42]">+ A${outOfAreaFee.toFixed(2)}</span>
+                  <span className="text-[13px] font-semibold text-[#FB8C42]">Applies</span>
                 </div>
               )}
             </div>
@@ -2812,7 +2812,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
             <div className="mt-2 p-3 bg-orange-50 border border-orange-200 rounded-xl flex items-start gap-2.5">
               <AlertTriangle className="w-4 h-4 text-[#FB8C42] shrink-0 mt-0.5" />
               <p className="text-[12px] font-medium text-gray-700 leading-snug">
-                Your location is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+                Your location is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A travel fee may apply.
               </p>
             </div>
           )}
@@ -3077,7 +3077,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
                         )}
                       </button>
                       <span className="text-[11px] text-[#A2968A] font-normal text-center mt-2">
-                        No spam — just your quote and booking updates.
+                        Booking Reserved. No Commitment. We'll be in touch shortly...
                       </span>
                     </div>
                   ) : (

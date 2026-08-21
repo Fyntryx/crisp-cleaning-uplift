@@ -352,7 +352,7 @@ const BookingSummaryCard = ({
               {outOfAreaFee > 0 && (
                 <div className="flex justify-between text-[calc(0.84375*var(--scale-unit))] font-medium text-amber-600 pt-1">
                   <span>+ Travel Fee (Extended Area)</span>
-                  <span>A${outOfAreaFee.toFixed(2)}</span>
+                  <span>Applies</span>
                 </div>
               )}
               {(pricingResult?.largeServiceDiscountAmount ?? 0) > 0 && (
@@ -456,7 +456,7 @@ const BookingSummaryCard = ({
               <div>
                 <p className="text-[calc(0.6875*var(--scale-unit))] font-bold text-amber-800 uppercase tracking-wide">Extended Service Area</p>
                 <p className="text-[calc(0.6875*var(--scale-unit))] text-amber-700 leading-relaxed mt-0.5">
-                  Your address is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A one-time <strong>+A${outOfAreaFee.toFixed(0)}</strong> travel fee applies.
+                  Your address is outside our standard {pricingConfig?.serviceRadiusKm || 40}km radius. A travel fee may apply.
                 </p>
               </div>
             </div>
