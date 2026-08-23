@@ -1941,7 +1941,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
 
     const handleNextMonth = () => {
       const nextMonth = new Date(currentYear, currentMonth + 1, 1);
-      const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, 1);
+      const maxDate = new Date(today.getFullYear(), today.getMonth() + 12, 1);
       if (nextMonth <= maxDate) {
         setViewDate(nextMonth);
       }
