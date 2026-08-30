@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { createPortal } from "react-dom";
+import { getTrackingPayload } from "@/lib/trackingUtils";
 import {
   Home,
   Building2,
@@ -644,15 +645,48 @@ const Services = ({ hiddenInline = false }: { hiddenInline?: boolean }) => {
           }
         };
         fetchPromo();
+
+        const firstName = sessionStorage.getItem("crisp_lead_first_name") || "";
+        const lastName  = sessionStorage.getItem("crisp_lead_last_name")  || "";
+        const email     = sessionStorage.getItem("crisp_lead_email")       || "";
+        const phone     = sessionStorage.getItem("crisp_lead_phone")       || "";
+
         setFormData(prev => ({
           ...prev,
           contact: {
             ...prev.contact,
-            firstName: sessionStorage.getItem("crisp_lead_first_name") || prev.contact.firstName,
-            email: sessionStorage.getItem("crisp_lead_email") || prev.contact.email,
-            phone: sessionStorage.getItem("crisp_lead_phone") || prev.contact.phone,
+            firstName: firstName || prev.contact.firstName,
+            email:     email     || prev.contact.email,
+            phone:     phone     || prev.contact.phone,
           }
         }));
+
+        // If the lead came from the popup (no lead ID yet), create the initial
+        // backend record now so syncLeadData can enrich it at every step.
+        const existingLeadId = sessionStorage.getItem("crisp_lead_id");
+        if (!existingLeadId && firstName && email && phone) {
+          const { source, trackingData } = getTrackingPayload("Popup Lead Form");
+          fetch(`${API_BASE_URL}/api/public/leads`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              fullName: `${firstName} ${lastName}`.trim(),
+              email,
+              phone,
+              source,
+              trackingData,
+              offer: "5% off expiry",
+            }),
+          })
+            .then(r => r.json())
+            .then(data => {
+              if (data.success && data.lead?.id) {
+                sessionStorage.setItem("crisp_lead_id", data.lead.id);
+              }
+            })
+            .catch(err => console.error("Failed to create popup lead in backend", err));
+        }
+
         setCurrentStep(prev => prev === 1 ? 2 : prev);
       }
     }
