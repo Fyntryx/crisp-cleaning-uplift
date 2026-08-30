@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
-import { getTrackingPayload } from "@/lib/trackingUtils";
 
 
 export default function LeadPopup() {
@@ -32,8 +31,6 @@ export default function LeadPopup() {
     phone: "",
   });
   
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const showPopup = useCallback(() => {
@@ -85,7 +82,7 @@ export default function LeadPopup() {
     };
   }, [hasTriggered, showPopup]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     
@@ -94,65 +91,44 @@ export default function LeadPopup() {
       setError("Please enter a valid phone number (min 10 digits).");
       return;
     }
-    
-    setIsSubmitting(true);
 
-    const API_BASE_URL = (
-      process.env.NEXT_PUBLIC_API_BASE_URL || "https://crisp-cleaning-app-seven.vercel.app"
-    ).replace(/\/$/, "");
+    // ── Save contact info to sessionStorage so the quote flow can
+    //    pre-fill Step 1 and skip straight to Step 2. We intentionally
+    //    do NOT submit to the backend here — the quote flow's own
+    //    handleDiscountSubmit will create the lead with the full
+    //    booking data, avoiding duplicate entries. ──────────────────
+    const parts = formData.fullName.trim().split(/\s+/);
+    const first = parts[0] || "";
+    const last = parts.slice(1).join(" ");
 
-    const { source, trackingData } = getTrackingPayload("Popup Lead Form");
+    sessionStorage.setItem("crisp_lead_first_name", first);
+    sessionStorage.setItem("crisp_lead_last_name", last);
+    sessionStorage.setItem("crisp_lead_email", formData.email);
+    sessionStorage.setItem("crisp_lead_phone", formData.phone);
+    sessionStorage.setItem("crisp_lead_captured", "true");
 
-    const existingLeadId = typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null;
-
-    const payload = {
-      ...(existingLeadId ? { id: existingLeadId } : {}),
-      ...formData,
-      source,
-      trackingData,
-      offer: "5% off expiry"
-    };
-
-    try {
-      // Assuming you will create this endpoint in your backend to catch the data
-      const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
-        method: existingLeadId ? "PUT" : "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+    // GTM event — fire immediately, no backend needed
+    if (typeof window !== "undefined") {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "popup_lead_captured",
+        lead_source: "Popup Lead Form",
+        offer: "5% off expiry"
       });
+    }
 
-      const data = await res.json();
-      if (data.success && data.lead?.id) {
-        if (typeof window !== "undefined") {
-          sessionStorage.setItem("crisp_lead_id", data.lead.id);
-        }
-      }
+    // Close the popup first
+    setIsOpen(false);
 
-      // Push to GTM dataLayer
-      if (typeof window !== "undefined") {
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
-          event: "generate_lead",
-          lead_source: "Popup Lead Form",
-          offer: "5% off expiry"
-        });
-      }
-      
-      // Mark lead as captured
-      const parts = formData.fullName.trim().split(/\s+/);
-      const first = parts[0] || "";
-      const last = parts.slice(1).join(" ");
-      sessionStorage.setItem("crisp_lead_first_name", first);
-      sessionStorage.setItem("crisp_lead_last_name", last);
-      sessionStorage.setItem("crisp_lead_email", formData.email);
-      sessionStorage.setItem("crisp_lead_phone", formData.phone);
-      sessionStorage.setItem("crisp_lead_captured", "true");
-    } catch (err) {
-      console.error("Failed to submit lead", err);
-    } finally {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setTimeout(() => setIsOpen(false), 3000);
+    // Navigate to the quote flow. If the booking form is embedded on
+    // this page scroll to it; the form's useEffect will detect
+    // crisp_lead_captured and jump straight to Step 2.
+    // If it's on a dedicated page, navigate there.
+    const bookingEl = document.getElementById("booking");
+    if (bookingEl) {
+      bookingEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = "/request-quote";
     }
   };
 
@@ -178,18 +154,7 @@ export default function LeadPopup() {
           />
         </div>
 
-        {isSuccess ? (
-          <div className="py-8">
-            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-black text-gray-900 mb-2">Got it!</h3>
-            <p className="text-gray-500 text-sm">Your 5% discount has been secured. A copy of the discount code has been sent to your email!</p>
-          </div>
-        ) : (
-          <>
+        <>
             <h2 className="text-[32px] font-black text-gray-900 leading-none tracking-tight mb-3">
               {content.heading}
             </h2>
@@ -231,10 +196,9 @@ export default function LeadPopup() {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
                 className="w-full bg-black hover:bg-gray-900 text-white font-bold rounded-xl py-4 mt-2 transition-all shadow-lg flex justify-center items-center"
               >
-                {isSubmitting ? "Saving..." : "Claim Now!"}
+                Claim Now!
               </button>
             </form>
 
@@ -244,8 +208,7 @@ export default function LeadPopup() {
             >
               No thanks, I don&apos;t want to save
             </button>
-          </>
-        )}
+        </>
       </div>
     </div>
   );
