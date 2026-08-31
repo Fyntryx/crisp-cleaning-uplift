@@ -1400,6 +1400,7 @@ const QuoteRequestFlow = ({ hiddenInline = false }: { hiddenInline?: boolean }) 
           .map(([key, value]) => `${value}x ${key}`)
           .join(", ") || "None",
         jobValue: (pricingResult?.total || 0) + outOfAreaFee,
+        sendQuoteEmail: true, // Trigger customer confirmation email on final submission
       };
 
       const endpoint = `${API_BASE_URL}/api/public/leads`;
