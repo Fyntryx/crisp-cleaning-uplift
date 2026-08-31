@@ -67,7 +67,10 @@ export default function QuoteRequestPanelV2() {
 
     const { source, trackingData } = getTrackingPayload("Booking Flow Discount Step");
 
+    const existingLeadId = typeof window !== "undefined" ? sessionStorage.getItem("crisp_lead_id") : null;
+
     const payload = {
+      ...(existingLeadId ? { id: existingLeadId } : {}),
       fullName: formData.fullName.trim(),
       email: formData.email,
       phone: formData.phone,
@@ -85,11 +88,18 @@ export default function QuoteRequestPanelV2() {
     };
 
     try {
-      await fetch(`${API_BASE_URL}/api/public/leads`, {
-        method: "POST",
+      const res = await fetch(`${API_BASE_URL}/api/public/leads`, {
+        method: existingLeadId ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
+      const data = await res.json();
+      if (data.success && data.lead?.id) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("crisp_lead_id", data.lead.id);
+        }
+      }
 
       if (typeof window !== "undefined") {
         (window as any).dataLayer = (window as any).dataLayer || [];
