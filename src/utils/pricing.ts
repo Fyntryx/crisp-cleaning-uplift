@@ -270,7 +270,7 @@ export function calculatePricing(request: PricingRequest, config?: PricingConfig
 
   // Large Service Discount
   let largeServiceDiscountAmount = 0;
-  if (config?.smallServiceFeeConfig) {
+  if (request.cleaningType !== 'Hourly' && config?.smallServiceFeeConfig) {
     if (baselineHomeDetailsTotal > config.smallServiceFeeConfig.threshold) {
       largeServiceDiscountAmount = config.smallServiceFeeConfig.amount;
       // You can add it to the discounts breakdown if you want it to show in UI
